@@ -1,5 +1,6 @@
 <template>
   <table class="vk-datagrid--header-table" cellspacing="0" cellpadding="0" border="0">
+    <v-datagrid-colgroup :columns="leafColumns"></v-datagrid-colgroup>
     <thead>
       <tr v-for="(colRows, index) in columns" :key="index">
         <th v-for="(column, index) in colRows" :key="index" :colspan="column.colSpan" :rowspan="column.rowSpan">
@@ -11,15 +12,16 @@
 </template>
 
 <script>
+import VDatagridColgroup from "./datagrid-colgroup";
+
 export default {
+  components: { VDatagridColgroup },
   data() {
     return {};
   },
   props: {
-    columns: {
-      required: true,
-      type: Array
-    }
+    columns: Array,
+    leafColumns: Array
   },
   computed: {
     // 获取父级表格
@@ -29,6 +31,8 @@ export default {
   },
   methods: {},
   mounted() {
+    console.log(this.leafColumns);
+
     console.log(this.columns);
   }
 };
@@ -36,11 +40,12 @@ export default {
 
 <style lang="scss" scoped>
 .vk-datagrid--header-table {
-  table-layout: fixed;
+  // table-layout: fixed;
   border-collapse: separate;
+  width: 100%;
+  font-variant:tabular-nums
 
   th {
-    padding: 12px 0;
     min-width: 0;
     box-sizing: border-box;
     vertical-align: middle;
@@ -48,8 +53,8 @@ export default {
     text-align: left;
     border: 1px solid #ebeef5;
     white-space: nowrap;
-    overflow: hidden;
-    user-select: none;
+    // overflow: hidden;
+    // user-select: none;
   }
 }
 
@@ -61,8 +66,7 @@ export default {
   display: inline-block;
   box-sizing: border-box;
   text-overflow: ellipsis;
-  white-space: normal;
-  word-break: break-all;
+ white-space: nowrap;
   line-height: 20px;
 }
 </style>
