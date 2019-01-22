@@ -1,7 +1,7 @@
 <template>
   <div class="vk-datagrid">
     <div class="vk-datagrid--header">
-      <v-data-grid-header :columns="columnRows"></v-data-grid-header>
+      <v-data-grid-header :columns="columnRows" :leaf-columns="leafColumns"></v-data-grid-header>
     </div>
   </div>
 </template>
@@ -14,7 +14,7 @@ export default {
   data() {
     return {
       columnRows: [],
-      keyColumns: []
+      leafColumns: []
     };
   },
   props: {
@@ -25,7 +25,7 @@ export default {
   },
   methods: {
     setRenderOptions() {
-      const keyColumns = [];
+      const leafColumns = [];
       // 递归循环将列数据对象转化为表头行数据集合
       const getHeaderRows = (columns, index = 0, rows, level = 0) => {
         // 行数据和当前行数据设置默认值
@@ -39,7 +39,7 @@ export default {
           }
           column.level = level + 1;
           if (column.key) {
-            this.keyColumns.push(column);
+            leafColumns.push(column);
           }
           rows[index].push(column);
         });
@@ -69,8 +69,9 @@ export default {
       });
 
       // 设置初始话数据
-      this.columnRows = getHeaderRows(this.columns);
-      this.keyColumns = keyColumns;
+      this.columnRows = rows;
+      this.leafColumns = leafColumns;
+      console.log(leafColumns, 0);
     }
   },
   created() {
