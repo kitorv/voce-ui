@@ -9,16 +9,11 @@ export default {
   },
   computed: {
     style() {
-      let { width, minWidth } = this.column;
+      let { width } = this.column;
       if (typeof width === "number") {
         width = `${width}px`;
       }
-      if (typeof minWidth === "number") {
-        minWidth = `${minWidth}px`;
-      }
-      console.log({ width, minWidth });
-
-      return { width, minWidth:width };
+      return { width, minWidth: width };
     }
   }
 };

@@ -28,12 +28,6 @@ export default {
     datgrid() {
       return this.$parent;
     }
-  },
-  methods: {},
-  mounted() {
-    console.log(this.leafColumns);
-
-    console.log(this.columns);
   }
 };
 </script>
@@ -43,15 +37,14 @@ export default {
   // table-layout: fixed;
   border-collapse: separate;
   width: 100%;
-  font-variant:tabular-nums
-
+  font-variant: tabular-nums;
   th {
     min-width: 0;
     box-sizing: border-box;
     vertical-align: middle;
     position: relative;
     text-align: left;
-    border: 1px solid #ebeef5;
+    border: 1px solid #000;
     white-space: nowrap;
     // overflow: hidden;
     // user-select: none;
@@ -66,7 +59,7 @@ export default {
   display: inline-block;
   box-sizing: border-box;
   text-overflow: ellipsis;
- white-space: nowrap;
+  white-space: nowrap;
   line-height: 20px;
 }
 </style>
