@@ -13,14 +13,14 @@ export default {
   data() {
     return {
       columns: [
-        { key: "id", title: "id标识", width: 300 },
+        { key: "id", title: "id标识", width: 100 },
         {
           title: "用户信息",
           children: [
             {
               title: "基本信息",
               children: [
-                { key: "name", title: "姓名", minWidth: 300 },
+                { key: "name", title: "姓名" },
                 { key: "age", title: "年龄" },
                 { key: "work", title: "工作" }
               ]
