@@ -1,23 +1,25 @@
 <template>
-  <table class="vk-datagrid--header-table" cellspacing="0" cellpadding="0" border="0">
-    <v-datagrid-colgroup :columns="leafColumns"></v-datagrid-colgroup>
+  <table class="vk-datagrid--body-table" cellspacing="0" cellpadding="0" border="0">
+    <colgroup is="d-colgroup" :leaf-columns="leafColumns"></colgroup>
     <tr v-for="(row, index) in dataSource" :key="index">
-      <td v-for="(column, index) in leafColumns" :key="index">{{row[column.key]}}</td>
+      <td v-for="(column, index) in leafColumns" :key="index">
+        {{row[column.key]}}
+      </td>
     </tr>
   </table>
 </template>
 
 <script>
-import VDatagridColgroup from "./datagrid-colgroup";
+import DColgroup from "./datagrid-colgroup";
 
 export default {
-  components: { VDatagridColgroup },
+  components: { DColgroup },
   data() {
     return {};
   },
   props: {
-    leafColumns: Array,
-    dataSource: Array
+    leafColumns: { required: true, type: Array },
+    dataSource: { type: Array }
   },
   mounted() {
     console.log(this.dataSource);
@@ -26,8 +28,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.vk-datagrid--header-table {
-  border-collapse: separate;
+.vk-datagrid--body-table {
   width: 100%;
   table-layout: fixed;
 

@@ -1,20 +1,29 @@
 <template>
   <div class="vk-datagrid">
     <div class="vk-datagrid--header">
-      <v-data-grid-header :columns="columnRows" :leaf-columns="leafColumns"></v-data-grid-header>
+      <div class="vk-datagrid--header-left"></div>
+      <div class="vk-datagrid--header-center">
+        <d-header-table :columns="columnRows" :leaf-columns="leafColumns"></d-header-table>
+      </div>
+      <div class="vk-datagrid--header-right"></div>
     </div>
-    <div class="vk-datagrid--header">
-      <v-data-grid-body :data-source="dataSource" :leaf-columns="leafColumns"></v-data-grid-body>
+    <div class="vk-datagird--body">
+      <div class="vk-datagrid--body-left"> </div>
+      <div class="vk-datagrid--body-center">
+        <d-body-table :data-source="dataSource" :leaf-columns="leafColumns"></d-body-table>
+      </div>
+      <div class="vk-datagrid--body-right"></div>
     </div>
+    <div class="vk-datagrid--footer"></div>
   </div>
 </template>
 
 <script>
-import VDataGridHeader from "./datagrid-header";
-import VDataGridBody from "./datagrid-body";
+import DHeaderTable from "./datagrid-header";
+import DBodyTable from "./datagrid-body";
 
 export default {
-  components: { VDataGridHeader, VDataGridBody },
+  components: { DHeaderTable, DBodyTable },
   data() {
     return {
       columnRows: [],
@@ -22,14 +31,11 @@ export default {
     };
   },
   props: {
-    columns: {
-      required: true,
-      type: Array
-    },
-    dataSource: Array
+    columns: { required: true, type: Array },
+    dataSource: { type: Array }
   },
   methods: {
-    setRenderOptions() {
+    renderOptions() {
       const leafColumns = [];
       // 递归循环将列数据对象转化为表头行数据集合
       const getHeaderRows = (columns, index = 0, rows, level = 0) => {
@@ -79,7 +85,7 @@ export default {
     }
   },
   created() {
-    this.setRenderOptions();
+    this.renderOptions();
   }
 };
 </script>
@@ -88,21 +94,11 @@ export default {
 .vk-datagrid {
   zoom: 1;
   box-sizing: border-box;
-
-  &::before,
-  &::after {
-    content: "";
-    display: table;
-  }
-
-  &::after {
-    clear: both;
-  }
 }
 
-.vk-datagrid--header {
-  overflow: hidden;
-  width: 100%;
-}
+// .vk-datagrid--header {
+//   overflow: hidden;
+//   width: 100%;
+// }
 </style>
 
