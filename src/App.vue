@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <v-data-grid :columns="columns"></v-data-grid>
+    <v-data-grid :columns="columns" :data-source="dataSource"></v-data-grid>
   </div>
 </template>
 
@@ -17,28 +17,52 @@ export default {
         {
           title: "用户信息",
           children: [
-            {
-              title: "基本信息",
-              children: [
-                { key: "name", title: "姓名" },
-                { key: "age", title: "年龄" },
-                { key: "work", title: "工作" }
-              ]
-            }
+            { key: "name", title: "姓名", width: 280 },
+            { key: "age", title: "年龄", width: 100 },
+            { key: "work", title: "工作", width: 100 }
           ]
         },
         {
           title: "其他信息",
           children: [
-            { key: "street", title: "街道" },
+            { key: "street", title: "街道", width: 100 },
             {
               title: "详细地址",
               children: [
-                { key: "building", title: "位置" },
-                { key: "doorNo", title: "门牌号" }
+                { key: "building", title: "位置", width: 100 },
+                { key: "doorNo", title: "门牌号", width: 100 }
               ]
             }
           ]
+        }
+      ],
+      dataSource: [
+        {
+          id: 1,
+          name: "张三",
+          age: 20,
+          work: "程序员",
+          street: "软件园二期",
+          building: "14#",
+          doorNo: "1024"
+        },
+        {
+          id: 2,
+          name: "李四",
+          age: 28,
+          work: "销售",
+          street: "湖里街道",
+          building: "20#",
+          doorNo: "3001"
+        },
+        {
+          id: 3,
+          name: "王五",
+          age: 35,
+          work: "采购",
+          street: "集美街道",
+          building: "65#",
+          doorNo: "1001"
         }
       ]
     };

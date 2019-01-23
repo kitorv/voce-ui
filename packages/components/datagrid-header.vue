@@ -34,10 +34,10 @@ export default {
 
 <style lang="scss" scoped>
 .vk-datagrid--header-table {
-  // table-layout: fixed;
+  table-layout: fixed;
   border-collapse: separate;
   width: 100%;
-  font-variant: tabular-nums;
+
   th {
     min-width: 0;
     box-sizing: border-box;

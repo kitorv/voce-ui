@@ -3,14 +3,18 @@
     <div class="vk-datagrid--header">
       <v-data-grid-header :columns="columnRows" :leaf-columns="leafColumns"></v-data-grid-header>
     </div>
+    <div class="vk-datagrid--header">
+      <v-data-grid-body :data-source="dataSource" :leaf-columns="leafColumns"></v-data-grid-body>
+    </div>
   </div>
 </template>
 
 <script>
 import VDataGridHeader from "./datagrid-header";
+import VDataGridBody from "./datagrid-body";
 
 export default {
-  components: { VDataGridHeader },
+  components: { VDataGridHeader, VDataGridBody },
   data() {
     return {
       columnRows: [],
@@ -21,7 +25,8 @@ export default {
     columns: {
       required: true,
       type: Array
-    }
+    },
+    dataSource: Array
   },
   methods: {
     setRenderOptions() {
@@ -71,7 +76,6 @@ export default {
       // 设置初始话数据
       this.columnRows = rows;
       this.leafColumns = leafColumns;
-      console.log(leafColumns, 0);
     }
   },
   created() {
