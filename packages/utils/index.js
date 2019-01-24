@@ -1,3 +1,3 @@
-import scrollbarWith from "./scrollbar-width";
+import scrollBarSize from "./scroll-bar-size";
 
-export { scrollbarWith };
+export { scrollBarSize };

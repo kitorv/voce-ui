@@ -1,10 +1,7 @@
-import Vue from "vue";
-let scrollBarWidth = 0;
+let scrollBarSize = 0;
 
 export default function() {
-  // 服务端渲染和宽度已经赋值直接返回
-  if (Vue.prototype.$isServer) return 0;
-  if (scrollBarWidth > 0) return scrollBarWidth;
+  if (scrollBarSize > 0) return scrollBarSize;
   // 创建一个外层div
   const outer = document.createElement("div");
   outer.style.visibility = "hidden";
@@ -23,6 +20,6 @@ export default function() {
   const widthWithScroll = inner.offsetWidth;
   outer.parentNode.removeChild(outer);
   // 无滚动条减去滚动条状态的宽度即可获取滚动条宽度
-  scrollBarWidth = widthNoScroll - widthWithScroll;
-  return scrollBarWidth;
+  scrollBarSize = widthNoScroll - widthWithScroll;
+  return scrollBarSize;
 }
