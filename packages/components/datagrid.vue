@@ -1,6 +1,6 @@
 <template>
   <div class="vk-datagrid">
-    <div class="vk-datagrid--header">
+    <div class="vk-datagrid--header" :style="headerTableStyle">
       <div class="vk-datagrid--header-left"></div>
       <div class="vk-datagrid--header-center">
         <d-header-table :columns="columnRows" :leaf-columns="leafColumns"></d-header-table>
@@ -9,8 +9,8 @@
     </div>
     <div class="vk-datagird--body">
       <div class="vk-datagrid--body-left"> </div>
-      <div class="vk-datagrid--body-center">
-        <d-body-table :data-source="dataSource" :leaf-columns="leafColumns"></d-body-table>
+      <div class="vk-datagrid--body-center" ref="body">
+        <d-body-table :data-source="dataSource" :leaf-columns="leafColumns" @after-render="handleBodyTableAfterRneder"></d-body-table>
       </div>
       <div class="vk-datagrid--body-right"></div>
     </div>
@@ -22,19 +22,30 @@
 import DHeaderTable from "./datagrid-header";
 import DBodyTable from "./datagrid-body";
 
+import { scrollBarSize } from "../utils";
+
 export default {
   components: { DHeaderTable, DBodyTable },
   data() {
     return {
       columnRows: [],
-      leafColumns: []
+      leafColumns: [],
+      scrollBarSize: scrollBarSize(),
+      showVerticalScrollBar: false
     };
   },
   props: {
     columns: { required: true, type: Array },
     dataSource: { type: Array }
   },
+  computed: {
+    headerTableStyle() {
+      if (!this.showVerticalScrollBar) return;
+      return { "padding-right": `${this.scrollBarSize}px` };
+    }
+  },
   methods: {
+    // 初始化配置属性处理
     renderOptions() {
       const leafColumns = [];
       // 递归循环将列数据对象转化为表头行数据集合
@@ -82,6 +93,17 @@ export default {
       // 设置初始话数据
       this.columnRows = rows;
       this.leafColumns = leafColumns;
+    },
+    // 表体内容渲染完数据，根据是否包含滚动条处理
+    handleBodyTableAfterRneder() {
+      // 无数据滚动条不存在
+      if (!this.dataSource || this.dataSource.length < 1) {
+        this.showVerticalScrollBar = false;
+        return;
+      }
+      // 计算宽度获取是否存在滚动条
+      let bodyEl = this.$refs.body;
+      this.showVerticalScrollBar = bodyEl.scrollHeight - bodyEl.clientHeight;
     }
   },
   created() {
@@ -96,9 +118,14 @@ export default {
   box-sizing: border-box;
 }
 
-// .vk-datagrid--header {
-//   overflow: hidden;
-//   width: 100%;
-// }
+.vk-datagrid--header-center {
+  width: 100%;
+  overflow: hidden;
+}
+
+.vk-datagrid--body-center {
+  height: 200px;
+  overflow: auto;
+}
 </style>
 

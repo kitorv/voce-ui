@@ -22,7 +22,7 @@ export default {
     dataSource: { type: Array }
   },
   mounted() {
-    console.log(this.dataSource);
+    this.$emit("after-render");
   }
 };
 </script>
