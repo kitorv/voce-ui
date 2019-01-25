@@ -76,6 +76,10 @@ export default {
       // 列转换数据格式为表格渲染行格式
       const rows = getHeaderRows(this.columns);
 
+      // 左右固定列数组
+      let leftFixedColumns = [];
+      let rightFixedColumns = [];
+
       // 设置单元格的colspan和rowspan
       const setCellSize = column => {
         const { children, fixed } = column;
@@ -90,10 +94,10 @@ export default {
           column.rowSpan = 1;
         } else {
           if (fixed === "left") {
-            this.leftFixedColumns.push(column);
+            leftFixedColumns.push(column);
           }
           if (fixed === "right") {
-            this.rightFixedColumns.push(column);
+            rightFixedColumns.push(column);
           }
           column.colSpan = 1;
           column.rowSpan = rows.length - column.level + 1;
@@ -105,12 +109,11 @@ export default {
         setCellSize(col);
       });
 
-      // 设置初始话数据
+      // 设置初始化数据
       this.columnRows = rows;
       this.leafColumns = leafColumns;
-
-      console.log(this.leftFixedColumns);
-      console.log(this.rightFixedColumns);
+      this.leftFixedColumns = leftFixedColumns;
+      this.rightFixedColumns = rightFixedColumns;
     },
     // 根据固定列属性fixed排序'left'排左侧'right'排右侧其他的排中间
     sortFixedColumns() {
