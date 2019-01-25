@@ -68,6 +68,10 @@ export default {
         // 过滤掉没有数据的行
         return rows.filter(row => row.length > 0);
       };
+
+      // 列先进行固定列的排序
+      this.sortFixedColumns();
+      // 列转换数据格式为表格渲染行格式
       const rows = getHeaderRows(this.columns);
 
       // 设置单元格的colspan和rowspan
@@ -86,6 +90,8 @@ export default {
           column.rowSpan = rows.length - column.level + 1;
         }
       };
+
+      // 从顶部递归到底部设置单元格的占位大小
       this.columns.forEach(col => {
         setCellSize(col);
       });
@@ -93,6 +99,15 @@ export default {
       // 设置初始话数据
       this.columnRows = rows;
       this.leafColumns = leafColumns;
+    },
+    // 根据固定列属性fixed排序'left'排左侧'right'排右侧其他的排中间
+    sortFixedColumns() {
+      const sortOrderProps = ["left", undefined, "right"];
+      this.columns.sort((x, y) => {
+        const xIndex = sortOrderProps.indexOf(x.fixed);
+        const yIndex = sortOrderProps.indexOf(y.fixed);
+        return Math.abs(xIndex) - Math.abs(yIndex);
+      });
     },
     // 表体内容渲染完数据，根据是否包含滚动条处理
     handleBodyTableAfterRneder() {
