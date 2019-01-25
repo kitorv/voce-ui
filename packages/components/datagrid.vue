@@ -30,6 +30,8 @@ export default {
     return {
       columnRows: [],
       leafColumns: [],
+      leftFixedColumns: [],
+      rightFixedColumns: [],
       scrollBarSize: scrollBarSize(),
       showVerticalScrollBar: false
     };
@@ -76,16 +78,23 @@ export default {
 
       // 设置单元格的colspan和rowspan
       const setCellSize = column => {
-        const { children } = column;
+        const { children, fixed } = column;
         if (Array.isArray(children) && children.length > 0) {
           let colSpan = 0;
           children.forEach(subColumn => {
+            subColumn.fixed = fixed;
             setCellSize(subColumn);
             colSpan += subColumn.colSpan;
           });
           column.colSpan = colSpan;
           column.rowSpan = 1;
         } else {
+          if (fixed === "left") {
+            this.leftFixedColumns.push(column);
+          }
+          if (fixed === "right") {
+            this.rightFixedColumns.push(column);
+          }
           column.colSpan = 1;
           column.rowSpan = rows.length - column.level + 1;
         }
@@ -99,6 +108,9 @@ export default {
       // 设置初始话数据
       this.columnRows = rows;
       this.leafColumns = leafColumns;
+
+      console.log(this.leftFixedColumns);
+      console.log(this.rightFixedColumns);
     },
     // 根据固定列属性fixed排序'left'排左侧'right'排右侧其他的排中间
     sortFixedColumns() {
