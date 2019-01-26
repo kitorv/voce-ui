@@ -1,9 +1,17 @@
 <template>
-  <table class="vk-datagrid--header-table" cellspacing="0" cellpadding="0" border="0">
-    <colgroup is="d-colgroup" :leaf-columns="leafColumns"></colgroup>
+  <table class="vk-datagrid--header-table"
+         cellspacing="0"
+         cellpadding="0"
+         border="0">
+    <colgroup is="d-colgroup"
+              :leaf-columns="leafColumns"></colgroup>
     <thead>
-      <tr v-for="(colRows, index) in columns" :key="index">
-        <th v-for="(column, index) in colRows" :key="index" :colspan="column.colSpan" :rowspan="column.rowSpan">
+      <tr v-for="(colRows, index) in columns"
+          :key="index">
+        <th v-for="(column, index) in colRows"
+            :key="index"
+            :colspan="column.colSpan"
+            :rowspan="column.rowSpan">
           {{column.title}}
         </th>
       </tr>
@@ -38,6 +46,7 @@ export default {
     position: relative;
     border: 1px solid #000;
     white-space: nowrap;
+    background-color: #ffffff;
   }
 }
 </style>
