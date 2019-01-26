@@ -1,9 +1,16 @@
 <template>
-  <table class="vk-datagrid--body-table" cellspacing="0" cellpadding="0" border="0">
-    <colgroup is="d-colgroup" :leaf-columns="leafColumns"></colgroup>
-    <tr v-for="(row, index) in dataSource" :key="index">
-      <td v-for="(column, index) in leafColumns" :key="index">
-        {{row[column.key]}}
+  <table class="vk-datagrid--body-table"
+         cellspacing="0"
+         cellpadding="0"
+         border="0">
+    <colgroup is="d-colgroup"
+              :leaf-columns="leafColumns"></colgroup>
+    <tr v-for="(row, index) in dataSource"
+        :key="index">
+      <td v-for="({key}, index) in leafColumns"
+          :key="index"
+          :class="{'vk-datagrid--body-table-hidden':hideCell(key)}">
+        {{row[key]}}
       </td>
     </tr>
   </table>
@@ -19,7 +26,19 @@ export default {
   },
   props: {
     leafColumns: { required: true, type: Array },
-    dataSource: { type: Array }
+    dataSource: { type: Array },
+    fixedColumns: { type: Array }
+  },
+  computed: {
+    fixedColumnKeys() {
+      return Array.from(this.fixedColumns || [], m => m.key);
+    }
+  },
+  methods: {
+    hideCell(key) {
+      if (this.fixedColumnKeys.length < 1) return false;
+      return !this.fixedColumnKeys.includes(key);
+    }
   },
   mounted() {
     this.$emit("after-render");
@@ -41,7 +60,12 @@ export default {
     border: 1px solid #000;
     word-wrap: break-word;
     word-break: break-all;
+    background-color: #ffffff;
   }
+}
+
+.vk-datagrid--body-table-hidden {
+  visibility: hidden;
 }
 </style>
 

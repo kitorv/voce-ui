@@ -1,6 +1,8 @@
 <template>
   <colgroup>
-    <col v-for="(column, index) in leafColumns" :key="index" :style="getStyle(column)">
+    <col v-for="(column, index) in leafColumns"
+         :key="index"
+         :style="getStyle(column)">
   </colgroup>
 </template>
 

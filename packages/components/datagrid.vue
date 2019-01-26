@@ -1,18 +1,45 @@
 <template>
   <div class="vk-datagrid">
-    <div class="vk-datagrid--header" :style="headerTableStyle">
-      <div class="vk-datagrid--header-left"></div>
-      <div class="vk-datagrid--header-center">
-        <d-header-table :columns="columnRows" :leaf-columns="leafColumns"></d-header-table>
+    <div class="vk-datagrid--header"
+         :style="headerTableStyle">
+      <div class="vk-datagrid--header-left"
+           :style="{'width':`${leftFixedColumnsWidth}px`}">
+        <d-header-table :style="{'width':`${tableContentWidth}px`}"
+                        :columns="columnRows"
+                        :leaf-columns="leafColumns"></d-header-table>
       </div>
-      <div class="vk-datagrid--header-right"></div>
+      <div class="vk-datagrid--header-center">
+        <d-header-table :columns="columnRows"
+                        :leaf-columns="leafColumns"></d-header-table>
+      </div>
+      <div class="vk-datagrid--header-right"
+           :style="{'width':`${rightFixedColumnsWidth}px`}">
+        <d-header-table :style="{'width':`${tableContentWidth}px`}"
+                        :columns="columnRows"
+                        :leaf-columns="leafColumns"></d-header-table>
+      </div>
     </div>
     <div class="vk-datagird--body">
-      <div class="vk-datagrid--body-left"> </div>
-      <div class="vk-datagrid--body-center" ref="body">
-        <d-body-table :data-source="dataSource" :leaf-columns="leafColumns" @after-render="handleBodyTableAfterRneder"></d-body-table>
+      <div class="vk-datagrid--body-left"
+           :style="{'width':`${leftFixedColumnsWidth}px`}">
+        <d-body-table :style="{'width':`${tableContentWidth}px`}"
+                      :data-source="dataSource"
+                      :leaf-columns="leafColumns"
+                      :fixed-columns="leftFixedColumns"></d-body-table>
       </div>
-      <div class="vk-datagrid--body-right"></div>
+      <div class="vk-datagrid--body-center"
+           ref="body">
+        <d-body-table :data-source="dataSource"
+                      :leaf-columns="leafColumns"
+                      @after-render="handleBodyTableAfterRneder"></d-body-table>
+      </div>
+      <div class="vk-datagrid--body-right"
+           :style="{'width':`${rightFixedColumnsWidth}px`}">
+        <d-body-table :style="{'width':`${tableContentWidth}px`}"
+                      :data-source="dataSource"
+                      :leaf-columns="leafColumns"
+                      :fixed-columns="rightFixedColumns"></d-body-table>
+      </div>
     </div>
     <div class="vk-datagrid--footer"></div>
   </div>
@@ -33,7 +60,11 @@ export default {
       leftFixedColumns: [],
       rightFixedColumns: [],
       scrollBarSize: scrollBarSize(),
-      showVerticalScrollBar: false
+      showVerticalScrollBar: false,
+      showHorizontalScrollBar: false,
+      tableContentWidth: 0,
+      leftFixedColumnsWidth: 0,
+      rightFixedColumnsWidth: 0
     };
   },
   props: {
@@ -134,6 +165,30 @@ export default {
       // 计算宽度获取是否存在滚动条
       let bodyEl = this.$refs.body;
       this.showVerticalScrollBar = bodyEl.scrollHeight - bodyEl.clientHeight;
+      // 计算高度获取是否存在滚动条
+      this.showHorizontalScrollBar = bodyEl.scrollWidth - bodyEl.clientHeight;
+
+      let rowEl = bodyEl.querySelector("tr");
+      let cellEls = rowEl.querySelectorAll("td");
+      let leftBodyWidth = 0;
+      let rightBodyWidth = 0;
+      let tableContentWidth = 0;
+      const leftFixedColumnsNumber = this.leftFixedColumns.length;
+      const rightFixedColumnsNumber = this.rightFixedColumns.length;
+      const cellNumber = this.leafColumns.length;
+      cellEls.forEach((cell, index) => {
+        const cellWidth = cell.offsetWidth;
+        if (index < leftFixedColumnsNumber) {
+          leftBodyWidth += cellWidth;
+        }
+        if (index > cellNumber - rightFixedColumnsNumber) {
+          rightBodyWidth += cellWidth;
+        }
+        tableContentWidth += cellWidth;
+      });
+      this.leftFixedColumnsWidth = leftBodyWidth;
+      this.rightFixedColumnsWidth = rightBodyWidth;
+      this.tableContentWidth = tableContentWidth;
     }
   },
   created() {
@@ -148,14 +203,47 @@ export default {
   box-sizing: border-box;
 }
 
-.vk-datagrid--header-center {
-  width: 100%;
+.vk-datagrid--header,
+.vk-datagird--body {
+  position: relative;
+}
+
+.vk-datagrid--header-left,
+.vk-datagrid--body-left {
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 2;
   overflow: hidden;
 }
 
+.vk-datagrid--header-center,
 .vk-datagrid--body-center {
-  height: 200px;
+  position: relative;
+  z-index: 1;
   overflow: auto;
+}
+
+.vk-datagrid--header-right,
+.vk-datagrid--body-right {
+  position: absolute;
+  right: 0;
+  top: 0;
+  z-index: 3;
+  overflow: hidden;
+  height: 100%;
+
+  > table {
+    position: absolute;
+    right: 0;
+    top: 0;
+    z-index: 4;
+  }
+}
+
+.vk-datagrid--header-center {
+  width: 100%;
+  overflow: hidden;
 }
 </style>
 
