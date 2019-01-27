@@ -13,7 +13,7 @@
                         :leaf-columns="leafColumns"></d-header-table>
       </div>
       <div class="vk-datagrid--header-right"
-           :style="{'width':`${rightFixedColumnsWidth}px`}">
+           :style="{'width':`${rightFixedColumnsWidth}px`,'right':`${showVerticalScrollBar?scrollBarSize:0}px`}">
         <d-header-table :style="{'width':`${tableContentWidth}px`}"
                         :columns="columnRows"
                         :leaf-columns="leafColumns"></d-header-table>
@@ -21,7 +21,7 @@
     </div>
     <div class="vk-datagird--body">
       <div class="vk-datagrid--body-left"
-           :style="{'width':`${leftFixedColumnsWidth}px`}">
+           :style="{'width':`${leftFixedColumnsWidth}px`,'height':`${tableContentHeight}px`}">
         <d-body-table :style="{'width':`${tableContentWidth}px`}"
                       :data-source="dataSource"
                       :leaf-columns="leafColumns"
@@ -34,7 +34,7 @@
                       @after-render="handleBodyTableAfterRneder"></d-body-table>
       </div>
       <div class="vk-datagrid--body-right"
-           :style="{'width':`${rightFixedColumnsWidth}px`}">
+           :style="{'width':`${rightFixedColumnsWidth}px`,'height':`${tableContentHeight}px`,'right':`${showVerticalScrollBar?scrollBarSize:0}px`}">
         <d-body-table :style="{'width':`${tableContentWidth}px`}"
                       :data-source="dataSource"
                       :leaf-columns="leafColumns"
@@ -63,6 +63,7 @@ export default {
       showVerticalScrollBar: false,
       showHorizontalScrollBar: false,
       tableContentWidth: 0,
+      tableContentHeight: 0,
       leftFixedColumnsWidth: 0,
       rightFixedColumnsWidth: 0
     };
@@ -189,6 +190,7 @@ export default {
       this.leftFixedColumnsWidth = leftBodyWidth;
       this.rightFixedColumnsWidth = rightBodyWidth;
       this.tableContentWidth = tableContentWidth;
+      this.tableContentHeight = bodyEl.clientHeight;
     }
   },
   created() {
@@ -215,6 +217,7 @@ export default {
   top: 0;
   z-index: 2;
   overflow: hidden;
+  height: 100%;
 }
 
 .vk-datagrid--header-center,
@@ -222,6 +225,14 @@ export default {
   position: relative;
   z-index: 1;
   overflow: auto;
+}
+
+.vk-datagrid--header-center {
+  overflow: hidden;
+}
+
+.vk-datagrid--body-center {
+  max-height: 250px;
 }
 
 .vk-datagrid--header-right,
@@ -239,11 +250,6 @@ export default {
     top: 0;
     z-index: 4;
   }
-}
-
-.vk-datagrid--header-center {
-  width: 100%;
-  overflow: hidden;
 }
 </style>
 
