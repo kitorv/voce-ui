@@ -8,7 +8,8 @@
                         :columns="columnRows"
                         :leaf-columns="leafColumns"></d-header-table>
       </div>
-      <div class="vk-datagrid--header-center">
+      <div ref="header"
+           class="vk-datagrid--header-center">
         <d-header-table :columns="columnRows"
                         :leaf-columns="leafColumns"></d-header-table>
       </div>
@@ -20,20 +21,23 @@
       </div>
     </div>
     <div class="vk-datagird--body">
-      <div class="vk-datagrid--body-left"
+      <div ref="leftBody"
+           class="vk-datagrid--body-left"
            :style="{'width':`${leftFixedColumnsWidth}px`,'height':`${tableContentHeight}px`}">
         <d-body-table :style="{'width':`${tableContentWidth}px`}"
                       :data-source="dataSource"
                       :leaf-columns="leafColumns"
                       :fixed-columns="leftFixedColumns"></d-body-table>
       </div>
-      <div class="vk-datagrid--body-center"
-           ref="body">
+      <div ref="body"
+           class="vk-datagrid--body-center"
+           @scroll="handleBodyScroll">
         <d-body-table :data-source="dataSource"
                       :leaf-columns="leafColumns"
                       @after-render="handleBodyTableAfterRneder"></d-body-table>
       </div>
-      <div class="vk-datagrid--body-right"
+      <div ref="rightBody"
+           class="vk-datagrid--body-right"
            :style="{'width':`${rightFixedColumnsWidth}px`,'height':`${tableContentHeight}px`,'right':`${showVerticalScrollBar?scrollBarSize:0}px`}">
         <d-body-table :style="{'width':`${tableContentWidth}px`}"
                       :data-source="dataSource"
@@ -191,6 +195,11 @@ export default {
       this.rightFixedColumnsWidth = rightBodyWidth;
       this.tableContentWidth = tableContentWidth;
       this.tableContentHeight = bodyEl.clientHeight;
+    },
+    handleBodyScroll(event) {
+      this.$refs.header.scrollLeft = event.target.scrollLeft;
+      this.$refs.leftBody.scrollTop = event.target.scrollTop;
+      this.$refs.rightBody.scrollTop = event.target.scrollTop;
     }
   },
   created() {
