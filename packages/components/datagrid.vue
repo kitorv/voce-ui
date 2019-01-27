@@ -23,7 +23,9 @@
     <div class="vk-datagird--body">
       <div ref="leftBody"
            class="vk-datagrid--body-left"
-           :style="{'width':`${leftFixedColumnsWidth}px`,'height':`${tableContentHeight}px`}">
+           :style="{'width':`${leftFixedColumnsWidth}px`,'height':`${tableContentHeight}px`}"
+           @mousewheel="handleFixedBodyMousewheel"
+           @DOMMouseScroll="handleFixedBodyMousewheel">
         <d-body-table :style="{'width':`${tableContentWidth}px`}"
                       :data-source="dataSource"
                       :leaf-columns="leafColumns"
@@ -38,7 +40,9 @@
       </div>
       <div ref="rightBody"
            class="vk-datagrid--body-right"
-           :style="{'width':`${rightFixedColumnsWidth}px`,'height':`${tableContentHeight}px`,'right':`${showVerticalScrollBar?scrollBarSize:0}px`}">
+           :style="{'width':`${rightFixedColumnsWidth}px`,'height':`${tableContentHeight}px`,'right':`${showVerticalScrollBar?scrollBarSize:0}px`}"
+           @mousewheel="handleFixedBodyMousewheel"
+           @DOMMouseScroll="handleFixedBodyMousewheel">
         <d-body-table :style="{'width':`${tableContentWidth}px`}"
                       :data-source="dataSource"
                       :leaf-columns="leafColumns"
@@ -200,6 +204,43 @@ export default {
       this.$refs.header.scrollLeft = event.target.scrollLeft;
       this.$refs.leftBody.scrollTop = event.target.scrollTop;
       this.$refs.rightBody.scrollTop = event.target.scrollTop;
+    },
+    handleFixedBodyMousewheel() {
+      let deltaY = event.deltaY;
+      if (!deltaY && event.detail) {
+        deltaY = event.detail * 40;
+      }
+      if (!deltaY && event.wheelDeltaY) {
+        deltaY = -event.wheelDeltaY;
+      }
+      if (!deltaY && event.wheelDelta) {
+        deltaY = -event.wheelDelta;
+      }
+      if (!deltaY) return;
+      const body = this.$refs.body;
+      const currentScrollTop = body.scrollTop;
+      if (deltaY < 0 && currentScrollTop !== 0) {
+        event.preventDefault();
+      }
+      if (
+        deltaY > 0 &&
+        body.scrollHeight - body.clientHeight > currentScrollTop
+      ) {
+        event.preventDefault();
+      }
+      //body.scrollTop += deltaY;
+      let step = 0;
+      let timeId = setInterval(() => {
+        step += 5;
+        if (deltaY > 0) {
+          body.scrollTop += 2;
+        } else {
+          body.scrollTop -= 2;
+        }
+        if (step >= Math.abs(deltaY)) {
+          clearInterval(timeId);
+        }
+      }, 5);
     }
   },
   created() {
