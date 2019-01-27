@@ -1,6 +1,7 @@
 <template>
   <div id="app">
-    <v-data-grid :columns="columns" :data-source="dataSource"></v-data-grid>
+    <v-data-grid :columns="columns"
+                 :data-source="dataSource"></v-data-grid>
   </div>
 </template>
 
@@ -36,15 +37,15 @@ export default {
             }
           ]
         },
-        // {
-        //   title: "指标",
-        //   children: [
-        //     { key: "target1", title: "指标1", width: 100 },
-        //     { key: "target2", title: "指标2", width: 100 },
-        //     { key: "target3", title: "指标3", width: 100 },
-        //     { key: "target4", title: "指标4", width: 100 }
-        //   ]
-        // },
+        {
+          title: "指标",
+          children: [
+            { key: "target1", title: "指标1", width: 100 },
+            { key: "target2", title: "指标2", width: 100 },
+            { key: "target3", title: "指标3", width: 100 },
+            { key: "target4", title: "指标4", width: 100 }
+          ]
+        },
         { key: "number0", title: "数值", fixed: "right", width: 100 },
         { key: "number1", title: "数值1", fixed: "right", width: 100 },
         { key: "number2", title: "数值2", fixed: "right", width: 100 },
