@@ -228,7 +228,6 @@ export default {
       ) {
         event.preventDefault();
       }
-      //body.scrollTop += deltaY;
       let step = 0;
       let timeId = setInterval(() => {
         step += 5;
