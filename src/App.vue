@@ -1,7 +1,8 @@
 <template>
   <div id="app">
     <v-data-grid :columns="columns"
-                 :data-source="dataSource"></v-data-grid>
+                 :data-source="dataSource"
+                 :footer="footer"></v-data-grid>
   </div>
 </template>
 
@@ -297,6 +298,20 @@ export default {
           street: "集美街道",
           building: "65#",
           doorNo: "1001",
+          number1: 100,
+          number2: 200,
+          number3: 300
+        }
+      ],
+      footer: [
+        {
+          id: 1,
+          name: "张三",
+          age: 20,
+          work: "程序员",
+          street: "软件园二期",
+          building: "14#",
+          doorNo: "1024",
           number1: 100,
           number2: 200,
           number3: 300

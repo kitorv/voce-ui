@@ -1,7 +1,10 @@
 <template>
   <div class="vk-datagrid">
+    <!-- 表头 -->
     <div class="vk-datagrid--header"
-         :style="headerTableStyle">
+         :style="headerTableStyle"
+         @mousewheel="handleFixedBodyMousewheel"
+         @DOMMouseScroll="handleFixedBodyMousewheel">
       <div class="vk-datagrid--header-left"
            :style="{'width':`${leftFixedColumnsWidth}px`}">
         <d-header-table :style="{'width':`${tableContentWidth}px`}"
@@ -20,6 +23,7 @@
                         :leaf-columns="leafColumns"></d-header-table>
       </div>
     </div>
+    <!-- 表体 -->
     <div class="vk-datagird--body">
       <div ref="leftBody"
            class="vk-datagrid--body-left"
@@ -49,7 +53,35 @@
                       :fixed-columns="rightFixedColumns"></d-body-table>
       </div>
     </div>
-    <div class="vk-datagrid--footer"></div>
+    <!-- 表尾 -->
+    <div class="vk-datagrid--footer"
+         :style="headerTableStyle"
+         @mousewheel="handleFixedBodyMousewheel"
+         @DOMMouseScroll="handleFixedBodyMousewheel">
+      <div ref="leftFooter"
+           class="vk-datagrid--body-left"
+           :style="{'width':`${leftFixedColumnsWidth}px`,'height':`${tableContentHeight}px`}"
+           @mousewheel="handleFixedBodyMousewheel"
+           @DOMMouseScroll="handleFixedBodyMousewheel">
+        <d-body-table :style="{'width':`${tableContentWidth}px`}"
+                      :data-source="footer"
+                      :leaf-columns="leafColumns"
+                      :fixed-columns="leftFixedColumns"></d-body-table>
+      </div>
+      <div ref="footer"
+           class="vk-datagrid--footer-center">
+        <d-body-table :data-source="footer"
+                      :leaf-columns="leafColumns"></d-body-table>
+      </div>
+      <div ref="rightFooter"
+           class="vk-datagrid--body-right"
+           :style="{'width':`${rightFixedColumnsWidth}px`,'height':`${tableContentHeight}px`,'right':`${showVerticalScrollBar?scrollBarSize:0}px`}">
+        <d-body-table :style="{'width':`${tableContentWidth}px`}"
+                      :data-source="footer"
+                      :leaf-columns="leafColumns"
+                      :fixed-columns="rightFixedColumns"></d-body-table>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -78,7 +110,8 @@ export default {
   },
   props: {
     columns: { required: true, type: Array },
-    dataSource: { type: Array }
+    dataSource: { type: Array },
+    footer: { type: Array }
   },
   computed: {
     headerTableStyle() {
@@ -202,6 +235,7 @@ export default {
     },
     handleBodyScroll(event) {
       this.$refs.header.scrollLeft = event.target.scrollLeft;
+      this.$refs.footer.scrollLeft = event.target.scrollLeft;
       this.$refs.leftBody.scrollTop = event.target.scrollTop;
       this.$refs.rightBody.scrollTop = event.target.scrollTop;
     },
@@ -255,7 +289,8 @@ export default {
 }
 
 .vk-datagrid--header,
-.vk-datagird--body {
+.vk-datagird--body,
+.vk-datagrid--footer {
   position: relative;
 }
 
@@ -270,13 +305,15 @@ export default {
 }
 
 .vk-datagrid--header-center,
-.vk-datagrid--body-center {
+.vk-datagrid--body-center,
+.vk-datagrid--footer-center {
   position: relative;
   z-index: 1;
   overflow: auto;
 }
 
-.vk-datagrid--header-center {
+.vk-datagrid--header-center,
+.vk-datagrid--footer-center {
   overflow: hidden;
 }
 
