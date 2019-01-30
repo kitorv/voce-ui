@@ -2,7 +2,7 @@
   <div class="vk-datagrid">
     <!-- 表头 -->
     <div class="vk-datagrid--header"
-         :style="headerTableStyle"
+         :style="{'padding-right': `${this.verticalScrollBarSize}px`}"
          @mousewheel="handleFixedBodyMousewheel"
          @DOMMouseScroll="handleFixedBodyMousewheel">
       <div class="vk-datagrid--header-left"
@@ -17,7 +17,7 @@
                         :leaf-columns="leafColumns"></d-header-table>
       </div>
       <div class="vk-datagrid--header-right"
-           :style="{'width':`${rightFixedColumnsWidth}px`,'right':`${showVerticalScrollBar?scrollBarSize:0}px`}">
+           :style="{'width':`${rightFixedColumnsWidth}px`,'right':`${verticalScrollBarSize}px`}">
         <d-header-table :style="{'width':`${tableContentWidth}px`}"
                         :columns="columnRows"
                         :leaf-columns="leafColumns"></d-header-table>
@@ -26,6 +26,7 @@
     <!-- 表体 -->
     <div class="vk-datagird--body">
       <div ref="leftBody"
+           v-if="leftFixedColumns.length>0"
            class="vk-datagrid--body-left"
            :style="{'width':`${leftFixedColumnsWidth}px`,'height':`${tableContentHeight}px`}"
            @mousewheel="handleFixedBodyMousewheel"
@@ -43,8 +44,9 @@
                       @after-render="handleBodyTableAfterRneder"></d-body-table>
       </div>
       <div ref="rightBody"
+           v-if="rightFixedColumns.length>0"
            class="vk-datagrid--body-right"
-           :style="{'width':`${rightFixedColumnsWidth}px`,'height':`${tableContentHeight}px`}"
+           :style="{'width':`${rightFixedColumnsWidth}px`,'height':`${tableContentHeight}px`,'right':`${verticalScrollBarSize}px`}"
            @mousewheel="handleFixedBodyMousewheel"
            @DOMMouseScroll="handleFixedBodyMousewheel">
         <d-body-table :style="{'width':`${tableContentWidth}px`}"
@@ -55,7 +57,7 @@
     </div>
     <!-- 表尾 -->
     <div class="vk-datagrid--footer"
-         :style="headerTableStyle"
+         :style="{'padding-right': `${verticalScrollBarSize}px`}"
          @mousewheel="handleFixedBodyMousewheel"
          @DOMMouseScroll="handleFixedBodyMousewheel">
       <div ref="leftFooter"
@@ -75,7 +77,7 @@
       </div>
       <div ref="rightFooter"
            class="vk-datagrid--body-right"
-           :style="{'width':`${rightFixedColumnsWidth}px`,'height':`${tableContentHeight}px`,'right':`${showVerticalScrollBar?scrollBarSize:0}px`}">
+           :style="{'width':`${rightFixedColumnsWidth}px`,'height':`${tableContentHeight}px`,'right':`${verticalScrollBarSize}px`}">
         <d-body-table :style="{'width':`${tableContentWidth}px`}"
                       :data-source="footer"
                       :leaf-columns="leafColumns"
@@ -100,9 +102,8 @@ export default {
       leafColumns: [],
       leftFixedColumns: [],
       rightFixedColumns: [],
-      scrollBarSize: scrollBarSize(),
-      showVerticalScrollBar: false,
-      showHorizontalScrollBar: false,
+      verticalScrollBarSize: false,
+      horizontalScrollBarSize: false,
       tableContentWidth: 0,
       tableContentHeight: 0,
       leftFixedColumnsWidth: 0,
@@ -113,12 +114,6 @@ export default {
     columns: { required: true, type: Array },
     dataSource: { type: Array },
     footer: { type: Array }
-  },
-  computed: {
-    headerTableStyle() {
-      if (!this.showVerticalScrollBar) return;
-      return { "padding-right": `${this.scrollBarSize}px` };
-    }
   },
   methods: {
     // 初始化配置属性处理
@@ -200,48 +195,53 @@ export default {
     },
     // 表体内容渲染完数据，根据是否包含滚动条处理
     handleBodyTableAfterRneder() {
-      // 无数据滚动条不存在
+      // 无数据滚动条不存在 
       if (!this.dataSource || this.dataSource.length < 1) {
-        this.showVerticalScrollBar = false;
+        this.verticalScrollBarSize = 0;
+        // TODO 无数据表头滚动
         return;
       }
-
       // 计算宽度获取是否存在滚动条
       let bodyEl = this.$refs.body;
-      let contentEl = bodyEl.childNodes[0];
-      this.showVerticalScrollBar = bodyEl.offsetWidth - contentEl.offsetWidth;
+      this.verticalScrollBarSize = bodyEl.offsetWidth - bodyEl.clientWidth;
       // 计算高度获取是否存在滚动条
-      this.showHorizontalScrollBar = contentEl.offsetHeight - contentEl.offsetHeight;
-
-      let rowEl = bodyEl.querySelector("tr");
-      let cellEls = rowEl.querySelectorAll("td");
+      this.horizontalScrollBarSize = bodyEl.offsetHeight - bodyEl.clientHeight;
+      // 没有固定列不需要计算固定列宽度
+      const leftFixedColumnsLength = this.leftFixedColumns.length;
+      const rightFixedColumnsLength = this.rightFixedColumns.length;
+      if (leftFixedColumnsLength < 1 && rightFixedColumnsLength < 1) return
+      // 计算固定列头的宽度
+      const rowEl = bodyEl.querySelector("tr");
+      const cellEls = rowEl.querySelectorAll("td");
+      const cellLength = this.leafColumns.length;
       let leftBodyWidth = 0;
       let rightBodyWidth = 0;
-      let tableContentWidth = 0;
-      const leftFixedColumnsNumber = this.leftFixedColumns.length;
-      const rightFixedColumnsNumber = this.rightFixedColumns.length;
-      const cellNumber = this.leafColumns.length;
       cellEls.forEach((cell, index) => {
         const cellWidth = cell.offsetWidth;
-        if (index < leftFixedColumnsNumber) {
+        if (index < leftFixedColumnsLength) {
           leftBodyWidth += cellWidth;
         }
-        if (index > cellNumber - rightFixedColumnsNumber) {
+        if (index > cellLength - rightFixedColumnsLength) {
           rightBodyWidth += cellWidth;
         }
-        tableContentWidth += cellWidth;
       });
       this.leftFixedColumnsWidth = leftBodyWidth;
       this.rightFixedColumnsWidth = rightBodyWidth;
-      this.tableContentWidth = tableContentWidth;
-      this.tableContentHeight = bodyEl.clientHeight;
+      this.tableContentWidth = rowEl.offsetWidth;
+      this.tableContentHeight = bodyEl.offsetHeight - this.horizontalScrollBarSize;
     },
     handleBodyScroll() {
-      let bodyEl = this.$refs.body;
-      this.$refs.header.scrollLeft = bodyEl.scrollLeft;
-      this.$refs.footer.scrollLeft = bodyEl.scrollLeft;
-      this.$refs.leftBody.scrollTop = bodyEl.scrollTop;
-      this.$refs.rightBody.scrollTop = bodyEl.scrollTop;
+      const bodyEl = this.$refs.body;
+      const scrollLeft = bodyEl.scrollLeft
+      const scrollTop = bodyEl.scrollTop
+      if (this.leftFixedColumns.length > 0) {
+        this.$refs.header.scrollLeft = scrollLeft;
+      }
+      if (this.rightFixedColumns.length > 0) {
+        this.$refs.footer.scrollLeft = scrollLeft
+      }
+      this.$refs.leftBody.scrollTop = scrollTop;
+      this.$refs.rightBody.scrollTop = scrollTop;
     },
     handleFixedBodyMousewheel() {
       let deltaY = event.deltaY;
