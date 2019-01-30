@@ -60,22 +60,21 @@
          :style="{'padding-right': `${verticalScrollBarSize}px`}"
          @mousewheel="handleFixedBodyMousewheel"
          @DOMMouseScroll="handleFixedBodyMousewheel">
-      <div ref="leftFooter"
+      <div v-if="leftFixedColumns.length>0"
            class="vk-datagrid--body-left"
-           :style="{'width':`${leftFixedColumnsWidth}px`,'height':`${tableContentHeight}px`}"
-           @mousewheel="handleFixedBodyMousewheel"
-           @DOMMouseScroll="handleFixedBodyMousewheel">
+           :style="{'width':`${leftFixedColumnsWidth}px`,'height':`${tableContentHeight}px`}">
         <d-body-table :style="{'width':`${tableContentWidth}px`}"
                       :data-source="footer"
                       :leaf-columns="leafColumns"
                       :fixed-columns="leftFixedColumns"></d-body-table>
       </div>
       <div ref="footer"
+           v-if="Array.isArray(footer)&&footer.length>0"
            class="vk-datagrid--footer-center">
         <d-body-table :data-source="footer"
                       :leaf-columns="leafColumns"></d-body-table>
       </div>
-      <div ref="rightFooter"
+      <div v-if="rightFixedColumns.length>0"
            class="vk-datagrid--body-right"
            :style="{'width':`${rightFixedColumnsWidth}px`,'height':`${tableContentHeight}px`,'right':`${verticalScrollBarSize}px`}">
         <d-body-table :style="{'width':`${tableContentWidth}px`}"
@@ -234,14 +233,18 @@ export default {
       const bodyEl = this.$refs.body;
       const scrollLeft = bodyEl.scrollLeft
       const scrollTop = bodyEl.scrollTop
-      if (this.leftFixedColumns.length > 0) {
+      if (this.$refs.header) {
         this.$refs.header.scrollLeft = scrollLeft;
       }
-      if (this.rightFixedColumns.length > 0) {
+      if (this.$refs.footer) {
         this.$refs.footer.scrollLeft = scrollLeft
       }
-      this.$refs.leftBody.scrollTop = scrollTop;
-      this.$refs.rightBody.scrollTop = scrollTop;
+      if (this.$refs.leftBody) {
+        this.$refs.leftBody.scrollTop = scrollTop;
+      }
+      if (this.$refs.rightBody) {
+        this.$refs.rightBody.scrollTop = scrollTop;
+      }
     },
     handleFixedBodyMousewheel() {
       let deltaY = event.deltaY;
