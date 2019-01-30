@@ -44,7 +44,7 @@
       </div>
       <div ref="rightBody"
            class="vk-datagrid--body-right"
-           :style="{'width':`${rightFixedColumnsWidth}px`,'height':`${tableContentHeight}px`,'right':`${showVerticalScrollBar?scrollBarSize:0}px`}"
+           :style="{'width':`${rightFixedColumnsWidth}px`,'height':`${tableContentHeight}px`}"
            @mousewheel="handleFixedBodyMousewheel"
            @DOMMouseScroll="handleFixedBodyMousewheel">
         <d-body-table :style="{'width':`${tableContentWidth}px`}"
@@ -89,7 +89,8 @@
 import DHeaderTable from "./datagrid-header";
 import DBodyTable from "./datagrid-body";
 
-import { scrollBarSize } from "../utils";
+import { scrollBarSize, debounce } from "../utils";
+import { log } from "async";
 
 export default {
   components: { DHeaderTable, DBodyTable },
@@ -204,11 +205,13 @@ export default {
         this.showVerticalScrollBar = false;
         return;
       }
+
       // 计算宽度获取是否存在滚动条
       let bodyEl = this.$refs.body;
-      this.showVerticalScrollBar = bodyEl.scrollHeight - bodyEl.clientHeight;
+      let contentEl = bodyEl.childNodes[0];
+      this.showVerticalScrollBar = bodyEl.offsetWidth - contentEl.offsetWidth;
       // 计算高度获取是否存在滚动条
-      this.showHorizontalScrollBar = bodyEl.scrollWidth - bodyEl.clientHeight;
+      this.showHorizontalScrollBar = contentEl.offsetHeight - contentEl.offsetHeight;
 
       let rowEl = bodyEl.querySelector("tr");
       let cellEls = rowEl.querySelectorAll("td");
@@ -233,11 +236,12 @@ export default {
       this.tableContentWidth = tableContentWidth;
       this.tableContentHeight = bodyEl.clientHeight;
     },
-    handleBodyScroll(event) {
-      this.$refs.header.scrollLeft = event.target.scrollLeft;
-      this.$refs.footer.scrollLeft = event.target.scrollLeft;
-      this.$refs.leftBody.scrollTop = event.target.scrollTop;
-      this.$refs.rightBody.scrollTop = event.target.scrollTop;
+    handleBodyScroll() {
+      let bodyEl = this.$refs.body;
+      this.$refs.header.scrollLeft = bodyEl.scrollLeft;
+      this.$refs.footer.scrollLeft = bodyEl.scrollLeft;
+      this.$refs.leftBody.scrollTop = bodyEl.scrollTop;
+      this.$refs.rightBody.scrollTop = bodyEl.scrollTop;
     },
     handleFixedBodyMousewheel() {
       let deltaY = event.deltaY;
@@ -252,14 +256,11 @@ export default {
       }
       if (!deltaY) return;
       const body = this.$refs.body;
-      const currentScrollTop = body.scrollTop;
-      if (deltaY < 0 && currentScrollTop !== 0) {
+      const bodyScrollTop = body.scrollTop;
+      if (deltaY < 0 && bodyScrollTop !== 0) {
         event.preventDefault();
       }
-      if (
-        deltaY > 0 &&
-        body.scrollHeight - body.clientHeight > currentScrollTop
-      ) {
+      if (deltaY > 0 && body.scrollHeight - body.clientHeight > bodyScrollTop) {
         event.preventDefault();
       }
       let step = 0;
@@ -286,6 +287,7 @@ export default {
 .vk-datagrid {
   zoom: 1;
   box-sizing: border-box;
+  overflow: hidden;
 }
 
 .vk-datagrid--header,
