@@ -2,9 +2,7 @@
   <div class="vk-datagrid">
     <!-- 表头 -->
     <div class="vk-datagrid--header"
-         :style="{'padding-right': `${this.verticalScrollBarSize}px`}"
-         @mousewheel="handleFixedBodyMousewheel"
-         @DOMMouseScroll="handleFixedBodyMousewheel">
+         :style="{'padding-right': `${this.verticalScrollBarSize}px`}">
       <div class="vk-datagrid--header-left"
            :style="{'width':`${leftFixedColumnsWidth}px`}">
         <d-header-table :style="{'width':`${tableContentWidth}px`}"
@@ -57,9 +55,7 @@
     </div>
     <!-- 表尾 -->
     <div class="vk-datagrid--footer"
-         :style="{'padding-right': `${verticalScrollBarSize}px`}"
-         @mousewheel="handleFixedBodyMousewheel"
-         @DOMMouseScroll="handleFixedBodyMousewheel">
+         :style="{'padding-right': `${verticalScrollBarSize}px`}">
       <div v-if="leftFixedColumns.length>0"
            class="vk-datagrid--body-left"
            :style="{'width':`${leftFixedColumnsWidth}px`,'height':`${tableContentHeight}px`}">
@@ -90,9 +86,6 @@
 import DHeaderTable from "./datagrid-header";
 import DBodyTable from "./datagrid-body";
 
-import { scrollBarSize, debounce } from "../utils";
-import { log } from "async";
-
 export default {
   components: { DHeaderTable, DBodyTable },
   data() {
@@ -106,7 +99,8 @@ export default {
       tableContentWidth: 0,
       tableContentHeight: 0,
       leftFixedColumnsWidth: 0,
-      rightFixedColumnsWidth: 0
+      rightFixedColumnsWidth: 0,
+      resizeTimer: null
     };
   },
   props: {
@@ -194,7 +188,7 @@ export default {
     },
     // 表体内容渲染完数据，根据是否包含滚动条处理
     handleBodyTableAfterRneder() {
-      // 无数据滚动条不存在 
+      // 无数据滚动条不存在
       if (!this.dataSource || this.dataSource.length < 1) {
         this.verticalScrollBarSize = 0;
         // TODO 无数据表头滚动
@@ -208,7 +202,7 @@ export default {
       // 没有固定列不需要计算固定列宽度
       const leftFixedColumnsLength = this.leftFixedColumns.length;
       const rightFixedColumnsLength = this.rightFixedColumns.length;
-      if (leftFixedColumnsLength < 1 && rightFixedColumnsLength < 1) return
+      if (leftFixedColumnsLength < 1 && rightFixedColumnsLength < 1) return;
       // 计算固定列头的宽度
       const rowEl = bodyEl.querySelector("tr");
       const cellEls = rowEl.querySelectorAll("td");
@@ -227,17 +221,18 @@ export default {
       this.leftFixedColumnsWidth = leftBodyWidth;
       this.rightFixedColumnsWidth = rightBodyWidth;
       this.tableContentWidth = rowEl.offsetWidth;
-      this.tableContentHeight = bodyEl.offsetHeight - this.horizontalScrollBarSize;
+      this.tableContentHeight =
+        bodyEl.offsetHeight - this.horizontalScrollBarSize;
     },
     handleBodyScroll() {
       const bodyEl = this.$refs.body;
-      const scrollLeft = bodyEl.scrollLeft
-      const scrollTop = bodyEl.scrollTop
+      const scrollLeft = bodyEl.scrollLeft;
+      const scrollTop = bodyEl.scrollTop;
       if (this.$refs.header) {
         this.$refs.header.scrollLeft = scrollLeft;
       }
       if (this.$refs.footer) {
-        this.$refs.footer.scrollLeft = scrollLeft
+        this.$refs.footer.scrollLeft = scrollLeft;
       }
       if (this.$refs.leftBody) {
         this.$refs.leftBody.scrollTop = scrollTop;
@@ -278,10 +273,20 @@ export default {
           clearInterval(timeId);
         }
       }, 5);
+    },
+    handleResize() {
+      clearTimeout(this.resizeTimer);
+      this.resizeTimer = setTimeout(() => {
+        this.handleBodyTableAfterRneder();
+        this.handleBodyScroll();
+      }, 100);
     }
   },
   created() {
     this.renderOptions();
+  },
+  mounted() {
+    window.addEventListener("resize", this.handleResize);
   }
 };
 </script>

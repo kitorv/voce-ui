@@ -22,13 +22,3 @@ export const scrollBarSize = () => {
   _scrollBarSize = widthNoScroll - widthWithScroll;
   return _scrollBarSize;
 };
-
-export const debounce = (func, time) => {
-  let timer = null;
-  return () => {
-    clearTimeout(timer);
-    setTimeout(() => {
-      func();
-    }, time);
-  };
-};
