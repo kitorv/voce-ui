@@ -327,9 +327,9 @@ export default {
   overflow: hidden;
 }
 
-.vk-datagrid--body-center {
-  max-height: 250px;
-}
+// .vk-datagrid--body-center {
+//   max-height: 250px;
+// }
 
 .vk-datagrid--header-right,
 .vk-datagrid--body-right {
