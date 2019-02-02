@@ -1,5 +1,5 @@
 <template>
-  <div class="vk-datagrid">
+  <div :class="['vk-datagrid',{'vk-datagrid-border':showBorder}]">
     <!-- 表头 -->
     <div class="vk-datagrid--header"
          :style="{'padding-right': `${this.verticalScrollBarSize}px`}">
@@ -55,6 +55,7 @@
     </div>
     <!-- 表尾 -->
     <div class="vk-datagrid--footer"
+         v-if="Array.isArray(footer)&&footer.length>0"
          :style="{'padding-right': `${verticalScrollBarSize}px`}">
       <div v-if="leftFixedColumns.length>0"
            class="vk-datagrid--body-left"
@@ -65,7 +66,6 @@
                       :fixed-columns="leftFixedColumns"></d-body-table>
       </div>
       <div ref="footer"
-           v-if="Array.isArray(footer)&&footer.length>0"
            class="vk-datagrid--footer-center">
         <d-body-table :data-source="footer"
                       :leaf-columns="leafColumns"></d-body-table>
@@ -106,7 +106,13 @@ export default {
   props: {
     columns: { required: true, type: Array },
     dataSource: { type: Array },
-    footer: { type: Array }
+    footer: { type: Array },
+    border: { type: Boolean, default: false }
+  },
+  computed: {
+    showBorder() {
+      return this.columns.length > 1 ? true : this.border;
+    }
   },
   methods: {
     // 初始化配置属性处理
@@ -291,61 +297,4 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
-.vk-datagrid {
-  zoom: 1;
-  box-sizing: border-box;
-  overflow: hidden;
-}
-
-.vk-datagrid--header,
-.vk-datagird--body,
-.vk-datagrid--footer {
-  position: relative;
-}
-
-.vk-datagrid--header-left,
-.vk-datagrid--body-left {
-  position: absolute;
-  left: 0;
-  top: 0;
-  z-index: 2;
-  overflow: hidden;
-  height: 100%;
-}
-
-.vk-datagrid--header-center,
-.vk-datagrid--body-center,
-.vk-datagrid--footer-center {
-  position: relative;
-  z-index: 1;
-  overflow: auto;
-}
-
-.vk-datagrid--header-center,
-.vk-datagrid--footer-center {
-  overflow: hidden;
-}
-
-// .vk-datagrid--body-center {
-//   max-height: 250px;
-// }
-
-.vk-datagrid--header-right,
-.vk-datagrid--body-right {
-  position: absolute;
-  right: 0;
-  top: 0;
-  z-index: 3;
-  overflow: hidden;
-  height: 100%;
-
-  > table {
-    position: absolute;
-    right: 0;
-    top: 0;
-    z-index: 4;
-  }
-}
-</style>
 

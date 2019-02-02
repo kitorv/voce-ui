@@ -9,7 +9,7 @@
         :key="index">
       <td v-for="({key}, index) in leafColumns"
           :key="index"
-          :class="{'vk-datagrid--body-table-hidden':hideCell(key)}">
+          :class="{'vk-datagrid--visibility-hidden':hideCell(key)}">
         {{row[key]}}
       </td>
     </tr>
@@ -45,27 +45,4 @@ export default {
   }
 };
 </script>
-
-<style lang="scss" scoped>
-.vk-datagrid--body-table {
-  width: 100%;
-  table-layout: fixed;
-
-  td {
-    min-width: 0;
-    box-sizing: border-box;
-    vertical-align: middle;
-    position: relative;
-    text-align: left;
-    border: 1px solid #000;
-    word-wrap: break-word;
-    word-break: break-all;
-    background-color: #ffffff;
-  }
-}
-
-.vk-datagrid--body-table-hidden {
-  visibility: hidden;
-}
-</style>
 

@@ -5,17 +5,15 @@
          border="0">
     <colgroup is="d-colgroup"
               :leaf-columns="leafColumns"></colgroup>
-    <thead>
-      <tr v-for="(colRows, index) in columns"
-          :key="index">
-        <th v-for="(column, index) in colRows"
-            :key="index"
-            :colspan="column.colSpan"
-            :rowspan="column.rowSpan">
-          {{column.title}}
-        </th>
-      </tr>
-    </thead>
+    <tr v-for="(colRows, index) in columns"
+        :key="index">
+      <th v-for="(column, index) in colRows"
+          :key="index"
+          :colspan="column.colSpan"
+          :rowspan="column.rowSpan">
+        {{column.title}}
+      </th>
+    </tr>
   </table>
 </template>
 
@@ -33,21 +31,3 @@ export default {
   }
 };
 </script>
-
-<style lang="scss" scoped>
-.vk-datagrid--header-table {
-  table-layout: fixed;
-  width: 100%;
-
-  th {
-    min-width: 0;
-    box-sizing: border-box;
-    vertical-align: middle;
-    position: relative;
-    border: 1px solid #000;
-    white-space: nowrap;
-    background-color: #ffffff;
-  }
-}
-</style>
-
