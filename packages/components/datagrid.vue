@@ -117,6 +117,8 @@ export default {
   methods: {
     // 初始化配置属性处理
     renderOptions() {
+      // 列先进行固定列的排序
+      this.sortFixedColumns();
       const leafColumns = [];
       // 递归循环将列数据对象转化为表头行数据集合
       const getHeaderRows = (columns, index = 0, rows, level = 0) => {
@@ -138,9 +140,6 @@ export default {
         // 过滤掉没有数据的行
         return rows.filter(row => row.length > 0);
       };
-
-      // 列先进行固定列的排序
-      this.sortFixedColumns();
       // 列转换数据格式为表格渲染行格式
       const rows = getHeaderRows(this.columns);
 

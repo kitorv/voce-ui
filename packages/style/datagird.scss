@@ -33,7 +33,7 @@
   position: relative;
   z-index: 1;
   overflow: auto;
-
+  overflow: scroll;
   // 表头和表体禁用滚动条
   &.vk-datagrid--header-center,
   &.vk-datagrid--footer-center {
@@ -109,14 +109,22 @@
 // -----表格边框样式-----
 // 表格边框
 .vk-datagrid-border {
-  border-top: 1px solid #e8e8e8;
-  border-left: 1px solid #e8e8e8;
+  border: 1px solid #e8e8e8;
 
   .vk-datagrid--header-table > tr > th {
     border-right: 1px solid #e8e8e8;
   }
-  .vk-datagrid--body-table > tr > td {
-    border-right: 1px solid #e8e8e8;
+
+  .vk-datagrid--body-table > tr {
+    > td {
+      border-right: 1px solid #e8e8e8;
+      //   &:last-child {
+      //     border-right: none;
+      //   }
+    }
+    // &:last-child td {
+    //   border-bottom: none;
+    // }
   }
 }
 // -----表格边框样式-----
