@@ -1,12 +1,14 @@
 <template>
   <div id="app">
-    <v-data-grid :columns="columns"
+    <v-data-grid border
+                 :columns="columns"
                  :data-source="dataSource"
                  :footer="footer"></v-data-grid>
   </div>
 </template>
 
 <script>
+import "../packages/style/datagird.scss";
 import VDataGrid from "../packages/components/datagrid";
 
 export default {
@@ -101,195 +103,195 @@ export default {
           number2: 200,
           number3: 300
         },
-        {
-          id: 2,
-          name: "李四",
-          age: 28,
-          work: "销售",
-          street: "湖里街道",
-          building: "20#",
-          doorNo: "3001",
-          number1: 100,
-          number2: 200,
-          number3: 300
-        },
-        {
-          id: 3,
-          name: "王五",
-          age: 35,
-          work: "采购",
-          street: "集美街道",
-          building: "65#",
-          doorNo: "1001",
-          number1: 100,
-          number2: 200,
-          number3: 300
-        },
-        {
-          id: 1,
-          name: "张三",
-          age: 20,
-          work: "程序员",
-          street: "软件园二期",
-          building: "14#",
-          doorNo: "1024",
-          number1: 100,
-          number2: 200,
-          number3: 300
-        },
-        {
-          id: 2,
-          name: "李四",
-          age: 28,
-          work: "销售",
-          street: "湖里街道",
-          building: "20#",
-          doorNo: "3001",
-          number1: 100,
-          number2: 200,
-          number3: 300
-        },
-        {
-          id: 3,
-          name: "王五",
-          age: 35,
-          work: "采购",
-          street: "集美街道",
-          building: "65#",
-          doorNo: "1001",
-          number1: 100,
-          number2: 200,
-          number3: 300
-        },
-        {
-          id: 1,
-          name: "张三",
-          age: 20,
-          work: "程序员",
-          street: "软件园二期",
-          building: "14#",
-          doorNo: "1024",
-          number1: 100,
-          number2: 200,
-          number3: 300
-        },
-        {
-          id: 2,
-          name: "李四",
-          age: 28,
-          work: "销售",
-          street: "湖里街道",
-          building: "20#",
-          doorNo: "3001",
-          number1: 100,
-          number2: 200,
-          number3: 300
-        },
-        {
-          id: 3,
-          name: "王五",
-          age: 35,
-          work: "采购",
-          street: "集美街道",
-          building: "65#",
-          doorNo: "1001",
-          number1: 100,
-          number2: 200,
-          number3: 300
-        },
-        {
-          id: 1,
-          name: "张三",
-          age: 20,
-          work: "程序员",
-          street: "软件园二期",
-          building: "14#",
-          doorNo: "1024",
-          number1: 100,
-          number2: 200,
-          number3: 300
-        },
-        {
-          id: 2,
-          name: "李四",
-          age: 28,
-          work: "销售",
-          street: "湖里街道",
-          building: "20#",
-          doorNo: "3001",
-          number1: 100,
-          number2: 200,
-          number3: 300
-        },
-        {
-          id: 3,
-          name: "王五",
-          age: 35,
-          work: "采购",
-          street: "集美街道",
-          building: "65#",
-          doorNo: "1001",
-          number1: 100,
-          number2: 200,
-          number3: 300
-        },
-        {
-          id: 1,
-          name: "张三",
-          age: 20,
-          work: "程序员",
-          street: "软件园二期",
-          building: "14#",
-          doorNo: "1024",
-          number1: 100,
-          number2: 200,
-          number3: 300
-        },
-        {
-          id: 2,
-          name: "李四",
-          age: 28,
-          work: "销售",
-          street: "湖里街道",
-          building: "20#",
-          doorNo: "3001",
-          number1: 100,
-          number2: 200,
-          number3: 300
-        },
-        {
-          id: 3,
-          name: "王五",
-          age: 35,
-          work: "采购",
-          street: "集美街道",
-          building: "65#",
-          doorNo: "1001",
-          number1: 100,
-          number2: 200,
-          number3: 300
-        },
-        {
-          id: 1,
-          name: "张三",
-          age: 20,
-          work: "程序员",
-          street: "软件园二期",
-          building: "14#",
-          doorNo: "1024",
-          number1: 100,
-          number2: 200,
-          number3: 300
-        },
-        {
-          id: 2,
-          name: "李四",
-          age: 28,
-          work: "销售",
-          street: "湖里街道",
-          building: "20#",
-          doorNo: "3001"
-        },
+        // {
+        //   id: 2,
+        //   name: "李四",
+        //   age: 28,
+        //   work: "销售",
+        //   street: "湖里街道",
+        //   building: "20#",
+        //   doorNo: "3001",
+        //   number1: 100,
+        //   number2: 200,
+        //   number3: 300
+        // },
+        // {
+        //   id: 3,
+        //   name: "王五",
+        //   age: 35,
+        //   work: "采购",
+        //   street: "集美街道",
+        //   building: "65#",
+        //   doorNo: "1001",
+        //   number1: 100,
+        //   number2: 200,
+        //   number3: 300
+        // },
+        // {
+        //   id: 1,
+        //   name: "张三",
+        //   age: 20,
+        //   work: "程序员",
+        //   street: "软件园二期",
+        //   building: "14#",
+        //   doorNo: "1024",
+        //   number1: 100,
+        //   number2: 200,
+        //   number3: 300
+        // },
+        // {
+        //   id: 2,
+        //   name: "李四",
+        //   age: 28,
+        //   work: "销售",
+        //   street: "湖里街道",
+        //   building: "20#",
+        //   doorNo: "3001",
+        //   number1: 100,
+        //   number2: 200,
+        //   number3: 300
+        // },
+        // {
+        //   id: 3,
+        //   name: "王五",
+        //   age: 35,
+        //   work: "采购",
+        //   street: "集美街道",
+        //   building: "65#",
+        //   doorNo: "1001",
+        //   number1: 100,
+        //   number2: 200,
+        //   number3: 300
+        // },
+        // {
+        //   id: 1,
+        //   name: "张三",
+        //   age: 20,
+        //   work: "程序员",
+        //   street: "软件园二期",
+        //   building: "14#",
+        //   doorNo: "1024",
+        //   number1: 100,
+        //   number2: 200,
+        //   number3: 300
+        // },
+        // {
+        //   id: 2,
+        //   name: "李四",
+        //   age: 28,
+        //   work: "销售",
+        //   street: "湖里街道",
+        //   building: "20#",
+        //   doorNo: "3001",
+        //   number1: 100,
+        //   number2: 200,
+        //   number3: 300
+        // },
+        // {
+        //   id: 3,
+        //   name: "王五",
+        //   age: 35,
+        //   work: "采购",
+        //   street: "集美街道",
+        //   building: "65#",
+        //   doorNo: "1001",
+        //   number1: 100,
+        //   number2: 200,
+        //   number3: 300
+        // },
+        // {
+        //   id: 1,
+        //   name: "张三",
+        //   age: 20,
+        //   work: "程序员",
+        //   street: "软件园二期",
+        //   building: "14#",
+        //   doorNo: "1024",
+        //   number1: 100,
+        //   number2: 200,
+        //   number3: 300
+        // },
+        // {
+        //   id: 2,
+        //   name: "李四",
+        //   age: 28,
+        //   work: "销售",
+        //   street: "湖里街道",
+        //   building: "20#",
+        //   doorNo: "3001",
+        //   number1: 100,
+        //   number2: 200,
+        //   number3: 300
+        // },
+        // {
+        //   id: 3,
+        //   name: "王五",
+        //   age: 35,
+        //   work: "采购",
+        //   street: "集美街道",
+        //   building: "65#",
+        //   doorNo: "1001",
+        //   number1: 100,
+        //   number2: 200,
+        //   number3: 300
+        // },
+        // {
+        //   id: 1,
+        //   name: "张三",
+        //   age: 20,
+        //   work: "程序员",
+        //   street: "软件园二期",
+        //   building: "14#",
+        //   doorNo: "1024",
+        //   number1: 100,
+        //   number2: 200,
+        //   number3: 300
+        // },
+        // {
+        //   id: 2,
+        //   name: "李四",
+        //   age: 28,
+        //   work: "销售",
+        //   street: "湖里街道",
+        //   building: "20#",
+        //   doorNo: "3001",
+        //   number1: 100,
+        //   number2: 200,
+        //   number3: 300
+        // },
+        // {
+        //   id: 3,
+        //   name: "王五",
+        //   age: 35,
+        //   work: "采购",
+        //   street: "集美街道",
+        //   building: "65#",
+        //   doorNo: "1001",
+        //   number1: 100,
+        //   number2: 200,
+        //   number3: 300
+        // },
+        // {
+        //   id: 1,
+        //   name: "张三",
+        //   age: 20,
+        //   work: "程序员",
+        //   street: "软件园二期",
+        //   building: "14#",
+        //   doorNo: "1024",
+        //   number1: 100,
+        //   number2: 200,
+        //   number3: 300
+        // },
+        // {
+        //   id: 2,
+        //   name: "李四",
+        //   age: 28,
+        //   work: "销售",
+        //   street: "湖里街道",
+        //   building: "20#",
+        //   doorNo: "3001"
+        // },
         {
           id: 3,
           name: "王五",
@@ -304,18 +306,18 @@ export default {
         }
       ],
       footer: [
-        {
-          id: 1,
-          name: "张三",
-          age: 20,
-          work: "程序员",
-          street: "软件园二期",
-          building: "14#",
-          doorNo: "1024",
-          number1: 100,
-          number2: 200,
-          number3: 300
-        }
+        //   {
+        //     id: 1,
+        //     name: "张三",
+        //     age: 20,
+        //     work: "程序员",
+        //     street: "软件园二期",
+        //     building: "14#",
+        //     doorNo: "1024",
+        //     number1: 100,
+        //     number2: 200,
+        //     number3: 300
+        //   }
       ]
     };
   }
