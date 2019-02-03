@@ -1,11 +1,13 @@
 // -----基本布局样式-----
 // 表格外层容器
 .vk-datagrid {
+  position: relative;
   zoom: 1;
   box-sizing: border-box;
   overflow: hidden;
   line-height: 1.5;
   color: #333333;
+  background-color: #fafafa;
 }
 // 表格布局
 .vk-datagrid--header,
@@ -33,7 +35,7 @@
   position: relative;
   z-index: 1;
   overflow: auto;
-  overflow: scroll;
+
   // 表头和表体禁用滚动条
   &.vk-datagrid--header-center,
   &.vk-datagrid--footer-center {
@@ -109,22 +111,45 @@
 // -----表格边框样式-----
 // 表格边框
 .vk-datagrid-border {
-  border: 1px solid #e8e8e8;
+  border-left: 1px solid #e8e8e8;
+  border-top: 1px solid #e8e8e8;
+
+  &::before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 1px;
+    display: block;
+    background-color: #e8e8e8;
+    left: 0;
+    bottom: 0;
+    z-index: 5;
+  }
+
+  &::after {
+    content: "";
+    position: absolute;
+    width: 1px;
+    height: 100%;
+    display: block;
+    background-color: #e8e8e8;
+    top: 0;
+    right: 0;
+    z-index: 5;
+  }
+
+  .vk-datagrid--header-right,
+  .vk-datagrid--body-right {
+    border-left: 1px solid #e8e8e8;
+  }
 
   .vk-datagrid--header-table > tr > th {
     border-right: 1px solid #e8e8e8;
   }
 
-  .vk-datagrid--body-table > tr {
-    > td {
-      border-right: 1px solid #e8e8e8;
-      //   &:last-child {
-      //     border-right: none;
-      //   }
-    }
-    // &:last-child td {
-    //   border-bottom: none;
-    // }
+  .vk-datagrid--body-table > tr > td {
+    border-right: 1px solid #e8e8e8;
   }
 }
+
 // -----表格边框样式-----
