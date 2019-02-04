@@ -1,6 +1,5 @@
 <template>
   <div id="app">
-    <d-checkbox></d-checkbox>
     <v-data-grid border
                  :columns="columns"
                  :data-source="dataSource"
@@ -11,14 +10,20 @@
 <script>
 import "../packages/style/datagird.scss";
 import VDataGrid from "../packages/components/datagrid";
-import DCheckbox from "../packages/components/datagrid-checkbox";
 
 export default {
   name: "app",
-  components: { VDataGrid, DCheckbox },
+  components: { VDataGrid },
   data() {
     return {
       columns: [
+        {
+          key: "check",
+          title: "复选框",
+          type: "checkbox",
+          fixed: "left",
+          width:36
+        },
         { key: "id", title: "id标识", fixed: "left", width: 100 },
         {
           title: "用户信息",
