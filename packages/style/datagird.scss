@@ -88,7 +88,11 @@
   width: 100%;
   table-layout: fixed;
 
-  td {
+  // > tr:hover > td {
+  //   background-color: #e6f7ff;
+  // }
+
+  > tr > td {
     position: relative;
     min-width: 0;
     box-sizing: border-box;
@@ -104,6 +108,12 @@
 
   .vk-datagrid--visibility-hidden {
     visibility: hidden;
+  }
+
+  .vk-datagird--row-hover {
+    > td {
+      background-color: #e6f7ff;
+    }
   }
 }
 // -----表格通用样式-----

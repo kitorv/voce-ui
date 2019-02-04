@@ -5,12 +5,15 @@
          border="0">
     <colgroup is="d-colgroup"
               :leaf-columns="leafColumns"></colgroup>
-    <tr v-for="(row, index) in dataSource"
-        :key="index">
+    <tr :class="{'vk-datagird--row-hover':row.hover}"
+        v-for="(row, index) in dataSource"
+        :key="index"
+        @mouseenter="handleMouseIn(row)"
+        @mouseleave="handleMouseOut(row)">
       <td v-for="({key}, index) in leafColumns"
           :key="index"
           :class="{'vk-datagrid--visibility-hidden':hideCell(key)}">
-        {{row[key]}}
+        {{row.data[key]}}
       </td>
     </tr>
   </table>
@@ -38,6 +41,12 @@ export default {
     hideCell(key) {
       if (this.fixedColumnKeys.length < 1) return false;
       return !this.fixedColumnKeys.includes(key);
+    },
+    handleMouseIn(row) {
+      row.hover = true;
+    },
+    handleMouseOut(row) {
+      row.hover = false;
     }
   },
   mounted() {
