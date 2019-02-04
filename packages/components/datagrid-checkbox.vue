@@ -1,12 +1,36 @@
 <template>
-  <label class="vk-datagrid--checkbox vk-datagrid--checkbox-checked vk-datagrid--checkbox-indeterminate">
+  <label :class="['vk-datagrid--checkbox',{
+      'vk-datagrid--checkbox-checked':value,
+      'vk-datagrid--checkbox-indeterminate':!value&&indeterminate
+      }]">
     <span class="vk-datagrid--checkbox-inner">
-      <input type="checkbox"
-             class="vk-datagrid--checkbox-inner-input">
+      <input class="vk-datagrid--checkbox-inner-input"
+             type="checkbox"
+             v-model="model">
     </span>
   </label>
 
 </template>
+
+<script>
+export default {
+  props: {
+    value: { type: Boolean, default: false },
+    indeterminate: { type: Boolean, default: false }
+  },
+  computed: {
+    model: {
+      get() {
+        return this.value;
+      },
+      set(value) {
+        this.$emit("input", value);
+      }
+    }
+  }
+};
+</script>
+
 
 <style  lang="scss">
 .vk-datagrid--checkbox {
@@ -21,6 +45,7 @@
   line-height: unset;
   cursor: pointer;
   display: inline-block;
+  vertical-align: middle;
 }
 
 .vk-datagrid--checkbox-inner {
@@ -68,6 +93,8 @@
   right: 0;
   width: 100%;
   height: 100%;
+  margin: 0;
+  padding: 0;
 }
 
 .vk-datagrid--checkbox-checked {

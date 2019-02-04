@@ -101,7 +101,10 @@ export default {
       leftFixedColumnsWidth: 0,
       rightFixedColumnsWidth: 0,
       resizeTimer: null,
-      dataRows: []
+      dataRows: [],
+      seed: 1,
+      checked: false,
+      indeterminate: false
     };
   },
   props: {
@@ -290,7 +293,8 @@ export default {
     proxyDataRows() {
       let rows = [];
       this.dataSource.forEach(row => {
-        rows.push({ check: false, hover: false, data: row });
+        this.seed++;
+        rows.push({ id: this.seed, checked: false, hover: false, data: row });
       });
       return rows;
     }

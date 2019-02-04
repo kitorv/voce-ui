@@ -10,10 +10,15 @@
         :key="index"
         @mouseenter="handleMouseIn(row)"
         @mouseleave="handleMouseOut(row)">
-      <td v-for="({key}, index) in leafColumns"
+      <td v-for="({key,type}, index) in leafColumns"
           :key="index"
           :class="{'vk-datagrid--visibility-hidden':hideCell(key)}">
-        {{row.data[key]}}
+        <d-checkbox v-if="type=='checkbox'"
+                    :value="row.checked"
+                    @click.native="handleCheckClick(row)"></d-checkbox>
+        <template>
+          {{row.data[key]}}
+        </template>
       </td>
     </tr>
   </table>
@@ -21,9 +26,10 @@
 
 <script>
 import DColgroup from "./datagrid-colgroup";
+import DCheckbox from "./datagrid-checkbox";
 
 export default {
-  components: { DColgroup },
+  components: { DColgroup, DCheckbox },
   data() {
     return {};
   },
@@ -47,6 +53,22 @@ export default {
     },
     handleMouseOut(row) {
       row.hover = false;
+    },
+    handleCheckClick(row) {
+      row.checked = !row.checked;
+      let checkNumber = 0;
+      this.dataSource.forEach(row => {
+        if (!row.checked) return;
+        checkNumber += 1;
+      });
+      let datagrid = this.$parent;
+      if (checkNumber == this.dataSource.length) {
+        datagrid.checked = true;
+        datagrid.indeterminate = false;
+      } else {
+        datagrid.checked = false;
+        datagrid.indeterminate = checkNumber > 0;
+      }
     }
   },
   mounted() {
