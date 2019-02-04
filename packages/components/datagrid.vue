@@ -30,14 +30,14 @@
            @mousewheel="handleFixedBodyMousewheel"
            @DOMMouseScroll="handleFixedBodyMousewheel">
         <d-body-table :style="{'width':`${tableContentWidth}px`}"
-                      :data-source="dataSource"
+                      :data-source="dataRows"
                       :leaf-columns="leafColumns"
                       :fixed-columns="leftFixedColumns"></d-body-table>
       </div>
       <div ref="body"
            class="vk-datagrid--body-center"
            @scroll="handleBodyScroll">
-        <d-body-table :data-source="dataSource"
+        <d-body-table :data-source="dataRows"
                       :leaf-columns="leafColumns"
                       @after-render="handleBodyTableAfterRneder"></d-body-table>
       </div>
@@ -48,7 +48,7 @@
            @mousewheel="handleFixedBodyMousewheel"
            @DOMMouseScroll="handleFixedBodyMousewheel">
         <d-body-table :style="{'width':`${tableContentWidth}px`}"
-                      :data-source="dataSource"
+                      :data-source="dataRows"
                       :leaf-columns="leafColumns"
                       :fixed-columns="rightFixedColumns"></d-body-table>
       </div>
@@ -100,7 +100,8 @@ export default {
       tableContentHeight: 0,
       leftFixedColumnsWidth: 0,
       rightFixedColumnsWidth: 0,
-      resizeTimer: null
+      resizeTimer: null,
+      dataRows: []
     };
   },
   props: {
@@ -285,9 +286,17 @@ export default {
         this.handleBodyTableAfterRneder();
         this.handleBodyScroll();
       }, 100);
+    },
+    proxyDataRows() {
+      let rows = [];
+      this.dataSource.forEach(row => {
+        rows.push({ check: false, hover: false, data: row });
+      });
+      return rows;
     }
   },
   created() {
+    this.dataRows = this.proxyDataRows();
     this.renderOptions();
   },
   mounted() {
