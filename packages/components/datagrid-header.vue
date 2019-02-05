@@ -14,7 +14,7 @@
         <template v-if="column.type=='checkbox'">
           <d-checkbox :indeterminate="$parent.indeterminate"
                       :value="$parent.checked"
-                      @click.native="handleCheckClick"></d-checkbox>
+                      @click.native="$parent.checkAll"></d-checkbox>
         </template>
         <template v-else>
           {{column.title}}
@@ -36,16 +36,6 @@ export default {
   props: {
     columns: { required: true, type: Array },
     leafColumns: { required: true, type: Array }
-  },
-  methods: {
-    handleCheckClick(value) {
-      let datagrid = this.$parent;
-      datagrid.checked = !datagrid.checked;
-      datagrid.indeterminate = false;
-      datagrid.dataRows.forEach(row => {
-        row.checked = datagrid.checked;
-      });
-    }
   }
 };
 </script>

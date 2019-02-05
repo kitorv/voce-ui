@@ -15,7 +15,7 @@
           :class="{'vk-datagrid--visibility-hidden':hideCell(key)}">
         <d-checkbox v-if="type=='checkbox'"
                     :value="row.checked"
-                    @click.native="handleCheckClick(row)"></d-checkbox>
+                    @click.native="$parent.checkRow(row)"></d-checkbox>
         <template>
           {{row.data[key]}}
         </template>
@@ -53,22 +53,6 @@ export default {
     },
     handleMouseOut(row) {
       row.hover = false;
-    },
-    handleCheckClick(row) {
-      row.checked = !row.checked;
-      let checkNumber = 0;
-      this.dataSource.forEach(row => {
-        if (!row.checked) return;
-        checkNumber += 1;
-      });
-      let datagrid = this.$parent;
-      if (checkNumber == this.dataSource.length) {
-        datagrid.checked = true;
-        datagrid.indeterminate = false;
-      } else {
-        datagrid.checked = false;
-        datagrid.indeterminate = checkNumber > 0;
-      }
     }
   },
   mounted() {

@@ -297,6 +297,28 @@ export default {
         rows.push({ id: this.seed, checked: false, hover: false, data: row });
       });
       return rows;
+    },
+    checkRow(row) {
+      row.checked = !row.checked;
+      let checkNumber = 0;
+      this.dataRows.forEach(row => {
+        if (!row.checked) return;
+        checkNumber += 1;
+      });
+      if (checkNumber == this.dataRows.length) {
+        this.checked = true;
+        this.indeterminate = false;
+      } else {
+        this.checked = false;
+        this.indeterminate = checkNumber > 0;
+      }
+    },
+    checkAll() {
+      this.checked = !this.checked;
+      this.indeterminate = false;
+      this.dataRows.forEach(row => {
+        row.checked = this.checked;
+      });
     }
   },
   created() {
