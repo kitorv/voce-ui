@@ -107,6 +107,11 @@ export default {
       indeterminate: false
     };
   },
+  provide() {
+    return {
+      datagrid: this
+    };
+  },
   props: {
     columns: { required: true, type: Array },
     dataSource: { type: Array },
@@ -136,7 +141,7 @@ export default {
             getHeaderRows(children, index + 1, rows, level + 1);
           }
           column.level = level + 1;
-          if (column.key) {
+          if (column.key || column.type) {
             leafColumns.push(column);
           }
           rows[index].push(column);
