@@ -11,14 +11,7 @@
           :key="index"
           :colspan="column.colSpan"
           :rowspan="column.rowSpan">
-        <template v-if="column.type=='checkbox'">
-          <d-checkbox :indeterminate="$parent.indeterminate"
-                      :value="$parent.checked"
-                      @click.native="$parent.checkAll"></d-checkbox>
-        </template>
-        <template v-else>
-          {{column.title}}
-        </template>
+        <d-column :data="column"></d-column>
       </th>
     </tr>
   </table>
@@ -26,10 +19,10 @@
 
 <script>
 import DColgroup from "./datagrid-colgroup";
-import DCheckbox from "./datagrid-checkbox";
+import DColumn from "./datagrid-column";
 
 export default {
-  components: { DColgroup, DCheckbox },
+  components: { DColgroup, DColumn },
   data() {
     return {};
   },

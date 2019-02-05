@@ -17,13 +17,7 @@ export default {
   data() {
     return {
       columns: [
-        {
-          key: "check",
-          title: "复选框",
-          type: "checkbox",
-          fixed: "left",
-          width:36
-        },
+        { type: "checkbox", fixed: "left", width: 36 },
         { key: "id", title: "id标识", fixed: "left", width: 100 },
         {
           title: "用户信息",
