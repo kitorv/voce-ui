@@ -10,15 +10,11 @@
         :key="index"
         @mouseenter="handleMouseIn(row)"
         @mouseleave="handleMouseOut(row)">
-      <td v-for="({key,type}, index) in leafColumns"
+      <td v-for="(column, index) in leafColumns"
           :key="index"
-          :class="{'vk-datagrid--visibility-hidden':hideCell(key)}">
-        <d-checkbox v-if="type=='checkbox'"
-                    :value="row.checked"
-                    @click.native="$parent.checkRow(row)"></d-checkbox>
-        <template>
-          {{row.data[key]}}
-        </template>
+          :class="{'vk-datagrid--visibility-hidden':hideCell(column)}">
+        <d-cell :column="column"
+                :data="row"></d-cell>
       </td>
     </tr>
   </table>
@@ -26,10 +22,10 @@
 
 <script>
 import DColgroup from "./datagrid-colgroup";
-import DCheckbox from "./datagrid-checkbox";
+import DCell from "./datagrid-cell";
 
 export default {
-  components: { DColgroup, DCheckbox },
+  components: { DColgroup, DCell },
   data() {
     return {};
   },
@@ -44,7 +40,7 @@ export default {
     }
   },
   methods: {
-    hideCell(key) {
+    hideCell({ key }) {
       if (this.fixedColumnKeys.length < 1) return false;
       return !this.fixedColumnKeys.includes(key);
     },

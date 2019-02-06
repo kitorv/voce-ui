@@ -9,24 +9,30 @@ export default {
   },
   render(h) {
     let { title, type } = this.data;
-    if (!type) return <span>{title}</span>;
+    if (!type) return <div>{title}</div>;
 
     switch (type) {
       case "checkbox":
-        return this.renderChechbox(h, this.data);
+        return this.checkboxRender(h, this.data);
       default:
         //   TODO动态化配置
-        return <span>{title}</span>;
+        return <div>{title}</div>;
     }
   },
   methods: {
-    renderChechbox(h, column) {
-      let datagrid = this.datagrid;
+    handleCheckClick() {
+      this.datagrid.checked = !this.datagrid.checked;
+      this.datagrid.indeterminate = false;
+      this.datagrid.dataRows.forEach(row => {
+        row.checked = this.datagrid.checked;
+      });
+    },
+    checkboxRender(h, column) {
       return (
         <d-checkbox
-          indeterminate={datagrid.indeterminate}
-          value={datagrid.checked}
-          nativeOn-click={datagrid.checkAll}
+          indeterminate={this.datagrid.indeterminate}
+          value={this.datagrid.checked}
+          nativeOn-click={this.handleCheckClick}
         />
       );
     }
