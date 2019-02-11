@@ -55,7 +55,7 @@
     </div>
     <!-- 表尾 -->
     <div class="vk-datagrid--footer"
-         v-if="Array.isArray(footer)&&footer.length>0"
+         v-if="footer.length>0"
          :style="{'padding-right': `${verticalScrollBarSize}px`}">
       <div v-if="leftFixedColumns.length>0"
            class="vk-datagrid--body-left"
@@ -114,13 +114,13 @@ export default {
   },
   props: {
     columns: { required: true, type: Array },
-    dataSource: { type: Array },
-    footer: { type: Array },
-    border: { type: Boolean, default: false }
+    dataSource: { type: Array, default: () => [] },
+    footer: { type: Array, default: () => [] },
+    border: { type: Boolean, default: true }
   },
   computed: {
     showBorder() {
-      return this.columns.length > 1 ? true : this.border;
+      return this.columnRows.length > 1 ? true : this.border;
     }
   },
   methods: {
@@ -203,7 +203,7 @@ export default {
     // 表体内容渲染完数据，根据是否包含滚动条处理
     handleBodyTableAfterRneder() {
       // 无数据滚动条不存在
-      if (!this.dataSource || this.dataSource.length < 1) {
+      if (this.dataSource.length < 1) {
         this.verticalScrollBarSize = 0;
         // TODO 无数据表头滚动
         return;
