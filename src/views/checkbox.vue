@@ -8,15 +8,16 @@ export default {
   data() {
     return {
       columns: [
-        { type: "checkbox", width: 36 },
+        { type: "checkbox" },
+        { title: "Key", key: "key" },
         { title: "Name", key: "name" },
-        { title: "Age", key: "age" },
-        { title: "Address", key: "address" }
+        { title: "Age", key: "age" }
       ],
       dataSource: [
         { key: "1", name: "John Brown", age: 32 },
         { key: "2", name: "Jim Green", age: 42 },
-        { key: "3", name: "Joe Black", age: 32 }
+        { key: "3", name: "Joe Black", age: 32 },
+        { key: "4", name: "Tone Mark", age: 32 }
       ]
     };
   }

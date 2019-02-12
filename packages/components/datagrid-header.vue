@@ -8,6 +8,7 @@
     <tr v-for="(colRows, index) in columns"
         :key="index">
       <th v-for="(column, index) in colRows"
+          :class="classList(column)"
           :key="index"
           :colspan="column.colSpan"
           :rowspan="column.rowSpan">
@@ -23,12 +24,15 @@ import DColumn from "./datagrid-column";
 
 export default {
   components: { DColgroup, DColumn },
-  data() {
-    return {};
-  },
   props: {
     columns: { required: true, type: Array },
     leafColumns: { required: true, type: Array }
+  },
+  methods: {
+    classList({ type }) {
+      if (!type) return;
+      return `vk-datagrid--row-${type}`;
+    }
   }
 };
 </script>

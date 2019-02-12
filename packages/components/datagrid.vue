@@ -248,6 +248,7 @@ export default {
     },
     handleBodyScroll() {
       const bodyEl = this.$refs.body;
+      if (!bodyEl) return;
       const scrollLeft = bodyEl.scrollLeft;
       const scrollTop = bodyEl.scrollTop;
       if (this.$refs.header) {
@@ -263,7 +264,7 @@ export default {
         this.$refs.rightBody.scrollTop = scrollTop;
       }
     },
-    handleFixedBodyMousewheel() {
+    handleFixedBodyMousewheel(event) {
       let deltaY = event.deltaY;
       if (!deltaY && event.detail) {
         deltaY = event.detail * 40;

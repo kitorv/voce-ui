@@ -8,6 +8,8 @@
     <v-striped></v-striped>
     <h2>无数据</h2>
     <v-empty></v-empty>
+    <h2>复选框</h2>
+    <v-checkbox></v-checkbox>
   </div>
 </template>
 
@@ -25,7 +27,7 @@ Vue.component("v-datagrid", VDatagrid);
 
 export default {
   name: "app",
-  components: { VBase, VBorder, VCheckbox, VStriped, VEmpty }
+  components: { VBase, VBorder, VStriped, VEmpty, VCheckbox }
 };
 </script>
 

@@ -12,7 +12,7 @@
         @mouseleave="handleMouseOut(row)">
       <td v-for="(column, index) in leafColumns"
           :key="index"
-          :class="{'vk-datagrid--visibility-hidden':hideCell(column)}">
+          :class="classList(column)">
         <d-cell :column="column"
                 :data="row"></d-cell>
       </td>
@@ -23,6 +23,7 @@
 <script>
 import DColgroup from "./datagrid-colgroup";
 import DCell from "./datagrid-cell";
+import { log } from "util";
 
 export default {
   components: { DColgroup, DCell },
@@ -40,9 +41,19 @@ export default {
     }
   },
   methods: {
-    hideCell({ key }) {
-      if (this.fixedColumnKeys.length < 1) return false;
-      return !this.fixedColumnKeys.includes(key);
+    classList({ key, type }) {
+      let classList = [];
+      if (
+        this.fixedColumnKeys.length > 0 &&
+        !this.fixedColumnKeys.includes(key)
+      ) {
+        classList.push("vk-datagrid--visibility-hidden");
+      }
+      if (type) {
+        classList.push(`vk-datagrid--row-${type}`);
+      }
+      // TODO 鼠标移上去每次重新计算
+      return classList.join(" ");
     },
     handleMouseIn(row) {
       row.hover = true;
