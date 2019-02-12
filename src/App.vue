@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <!-- <h2>基本用法</h2>
+    <h2>基本用法</h2>
     <v-base></v-base>
     <h2>无边框</h2>
     <v-border></v-border>
@@ -10,8 +10,12 @@
     <v-empty></v-empty>
     <h2>复选框</h2>
     <v-checkbox></v-checkbox>
-    <h3>固定表头</h3> -->
+    <h2>固定表头</h2>
     <v-height></v-height>
+    <h2>固定列</h2>
+    <v-fixed></v-fixed>
+    <h2>表头分组</h2>
+    <v-columns></v-columns>
   </div>
 </template>
 
@@ -25,12 +29,23 @@ import VStriped from "./views/striped";
 import VEmpty from "./views/empty";
 import VCheckbox from "./views/checkbox";
 import VHeight from "./views/height";
+import VFixed from "./views/fixed";
+import VColumns from "./views/columns";
 
 Vue.component("v-datagrid", VDatagrid);
 
 export default {
   name: "app",
-  components: { VBase, VBorder, VStriped, VEmpty, VCheckbox, VHeight }
+  components: {
+    VBase,
+    VBorder,
+    VStriped,
+    VEmpty,
+    VCheckbox,
+    VHeight,
+    VFixed,
+    VColumns
+  }
 };
 </script>
 

@@ -31,7 +31,7 @@
         <div ref="leftBody"
              v-if="leftFixedColumns.length>0"
              class="vk-datagrid--body-left"
-             :style="{'width':`${leftFixedColumnsWidth}px`,'height':`${tableContentHeight}px`}"
+             :style="{'width':`${leftFixedColumnsWidth}px`,'height':`${fixedBodyHeight||tableContentHeight}px`}"
              @mousewheel="handleFixedBodyMousewheel"
              @DOMMouseScroll="handleFixedBodyMousewheel">
           <d-body-table :style="{'width':`${tableContentWidth}px`}"
@@ -40,7 +40,7 @@
                         :fixed-columns="leftFixedColumns"></d-body-table>
         </div>
         <div ref="body"
-             :style="{'height':`${height-headerHeight-footerHeight}px`}"
+             :style="{'height':`${bodyHeight}px`}"
              class="vk-datagrid--body-center"
              @scroll="handleBodyScroll">
           <d-body-table :data-source="dataRows"
@@ -50,7 +50,7 @@
         <div ref="rightBody"
              v-if="rightFixedColumns.length>0"
              class="vk-datagrid--body-right"
-             :style="{'width':`${rightFixedColumnsWidth}px`,'height':`${tableContentHeight}px`,'right':`${verticalScrollBarSize}px`}"
+             :style="{'width':`${rightFixedColumnsWidth}px`,'height':`${fixedBodyHeight||tableContentHeight}px`,'right':`${verticalScrollBarSize}px`}"
              @mousewheel="handleFixedBodyMousewheel"
              @DOMMouseScroll="handleFixedBodyMousewheel">
           <d-body-table :style="{'width':`${tableContentWidth}px`}"
@@ -68,7 +68,7 @@
          :style="{'padding-right': `${verticalScrollBarSize}px`}">
       <div v-if="leftFixedColumns.length>0"
            class="vk-datagrid--body-left"
-           :style="{'width':`${leftFixedColumnsWidth}px`,'height':`${tableContentHeight}px`}">
+           :style="{'width':`${leftFixedColumnsWidth}px`,}">
         <d-body-table :style="{'width':`${tableContentWidth}px`}"
                       :data-source="footer"
                       :leaf-columns="leafColumns"
@@ -81,7 +81,7 @@
       </div>
       <div v-if="rightFixedColumns.length>0"
            class="vk-datagrid--body-right"
-           :style="{'width':`${rightFixedColumnsWidth}px`,'height':`${tableContentHeight}px`,'right':`${verticalScrollBarSize}px`}">
+           :style="{'width':`${rightFixedColumnsWidth}px`,'right':`${verticalScrollBarSize}px`}">
         <d-body-table :style="{'width':`${tableContentWidth}px`}"
                       :data-source="footer"
                       :leaf-columns="leafColumns"
@@ -134,6 +134,15 @@ export default {
   computed: {
     showBorder() {
       return this.columnRows.length > 1 ? true : this.border;
+    },
+    bodyHeight() {
+      if (!this.height) return;
+      let height = this.height - (this.headerHeight + this.footerHeight);
+      return height;
+    },
+    fixedBodyHeight() {
+      if (!this.bodyHeight) return;
+      return this.bodyHeight - this.verticalScrollBarSize;
     }
   },
   methods: {
