@@ -80,6 +80,12 @@
     border-bottom: 1px solid #e8e8e8;
     text-align: left;
     font-weight: 500;
+
+    &.vk-datagrid--row-checkbox {
+      width: 38px;
+      visibility: visible;
+      text-align: center;
+    }
   }
 }
 
@@ -100,16 +106,20 @@
     padding: 8px;
     text-overflow: ellipsis;
     vertical-align: middle;
+
+    &.vk-datagrid--row-checkbox {
+      width: 38px;
+      visibility: visible;
+      text-align: center;
+    }
   }
 
   .vk-datagrid--visibility-hidden {
     visibility: hidden;
   }
 
-  .vk-datagird--row-hover {
-    > td {
-      background-color: #e6f7ff;
-    }
+  > tr.vk-datagird--row-hover > td {
+    background-color: #e6f7ff;
   }
 }
 
@@ -168,6 +178,7 @@
 }
 
 // -----表格边框样式-----
+
 // -----斑马线样式-----
 .vk-datagrid-striped {
   .vk-datagrid--body-table > tr {

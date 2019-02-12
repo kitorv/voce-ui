@@ -1,10 +1,10 @@
 <template>
-  <label :class="['vk-datagrid--checkbox',{
-      'vk-datagrid--checkbox-checked':value,
-      'vk-datagrid--checkbox-indeterminate':!value&&indeterminate
+  <label :class="['vk-datagrid-checkbox',{
+      'vk-datagrid-checkbox-checked':value,
+      'vk-datagrid-checkbox-indeterminate':!value&&indeterminate
       }]">
-    <span class="vk-datagrid--checkbox-inner">
-      <input class="vk-datagrid--checkbox-inner-input"
+    <span class="vk-datagrid-checkbox--inner">
+      <input class="vk-datagrid-checkbox--inner-input"
              type="checkbox"
              v-model="model">
     </span>
@@ -33,7 +33,7 @@ export default {
 
 
 <style  lang="scss">
-.vk-datagrid--checkbox {
+.vk-datagrid-checkbox {
   position: relative;
   font-size: 14px;
   line-height: 1;
@@ -48,7 +48,7 @@ export default {
   vertical-align: middle;
 }
 
-.vk-datagrid--checkbox-inner {
+.vk-datagrid-checkbox--inner {
   position: relative;
   top: 0;
   left: 0;
@@ -78,11 +78,11 @@ export default {
   }
 }
 
-.vk-datagrid--checkbox:hover .vk-datagrid--checkbox-inner {
+.vk-datagrid-checkbox:hover .vk-datagrid-checkbox--inner {
   border-color: #1890ff;
 }
 
-.vk-datagrid--checkbox-inner-input {
+.vk-datagrid-checkbox--inner-input {
   position: absolute;
   left: 0;
   z-index: 1;
@@ -97,25 +97,25 @@ export default {
   padding: 0;
 }
 
-.vk-datagrid--checkbox-checked {
-  .vk-datagrid--checkbox-inner {
+.vk-datagrid-checkbox-checked {
+  .vk-datagrid-checkbox--inner {
     background-color: #1890ff;
     border-color: #1890ff;
   }
 
-  .vk-datagrid--checkbox-inner:after {
+  .vk-datagrid-checkbox--inner:after {
     transform: rotate(45deg) scale(1) translate(-50%, -50%);
     opacity: 1;
   }
 }
 
-.vk-datagrid--checkbox-indeterminate {
-  .vk-datagrid--checkbox-inner {
+.vk-datagrid-checkbox-indeterminate {
+  .vk-datagrid-checkbox--inner {
     background-color: #fff;
     border-color: #d9d9d9;
   }
 
-  .vk-datagrid--checkbox-inner:after {
+  .vk-datagrid-checkbox--inner:after {
     transform: translate(-50%, -50%) scale(1);
     border: 0;
     left: 50%;
