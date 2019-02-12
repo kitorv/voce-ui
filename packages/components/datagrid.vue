@@ -1,9 +1,9 @@
 <template>
-  <div :class="['vk-datagrid',{
-    'vk-datagrid-border':showBorder,
-    'vk-datagrid-striped':striped
-    }]"
-       :style="{'height':`${height}px`}">
+  <div :style="{'height':`${height}px`}"
+       :class="['vk-datagrid',{
+        'vk-datagrid-border':showBorder,
+        'vk-datagrid-striped':striped
+       }]">
     <!-- 表头 -->
     <div class="vk-datagrid--header"
          :style="{'padding-right': `${this.verticalScrollBarSize}px`}">
