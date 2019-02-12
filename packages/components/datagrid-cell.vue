@@ -10,13 +10,14 @@ export default {
   },
   render(h) {
     let { key, type } = this.column;
-    if (!type) return <div>{this.data.data[key]}</div>;
+    let data = this.data.data || this.data;
+    if (!type) return <div>{data[key]}</div>;
     switch (type) {
       case "checkbox":
         return this.checkboxRender(h, this.data);
       default:
         //   TODO动态化配置
-        return <div>{this.data.data[key]}</div>;
+        return <div>{data[key]}</div>;
     }
   },
   methods: {
