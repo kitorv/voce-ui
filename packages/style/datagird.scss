@@ -88,10 +88,6 @@
   width: 100%;
   table-layout: fixed;
 
-  // > tr:hover > td {
-  //   background-color: #e6f7ff;
-  // }
-
   > tr > td {
     position: relative;
     min-width: 0;
@@ -115,6 +111,15 @@
       background-color: #e6f7ff;
     }
   }
+}
+
+.vk-datagrid--body-empty {
+  line-height: 60px;
+  width: 100%;
+  color: #909399;
+  text-align: center;
+  background-color: #ffffff;
+  border-bottom: 1px solid #e8e8e8;
 }
 // -----表格通用样式-----
 
@@ -163,3 +168,18 @@
 }
 
 // -----表格边框样式-----
+// -----斑马线样式-----
+.vk-datagrid-striped {
+  .vk-datagrid--body-table > tr {
+    &:nth-child(odd) > td {
+      background-color: #fafafa;
+    }
+
+    &.vk-datagird--row-hover {
+      > td {
+        background-color: #e6f7ff;
+      }
+    }
+  }
+}
+// -----斑马线样式-----

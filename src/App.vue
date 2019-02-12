@@ -2,8 +2,12 @@
   <div id="app">
     <h2>基本用法</h2>
     <v-base></v-base>
-    <h2>复选框</h2>
-    <v-checkbox></v-checkbox>
+    <h2>无边框</h2>
+    <v-border></v-border>
+    <h2>斑马线</h2>
+    <v-striped></v-striped>
+    <h2>无数据</h2>
+    <v-empty></v-empty>
   </div>
 </template>
 
@@ -12,13 +16,16 @@ import Vue from "vue";
 import "../packages/style/datagird.scss";
 import VDatagrid from "../packages/components/datagrid";
 import VBase from "./views/basic";
+import VBorder from "./views/border";
+import VStriped from "./views/striped";
+import VEmpty from "./views/empty";
 import VCheckbox from "./views/checkbox";
 
 Vue.component("v-datagrid", VDatagrid);
 
 export default {
   name: "app",
-  components: { VBase, VCheckbox }
+  components: { VBase, VBorder, VCheckbox, VStriped, VEmpty }
 };
 </script>
 
@@ -35,7 +42,8 @@ body {
   -moz-osx-font-smoothing: grayscale;
   height: 100%;
   width: 100%;
-  padding: 20px 50px;
+  padding: 20px 50px 200px 50px;
   box-sizing: border-box;
+  overflow: auto;
 }
 </style>
