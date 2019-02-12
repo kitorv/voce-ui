@@ -8,7 +8,7 @@ export default {
   data() {
     return {
       columns: [
-        { type: "checkbox", fixed: "left", width: 36 },
+        { type: "checkbox", width: 36 },
         { title: "Name", key: "name" },
         { title: "Age", key: "age" },
         { title: "Address", key: "address" }

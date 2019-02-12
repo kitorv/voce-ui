@@ -1,5 +1,6 @@
 <template>
   <v-datagrid :columns="columns"
+              :striped="true"
               :data-source="dataSource"></v-datagrid>
 </template>
 

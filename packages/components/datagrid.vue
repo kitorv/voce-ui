@@ -1,5 +1,8 @@
 <template>
-  <div :class="['vk-datagrid',{'vk-datagrid-border':showBorder}]">
+  <div :class="['vk-datagrid',{
+    'vk-datagrid-border':showBorder,
+    'vk-datagrid-striped':striped
+    }]">
     <!-- 表头 -->
     <div class="vk-datagrid--header"
          :style="{'padding-right': `${this.verticalScrollBarSize}px`}">
@@ -23,35 +26,39 @@
     </div>
     <!-- 表体 -->
     <div class="vk-datagird--body">
-      <div ref="leftBody"
-           v-if="leftFixedColumns.length>0"
-           class="vk-datagrid--body-left"
-           :style="{'width':`${leftFixedColumnsWidth}px`,'height':`${tableContentHeight}px`}"
-           @mousewheel="handleFixedBodyMousewheel"
-           @DOMMouseScroll="handleFixedBodyMousewheel">
-        <d-body-table :style="{'width':`${tableContentWidth}px`}"
-                      :data-source="dataRows"
-                      :leaf-columns="leafColumns"
-                      :fixed-columns="leftFixedColumns"></d-body-table>
-      </div>
-      <div ref="body"
-           class="vk-datagrid--body-center"
-           @scroll="handleBodyScroll">
-        <d-body-table :data-source="dataRows"
-                      :leaf-columns="leafColumns"
-                      @after-render="handleBodyTableAfterRneder"></d-body-table>
-      </div>
-      <div ref="rightBody"
-           v-if="rightFixedColumns.length>0"
-           class="vk-datagrid--body-right"
-           :style="{'width':`${rightFixedColumnsWidth}px`,'height':`${tableContentHeight}px`,'right':`${verticalScrollBarSize}px`}"
-           @mousewheel="handleFixedBodyMousewheel"
-           @DOMMouseScroll="handleFixedBodyMousewheel">
-        <d-body-table :style="{'width':`${tableContentWidth}px`}"
-                      :data-source="dataRows"
-                      :leaf-columns="leafColumns"
-                      :fixed-columns="rightFixedColumns"></d-body-table>
-      </div>
+      <template v-if="dataSource.length>0">
+        <div ref="leftBody"
+             v-if="leftFixedColumns.length>0"
+             class="vk-datagrid--body-left"
+             :style="{'width':`${leftFixedColumnsWidth}px`,'height':`${tableContentHeight}px`}"
+             @mousewheel="handleFixedBodyMousewheel"
+             @DOMMouseScroll="handleFixedBodyMousewheel">
+          <d-body-table :style="{'width':`${tableContentWidth}px`}"
+                        :data-source="dataRows"
+                        :leaf-columns="leafColumns"
+                        :fixed-columns="leftFixedColumns"></d-body-table>
+        </div>
+        <div ref="body"
+             class="vk-datagrid--body-center"
+             @scroll="handleBodyScroll">
+          <d-body-table :data-source="dataRows"
+                        :leaf-columns="leafColumns"
+                        @after-render="handleBodyTableAfterRneder"></d-body-table>
+        </div>
+        <div ref="rightBody"
+             v-if="rightFixedColumns.length>0"
+             class="vk-datagrid--body-right"
+             :style="{'width':`${rightFixedColumnsWidth}px`,'height':`${tableContentHeight}px`,'right':`${verticalScrollBarSize}px`}"
+             @mousewheel="handleFixedBodyMousewheel"
+             @DOMMouseScroll="handleFixedBodyMousewheel">
+          <d-body-table :style="{'width':`${tableContentWidth}px`}"
+                        :data-source="dataRows"
+                        :leaf-columns="leafColumns"
+                        :fixed-columns="rightFixedColumns"></d-body-table>
+        </div>
+      </template>
+      <div v-else
+           class="vk-datagrid--body-empty">暂无数据</div>
     </div>
     <!-- 表尾 -->
     <div class="vk-datagrid--footer"
@@ -116,7 +123,8 @@ export default {
     columns: { required: true, type: Array },
     dataSource: { type: Array, default: () => [] },
     footer: { type: Array, default: () => [] },
-    border: { type: Boolean, default: true }
+    border: { type: Boolean, default: true },
+    striped: { type: Boolean, default: false }
   },
   computed: {
     showBorder() {
