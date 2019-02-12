@@ -2,7 +2,8 @@
   <div :class="['vk-datagrid',{
     'vk-datagrid-border':showBorder,
     'vk-datagrid-striped':striped
-    }]">
+    }]"
+       :style="{'height':`${height}px`}">
     <!-- 表头 -->
     <div class="vk-datagrid--header"
          :style="{'padding-right': `${this.verticalScrollBarSize}px`}">
@@ -39,6 +40,7 @@
                         :fixed-columns="leftFixedColumns"></d-body-table>
         </div>
         <div ref="body"
+             :style="{'height':`${height-headerHeight-footerHeight}px`}"
              class="vk-datagrid--body-center"
              @scroll="handleBodyScroll">
           <d-body-table :data-source="dataRows"
@@ -111,7 +113,9 @@ export default {
       dataRows: [],
       seed: 1,
       checked: false,
-      indeterminate: false
+      indeterminate: false,
+      headerHeight: 0,
+      footerHeight: 0
     };
   },
   provide() {
@@ -124,7 +128,8 @@ export default {
     dataSource: { type: Array, default: () => [] },
     footer: { type: Array, default: () => [] },
     border: { type: Boolean, default: true },
-    striped: { type: Boolean, default: false }
+    striped: { type: Boolean, default: false },
+    height: { type: Number }
   },
   computed: {
     showBorder() {
@@ -218,6 +223,7 @@ export default {
       }
       // 计算宽度获取是否存在滚动条
       let bodyEl = this.$refs.body;
+      if (!bodyEl) return;
       this.verticalScrollBarSize = bodyEl.offsetWidth - bodyEl.clientWidth;
       // 计算高度获取是否存在滚动条
       this.horizontalScrollBarSize = bodyEl.offsetHeight - bodyEl.clientHeight;
@@ -319,6 +325,12 @@ export default {
   },
   mounted() {
     window.addEventListener("resize", this.handleResize);
+    if (this.$refs.header) {
+      this.headerHeight = this.$refs.header.offsetHeight;
+    }
+    if (this.$refs.footer) {
+      this.footerHeight = this.$refs.footer.offsetHeight;
+    }
   }
 };
 </script>
