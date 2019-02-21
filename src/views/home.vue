@@ -5,7 +5,7 @@
       <div class="view-home--desc">满足各种复杂场景，高度可定制化表格组件</div>
       <div>
         <router-link class="view-home--link"
-                     to="/">开始使用</router-link>
+                     to="/">Get Started</router-link>
         <router-link class="view-home--link"
                      to="/">Github</router-link>
       </div>
