@@ -2,17 +2,54 @@
   <div class="kv-datagrid">
 
     <!-- 表头 -->
-    <div class="kv-datagrid--header">
-      <table-header :column-rows="columnRows"
-                    :leaf-columns="leafColumns"></table-header>
+    <div class="kv-datagrid--header"
+         :style="{'padding-right': `${vScrollSize}px`}">
+      <div v-if="leftFixedColumns.length>0"
+           class="kv-datagrid--header-left"
+           :style="{'width':`${leftBodyWidth}px`}">
+        <table-header :style="{'width':`${bodyWidth}px`}"
+                      :column-rows="columnRows"
+                      :leaf-columns="leafColumns"></table-header>
+      </div>
+      <div class="kv-datagrid--header-center">
+        <table-header :column-rows="columnRows"
+                      :leaf-columns="leafColumns"></table-header>
+      </div>
+      <div v-if="rightFixedColumns.length>0"
+           class="kv-datagrid--header-right"
+           :style="{'width':`${rightBodyWidth}px`}">
+        <table-header :style="{'width':`${bodyWidth}px`}"
+                      :column-rows="columnRows"
+                      :leaf-columns="leafColumns"></table-header>
+      </div>
     </div>
     <!-- 表头 -->
 
     <!-- 表体 -->
-    <div class="vk-datagird--body">
-      <div class="vk-datagrid--body-center">
+    <div class="kv-datagird--body">
+      <div v-if="leftFixedColumns.length>0"
+           ref="leftBody"
+           class="kv-datagrid--body-left"
+           :style="{'width':`${leftBodyWidth}px`,'height':`${bodyHeight}px`}">
+        <table-body :style="{'width':`${bodyWidth}px`}"
+                    :data="dataSource"
+                    :leaf-columns="leafColumns"
+                    :fixed-columns="leftFixedColumns"></table-body>
+      </div>
+      <div ref="body"
+           class="kv-datagrid--body-center">
         <table-body :leaf-columns="leafColumns"
-                    :data="dataSource"></table-body>
+                    :data="dataSource"
+                    @on-after-render="handleBodyAfterRender"></table-body>
+      </div>
+      <div v-if="rightFixedColumns.length>0"
+           ref="rightBody"
+           class="kv-datagrid--body-right"
+           :style="{'width':`${rightBodyWidth}px`,'height':`${bodyHeight}px`,'right':`${vScrollSize}px`}">
+        <table-body :style="{'width':`${bodyWidth}px`}"
+                    :data="dataSource"
+                    :leaf-columns="leafColumns"
+                    :fixed-columns="rightFixedColumns"></table-body>
       </div>
     </div>
     <!-- 表体 -->
@@ -30,11 +67,28 @@ export default {
   data() {
     let initParams = this.init();
     return {
+      // 列转行用于渲染表头数据
       columnRows: initParams.columnRows,
+      // 末级叶子列用于实际数据展示
       leafColumns: initParams.leafColumns,
+      // 左侧固定列
       leftFixedColumns: initParams.leftFixedColumns,
+      // 右侧固定列
       rightFixedColumns: initParams.rightFixedColumns,
-      dataSource: this.intiDataSource()
+      // 数据源初始化构建
+      dataSource: this.intiDataSource(),
+      // 垂直滚动条宽度
+      vScrollSize: 0,
+      // 水平滚动条宽度
+      hScrollSize: 0,
+      // 左侧固定表格内容宽度
+      leftBodyWidth: 0,
+      // 右侧固定表格内容宽度
+      rightBodyWidth: 0,
+      // 表格内容宽度
+      bodyWidth: 0,
+      // 表格内容高度
+      bodyHeight: 0
     };
   },
   props: {
@@ -121,6 +175,41 @@ export default {
         dataRows.push({ hover: false, data: row });
       });
       return dataRows;
+    },
+    handleBodyAfterRender() {
+      // 无数据不进行渲染
+      if (this.dataSource.length < 1) {
+        this.vScrollSize = 0;
+        return;
+      }
+      // 计算滚动条宽度
+      let bodyEl = this.$refs.body;
+      if (!bodyEl) return;
+      this.vScrollSize = bodyEl.offsetWidth - bodyEl.clientWidth;
+      this.hScrollSize = bodyEl.offsetHeight - bodyEl.clientHeight;
+      // 存在固定列计算固定列所占有的宽度
+      const lefColLength = this.leftFixedColumns.length;
+      const rightColLength = this.rightFixedColumns.length;
+      if (lefColLength < 1 && rightColLength < 1) return;
+      // 计算固定列头的宽度
+      const rowEl = bodyEl.querySelector("tr");
+      const cellEls = rowEl.querySelectorAll("td");
+      const cellLength = this.leafColumns.length;
+      let leftWidth = 0;
+      let rightWidth = 0;
+      cellEls.forEach((cell, index) => {
+        const cellWidth = cell.offsetWidth;
+        if (index < lefColLength) {
+          leftWidth += cellWidth;
+        }
+        if (index > cellLength - rightColLength) {
+          rightWidth += cellWidth;
+        }
+      });
+      this.leftBodyWidth = leftWidth;
+      this.rightBodyWidth = rightWidth;
+      this.bodyWidth = rowEl.offsetWidth;
+      this.bodyHeight = bodyEl.offsetHeight - this.hScrollSize;
     }
   }
 };

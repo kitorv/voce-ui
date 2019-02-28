@@ -9,8 +9,10 @@
                      to="/">基本功能</router-link>
       </div> -->
       <div class="view-home--body-content">
-        <datagrid :columns="columns"
-                  :data="data"></datagrid>
+        <div style="width:800px">
+          <datagrid :columns="columns"
+                    :data="data"></datagrid>
+        </div>
       </div>
     </div>
   </div>
@@ -317,7 +319,7 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .view-home {
   position: relative;
 }
@@ -379,6 +381,10 @@ export default {
   flex: 1;
   padding: 0 64px 64px 64px;
   min-height: 500px;
+}
+
+.kv-datagrid--body-center {
+  max-height: 300px !important;
 }
 </style>
 
