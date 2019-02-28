@@ -9,7 +9,10 @@
            :style="column.colStyle">
     </colgroup>
     <tr v-for="(row, index) in data"
-        :key="index">
+        :key="index"
+        :class="{'kv-datagird--row-hover':row.hover}"
+        @mouseenter="row.hover=true"
+        @mouseleave="row.hover=false">
       <td v-for="(column, index) in leafColumns"
           :key="index">
         <table-cell :column="column"
