@@ -1,0 +1,63 @@
+// 表格容器
+.kv-datagrid {
+  position: relative;
+  zoom: 1;
+  box-sizing: border-box;
+  overflow: hidden;
+  line-height: 1.5;
+  color: #333333;
+  background-color: #fafafa;
+}
+
+// 表格布局
+.kv-datagrid--header,
+.kv-datagird--body,
+.kv-datagrid--footer {
+  position: relative;
+}
+
+// 左侧固定列
+.kv-datagrid--header-left,
+.kv-datagrid--body-left,
+.kv-datagrid--body-left {
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 2;
+  overflow: hidden;
+  height: 100%;
+}
+
+// 中心内容
+.kv-datagrid--header-center,
+.kv-datagrid--body-center,
+.kv-datagrid--footer-center {
+  position: relative;
+  z-index: 1;
+  overflow: auto;
+
+  // 表头和表体禁用滚动条
+  &.kv-datagrid--header-center,
+  &.kv-datagrid--footer-center {
+    overflow: hidden;
+  }
+}
+
+// 右侧固定列
+.kv-datagrid--header-right,
+.kv-datagrid--body-right,
+.kv-datagrid--footer-right {
+  position: absolute;
+  right: 0;
+  top: 0;
+  z-index: 3;
+  overflow: hidden;
+  height: 100%;
+
+  > table {
+    position: absolute;
+    right: 0;
+    top: 0;
+    z-index: 4;
+  }
+}
