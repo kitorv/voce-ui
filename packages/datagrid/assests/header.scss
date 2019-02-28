@@ -1,0 +1,21 @@
+.kv-datagrid--header-table {
+  table-layout: fixed;
+  width: 100%;
+
+  > tr {
+    > th {
+      position: relative;
+      box-sizing: border-box;
+      min-width: 0;
+      vertical-align: middle;
+      background-color: #fafafa;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      padding: 8px;
+      border-bottom: 1px solid #e8e8e8;
+      text-align: left;
+      font-weight: 500;
+    }
+  }
+}
