@@ -14,14 +14,17 @@
           :key="index"
           :colspan="column.colSpan"
           :rowspan="column.rowSpan">
-        <div>{{column.title}}</div>
+        <table-column :column="column"></table-column>
       </th>
     </tr>
   </table>
 </template>
 
 <script>
+import TableColumn from "./column";
+
 export default {
+  components: { TableColumn },
   props: {
     columnRows: { required: true, type: Array },
     leafColumns: { required: true, type: Array }

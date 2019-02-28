@@ -24,12 +24,11 @@ export default {
   data() {
     return {
       columns: [
-        { type: "checkbox", fixed: "left", width: 36 },
         { key: "id", title: "id标识", fixed: "left", width: 100 },
         {
           title: "用户信息",
           children: [
-            { key: "name", title: "姓名", width: 280 },
+            { key: "name", title: "姓名", width: 100 },
             { key: "age", title: "年龄", width: 100 },
             { key: "work", title: "工作", width: 100 }
           ]
@@ -50,16 +49,16 @@ export default {
         {
           title: "指标",
           children: [
-            { key: "target1", title: "指标1", width: 100 },
-            { key: "target2", title: "指标2", width: 100 },
-            { key: "target3", title: "指标3", width: 100 },
-            { key: "target4", title: "指标4", width: 100 }
+            { key: "target1", title: "指标1", width: 80 },
+            { key: "target2", title: "指标2", width: 80 },
+            { key: "target3", title: "指标3", width: 80 },
+            { key: "target4", title: "指标4", width: 80 }
           ]
         },
-        { key: "number0", title: "数值", fixed: "right", width: 100 },
-        { key: "number1", title: "数值1", fixed: "right", width: 100 },
-        { key: "number2", title: "数值2", fixed: "right", width: 100 },
-        { key: "number3", title: "数值3", fixed: "right", width: 100 }
+        { key: "number0", title: "数值", fixed: "right", width: 80 },
+        { key: "number1", title: "数值1", fixed: "right", width: 80 },
+        { key: "number2", title: "数值2", fixed: "right", width: 80 },
+        { key: "number3", title: "数值3", fixed: "right", width: 80 }
       ]
     };
   }
