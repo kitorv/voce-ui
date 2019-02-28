@@ -9,7 +9,8 @@
                      to="/">基本功能</router-link>
       </div> -->
       <div class="view-home--body-content">
-        <datagrid :columns="columns"></datagrid>
+        <datagrid :columns="columns"
+                  :data="data"></datagrid>
       </div>
     </div>
   </div>
@@ -59,6 +60,257 @@ export default {
         { key: "number1", title: "数值1", fixed: "right", width: 80 },
         { key: "number2", title: "数值2", fixed: "right", width: 80 },
         { key: "number3", title: "数值3", fixed: "right", width: 80 }
+      ],
+      data: [
+        {
+          id: 1,
+          name: "张三",
+          age: 20,
+          work: "程序员",
+          street: "软件园二期",
+          building: "14#",
+          doorNo: "1024",
+          number1: 100,
+          number2: 200,
+          number3: 300
+        },
+        {
+          id: 2,
+          name: "李四",
+          age: 28,
+          work: "销售",
+          street: "湖里街道",
+          building: "20#",
+          doorNo: "3001",
+          number1: 100,
+          number2: 200,
+          number3: 300
+        },
+        {
+          id: 3,
+          name: "王五",
+          age: 35,
+          work: "采购",
+          street: "集美街道",
+          building: "65#",
+          doorNo: "1001",
+          number1: 100,
+          number2: 200,
+          number3: 300
+        },
+        {
+          id: 1,
+          name: "张三",
+          age: 20,
+          work: "程序员",
+          street: "软件园二期",
+          building: "14#",
+          doorNo: "1024",
+          number1: 100,
+          number2: 200,
+          number3: 300
+        },
+        {
+          id: 2,
+          name: "李四",
+          age: 28,
+          work: "销售",
+          street: "湖里街道",
+          building: "20#",
+          doorNo: "3001",
+          number1: 100,
+          number2: 200,
+          number3: 300
+        },
+        {
+          id: 3,
+          name: "王五",
+          age: 35,
+          work: "采购",
+          street: "集美街道",
+          building: "65#",
+          doorNo: "1001",
+          number1: 100,
+          number2: 200,
+          number3: 300
+        },
+        {
+          id: 1,
+          name: "张三",
+          age: 20,
+          work: "程序员",
+          street: "软件园二期",
+          building: "14#",
+          doorNo: "1024",
+          number1: 100,
+          number2: 200,
+          number3: 300
+        },
+        {
+          id: 2,
+          name: "李四",
+          age: 28,
+          work: "销售",
+          street: "湖里街道",
+          building: "20#",
+          doorNo: "3001",
+          number1: 100,
+          number2: 200,
+          number3: 300
+        },
+        {
+          id: 3,
+          name: "王五",
+          age: 35,
+          work: "采购",
+          street: "集美街道",
+          building: "65#",
+          doorNo: "1001",
+          number1: 100,
+          number2: 200,
+          number3: 300
+        },
+        {
+          id: 1,
+          name: "张三",
+          age: 20,
+          work: "程序员",
+          street: "软件园二期",
+          building: "14#",
+          doorNo: "1024",
+          number1: 100,
+          number2: 200,
+          number3: 300
+        },
+        {
+          id: 2,
+          name: "李四",
+          age: 28,
+          work: "销售",
+          street: "湖里街道",
+          building: "20#",
+          doorNo: "3001",
+          number1: 100,
+          number2: 200,
+          number3: 300
+        },
+        {
+          id: 3,
+          name: "王五",
+          age: 35,
+          work: "采购",
+          street: "集美街道",
+          building: "65#",
+          doorNo: "1001",
+          number1: 100,
+          number2: 200,
+          number3: 300
+        },
+        {
+          id: 1,
+          name: "张三",
+          age: 20,
+          work: "程序员",
+          street: "软件园二期",
+          building: "14#",
+          doorNo: "1024",
+          number1: 100,
+          number2: 200,
+          number3: 300
+        },
+        {
+          id: 2,
+          name: "李四",
+          age: 28,
+          work: "销售",
+          street: "湖里街道",
+          building: "20#",
+          doorNo: "3001",
+          number1: 100,
+          number2: 200,
+          number3: 300
+        },
+        {
+          id: 3,
+          name: "王五",
+          age: 35,
+          work: "采购",
+          street: "集美街道",
+          building: "65#",
+          doorNo: "1001",
+          number1: 100,
+          number2: 200,
+          number3: 300
+        },
+        {
+          id: 1,
+          name: "张三",
+          age: 20,
+          work: "程序员",
+          street: "软件园二期",
+          building: "14#",
+          doorNo: "1024",
+          number1: 100,
+          number2: 200,
+          number3: 300
+        },
+        {
+          id: 2,
+          name: "李四",
+          age: 28,
+          work: "销售",
+          street: "湖里街道",
+          building: "20#",
+          doorNo: "3001",
+          number1: 100,
+          number2: 200,
+          number3: 300
+        },
+        {
+          id: 3,
+          name: "王五",
+          age: 35,
+          work: "采购",
+          street: "集美街道",
+          building: "65#",
+          doorNo: "1001",
+          number1: 100,
+          number2: 200,
+          number3: 300
+        },
+        {
+          id: 1,
+          name: "张三",
+          age: 20,
+          work: "程序员",
+          street: "软件园二期",
+          building: "14#",
+          doorNo: "1024",
+          number1: 100,
+          number2: 200,
+          number3: 300
+        },
+        {
+          id: 2,
+          name: "李四",
+          age: 28,
+          work: "销售",
+          street: "湖里街道",
+          building: "20#",
+          doorNo: "3001"
+        },
+        {
+          id: 3,
+          name: "王五",
+          age: 35,
+          work: "采购",
+          street: "集美街道",
+          building: "65#",
+          doorNo: "1001",
+          number1: 100,
+          number2: 200,
+          number3: 300
+        }
       ]
     };
   }

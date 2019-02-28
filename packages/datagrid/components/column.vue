@@ -1,7 +1,7 @@
 <script>
 export default {
   props: {
-    column: { required: true, type: Object }
+    column: { type: Object }
   },
   render(h) {
     let { title } = this.column;
