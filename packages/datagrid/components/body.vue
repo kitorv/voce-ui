@@ -30,6 +30,9 @@ export default {
   props: {
     leafColumns: { type: Array },
     data: { type: Array }
+  },
+  mounted() {
+    this.$emit("on-after-render");
   }
 };
 </script>
