@@ -28,9 +28,6 @@ export default {
   props: {
     columnRows: { type: Array },
     leafColumns: { type: Array }
-  },
-  created() {
-    console.log(this.columnRows);
   }
 };
 </script>

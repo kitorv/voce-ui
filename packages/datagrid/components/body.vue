@@ -12,14 +12,18 @@
         :key="index">
       <td v-for="(column, index) in leafColumns"
           :key="index">
-        {{row.data[column.key]}}
+        <table-cell :column="column"
+                    :data="row"></table-cell>
       </td>
     </tr>
   </table>
 </template>
 
 <script>
+import TableCell from "./cell";
+
 export default {
+  components: { TableCell },
   data() {
     return {};
   },
