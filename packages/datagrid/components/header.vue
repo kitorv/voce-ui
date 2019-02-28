@@ -6,7 +6,7 @@
     <colgroup>
       <col v-for="(column, index) in leafColumns"
            :key="index"
-           :style="getColStyle(column)">
+           :style="column.colStyle">
     </colgroup>
     <tr v-for="(row, index) in columnRows"
         :key="index">
@@ -26,14 +26,8 @@ import TableColumn from "./column";
 export default {
   components: { TableColumn },
   props: {
-    columnRows: { required: true, type: Array },
-    leafColumns: { required: true, type: Array }
-  },
-  methods: {
-    getColStyle({ width }) {
-      let widthStyle = `${width}px`;
-      return { width: widthStyle, minWidth: widthStyle };
-    }
+    columnRows: { type: Array },
+    leafColumns: { type: Array }
   },
   created() {
     console.log(this.columnRows);

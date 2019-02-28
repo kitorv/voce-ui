@@ -1,0 +1,27 @@
+// 表体样式
+.kv-datagrid--body-table {
+  width: 100%;
+  table-layout: fixed;
+
+  > tr {
+    > td {
+      position: relative;
+      min-width: 0;
+      box-sizing: border-box;
+      text-align: left;
+      border-bottom: 1px solid #e8e8e8;
+      word-wrap: break-word;
+      word-break: break-all;
+      background-color: #ffffff;
+      padding: 8px;
+      vertical-align: middle;
+    }
+  }
+  // .kv-datagrid--visibility-hidden {
+  //   visibility: hidden;
+  // }
+
+  // > tr.kv-datagird--row-hover > td {
+  //   background-color: #e6f7ff;
+  // }
+}

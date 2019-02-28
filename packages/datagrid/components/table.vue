@@ -1,29 +1,45 @@
 <template>
   <div class="kv-datagrid">
+
+    <!-- 表头 -->
     <div class="kv-datagrid--header">
       <table-header :column-rows="columnRows"
                     :leaf-columns="leafColumns"></table-header>
     </div>
+    <!-- 表头 -->
+
+    <!-- 表体 -->
+    <div class="vk-datagird--body">
+      <div class="vk-datagrid--body-center">
+        <table-body :leaf-columns="leafColumns"
+                    :data="dataSource"></table-body>
+      </div>
+    </div>
+    <!-- 表体 -->
+
   </div>
 </template>
 
 <script>
 import TableHeader from "./header";
+import TableBody from "./body";
 
 export default {
   name: "datagird",
-  components: { TableHeader },
+  components: { TableHeader, TableBody },
   data() {
     let initParams = this.init();
     return {
       columnRows: initParams.columnRows,
       leafColumns: initParams.leafColumns,
       leftFixedColumns: initParams.leftFixedColumns,
-      rightFixedColumns: initParams.rightFixedColumns
+      rightFixedColumns: initParams.rightFixedColumns,
+      dataSource: this.intiDataSource()
     };
   },
   props: {
-    columns: { type: Array, default: () => [] }
+    columns: { type: Array, default: () => [] },
+    data: { type: Array, default: () => [] }
   },
   methods: {
     // 初始化配置属性处理
@@ -87,6 +103,8 @@ export default {
         if (fixed === "right") {
           rightFixedColumns.push(column);
         }
+        let width = column.width;
+        column.colStyle = { width: `${width}px`, minWidth: `${width}px` };
         leafColumns.push(column);
         column.colSpan = 1;
         column.rowSpan = columnRows.length - column.level + 1;
@@ -96,6 +114,13 @@ export default {
         initCell(col);
       });
       return { leftFixedColumns, rightFixedColumns, leafColumns };
+    },
+    intiDataSource() {
+      let dataRows = [];
+      this.data.forEach(row => {
+        dataRows.push({ hover: false, data: row });
+      });
+      return dataRows;
     }
   }
 };
