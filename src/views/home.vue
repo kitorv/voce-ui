@@ -1,13 +1,13 @@
 <template>
   <div class="view-home">
-    <div class="view-home--header">
+    <!-- <div class="view-home--header">
       <div class="view-home--header-title">Vue-DataGrid</div>
-    </div>
+    </div> -->
     <div class="view-home--body">
-      <div class="view-home--body-route">
+      <!-- <div class="view-home--body-route">
         <router-link class="view-home--body-link"
                      to="/">基本功能</router-link>
-      </div>
+      </div> -->
       <div class="view-home--body-content">
         <datagrid :columns="columns"></datagrid>
       </div>

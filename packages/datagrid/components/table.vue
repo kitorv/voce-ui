@@ -1,13 +1,18 @@
 <template>
   <div class="kv-datagrid">
-    <div class="kv-datagrid--header"></div>
+    <div class="kv-datagrid--header">
+      <table-header :column-rows="columnRows"
+                    :leaf-columns="leafColumns"></table-header>
+    </div>
   </div>
 </template>
 
-
 <script>
+import TableHeader from "./header";
+
 export default {
   name: "datagird",
+  components: { TableHeader },
   data() {
     let initParams = this.init();
     return {
@@ -47,7 +52,7 @@ export default {
         // 列含有子列集合递归加载数据
         const { children } = column;
         if (Array.isArray(children) && children.length > 0) {
-          this.initColumnRows(children, leafColumns, ++index, rows);
+          this.initColumnRows(children, leafColumns, index + 1, rows);
         }
         column.level = index + 1;
         rows[index].push(column);
