@@ -42,7 +42,7 @@
            @scroll="handleBodyScroll">
         <table-body :leaf-columns="leafColumns"
                     :data="dataSource"
-                    @on-after-render="handleBodyAfterRender"></table-body>
+                    @on-after-render="handleBodyLayoutResize"></table-body>
       </div>
       <div v-if="rightFixedColumns.length>0"
            v-mousewheel="handleMousewheel"
@@ -89,6 +89,7 @@
 import TableHeader from "./header";
 import TableBody from "./body";
 import Mousewheel from "../directives/mousewheel.js";
+import debounce from "../utils/debounce.js";
 
 export default {
   name: "datagird",
@@ -116,7 +117,9 @@ export default {
       // 表格内容宽度
       bodyWidth: 0,
       // 表格内容高度
-      bodyHeight: 0
+      bodyHeight: 0,
+      // 数据字典存储变量数据
+      dictionary: {}
     };
   },
   props: {
@@ -215,7 +218,7 @@ export default {
       return dataRows;
     },
     // 表格内容渲染完成根据内容调整表格
-    handleBodyAfterRender() {
+    handleBodyLayoutResize() {
       // 无数据不进行渲染
       if (this.dataSource.length < 1) {
         this.vScrollSize = 0;
@@ -236,6 +239,7 @@ export default {
       const cellLength = this.leafColumns.length;
       let leftWidth = 0;
       let rightWidth = 0;
+      // 根据单元格计算出固定表格宽度
       cellEls.forEach((cell, index) => {
         const cellWidth = cell.offsetWidth;
         if (index < lefColLength) {
@@ -245,6 +249,7 @@ export default {
           rightWidth += cellWidth;
         }
       });
+      // 计算完成赋值
       this.leftBodyWidth = leftWidth;
       this.rightBodyWidth = rightWidth;
       this.bodyWidth = rowEl.offsetWidth;
@@ -287,7 +292,21 @@ export default {
         event.preventDefault();
       }
       this.$refs.body.scrollTop += distance;
+    },
+    handleLayoutReize(interval = 0) {
+      if (interval === 0) {
+        this.handleBodyLayoutResize();
+        this.handleBodyScroll();
+        return;
+      }
+      return debounce(() => {
+        this.handleBodyLayoutResize();
+        this.handleBodyScroll();
+      }, interval);
     }
+  },
+  mounted() {
+    window.addEventListener("resize", this.handleLayoutReize(100));
   }
 };
 </script>
