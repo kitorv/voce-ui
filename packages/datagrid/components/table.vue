@@ -35,8 +35,7 @@
            :style="{'width':`${leftBodyWidth}px`,'height':`${bodyHeight}px`}">
         <table-body :style="{'width':`${bodyWidth}px`}"
                     :data="dataSource"
-                    :leaf-columns="leafColumns"
-                    :fixed-columns="leftFixedColumns"></table-body>
+                    :leaf-columns="leafColumns"></table-body>
       </div>
       <div ref="body"
            class="kv-datagrid--body-center"
@@ -52,11 +51,36 @@
            :style="{'width':`${rightBodyWidth}px`,'height':`${bodyHeight}px`,'right':`${vScrollSize}px`}">
         <table-body :style="{'width':`${bodyWidth}px`}"
                     :data="dataSource"
-                    :leaf-columns="leafColumns"
-                    :fixed-columns="rightFixedColumns"></table-body>
+                    :leaf-columns="leafColumns"></table-body>
       </div>
     </div>
     <!-- 表体 -->
+
+    <!-- 表尾 -->
+    <div class="kv-datagrid--footer"
+         v-if="footer.length>0"
+         :style="{'padding-right': `${vScrollSize}px`}">
+      <div v-if="leftFixedColumns.length>0"
+           class="kv-datagrid--body-left"
+           :style="{'width':`${leftBodyWidth}px`,}">
+        <table-body :style="{'width':`${bodyWidth}px`}"
+                    :data="footerDataSource"
+                    :leaf-columns="leafColumns"></table-body>
+      </div>
+      <div ref="footer"
+           class="kv-datagrid--footer-center">
+        <table-body :data="footerDataSource"
+                    :leaf-columns="leafColumns"></table-body>
+      </div>
+      <div v-if="rightFixedColumns.length>0"
+           class="kv-datagrid--body-right"
+           :style="{'width':`${rightBodyWidth}px`,'right':`${vScrollSize}px`}">
+        <table-body :style="{'width':`${bodyWidth}px`}"
+                    :data="footerDataSource"
+                    :leaf-columns="leafColumns"></table-body>
+      </div>
+    </div>
+    <!-- 表尾 -->
 
   </div>
 </template>
@@ -81,8 +105,6 @@ export default {
       leftFixedColumns: initParams.leftFixedColumns,
       // 右侧固定列
       rightFixedColumns: initParams.rightFixedColumns,
-      // 数据源初始化构建
-      dataSource: this.intiDataSource(),
       // 垂直滚动条宽度
       vScrollSize: 0,
       // 水平滚动条宽度
@@ -99,7 +121,16 @@ export default {
   },
   props: {
     columns: { type: Array, default: () => [] },
-    data: { type: Array, default: () => [] }
+    data: { type: Array, default: () => [] },
+    footer: { type: Array, default: () => [] }
+  },
+  computed: {
+    dataSource() {
+      return this.proxyDataSource(this.data);
+    },
+    footerDataSource() {
+      return this.proxyDataSource(this.footer);
+    }
   },
   methods: {
     // 初始化配置属性处理
@@ -107,7 +138,6 @@ export default {
       this.initSortFixedColumns();
       let columnRows = this.initColumnRows(this.columns);
       let columnTypes = this.initColumnTypeAndSize(columnRows);
-
       return { columnRows, ...columnTypes };
     },
     // 固定列排序：【left】【any】【right】，只排序最顶层
@@ -177,9 +207,9 @@ export default {
       return { leftFixedColumns, rightFixedColumns, leafColumns };
     },
     // 初始化数据源包装，统一管理便于扩展
-    intiDataSource() {
+    proxyDataSource(rows) {
       let dataRows = [];
-      this.data.forEach(row => {
+      rows.forEach(row => {
         dataRows.push({ hover: false, data: row });
       });
       return dataRows;
@@ -212,8 +242,6 @@ export default {
           leftWidth += cellWidth;
         }
         if (index >= cellLength - rightColLength) {
-          console.log(index);
-
           rightWidth += cellWidth;
         }
       });
@@ -240,11 +268,25 @@ export default {
       if (this.$refs.rightBody) {
         this.$refs.rightBody.scrollTop = scrollTop;
       }
+      // 同步页脚滚动
+      if (this.$refs.footer) {
+        this.$refs.footer.scrollLeft = scrollLeft;
+      }
     },
     // 固定列表格鼠标滚动同步
     handleMousewheel(event, distance) {
       const bodyEl = this.$refs.body;
-      bodyEl.scrollTop += distance;
+      const scrollTop = bodyEl.scrollTop;
+      if (distance < 0 && scrollTop !== 0) {
+        event.preventDefault();
+      }
+      if (
+        distance > 0 &&
+        bodyEl.scrollHeight - bodyEl.clientHeight > scrollTop
+      ) {
+        event.preventDefault();
+      }
+      this.$refs.body.scrollTop += distance;
     }
   }
 };
