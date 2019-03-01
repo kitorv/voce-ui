@@ -11,13 +11,14 @@
                       :column-rows="columnRows"
                       :leaf-columns="leafColumns"></table-header>
       </div>
-      <div class="kv-datagrid--header-center">
+      <div ref="header"
+           class="kv-datagrid--header-center">
         <table-header :column-rows="columnRows"
                       :leaf-columns="leafColumns"></table-header>
       </div>
       <div v-if="rightFixedColumns.length>0"
            class="kv-datagrid--header-right"
-           :style="{'width':`${rightBodyWidth}px`}">
+           :style="{'width':`${rightBodyWidth}px`,'right':`${vScrollSize}px`}">
         <table-header :style="{'width':`${bodyWidth}px`}"
                       :column-rows="columnRows"
                       :leaf-columns="leafColumns"></table-header>
@@ -37,7 +38,8 @@
                     :fixed-columns="leftFixedColumns"></table-body>
       </div>
       <div ref="body"
-           class="kv-datagrid--body-center">
+           class="kv-datagrid--body-center"
+           @scroll="handleBodyScroll">
         <table-body :leaf-columns="leafColumns"
                     :data="dataSource"
                     @on-after-render="handleBodyAfterRender"></table-body>
@@ -130,6 +132,7 @@ export default {
       // 过滤掉没有数据的行
       return rows.filter(row => row.length > 0);
     },
+    // 将列拆分固定列、末级列、设置基本属性
     initColumnTypeAndSize(columnRows) {
       let leftFixedColumns = [];
       let rightFixedColumns = [];
@@ -169,6 +172,7 @@ export default {
       });
       return { leftFixedColumns, rightFixedColumns, leafColumns };
     },
+    // 初始化数据源包装，统一管理便于扩展
     intiDataSource() {
       let dataRows = [];
       this.data.forEach(row => {
@@ -176,6 +180,7 @@ export default {
       });
       return dataRows;
     },
+    // 表格内容渲染完成根据内容调整表格
     handleBodyAfterRender() {
       // 无数据不进行渲染
       if (this.dataSource.length < 1) {
@@ -202,7 +207,9 @@ export default {
         if (index < lefColLength) {
           leftWidth += cellWidth;
         }
-        if (index > cellLength - rightColLength) {
+        if (index >= cellLength - rightColLength) {
+          console.log(index);
+
           rightWidth += cellWidth;
         }
       });
@@ -210,6 +217,25 @@ export default {
       this.rightBodyWidth = rightWidth;
       this.bodyWidth = rowEl.offsetWidth;
       this.bodyHeight = bodyEl.offsetHeight - this.hScrollSize;
+    },
+    // 中心内容表格同步滚动处理
+    handleBodyScroll() {
+      const bodyEl = this.$refs.body;
+      if (!bodyEl) return;
+      const scrollLeft = bodyEl.scrollLeft;
+      const scrollTop = bodyEl.scrollTop;
+      // 同步表头左右滚动
+      if (this.$refs.header) {
+        this.$refs.header.scrollLeft = scrollLeft;
+      }
+      // 同步左侧固定表格的上下滚动
+      if (this.$refs.leftBody) {
+        this.$refs.leftBody.scrollTop = scrollTop;
+      }
+      // 同步右侧固定表格的上下滚动
+      if (this.$refs.rightBody) {
+        this.$refs.rightBody.scrollTop = scrollTop;
+      }
     }
   }
 };

@@ -58,7 +58,6 @@ export default {
             { key: "target4", title: "指标4", width: 80 }
           ]
         },
-        { key: "number0", title: "数值", fixed: "right", width: 80 },
         { key: "number1", title: "数值1", fixed: "right", width: 80 },
         { key: "number2", title: "数值2", fixed: "right", width: 80 },
         { key: "number3", title: "数值3", fixed: "right", width: 80 }
