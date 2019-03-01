@@ -32,11 +32,16 @@ export default {
   },
   props: {
     leafColumns: { type: Array },
-    data: { type: Array }
+    data: { type: Array },
+    fixedColumns: { type: Array }
+  },
+  computed: {
+    hideColumnKeys() {
+      return Array.from(this.fixedColumns, m => m.key);
+    }
   },
   mounted() {
     this.$emit("on-after-render");
   }
 };
 </script>
-

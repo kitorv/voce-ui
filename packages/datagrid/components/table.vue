@@ -1,8 +1,10 @@
 <template>
-  <div class="kv-datagrid">
-
+  <div ref="datagrid"
+       class="kv-datagrid">
+    {{vScrollSize}}
     <!-- 表头 -->
-    <div class="kv-datagrid--header"
+    <div ref="headerWrapper"
+         class="kv-datagrid--header"
          :style="{'padding-right': `${vScrollSize}px`}">
       <div v-if="leftFixedColumns.length>0"
            class="kv-datagrid--header-left"
@@ -32,13 +34,14 @@
            v-mousewheel="handleMousewheel"
            ref="leftBody"
            class="kv-datagrid--body-left"
-           :style="{'width':`${leftBodyWidth}px`,'height':`${bodyHeight}px`}">
+           :style="{'width':`${leftBodyWidth}px`,'height':`${bodyHeight-hScrollSize}px`}">
         <table-body :style="{'width':`${bodyWidth}px`}"
                     :data="dataSource"
                     :leaf-columns="leafColumns"></table-body>
       </div>
       <div ref="body"
            class="kv-datagrid--body-center"
+           :style="bodyStyle"
            @scroll="handleBodyScroll">
         <table-body :leaf-columns="leafColumns"
                     :data="dataSource"
@@ -48,7 +51,7 @@
            v-mousewheel="handleMousewheel"
            ref="rightBody"
            class="kv-datagrid--body-right"
-           :style="{'width':`${rightBodyWidth}px`,'height':`${bodyHeight}px`,'right':`${vScrollSize}px`}">
+           :style="{'width':`${rightBodyWidth}px`,'height':`${bodyHeight-hScrollSize}px`,'right':`${vScrollSize}px`}">
         <table-body :style="{'width':`${bodyWidth}px`}"
                     :data="dataSource"
                     :leaf-columns="leafColumns"></table-body>
@@ -57,7 +60,8 @@
     <!-- 表体 -->
 
     <!-- 表尾 -->
-    <div class="kv-datagrid--footer"
+    <div ref="footerWrapper"
+         class="kv-datagrid--footer"
          v-if="footer.length>0"
          :style="{'padding-right': `${vScrollSize}px`}">
       <div v-if="leftFixedColumns.length>0"
@@ -90,6 +94,7 @@ import TableHeader from "./header";
 import TableBody from "./body";
 import Mousewheel from "../directives/mousewheel.js";
 import debounce from "../utils/debounce.js";
+import scrollSize from "../utils/scrollsize.js";
 
 export default {
   name: "datagird",
@@ -106,6 +111,10 @@ export default {
       leftFixedColumns: initParams.leftFixedColumns,
       // 右侧固定列
       rightFixedColumns: initParams.rightFixedColumns,
+      // 数据源包装构建
+      dataSource: this.proxyDataSource(this.data),
+      // 表尾数据源包装构建
+      footerDataSource: this.proxyDataSource(this.footer),
       // 垂直滚动条宽度
       vScrollSize: 0,
       // 水平滚动条宽度
@@ -118,6 +127,10 @@ export default {
       bodyWidth: 0,
       // 表格内容高度
       bodyHeight: 0,
+      // 顶部表头布局高度
+      headerHeight: 0,
+      // 底部表尾布局高度
+      footerHeight: 0,
       // 数据字典存储变量数据
       dictionary: {}
     };
@@ -125,14 +138,13 @@ export default {
   props: {
     columns: { type: Array, default: () => [] },
     data: { type: Array, default: () => [] },
-    footer: { type: Array, default: () => [] }
+    footer: { type: Array, default: () => [] },
+    fit: { type: Boolean, default: true }
   },
   computed: {
-    dataSource() {
-      return this.proxyDataSource(this.data);
-    },
-    footerDataSource() {
-      return this.proxyDataSource(this.footer);
+    bodyStyle() {
+      if (!this.fit) return;
+      return { height: `${this.bodyHeight}px` };
     }
   },
   methods: {
@@ -220,15 +232,14 @@ export default {
     // 表格内容渲染完成根据内容调整表格
     handleBodyLayoutResize() {
       // 无数据不进行渲染
-      if (this.dataSource.length < 1) {
-        this.vScrollSize = 0;
-        return;
-      }
+      if (this.dataSource.length < 1) return;
       // 计算滚动条宽度
       let bodyEl = this.$refs.body;
       if (!bodyEl) return;
-      this.vScrollSize = bodyEl.offsetWidth - bodyEl.clientWidth;
-      this.hScrollSize = bodyEl.offsetHeight - bodyEl.clientHeight;
+      this.vScrollSize =
+        bodyEl.scrollWidth > bodyEl.offsetWidth ? scrollSize() : 0;
+      this.hScrollSize =
+        bodyEl.scrollHeight > bodyEl.offsetHeight ? scrollSize() : 0;
       // 存在固定列计算固定列所占有的宽度
       const lefColLength = this.leftFixedColumns.length;
       const rightColLength = this.rightFixedColumns.length;
@@ -253,7 +264,8 @@ export default {
       this.leftBodyWidth = leftWidth;
       this.rightBodyWidth = rightWidth;
       this.bodyWidth = rowEl.offsetWidth;
-      this.bodyHeight = bodyEl.offsetHeight - this.hScrollSize;
+
+      this.bodyHeight = bodyEl.offsetHeight;
     },
     // 中心内容表格同步滚动处理
     handleBodyScroll() {
@@ -293,6 +305,7 @@ export default {
       }
       this.$refs.body.scrollTop += distance;
     },
+    // 浏览器缩放表格布局自适应
     handleLayoutReize(interval = 0) {
       if (interval === 0) {
         this.handleBodyLayoutResize();
@@ -303,10 +316,31 @@ export default {
         this.handleBodyLayoutResize();
         this.handleBodyScroll();
       }, interval);
+    },
+    // 调整表格内容高度，固定列头
+    resizeHeight() {
+      if (!this.fit) return;
+      // 计算内容高度=父容器-表头-表尾
+      if (this.$refs.headerWrapper) {
+        this.headerHeight = this.$refs.headerWrapper.offsetHeight;
+      }
+      if (this.$refs.footerWrapper) {
+        this.footerHeight = this.$refs.footerWrapper.offsetHeight;
+      }
+      let parentHeight = this.$refs.datagrid.parentNode.offsetHeight;
+      // 判断是否包含滚动态条，并计算出滚动条尺寸
+      const bodyEl = this.$refs.body;
+      this.hScrollSize = 0;
+      if (bodyEl.scrollHeight > bodyEl.offsetHeight) {
+        this.hScrollSize = scrollSize();
+      }
+      this.bodyHeight =
+        parentHeight - this.headerHeight - this.footerHeight - this.hScrollSize;
     }
   },
   mounted() {
     window.addEventListener("resize", this.handleLayoutReize(100));
+    this.resizeHeight();
   }
 };
 </script>
