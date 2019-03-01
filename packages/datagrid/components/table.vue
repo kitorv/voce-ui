@@ -29,6 +29,7 @@
     <!-- 表体 -->
     <div class="kv-datagird--body">
       <div v-if="leftFixedColumns.length>0"
+           v-mousewheel="handleMousewheel"
            ref="leftBody"
            class="kv-datagrid--body-left"
            :style="{'width':`${leftBodyWidth}px`,'height':`${bodyHeight}px`}">
@@ -45,6 +46,7 @@
                     @on-after-render="handleBodyAfterRender"></table-body>
       </div>
       <div v-if="rightFixedColumns.length>0"
+           v-mousewheel="handleMousewheel"
            ref="rightBody"
            class="kv-datagrid--body-right"
            :style="{'width':`${rightBodyWidth}px`,'height':`${bodyHeight}px`,'right':`${vScrollSize}px`}">
@@ -62,10 +64,12 @@
 <script>
 import TableHeader from "./header";
 import TableBody from "./body";
+import Mousewheel from "../directives/mousewheel.js";
 
 export default {
   name: "datagird",
   components: { TableHeader, TableBody },
+  directives: { Mousewheel },
   data() {
     let initParams = this.init();
     return {
@@ -236,6 +240,11 @@ export default {
       if (this.$refs.rightBody) {
         this.$refs.rightBody.scrollTop = scrollTop;
       }
+    },
+    // 固定列表格鼠标滚动同步
+    handleMousewheel(event, distance) {
+      const bodyEl = this.$refs.body;
+      bodyEl.scrollTop += distance;
     }
   }
 };
