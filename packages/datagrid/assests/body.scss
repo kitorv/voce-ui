@@ -17,9 +17,9 @@
       vertical-align: middle;
     }
   }
-  // .kv-datagrid--visibility-hidden {
-  //   visibility: hidden;
-  // }
+  .kv-datagrid--visibility-hidden {
+    visibility: hidden;
+  }
 
   > tr.kv-datagird--row-hover > td {
     background-color: #e6f7ff;
