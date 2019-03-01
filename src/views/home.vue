@@ -9,7 +9,7 @@
                      to="/">基本功能</router-link>
       </div> -->
       <div class="view-home--body-content">
-        <div style="width:800px">
+        <div style="width:auto">
           <datagrid :columns="columns"
                     :data="data"
                     :footer="footer"></datagrid>
