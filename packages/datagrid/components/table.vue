@@ -1,7 +1,7 @@
 <template>
   <div ref="datagrid"
-       class="kv-datagrid">
-    {{vScrollSize}}
+       :class="['kv-datagrid',{'kv-datagrid-border':columnRows.length>0||boder}]">
+
     <!-- 表头 -->
     <div ref="headerWrapper"
          class="kv-datagrid--header"
@@ -139,7 +139,8 @@ export default {
     columns: { type: Array, default: () => [] },
     data: { type: Array, default: () => [] },
     footer: { type: Array, default: () => [] },
-    fit: { type: Boolean, default: true }
+    fit: { type: Boolean, default: true },
+    boder: { type: Boolean, default: true }
   },
   computed: {
     bodyStyle() {
