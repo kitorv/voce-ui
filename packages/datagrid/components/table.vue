@@ -69,19 +69,22 @@
            :style="{'width':`${leftBodyWidth}px`,}">
         <table-body :style="{'width':`${bodyWidth}px`}"
                     :data="footerDataSource"
-                    :leaf-columns="leafColumns"></table-body>
+                    :leaf-columns="leafColumns"
+                    :footer="true"></table-body>
       </div>
       <div ref="footer"
            class="kv-datagrid--footer-center">
         <table-body :data="footerDataSource"
-                    :leaf-columns="leafColumns"></table-body>
+                    :leaf-columns="leafColumns"
+                    :footer="true"></table-body>
       </div>
       <div v-if="rightFixedColumns.length>0"
            class="kv-datagrid--body-right"
            :style="{'width':`${rightBodyWidth}px`,'right':`${vScrollSize}px`}">
         <table-body :style="{'width':`${bodyWidth}px`}"
                     :data="footerDataSource"
-                    :leaf-columns="leafColumns"></table-body>
+                    :leaf-columns="leafColumns"
+                    :footer="true"></table-body>
       </div>
     </div>
     <!-- 表尾 -->
@@ -95,7 +98,6 @@ import TableBody from "./body";
 import Mousewheel from "../directives/mousewheel.js";
 import debounce from "../utils/debounce.js";
 import scrollSize from "../utils/scrollsize.js";
-import extColumns from "../columns/index";
 
 export default {
   name: "datagird",
@@ -132,6 +134,10 @@ export default {
       headerHeight: 0,
       // 底部表尾布局高度
       footerHeight: 0,
+      // 复选框全部勾选状态
+      checkedAll: false,
+      //  复选半选中状态
+      indeterminate: false,
       // 数据字典存储变量数据
       dictionary: {}
     };
@@ -190,11 +196,7 @@ export default {
       let leafColumns = [];
       // 设置单元格的colspan和rowspan
       const initCell = column => {
-        const { children, fixed, type } = column;
-        // 扩展列平配置
-        if (type) {
-          Object.assign(column, extColumns[type]);
-        }
+        const { children, fixed } = column;
         // 包含子节点递归设置子节点的占位
         if (Array.isArray(children) && children.length > 0) {
           let colSpan = 0;
@@ -231,7 +233,7 @@ export default {
     proxyDataSource(rows) {
       let dataRows = [];
       rows.forEach(row => {
-        dataRows.push({ hover: false, data: row });
+        dataRows.push({ hover: false, checked: false, data: row });
       });
       return dataRows;
     },
