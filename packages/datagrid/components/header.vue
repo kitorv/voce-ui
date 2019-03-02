@@ -13,7 +13,8 @@
       <th v-for="(column, index) in row"
           :key="index"
           :colspan="column.colSpan"
-          :rowspan="column.rowSpan">
+          :rowspan="column.rowSpan"
+          :class="typeClass(column)">
         <table-column :column="column"></table-column>
       </th>
     </tr>
@@ -28,6 +29,12 @@ export default {
   props: {
     columnRows: { type: Array },
     leafColumns: { type: Array }
+  },
+  methods: {
+    typeClass({ type }) {
+      if (!type) return;
+      return `kv-datagird--type-${type}`;
+    }
   }
 };
 </script>

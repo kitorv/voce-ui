@@ -20,7 +20,7 @@
 </template>
 
 <script>
-import "../../packages/datagrid/assests/index.scss";
+import "../../packages/datagrid/style/index.scss";
 import Datagrid from "../../packages/datagrid/components/table";
 
 export default {
@@ -28,6 +28,7 @@ export default {
   data() {
     return {
       columns: [
+        { type: "checkbox", fixed: "left", width: 40 },
         { key: "id", title: "id标识", fixed: "left", width: 100 },
         {
           title: "用户信息",
