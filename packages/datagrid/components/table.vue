@@ -95,6 +95,7 @@ import TableBody from "./body";
 import Mousewheel from "../directives/mousewheel.js";
 import debounce from "../utils/debounce.js";
 import scrollSize from "../utils/scrollsize.js";
+import extColumns from "../columns/index";
 
 export default {
   name: "datagird",
@@ -189,7 +190,11 @@ export default {
       let leafColumns = [];
       // 设置单元格的colspan和rowspan
       const initCell = column => {
-        const { children, fixed } = column;
+        const { children, fixed, type } = column;
+        // 扩展列平配置
+        if (type) {
+          Object.assign(column, extColumns[type]);
+        }
         // 包含子节点递归设置子节点的占位
         if (Array.isArray(children) && children.length > 0) {
           let colSpan = 0;
