@@ -14,9 +14,11 @@
         @mouseenter="row.hover=true"
         @mouseleave="row.hover=false">
       <td v-for="(column, index) in leafColumns"
-          :key="index">
+          :key="index"
+          :class="typeClass(column)">
         <table-cell :column="column"
-                    :data="row"></table-cell>
+                    :row="row"
+                    :footer="footer"></table-cell>
       </td>
     </tr>
   </table>
@@ -33,11 +35,18 @@ export default {
   props: {
     leafColumns: { type: Array },
     data: { type: Array },
-    fixedColumns: { type: Array }
+    fixedColumns: { type: Array },
+    footer: { type: Boolean, default: false }
   },
   computed: {
     hideColumnKeys() {
       return Array.from(this.fixedColumns, m => m.key);
+    }
+  },
+  methods: {
+    typeClass({ type }) {
+      if (!type) return;
+      return `kv-datagird--type-${type}`;
     }
   },
   mounted() {
