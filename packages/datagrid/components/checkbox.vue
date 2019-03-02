@@ -6,7 +6,8 @@
     <span class="kv-datagrid-checkbox--inner">
       <input class="kv-datagrid-checkbox--inner-input"
              type="checkbox"
-             v-model="model">
+             v-model="model"
+             @click.stop="$emit('click')">
     </span>
   </label>
 

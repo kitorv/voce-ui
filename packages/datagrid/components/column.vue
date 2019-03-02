@@ -1,6 +1,4 @@
 <script>
-import TableCheckbox from "./checkbox";
-
 export default {
   data() {
     return {
@@ -11,28 +9,34 @@ export default {
     column: { type: Object }
   },
   render(h) {
-    let { title, type } = this.column;
-    switch (type) {
-      case "checkbox":
-        return (
-          <TableCheckbox
-            indeterminate={this.datagrid.indeterminate}
-            value={this.datagrid.checkedAll}
-            nativeOn-click={this.handleCheckClick}
-          />
-        );
-      default:
-        return <div>{title}</div>;
+    let { title, type, renderHeader } = this.column;
+    if (renderHeader) {
+      let dictionary = this.datagrid.dictionary;
+      let column = this.column;
+      return renderHeader.call(this.datagrid, h, { column, dictionary });
     }
-  },
-  methods: {
-    handleCheckClick() {
-      this.datagrid.checkedAll = !this.datagrid.checkedAll;
-      this.datagrid.indeterminate = false;
-      this.datagrid.dataSource.map(row => {
-        row.checked = this.datagrid.checkedAll;
-      });
-    }
+    // switch (type) {
+    //   case "checkbox":
+    //     return (
+    //       <TableCheckbox
+    //         indeterminate={this.datagrid.indeterminate}
+    //         value={this.datagrid.checkedAll}
+    //         nativeOn-click={this.handleCheckClick}
+    //       />
+    //     );
+    //   default:
+    //     return <div>{title}</div>;
+    // }
+    return <div>{title}</div>;
   }
+  // methods: {
+  //   handleCheckClick() {
+  //     this.datagrid.checkedAll = !this.datagrid.checkedAll;
+  //     this.datagrid.indeterminate = false;
+  //     this.datagrid.dataSource.map(row => {
+  //       row.checked = this.datagrid.checkedAll;
+  //     });
+  //   }
+  // }
 };
 </script>
