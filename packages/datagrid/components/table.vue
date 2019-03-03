@@ -43,9 +43,17 @@
            class="kv-datagrid--body-center"
            :style="bodyStyle"
            @scroll="handleBodyScroll">
-        <table-body :leaf-columns="leafColumns"
+        <table-body v-if="dataSource.length>0"
+                    :leaf-columns="leafColumns"
                     :data="dataSource"
                     @on-after-render="handleBodyLayoutResize"></table-body>
+        <div v-else
+             :style="{'width':`${bodyWidth}px`}"
+             class="kv-datagrid--placeholder">
+          <div :class="['kv-datagrid--placeholder-empty',{'kv-datagrid--placeholder-fit':fit}]">
+            <p>暂无数据</p>
+          </div>
+        </div>
       </div>
       <div v-if="rightFixedColumns.length>0"
            v-mousewheel="handleMousewheel"
@@ -333,7 +341,10 @@ export default {
       }, interval);
     },
     // 调整表格内容高度，固定列头
-    resizeHeight() {
+    handleBodyResize() {
+      if (!this.bodyWidth) {
+        this.bodyWidth = this.$refs.header.firstChild.offsetWidth;
+      }
       if (!this.fit) return;
       // 计算内容高度=父容器-表头-表尾
       if (this.$refs.headerWrapper) {
@@ -355,7 +366,7 @@ export default {
   },
   mounted() {
     window.addEventListener("resize", this.handleLayoutReize(100));
-    this.resizeHeight();
+    this.handleBodyResize();
   }
 };
 </script>
