@@ -1,5 +1,5 @@
 <script>
-import TableCheckbox from "./checkbox";
+import Checkbox from "./checkbox";
 
 export default {
   data() {
@@ -14,24 +14,49 @@ export default {
     index: { type: Number, default: -1 }
   },
   render(h) {
-    let { key } = this.column;
-    let { data } = this.row;
-
-    let { title, type, renderBody, renderFooter } = this.column;
-    let renderParams = {
-      row: this.row,
-      column: this.column,
-      value: data[key],
-      index: this.index,
-      dictionary: this.datagrid.dictionary
-    };
-    if (renderBody && !this.footer) {
-      return renderBody.call(this.datagrid, h, renderParams);
+    let { key, title, type, renderBody, renderFooter } = this.column;
+    switch (type) {
+      case "checkbox":
+        return this.checkbox();
+      default:
+        let { data } = this.row;
+        let renderParams = {
+          row: this.row,
+          column: this.column,
+          value: data[key],
+          index: this.index,
+          dictionary: this.datagrid.dictionary
+        };
+        if (renderBody && !this.footer) {
+          return renderBody.call(this.datagrid, h, renderParams);
+        }
+        if (renderFooter && this.footer) {
+          return renderBody.call(this.datagrid, h, renderParams);
+        }
+        return <div>{data[key]}</div>;
     }
-    if (renderFooter && this.footer) {
-      return renderBody.call(this.datagrid, h, renderParams);
+  },
+  methods: {
+    checkbox() {
+      return (
+        <Checkbox
+          value={this.row.checked}
+          nativeOn-click={() => {
+            let row = this.row;
+            row.checked = !row.checked;
+            let rowList = this.datagrid.dataSource;
+            let checkedRows = rowList.filter(row => row.checked);
+            if (rowList.length == checkedRows.length) {
+              this.datagrid.checkedAll = true;
+              this.datagrid.indeterminate = false;
+            } else {
+              this.datagrid.checkedAll = false;
+              this.datagrid.indeterminate = checkedRows.length;
+            }
+          }}
+        />
+      );
     }
-    return <div>{data[key]}</div>;
   }
 };
 </script>

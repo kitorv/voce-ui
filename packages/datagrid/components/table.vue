@@ -98,7 +98,6 @@ import TableBody from "./body";
 import Mousewheel from "../directives/mousewheel.js";
 import debounce from "../utils/debounce.js";
 import scrollSize from "../utils/scrollsize.js";
-import extColumns from "../columns/index";
 
 export default {
   name: "datagird",
@@ -220,10 +219,6 @@ export default {
         }
         let width = column.width;
         column.colStyle = { width: `${width}px`, minWidth: `${width}px` };
-        // 列存在type类型则读取type对应的列配置赋值列
-        if (type) {
-          Object.assign(column, extColumns[type]);
-        }
         leafColumns.push(column);
         column.colSpan = 1;
         column.rowSpan = columnRows.length - column.level + 1;
@@ -238,7 +233,7 @@ export default {
     proxyDataSource(rows) {
       let dataRows = [];
       rows.forEach(row => {
-        dataRows.push({ hover: false, data: row });
+        dataRows.push({ hover: false, checked: false, data: row });
       });
       return dataRows;
     },
