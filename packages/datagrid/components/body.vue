@@ -18,7 +18,8 @@
           :class="typeClass(column)">
         <table-cell :column="column"
                     :row="row"
-                    :footer="footer"></table-cell>
+                    :footer="footer"
+                    :index="index"></table-cell>
       </td>
     </tr>
   </table>

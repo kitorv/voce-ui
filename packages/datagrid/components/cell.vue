@@ -10,46 +10,28 @@ export default {
   props: {
     column: { type: Object },
     row: { type: Object },
-    footer: { type: Boolean, default: false }
+    footer: { type: Boolean, default: false },
+    index: { type: Number, default: -1 }
   },
   render(h) {
     let { key } = this.column;
     let { data } = this.row;
 
-    let { title, type } = this.column;
-    switch (type) {
-      case "checkbox":
-        if (this.footer) {
-          return <div />;
-        }
-        return (
-          <TableCheckbox
-            value={this.row.checked}
-            nativeOn-click={this.handleCheckClick}
-          />
-        );
-      default:
-        return <div>{data[key]}</div>;
+    let { title, type, renderBody, renderFooter } = this.column;
+    let renderParams = {
+      row: this.row,
+      column: this.column,
+      value: data[key],
+      index: this.index,
+      dictionary: this.datagrid.dictionary
+    };
+    if (renderBody && !this.footer) {
+      return renderBody.call(this.datagrid, h, renderParams);
     }
-  },
-  methods: {
-    handleCheckClick() {
-      let row = this.row;
-      row.checked = !row.checked;
-      let checkNumber = 0;
-      let dataSource = this.datagrid.dataSource;
-      dataSource.forEach(row => {
-        if (!row.checked) return;
-        checkNumber += 1;
-      });
-      if (checkNumber == dataSource.length) {
-        this.datagrid.checkedAll = true;
-        this.datagrid.indeterminate = false;
-      } else {
-        this.datagrid.checkedAll = false;
-        this.datagrid.indeterminate = checkNumber > 0;
-      }
+    if (renderFooter && this.footer) {
+      return renderBody.call(this.datagrid, h, renderParams);
     }
+    return <div>{data[key]}</div>;
   }
 };
 </script>
