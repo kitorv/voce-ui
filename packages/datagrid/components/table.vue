@@ -1,6 +1,6 @@
 <template>
   <div ref="datagrid"
-       :class="['kv-datagrid',{'kv-datagrid-border':columnRows.length>0||boder}]">
+       :class="['kv-datagrid',{'kv-datagrid-border':columnRows.length>0||boder},{'kv-datagrid-stripe':stripe}]">
 
     <!-- 表头 -->
     <div ref="headerWrapper"
@@ -136,18 +136,25 @@ export default {
       footerHeight: 0,
       // 复选框全部勾选状态
       checkedAll: false,
-      //  复选半选中状态
+      // 复选半选中状态
       indeterminate: false,
       // 数据字典存储变量数据
       dictionary: {}
     };
   },
   props: {
+    // 列配置
     columns: { type: Array, default: () => [] },
+    // 表格数据
     data: { type: Array, default: () => [] },
+    // 页脚数据
     footer: { type: Array, default: () => [] },
+    // 自适应容器
     fit: { type: Boolean, default: true },
-    boder: { type: Boolean, default: true }
+    // 边框
+    boder: { type: Boolean, default: true },
+    // 斑马线
+    stripe: { type: Boolean, default: false }
   },
   computed: {
     bodyStyle() {
