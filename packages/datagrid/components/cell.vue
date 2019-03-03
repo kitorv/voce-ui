@@ -38,6 +38,9 @@ export default {
   },
   methods: {
     checkbox() {
+      if (this.footer) {
+        return <div />;
+      }
       return (
         <Checkbox
           value={this.row.checked}
@@ -51,7 +54,7 @@ export default {
               this.datagrid.indeterminate = false;
             } else {
               this.datagrid.checkedAll = false;
-              this.datagrid.indeterminate = checkedRows.length;
+              this.datagrid.indeterminate = checkedRows.length > 0;
             }
           }}
         />
