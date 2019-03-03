@@ -11,8 +11,14 @@
       <div class="view-home--body-content">
         <div style="width:800px;height:600px;overflow:hidden;">
           <datagrid :columns="columns"
-                    :data="data"
+                    :data="[]"
                     :footer="footer"></datagrid>
+        </div>
+        <div style="width:800px;height:600px;overflow:hidden;">
+          <datagrid :columns="columns"
+                    :data="[]"
+                    :footer="footer"
+                    :fit="false"></datagrid>
         </div>
       </div>
     </div>

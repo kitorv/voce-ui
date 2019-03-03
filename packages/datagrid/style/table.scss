@@ -63,6 +63,36 @@
     z-index: 4;
   }
 }
+
+// 无数据占位
+.kv-datagrid--placeholder {
+  position: relative;
+  z-index: 1;
+  font-size: 14px;
+  text-align: center;
+  background: #fff;
+  border-bottom: 1px solid #e8e8e8;
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+}
+
+.kv-datagrid--placeholder-empty {
+  padding: 32px;
+  font-size: 16px;
+  line-height: 22px;
+  text-align: center;
+  color: #c8c8c8;
+}
+
+.kv-datagrid--placeholder-fit {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 5;
+}
+
 // -----布局-end-----
 
 // -----边框-start-----
