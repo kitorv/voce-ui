@@ -24,4 +24,11 @@
   > tr.kv-datagird--row-hover > td {
     background-color: #e6f7ff !important;
   }
+
+  > tr.kv-datagird--row-selected {
+    color: #1f74ff;
+    > td {
+      background-color: #e6f7ff !important;
+    }
+  }
 }
