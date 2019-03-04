@@ -10,7 +10,7 @@
     </colgroup>
     <tr v-for="(row, index) in data"
         :key="index"
-        :class="{'kv-datagird--row-hover':row.hover}"
+        :class="getRowClass(row,index)"
         @mouseenter="row.hover=true"
         @mouseleave="row.hover=false">
       <td v-for="(column, index) in leafColumns"
@@ -27,7 +27,7 @@
 
 <script>
 import TableCell from "./cell";
-
+// {'kv-datagird--row-hover':row.hover}
 export default {
   components: { TableCell },
   data() {
@@ -37,7 +37,8 @@ export default {
     leafColumns: { type: Array },
     data: { type: Array },
     fixedColumns: { type: Array },
-    footer: { type: Boolean, default: false }
+    footer: { type: Boolean, default: false },
+    rowClass: { type: [Function, String] }
   },
   computed: {
     hideColumnKeys() {
@@ -45,6 +46,20 @@ export default {
     }
   },
   methods: {
+    getRowClass(row, index) {
+      let classList = [];
+      if (row.hover) {
+        classList.push("kv-datagird--row-hover");
+      }
+      let { data } = row;
+      if (typeof this.rowClass === "string") {
+        classList.push(this.rowClass);
+      }
+      if (typeof this.rowClass === "function") {
+        classList.push(this.rowClass.call(null, { row, index }));
+      }
+      return classList.join(" ");
+    },
     typeClass({ type }) {
       if (!type) return;
       return `kv-datagird--type-${type}`;
