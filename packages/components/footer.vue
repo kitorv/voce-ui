@@ -8,13 +8,15 @@
            :key="index"
            :style="column.colStyle">
     </colgroup>
-    <tr v-for="(row, index) in data"
-        :key="index">
-      <td v-for="(column, index) in leafColumns"
-          :key="index"
+    <tr v-for="(row, rowIndex) in data"
+        :key="rowIndex">
+      <td v-for="(column, cellIndex) in leafColumns"
+          :key="cellIndex"
           :class="typeClass(column)">
-        <table-cell :column="column"
-                    :row="row"></table-cell>
+        <table-cell type='footer'
+                    :column="column"
+                    :row="row"
+                    :row-index="rowIndex"></table-cell>
       </td>
     </tr>
   </table>

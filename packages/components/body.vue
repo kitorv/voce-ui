@@ -18,7 +18,8 @@
           :key="cellIndex"
           :class="getCellClass(column,row,rowIndex)">
         <table-cell :column="column"
-                    :row="row"></table-cell>
+                    :row="row"
+                    :row-index="rowIndex"></table-cell>
       </td>
     </tr>
   </table>
