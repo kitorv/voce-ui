@@ -148,12 +148,6 @@
     &:nth-child(2n) > td {
       background-color: #fafafa;
     }
-
-    &.kv-datagird--row-hover {
-      > td {
-        background-color: #e6f7ff;
-      }
-    }
   }
 }
 // -----斑马线-end-----

@@ -8,26 +8,32 @@
         <router-link class="view-home--body-link"
                      to="/">基本功能</router-link>
       </div> -->
+
       <div class="view-home--body-content">
+
         <div style="width:800px;height:600px;overflow:hidden;">
           <datagrid :columns="columns"
-                    :data="[]"
-                    :footer="footer"></datagrid>
+                    :data="data"
+                    :footer="footer"
+                    row-class="kv-datagird-self-class"
+                    :stripe="true"></datagrid>
         </div>
+
         <div style="width:800px;height:600px;overflow:hidden;">
           <datagrid :columns="columns"
                     :data="[]"
                     :footer="footer"
                     :fit="false"></datagrid>
         </div>
+
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import "../../packages/datagrid/style/index.scss";
-import Datagrid from "../../packages/datagrid/components/table";
+import "../../packages/style/index.scss";
+import Datagrid from "../../packages/components/table";
 
 export default {
   components: { Datagrid },

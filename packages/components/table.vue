@@ -37,7 +37,8 @@
            :style="{'width':`${leftBodyWidth}px`,'height':`${bodyHeight-hScrollSize}px`}">
         <table-body :style="{'width':`${bodyWidth}px`}"
                     :data="dataSource"
-                    :leaf-columns="leafColumns"></table-body>
+                    :leaf-columns="leafColumns"
+                    :row-class="rowClass"></table-body>
       </div>
       <div ref="body"
            class="kv-datagrid--body-center"
@@ -46,6 +47,7 @@
         <table-body v-if="dataSource.length>0"
                     :leaf-columns="leafColumns"
                     :data="dataSource"
+                    :row-class="rowClass"
                     @on-after-render="handleBodyLayoutResize"></table-body>
         <div v-else
              :style="{'width':`${bodyWidth}px`}"
@@ -62,7 +64,8 @@
            :style="{'width':`${rightBodyWidth}px`,'height':`${bodyHeight-hScrollSize}px`,'right':`${vScrollSize}px`}">
         <table-body :style="{'width':`${bodyWidth}px`}"
                     :data="dataSource"
-                    :leaf-columns="leafColumns"></table-body>
+                    :leaf-columns="leafColumns"
+                    :row-class="rowClass"></table-body>
       </div>
     </div>
     <!-- 表体 -->
@@ -162,7 +165,8 @@ export default {
     // 边框
     boder: { type: Boolean, default: true },
     // 斑马线
-    stripe: { type: Boolean, default: false }
+    stripe: { type: Boolean, default: false },
+    rowClass: { type: [Function, String] }
   },
   computed: {
     bodyStyle() {
