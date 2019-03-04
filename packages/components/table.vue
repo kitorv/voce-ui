@@ -78,24 +78,21 @@
       <div v-if="leftFixedColumns.length>0"
            class="kv-datagrid--body-left"
            :style="{'width':`${leftBodyWidth}px`,}">
-        <table-body :style="{'width':`${bodyWidth}px`}"
-                    :data="footerDataSource"
-                    :leaf-columns="leafColumns"
-                    :footer="true"></table-body>
+        <table-footer :style="{'width':`${bodyWidth}px`}"
+                      :data="footerDataSource"
+                      :leaf-columns="leafColumns"></table-footer>
       </div>
       <div ref="footer"
            class="kv-datagrid--footer-center">
-        <table-body :data="footerDataSource"
-                    :leaf-columns="leafColumns"
-                    :footer="true"></table-body>
+        <table-footer :data="footerDataSource"
+                      :leaf-columns="leafColumns"></table-footer>
       </div>
       <div v-if="rightFixedColumns.length>0"
            class="kv-datagrid--body-right"
            :style="{'width':`${rightBodyWidth}px`,'right':`${vScrollSize}px`}">
-        <table-body :style="{'width':`${bodyWidth}px`}"
-                    :data="footerDataSource"
-                    :leaf-columns="leafColumns"
-                    :footer="true"></table-body>
+        <table-footer :style="{'width':`${bodyWidth}px`}"
+                      :data="footerDataSource"
+                      :leaf-columns="leafColumns"></table-footer>
       </div>
     </div>
     <!-- 表尾 -->
@@ -106,13 +103,14 @@
 <script>
 import TableHeader from "./header";
 import TableBody from "./body";
+import TableFooter from "./footer";
 import Mousewheel from "../directives/mousewheel.js";
 import debounce from "../utils/debounce.js";
 import scrollSize from "../utils/scrollsize.js";
 
 export default {
   name: "datagird",
-  components: { TableHeader, TableBody },
+  components: { TableHeader, TableBody, TableFooter },
   directives: { Mousewheel },
   data() {
     let initParams = this.init();
@@ -166,7 +164,10 @@ export default {
     boder: { type: Boolean, default: true },
     // 斑马线
     stripe: { type: Boolean, default: false },
-    rowClass: { type: [Function, String] }
+    // 行类样式
+    rowClass: { type: Function },
+    // 单元格类样式
+    cellClass: { type: Function }
   },
   computed: {
     bodyStyle() {
@@ -251,12 +252,15 @@ export default {
     // 初始化数据源包装，统一管理便于扩展
     proxyDataSource(rows) {
       let dataRows = [];
-      rows.forEach(row => {
+      let rowClass = "";
+      rows.forEach((row, index) => {
         dataRows.push({
           hover: false,
           checked: false,
           selected: false,
-          data: row
+          data: row,
+          rowClass: this.rowClass,
+          cellClass: this.cellClass
         });
       });
       return dataRows;
@@ -296,7 +300,6 @@ export default {
       this.leftBodyWidth = leftWidth;
       this.rightBodyWidth = rightWidth;
       this.bodyWidth = rowEl.offsetWidth;
-
       this.bodyHeight = bodyEl.offsetHeight;
     },
     // 中心内容表格同步滚动处理

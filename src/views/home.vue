@@ -15,7 +15,8 @@
           <datagrid :columns="columns"
                     :data="data"
                     :footer="footer"
-                    row-class="kv-datagird-self-class"
+                    :row-class="rowClass"
+                    :cell-class="cellClass"
                     :stripe="true"></datagrid>
         </div>
 
@@ -340,7 +341,13 @@ export default {
           number2: 200,
           number3: 300
         }
-      ]
+      ],
+      rowClass() {
+        return "kv-datagird-row-class";
+      },
+      cellClass() {
+        return "kv-datagird-cell-class";
+      }
     };
   }
 };
