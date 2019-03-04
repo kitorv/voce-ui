@@ -17,7 +17,9 @@
                     :footer="footer"
                     :row-class="rowClass"
                     :cell-class="cellClass"
-                    :stripe="true"></datagrid>
+                    :stripe="true">
+            <div slot="expansion">expand</div>
+          </datagrid>
         </div>
 
         <!-- <div style="width:800px;height:600px;overflow:hidden;">
@@ -41,6 +43,7 @@ export default {
   data() {
     return {
       columns: [
+        { type: "expansion", fixed: "left", width: 40 },
         { type: "checkbox", fixed: "left", width: 40 },
         { key: "id", title: "id标识", fixed: "left", width: 100 },
         {
