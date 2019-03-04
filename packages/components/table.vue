@@ -105,6 +105,8 @@ import TableHeader from "./header";
 import TableBody from "./body";
 import TableFooter from "./footer";
 import TableCheckbox from "./checkbox";
+import TableHeaderCheckbox from "./header-checkbox";
+import TableBodyCheckbox from "./body-checkbox";
 import Mousewheel from "../directives/mousewheel.js";
 import debounce from "../utils/debounce.js";
 import scrollSize from "../utils/scrollsize.js";
@@ -258,31 +260,10 @@ export default {
       let { type } = column;
       switch (type) {
         case "checkbox":
-          column.headerFormatter = h => {
-            return (
-              <TableCheckbox
-                indeterminate={this.indeterminate}
-                value={this.checkedAll}
-                nativeOn-click={() => {
-                  if (this.checkedAll) {
-                    this.checkAllRow();
-                  } else {
-                    this.unCheckAllRow();
-                  }
-                }}
-              />
-            );
-          };
-          column.formatter = (h, { row }) => {
-            return (
-              <TableCheckbox
-                value={row.checked}
-                nativeOn-click={() => {
-                  this.checkRow(row);
-                }}
-              />
-            );
-          };
+          column.headerFormatter = h => <TableHeaderCheckbox datagrid={this} />;
+          column.formatter = (h, { row }) => (
+            <TableBodyCheckbox datagrid={this} row={row} />
+          );
           break;
       }
     },
@@ -419,36 +400,6 @@ export default {
       }
       this.bodyHeight =
         parentHeight - this.headerHeight - this.footerHeight - this.hScrollSize;
-    },
-    // 复选框选中行
-    checkRow(row) {
-      row.checked = !row.checked;
-      let checkedRows = this.dataSource.filter(row => row.checked);
-      if (this.dataSource.length == checkedRows.length) {
-        this.checkedAll = true;
-        this.indeterminate = false;
-      } else {
-        this.checkedAll = false;
-        this.indeterminate = checkedRows.length > 0;
-      }
-    },
-    // 选中所有行
-    checkAllRow() {
-      let checkedAll = true;
-      this.checkedAll = checkedAll;
-      this.indeterminate = false;
-      this.dataSource.map(row => {
-        row.checked = checkedAll;
-      });
-    },
-    // 取消选中所有行
-    unCheckAllRow() {
-      let checkedAll = false;
-      this.checkedAll = checkedAll;
-      this.indeterminate = false;
-      this.dataSource.map(row => {
-        row.checked = checkedAll;
-      });
     }
   },
   mounted() {
