@@ -12,7 +12,8 @@
         :key="index"
         :class="getRowClass(row,index)"
         @mouseenter="row.hover=true"
-        @mouseleave="row.hover=false">
+        @mouseleave="row.hover=false"
+        @click="handleRowClick(row,index)">
       <td v-for="(column, index) in leafColumns"
           :key="index"
           :class="typeClass(column)">
@@ -27,11 +28,13 @@
 
 <script>
 import TableCell from "./cell";
-// {'kv-datagird--row-hover':row.hover}
+
 export default {
   components: { TableCell },
   data() {
-    return {};
+    return {
+      datagrid: this.$parent
+    };
   },
   props: {
     leafColumns: { type: Array },
@@ -51,6 +54,9 @@ export default {
       if (row.hover) {
         classList.push("kv-datagird--row-hover");
       }
+      if (row.selected) {
+        classList.push("kv-datagird--row-selected");
+      }
       let { data } = row;
       if (typeof this.rowClass === "string") {
         classList.push(this.rowClass);
@@ -63,6 +69,12 @@ export default {
     typeClass({ type }) {
       if (!type) return;
       return `kv-datagird--type-${type}`;
+    },
+    handleRowClick(row) {
+      this.datagrid.dataSource.forEach(row => {
+        row.selected = false;
+      });
+      row.selected = true;
     }
   },
   mounted() {

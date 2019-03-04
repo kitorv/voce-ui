@@ -252,7 +252,12 @@ export default {
     proxyDataSource(rows) {
       let dataRows = [];
       rows.forEach(row => {
-        dataRows.push({ hover: false, checked: false, data: row });
+        dataRows.push({
+          hover: false,
+          checked: false,
+          selected: false,
+          data: row
+        });
       });
       return dataRows;
     },
