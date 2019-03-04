@@ -12,22 +12,26 @@
       <div class="view-home--body-content">
 
         <div style="width:800px;height:600px;overflow:hidden;">
-          <datagrid :columns="columns"
+          <datagrid :columns="columns2"
                     :data="data"
                     :footer="footer"
                     :row-class="rowClass"
                     :cell-class="cellClass"
                     :stripe="true">
-            <div slot="expansion">expand</div>
+            <div slot="expansion">
+              <div style="height:100px;background-color:#e8f7fe">
+                expand row
+              </div>
+            </div>
           </datagrid>
         </div>
 
-        <!-- <div style="width:800px;height:600px;overflow:hidden;">
+        <div style="width:800px;height:600px;overflow:hidden;">
           <datagrid :columns="columns"
-                    :data="[]"
+                    :data="data"
                     :footer="footer"
                     :fit="false"></datagrid>
-        </div> -->
+        </div>
 
       </div>
     </div>
@@ -42,6 +46,14 @@ export default {
   components: { Datagrid },
   data() {
     return {
+      columns2: [
+        { type: "expansion", width: 40 },
+        { type: "checkbox", width: 40 },
+        { key: "id", title: "id标识", width: 100 },
+        { key: "name", title: "姓名", width: 100 },
+        { key: "age", title: "年龄", width: 100 },
+        { key: "work", title: "工作", width: 100 }
+      ],
       columns: [
         { type: "expansion", fixed: "left", width: 40 },
         { type: "checkbox", fixed: "left", width: 40 },
