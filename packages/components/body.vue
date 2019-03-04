@@ -13,7 +13,7 @@
         :class="getRowClass(row,rowIndex)"
         @mouseenter="row.hover=true"
         @mouseleave="row.hover=false"
-        @click="handleRowClick(row,rowIndex)">
+        @click="row.rowClick(row,rowIndex)">
       <td v-for="(column, cellIndex) in leafColumns"
           :key="cellIndex"
           :class="getCellClass(column,row,rowIndex)">
@@ -67,12 +67,6 @@ export default {
         classList.push(cellClass.call(null, row, rowIndex));
       }
       return classList.join(" ");
-    },
-    handleRowClick(row) {
-      this.datagrid.dataSource.forEach(row => {
-        row.selected = false;
-      });
-      row.selected = true;
     }
   },
   mounted() {

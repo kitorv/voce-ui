@@ -168,7 +168,9 @@ export default {
     // 行类样式
     rowClass: { type: Function },
     // 单元格类样式
-    cellClass: { type: Function }
+    cellClass: { type: Function },
+    // 单行选中状态
+    select: { type: Boolean, default: true }
   },
   computed: {
     bodyStyle() {
@@ -295,7 +297,15 @@ export default {
           selected: false,
           data: row,
           rowClass: this.rowClass,
-          cellClass: this.cellClass
+          cellClass: this.cellClass,
+          rowClick: row => {
+            if (this.select) {
+              this.dataSource.forEach(row => {
+                row.selected = false;
+              });
+              row.selected = true;
+            }
+          }
         });
       });
       return dataRows;
