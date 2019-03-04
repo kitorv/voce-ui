@@ -28,9 +28,9 @@
 
         <div style="width:800px;height:600px;overflow:hidden;">
           <datagrid :columns="columns"
-                    :data="data"
+                    :data="[{}]"
                     :footer="footer"
-                    :fit="false"></datagrid>
+                    :fit="true"></datagrid>
         </div>
 
       </div>
