@@ -8,19 +8,17 @@
            :key="index"
            :style="column.colStyle">
     </colgroup>
-    <tr v-for="(row, index) in data"
-        :key="index"
-        :class="getRowClass(row,index)"
+    <tr v-for="(row, rowIndex) in data"
+        :key="rowIndex"
+        :class="getRowClass(row,rowIndex)"
         @mouseenter="row.hover=true"
         @mouseleave="row.hover=false"
-        @click="handleRowClick(row,index)">
-      <td v-for="(column, index) in leafColumns"
-          :key="index"
-          :class="typeClass(column)">
+        @click="handleRowClick(row,rowIndex)">
+      <td v-for="(column, cellIndex) in leafColumns"
+          :key="cellIndex"
+          :class="getCellClass(column,row,rowIndex)">
         <table-cell :column="column"
-                    :row="row"
-                    :footer="footer"
-                    :index="index"></table-cell>
+                    :row="row"></table-cell>
       </td>
     </tr>
   </table>
@@ -39,36 +37,35 @@ export default {
   props: {
     leafColumns: { type: Array },
     data: { type: Array },
-    fixedColumns: { type: Array },
     footer: { type: Boolean, default: false },
     rowClass: { type: [Function, String] }
   },
-  computed: {
-    hideColumnKeys() {
-      return Array.from(this.fixedColumns, m => m.key);
-    }
-  },
   methods: {
-    getRowClass(row, index) {
+    getRowClass(row, rowIndex) {
       let classList = [];
-      if (row.hover) {
+      let { rowClass, hover, selected } = row;
+      if (hover) {
         classList.push("kv-datagird--row-hover");
       }
-      if (row.selected) {
+      if (selected) {
         classList.push("kv-datagird--row-selected");
       }
-      let { data } = row;
-      if (typeof this.rowClass === "string") {
-        classList.push(this.rowClass);
-      }
-      if (typeof this.rowClass === "function") {
-        classList.push(this.rowClass.call(null, { row, index }));
+      if (rowClass) {
+        classList.push(rowClass.call(null, row, rowIndex));
       }
       return classList.join(" ");
     },
-    typeClass({ type }) {
-      if (!type) return;
-      return `kv-datagird--type-${type}`;
+    getCellClass(column, row, rowIndex) {
+      let { type } = column;
+      let { cellClass } = row;
+      let classList = [];
+      if (type) {
+        classList.push(`kv-datagird--type-${type}`);
+      }
+      if (cellClass) {
+        classList.push(cellClass.call(null, row, rowIndex));
+      }
+      return classList.join(" ");
     },
     handleRowClick(row) {
       this.datagrid.dataSource.forEach(row => {
