@@ -20,12 +20,12 @@
                     :stripe="true"></datagrid>
         </div>
 
-        <div style="width:800px;height:600px;overflow:hidden;">
+        <!-- <div style="width:800px;height:600px;overflow:hidden;">
           <datagrid :columns="columns"
                     :data="[]"
                     :footer="footer"
                     :fit="false"></datagrid>
-        </div>
+        </div> -->
 
       </div>
     </div>
