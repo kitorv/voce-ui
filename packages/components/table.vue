@@ -48,7 +48,11 @@
                     :leaf-columns="leafColumns"
                     :data="dataSource"
                     :row-class="rowClass"
-                    @on-after-render="handleBodyLayoutResize"></table-body>
+                    @on-after-render="handleBodyLayoutResize">
+          <template slot="expansion">
+            <slot name="expansion"></slot>
+          </template>
+        </table-body>
         <div v-else
              :style="{'width':`${bodyWidth}px`}"
              class="kv-datagrid--placeholder">
@@ -304,6 +308,7 @@ export default {
       if (!bodyEl) return;
       this.vScrollSize =
         bodyEl.scrollWidth > bodyEl.offsetWidth ? scrollSize() : 0;
+      console.log(bodyEl.clientWidth, bodyEl.offsetWidth, bodyEl.scrollWidth);
       this.hScrollSize =
         bodyEl.scrollHeight > bodyEl.offsetHeight ? scrollSize() : 0;
       // 存在固定列计算固定列所占有的宽度

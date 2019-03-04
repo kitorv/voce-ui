@@ -8,20 +8,29 @@
            :key="index"
            :style="column.colStyle">
     </colgroup>
-    <tr v-for="(row, rowIndex) in data"
-        :key="rowIndex"
-        :class="getRowClass(row,rowIndex)"
-        @mouseenter="row.hover=true"
-        @mouseleave="row.hover=false"
-        @click="row.rowClick(row,rowIndex)">
-      <td v-for="(column, cellIndex) in leafColumns"
-          :key="cellIndex"
-          :class="getCellClass(column,row,rowIndex)">
-        <table-cell :column="column"
-                    :row="row"
-                    :row-index="rowIndex"></table-cell>
-      </td>
-    </tr>
+    <template v-for="(row, rowIndex) in data">
+      <tr :key="rowIndex"
+          :class="getRowClass(row,rowIndex)"
+          @mouseenter="row.hover=true"
+          @mouseleave="row.hover=false"
+          @click="row.rowClick(row,rowIndex)">
+        <td v-for="(column, cellIndex) in leafColumns"
+            :key="cellIndex"
+            :class="getCellClass(column,row,rowIndex)">
+          <table-cell :column="column"
+                      :row="row"
+                      :row-index="rowIndex"></table-cell>
+        </td>
+      </tr>
+      <tr class="kv-datagrid--expansion-row"
+          :key="`expansion-${rowIndex}`"
+          v-if="row.expand&&$slots.expansion">
+        <td :colspan="leafColumns.length">
+          <slot name="expansion"></slot>
+        </td>
+      </tr>
+    </template>
+
   </table>
 </template>
 

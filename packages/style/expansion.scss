@@ -18,3 +18,9 @@
     transform: rotate(90deg);
   }
 }
+
+tr.kv-datagrid--expansion-row {
+  > td {
+    padding: 0;
+  }
+}
