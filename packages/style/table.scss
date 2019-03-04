@@ -135,8 +135,11 @@
     border-right: 1px solid #e8e8e8;
   }
 
-  .kv-datagrid--body-table > tr > td {
-    border-right: 1px solid #e8e8e8;
+  .kv-datagrid--body-table,
+  .kv-datagrid--footer-table {
+    > tr > td {
+      border-right: 1px solid #e8e8e8;
+    }
   }
 }
 
