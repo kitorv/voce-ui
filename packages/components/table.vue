@@ -102,11 +102,11 @@
 
 <script>
 import TableHeader from "./header";
-import TableBody from "./body";
-import TableFooter from "./footer";
-import TableCheckbox from "./checkbox";
 import TableHeaderCheckbox from "./header-checkbox";
+import TableBody from "./body";
 import TableBodyCheckbox from "./body-checkbox";
+import TableBodyExpansion from "./body-expansion";
+import TableFooter from "./footer";
 import Mousewheel from "../directives/mousewheel.js";
 import debounce from "../utils/debounce.js";
 import scrollSize from "../utils/scrollsize.js";
@@ -265,6 +265,9 @@ export default {
             <TableBodyCheckbox datagrid={this} row={row} />
           );
           break;
+        case "expansion":
+          column.formatter = (h, { row }) => <TableBodyExpansion row={row} />;
+          break;
       }
     },
     // 初始化数据源包装，统一管理便于扩展
@@ -276,6 +279,7 @@ export default {
           hover: false,
           checked: false,
           selected: false,
+          expand: false,
           data: row,
           rowClass: this.rowClass,
           cellClass: this.cellClass,
