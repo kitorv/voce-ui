@@ -307,10 +307,9 @@ export default {
       let bodyEl = this.$refs.body;
       if (!bodyEl) return;
       this.vScrollSize =
-        bodyEl.scrollWidth > bodyEl.offsetWidth ? scrollSize() : 0;
-      console.log(bodyEl.clientWidth, bodyEl.offsetWidth, bodyEl.scrollWidth);
-      this.hScrollSize =
         bodyEl.scrollHeight > bodyEl.offsetHeight ? scrollSize() : 0;
+      this.hScrollSize =
+        bodyEl.scrollWidth > bodyEl.offsetWidth ? scrollSize() : 0;
       // 存在固定列计算固定列所占有的宽度
       const lefColLength = this.leftFixedColumns.length;
       const rightColLength = this.rightFixedColumns.length;
