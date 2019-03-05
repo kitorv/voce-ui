@@ -17,7 +17,8 @@
                     :footer="footer"
                     :row-class="rowClass"
                     :cell-class="cellClass"
-                    :stripe="true">
+                    :stripe="true"
+                    :border="false">
             <div slot="expansion">
               <div style="height:100px;background-color:#e8f7fe">
                 expand row
@@ -54,8 +55,9 @@ export default {
   data() {
     return {
       columns2: [
-        { type: "expansion", width: 40 },
-        { type: "checkbox", width: 40 },
+        { type: "expansion" },
+        { type: "checkbox" },
+        { type: "index" },
         { key: "id", title: "id标识", width: 100 },
         { key: "name", title: "姓名", width: 100 },
         { key: "age", title: "年龄", width: 100 },
