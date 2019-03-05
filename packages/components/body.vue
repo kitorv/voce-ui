@@ -67,7 +67,7 @@ export default {
       return classList.join(" ");
     },
     getCellClass(column, row, rowIndex) {
-      let { type } = column;
+      let { type, align } = column;
       let { cellClass } = row;
       let classList = [];
       if (type) {
@@ -75,6 +75,9 @@ export default {
       }
       if (cellClass) {
         classList.push(cellClass.call(null, row, rowIndex));
+      }
+      if (align && ["left", "center", "right"].includes(align)) {
+        classList.push(`kv-datagird--align-${align}`);
       }
       return classList.join(" ");
     }

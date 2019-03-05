@@ -14,7 +14,7 @@
           :key="index"
           :colspan="column.colSpan"
           :rowspan="column.rowSpan"
-          :class="typeClass(column)">
+          :class="getCellClass(column)">
         <table-column :column="column"></table-column>
       </th>
     </tr>
@@ -31,9 +31,16 @@ export default {
     leafColumns: { type: Array }
   },
   methods: {
-    typeClass({ type }) {
-      if (!type) return;
-      return `kv-datagird--type-${type}`;
+    getCellClass(column) {
+      let { type, headerAlign } = column;
+      let classList = [];
+      if (type) {
+        classList.push(`kv-datagird--type-${type}`);
+      }
+      if (headerAlign && ["left", "center", "right"].includes(headerAlign)) {
+        classList.push(`kv-datagird--align-${headerAlign}`);
+      }
+      return classList.join(" ");
     }
   }
 };
