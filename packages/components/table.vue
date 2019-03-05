@@ -287,12 +287,19 @@ export default {
           data: row,
           rowClass: this.rowClass,
           cellClass: this.cellClass,
-          rowClick: row => {
+          rowClick: (event, row) => {
             if (this.select) {
               this.dataSource.forEach(row => {
                 row.selected = false;
               });
               row.selected = true;
+            }
+          },
+          cellClick(event, column, row) {
+            let { type } = column;
+            if (type === "expansion") {
+              event.stopPropagation();
+              row.expand = !row.expand;
             }
           }
         });

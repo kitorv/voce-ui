@@ -1,6 +1,5 @@
 <template>
-  <div :class="['kv-datagrid--expansion',{'kv-datagrid--expansion-active':row.expand}]"
-       @click="handleClick(row)">
+  <div :class="['kv-datagrid--expansion',{'kv-datagrid--expansion-active':row.expand}]">
     <i class="kv-icon-right-arrow"></i>
   </div>
 </template>
@@ -9,11 +8,6 @@
 export default {
   props: {
     row: { type: Object }
-  },
-  methods: {
-    handleClick(row) {
-      row.expand = !row.expand;
-    }
   }
 };
 </script>

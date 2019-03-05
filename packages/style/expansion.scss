@@ -1,6 +1,5 @@
 .kv-datagird--type-expansion {
   text-align: center !important;
-  transition: all 0.3s;
 }
 
 .kv-datagrid--expansion {
@@ -10,6 +9,7 @@
     display: inline-block;
     width: 16px;
     height: 16px;
+    transition: all 0.3s;
   }
 }
 
