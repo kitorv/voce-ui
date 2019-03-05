@@ -307,10 +307,9 @@ export default {
       let bodyEl = this.$refs.body;
       if (!bodyEl) return;
       this.vScrollSize =
-        bodyEl.scrollWidth > bodyEl.offsetWidth ? scrollSize() : 0;
-      console.log(bodyEl.clientWidth, bodyEl.offsetWidth, bodyEl.scrollWidth);
-      this.hScrollSize =
         bodyEl.scrollHeight > bodyEl.offsetHeight ? scrollSize() : 0;
+      this.hScrollSize =
+        bodyEl.scrollWidth > bodyEl.offsetWidth ? scrollSize() : 0;
       // 存在固定列计算固定列所占有的宽度
       const lefColLength = this.leftFixedColumns.length;
       const rightColLength = this.rightFixedColumns.length;
@@ -320,7 +319,8 @@ export default {
       const cellEls = rowEl.querySelectorAll("td");
       const cellLength = this.leafColumns.length;
       let leftWidth = 0;
-      let rightWidth = 0;
+      // 存在边框固定列左侧边框设置
+      let rightWidth = this.boder ? 1 : 0;
       // 根据单元格计算出固定表格宽度
       cellEls.forEach((cell, index) => {
         const cellWidth = cell.offsetWidth;
@@ -409,6 +409,9 @@ export default {
       }
       this.bodyHeight =
         parentHeight - this.headerHeight - this.footerHeight - this.hScrollSize;
+      // 自适应父容器表格滚动条要根据表体内容高度计算
+      this.vScrollSize =
+        bodyEl.scrollHeight > this.bodyHeight ? scrollSize() : 0;
     }
   },
   mounted() {

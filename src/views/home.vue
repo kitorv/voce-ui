@@ -26,11 +26,18 @@
           </datagrid>
         </div>
 
-        <div style="width:800px;height:600px;overflow:hidden;">
+        <div style="width:800px;height:auto;overflow:hidden;">
           <datagrid :columns="columns"
                     :data="data"
                     :footer="footer"
                     :fit="false"></datagrid>
+        </div>
+
+        <div style="width:800px;height:600px;overflow:hidden;">
+          <datagrid :columns="columns"
+                    :data="[{}]"
+                    :footer="footer"
+                    :fit="true"></datagrid>
         </div>
 
       </div>
@@ -52,7 +59,7 @@ export default {
         { key: "id", title: "id标识", width: 100 },
         { key: "name", title: "姓名", width: 100 },
         { key: "age", title: "年龄", width: 100 },
-        { key: "work", title: "工作", width: 100 }
+        { key: "work", title: "工作" }
       ],
       columns: [
         { type: "expansion", fixed: "left", width: 40 },
