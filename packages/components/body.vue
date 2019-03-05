@@ -13,11 +13,11 @@
           :class="getRowClass(row,rowIndex)"
           @mouseenter="row.hover=true"
           @mouseleave="row.hover=false"
-          @click="row.rowClick($event,row,rowIndex)">
+          @click="row.onRowClick($event,row,rowIndex)">
         <td v-for="(column, cellIndex) in leafColumns"
             :key="cellIndex"
             :class="getCellClass(column,row,rowIndex)"
-            @click="row.cellClick($event,column,row,rowIndex)">
+            @click="row.onCellClick($event,column,row,rowIndex)">
           <table-cell :column="column"
                       :row="row"
                       :row-index="rowIndex"></table-cell>

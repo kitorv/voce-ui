@@ -106,14 +106,13 @@
 
 <script>
 import TableHeader from "./header";
-import TableHeaderCheckbox from "./header-checkbox";
 import TableBody from "./body";
-import TableBodyCheckbox from "./body-checkbox";
-import TableBodyExpansion from "./body-expansion";
 import TableFooter from "./footer";
 import Mousewheel from "../directives/mousewheel.js";
 import debounce from "../utils/debounce.js";
 import scrollSize from "../utils/scrollsize.js";
+import proxyRow from "../store/row.js";
+import initColumnProps from "../store/column.js";
 
 export default {
   name: "datagird",
@@ -176,7 +175,7 @@ export default {
     // 单元格类样式
     cellClass: { type: Function },
     // 单行选中状态
-    select: { type: Boolean, default: true }
+    select: { type: Boolean, default: false }
   },
   computed: {
     bodyStyle() {
@@ -248,7 +247,7 @@ export default {
         }
         let width = column.width;
         column.colStyle = { width: `${width}px`, minWidth: `${width}px` };
-        this.initColumnDefaultProperty(column);
+        initColumnProps.call(this, column);
         leafColumns.push(column);
         column.colSpan = 1;
         column.rowSpan = columnRows.length - column.level + 1;
@@ -259,52 +258,9 @@ export default {
       });
       return { leftFixedColumns, rightFixedColumns, leafColumns };
     },
-    // 初始化列默认属性设置
-    initColumnDefaultProperty(column) {
-      let { type } = column;
-      switch (type) {
-        case "checkbox":
-          column.headerFormatter = h => <TableHeaderCheckbox datagrid={this} />;
-          column.formatter = (h, { row }) => (
-            <TableBodyCheckbox datagrid={this} row={row} />
-          );
-          break;
-        case "expansion":
-          column.formatter = (h, { row }) => <TableBodyExpansion row={row} />;
-          break;
-      }
-    },
     // 初始化数据源包装，统一管理便于扩展
     initProxyDataSource(rows) {
-      let dataRows = [];
-      let rowClass = "";
-      rows.forEach((row, index) => {
-        dataRows.push({
-          hover: false,
-          checked: false,
-          selected: false,
-          expand: false,
-          data: row,
-          rowClass: this.rowClass,
-          cellClass: this.cellClass,
-          rowClick: (event, row) => {
-            if (this.select) {
-              this.dataSource.forEach(row => {
-                row.selected = false;
-              });
-              row.selected = true;
-            }
-          },
-          cellClick(event, column, row) {
-            let { type } = column;
-            if (type === "expansion") {
-              event.stopPropagation();
-              row.expand = !row.expand;
-            }
-          }
-        });
-      });
-      return dataRows;
+      return Array.from(rows, m => proxyRow.call(this, m));
     },
     // 表格内容渲染完成根据内容调整表格
     handleBodyLayoutResize() {
