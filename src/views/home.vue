@@ -18,7 +18,7 @@
                     :row-class="rowClass"
                     :cell-class="cellClass"
                     :stripe="true"
-                    :border="false">
+                    :border="true">
             <div slot="expansion">
               <div style="height:100px;background-color:#e8f7fe">
                 expand row
@@ -60,8 +60,8 @@ export default {
         { type: "index" },
         { key: "id", title: "id标识", width: 100 },
         { key: "name", title: "姓名", width: 100 },
-        { key: "age", title: "年龄", width: 100 },
-        { key: "work", title: "工作" }
+        { key: "age", title: "年龄", width: 100, align: "center" },
+        { key: "work", title: "工作", headerAlign: "center" }
       ],
       columns: [
         { type: "expansion", fixed: "left", width: 40 },

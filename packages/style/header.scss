@@ -16,6 +16,16 @@
       border-bottom: 1px solid #e8e8e8;
       text-align: left;
       font-weight: 500;
+
+      &.kv-datagird--align-left {
+        text-align: left;
+      }
+      &.kv-datagird--align-center {
+        text-align: center;
+      }
+      &.kv-datagird--align-right {
+        text-align: right;
+      }
     }
   }
 }

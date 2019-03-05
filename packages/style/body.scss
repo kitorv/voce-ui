@@ -15,6 +15,16 @@
       background-color: #ffffff;
       padding: 8px;
       vertical-align: middle;
+
+      &.kv-datagird--align-left {
+        text-align: left;
+      }
+      &.kv-datagird--align-center {
+        text-align: center;
+      }
+      &.kv-datagird--align-right {
+        text-align: right;
+      }
     }
   }
 
