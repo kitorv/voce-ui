@@ -16,6 +16,10 @@
 .kv-datagird--body,
 .kv-datagrid--footer {
   position: relative;
+
+  &.kv-datagrid--footer {
+    border-top: 1px solid #e8e8e8;
+  }
 }
 
 // 左侧固定列

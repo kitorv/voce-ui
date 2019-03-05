@@ -1,7 +1,6 @@
 <template>
   <div ref="datagrid"
-       :class="['kv-datagrid',{'kv-datagrid-border':columnRows.length>0||boder},{'kv-datagrid-stripe':stripe}]">
-
+       :class="['kv-datagrid',{'kv-datagrid-border':columnRows.length>1||border},{'kv-datagrid-stripe':stripe}]">
     <!-- 表头 -->
     <div ref="headerWrapper"
          class="kv-datagrid--header"
@@ -167,7 +166,7 @@ export default {
     // 自适应容器
     fit: { type: Boolean, default: true },
     // 边框
-    boder: { type: Boolean, default: true },
+    border: { type: Boolean, default: true },
     // 斑马线
     stripe: { type: Boolean, default: false },
     // 行类样式
@@ -245,9 +244,9 @@ export default {
         if (fixed === "right") {
           rightFixedColumns.push(column);
         }
+        initColumnProps.call(this, column);
         let width = column.width;
         column.colStyle = { width: `${width}px`, minWidth: `${width}px` };
-        initColumnProps.call(this, column);
         leafColumns.push(column);
         column.colSpan = 1;
         column.rowSpan = columnRows.length - column.level + 1;
@@ -283,7 +282,7 @@ export default {
       const cellLength = this.leafColumns.length;
       let leftWidth = 0;
       // 存在边框固定列左侧边框设置
-      let rightWidth = this.boder ? 1 : 0;
+      let rightWidth = this.border ? 1 : 0;
       // 根据单元格计算出固定表格宽度
       cellEls.forEach((cell, index) => {
         const cellWidth = cell.offsetWidth;
