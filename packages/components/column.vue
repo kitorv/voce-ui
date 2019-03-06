@@ -4,9 +4,9 @@ export default {
     column: { type: Object }
   },
   render(h) {
-    let { title, headerFormatter } = this.column;
-    if (headerFormatter) {
-      return headerFormatter(h, { column: this.column });
+    let { title, columnFormatter } = this.column;
+    if (columnFormatter) {
+      return columnFormatter(h, { column: this.column });
     }
     return <div>{title}</div>;
   }

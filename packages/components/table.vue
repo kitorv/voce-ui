@@ -11,19 +11,22 @@
            :style="{'width':`${leftBodyWidth}px`}">
         <table-header :style="{'width':`${bodyWidth}px`}"
                       :column-rows="columnRows"
-                      :leaf-columns="leafColumns"></table-header>
+                      :leaf-columns="leafColumns"
+                      :data="headerDataSource"></table-header>
       </div>
       <div ref="header"
            class="kv-datagrid--header-center">
         <table-header :column-rows="columnRows"
-                      :leaf-columns="leafColumns"></table-header>
+                      :leaf-columns="leafColumns"
+                      :data="headerDataSource"></table-header>
       </div>
       <div v-if="rightFixedColumns.length>0"
            class="kv-datagrid--header-right"
            :style="{'width':`${rightBodyWidth}px`,'right':`${vScrollSize}px`}">
         <table-header :style="{'width':`${bodyWidth}px`}"
                       :column-rows="columnRows"
-                      :leaf-columns="leafColumns"></table-header>
+                      :leaf-columns="leafColumns"
+                      :data="headerDataSource"></table-header>
       </div>
     </div>
     <!-- 表头 -->
@@ -129,6 +132,8 @@ export default {
       leftFixedColumns: initParams.leftFixedColumns,
       // 右侧固定列
       rightFixedColumns: initParams.rightFixedColumns,
+      // 表头数据源包装构建
+      headerDataSource: this.initProxyDataSource(this.header),
       // 数据源包装构建
       dataSource: this.initProxyDataSource(this.data),
       // 表尾数据源包装构建
@@ -162,6 +167,8 @@ export default {
   props: {
     // 列配置
     columns: { type: Array, default: () => [] },
+    // 表头数据
+    header: { type: Array, default: () => [] },
     // 表格数据
     data: { type: Array, default: () => [] },
     // 页脚数据

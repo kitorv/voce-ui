@@ -10,22 +10,21 @@ export default {
   },
   render(h) {
     let { data } = this.row;
-    let { key, formatter, footerFormatter } = this.column;
+    let { key, headerFormatter, formatter, footerFormatter } = this.column;
+    let params = {
+      row: this.row,
+      column: this.column,
+      value: data[key],
+      index: this.rowIndex
+    };
+    if (headerFormatter && this.type === "header") {
+      return footerFormatter(h, params);
+    }
     if (formatter && this.type === "body") {
-      return formatter(h, {
-        row: this.row,
-        column: this.column,
-        value: data[key],
-        index: this.rowIndex
-      });
+      return formatter(h, params);
     }
     if (footerFormatter && this.type === "footer") {
-      return footerFormatter(h, {
-        row: this.row,
-        column: this.column,
-        value: data[key],
-        index: this.rowIndex
-      });
+      return footerFormatter(h, params);
     }
     return <div>{data[key]}</div>;
   }
