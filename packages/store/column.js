@@ -9,7 +9,7 @@ export default function(column) {
   switch (type) {
     case "checkbox":
       column.width = 40;
-      column.headerFormatter = h => <TableHeaderCheckbox datagrid={this} />;
+      column.columnFormatter = h => <TableHeaderCheckbox datagrid={this} />;
       column.formatter = (h, { row }) => <TableBodyCheckbox datagrid={this} row={row} />;
       break;
     case "expansion":
@@ -18,7 +18,7 @@ export default function(column) {
       break;
     case "index":
       column.width = 40;
-      column.headerFormatter = h => <div>#</div>;
+      column.columnFormatter = h => <div>#</div>;
       column.formatter = (h, { index }) => <div>{index}</div>;
       break;
   }

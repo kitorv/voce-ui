@@ -27,5 +27,28 @@
         text-align: right;
       }
     }
+
+    > td {
+      position: relative;
+      min-width: 0;
+      box-sizing: border-box;
+      text-align: left;
+      border-bottom: 1px solid #e8e8e8;
+      word-wrap: break-word;
+      word-break: break-all;
+      background-color: #fafafa;
+      padding: 8px;
+      vertical-align: middle;
+
+      &.kv-datagird--align-left {
+        text-align: left;
+      }
+      &.kv-datagird--align-center {
+        text-align: center;
+      }
+      &.kv-datagird--align-right {
+        text-align: right;
+      }
+    }
   }
 }
