@@ -18,7 +18,8 @@
                     :row-class="rowClass"
                     :cell-class="cellClass"
                     :stripe="true"
-                    :border="true">
+                    :border="true"
+                    :header="header">
             <div slot="expansion">
               <div style="height:100px;background-color:#e8f7fe">
                 expand row
@@ -61,8 +62,8 @@ export default {
         { type: "checkbox" },
         { type: "index" },
         { key: "id", title: "id标识", width: 100 },
-        { key: "name", title: "姓名", width: 100 },
-        { key: "age", title: "年龄", width: 100, align: "center" },
+        { key: "name", title: "姓名", width: 100, sum: "合计" },
+        { key: "age", title: "年龄", width: 100, align: "center", sum: true },
         { key: "work", title: "工作", headerAlign: "center" }
       ],
       columns: [
@@ -355,6 +356,20 @@ export default {
         }
       ],
       footer: [
+        {
+          id: 1,
+          name: "张三",
+          age: 20,
+          work: "程序员",
+          street: "软件园二期",
+          building: "14#",
+          doorNo: "1024",
+          number1: 100,
+          number2: 200,
+          number3: 300
+        }
+      ],
+      header: [
         {
           id: 1,
           name: "张三",

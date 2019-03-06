@@ -12,7 +12,7 @@
         :key="rowIndex">
       <td v-for="(column, cellIndex) in leafColumns"
           :key="cellIndex"
-          :class="getCellClass(column)">
+          :class="getCellClass(column,row,rowIndex)">
         <table-cell type='footer'
                     :column="column"
                     :row="row"
@@ -33,9 +33,17 @@ export default {
     rowClass: { type: [Function, String] }
   },
   methods: {
-    getCellClass({ type }) {
-      if (!type) return;
-      return `kv-datagird--type-${type}`;
+    getCellClass(column, row, rowIndex) {
+      let { type, align } = column;
+      let { cellClass } = row;
+      let classList = [];
+      if (type) {
+        classList.push(`kv-datagird--type-${type}`);
+      }
+      if (align && ["left", "center", "right"].includes(align)) {
+        classList.push(`kv-datagird--align-${align}`);
+      }
+      return classList.join(" ");
     }
   }
 };
