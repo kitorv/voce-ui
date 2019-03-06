@@ -1,6 +1,7 @@
 <template>
   <div ref="datagrid"
-       :class="['kv-datagrid',{'kv-datagrid-border':columnRows.length>1||border},{'kv-datagrid-stripe':stripe}]">
+       :class="['kv-datagrid',{'kv-datagrid-border':columnRows.length>1||border},{'kv-datagrid-stripe':stripe}]"
+       :style="style">
     <!-- 表头 -->
     <div ref="headerWrapper"
          class="kv-datagrid--header"
@@ -152,6 +153,8 @@ export default {
       checkedAll: false,
       // 复选半选中状态
       indeterminate: false,
+      // 整个表格高度
+      height: 0,
       // 数据字典存储变量数据
       dictionary: {}
     };
@@ -174,12 +177,22 @@ export default {
     // 单元格类样式
     cellClass: { type: Function },
     // 单行选中状态
-    select: { type: Boolean, default: false }
+    select: { type: Boolean, default: false },
+    // 最大高度
+    maxHeight: { type: Number }
   },
   computed: {
     bodyStyle() {
+      if (this.maxHeight == this.height) {
+        return { height: `${this.bodyHeight}px` };
+      }
       if (!this.fit) return;
       return { height: `${this.bodyHeight}px` };
+    },
+    style() {
+      if (this.maxHeight) {
+        return { maxHeight: `${this.maxHeight}px` };
+      }
     }
   },
   methods: {
@@ -354,7 +367,17 @@ export default {
       if (!this.bodyWidth) {
         this.bodyWidth = this.$refs.header.firstChild.offsetWidth;
       }
-      if (!this.fit) return;
+
+      let fitSize = false;
+      if (this.fit) {
+        fitSize = true;
+        this.height =
+          this.maxHeight || this.$refs.datagrid.parentNode.offsetHeight;
+      } else {
+        this.height = this.$refs.datagrid.offsetHeight;
+        fitSize = this.height == this.maxHeight;
+      }
+      if (!fitSize) return;
       // 计算内容高度=父容器-表头-表尾
       if (this.$refs.headerWrapper) {
         this.headerHeight = this.$refs.headerWrapper.offsetHeight;
@@ -362,15 +385,13 @@ export default {
       if (this.$refs.footerWrapper) {
         this.footerHeight = this.$refs.footerWrapper.offsetHeight;
       }
-      let parentHeight = this.$refs.datagrid.parentNode.offsetHeight;
+
       // 判断是否包含滚动态条，并计算出滚动条尺寸
       const bodyEl = this.$refs.body;
-      this.hScrollSize = 0;
-      if (bodyEl.scrollHeight > bodyEl.offsetHeight) {
-        this.hScrollSize = scrollSize();
-      }
+      this.hScrollSize =
+        bodyEl.scrollWidth > bodyEl.offsetWidth ? scrollSize() : 0;
       this.bodyHeight =
-        parentHeight - this.headerHeight - this.footerHeight - this.hScrollSize;
+        this.height - this.headerHeight - this.footerHeight - this.hScrollSize;
       // 自适应父容器表格滚动条要根据表体内容高度计算
       this.vScrollSize =
         bodyEl.scrollHeight > this.bodyHeight ? scrollSize() : 0;
