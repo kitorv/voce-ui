@@ -11,7 +11,8 @@ export default function(row) {
     //   行的数据
     data: row,
     // 行类样式
-    // rowClass: this.rowClass,
+    rowClass: this.rowClass,
+    // 行单击事件
     onRowClick: (event, row) => {
       //index
       // 单行选中设置
@@ -22,6 +23,7 @@ export default function(row) {
         row.selected = true;
       }
     },
+    // 单元格单击事件
     onCellClick: (event, column, row) => {
       // index
       let { type } = column;

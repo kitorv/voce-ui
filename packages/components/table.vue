@@ -355,11 +355,13 @@ export default {
       if (interval === 0) {
         this.handleBodyLayoutResize();
         this.handleBodyScroll();
+        this.handleBodyResize();
         return;
       }
       return debounce(() => {
         this.handleBodyLayoutResize();
         this.handleBodyScroll();
+        this.handleBodyResize();
       }, interval);
     },
     // 调整表格内容高度，固定列头
