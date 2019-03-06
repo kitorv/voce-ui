@@ -190,8 +190,8 @@ export default {
       return { height: `${this.bodyHeight}px` };
     },
     style() {
-      if (this.maxHeight) {
-        return { maxHeight: `${this.maxHeight}px` };
+      if (this.height) {
+        return { maxHeight: `${this.height}px` };
       }
     }
   },
@@ -367,12 +367,11 @@ export default {
       if (!this.bodyWidth) {
         this.bodyWidth = this.$refs.header.firstChild.offsetWidth;
       }
-
       let fitSize = false;
       if (this.fit) {
         fitSize = true;
         this.height =
-          this.maxHeight || this.$refs.datagrid.parentNode.offsetHeight;
+          this.maxHeight || this.$refs.datagrid.parentNode.clientHeight;
       } else {
         this.height = this.$refs.datagrid.offsetHeight;
         fitSize = this.height == this.maxHeight;
@@ -390,8 +389,7 @@ export default {
       const bodyEl = this.$refs.body;
       this.hScrollSize =
         bodyEl.scrollWidth > bodyEl.offsetWidth ? scrollSize() : 0;
-      this.bodyHeight =
-        this.height - this.headerHeight - this.footerHeight - this.hScrollSize;
+      this.bodyHeight = this.height - this.headerHeight - this.footerHeight;
       // 自适应父容器表格滚动条要根据表体内容高度计算
       this.vScrollSize =
         bodyEl.scrollHeight > this.bodyHeight ? scrollSize() : 0;
