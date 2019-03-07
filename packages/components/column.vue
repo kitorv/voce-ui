@@ -4,7 +4,7 @@ export default {
     column: { type: Object }
   },
   render(h) {
-    let { title, columnFormatter, sort } = this.column;
+    let { title, columnFormatter, sort, isLeaf } = this.column;
     let colElement = title;
     if (columnFormatter) {
       colElement = columnFormatter(h, { column: this.column });
@@ -22,7 +22,7 @@ export default {
         class={["kv-datagird--column", { "kv-datagrid--column-sort": sort }]}
       >
         {colElement}
-        {sort ? sortElement : ""}
+        {sort && isLeaf ? sortElement : ""}
       </div>
     );
   }

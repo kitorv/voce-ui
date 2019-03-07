@@ -8,7 +8,7 @@ export default function(row) {
     selected: false,
     // 展开行状态
     expand: false,
-    //   行的数据
+    // 行的数据
     data: row,
     // 行类样式
     rowClass: this.rowClass,
