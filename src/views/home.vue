@@ -61,9 +61,9 @@ export default {
         { type: "expansion" },
         { type: "checkbox" },
         { type: "index" },
-        { key: "id", title: "id标识", width: 100 },
-        { key: "name", title: "姓名", width: 100, sum: "合计" },
-        { key: "age", title: "年龄", width: 100, align: "center", sum: true },
+        { key: "id", title: "id标识", width: 100, sort: true },
+        { key: "name", title: "姓名", width: 100, sort: true },
+        { key: "age", title: "年龄", width: 100, align: "center" },
         { key: "work", title: "工作", headerAlign: "center" }
       ],
       columns: [

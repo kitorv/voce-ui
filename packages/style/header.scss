@@ -26,6 +26,36 @@
       &.kv-datagird--align-right {
         text-align: right;
       }
+
+      > .kv-datagrid--column-sort {
+        cursor: pointer;
+      }
+
+      > .kv-datagird--column {
+        position: relative;
+        word-wrap: normal;
+        vertical-align: middle;
+        width: 100%;
+      }
+
+      .kv-datagrid--sort {
+        position: absolute;
+        width: 16px;
+        height: 18px;
+        top: 50%;
+        transform: translateY(-50%);
+        right: 3px;
+        cursor: pointer;
+
+        > i {
+          font-size: 16px;
+          position: absolute;
+          width: 16px;
+          height: 16px;
+          left: 0;
+          color: #c0c4cc;
+        }
+      }
     }
 
     > td {
