@@ -14,7 +14,8 @@
           :key="index"
           :colspan="column.colSpan"
           :rowspan="column.rowSpan"
-          :class="getColumnClass(column)">
+          :class="getColumnClass(column)"
+          @click="handleColumnClick($event,column)">
         <table-column :column="column"></table-column>
       </th>
     </tr>
@@ -66,6 +67,9 @@ export default {
         classList.push(`kv-datagird--align-${align}`);
       }
       return classList.join(" ");
+    },
+    handleColumnClick($event, column) {
+      
     }
   }
 };

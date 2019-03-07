@@ -114,7 +114,7 @@ import TableFooter from "./footer";
 import Mousewheel from "../directives/mousewheel.js";
 import debounce from "../utils/debounce.js";
 import scrollSize from "../utils/scrollsize.js";
-import proxyRow from "../store/row.js";
+import initProxyRow from "../store/row.js";
 import initColumnProps from "../store/column.js";
 
 export default {
@@ -280,7 +280,7 @@ export default {
     },
     // 初始化数据源包装，统一管理便于扩展
     initProxyDataSource(rows) {
-      return Array.from(rows, m => proxyRow.call(this, m));
+      return Array.from(rows, m => initProxyRow.call(this, m));
     },
     // 表格内容渲染完成根据内容调整表格
     handleBodyLayoutResize() {
