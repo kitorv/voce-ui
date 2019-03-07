@@ -267,6 +267,7 @@ export default {
         initColumnProps.call(this, column);
         let width = column.width;
         column.colStyle = { width: `${width}px`, minWidth: `${width}px` };
+        column.isLeaf = true;
         leafColumns.push(column);
         column.colSpan = 1;
         column.rowSpan = columnRows.length - column.level + 1;

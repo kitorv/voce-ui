@@ -4,11 +4,27 @@ export default {
     column: { type: Object }
   },
   render(h) {
-    let { title, columnFormatter } = this.column;
+    let { title, columnFormatter, sort } = this.column;
+    let colElement = title;
     if (columnFormatter) {
-      return columnFormatter(h, { column: this.column });
+      colElement = columnFormatter(h, { column: this.column });
     }
-    return <div>{title}</div>;
+
+    let sortElement = (
+      <span class="kv-datagrid--sort">
+        <i class="kv-icon-sort-up" />
+        <i class="kv-icon-sort-down" />
+      </span>
+    );
+
+    return (
+      <div
+        class={["kv-datagird--column", { "kv-datagrid--column-sort": sort }]}
+      >
+        {colElement}
+        {sort ? sortElement : ""}
+      </div>
+    );
   }
 };
 </script>
