@@ -2,14 +2,17 @@
   <th :colspan="column.colSpan"
       :rowspan="column.rowSpan"
       :class="getColumnClass()">
-    <column-content :column="column"></column-content>
+    <table-column-content :column="column"></table-column-content>
   </th>
 </template>
 
 <script>
+import TableCheckbox from "../components/checkbox.vue";
+
 export default {
   components: {
-    ColumnContent: {
+    TableCheckbox,
+    TableColumnContent: {
       render(h) {
         let { title, columnFormatter } = this.column;
         let colElement = title;
@@ -23,6 +26,7 @@ export default {
       }
     }
   },
+  inject: ["table"],
   props: {
     column: { type: Object }
   },

@@ -12,13 +12,15 @@
         <table-header :style="{'width':`${bodyWidth}px`}"
                       :column-rows="columnRows"
                       :leaf-columns="leafColumns"
-                      :data="headerDataSource"></table-header>
+                      :data="headerDataSource">
+        </table-header>
       </div>
       <div ref="header"
            class="kv-datagrid--header-center">
         <table-header :column-rows="columnRows"
                       :leaf-columns="leafColumns"
-                      :data="headerDataSource"></table-header>
+                      :data="headerDataSource">
+        </table-header>
       </div>
       <div v-if="rightFixedColumns.length>0"
            class="kv-datagrid--header-right"
@@ -26,7 +28,8 @@
         <table-header :style="{'width':`${bodyWidth}px`}"
                       :column-rows="columnRows"
                       :leaf-columns="leafColumns"
-                      :data="headerDataSource"></table-header>
+                      :data="headerDataSource">
+        </table-header>
       </div>
     </div>
     <!-- 表头 -->
@@ -41,7 +44,8 @@
         <table-body :style="{'width':`${bodyWidth}px`}"
                     :data="dataSource"
                     :leaf-columns="leafColumns"
-                    :row-class="rowClass"></table-body>
+                    :row-class="rowClass">
+        </table-body>
       </div>
       <div ref="body"
            class="kv-datagrid--body-center"
@@ -72,7 +76,8 @@
         <table-body :style="{'width':`${bodyWidth}px`}"
                     :data="dataSource"
                     :leaf-columns="leafColumns"
-                    :row-class="rowClass"></table-body>
+                    :row-class="rowClass">
+        </table-body>
       </div>
     </div>
     <!-- 表体 -->
@@ -87,19 +92,22 @@
            :style="{'width':`${leftBodyWidth}px`,}">
         <table-footer :style="{'width':`${bodyWidth}px`}"
                       :data="footerDataSource"
-                      :leaf-columns="leafColumns"></table-footer>
+                      :leaf-columns="leafColumns">
+        </table-footer>
       </div>
       <div ref="footer"
            class="kv-datagrid--footer-center">
         <table-footer :data="footerDataSource"
-                      :leaf-columns="leafColumns"></table-footer>
+                      :leaf-columns="leafColumns">
+        </table-footer>
       </div>
       <div v-if="rightFixedColumns.length>0"
            class="kv-datagrid--body-right"
            :style="{'width':`${rightBodyWidth}px`,'right':`${vScrollSize}px`}">
         <table-footer :style="{'width':`${bodyWidth}px`}"
                       :data="footerDataSource"
-                      :leaf-columns="leafColumns"></table-footer>
+                      :leaf-columns="leafColumns">
+        </table-footer>
       </div>
     </div>
     <!-- 表尾 -->
@@ -121,6 +129,9 @@ export default {
   name: "datagird",
   components: { TableHeader, TableBody, TableFooter },
   directives: { Mousewheel },
+  provide() {
+    return { table: this };
+  },
   data() {
     let initParams = this.init();
     return {
