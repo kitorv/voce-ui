@@ -8,7 +8,15 @@
            :key="index"
            :style="column.colStyle">
     </colgroup>
-    <tr v-for="(row, index) in columnRows"
+    <tr v-for="(colRow, index) in columnRows"
+        :key="index">
+      <th v-for="(column, index) in colRow"
+          :key="index"
+          is="table-column"
+          :column="column">
+      </th>
+    </tr>
+    <!-- <tr v-for="(row, index) in columnRows"
         :key="index">
       <th v-for="(column, index) in row"
           :key="index"
@@ -29,12 +37,12 @@
                     :row="row"
                     :row-index="rowIndex"></table-cell>
       </td>
-    </tr>
+    </tr> -->
   </table>
 </template>
 
 <script>
-import TableColumn from "./column";
+import TableColumn from "./header-column";
 import TableCell from "./cell";
 
 export default {
@@ -68,9 +76,7 @@ export default {
       }
       return classList.join(" ");
     },
-    handleColumnClick($event, column) {
-      
-    }
+    handleColumnClick($event, column) {}
   }
 };
 </script>
