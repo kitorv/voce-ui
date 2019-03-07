@@ -1,7 +1,8 @@
 <template>
   <table-checkbox :indeterminate="datagrid.indeterminate"
                   :value="datagrid.checkedAll"
-                  @click.native="handleNativeClick"></table-checkbox>
+                  @click.native="handleNativeClick">
+  </table-checkbox>
 </template>
 
 <script>
