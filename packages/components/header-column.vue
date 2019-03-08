@@ -7,25 +7,11 @@
 </template>
 
 <script>
-import TableCheckbox from "../components/checkbox.vue";
+import TableCheckbox from "./checkbox.vue";
+import TableColumnContent from "./column-content";
 
 export default {
-  components: {
-    TableCheckbox,
-    TableColumnContent: {
-      render(h) {
-        let { title, columnFormatter } = this.column;
-        let colElement = title;
-        if (columnFormatter) {
-          colElement = columnFormatter(h, { column: this.column });
-        }
-        return <div class="kv-datagird--column">{colElement}</div>;
-      },
-      props: {
-        column: { type: Object }
-      }
-    }
-  },
+  components: { TableCheckbox, TableColumnContent },
   inject: ["table"],
   props: {
     column: { type: Object }
