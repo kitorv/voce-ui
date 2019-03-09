@@ -1,11 +1,21 @@
-/* eslint-disable no-unused-vars */
-/* eslint-disable prettier/prettier */
-// import TableHeaderCheckbox from "../components/header-checkbox.vue";
-// import TableBodyCheckbox from "../components/body-checkbox";
-// import TableBodyExpansion from "../components/body-expansion";
-import TableCheckbox from "../components/checkbox.vue";
+import Checkbox from "../columns/checkbox";
 
 export default function(column) {
+  let { type } = column;
+  let extColumn = {};
+  switch (type) {
+    case "checkbox":
+      extColumn = Checkbox;
+      break;
+  }
+  Object.assign(column, extColumn);
+  column.isLeaf = true;
+  column.colStyle = {
+    width: `${column.width}px`,
+    minWidth: `${column.width}px`
+  };
+  // let width = column.width;
+  //
   // let { type } = column;
   // switch (type) {
   //   case "checkbox":

@@ -3,26 +3,15 @@
       @mouseenter="handleMouseEnter"
       @mouseleave="handleMouseLeave"
       @click="handleClick">
-    <td v-for="(column, cellIndex) in leafColumns"
-        :key="cellIndex"
-        is="table-cell"
-        :column="column"
-        :row="row"
-        :row-index="rowIndex">
-    </td>
+    <slot></slot>
   </tr>
 </template>
 
 <script>
-import TableCell from "./cell";
-
 export default {
-  components: { TableCell },
   props: {
     row: { type: Object },
-    rowIndex: { type: Number },
-    leafColumns: { type: Array },
-    rowClass: { type: Function }
+    rowIndex: { type: Number }
   },
   computed: {
     tableRowClass() {

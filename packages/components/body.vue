@@ -8,10 +8,17 @@
            :key="index"
            :style="column.colStyle">
     </colgroup>
-    <template v-for="(row, index) in data">
+    <template v-for="(row, rowIndex) in data">
       <table-row :row="row"
-                 :key="index"
-                 :leaf-columns="leafColumns"></table-row>
+                 :key="rowIndex"
+                 :leaf-columns="leafColumns">
+        <table-cell v-for="(column, cellIndex) in leafColumns"
+                    :key="cellIndex"
+                    :column="column"
+                    :row="row"
+                    :row-index="rowIndex">
+        </table-cell>
+      </table-row>
       <!-- <tr class="kv-datagrid--expansion-row"
           :key="`expansion-${rowIndex}`"
           v-if="row.expand&&$slots.expansion">
@@ -26,9 +33,10 @@
 
 <script>
 import TableRow from "./row";
+import TableCell from "./cell";
 
 export default {
-  components: { TableRow },
+  components: { TableRow, TableCell },
   data() {
     return {
       datagrid: this.$parent

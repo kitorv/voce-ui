@@ -130,7 +130,7 @@ export default {
   components: { TableHeader, TableBody, TableFooter },
   directives: { Mousewheel },
   provide() {
-    return { table: this };
+    return { datagrid: this };
   },
   data() {
     let initParams = this.init();
@@ -275,10 +275,7 @@ export default {
         if (fixed === "right") {
           rightFixedColumns.push(column);
         }
-        column.isLeaf = true;
         initColumnProps.call(this, column);
-        let width = column.width;
-        column.colStyle = { width: `${width}px`, minWidth: `${width}px` };
         leafColumns.push(column);
         column.colSpan = 1;
         column.rowSpan = columnRows.length - column.level + 1;
