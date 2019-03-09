@@ -2,6 +2,7 @@
   <div ref="datagrid"
        :class="['kv-datagrid',{'kv-datagrid-border':columnRows.length>1||border},{'kv-datagrid-stripe':stripe}]"
        :style="style">
+
     <!-- 表头 -->
     <div ref="headerWrapper"
          class="kv-datagrid--header"

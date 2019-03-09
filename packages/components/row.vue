@@ -9,6 +9,7 @@
 
 <script>
 export default {
+  inject: ["datagrid"],
   props: {
     row: { type: Object },
     rowIndex: { type: Number }
@@ -27,6 +28,19 @@ export default {
       this.row.hover = false;
     },
     handleClick() {}
+  },
+  watch: {
+    "row.checked"(value) {
+      let table = this.datagrid;
+      let checkedRows = table.dataSource.filter(row => row.checked);
+      if (table.dataSource.length == checkedRows.length) {
+        table.checkedAll = true;
+        table.indeterminate = false;
+      } else {
+        table.checkedAll = false;
+        table.indeterminate = checkedRows.length > 0;
+      }
+    }
   }
 };
 </script>

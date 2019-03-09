@@ -1,7 +1,3 @@
-<template>
-
-</template>
-
 <script>
 export default {
   inject: ["datagrid"],
@@ -14,14 +10,13 @@ export default {
     if (columnFormatter) {
       content = columnFormatter.call(this.datagrid, h, { column: this.column });
     }
-
     return (
       <th
-        colspan={column.colSpan}
-        rowspan={column.rowSpan}
+        colspan={this.column.colSpan}
+        rowspan={this.column.rowSpan}
         class={this.getColumnClass()}
       >
-        <div class="kv-datagird--column">{content}</div>;
+        <div class="kv-datagird--column">{content}</div>
       </th>
     );
   },
