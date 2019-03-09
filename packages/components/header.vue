@@ -42,7 +42,8 @@
 </template>
 
 <script>
-import TableColumn from "./header-column";
+import TableRow from "./row";
+import TableColumn from "./column";
 import TableCell from "./cell";
 
 export default {
