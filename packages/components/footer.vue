@@ -29,8 +29,7 @@ export default {
   components: { TableCell },
   props: {
     leafColumns: { type: Array },
-    data: { type: Array },
-    rowClass: { type: [Function, String] }
+    data: { type: Array }
   },
   methods: {
     getCellClass(column, row, rowIndex) {

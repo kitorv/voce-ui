@@ -1,2 +1,4 @@
 rowclass
 cellClass
+rowStyle
+cellStyle

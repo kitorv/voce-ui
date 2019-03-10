@@ -45,8 +45,7 @@ export default {
   props: {
     leafColumns: { type: Array },
     data: { type: Array },
-    footer: { type: Boolean, default: false },
-    rowClass: { type: [Function, String] }
+    footer: { type: Boolean, default: false }
   },
   mounted() {
     this.$emit("on-after-render");

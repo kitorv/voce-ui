@@ -15,8 +15,6 @@
           <datagrid :columns="columns2"
                     :data="data"
                     :footer="footer"
-                    :row-class="rowClass"
-                    :cell-class="cellClass"
                     :stripe="true"
                     :border="true"
                     :header="header">
