@@ -19,13 +19,13 @@
                     :row-index="rowIndex">
         </table-cell>
       </table-row>
-      <!-- <tr class="kv-datagrid--expansion-row"
+      <tr class="kv-datagrid--expansion-row"
           :key="`expansion-${rowIndex}`"
           v-if="row.expand&&$slots.expansion">
         <td :colspan="leafColumns.length">
           <slot name="expansion"></slot>
         </td>
-      </tr> -->
+      </tr>
     </template>
 
   </table>
