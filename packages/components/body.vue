@@ -48,37 +48,6 @@ export default {
     footer: { type: Boolean, default: false },
     rowClass: { type: [Function, String] }
   },
-  methods: {
-    getRowClass(row, rowIndex) {
-      let classList = [];
-      let { rowClass, hover, selected } = row;
-      if (hover) {
-        classList.push("kv-datagird--row-hover");
-      }
-      if (selected) {
-        classList.push("kv-datagird--row-selected");
-      }
-      if (rowClass) {
-        classList.push(rowClass.call(null, row, rowIndex));
-      }
-      return classList.join(" ");
-    },
-    getCellClass(column, row, rowIndex) {
-      let { type, align } = column;
-      let { cellClass } = row;
-      let classList = [];
-      if (type) {
-        classList.push(`kv-datagird--type-${type}`);
-      }
-      if (cellClass) {
-        classList.push(cellClass.call(null, row, rowIndex));
-      }
-      if (align && ["left", "center", "right"].includes(align)) {
-        classList.push(`kv-datagird--align-${align}`);
-      }
-      return classList.join(" ");
-    }
-  },
   mounted() {
     this.$emit("on-after-render");
   }
