@@ -1,5 +1,5 @@
 <template>
-  <tr :class="[{'kv-datagird--row-hover':row.hover},{'kv-datagird--row-selected':row.selected},tableRowClass]"
+  <tr :class="[{'kv-datagird--row-hover':row.hover},{'kv-datagird--row-selected':row.selected}]"
       @mouseenter="handleMouseEnter"
       @mouseleave="handleMouseLeave"
       @click="handleClick">
@@ -13,12 +13,6 @@ export default {
   props: {
     row: { type: Object },
     rowIndex: { type: Number }
-  },
-  computed: {
-    tableRowClass() {
-      //   if (!this.rowClass) return "";
-      //   return this.rowClass.call(null, this.row, this.rowIndex);
-    }
   },
   methods: {
     handleMouseEnter() {

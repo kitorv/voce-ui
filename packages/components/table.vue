@@ -45,7 +45,7 @@
         <table-body :style="{'width':`${bodyWidth}px`}"
                     :data="dataSource"
                     :leaf-columns="leafColumns"
-                    :row-class="rowClass">
+                    >
         </table-body>
       </div>
       <div ref="body"
@@ -55,7 +55,6 @@
         <table-body v-if="dataSource.length>0"
                     :leaf-columns="leafColumns"
                     :data="dataSource"
-                    :row-class="rowClass"
                     @on-after-render="handleBodyLayoutResize">
           <template slot="expansion">
             <slot name="expansion"></slot>
@@ -76,8 +75,7 @@
            :style="{'width':`${rightBodyWidth}px`,'height':`${bodyHeight-hScrollSize}px`,'right':`${vScrollSize}px`}">
         <table-body :style="{'width':`${bodyWidth}px`}"
                     :data="dataSource"
-                    :leaf-columns="leafColumns"
-                    :row-class="rowClass">
+                    :leaf-columns="leafColumns">
         </table-body>
       </div>
     </div>
@@ -191,10 +189,6 @@ export default {
     border: { type: Boolean, default: true },
     // 斑马线
     stripe: { type: Boolean, default: false },
-    // 行类样式
-    rowClass: { type: Function },
-    // 单元格类样式
-    cellClass: { type: Function },
     // 单行选中状态
     select: { type: Boolean, default: false },
     // 最大高度
