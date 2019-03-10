@@ -16,17 +16,7 @@
           :column="column">
       </th>
     </tr>
-    <!-- <tr v-for="(row, index) in columnRows"
-        :key="index">
-      <th v-for="(column, index) in row"
-          :key="index"
-          :colspan="column.colSpan"
-          :rowspan="column.rowSpan"
-          :class="getColumnClass(column)"
-          @click="handleColumnClick($event,column)">
-        <table-column :column="column"></table-column>
-      </th>
-    </tr>
+    <!--
     <tr v-for="(row, rowIndex) in data"
         :key="`key_${rowIndex}`">
       <td v-for="(column, cellIndex) in leafColumns"
