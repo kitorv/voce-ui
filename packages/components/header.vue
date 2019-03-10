@@ -20,6 +20,7 @@
         :key="`key_${rowIndex}`">
       <table-cell v-for="(column, cellIndex) in leafColumns"
                   :key="`k_${cellIndex}`"
+                  type="header"
                   :column="column"
                   :row="row"
                   :row-index="rowIndex"></table-cell>
