@@ -10,29 +10,24 @@
     </colgroup>
     <tr v-for="(colRow, index) in columnRows"
         :key="index">
-      <th v-for="(column, index) in colRow"
-          :key="index"
-          is="table-column"
-          :column="column">
-      </th>
+      <table-column v-for="(column, index) in colRow"
+                    :key="index"
+                    :column="column">
+      </table-column>
     </tr>
-    <!--
+
     <tr v-for="(row, rowIndex) in data"
         :key="`key_${rowIndex}`">
-      <td v-for="(column, cellIndex) in leafColumns"
-          :key="cellIndex"
-          :class="getCellClass(column,row,rowIndex)">
-        <table-cell type='header'
-                    :column="column"
-                    :row="row"
-                    :row-index="rowIndex"></table-cell>
-      </td>
-    </tr> -->
+      <table-cell v-for="(column, cellIndex) in leafColumns"
+                  :key="`k_${cellIndex}`"
+                  :column="column"
+                  :row="row"
+                  :row-index="rowIndex"></table-cell>
+    </tr>
   </table>
 </template>
 
 <script>
-import TableRow from "./row";
 import TableColumn from "./column";
 import TableCell from "./cell";
 
@@ -42,32 +37,6 @@ export default {
     columnRows: { type: Array },
     leafColumns: { type: Array },
     data: { type: Array }
-  },
-  methods: {
-    getColumnClass(column) {
-      let { type, headerAlign } = column;
-      let classList = [];
-      if (type) {
-        classList.push(`kv-datagird--type-${type}`);
-      }
-      if (headerAlign && ["left", "center", "right"].includes(headerAlign)) {
-        classList.push(`kv-datagird--align-${headerAlign}`);
-      }
-      return classList.join(" ");
-    },
-    getCellClass(column, row, rowIndex) {
-      let { type, align } = column;
-      let { cellClass } = row;
-      let classList = [];
-      if (type) {
-        classList.push(`kv-datagird--type-${type}`);
-      }
-      if (align && ["left", "center", "right"].includes(align)) {
-        classList.push(`kv-datagird--align-${align}`);
-      }
-      return classList.join(" ");
-    },
-    handleColumnClick($event, column) {}
   }
 };
 </script>
