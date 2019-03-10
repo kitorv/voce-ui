@@ -44,8 +44,7 @@
            :style="{'width':`${leftBodyWidth}px`,'height':`${bodyHeight-hScrollSize}px`}">
         <table-body :style="{'width':`${bodyWidth}px`}"
                     :data="dataSource"
-                    :leaf-columns="leafColumns"
-                    >
+                    :leaf-columns="leafColumns">
         </table-body>
       </div>
       <div ref="body"
@@ -170,6 +169,10 @@ export default {
       indeterminate: false,
       // 整个表格高度
       height: 0,
+      // 排序方式
+      orderType: null,
+      // 排序字段
+      orderKey: null,
       // 数据字典存储变量数据
       dictionary: {}
     };
@@ -270,8 +273,8 @@ export default {
         if (fixed === "right") {
           rightFixedColumns.push(column);
         }
-        initColumnProps.call(this, column);
-        leafColumns.push(column);
+        // initColumnProps.call(this, column);
+        leafColumns.push(initColumnProps.call(this, column));
         column.colSpan = 1;
         column.rowSpan = columnRows.length - column.level + 1;
       };
