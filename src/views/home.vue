@@ -17,7 +17,8 @@
                     :footer="footer"
                     :stripe="true"
                     :border="true"
-                    :header="header">
+                    :header="header"
+                    :row-class="rowClass">
             <div slot="expansion">
               <div style="height:100px;background-color:#e8f7fe">
                 expand row

@@ -11,7 +11,7 @@
     <template v-for="(row, rowIndex) in data">
       <table-row :row="row"
                  :key="rowIndex"
-                 :leaf-columns="leafColumns">
+                 :row-class="rowClass">
         <table-cell v-for="(column, cellIndex) in leafColumns"
                     :key="cellIndex"
                     :column="column"
@@ -45,7 +45,7 @@ export default {
   props: {
     leafColumns: { type: Array },
     data: { type: Array },
-    footer: { type: Boolean, default: false }
+    rowClass: { type: [String, Function] }
   },
   mounted() {
     this.$emit("on-after-render");
