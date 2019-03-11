@@ -2,5 +2,5 @@
 export default {
   width: 40,
   columnFormatter: h => <div>#</div>,
-  formatter: (h, { index }) => <div>{index}</div>
+  formatter: (h, { index }) => <div>{index + 1}</div>
 };

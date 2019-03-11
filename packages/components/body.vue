@@ -16,7 +16,8 @@
                     :key="cellIndex"
                     :column="column"
                     :row="row"
-                    :row-index="rowIndex">
+                    :row-index="rowIndex"
+                    :cell-class="cellClass">
         </table-cell>
       </table-row>
       <tr class="kv-datagrid--expansion-row"
@@ -45,7 +46,8 @@ export default {
   props: {
     leafColumns: { type: Array },
     data: { type: Array },
-    rowClass: { type: [String, Function] }
+    rowClass: { type: [String, Function] },
+    cellClass: { type: [String, Function] }
   },
   mounted() {
     this.$emit("on-after-render");

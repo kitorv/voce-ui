@@ -7,7 +7,8 @@ export default {
     type: { type: String, default: "body" },
     column: { type: Object },
     row: { type: Object },
-    rowIndex: { type: Number }
+    rowIndex: { type: Number },
+    cellClass: { type: [String, Function] }
   },
   render(h) {
     let { data } = this.row;
@@ -39,6 +40,16 @@ export default {
       }
       if (align) {
         classList.push(`kv-datagird--align-${align}`);
+      }
+      if (this.cellClass) {
+        if (typeof this.cellClass == "string") {
+          classList.push(this.cellClass);
+        } else {
+          let { data } = this.row;
+          classList.push(
+            this.cellClass.call(this.datagrid, data, this.column, this.rowIndex)
+          );
+        }
       }
       return classList.join(" ");
     }

@@ -45,7 +45,8 @@
         <table-body :style="{'width':`${bodyWidth}px`}"
                     :data="dataSource"
                     :leaf-columns="leafColumns"
-                    :row-class="rowClass">
+                    :row-class="rowClass"
+                    :cell-class="cellClass">
         </table-body>
       </div>
       <div ref="body"
@@ -56,6 +57,7 @@
                     :leaf-columns="leafColumns"
                     :data="dataSource"
                     :row-class="rowClass"
+                    :cell-class="cellClass"
                     @on-after-render="handleBodyLayoutResize">
           <template slot="expansion">
             <slot name="expansion"></slot>
@@ -77,7 +79,8 @@
         <table-body :style="{'width':`${bodyWidth}px`}"
                     :data="dataSource"
                     :leaf-columns="leafColumns"
-                    :row-class="rowClass">
+                    :row-class="rowClass"
+                    :cell-class="cellClass">
         </table-body>
       </div>
     </div>
@@ -200,7 +203,9 @@ export default {
     // 最大高度
     maxHeight: { type: Number },
     // 行的类样式
-    rowClass: { type: [String, Function] }
+    rowClass: { type: [String, Function] },
+    // 单元格的类样式
+    cellClass: { type: [String, Function] }
   },
   computed: {
     bodyStyle() {
