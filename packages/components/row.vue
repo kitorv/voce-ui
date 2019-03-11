@@ -1,5 +1,5 @@
 <template>
-  <tr :class="[{'kv-datagird--row-hover':row.hover},{'kv-datagird--row-selected':row.selected}]"
+  <tr :class="[{'kv-datagird--row-hover':row.hover},{'kv-datagird--row-selected':row.selected},tableRowClass]"
       @mouseenter="handleMouseEnter"
       @mouseleave="handleMouseLeave"
       @click="handleClick">
@@ -12,7 +12,18 @@ export default {
   inject: ["datagrid"],
   props: {
     row: { type: Object },
-    rowIndex: { type: Number }
+    rowIndex: { type: Number },
+    rowClass: { type: [String, Function] }
+  },
+  computed: {
+    tableRowClass() {
+      if (!this.rowClass) return;
+      if (typeof this.rowClass == "string") {
+        return this.rowClass;
+      }
+      let { data } = this.row;
+      return this.rowClass.call(this.datagrid, data, this.rowIndex);
+    }
   },
   methods: {
     handleMouseEnter() {
