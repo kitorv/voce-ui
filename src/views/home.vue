@@ -18,7 +18,8 @@
                     :stripe="true"
                     :border="true"
                     :header="header"
-                    :row-class="rowClass">
+                    :row-class="rowClass"
+                    :cell-class="cellClass">
             <div slot="expansion">
               <div style="height:100px;background-color:#e8f7fe">
                 expand row
