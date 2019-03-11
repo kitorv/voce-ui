@@ -35,7 +35,7 @@ export default {
         colspan={this.column.colSpan}
         rowspan={this.column.rowSpan}
         class={this.getColumnClass()}
-        on-click={this.handleCellCloick}
+        on-click={this.handleCellClick}
       >
         <div class="kv-datagird--column">{content}</div>
         {sortElement}
@@ -76,23 +76,40 @@ export default {
       }
       return classList.join(" ");
     },
-    handleCellCloick() {
-      let { key } = this.column;
+    sortDataSource() {
+      let { key, sort } = this.column;
+      if (!sort) return;
       if (this.orderKey !== key) {
-        this.orderType = null;
+        this.orderType = "normal";
       }
       switch (this.orderType) {
         case "asc":
           this.orderType = "desc";
           break;
         case "desc":
-          this.orderType = null;
+          this.orderType = "normal";
           break;
         default:
           this.orderType = "asc";
           break;
       }
       this.orderKey = key;
+      let rows = this.datagrid.initProxyDataSource(this.datagrid.data);
+      if (this.orderType == "normal") {
+        this.datagrid.dataSource = rows;
+      }
+      rows.sort((x, y) => {
+        if (this.orderType == "asc") {
+          return x.data[this.orderKey] > y.data[this.orderKey] ? 1 : -1;
+        }
+        if (this.orderType == "desc") {
+          return x.data[this.orderKey] > y.data[this.orderKey] ? -1 : 1;
+        }
+      });
+      this.datagrid.dataSource = rows;
+    },
+    handleCellClick() {
+      this.sortDataSource();
     }
   }
 };
