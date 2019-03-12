@@ -20,9 +20,10 @@
                     :header="header"
                     :row-class="rowClass"
                     :cell-class="cellClass">
-            <div slot="expansion">
+            <div slot="expansion"
+                 slot-scope="props">
               <div style="height:100px;background-color:#e8f7fe">
-                expand row
+                expand row {{props}}
               </div>
             </div>
           </datagrid>
@@ -34,14 +35,22 @@
                     :data="data"
                     :footer="footer"
                     :fit="true"
-                    :max-height="500"></datagrid>
+                    :max-height="500">
+          </datagrid>
         </div>
         <br>
         <div style="width:800px;height:600px;overflow:hidden;">
-          <datagrid :columns="columns"
-                    :data="[{}]"
+          <datagrid :columns="columns3"
+                    :data="[{},{}]"
                     :footer="footer"
-                    :fit="true"></datagrid>
+                    :fit="true">
+            <div slot="expansion">
+              <datagrid :columns="columns3"
+                        :border="false"
+                        :data="[{}]"
+                        :fit="false"></datagrid>
+            </div>
+          </datagrid>
         </div>
 
       </div>
@@ -57,6 +66,18 @@ export default {
   components: { Datagrid },
   data() {
     return {
+      columns4: [
+        { key: "name", title: "姓名", width: 100, sort: true },
+        { key: "age", title: "年龄", width: 100, align: "center" },
+        { key: "work", title: "工作", headerAlign: "center" }
+      ],
+      columns3: [
+        { type: "expansion" },
+        { key: "id", title: "id标识", width: 100, sort: true },
+        { key: "name", title: "姓名", width: 100, sort: true },
+        { key: "age", title: "年龄", width: 100, align: "center" },
+        { key: "work", title: "工作", headerAlign: "center" }
+      ],
       columns2: [
         { type: "expansion" },
         { type: "checkbox" },

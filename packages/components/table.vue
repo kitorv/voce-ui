@@ -59,8 +59,10 @@
                     :row-class="rowClass"
                     :cell-class="cellClass"
                     @on-after-render="handleBodyLayoutResize">
-          <template slot="expansion">
-            <slot name="expansion"></slot>
+          <template slot="expansion"
+                    slot-scope="props">
+            <slot name="expansion"
+                  v-bind="props"></slot>
           </template>
         </table-body>
         <div v-else
