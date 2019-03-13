@@ -20,7 +20,13 @@
                     :header="header"
                     :row-class="rowClass"
                     :cell-class="cellClass">
-            <div slot="expansion"
+            <!-- <div slot="expansion"
+                 slot-scope="props">
+              <div style="height:100px;background-color:#e8f7fe">
+                expand row {{props}}
+              </div>
+            </div> -->
+            <div slot="expansion-datagrid"
                  slot-scope="props">
               <div style="height:100px;background-color:#e8f7fe">
                 expand row {{props}}

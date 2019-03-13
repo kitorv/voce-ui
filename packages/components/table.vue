@@ -59,11 +59,6 @@
                     :row-class="rowClass"
                     :cell-class="cellClass"
                     @on-after-render="handleBodyLayoutResize">
-          <template slot="expansion"
-                    slot-scope="props">
-            <slot name="expansion"
-                  v-bind="props"></slot>
-          </template>
         </table-body>
         <div v-else
              :style="{'width':`${bodyWidth}px`}"
@@ -180,9 +175,7 @@ export default {
       // 排序方式
       orderType: null,
       // 排序字段
-      orderKey: null,
-      // 数据字典存储变量数据
-      dictionary: {}
+      orderKey: null
     };
   },
   props: {

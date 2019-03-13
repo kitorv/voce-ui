@@ -20,14 +20,9 @@
                     :cell-class="cellClass">
         </table-cell>
       </table-row>
-      <tr v-if="row.expand&&$slots.expansion"
-          class="kv-datagrid--expansion-row"
-          :key="`expansion-${rowIndex}`">
-        <td :colspan="leafColumns.length">
-          <slot name="expansion"
-                :row="row"></slot>
-        </td>
-      </tr>
+      <table-row-expansion v-if="row.expand"
+                           :key="`ex-${rowIndex}`"
+                           :row="row"></table-row-expansion>
     </template>
 
   </table>
@@ -36,9 +31,10 @@
 <script>
 import TableRow from "./row";
 import TableCell from "./cell";
+import TableRowExpansion from "./expansion";
 
 export default {
-  components: { TableRow, TableCell },
+  components: { TableRow, TableCell, TableRowExpansion },
   data() {
     return {
       datagrid: this.$parent
