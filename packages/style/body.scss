@@ -25,6 +25,19 @@
       &.kv-datagird--align-right {
         text-align: right;
       }
+
+      &.kv-datagird--separate-cell {
+        padding: 0;
+      }
+
+      .kv-datagrid--separate-content {
+        padding: 8px;
+        border-bottom: 1px solid #e8e8e8;
+
+        &:last-child {
+          border-bottom: none;
+        }
+      }
     }
   }
 

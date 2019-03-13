@@ -3,6 +3,8 @@ import TableCheckbox from "../components/checkbox";
 
 export default {
   width: 40,
+  key: "",
+  separate: false,
   columnFormatter: function(h) {
     return (
       <TableCheckbox
