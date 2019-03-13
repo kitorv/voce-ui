@@ -422,7 +422,6 @@ export default {
       if (this.$refs.footerWrapper) {
         this.footerHeight = this.$refs.footerWrapper.offsetHeight;
       }
-
       // 判断是否包含滚动态条，并计算出滚动条尺寸
       const bodyEl = this.$refs.body;
       this.hScrollSize =
