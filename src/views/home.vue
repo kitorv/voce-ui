@@ -12,7 +12,7 @@
       <div class="view-home--body-content">
 
         <div style="width:800px;height:600px;overflow:hidden;">
-          <datagrid :columns="columns2"
+          <datagrid :columns="columns"
                     :data="data"
                     :footer="footer"
                     :stripe="true"
@@ -35,7 +35,7 @@
           </datagrid>
 
         </div>
-        <br>
+        <!-- <br>
         <div style="width:800px;height:auto;overflow:hidden;">
           <datagrid :columns="columns"
                     :data="data"
@@ -57,7 +57,7 @@
                         :fit="false"></datagrid>
             </div>
           </datagrid>
-        </div>
+        </div> -->
 
       </div>
     </div>
@@ -121,15 +121,15 @@ export default {
         {
           title: "指标",
           children: [
-            { key: "target1", title: "指标1", width: 80 },
-            { key: "target2", title: "指标2", width: 80 },
-            { key: "target3", title: "指标3", width: 80 },
-            { key: "target4", title: "指标4", width: 80 }
+            { key: "target1", title: "指标1", width: 80 ,separate:true},
+            { key: "target2", title: "指标2", width: 80 ,separate:true},
+            { key: "target3", title: "指标3", width: 80 ,separate:true},
+            { key: "target4", title: "指标4", width: 80,separate:true }
           ]
         },
-        { key: "number1", title: "数值1", fixed: "right", width: 80 },
-        { key: "number2", title: "数值2", fixed: "right", width: 80 },
-        { key: "number3", title: "数值3", fixed: "right", width: 80 }
+        { key: "number1", title: "数值1", fixed: "right", width: 80 ,separate:true},
+        { key: "number2", title: "数值2", fixed: "right", width: 80 ,separate:true},
+        { key: "number3", title: "数值3", fixed: "right", width: 80 ,separate:true}
       ],
       data: [
         {

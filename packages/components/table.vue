@@ -125,6 +125,7 @@ import debounce from "../utils/debounce.js";
 import scrollSize from "../utils/scrollsize.js";
 import initProxyRow from "../store/row.js";
 import initColumnProps from "../store/column.js";
+import initMegreDataList from "../store/megre.js";
 
 export default {
   name: "datagird",
@@ -147,7 +148,7 @@ export default {
       // 表头数据源包装构建
       headerDataSource: this.initProxyDataSource(this.header),
       // 数据源包装构建
-      dataSource: this.initProxyDataSource(this.data),
+      dataSource: this.initBodyProxyDataSource(initParams.leafColumns),
       // 表尾数据源包装构建
       footerDataSource: this.initProxyDataSource(this.footer),
       // 垂直滚动条宽度
@@ -200,7 +201,9 @@ export default {
     // 行的类样式
     rowClass: { type: [String, Function] },
     // 单元格的类样式
-    cellClass: { type: [String, Function] }
+    cellClass: { type: [String, Function] },
+    // 合并单元格字段
+    megreKeys: { type: Array }
   },
   computed: {
     bodyStyle() {
@@ -292,6 +295,20 @@ export default {
     // 初始化数据源包装，统一管理便于扩展
     initProxyDataSource(rows) {
       return Array.from(rows, m => initProxyRow.call(this, m));
+    },
+    // 初始化表体数据源代理，表体需要处理合并单元格数据和表体特有数据
+    initBodyProxyDataSource(leafColumns) {
+      let megreKeys = [];
+      leafColumns.forEach(col => {
+        let { separate, key } = col;
+        if (separate || !key) return;
+        megreKeys.push(key);
+      });
+      if (megreKeys.length <= 0) {
+        return this.initProxyDataSource(this.data);
+      }
+      let rows = initMegreDataList(megreKeys, this.data);
+      return this.initProxyDataSource(rows);
     },
     // 表格内容渲染完成根据内容调整表格
     handleBodyLayoutResize() {
