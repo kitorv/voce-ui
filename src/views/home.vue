@@ -9,7 +9,7 @@
                      to="/">基本功能</router-link>
       </div> -->
 
-      <div class="view-home--body-content">
+      <!-- <div class="view-home--body-content">
 
         <div style="width:800px;height:600px;overflow:hidden;">
           <datagrid :columns="columns"
@@ -20,12 +20,6 @@
                     :header="header"
                     :row-class="rowClass"
                     :cell-class="cellClass">
-            <!-- <div slot="expansion"
-                 slot-scope="props">
-              <div style="height:100px;background-color:#e8f7fe">
-                expand row {{props}}
-              </div>
-            </div> -->
             <div slot="expansion-datagrid"
                  slot-scope="props">
               <div style="height:100px;background-color:#e8f7fe">
@@ -34,8 +28,8 @@
             </div>
           </datagrid>
 
-        </div>
-        <!-- <br>
+        </div> -->
+      <!-- <br>
         <div style="width:800px;height:auto;overflow:hidden;">
           <datagrid :columns="columns"
                     :data="data"
@@ -59,7 +53,11 @@
           </datagrid>
         </div> -->
 
-      </div>
+      <!-- </div> -->
+
+      <datagrid :columns="treeColumn"
+                :data="treeList"></datagrid>
+
     </div>
   </div>
 </template>
@@ -72,6 +70,76 @@ export default {
   components: { Datagrid },
   data() {
     return {
+      treeColumn: [
+        { title: "Key", key: "key", tree: true },
+        { title: "Name", key: "name" },
+        { title: "Age", key: "age" },
+        { title: "Address", key: "address" }
+      ],
+      treeList: [
+        {
+          key: 1,
+          name: "John Brown sr.",
+          age: 60,
+          address: "New York No. 1 Lake Park",
+          children: [
+            {
+              key: 11,
+              name: "John Brown",
+              age: 42,
+              address: "New York No. 2 Lake Park"
+            },
+            {
+              key: 12,
+              name: "John Brown jr.",
+              age: 30,
+              address: "New York No. 3 Lake Park",
+              children: [
+                {
+                  key: 121,
+                  name: "Jimmy Brown",
+                  age: 16,
+                  address: "New York No. 3 Lake Park"
+                }
+              ]
+            },
+            {
+              key: 13,
+              name: "Jim Green sr.",
+              age: 72,
+              address: "London No. 1 Lake Park",
+              children: [
+                {
+                  key: 131,
+                  name: "Jim Green",
+                  age: 42,
+                  address: "London No. 2 Lake Park",
+                  children: [
+                    {
+                      key: 1311,
+                      name: "Jim Green jr.",
+                      age: 25,
+                      address: "London No. 3 Lake Park"
+                    },
+                    {
+                      key: 1312,
+                      name: "Jimmy Green sr.",
+                      age: 18,
+                      address: "London No. 4 Lake Park"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          key: 2,
+          name: "Joe Black",
+          age: 32,
+          address: "Sidney No. 1 Lake Park"
+        }
+      ],
       columns4: [
         { key: "name", title: "姓名", width: 100, sort: true },
         { key: "age", title: "年龄", width: 100, align: "center" },
@@ -121,15 +189,33 @@ export default {
         {
           title: "指标",
           children: [
-            { key: "target1", title: "指标1", width: 80 ,separate:true},
-            { key: "target2", title: "指标2", width: 80 ,separate:true},
-            { key: "target3", title: "指标3", width: 80 ,separate:true},
-            { key: "target4", title: "指标4", width: 80,separate:true }
+            { key: "target1", title: "指标1", width: 80, separate: true },
+            { key: "target2", title: "指标2", width: 80, separate: true },
+            { key: "target3", title: "指标3", width: 80, separate: true },
+            { key: "target4", title: "指标4", width: 80, separate: true }
           ]
         },
-        { key: "number1", title: "数值1", fixed: "right", width: 80 ,separate:true},
-        { key: "number2", title: "数值2", fixed: "right", width: 80 ,separate:true},
-        { key: "number3", title: "数值3", fixed: "right", width: 80 ,separate:true}
+        {
+          key: "number1",
+          title: "数值1",
+          fixed: "right",
+          width: 80,
+          separate: true
+        },
+        {
+          key: "number2",
+          title: "数值2",
+          fixed: "right",
+          width: 80,
+          separate: true
+        },
+        {
+          key: "number3",
+          title: "数值3",
+          fixed: "right",
+          width: 80,
+          separate: true
+        }
       ],
       data: [
         {
