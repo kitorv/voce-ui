@@ -126,6 +126,7 @@ import scrollSize from "../utils/scrollsize.js";
 import initProxyRow from "../store/row.js";
 import initColumnProps from "../store/column.js";
 import initMegreDataList from "../store/megre.js";
+import initTreeRows from "../store/tree.js";
 
 export default {
   name: "datagird",
@@ -189,7 +190,7 @@ export default {
     // 页脚数据
     footer: { type: Array, default: () => [] },
     // 自适应容器
-    fit: { type: Boolean, default: true },
+    fit: { type: Boolean, default: false },
     // 边框
     border: { type: Boolean, default: true },
     // 斑马线
@@ -299,15 +300,29 @@ export default {
     // 初始化表体数据源代理，表体需要处理合并单元格数据和表体特有数据
     initBodyProxyDataSource(leafColumns) {
       let megreKeys = [];
+      let treeKey = false;
       leafColumns.forEach(col => {
-        let { separate, key } = col;
-        if (separate || !key) return;
-        megreKeys.push(key);
+        let { separate, key, tree } = col;
+        if (!key) return;
+        if (separate) {
+          megreKeys.push(key);
+        }
+        if (tree) {
+          treeKey = true;
+        }
       });
-      if (megreKeys.length <= 0) {
+      if (megreKeys.length <= 0 && !treeKey) {
         return this.initProxyDataSource(this.data);
       }
-      let rows = initMegreDataList(megreKeys, this.data);
+      let rows = [];
+      if (megreKeys.length > 0) {
+        rows = initMegreDataList(megreKeys, this.data);
+      }
+      if (treeKey) {
+        console.log(initTreeRows(this.data));
+
+        return initTreeRows(this.data);
+      }
       return this.initProxyDataSource(rows);
     },
     // 表格内容渲染完成根据内容调整表格
