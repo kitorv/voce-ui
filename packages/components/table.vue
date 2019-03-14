@@ -320,7 +320,6 @@ export default {
       }
       if (treeKey) {
         console.log(initTreeRows(this.data));
-
         return initTreeRows(this.data);
       }
       return this.initProxyDataSource(rows);
