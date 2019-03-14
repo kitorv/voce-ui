@@ -2,7 +2,6 @@
   <div ref="datagrid"
        :class="['kv-datagrid',{'kv-datagrid-border':columnRows.length>1||border},{'kv-datagrid-stripe':stripe}]"
        :style="style">
-
     <!-- 表头 -->
     <div ref="headerWrapper"
          class="kv-datagrid--header"
@@ -13,8 +12,7 @@
         <table-header :style="{'width':`${bodyWidth}px`}"
                       :column-rows="columnRows"
                       :leaf-columns="leafColumns"
-                      :data="headerDataSource">
-        </table-header>
+                      :data="headerDataSource"></table-header>
       </div>
       <div ref="header"
            class="kv-datagrid--header-center">
@@ -123,10 +121,15 @@ import TableFooter from "./footer";
 import Mousewheel from "../directives/mousewheel.js";
 import debounce from "../utils/debounce.js";
 import scrollSize from "../utils/scrollsize.js";
-import initProxyRow from "../store/row.js";
+import {
+  initProxyRows,
+  initTreeProxyRows,
+  initMegreProxyRows
+} from "../store/row.js";
 import initColumnProps from "../store/column.js";
-import initMegreDataList from "../store/megre.js";
-import initTreeRows from "../store/tree.js";
+// import initProxyRow from "../store/row.js";
+// import initMegreDataList from "../store/megre.js";
+// import initTreeRows from "../store/tree.js";
 
 export default {
   name: "datagird",
@@ -147,11 +150,11 @@ export default {
       // 右侧固定列
       rightFixedColumns: initParams.rightFixedColumns,
       // 表头数据源包装构建
-      headerDataSource: this.initProxyDataSource(this.header),
+      headerDataSource: initProxyRows(this.header),
       // 数据源包装构建
-      dataSource: this.initBodyProxyDataSource(initParams.leafColumns),
+      dataSource: this.initProxyDataSource(),
       // 表尾数据源包装构建
-      footerDataSource: this.initProxyDataSource(this.footer),
+      footerDataSource: initProxyRows(this.footer),
       // 垂直滚动条宽度
       vScrollSize: 0,
       // 水平滚动条宽度
@@ -177,7 +180,11 @@ export default {
       // 排序方式
       orderType: null,
       // 排序字段
-      orderKey: null
+      orderKey: null,
+      // 拆分单元格字段
+      separateKeys: [],
+      // 树节点列
+      treeKey: null
     };
   },
   props: {
@@ -202,9 +209,7 @@ export default {
     // 行的类样式
     rowClass: { type: [String, Function] },
     // 单元格的类样式
-    cellClass: { type: [String, Function] },
-    // 合并单元格字段
-    megreKeys: { type: Array }
+    cellClass: { type: [String, Function] }
   },
   computed: {
     bodyStyle() {
@@ -259,9 +264,10 @@ export default {
       let leftFixedColumns = [];
       let rightFixedColumns = [];
       let leafColumns = [];
+      this.treeKey = null;
       // 设置单元格的colspan和rowspan
       const initCell = column => {
-        const { children, fixed, type } = column;
+        const { children, fixed, type, separate, key, tree } = column;
         // 包含子节点递归设置子节点的占位
         if (Array.isArray(children) && children.length > 0) {
           let colSpan = 0;
@@ -282,8 +288,14 @@ export default {
         if (fixed === "right") {
           rightFixedColumns.push(column);
         }
-        // initColumnProps.call(this, column);
-        leafColumns.push(initColumnProps.call(this, column));
+        initColumnProps.call(this, column);
+        if (separate && key) {
+          this.separateKeys.push(key);
+        }
+        if (tree && !this.treeKey && key) {
+          this.treeKey = key;
+        }
+        leafColumns.push(column);
         column.colSpan = 1;
         column.rowSpan = columnRows.length - column.level + 1;
       };
@@ -293,36 +305,11 @@ export default {
       });
       return { leftFixedColumns, rightFixedColumns, leafColumns };
     },
-    // 初始化数据源包装，统一管理便于扩展
-    initProxyDataSource(rows) {
-      return Array.from(rows, m => initProxyRow.call(this, m));
-    },
     // 初始化表体数据源代理，表体需要处理合并单元格数据和表体特有数据
-    initBodyProxyDataSource(leafColumns) {
-      let megreKeys = [];
-      let treeKey = false;
-      leafColumns.forEach(col => {
-        let { separate, key, tree } = col;
-        if (!key) return;
-        if (separate) {
-          megreKeys.push(key);
-        }
-        if (tree) {
-          treeKey = true;
-        }
-      });
-      if (megreKeys.length <= 0 && !treeKey) {
-        return this.initProxyDataSource(this.data);
-      }
-      let rows = [];
-      if (megreKeys.length > 0) {
-        rows = initMegreDataList(megreKeys, this.data);
-      }
-      if (treeKey) {
-        console.log(initTreeRows(this.data));
-        return initTreeRows(this.data);
-      }
-      return this.initProxyDataSource(rows);
+    initProxyDataSource() {
+      if (this.treeKey) return initTreeProxyRows(this.data);
+      if (this.separateKeys.length > 0) return initMegreProxyRows(this.data);
+      return initProxyRows(this.data);
     },
     // 表格内容渲染完成根据内容调整表格
     handleBodyLayoutResize() {
@@ -402,17 +389,13 @@ export default {
     },
     // 浏览器缩放表格布局自适应
     handleLayoutReize(interval = 0) {
-      if (interval === 0) {
+      let resize = () => {
         this.handleBodyLayoutResize();
         this.handleBodyScroll();
         this.handleBodyResize();
-        return;
-      }
-      return debounce(() => {
-        this.handleBodyLayoutResize();
-        this.handleBodyScroll();
-        this.handleBodyResize();
-      }, interval);
+      };
+      if (interval > 0) return debounce(resize, interval);
+      resize();
     },
     // 调整表格内容高度，固定列头
     handleBodyResize() {

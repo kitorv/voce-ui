@@ -1,6 +1,5 @@
 <script>
 import Checkbox from "./checkbox";
-import { getMegreDetailRows } from "../store/megre.js";
 
 export default {
   inject: ["datagrid"],
@@ -42,7 +41,6 @@ export default {
           </div>
         );
       }
-
       if (this.column.separate && content) {
         return <div class="kv-datagrid--separate-content">{content}</div>;
       }
@@ -82,7 +80,7 @@ export default {
       let { data } = this.row;
       let { key, separate } = this.column;
       if (this.type == "body" && separate) {
-        return getMegreDetailRows(data);
+        return data["MERGE_DETAILROWS"];
       }
       return [data];
     }

@@ -1,4 +1,7 @@
-export default function(row) {
+/* eslint-disable prettier/prettier */
+
+// 代理行数据用于各种行状态操作的管理
+export const initProxyRow = row => {
   return {
     // 唯一Id标识
     id: null,
@@ -19,4 +22,51 @@ export default function(row) {
     // 行的数据
     data: row
   };
-}
+};
+
+// 初始化代理行数据集合
+export const initProxyRows = rows => {
+  return Array.from(rows, row => initProxyRow(row));
+};
+
+// 初始化树结构代理行数据
+export const initTreeProxyRows = (rows, treeNodeList = [], parentId = null, level = 0, index = 0) => {
+  rows.forEach(row => {
+    let { children } = row;
+    index++;
+    let proxyRow = initProxyRow(row);
+    proxyRow.id = index;
+    proxyRow.level = level + 1;
+    proxyRow.parentId = parentId;
+
+    treeNodeList.push(proxyRow);
+    if (!Array.isArray(children) || children.length <= 0) return;
+    proxyRow.isParent = true;
+    initTreeProxyRows(children, treeNodeList, proxyRow.id, proxyRow.level, index);
+  });
+  return treeNodeList;
+};
+
+// 合并单元格代理行数据
+export const initMegreProxyRows = (keys, rows) => {
+  let dataMap = {};
+  for (let i = 0; i < rows.length; i++) {
+    const row = rows[i];
+    let combineValues = [];
+    keys.forEach(key => {
+      combineValues.push(row[key]);
+    });
+    const key = combineValues.join("_$_");
+    if (!dataMap[key]) {
+      dataMap[key] = { row, children: [] };
+    }
+    dataMap[key].children.push(row);
+  }
+  let dataList = [];
+  for (const key in dataMap) {
+    const { row, children } = dataMap[key];
+    let newRow = Object.assign({ MERGE_DETAILROWS: children }, row);
+    dataList.push(initProxyRow(newRow));
+  }
+  return dataList;
+};
