@@ -22,5 +22,4 @@ export default function(column) {
     width: `${column.width}px`,
     minWidth: `${column.width}px`
   };
-  return column;
 }
