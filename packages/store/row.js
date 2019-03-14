@@ -13,7 +13,9 @@ export default function(row) {
     // 展开行状态
     expand: false,
     // 隐藏行
-    hiddden:false,
+    hiddden: false,
+    // 树结构的父节点
+    isParent: false,
     // 行的数据
     data: row
   };
