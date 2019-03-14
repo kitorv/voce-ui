@@ -32,6 +32,17 @@ export default {
       if (footerFormatter && this.type === "footer") {
         content = footerFormatter.call(this.datagrid, h, params);
       }
+      if (this.column.tree) {
+        return (
+          <div
+            class="kv-datagrid--tree-cell"
+            style={{ "padding-left": `${this.row.level * 10}px` }}
+          >
+            {content}
+          </div>
+        );
+      }
+
       if (this.column.separate && content) {
         return <div class="kv-datagrid--separate-content">{content}</div>;
       }
