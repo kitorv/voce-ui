@@ -12,7 +12,8 @@
         <table-header :style="{'width':`${bodyWidth}px`}"
                       :column-rows="columnRows"
                       :leaf-columns="leafColumns"
-                      :data="headerDataSource"></table-header>
+                      :data="headerDataSource">
+        </table-header>
       </div>
       <div ref="header"
            class="kv-datagrid--header-center">
