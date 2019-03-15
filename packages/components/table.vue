@@ -12,15 +12,13 @@
         <table-header :style="{'width':`${bodyWidth}px`}"
                       :column-rows="columnRows"
                       :leaf-columns="leafColumns"
-                      :data="headerDataSource">
-        </table-header>
+                      :data="headerDataSource"></table-header>
       </div>
       <div ref="header"
            class="kv-datagrid--header-center">
         <table-header :column-rows="columnRows"
                       :leaf-columns="leafColumns"
-                      :data="headerDataSource">
-        </table-header>
+                      :data="headerDataSource"></table-header>
       </div>
       <div v-if="rightFixedColumns.length>0"
            class="kv-datagrid--header-right"
@@ -28,12 +26,10 @@
         <table-header :style="{'width':`${bodyWidth}px`}"
                       :column-rows="columnRows"
                       :leaf-columns="leafColumns"
-                      :data="headerDataSource">
-        </table-header>
+                      :data="headerDataSource"></table-header>
       </div>
     </div>
     <!-- 表头 -->
-
     <!-- 表体 -->
     <div class="kv-datagird--body">
       <div v-if="leftFixedColumns.length>0"
@@ -45,8 +41,7 @@
                     :data="dataSource"
                     :leaf-columns="leafColumns"
                     :row-class="rowClass"
-                    :cell-class="cellClass">
-        </table-body>
+                    :cell-class="cellClass"></table-body>
       </div>
       <div ref="body"
            class="kv-datagrid--body-center"
@@ -57,8 +52,7 @@
                     :data="dataSource"
                     :row-class="rowClass"
                     :cell-class="cellClass"
-                    @on-after-render="handleBodyLayoutResize">
-        </table-body>
+                    @on-after-render="handleBodyLayoutResize"></table-body>
         <div v-else
              :style="{'width':`${bodyWidth}px`}"
              class="kv-datagrid--placeholder">
@@ -76,12 +70,10 @@
                     :data="dataSource"
                     :leaf-columns="leafColumns"
                     :row-class="rowClass"
-                    :cell-class="cellClass">
-        </table-body>
+                    :cell-class="cellClass"></table-body>
       </div>
     </div>
     <!-- 表体 -->
-
     <!-- 表尾 -->
     <div ref="footerWrapper"
          class="kv-datagrid--footer"
@@ -92,8 +84,7 @@
            :style="{'width':`${leftBodyWidth}px`,}">
         <table-footer :style="{'width':`${bodyWidth}px`}"
                       :data="footerDataSource"
-                      :leaf-columns="leafColumns">
-        </table-footer>
+                      :leaf-columns="leafColumns"></table-footer>
       </div>
       <div ref="footer"
            class="kv-datagrid--footer-center">
@@ -106,12 +97,10 @@
            :style="{'width':`${rightBodyWidth}px`,'right':`${vScrollSize}px`}">
         <table-footer :style="{'width':`${bodyWidth}px`}"
                       :data="footerDataSource"
-                      :leaf-columns="leafColumns">
-        </table-footer>
+                      :leaf-columns="leafColumns"></table-footer>
       </div>
     </div>
     <!-- 表尾 -->
-
   </div>
 </template>
 
@@ -122,15 +111,8 @@ import TableFooter from "./footer";
 import Mousewheel from "../directives/mousewheel.js";
 import debounce from "../utils/debounce.js";
 import scrollSize from "../utils/scrollsize.js";
-import {
-  initProxyRows,
-  initTreeProxyRows,
-  initMegreProxyRows
-} from "../store/row.js";
+import { initProxyRows, initTreeProxyRows, initMegreProxyRows } from "../store/row.js";
 import initColumnProps from "../store/column.js";
-// import initProxyRow from "../store/row.js";
-// import initMegreDataList from "../store/megre.js";
-// import initTreeRows from "../store/tree.js";
 
 export default {
   name: "datagird",
@@ -319,10 +301,8 @@ export default {
       // 计算滚动条宽度
       let bodyEl = this.$refs.body;
       if (!bodyEl) return;
-      this.vScrollSize =
-        bodyEl.scrollHeight > bodyEl.offsetHeight ? scrollSize() : 0;
-      this.hScrollSize =
-        bodyEl.scrollWidth > bodyEl.offsetWidth ? scrollSize() : 0;
+      this.vScrollSize = bodyEl.scrollHeight > bodyEl.offsetHeight ? scrollSize() : 0;
+      this.hScrollSize = bodyEl.scrollWidth > bodyEl.offsetWidth ? scrollSize() : 0;
       // 存在固定列计算固定列所占有的宽度
       const lefColLength = this.leftFixedColumns.length;
       const rightColLength = this.rightFixedColumns.length;
@@ -406,8 +386,7 @@ export default {
       let fitSize = false;
       if (this.fit) {
         fitSize = true;
-        this.height =
-          this.maxHeight || this.$refs.datagrid.parentNode.clientHeight;
+        this.height = this.maxHeight || this.$refs.datagrid.parentNode.clientHeight;
       } else {
         this.height = this.$refs.datagrid.offsetHeight;
         fitSize = this.height == this.maxHeight;
@@ -422,12 +401,10 @@ export default {
       }
       // 判断是否包含滚动态条，并计算出滚动条尺寸
       const bodyEl = this.$refs.body;
-      this.hScrollSize =
-        bodyEl.scrollWidth > bodyEl.offsetWidth ? scrollSize() : 0;
+      this.hScrollSize = bodyEl.scrollWidth > bodyEl.offsetWidth ? scrollSize() : 0;
       this.bodyHeight = this.height - this.headerHeight - this.footerHeight;
       // 自适应父容器表格滚动条要根据表体内容高度计算
-      this.vScrollSize =
-        bodyEl.scrollHeight > this.bodyHeight ? scrollSize() : 0;
+      this.vScrollSize = bodyEl.scrollHeight > this.bodyHeight ? scrollSize() : 0;
     }
   },
   mounted() {
