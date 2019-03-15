@@ -11,7 +11,12 @@ export default {
         ]}
         style={{ "padding-left": `${row.level * 15}px` }}
       >
-        <i class="kv-icon-fill-down-arrow" on-click={() => {}} />
+        <i
+          class="kv-icon-fill-down-arrow"
+          on-click={() => {
+            row.nodeExpand = !row.nodeExpand;
+          }}
+        />
         {content}
       </div>
     );

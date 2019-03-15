@@ -33,18 +33,6 @@
       // .kv-datagrid--separate-content {
       //   padding: 8px;
       //   border-bottom: 1px solid #e8e8e8;
-
-      //   &:last-child {
-      //     border-bottom: none;
-      //   }
-      // }
-
-      // .kv-datagrid--tree-space {
-      //   .kv-icon-fill-down-arrow {
-      //     visibility: hidden;
-      //     cursor: default;
-      //   }
-      // }
     }
   }
 
@@ -59,6 +47,7 @@
     }
   }
 
+  // 树表格样式
   tr > td > .kv-datagrid--tree-cell {
     .kv-icon-fill-down-arrow {
       display: inline-block;
@@ -71,6 +60,13 @@
     &.kv-datagrid--tree-expand {
       .kv-icon-fill-down-arrow {
         transform: rotate(0deg);
+      }
+    }
+
+    &.kv-datagrid--tree-space {
+      .kv-icon-fill-down-arrow {
+        visibility: hidden;
+        cursor: default;
       }
     }
   }
