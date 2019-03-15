@@ -71,7 +71,8 @@ export default {
   data() {
     return {
       treeColumn: [
-        { title: "Key", key: "key", tree: true },
+        { type: "checkbox", fixed: "left", width: 40 },
+        { title: "Key", key: "key", type: 'tree' },
         { title: "Name", key: "name" },
         { title: "Age", key: "age" },
         { title: "Address", key: "address" }
