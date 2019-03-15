@@ -9,7 +9,7 @@ export default {
     cellClass: { type: [String, Function] }
   },
   render(h) {
-    let { key, headerFormatter, formatter, footerFormatter } = this.column;
+    let { key, headerFormatter, formatter, footerFormatter, render } = this.column;
     if (headerFormatter && this.type === "header") {
       formatter = headerFormatter
     }
@@ -17,15 +17,18 @@ export default {
       formatter = footerFormatter
     }
     let content = this.row.data[key]
+    let params = {
+      data: this.row.data,
+      row: this.row,
+      column: this.column,
+      value: content,
+      index: this.rowIndex
+    };
     if (formatter) {
-      let params = {
-        data: this.row.data,
-        row: this.row,
-        column: this.column,
-        value: content,
-        index: this.rowIndex
-      };
       content = formatter.call(this.datagrid, h, params);
+    }
+    if (render) {
+      content = render.call(this.datagrid, h, content, params);
     }
     return <td class={this.tableCellClass}>{content}</td>;
   },

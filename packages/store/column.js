@@ -1,6 +1,7 @@
 import Checkbox from "../columns/checkbox";
 import Index from "../columns/index";
 import Expansion from "../columns/expansion";
+import Tree from "../columns/tree";
 
 export default function(column) {
   let { type } = column;
@@ -14,6 +15,9 @@ export default function(column) {
       break;
     case "expansion":
       extColumn = Expansion;
+      break;
+    case "tree":
+      extColumn = Tree;
       break;
   }
   Object.assign(column, extColumn);
