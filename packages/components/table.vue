@@ -171,27 +171,16 @@ export default {
     };
   },
   props: {
-    // 列配置
     columns: { type: Array, default: () => [] },
-    // 表头数据
     header: { type: Array, default: () => [] },
-    // 表格数据
     data: { type: Array, default: () => [] },
-    // 页脚数据
     footer: { type: Array, default: () => [] },
-    // 自适应容器
     fit: { type: Boolean, default: false },
-    // 边框
     border: { type: Boolean, default: true },
-    // 斑马线
     stripe: { type: Boolean, default: false },
-    // 单行选中状态
     select: { type: Boolean, default: false },
-    // 最大高度
     maxHeight: { type: Number },
-    // 行的类样式
     rowClass: { type: [String, Function] },
-    // 单元格的类样式
     cellClass: { type: [String, Function] }
   },
   computed: {
