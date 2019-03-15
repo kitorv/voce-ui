@@ -34,9 +34,13 @@ export default {
       if (this.column.tree) {
         return (
           <div
-            class="kv-datagrid--tree-cell"
-            style={{ "padding-left": `${this.row.level * 10}px` }}
+            class={[
+              "kv-datagrid--tree-cell",
+              { "kv-datagrid--tree-space": this.row.isLeaf }
+            ]}
+            style={{ "padding-left": `${this.row.level * 15}px` }}
           >
+            <i class="kv-icon-fill-down-arrow" />
             {content}
           </div>
         );
