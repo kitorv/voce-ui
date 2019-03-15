@@ -33,7 +33,7 @@ export default {
     handleMouseLeave() {
       this.row.hover = false;
     },
-    handleClick() {}
+    handleClick() { }
   },
   watch: {
     "row.checked"(value) {
