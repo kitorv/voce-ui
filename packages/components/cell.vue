@@ -1,6 +1,4 @@
 <script>
-import Checkbox from "./checkbox";
-
 export default {
   inject: ["datagrid"],
   props: {
