@@ -72,10 +72,20 @@ export default {
     return {
       treeColumn: [
         { type: "checkbox", fixed: "left", width: 40 },
-        { title: "Key", key: "key", type: 'tree' },
+        { title: "Key", key: "key", type: "tree" },
         { title: "Name", key: "name" },
-        { title: "Age", key: "age" },
-        { title: "Address", key: "address" }
+        {
+          title: "Age", key: "age",
+          edit(h, { data }) {
+            return <input v-model={data.age} />;
+          }        },
+        {
+          title: "Address",
+          key: "address",
+          edit(h, { data }) {
+            return <input v-model={data.address} />;
+          }
+        }
       ],
       treeList: [
         {

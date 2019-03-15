@@ -111,7 +111,11 @@ import TableFooter from "./footer";
 import Mousewheel from "../directives/mousewheel.js";
 import debounce from "../utils/debounce.js";
 import scrollSize from "../utils/scrollsize.js";
-import { initProxyRows, initTreeProxyRows, initMegreProxyRows } from "../store/row.js";
+import {
+  initProxyRows,
+  initTreeProxyRows,
+  initMegreProxyRows
+} from "../store/row.js";
 import initColumnProps from "../store/column.js";
 
 export default {
@@ -122,7 +126,14 @@ export default {
     return { datagrid: this };
   },
   data() {
-    let { separateKeys, treeKey, columnRows, leafColumns, leftFixedColumns, rightFixedColumns } = this.init();
+    let {
+      separateKeys,
+      treeKey,
+      columnRows,
+      leafColumns,
+      leftFixedColumns,
+      rightFixedColumns
+    } = this.init();
     return {
       // 列转行用于渲染表头数据
       columnRows: columnRows,
@@ -163,7 +174,11 @@ export default {
       // 排序方式
       orderType: null,
       // 排序字段
-      orderKey: null
+      orderKey: null,
+      // 编辑行
+      editIndex: -1,
+      // 编辑字段
+      editKey: null
     };
   },
   props: {
@@ -229,8 +244,11 @@ export default {
     },
     // 将列拆分固定列、末级列、设置基本属性
     initColumnTypeAndSize(columnRows) {
-      let leftFixedColumns = [], rightFixedColumns = [], leafColumns = [];
-      let treeKey = null, separateKeys = [];
+      let leftFixedColumns = [],
+        rightFixedColumns = [],
+        leafColumns = [];
+      let treeKey = null,
+        separateKeys = [];
       // 设置单元格的colspan和rowspan
       const initCell = column => {
         const { children, fixed, type, separate, key } = column;
@@ -269,7 +287,13 @@ export default {
       this.columns.forEach(col => {
         initCell(col);
       });
-      return { leftFixedColumns, rightFixedColumns, leafColumns, treeKey, separateKeys };
+      return {
+        leftFixedColumns,
+        rightFixedColumns,
+        leafColumns,
+        treeKey,
+        separateKeys
+      };
     },
     // 初始化表体数据源代理，表体需要处理合并单元格数据和表体特有数据
     initProxyDataSource(treeKey, separateKeys) {
@@ -284,8 +308,10 @@ export default {
       // 计算滚动条宽度
       let bodyEl = this.$refs.body;
       if (!bodyEl) return;
-      this.vScrollSize = bodyEl.scrollHeight > bodyEl.offsetHeight ? scrollSize() : 0;
-      this.hScrollSize = bodyEl.scrollWidth > bodyEl.offsetWidth ? scrollSize() : 0;
+      this.vScrollSize =
+        bodyEl.scrollHeight > bodyEl.offsetHeight ? scrollSize() : 0;
+      this.hScrollSize =
+        bodyEl.scrollWidth > bodyEl.offsetWidth ? scrollSize() : 0;
       // 存在固定列计算固定列所占有的宽度
       const lefColLength = this.leftFixedColumns.length;
       const rightColLength = this.rightFixedColumns.length;
@@ -369,7 +395,8 @@ export default {
       let fitSize = false;
       if (this.fit) {
         fitSize = true;
-        this.height = this.maxHeight || this.$refs.datagrid.parentNode.clientHeight;
+        this.height =
+          this.maxHeight || this.$refs.datagrid.parentNode.clientHeight;
       } else {
         this.height = this.$refs.datagrid.offsetHeight;
         fitSize = this.height == this.maxHeight;
@@ -384,10 +411,12 @@ export default {
       }
       // 判断是否包含滚动态条，并计算出滚动条尺寸
       const bodyEl = this.$refs.body;
-      this.hScrollSize = bodyEl.scrollWidth > bodyEl.offsetWidth ? scrollSize() : 0;
+      this.hScrollSize =
+        bodyEl.scrollWidth > bodyEl.offsetWidth ? scrollSize() : 0;
       this.bodyHeight = this.height - this.headerHeight - this.footerHeight;
       // 自适应父容器表格滚动条要根据表体内容高度计算
-      this.vScrollSize = bodyEl.scrollHeight > this.bodyHeight ? scrollSize() : 0;
+      this.vScrollSize =
+        bodyEl.scrollHeight > this.bodyHeight ? scrollSize() : 0;
     }
   },
   mounted() {

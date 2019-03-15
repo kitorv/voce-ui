@@ -9,14 +9,14 @@ export default {
     cellClass: { type: [String, Function] }
   },
   render(h) {
-    let { key, headerFormatter, formatter, footerFormatter, render } = this.column;
+    let { key, headerFormatter, formatter, footerFormatter, render, edit } = this.column;
     if (headerFormatter && this.type === "header") {
-      formatter = headerFormatter
+      formatter = headerFormatter;
     }
     if (footerFormatter && this.type === "footer") {
-      formatter = footerFormatter
+      formatter = footerFormatter;
     }
-    let content = this.row.data[key]
+    let content = this.row.data[key];
     let params = {
       data: this.row.data,
       row: this.row,
@@ -30,7 +30,11 @@ export default {
     if (render) {
       content = render.call(this.datagrid, h, content, params);
     }
-    return <td class={this.tableCellClass}>{content}</td>;
+    if (this.edit && edit) {
+      content = edit && edit.call(this.datagrid, h, params)
+    }
+    return <td on-click={this.handleCellClick} class={this.tableCellClass}>{content}</td>
+
   },
   computed: {
     tableCellClass() {
@@ -53,6 +57,20 @@ export default {
         }
       }
       return classList.join(" ");
+    },
+    edit() {
+      let { key } = this.column;
+      let datagrid = this.datagrid;
+      return datagrid.editIndex == this.rowIndex && datagrid.editKey == key;
+    }
+  },
+  methods: {
+    handleCellClick() {
+      let { edit, key } = this.column;
+      if (edit && key) {
+        this.datagrid.editIndex = this.rowIndex;
+        this.datagrid.editKey = key;
+      }
     }
   }
 };
