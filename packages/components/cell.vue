@@ -12,7 +12,6 @@ export default {
   },
   render(h) {
     let { key, headerFormatter, formatter, footerFormatter } = this.column;
-    //  this._l：vue内部的renderList方法
     let cellContent = this._l(this.separateRows, data => {
       let content = data[key];
       let params = {
@@ -36,11 +35,15 @@ export default {
           <div
             class={[
               "kv-datagrid--tree-cell",
-              { "kv-datagrid--tree-space": this.row.isLeaf }
+              { "kv-datagrid--tree-space": this.row.isLeaf },
+              { "kv-datagrid--tree-expand": this.row.nodeExpand }
             ]}
             style={{ "padding-left": `${this.row.level * 15}px` }}
           >
-            <i class="kv-icon-fill-down-arrow" />
+            <i
+              class="kv-icon-fill-down-arrow"
+              on-click={this.setTreeNodeStatus}
+            />
             {content}
           </div>
         );
@@ -77,9 +80,6 @@ export default {
       }
       return classList.join(" ");
     },
-    megreKeys() {
-      return this.datagrid.megreKeys;
-    },
     separateRows() {
       let { data } = this.row;
       let { key, separate } = this.column;
@@ -87,6 +87,18 @@ export default {
         return data["MERGE_DETAILROWS"];
       }
       return [data];
+    }
+  },
+  methods: {
+    setTreeNodeStatus(event) {
+      event.stopPropagation();
+      let status = !this.row.nodeExpand;
+      this.row.nodeExpand = status;
+      let { id } = this.row;
+      this.datagrid.dataSource.map(row => {
+        if (row.parentId != id) return;
+        row.hidden = !status;
+      });
     }
   }
 };

@@ -16,9 +16,11 @@ export const initProxyRow = row => {
     // 展开行状态
     expand: false,
     // 隐藏行
-    hiddden: false,
+    hidden: false,
     // 树结构的父节点
     isLeaf: true,
+    // 树节点展开
+    nodeExpand: true,
     // 行的数据
     data: row
   };

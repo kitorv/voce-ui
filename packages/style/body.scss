@@ -41,8 +41,17 @@
 
       .kv-datagrid--tree-cell {
         .kv-icon-fill-down-arrow {
+          display: inline-block;
           margin-right: 8px;
           cursor: pointer;
+          transition: all 0.3s;
+          transform: rotate(-90deg);
+        }
+      }
+
+      .kv-datagrid--tree-expand {
+        .kv-icon-fill-down-arrow {
+          transform: rotate(0deg);
         }
       }
 
