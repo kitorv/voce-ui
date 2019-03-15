@@ -18,7 +18,7 @@ export const initProxyRow = row => {
     // 隐藏行
     hiddden: false,
     // 树结构的父节点
-    isParent: false,
+    isLeaf: true,
     // 行的数据
     data: row
   };
@@ -36,13 +36,13 @@ export const initTreeProxyRows = (rows, treeNodeList = [], parentId = null, leve
     index++;
     let proxyRow = initProxyRow(row);
     proxyRow.id = index;
-    proxyRow.level = level + 1;
+    proxyRow.level = level;
     proxyRow.parentId = parentId;
 
     treeNodeList.push(proxyRow);
     if (!Array.isArray(children) || children.length <= 0) return;
-    proxyRow.isParent = true;
-    initTreeProxyRows(children, treeNodeList, proxyRow.id, proxyRow.level, index);
+    proxyRow.isLeaf = false;
+    initTreeProxyRows(children, treeNodeList, proxyRow.id, proxyRow.level + 1, index);
   });
   return treeNodeList;
 };

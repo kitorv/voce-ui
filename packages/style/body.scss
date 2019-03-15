@@ -38,6 +38,20 @@
           border-bottom: none;
         }
       }
+
+      .kv-datagrid--tree-cell {
+        .kv-icon-fill-down-arrow {
+          margin-right: 8px;
+          cursor: pointer;
+        }
+      }
+
+      .kv-datagrid--tree-space {
+        .kv-icon-fill-down-arrow {
+          visibility: hidden;
+          cursor: default;
+        }
+      }
     }
   }
 
