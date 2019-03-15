@@ -122,20 +122,20 @@ export default {
     return { datagrid: this };
   },
   data() {
-    let initParams = this.init();
+    let { separateKeys, treeKey, columnRows, leafColumns, leftFixedColumns, rightFixedColumns } = this.init();
     return {
       // 列转行用于渲染表头数据
-      columnRows: initParams.columnRows,
+      columnRows: columnRows,
       // 末级叶子列用于实际数据展示
-      leafColumns: initParams.leafColumns,
+      leafColumns: leafColumns,
       // 左侧固定列
-      leftFixedColumns: initParams.leftFixedColumns,
+      leftFixedColumns: leftFixedColumns,
       // 右侧固定列
-      rightFixedColumns: initParams.rightFixedColumns,
+      rightFixedColumns: rightFixedColumns,
       // 表头数据源包装构建
       headerDataSource: initProxyRows(this.header),
       // 数据源包装构建
-      dataSource: this.initProxyDataSource(),
+      dataSource: this.initProxyDataSource(separateKeys, treeKey),
       // 表尾数据源包装构建
       footerDataSource: initProxyRows(this.footer),
       // 垂直滚动条宽度
@@ -163,11 +163,7 @@ export default {
       // 排序方式
       orderType: null,
       // 排序字段
-      orderKey: null,
-      // 拆分单元格字段
-      separateKeys: [],
-      // 树节点列
-      treeKey: null
+      orderKey: null
     };
   },
   props: {
@@ -233,13 +229,11 @@ export default {
     },
     // 将列拆分固定列、末级列、设置基本属性
     initColumnTypeAndSize(columnRows) {
-      let leftFixedColumns = [];
-      let rightFixedColumns = [];
-      let leafColumns = [];
-      this.treeKey = null;
+      let leftFixedColumns = [], rightFixedColumns = [], leafColumns = [];
+      let treeKey = null, separateKeys = [];
       // 设置单元格的colspan和rowspan
       const initCell = column => {
-        const { children, fixed, type, separate, key, tree } = column;
+        const { children, fixed, type, separate, key } = column;
         // 包含子节点递归设置子节点的占位
         if (Array.isArray(children) && children.length > 0) {
           let colSpan = 0;
@@ -262,10 +256,10 @@ export default {
         }
         initColumnProps.call(this, column);
         if (separate && key) {
-          this.separateKeys.push(key);
+          separateKeys.push(key);
         }
-        if (tree && !this.treeKey && key) {
-          this.treeKey = key;
+        if (type == "tree" && !this.treeKey && key) {
+          treeKey = key;
         }
         leafColumns.push(column);
         column.colSpan = 1;
@@ -275,12 +269,12 @@ export default {
       this.columns.forEach(col => {
         initCell(col);
       });
-      return { leftFixedColumns, rightFixedColumns, leafColumns };
+      return { leftFixedColumns, rightFixedColumns, leafColumns, treeKey, separateKeys };
     },
     // 初始化表体数据源代理，表体需要处理合并单元格数据和表体特有数据
-    initProxyDataSource() {
-      if (this.treeKey) return initTreeProxyRows(this.data);
-      if (this.separateKeys.length > 0) return initMegreProxyRows(this.data);
+    initProxyDataSource(treeKey, separateKeys) {
+      if (treeKey) return initTreeProxyRows(this.data);
+      if (separateKeys.length > 0) return initMegreProxyRows(this.data);
       return initProxyRows(this.data);
     },
     // 表格内容渲染完成根据内容调整表格
