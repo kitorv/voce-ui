@@ -101,9 +101,13 @@
       </div>
     </div>
     <!-- 表尾 -->
-    <table-pager :page-count="50"
-                 :page-number="5"
-                 :page-index="48"></table-pager>
+    <!-- 分页 -->
+    <div class="kv-datagrid--pagination">
+      <table-pager :page-count="50"
+                   :page-number="5"
+                   :page-index="48"></table-pager>
+    </div>
+    <!-- 分页 -->
   </div>
 </template>
 

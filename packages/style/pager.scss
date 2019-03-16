@@ -1,0 +1,31 @@
+.kv-datagrid--page {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-size: 14px;
+  list-style: none;
+}
+.kv-datagrid--page-number {
+  display: inline-block;
+  min-width: 28px;
+  height: 28px;
+  margin-right: 8px;
+  line-height: 32px;
+  text-align: center;
+  vertical-align: middle;
+  list-style: none;
+  background-color: #fff;
+  border: 1px solid #d9d9d9;
+  border-radius: 4px;
+  outline: 0;
+  cursor: pointer;
+  user-select: none;
+}
+
+.kv-datagrid--page-prev,
+.kv-datagrid--page-next {
+  color: #d9d9d9;
+  border-color: transparent;
+  transition: all 0.3s;
+  font-weight: bold;
+}
