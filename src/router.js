@@ -11,6 +11,11 @@ export default new Router({
       component: () => import("./views/home.vue"),
       children: [
         {
+          path: "/",
+          name: "example",
+          component: () => import("../examples/basic.md")
+        },
+        {
           path: "/example/basic",
           name: "example-basic",
           component: () => import("../examples/basic.md")

@@ -21,7 +21,7 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .view-home {
   position: relative;
 }
@@ -72,6 +72,7 @@ export default {
   transition: 0.15s ease-out;
   font-weight: bold;
   border-right: 3px solid transparent;
+  white-space: nowrap;
   cursor: pointer;
 
   &:hover {
@@ -83,6 +84,12 @@ export default {
   flex: 1;
   padding: 0 64px 64px 64px;
   min-height: 500px;
+}
+
+.router-link-exact-active {
+  color: #41a259;
+  background-color: #eeffde;
+  border-right-color: #41a259;
 }
 </style>
 
