@@ -77,7 +77,6 @@
     <!-- 表尾 -->
     <div ref="footerWrapper"
          class="kv-datagrid--footer"
-         v-if="footer.length>0"
          :style="{'padding-right': `${vScrollSize}px`}">
       <div v-if="leftFixedColumns.length>0"
            class="kv-datagrid--body-left"
@@ -87,6 +86,7 @@
                       :leaf-columns="leafColumns"></table-footer>
       </div>
       <div ref="footer"
+           v-if="footer.length>0"
            class="kv-datagrid--footer-center">
         <table-footer :data="footerDataSource"
                       :leaf-columns="leafColumns">
@@ -99,15 +99,13 @@
                       :data="footerDataSource"
                       :leaf-columns="leafColumns"></table-footer>
       </div>
+      <div class="kv-datagrid--pagination">
+        <table-pager :page-count="50"
+                     :page-number="5"
+                     :page-index="48"></table-pager>
+      </div>
     </div>
     <!-- 表尾 -->
-    <!-- 分页 -->
-    <div class="kv-datagrid--pagination">
-      <table-pager :page-count="50"
-                   :page-number="5"
-                   :page-index="48"></table-pager>
-    </div>
-    <!-- 分页 -->
   </div>
 </template>
 
