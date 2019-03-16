@@ -102,8 +102,8 @@
     </div>
     <!-- 表尾 -->
     <table-pager :page-count="50"
-                 :pageSize="500"
-                 :pageNumber="5"></table-pager>
+                 :page-number="5"
+                 :page-index="8"></table-pager>
   </div>
 </template>
 
