@@ -1,6 +1,4 @@
-
-
-:::snippet
+:::snippet 基本用法
 
 ```html
 <template>

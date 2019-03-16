@@ -5,6 +5,7 @@ import KvCodeSnippet from "./components/code-sinppet";
 import KvDatagrid from "../packages/components/table";
 
 import "../packages/style/index.scss";
+import "highlight.js/styles/color-brewer.css";
 
 Vue.config.productionTip = false;
 Vue.component("kv-code-snippet", KvCodeSnippet);
