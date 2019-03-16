@@ -101,6 +101,9 @@
       </div>
     </div>
     <!-- 表尾 -->
+    <table-pager :page-count="50"
+                 :pageSize="500"
+                 :pageNumber="5"></table-pager>
   </div>
 </template>
 
@@ -108,19 +111,16 @@
 import TableHeader from "./header";
 import TableBody from "./body";
 import TableFooter from "./footer";
+import TablePager from "./pager"
 import Mousewheel from "../directives/mousewheel.js";
 import debounce from "../utils/debounce.js";
 import scrollSize from "../utils/scrollsize.js";
-import {
-  initProxyRows,
-  initTreeProxyRows,
-  initMegreProxyRows
-} from "../store/row.js";
+import { initProxyRows, initTreeProxyRows, initMegreProxyRows } from "../store/row.js";
 import initColumnProps from "../store/column.js";
 
 export default {
   name: "datagird",
-  components: { TableHeader, TableBody, TableFooter },
+  components: { TableHeader, TableBody, TableFooter, TablePager },
   directives: { Mousewheel },
   provide() {
     return { datagrid: this };
