@@ -103,7 +103,7 @@
     <!-- 表尾 -->
     <table-pager :page-count="50"
                  :page-number="5"
-                 :page-index="8"></table-pager>
+                 :page-index="48"></table-pager>
   </div>
 </template>
 
