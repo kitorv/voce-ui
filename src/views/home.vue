@@ -8,7 +8,6 @@
         <router-link class="view-home--body-link"
                      to="/">基本功能</router-link>
       </div>
-
       <div class="view-home--body-content">
         <router-view></router-view>
       </div>
