@@ -2,8 +2,8 @@
   <ul>
     <li>1</li>
     <li class="kv-icon kv-icon-ellipsis"></li>
-    <li v-for="(item, index) in pageList"
-        :key="index"></li>
+    <li v-for="(page, index) in pageList"
+        :key="index">{{page}}</li>
     <li class="kv-icon kv-icon-ellipsis"></li>
     <li>{{pageCount}}</li>
   </ul>
@@ -17,44 +17,31 @@ export default {
     pageNumber: { type: Number }
   },
   computed: {
+    showPrevMore() {
+      return this.pageIndex > this.pageCount - (this.pageNumber - 1) / 2;
+    },
+    showNextMore() {
+      return this.pageIndex < this.pageCount - (this.pageNumber - 1) / 2;
+    },
     pageList() {
-      const pageNumber = this.pageNumber;
-      const halfpageNumber = (pageNumber - 1) / 2;
-      const pageIndex = Number(this.pageIndex);
-      const pageCount = Number(this.pageCount);
-      let showPrevMore = false;
-      let showNextMore = false;
-      if (pageCount > pageNumber) {
-        if (pageIndex > pageNumber - halfpageNumber) {
-          showPrevMore = true;
-        }
-        if (pageIndex < pageCount - halfpageNumber) {
-          showNextMore = true;
-        }
+      let startIndex = 2, endIndex = this.pageCount
+      if (this.showPrevMore && !this.showNextMore) {
+        startIndex = this.pageCount - (this.pageNumber - 2)
       }
-      const array = [];
-      if (showPrevMore && !showNextMore) {
-        const startPage = pageCount - (pageNumber - 2);
-        for (let i = startPage; i < pageCount; i++) {
-          array.push(i);
-        }
-      } else if (!showPrevMore && showNextMore) {
-        for (let i = 2; i < pageNumber; i++) {
-          array.push(i);
-        }
-      } else if (showPrevMore && showNextMore) {
-        const offset = Math.floor(pageNumber / 2) - 1;
-        for (let i = pageIndex - offset; i <= pageIndex + offset; i++) {
-          array.push(i);
-        }
-      } else {
-        for (let i = 2; i < pageCount; i++) {
-          array.push(i);
-        }
+      if (!this.showPrevMore && this.showNextMore) {
+        startIndex = 2
+        endIndex = this.pageNumber
       }
-      this.showPrevMore = showPrevMore;
-      this.showNextMore = showNextMore;
-      return array;
+      if (this.showPrevMore && this.showNextMore) {
+        const offset = Math.floor(this.pageNumber / 2) - 1;
+        startIndex = this.pageIndex - offset
+        endIndex = this.pageIndex + offset
+      }
+      let pageList = []
+      for (let i = startIndex; i <= endIndex; i++) {
+        pageList.push(i)
+      }
+      return pageList
     }
   }
 }
