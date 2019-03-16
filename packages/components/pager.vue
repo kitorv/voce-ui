@@ -1,11 +1,22 @@
 <template>
-  <ul>
-    <li>1</li>
-    <li class="kv-icon kv-icon-ellipsis"></li>
+  <ul class="kv-datagrid--page">
+    <li class="kv-datagrid--page-number">
+      <i class="kv-icon-left"></i>
+    </li>
+    <li class="kv-datagrid--page-number">1</li>
+    <li class="kv-datagrid--page-number kv-datagrid--page-prev">
+      <i>•••</i>
+    </li>
     <li v-for="(page, index) in pageList"
-        :key="index">{{page}}</li>
-    <li class="kv-icon kv-icon-ellipsis"></li>
-    <li>{{pageCount}}</li>
+        :key="index"
+        class="kv-datagrid--page-number">{{page}}</li>
+    <li class="kv-datagrid--page-number kv-datagrid--page-next">
+      <i>•••</i>
+    </li>
+    <li class="kv-datagrid--page-number">{{pageCount}}</li>
+    <li class="kv-datagrid--page-number">
+      <i class="kv-icon-right"></i>
+    </li>
   </ul>
 </template>
 

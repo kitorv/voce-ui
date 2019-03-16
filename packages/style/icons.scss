@@ -1,12 +1,12 @@
 @font-face {
   font-family: "iconfont"; /* project id 1070198 */
-  src: url("//at.alicdn.com/t/font_1070198_bcjvfotpek.eot");
-  src: url("//at.alicdn.com/t/font_1070198_bcjvfotpek.eot?#iefix")
+  src: url("//at.alicdn.com/t/font_1070198_p4zs3opnfik.eot");
+  src: url("//at.alicdn.com/t/font_1070198_p4zs3opnfik.eot?#iefix")
       format("embedded-opentype"),
-    url("//at.alicdn.com/t/font_1070198_bcjvfotpek.woff2") format("woff2"),
-    url("//at.alicdn.com/t/font_1070198_bcjvfotpek.woff") format("woff"),
-    url("//at.alicdn.com/t/font_1070198_bcjvfotpek.ttf") format("truetype"),
-    url("//at.alicdn.com/t/font_1070198_bcjvfotpek.svg#iconfont") format("svg");
+    url("//at.alicdn.com/t/font_1070198_p4zs3opnfik.woff2") format("woff2"),
+    url("//at.alicdn.com/t/font_1070198_p4zs3opnfik.woff") format("woff"),
+    url("//at.alicdn.com/t/font_1070198_p4zs3opnfik.ttf") format("truetype"),
+    url("//at.alicdn.com/t/font_1070198_p4zs3opnfik.svg#iconfont") format("svg");
 }
 
 .kv-icon {
@@ -19,6 +19,14 @@
 
 .kv-icon-fill-down-arrow:before {
   content: "\e771";
+}
+
+.kv-icon-right:before {
+  content: "\e7eb";
+}
+
+.kv-icon-left:before {
+  content: "\e7ec";
 }
 
 .kv-icon-doubleleft:before {
