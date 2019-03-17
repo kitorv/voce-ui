@@ -166,7 +166,7 @@
 // -----斑马线-end-----
 .kv-datagrid-stripe {
   .kv-datagrid--body-table > tr {
-    &:nth-child(2n) > td {
+    &:nth-child(2n + 1) > td {
       background-color: #fafafa;
     }
   }

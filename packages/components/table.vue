@@ -394,9 +394,7 @@ export default {
     },
     // 调整表格内容高度，固定列头
     handleBodyResize() {
-      if (!this.bodyWidth) {
-        this.bodyWidth = this.$refs.header.firstChild.offsetWidth;
-      }
+      this.bodyWidth = this.$refs.header.firstChild.offsetWidth;
       let fitSize = false;
       if (this.fit) {
         fitSize = true;
