@@ -57,6 +57,7 @@
              :style="{'width':`${bodyWidth}px`}"
              class="kv-datagrid--placeholder">
           <div :class="['kv-datagrid--placeholder-empty',{'kv-datagrid--placeholder-fit':fit}]">
+            <div class="kv-datagrid--placeholder-image"><img src="../images/empty.svg"></div>
             <p>暂无数据</p>
           </div>
         </div>
