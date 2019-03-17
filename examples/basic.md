@@ -1,11 +1,45 @@
-:::snippet 基本用法
+# 基本用法
+
+## 简单表格
+
+:::demo 用于简单的数据展示
 
 ```html
 <template>
-  <img src="https://i.loli.net/2017/08/21/599a521472424.jpg" />
+  <kv-datagrid :columns="columns" :data="data"></kv-datagrid>
 </template>
 <script>
-  console.log(1);
+  export default {
+    data() {
+      return {
+        columns: [
+          { key: "name", title: "姓名" },
+          { key: "age", title: "年龄" },
+          { key: "address", title: "地址" }
+        ],
+        data: [
+          {
+            key: "1",
+            name: "John Brown",
+            age: 32,
+            address: "New York No. 1 Lake Park"
+          },
+          {
+            key: "2",
+            name: "Jim Green",
+            age: 42,
+            address: "London No. 1 Lake Park"
+          },
+          {
+            key: "3",
+            name: "Joe Black",
+            age: 32,
+            address: "Sidney No. 1 Lake Park"
+          }
+        ]
+      };
+    }
+  };
 </script>
 ```
 

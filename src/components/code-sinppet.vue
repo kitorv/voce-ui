@@ -14,8 +14,8 @@
       </span>
     </div>
     <div v-if="showCode"
-         class="kv-code-snippet--code">
-      <slot name="code"></slot>
+         class="kv-code-snippet--code highlight">
+      <slot name="highlight"></slot>
     </div>
   </div>
 </template>
@@ -24,7 +24,7 @@
 export default {
   data() {
     return {
-      showCode: false
+      showCode: true
     }
   }
 };
@@ -166,6 +166,7 @@ export default {
   position: relative;
   box-sizing: border-box;
   width: 100%;
+  min-height: 44px;
   padding: 12px 50px 12px 20px;
   font-size: 14px;
   transition: background-color 0.4s;

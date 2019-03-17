@@ -91,5 +91,38 @@ export default {
   background-color: #eeffde;
   border-right-color: #41a259;
 }
+
+.view-home /deep/ {
+  h1 {
+    color: #0d1a26;
+    font-weight: 500;
+    margin-bottom: 20px;
+    margin-top: 8px;
+    font-size: 30px;
+    line-height: 38px;
+  }
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: Lato;
+    margin: 1.6em 0 0.6em;
+    font-weight: 500;
+    clear: both;
+  }
+  h3 {
+    font-size: 18px;
+  }
+  h4 {
+    font-size: 16px;
+  }
+  h5 {
+    font-size: 14px;
+  }
+  h6 {
+    font-size: 12px;
+  }
+}
 </style>
 

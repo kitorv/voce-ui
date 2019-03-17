@@ -99,7 +99,8 @@
                       :data="footerDataSource"
                       :leaf-columns="leafColumns"></table-footer>
       </div>
-      <div class="kv-datagrid--pagination">
+      <div v-if="pagination"
+           class="kv-datagrid--pagination">
         <table-pager :page-count="50"
                      :page-number="5"
                      :page-index="48"></table-pager>
@@ -194,7 +195,8 @@ export default {
     select: { type: Boolean, default: false },
     maxHeight: { type: Number },
     rowClass: { type: [String, Function] },
-    cellClass: { type: [String, Function] }
+    cellClass: { type: [String, Function] },
+    pagination: { type: Boolean, default: false }
   },
   computed: {
     bodyStyle() {
@@ -397,13 +399,15 @@ export default {
       let fitSize = false;
       if (this.fit) {
         fitSize = true;
-        this.height =
-          this.maxHeight || this.$refs.datagrid.parentNode.clientHeight;
+        this.height = this.maxHeight || this.$refs.datagrid.parentNode.clientHeight;
       } else {
         this.height = this.$refs.datagrid.offsetHeight;
         fitSize = this.height == this.maxHeight;
       }
-      if (!fitSize) return;
+      if (!fitSize) {
+        this.height = 0
+        return
+      };
       // 计算内容高度=父容器-表头-表尾
       if (this.$refs.headerWrapper) {
         this.headerHeight = this.$refs.headerWrapper.offsetHeight;
