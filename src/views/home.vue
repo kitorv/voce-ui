@@ -7,6 +7,20 @@
       <div class="view-home--body-route">
         <router-link class="view-home--body-link"
                      to="/">基本功能</router-link>
+        <router-link class="view-home--body-link"
+                     to="/1">设置列宽</router-link>
+        <router-link class="view-home--body-link"
+                     to="/2">自适应高度</router-link>
+        <router-link class="view-home--body-link"
+                     to="/4">自定义样式</router-link>
+        <router-link class="view-home--body-link"
+                     to="/4">展开行</router-link>
+        <router-link class="view-home--body-link"
+                     to="/4">排序</router-link>
+        <router-link class="view-home--body-link"
+                     to="/4">单元格合并</router-link>
+        <router-link class="view-home--body-link"
+                     to="/4">列配置</router-link>
       </div>
       <div class="view-home--body-content">
         <router-view></router-view>
