@@ -10,7 +10,7 @@ module.exports = md => {
       prevToken.nesting === 1 &&
       prevToken.info.trim().match(/^demo\s*(.*)$/);
     if (token.info === "html" && isInDemoContainer) {
-      return `<template slot="code"><pre v-pre><code class="html">${md.utils.escapeHtml(
+      return `<template slot="highlight"><pre v-pre><code class="html">${md.utils.escapeHtml(
         token.content
       )}</code></pre></template>`;
     }
