@@ -84,7 +84,12 @@
   font-size: 16px;
   line-height: 22px;
   text-align: center;
-  color: #c8c8c8;
+  color: #aaaaaa;
+
+  p {
+    margin: 0;
+    padding: 0;
+  }
 }
 
 .kv-datagrid--placeholder-fit {
@@ -93,6 +98,15 @@
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 5;
+}
+
+.kv-datagrid--placeholder-image {
+  height: 40px;
+  margin-bottom: 10px;
+
+  img {
+    height: 100%;
+  }
 }
 
 .kv-datagrid--pagination {

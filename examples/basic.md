@@ -44,3 +44,29 @@
 ```
 
 :::
+
+## 无数据
+
+:::demo 无数据占位内容
+
+```html
+<template>
+  <kv-datagrid :columns="columns" :data="data"></kv-datagrid>
+</template>
+<script>
+  export default {
+    data() {
+      return {
+        columns: [
+          { key: "name", title: "姓名" },
+          { key: "age", title: "年龄" },
+          { key: "address", title: "地址" }
+        ],
+        data: []
+      };
+    }
+  };
+</script>
+```
+
+:::
