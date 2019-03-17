@@ -13,7 +13,7 @@
              src="../assest/images/code.svg">
       </span>
     </div>
-    <div v-if="showCode"
+    <div v-show="showCode"
          class="kv-code-snippet--code highlight">
       <slot name="highlight"></slot>
     </div>
@@ -24,7 +24,7 @@
 export default {
   data() {
     return {
-      showCode: true
+      showCode: false
     }
   }
 };
