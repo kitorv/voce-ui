@@ -34,6 +34,16 @@ export default new Router({
           path: "/example/style",
           name: "example-style",
           component: () => import("../examples/style.md")
+        },
+        {
+          path: "/example/render",
+          name: "example-render",
+          component: () => import("../examples/render.md")
+        },
+        {
+          path: "/example/data",
+          name: "example-data",
+          component: () => import("../examples/data.md")
         }
       ]
     }
