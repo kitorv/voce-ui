@@ -10,9 +10,7 @@
         <router-link class="view-home--body-link"
                      to="/example/column">列配置</router-link>
         <router-link class="view-home--body-link"
-                     to="/example/height">高度适应</router-link>
-        <router-link class="view-home--body-link"
-                     to="/example/column/width">列宽适应</router-link>
+                     to="/example/resize">宽高设置</router-link>
         <router-link class="view-home--body-link"
                      to="/example/style">样式定义</router-link>
 
@@ -101,6 +99,7 @@ export default {
   flex: 1;
   padding: 0 64px 64px 64px;
   min-height: 500px;
+  overflow: hidden;
 }
 
 .router-link-exact-active {
