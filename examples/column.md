@@ -14,30 +14,9 @@
       return {
         columns: [
           { type: "checkbox" },
-          {
-            key: "name",
-            title: "姓名",
-            columnFormatter(h, { column }) {
-              return `[${column.title}]`;
-            }
-          },
-          {
-            key: "age",
-            title: "年龄",
-            columnFormatter(h, { column }) {
-              return `[${column.title}]`;
-            },
-            formatter(h, { row }) {
-              return row.age > 18 ? "成年" : "未成年";
-            }
-          },
-          {
-            key: "address",
-            title: "地址",
-            columnFormatter(h, { column }) {
-              return `[${column.title}]`;
-            }
-          }
+          { key: "name", title: "姓名" },
+          { key: "age", title: "年龄" },
+          { key: "address", title: "地址" }
         ],
         data: [
           {
@@ -81,30 +60,9 @@
       return {
         columns: [
           { type: "index" },
-          {
-            key: "name",
-            title: "姓名",
-            columnFormatter(h, { column }) {
-              return `[${column.title}]`;
-            }
-          },
-          {
-            key: "age",
-            title: "年龄",
-            columnFormatter(h, { column }) {
-              return `[${column.title}]`;
-            },
-            formatter(h, { row }) {
-              return row.age > 18 ? "成年" : "未成年";
-            }
-          },
-          {
-            key: "address",
-            title: "地址",
-            columnFormatter(h, { column }) {
-              return `[${column.title}]`;
-            }
-          }
+          { key: "name", title: "姓名" },
+          { key: "age", title: "年龄" },
+          { key: "address", title: "地址" }
         ],
         data: [
           {
