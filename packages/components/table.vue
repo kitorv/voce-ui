@@ -3,7 +3,8 @@
        :class="['kv-datagrid',{'kv-datagrid-border':columnRows.length>1||border},{'kv-datagrid-stripe':stripe}]"
        :style="style">
     <!-- 表头 -->
-    <div ref="headerWrapper"
+    <div v-if="showHeader"
+         ref="headerWrapper"
          class="kv-datagrid--header"
          :style="{'padding-right': `${vScrollSize}px`}">
       <div v-if="leftFixedColumns.length>0"
@@ -53,8 +54,8 @@
                     :row-class="rowClass"
                     :cell-class="cellClass"
                     @on-after-render="handleBodyLayoutResize"></table-body>
+        <!-- :style="{'width':`${bodyWidth}px`}" -->
         <div v-else
-             :style="{'width':`${bodyWidth}px`}"
              class="kv-datagrid--placeholder">
           <div :class="['kv-datagrid--placeholder-empty',{'kv-datagrid--placeholder-fit':fit}]">
             <div class="kv-datagrid--placeholder-image"><img src="../images/empty.svg"></div>
@@ -197,7 +198,8 @@ export default {
     maxHeight: { type: Number },
     rowClass: { type: [String, Function] },
     cellClass: { type: [String, Function] },
-    pagination: { type: Boolean, default: false }
+    pagination: { type: Boolean, default: false },
+    showHeader: { type: Boolean, default: true }
   },
   computed: {
     bodyStyle() {
@@ -394,7 +396,9 @@ export default {
     },
     // 调整表格内容高度，固定列头
     handleBodyResize() {
-      this.bodyWidth = this.$refs.header.firstChild.offsetWidth;
+      // if (this.$refs.header) {
+      //   this.bodyWidth = this.$refs.header.firstChild.offsetWidth;
+      // }
       let fitSize = false;
       if (this.fit) {
         fitSize = true;
