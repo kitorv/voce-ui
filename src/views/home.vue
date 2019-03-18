@@ -13,6 +13,10 @@
                      to="/example/resize">宽高设置</router-link>
         <router-link class="view-home--body-link"
                      to="/example/style">样式定义</router-link>
+        <router-link class="view-home--body-link"
+                     to="/example/render">自定义渲染</router-link>
+        <router-link class="view-home--body-link"
+                     to="/example/data">数据处理</router-link>
 
         <!-- <router-link class="view-home--body-link"
                      to="/4">样式</router-link>
