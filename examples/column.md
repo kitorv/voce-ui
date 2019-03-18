@@ -188,6 +188,114 @@
 
 :::
 
+## 固定列
+
+:::demo
+
+```html
+<template>
+  <div style="max-width:1980px;">
+    <kv-datagrid :columns="columns" :data="data"></kv-datagrid>
+  </div>
+</template>
+<script>
+  export default {
+    data() {
+      return {
+        columns: [
+          { key: "name", title: "姓名", width: 120, fixed: "left" },
+          { key: "age", title: "年龄", width: 80, fixed: "left" },
+          { key: "weight", title: "体重", width: 80, fixed: "left" },
+          { key: "height", title: "身高", width: 200 },
+          { key: "value1", title: "指标1", width: 200 },
+          { key: "value2", title: "指标2", width: 200 },
+          { key: "value3", title: "指标3", width: 200 },
+          { key: "value4", title: "指标4", width: 200 },
+          { key: "value5", title: "指标5", width: 200 },
+          { key: "status", title: "健康状况", width: 200, fixed: "right" }
+        ],
+        data: [
+          {
+            name: "tom",
+            age: 18,
+            weight: 60,
+            height: 180,
+            value1: 1,
+            value2: 2,
+            value3: 3,
+            value4: 4,
+            value5: 5,
+            status: "良好"
+          },
+          {
+            name: "tom",
+            age: 18,
+            weight: 60,
+            height: 180,
+            value1: 1,
+            value2: 2,
+            value3: 3,
+            value4: 4,
+            value5: 5,
+            status: "良好"
+          },
+          {
+            name: "tom",
+            age: 18,
+            weight: 60,
+            height: 180,
+            value1: 1,
+            value2: 2,
+            value3: 3,
+            value4: 4,
+            value5: 5,
+            status: "良好"
+          },
+          {
+            name: "tom",
+            age: 18,
+            weight: 60,
+            height: 180,
+            value1: 1,
+            value2: 2,
+            value3: 3,
+            value4: 4,
+            value5: 5,
+            status: "良好"
+          },
+          {
+            name: "tom",
+            age: 18,
+            weight: 60,
+            height: 180,
+            value1: 1,
+            value2: 2,
+            value3: 3,
+            value4: 4,
+            value5: 5,
+            status: "良好"
+          },
+          {
+            name: "tom",
+            age: 18,
+            weight: 60,
+            height: 180,
+            value1: 1,
+            value2: 2,
+            value3: 3,
+            value4: 4,
+            value5: 5,
+            status: "良好"
+          }
+        ]
+      };
+    }
+  };
+</script>
+```
+
+:::
+
 ## 对其格式
 
 :::demo

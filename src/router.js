@@ -26,14 +26,9 @@ export default new Router({
           component: () => import("../examples/column.md")
         },
         {
-          path: "/example/column/width",
-          name: "example-column-width",
-          component: () => import("../examples/column-width.md")
-        },
-        {
-          path: "/example/height",
-          name: "example-height",
-          component: () => import("../examples/height.md")
+          path: "/example/resize",
+          name: "example-resize",
+          component: () => import("../examples/resize.md")
         },
         {
           path: "/example/style",

@@ -54,8 +54,9 @@
                     :row-class="rowClass"
                     :cell-class="cellClass"
                     @on-after-render="handleBodyLayoutResize"></table-body>
-        <!-- :style="{'width':`${bodyWidth}px`}" -->
+        <!--  -->
         <div v-else
+             :style="{'width':dataSource.length<1?`${bodyWidth}px`:'auto'}"
              class="kv-datagrid--placeholder">
           <div :class="['kv-datagrid--placeholder-empty',{'kv-datagrid--placeholder-fit':fit}]">
             <div class="kv-datagrid--placeholder-image"><img src="../images/empty.svg"></div>
@@ -197,7 +198,7 @@ export default {
     select: { type: Boolean, default: false },
     maxHeight: { type: Number },
     rowClass: { type: Function },
-    cellClass: { type:  Function },
+    cellClass: { type: Function },
     pagination: { type: Boolean, default: false },
     showHeader: { type: Boolean, default: true }
   },
@@ -396,9 +397,9 @@ export default {
     },
     // 调整表格内容高度，固定列头
     handleBodyResize() {
-      // if (this.$refs.header) {
-      //   this.bodyWidth = this.$refs.header.firstChild.offsetWidth;
-      // }
+      if (this.$refs.header) {
+        this.bodyWidth = this.$refs.header.firstChild.offsetWidth;
+      }
       let fitSize = false;
       if (this.fit) {
         fitSize = true;
