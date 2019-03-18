@@ -1,10 +1,13 @@
 /* eslint-disable prettier/prettier */
 
+let index = 0;
+
 // 代理行数据用于各种行状态操作的管理
 export const initProxyRow = row => {
+  index++;
   return {
     // 唯一Id标识
-    id: null,
+    id: index,
     // 父节点Id
     parentId: null,
     // 鼠标在行内
@@ -32,7 +35,13 @@ export const initProxyRows = rows => {
 };
 
 // 初始化树结构代理行数据
-export const initTreeProxyRows = (rows, treeNodeList = [], parentId = null, level = 0, index = 0) => {
+export const initTreeProxyRows = (
+  rows,
+  treeNodeList = [],
+  parentId = null,
+  level = 0,
+  index = 0
+) => {
   rows.forEach(row => {
     let { children } = row;
     index++;
@@ -44,7 +53,13 @@ export const initTreeProxyRows = (rows, treeNodeList = [], parentId = null, leve
     treeNodeList.push(proxyRow);
     if (!Array.isArray(children) || children.length <= 0) return;
     proxyRow.isLeaf = false;
-    initTreeProxyRows(children, treeNodeList, proxyRow.id, proxyRow.level + 1, index);
+    initTreeProxyRows(
+      children,
+      treeNodeList,
+      proxyRow.id,
+      proxyRow.level + 1,
+      index
+    );
   });
   return treeNodeList;
 };
