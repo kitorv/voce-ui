@@ -8,9 +8,11 @@
            :key="index"
            :style="column.colStyle">
     </colgroup>
-    <tr v-for="(row, rowIndex) in data"
+    <tr class="kv-datagrid--footer-row"
+        v-for="(row, rowIndex) in data"
         :key="rowIndex">
-      <table-cell v-for="(column, cellIndex) in leafColumns"
+      <table-cell class="kv-datagrid--footer-cell"
+                  v-for="(column, cellIndex) in leafColumns"
                   :key="cellIndex"
                   type='footer'
                   :column="column"

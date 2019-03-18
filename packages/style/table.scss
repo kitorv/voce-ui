@@ -1,5 +1,3 @@
-// -----边框-start-----
-
 // 表格容器
 .kv-datagrid {
   position: relative;
@@ -115,10 +113,6 @@
   text-align: right;
 }
 
-// -----布局-end-----
-
-// -----边框-start-----
-
 // 表格边框
 .kv-datagrid-border {
   border-left: 1px solid #e8e8e8;
@@ -148,27 +142,35 @@
     z-index: 5;
   }
 
-  .kv-datagrid--header-table > tr > th {
-    border-right: 1px solid #e8e8e8;
+  .kv-datagrid--header-table {
+    .kv-datagrid--header-column {
+      border-right: 1px solid #e8e8e8;
+    }
   }
 
   .kv-datagrid--header-table,
   .kv-datagrid--body-table,
   .kv-datagrid--footer-table {
-    > tr > td {
+    .kv-datagrid--body-cell {
       border-right: 1px solid #e8e8e8;
     }
   }
 }
 
-// -----边框-end-----
-
-// -----斑马线-end-----
+// 斑马线
 .kv-datagrid-stripe {
-  .kv-datagrid--body-table > tr {
-    &:nth-child(2n + 1) > td {
-      background-color: #fafafa;
-    }
+  .kv-datagrid--body-row:nth-child(2n + 1) {
+    background-color: #fafafa;
   }
 }
-// -----斑马线-end-----
+
+// 对其格式
+.kv-datagrid--align-left {
+  text-align: left !important;
+}
+.kv-datagrid--align-center {
+  text-align: center !important;
+}
+.kv-datagrid--align-right {
+  text-align: right !important;
+}
