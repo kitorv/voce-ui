@@ -10,9 +10,11 @@
         <router-link class="view-home--body-link"
                      to="/example/column">列配置</router-link>
         <router-link class="view-home--body-link"
-                     to="/example/height">高度</router-link>
+                     to="/example/height">高度适应</router-link>
         <router-link class="view-home--body-link"
-                     to="/example/column/width">列宽</router-link>
+                     to="/example/column/width">列宽适应</router-link>
+        <router-link class="view-home--body-link"
+                     to="/example/style">样式定义</router-link>
 
         <!-- <router-link class="view-home--body-link"
                      to="/4">样式</router-link>

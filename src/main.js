@@ -7,6 +7,7 @@ import hljs from "highlight.js";
 
 import "../packages/style/index.scss";
 import "highlight.js/styles/color-brewer.css";
+import "./assest/style/demo.scss";
 
 Vue.config.productionTip = false;
 Vue.component("kv-code-snippet", KvCodeSnippet);

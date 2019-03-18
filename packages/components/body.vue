@@ -11,7 +11,8 @@
     <template v-for="(row, rowIndex) in data">
       <table-row :row="row"
                  :key="rowIndex"
-                 :row-class="rowClass">
+                 :row-class="rowClass"
+                 :row-index="rowIndex">
         <table-cell v-for="(column, cellIndex) in leafColumns"
                     :key="cellIndex"
                     :column="column"
@@ -43,7 +44,7 @@ export default {
   props: {
     leafColumns: { type: Array },
     data: { type: Array },
-    rowClass: { type: [String, Function] },
+    rowClass: { type: Function },
     cellClass: { type: [String, Function] }
   },
   mounted() {

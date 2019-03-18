@@ -1,7 +1,7 @@
 <template>
   <div ref="datagrid"
        :class="['kv-datagrid',{'kv-datagrid-border':columnRows.length>1||border},{'kv-datagrid-stripe':stripe}]"
-       :style="style">
+       :style="tableStyle">
     <!-- 表头 -->
     <div v-if="showHeader"
          ref="headerWrapper"
@@ -196,7 +196,7 @@ export default {
     stripe: { type: Boolean, default: false },
     select: { type: Boolean, default: false },
     maxHeight: { type: Number },
-    rowClass: { type: [String, Function] },
+    rowClass: { type: Function },
     cellClass: { type: [String, Function] },
     pagination: { type: Boolean, default: false },
     showHeader: { type: Boolean, default: true }
@@ -209,7 +209,7 @@ export default {
       if (!this.fit) return;
       return { height: `${this.bodyHeight}px` };
     },
-    style() {
+    tableStyle() {
       if (this.height) {
         return { maxHeight: `${this.height}px` };
       }

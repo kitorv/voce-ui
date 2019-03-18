@@ -34,6 +34,11 @@ export default new Router({
           path: "/example/height",
           name: "example-height",
           component: () => import("../examples/height.md")
+        },
+        {
+          path: "/example/style",
+          name: "example-style",
+          component: () => import("../examples/style.md")
         }
       ]
     }
