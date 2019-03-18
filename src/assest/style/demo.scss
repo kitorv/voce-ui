@@ -11,3 +11,12 @@ tr.kv-datagrid-demo--row-error {
     color: #ff4757;
   }
 }
+
+td.kv-datagrid-demo--cell-success {
+  background-color: #ebf9eb !important;
+  color: #46c93a;
+}
+td.kv-datagrid-demo--cell-error {
+  background-color: #fcecee !important;
+  color: #ff4757;
+}
