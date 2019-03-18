@@ -1,30 +1,20 @@
-// 表体样式
 .kv-datagrid--footer-table {
   width: 100%;
   table-layout: fixed;
+}
 
-  > tr {
-    > td {
-      position: relative;
-      min-width: 0;
-      box-sizing: border-box;
-      text-align: left;
-      border-bottom: 1px solid #e8e8e8;
-      word-wrap: break-word;
-      word-break: break-all;
-      background-color: #fafafa;
-      padding: 8px;
-      vertical-align: middle;
+.kv-datagrid--footer-row {
+  background-color: #fafafa;
+}
 
-      &.kv-datagird--align-left {
-        text-align: left;
-      }
-      &.kv-datagird--align-center {
-        text-align: center;
-      }
-      &.kv-datagird--align-right {
-        text-align: right;
-      }
-    }
-  }
+.kv-datagrid--footer-cell {
+  position: relative;
+  min-width: 0;
+  box-sizing: border-box;
+  text-align: left;
+  border-bottom: 1px solid #e8e8e8;
+  word-wrap: break-word;
+  word-break: break-all;
+  padding: 8px;
+  vertical-align: middle;
 }

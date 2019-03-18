@@ -41,10 +41,10 @@ export default {
       let { type, align } = this.column;
       let classList = [];
       if (type) {
-        classList.push(`kv-datagird--type-${type}`);
+        classList.push(`kv-datagrid--cell-type-${type}`);
       }
       if (align) {
-        classList.push(`kv-datagird--align-${align}`);
+        classList.push(`kv-datagrid--align-${align}`);
       }
       if (this.cellClass) {
         let params = {

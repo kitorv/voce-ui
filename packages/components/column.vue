@@ -37,7 +37,7 @@ export default {
         class={this.getColumnClass()}
         on-click={this.handleCellClick}
       >
-        <div class="kv-datagird--column">{content}</div>
+        <div class="kv-datagird--column-content">{content}</div>
         {sortElement}
       </th>
     );
@@ -66,13 +66,13 @@ export default {
       let { type, headerAlign, sort } = this.column;
       let classList = [];
       if (type) {
-        classList.push(`kv-datagird--type-${type}`);
+        classList.push(`kv-datagrid--column-type-${type}`);
       }
       if (headerAlign) {
-        classList.push(`kv-datagird--align-${headerAlign}`);
+        classList.push(`kv-datagrid--align-${headerAlign}`);
       }
       if (sort) {
-        classList.push("kv-datagrid--sorts");
+        classList.push("kv-datagrid--header-sorts");
       }
       return classList.join(" ");
     },

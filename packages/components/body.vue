@@ -9,11 +9,13 @@
            :style="column.colStyle">
     </colgroup>
     <template v-for="(row, rowIndex) in data">
-      <table-row :row="row"
+      <table-row class="kv-datagrid--body-row"
+                 :row="row"
                  :key="rowIndex"
                  :row-class="rowClass"
                  :row-index="rowIndex">
-        <table-cell v-for="(column, cellIndex) in leafColumns"
+        <table-cell class="kv-datagrid--body-cell"
+                    v-for="(column, cellIndex) in leafColumns"
                     :key="cellIndex"
                     :column="column"
                     :row="row"
