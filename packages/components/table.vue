@@ -197,7 +197,7 @@ export default {
     select: { type: Boolean, default: false },
     maxHeight: { type: Number },
     rowClass: { type: Function },
-    cellClass: { type: [String, Function] },
+    cellClass: { type:  Function },
     pagination: { type: Boolean, default: false },
     showHeader: { type: Boolean, default: true }
   },

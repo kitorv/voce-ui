@@ -45,7 +45,7 @@ export default {
     leafColumns: { type: Array },
     data: { type: Array },
     rowClass: { type: Function },
-    cellClass: { type: [String, Function] }
+    cellClass: { type: Function }
   },
   mounted() {
     this.$emit("on-after-render");
