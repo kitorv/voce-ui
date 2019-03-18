@@ -1,0 +1,13 @@
+tr.kv-datagrid-demo--row-success {
+  > td {
+    background-color: #ebf9eb;
+    color: #46c93a;
+  }
+}
+
+tr.kv-datagrid-demo--row-error {
+  > td {
+    background-color: #fcecee;
+    color: #ff4757;
+  }
+}

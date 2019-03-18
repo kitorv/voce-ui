@@ -14,16 +14,17 @@ export default {
   props: {
     row: { type: Object },
     rowIndex: { type: Number },
-    rowClass: { type: [String, Function] }
+    rowClass: { type: Function }
   },
   computed: {
     tableRowClass() {
       if (!this.rowClass) return;
-      if (typeof this.rowClass == "string") {
-        return this.rowClass;
+      let params = {
+        index: this.rowIndex,
+        data: this.row.data,
+        row: this.row
       }
-      let { data } = this.row;
-      return this.rowClass.call(this.datagrid, data, this.rowIndex);
+      return this.rowClass.call(this.datagrid, params);
     }
   },
   methods: {
