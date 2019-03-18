@@ -8,19 +8,19 @@
         <router-link class="view-home--body-link"
                      to="/">基本功能</router-link>
         <router-link class="view-home--body-link"
-                     to="/1">列宽</router-link>
+                     to="/example/column/width">列宽</router-link>
         <router-link class="view-home--body-link"
-                     to="/2">高度</router-link>
+                     to="/example/column">列配置</router-link>
         <router-link class="view-home--body-link"
+                     to="/example/height">高度</router-link>
+        <!-- <router-link class="view-home--body-link"
                      to="/4">样式</router-link>
         <router-link class="view-home--body-link"
                      to="/4">展开行</router-link>
         <router-link class="view-home--body-link"
                      to="/4">排序</router-link>
         <router-link class="view-home--body-link"
-                     to="/4">单元格合并</router-link>
-        <router-link class="view-home--body-link"
-                     to="/4">列配置</router-link>
+                     to="/4">单元格合并</router-link> -->
       </div>
       <div class="view-home--body-content">
         <router-view></router-view>
