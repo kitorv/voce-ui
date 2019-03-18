@@ -33,7 +33,11 @@ export default {
     handleMouseLeave() {
       this.row.hover = false;
     },
-    handleClick() { }
+    handleClick() {
+      if (this.datagrid.select) {
+        this.row.selected = true
+      }
+    }
   },
   watch: {
     "row.checked"(value) {
@@ -46,6 +50,14 @@ export default {
         table.checkedAll = false;
         table.indeterminate = checkedRows.length > 0;
       }
+    },
+    "row.selected"(selected) {
+      if (!selected) return
+      let rows = this.datagrid.dataSource;
+      rows.map(m => {
+        if (m.id == this.row.id) return
+        m.selected = false
+      })
     }
   }
 };
