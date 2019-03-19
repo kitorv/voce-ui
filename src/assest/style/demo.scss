@@ -20,3 +20,43 @@ td.kv-datagrid-demo--cell-error {
   background-color: #fcecee !important;
   color: #ff4757;
 }
+
+.kv-datagrid-demo--tag {
+  background-color: rgba(64, 158, 255, 0.1);
+  display: inline-block;
+  padding: 0 10px;
+  height: 28px;
+  line-height: 26px;
+  font-size: 12px;
+  color: #409eff;
+  border-radius: 4px;
+  box-sizing: border-box;
+  border: 1px solid rgba(64, 158, 255, 0.2);
+  white-space: nowrap;
+}
+
+.kv-datagrid-demo--button {
+  display: inline-block;
+  line-height: 1;
+  white-space: nowrap;
+  cursor: pointer;
+  background: #fff;
+  border: 1px solid #dcdfe6;
+  color: #606266;
+  text-align: center;
+  box-sizing: border-box;
+  outline: none;
+  margin: 0;
+  transition: 0.1s;
+  font-weight: 500;
+  padding: 7px 15px;
+  font-size: 14px;
+  border-radius: 4px;
+
+  &.danger {
+    color: #fff;
+    background-color: #f56c6c;
+    border-color: #f56c6c;
+    margin-left: 10px;
+  }
+}

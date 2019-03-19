@@ -14,25 +14,22 @@
           {
             key: "name",
             title: "姓名",
-            columnFormatter(h, { column }) {
-              return `[${column.title}]`;
+            formatter(h, { data }) {
+              return <div class="kv-datagrid-demo--tag">{data.name}</div>;
             }
           },
+          { key: "age", title: "年龄" },
+          { key: "address", title: "地址" },
           {
-            key: "age",
-            title: "年龄",
-            columnFormatter(h, { column }) {
-              return `[${column.title}]`;
-            },
-            formatter(h, { row }) {
-              return row.age > 18 ? "成年" : "未成年";
-            }
-          },
-          {
-            key: "address",
-            title: "地址",
-            columnFormatter(h, { column }) {
-              return `[${column.title}]`;
+            key: "",
+            title: "操作",
+            formatter(h, { data }) {
+              return (
+                <div>
+                  <div class="kv-datagrid-demo--button">编辑</div>
+                  <div class="kv-datagrid-demo--button danger">删除</div>
+                </div>
+              );
             }
           }
         ],
