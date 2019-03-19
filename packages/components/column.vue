@@ -13,17 +13,17 @@ export default {
     let sortElement = "";
     if (sort) {
       sortElement = (
-        <div class="kv-datagrid--sort">
+        <div class="kv-datagrid--column-sort">
           <i
             class={[
-              "kv-datagrid--sort-up",
-              { "kv-datagrid--sort-active": this.orderType == "asc" }
+              "kv-datagrid--column-sort-up",
+              { "kv-datagrid--column-sort-active": this.orderType == "asc" }
             ]}
           />
           <i
             class={[
-              "kv-datagrid--sort-down",
-              { "kv-datagrid--sort-active": this.orderType == "desc" }
+              "kv-datagrid--column-sort-down",
+              { "kv-datagrid--column-sort-active": this.orderType == "desc" }
             ]}
           />
         </div>
@@ -72,7 +72,7 @@ export default {
         classList.push(`kv-datagrid--align-${headerAlign}`);
       }
       if (sort) {
-        classList.push("kv-datagrid--header-sorts");
+        classList.push("kv-datagrid--header-sort");
       }
       return classList.join(" ");
     },
