@@ -5,22 +5,22 @@ export default {
     row: { type: Object }
   },
   render(h) {
-    let slot = this.datagrid.$scopedSlots.expansion;
-    let datagridSlot = this.datagrid.$scopedSlots["expansion-datagrid"];
-    if (!slot && !datagridSlot) return;
-    let renderSlot = slot || datagridSlot;
 
+    let scopedSlots = this.datagrid.$scopedSlots
+    let expansionKey = 'expansion'
+    let slot = scopedSlots.expansion;
+    if (!slot) {
+      for (const key in scopedSlots) {
+        if (!/^expansion-/.test(key)) continue
+        slot = scopedSlots[key]
+        expansionKey = key
+        break;
+      }
+    }
     return (
-      <tr
-        class={[
-          "kv-datagrid--expansion-row",
-          {
-            "kv-datagrid--expansion-datagrid": !slot && datagridSlot
-          }
-        ]}
-      >
+      <tr class={["kv-datagrid--body-row-expansion", `kv-datagrid--body-${expansionKey}`]} >
         <td colspan={this.datagrid.leafColumns.length}>
-          {renderSlot(this.row.data)}
+          {slot({ row: this.row, data: this.row.data })}
         </td>
       </tr>
     );

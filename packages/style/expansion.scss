@@ -1,22 +1,24 @@
-// .kv-datagrid--expansion {
-//   width: 100%;
-//   height: 100%;
-//   .kv-icon-right-arrow {
-//     display: inline-block;
-//     width: 16px;
-//     height: 16px;
-//     transition: all 0.3s;
-//   }
-// }
+.kv-datagrid--body-cell-expansion {
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  .kv-icon-right {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    line-height: 16px;
+    transition: all 0.3s;
+  }
+}
 
-// .kv-datagrid--expansion-active {
-//   .kv-icon-right-arrow {
-//     transform: rotate(90deg);
-//   }
-// }
+.kv-datagrid--body-cell-expansion-active {
+  .kv-icon-right {
+    transform: rotate(90deg);
+  }
+}
 
-// tr.kv-datagrid--expansion-row {
-//   > td {
-//     padding: 0;
-//   }
-// }
+.kv-datagrid--body-row-expansion {
+  > td {
+    border-bottom: 1px solid #e8e8e8;
+  }
+}

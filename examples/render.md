@@ -1,4 +1,4 @@
-## 格式化
+## 单元格格式化
 
 :::demo
 
@@ -50,6 +50,58 @@
             key: "3",
             name: "Joe Black",
             age: 30,
+            address: "Sidney No. 1 Lake Park"
+          }
+        ]
+      };
+    }
+  };
+</script>
+```
+
+:::
+
+## 展开行
+
+:::demo
+
+```html
+<template>
+  <kv-datagrid :columns="columns" :data="data">
+    <div slot="expansion" slot-scope="{data}" style="height:60px;padding:20px">
+      <div>姓名：{{data.name}}</div>
+      <div>年龄：{{data.age}}</div>
+      <div>地址：{{data.address}}</div>
+    </div>
+  </kv-datagrid>
+</template>
+<script>
+  export default {
+    data() {
+      return {
+        columns: [
+          { type: "expansion" },
+          { key: "name", title: "姓名" },
+          { key: "age", title: "年龄" },
+          { key: "address", title: "地址" }
+        ],
+        data: [
+          {
+            key: "1",
+            name: "John Brown",
+            age: 32,
+            address: "New York No. 1 Lake Park"
+          },
+          {
+            key: "2",
+            name: "Jim Green",
+            age: 42,
+            address: "London No. 1 Lake Park"
+          },
+          {
+            key: "3",
+            name: "Joe Black",
+            age: 32,
             address: "Sidney No. 1 Lake Park"
           }
         ]
