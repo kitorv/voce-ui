@@ -6,14 +6,14 @@ export default {
   formatter: (h, { row }) => (
     <div
       class={[
-        "kv-datagrid--expansion",
-        { "kv-datagrid--expansion-active": row.expand }
+        "kv-datagrid--body-cell-expansion",
+        { "kv-datagrid--body-cell-expansion-active": row.expand }
       ]}
       on-click={() => {
         row.expand = !row.expand;
       }}
     >
-      <i class="kv-icon-right-arrow" />
+      <i class="kv-icon-right" />
     </div>
   )
 };

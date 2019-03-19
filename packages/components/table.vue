@@ -1,6 +1,5 @@
 <template>
-  <div ref="datagrid"
-       :class="['kv-datagrid',{'kv-datagrid-border':columnRows.length>1||border},{'kv-datagrid-stripe':stripe}]"
+  <div :class="['kv-datagrid',{'kv-datagrid-border':columnRows.length>1||border},{'kv-datagrid-stripe':stripe}]"
        :style="tableStyle">
     <!-- 表头 -->
     <div v-if="showHeader"
@@ -403,9 +402,9 @@ export default {
       let fitSize = false;
       if (this.fit) {
         fitSize = true;
-        this.height = this.maxHeight || this.$refs.datagrid.parentNode.clientHeight;
+        this.height = this.maxHeight || this.$$el.parentNode.clientHeight;
       } else {
-        this.height = this.$refs.datagrid.offsetHeight;
+        this.height = this.$el.offsetHeight;
         fitSize = this.height == this.maxHeight;
       }
       if (!fitSize) {
