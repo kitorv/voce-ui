@@ -44,3 +44,109 @@
 ```
 
 :::
+
+## 表头数据
+
+:::demo
+
+```html
+<template>
+  <kv-datagrid :columns="columns" :data="data" :header="header"></kv-datagrid>
+</template>
+<script>
+  export default {
+    data() {
+      return {
+        columns: [
+          { key: "name", title: "姓名" },
+          { key: "age", title: "年龄" },
+          { key: "address", title: "地址" }
+        ],
+        header: [
+          {
+            key: "0",
+            name: "合计",
+            age: 106,
+            address: "--"
+          }
+        ],
+        data: [
+          {
+            key: "1",
+            name: "John Brown",
+            age: 32,
+            address: "New York No. 1 Lake Park"
+          },
+          {
+            key: "2",
+            name: "Jim Green",
+            age: 42,
+            address: "London No. 1 Lake Park"
+          },
+          {
+            key: "3",
+            name: "Joe Black",
+            age: 32,
+            address: "Sidney No. 1 Lake Park"
+          }
+        ]
+      };
+    }
+  };
+</script>
+```
+
+:::
+
+## 表尾数据
+
+:::demo
+
+```html
+<template>
+  <kv-datagrid :columns="columns" :data="data" :footer="footer"></kv-datagrid>
+</template>
+<script>
+  export default {
+    data() {
+      return {
+        columns: [
+          { key: "name", title: "姓名" },
+          { key: "age", title: "年龄" },
+          { key: "address", title: "地址" }
+        ],
+        footer: [
+          {
+            key: "0",
+            name: "合计",
+            age: 106,
+            address: "--"
+          }
+        ],
+        data: [
+          {
+            key: "1",
+            name: "John Brown",
+            age: 32,
+            address: "New York No. 1 Lake Park"
+          },
+          {
+            key: "2",
+            name: "Jim Green",
+            age: 42,
+            address: "London No. 1 Lake Park"
+          },
+          {
+            key: "3",
+            name: "Joe Black",
+            age: 32,
+            address: "Sidney No. 1 Lake Park"
+          }
+        ]
+      };
+    }
+  };
+</script>
+```
+
+:::

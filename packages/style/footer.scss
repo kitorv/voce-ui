@@ -2,19 +2,3 @@
   width: 100%;
   table-layout: fixed;
 }
-
-.kv-datagrid--footer-row {
-  background-color: #fafafa;
-}
-
-.kv-datagrid--footer-cell {
-  position: relative;
-  min-width: 0;
-  box-sizing: border-box;
-  text-align: left;
-  border-bottom: 1px solid #e8e8e8;
-  word-wrap: break-word;
-  word-break: break-all;
-  padding: 8px;
-  vertical-align: middle;
-}

@@ -11,7 +11,7 @@
     <tr class="kv-datagrid--footer-row"
         v-for="(row, rowIndex) in data"
         :key="rowIndex">
-      <table-cell class="kv-datagrid--footer-cell"
+      <table-cell class="kv-datagrid--body-cell"
                   v-for="(column, cellIndex) in leafColumns"
                   :key="cellIndex"
                   type='footer'
