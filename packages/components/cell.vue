@@ -10,8 +10,6 @@ export default {
     cellClass: { type: Function }
   },
   render(h) {
-    console.log(this.getCellSpan());
-
     let { rowspan, colspan } = this.getCellSpan()
     if (!rowspan || !colspan) return ''
     let { key, headerFormatter, formatter, footerFormatter, render, edit } = this.column;
