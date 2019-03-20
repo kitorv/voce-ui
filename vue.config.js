@@ -1,6 +1,6 @@
 const path = require("path");
 module.exports = {
-  // 配置【vue-markdown-loader】解析md格式的文件
+  publicPath: process.argv.includes("--docs") ? "/vue-datagrid" : "/",
   chainWebpack: config => {
     config.module
       .rule("md")
