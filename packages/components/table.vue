@@ -9,24 +9,16 @@
       <div v-if="leftFixedColumns.length>0"
            class="kv-datagrid--header-left"
            :style="{'width':`${leftBodyWidth}px`}">
-        <table-header :style="{'width':`${bodyWidth}px`}"
-                      :column-rows="columnRows"
-                      :leaf-columns="leafColumns"
-                      :data="headerDataSource"></table-header>
+        <table-header :style="{'width':`${bodyWidth}px`}"></table-header>
       </div>
       <div ref="header"
            class="kv-datagrid--header-center">
-        <table-header :column-rows="columnRows"
-                      :leaf-columns="leafColumns"
-                      :data="headerDataSource"></table-header>
+        <table-header :column-rows="columnRows"></table-header>
       </div>
       <div v-if="rightFixedColumns.length>0"
            class="kv-datagrid--header-right"
            :style="{'width':`${rightBodyWidth}px`,'right':`${vScrollSize}px`}">
-        <table-header :style="{'width':`${bodyWidth}px`}"
-                      :column-rows="columnRows"
-                      :leaf-columns="leafColumns"
-                      :data="headerDataSource"></table-header>
+        <table-header :style="{'width':`${bodyWidth}px`}"></table-header>
       </div>
     </div>
     <!-- 表头 -->
@@ -37,23 +29,14 @@
            ref="leftBody"
            class="kv-datagrid--body-left"
            :style="{'width':`${leftBodyWidth}px`,'height':`${bodyHeight-hScrollSize}px`}">
-        <table-body :style="{'width':`${bodyWidth}px`}"
-                    :data="dataSource"
-                    :leaf-columns="leafColumns"
-                    :row-class="rowClass"
-                    :cell-class="cellClass"></table-body>
+        <table-body :style="{'width':`${bodyWidth}px`}"></table-body>
       </div>
       <div ref="body"
            class="kv-datagrid--body-center"
            :style="bodyStyle"
            @scroll="handleBodyScroll">
         <table-body v-if="dataSource.length>0"
-                    :leaf-columns="leafColumns"
-                    :data="dataSource"
-                    :row-class="rowClass"
-                    :cell-class="cellClass"
                     @on-after-render="handleBodyLayoutResize"></table-body>
-        <!--  -->
         <div v-else
              :style="{'width':dataSource.length<1?`${bodyWidth}px`:'auto'}"
              class="kv-datagrid--placeholder">
@@ -68,11 +51,7 @@
            ref="rightBody"
            class="kv-datagrid--body-right"
            :style="{'width':`${rightBodyWidth}px`,'height':`${bodyHeight-hScrollSize}px`,'right':`${vScrollSize}px`}">
-        <table-body :style="{'width':`${bodyWidth}px`}"
-                    :data="dataSource"
-                    :leaf-columns="leafColumns"
-                    :row-class="rowClass"
-                    :cell-class="cellClass"></table-body>
+        <table-body :style="{'width':`${bodyWidth}px`}"></table-body>
       </div>
     </div>
     <!-- 表体 -->
@@ -83,23 +62,18 @@
       <div v-if="leftFixedColumns.length>0"
            class="kv-datagrid--body-left"
            :style="{'width':`${leftBodyWidth}px`,}">
-        <table-footer :style="{'width':`${bodyWidth}px`}"
-                      :data="footerDataSource"
-                      :leaf-columns="leafColumns"></table-footer>
+        <table-footer :style="{'width':`${bodyWidth}px`}"></table-footer>
       </div>
       <div ref="footer"
            v-if="footer.length>0"
            class="kv-datagrid--footer-center">
-        <table-footer :data="footerDataSource"
-                      :leaf-columns="leafColumns">
+        <table-footer>
         </table-footer>
       </div>
       <div v-if="rightFixedColumns.length>0"
            class="kv-datagrid--body-right"
            :style="{'width':`${rightBodyWidth}px`,'right':`${vScrollSize}px`}">
-        <table-footer :style="{'width':`${bodyWidth}px`}"
-                      :data="footerDataSource"
-                      :leaf-columns="leafColumns"></table-footer>
+        <table-footer :style="{'width':`${bodyWidth}px`}"></table-footer>
       </div>
       <div v-if="pagination"
            class="kv-datagrid--pagination">
@@ -197,10 +171,12 @@ export default {
     select: { type: Boolean, default: false },
     maxHeight: { type: Number },
     rowClass: { type: Function },
+    rowStyle: { type: Function },
     cellClass: { type: Function },
+    cellStyle: { type: Function },
     cellSpan: { type: Function },
     pagination: { type: Boolean, default: false },
-    showHeader: { type: Boolean, default: true }
+    showHeader: { type: Boolean, default: true },
   },
   computed: {
     bodyStyle() {

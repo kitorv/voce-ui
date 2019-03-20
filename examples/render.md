@@ -230,11 +230,19 @@
     },
     methods: {
       cellSpan({ row, column, rowIndex, columnIndex }) {
-        if (columnIndex !== 0) return;
-        if (rowIndex % 2 === 0) {
-          return { rowspan: 2, colspan: 1 };
+        if (columnIndex === 0) {
+          if (rowIndex % 2 === 0) {
+            return { rowspan: 2, colspan: 1 };
+          } else {
+            return { rowspan: 0, colspan: 0 };
+          }
         }
-        return { rowspan: 0, colspan: 0 };
+        if (columnIndex === 1 && rowIndex % 2 === 0) {
+          return { rowspan: 1, colspan: 2 };
+        }
+        if (columnIndex === 2 && rowIndex % 2 === 0) {
+          return { rowspan: 0, colspan: 0 };
+        }
       }
     }
   };

@@ -39,16 +39,20 @@ import TableRowExpansion from "./expansion";
 
 export default {
   components: { TableRow, TableCell, TableRowExpansion },
-  data() {
-    return {
-      datagrid: this.$parent
-    };
-  },
-  props: {
-    leafColumns: { type: Array },
-    data: { type: Array },
-    rowClass: { type: Function },
-    cellClass: { type: Function }
+  inject: ['datagrid'],
+  computed: {
+    data() {
+      return this.datagrid.dataSource
+    },
+    leafColumns() {
+      return this.datagrid.leafColumns
+    },
+    rowClass() {
+      return this.datagrid.rowClass
+    },
+    cellClass() {
+      return this.datagrid.cellClass
+    }
   },
   mounted() {
     this.$emit("on-after-render");
