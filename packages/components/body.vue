@@ -20,7 +20,8 @@
                     :column="column"
                     :row="row"
                     :row-index="rowIndex"
-                    :cell-class="cellClass">
+                    :cell-class="cellClass"
+                    :column-index="cellIndex">
         </table-cell>
       </table-row>
       <table-row-expansion v-if="row.expand"
