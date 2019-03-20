@@ -28,9 +28,14 @@ import TableCell from "./cell";
 
 export default {
   components: { TableCell },
-  props: {
-    leafColumns: { type: Array },
-    data: { type: Array }
-  }
+  inject: ['datagrid'],
+  computed: {
+    data() {
+      return this.datagrid.footerDataSource
+    },
+    leafColumns() {
+      return this.datagrid.leafColumns
+    },
+  },
 };
 </script>

@@ -37,10 +37,17 @@ import TableCell from "./cell";
 
 export default {
   components: { TableColumn, TableCell },
-  props: {
-    columnRows: { type: Array },
-    leafColumns: { type: Array },
-    data: { type: Array }
-  }
+  inject: ['datagrid'],
+  computed: {
+    data() {
+      return this.datagrid.headerDataSource
+    },
+    leafColumns() {
+      return this.datagrid.leafColumns
+    },
+    columnRows() {
+      return this.datagrid.columnRows
+    }
+  },
 };
 </script>
