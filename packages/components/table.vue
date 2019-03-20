@@ -198,6 +198,7 @@ export default {
     maxHeight: { type: Number },
     rowClass: { type: Function },
     cellClass: { type: Function },
+    cellSpan: { type: Function },
     pagination: { type: Boolean, default: false },
     showHeader: { type: Boolean, default: true }
   },

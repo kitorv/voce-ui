@@ -166,3 +166,79 @@
 ```
 
 :::
+
+## 单元格合并
+
+:::demo
+
+```html
+<template>
+  <kv-datagrid
+    :columns="columns"
+    :data="data"
+    :cell-span="cellSpan"
+  ></kv-datagrid>
+</template>
+<script>
+  export default {
+    data() {
+      return {
+        columns: [
+          { key: "name", title: "姓名" },
+          { key: "age", title: "年龄" },
+          { key: "address", title: "地址" }
+        ],
+        data: [
+          {
+            key: "1",
+            name: "John Brown",
+            age: 32,
+            address: "New York No. 1 Lake Park"
+          },
+          {
+            key: "2",
+            name: "Jim Green",
+            age: 42,
+            address: "London No. 1 Lake Park"
+          },
+          {
+            key: "3",
+            name: "Joe Black",
+            age: 32,
+            address: "Sidney No. 1 Lake Park"
+          },
+          {
+            key: "1",
+            name: "John Brown",
+            age: 32,
+            address: "New York No. 1 Lake Park"
+          },
+          {
+            key: "2",
+            name: "Jim Green",
+            age: 42,
+            address: "London No. 1 Lake Park"
+          },
+          {
+            key: "3",
+            name: "Joe Black",
+            age: 32,
+            address: "Sidney No. 1 Lake Park"
+          }
+        ]
+      };
+    },
+    methods: {
+      cellSpan({ row, column, rowIndex, columnIndex }) {
+        if (columnIndex !== 0) return;
+        if (rowIndex % 2 === 0) {
+          return { rowspan: 2, colspan: 1 };
+        }
+        return { rowspan: 0, colspan: 0 };
+      }
+    }
+  };
+</script>
+```
+
+:::
