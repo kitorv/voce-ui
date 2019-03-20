@@ -86,6 +86,80 @@
 
 :::
 
+## 行样式
+
+:::demo
+
+```html
+<template>
+  <kv-datagrid
+    :columns="columns"
+    :data="data"
+    :row-style="rowStyle"
+  ></kv-datagrid>
+</template>
+<script>
+  export default {
+    data() {
+      return {
+        columns: [
+          { key: "name", title: "姓名" },
+          { key: "age", title: "年龄" },
+          { key: "address", title: "地址" }
+        ],
+        data: [
+          {
+            key: "1",
+            name: "John Brown",
+            age: 32,
+            address: "New York No. 1 Lake Park"
+          },
+          {
+            key: "2",
+            name: "Jim Green",
+            age: 42,
+            address: "London No. 1 Lake Park"
+          },
+          {
+            key: "3",
+            name: "Joe Black",
+            age: 32,
+            address: "Sidney No. 1 Lake Park"
+          },
+          {
+            key: "4",
+            name: "Tom Mack",
+            age: 32,
+            address: "Beijing No. 1 Lake Park"
+          },
+          {
+            key: "5",
+            name: "Chery Nithce",
+            age: 32,
+            address: "Maliya No. 1 Lake Park"
+          },
+          {
+            key: "6",
+            name: "Merry Tcke",
+            age: 32,
+            address: "Yelnue No. 1 Lake Park"
+          }
+        ],
+        rowStyle({ index }) {
+          if (index != 3) return;
+          return {
+            backgroundColor: "#e8f1ff",
+            color: "#1f74ff"
+          };
+        }
+      };
+    }
+  };
+</script>
+```
+
+:::
+
 ## 单元格类样式
 
 :::demo
@@ -167,6 +241,80 @@
     color: #ff4757;
   }
 </style>
+```
+
+:::
+
+## 单元格样式
+
+:::demo
+
+```html
+<template>
+  <kv-datagrid
+    :columns="columns"
+    :data="data"
+    :cell-style="cellStyle"
+  ></kv-datagrid>
+</template>
+<script>
+  export default {
+    data() {
+      return {
+        columns: [
+          { key: "name", title: "姓名" },
+          { key: "age", title: "年龄" },
+          { key: "address", title: "地址" }
+        ],
+        data: [
+          {
+            key: "1",
+            name: "John Brown",
+            age: 32,
+            address: "New York No. 1 Lake Park"
+          },
+          {
+            key: "2",
+            name: "Jim Green",
+            age: 42,
+            address: "London No. 1 Lake Park"
+          },
+          {
+            key: "3",
+            name: "Joe Black",
+            age: 32,
+            address: "Sidney No. 1 Lake Park"
+          },
+          {
+            key: "4",
+            name: "Tom Mack",
+            age: 32,
+            address: "Beijing No. 1 Lake Park"
+          },
+          {
+            key: "5",
+            name: "Chery Nithce",
+            age: 32,
+            address: "Maliya No. 1 Lake Park"
+          },
+          {
+            key: "6",
+            name: "Merry Tcke",
+            age: 32,
+            address: "Yelnue No. 1 Lake Park"
+          }
+        ],
+        cellStyle({ index, column }) {
+          if (index % 2 != 0 || column.key != "name") return;
+          return {
+            backgroundColor: "#e8f1ff",
+            color: "#1f74ff"
+          };
+        }
+      };
+    }
+  };
+</script>
 ```
 
 :::
