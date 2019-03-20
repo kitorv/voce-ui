@@ -402,7 +402,7 @@ export default {
       let fitSize = false;
       if (this.fit) {
         fitSize = true;
-        this.height = this.maxHeight || this.$$el.parentNode.clientHeight;
+        this.height = this.maxHeight || this.$el.parentNode.clientHeight;
       } else {
         this.height = this.$el.offsetHeight;
         fitSize = this.height == this.maxHeight;
@@ -420,6 +420,7 @@ export default {
       }
       // 判断是否包含滚动态条，并计算出滚动条尺寸
       const bodyEl = this.$refs.body;
+      if (!bodyEl) return
       this.hScrollSize =
         bodyEl.scrollWidth > bodyEl.offsetWidth ? scrollSize() : 0;
       this.bodyHeight = this.height - this.headerHeight - this.footerHeight;
