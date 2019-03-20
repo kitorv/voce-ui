@@ -13,6 +13,7 @@
                  :row="row"
                  :key="rowIndex"
                  :row-class="rowClass"
+                 :row-style="rowStyle"
                  :row-index="rowIndex">
         <table-cell class="kv-datagrid--body-cell"
                     v-for="(column, cellIndex) in leafColumns"
@@ -21,6 +22,7 @@
                     :row="row"
                     :row-index="rowIndex"
                     :cell-class="cellClass"
+                    :cell-style="cellStyle"
                     :column-index="cellIndex">
         </table-cell>
       </table-row>
@@ -50,8 +52,14 @@ export default {
     rowClass() {
       return this.datagrid.rowClass
     },
+    rowStyle() {
+      return this.datagrid.rowStyle
+    },
     cellClass() {
       return this.datagrid.cellClass
+    },
+    cellStyle() {
+      return this.datagrid.cellStyle
     }
   },
   mounted() {

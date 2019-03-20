@@ -7,7 +7,8 @@ export default {
     row: { type: Object },
     rowIndex: { type: Number },
     columnIndex: { type: Number },
-    cellClass: { type: Function }
+    cellClass: { type: Function },
+    cellStyle: { type: Function }
   },
   render(h) {
     let { rowspan, colspan } = this.getCellSpan()
@@ -36,7 +37,7 @@ export default {
     if (this.edit && edit) {
       content = edit && edit.call(this.datagrid, h, params)
     }
-    return <td rowspan={rowspan} colspan={colspan} on-click={this.handleCellClick} class={this.tableCellClass}>{content}</td>
+    return <td rowspan={rowspan} colspan={colspan} style={this.tableCellStyle} on-click={this.handleCellClick} class={this.tableCellClass}>{content}</td>
 
   },
   computed: {
@@ -61,6 +62,16 @@ export default {
         );
       }
       return classList.join(" ");
+    },
+    tableCellStyle() {
+      if (!this.cellStyle) return
+      let params = {
+        index: this.rowIndex,
+        data: this.row.data,
+        row: this.row,
+        column: this.column
+      }
+      return this.cellStyle.call(this.datagrid, params)
     },
     edit() {
       let { key } = this.column;

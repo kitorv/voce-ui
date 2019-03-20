@@ -1,6 +1,7 @@
 <template>
   <tr v-if="!row.hidden"
       :class="[{'kv-datagird--row-hover':row.hover},{'kv-datagird--row-selected':row.selected},tableRowClass]"
+      :style="tableRowStyle"
       @mouseenter="handleMouseEnter"
       @mouseleave="handleMouseLeave"
       @click="handleClick">
@@ -14,7 +15,8 @@ export default {
   props: {
     row: { type: Object },
     rowIndex: { type: Number },
-    rowClass: { type: Function }
+    rowClass: { type: Function },
+    rowStyle: { type: Function }
   },
   computed: {
     tableRowClass() {
@@ -25,6 +27,15 @@ export default {
         row: this.row
       }
       return this.rowClass.call(this.datagrid, params);
+    },
+    tableRowStyle() {
+      if (!this.rowStyle) return
+      let params = {
+        index: this.rowIndex,
+        data: this.row.data,
+        row: this.row
+      }
+      return this.rowStyle.call(this.datagrid, params);
     }
   },
   methods: {
