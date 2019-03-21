@@ -105,13 +105,7 @@ export default {
     return { datagrid: this };
   },
   data() {
-    let {
-      treeKey,
-      columnRows,
-      leafColumns,
-      leftFixedColumns,
-      rightFixedColumns
-    } = this.init();
+    let { treeKey, columnRows, leafColumns, leftFixedColumns, rightFixedColumns } = this.init();
     return {
       // 列转行用于渲染表头数据
       columnRows: columnRows,
@@ -196,8 +190,8 @@ export default {
     init() {
       this.initSortFixedColumns();
       let columnRows = this.initColumnRows(this.columns);
-      let columnTypes = this.initColumnTypeAndSize(columnRows);
-      return { columnRows, ...columnTypes };
+      let params = this.initColumnToParams(columnRows);
+      return { columnRows, ...params };
     },
     // 固定列排序：【left】【any】【right】，只排序最顶层
     initSortFixedColumns() {
@@ -225,8 +219,8 @@ export default {
       // 过滤掉没有数据的行
       return rows.filter(row => row.length > 0);
     },
-    // 将列拆分固定列、末级列、设置基本属性
-    initColumnTypeAndSize(columnRows) {
+    // 将列拆分固定列、末级列、设置基本属性,行数据处理
+    initColumnToParams(columnRows) {
       let leftFixedColumns = [],
         rightFixedColumns = [],
         leafColumns = [];
@@ -275,7 +269,7 @@ export default {
     },
     // 初始化表体数据源代理，表体需要处理合并单元格数据和表体特有数据
     initProxyDataSource(treeKey) {
-      if (treeKey) return initTreeProxyRows(this.data);
+      if (treeKey || this.treeKey) return initTreeProxyRows(this.data);
       return initProxyRows(this.data);
     },
     // 表格内容渲染完成根据内容调整表格
