@@ -170,7 +170,7 @@ export default {
     cellClass: { type: Function },
     cellStyle: { type: Function },
     cellSpan: { type: Function },
-    pagination: { type: Boolean, default: false },
+    pagination: { type: Boolean, default: true },
     showHeader: { type: Boolean, default: true },
   },
   computed: {
