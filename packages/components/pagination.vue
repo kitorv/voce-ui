@@ -14,7 +14,14 @@
            @on-change="handlePagerChange"></pager>
     <span>
       前往
-      <input class="kv-datagrid--pagination-number">
+      <input v-model="inputPageIndex"
+             :min="1"
+             :max="currentPageCount"
+             type="number"
+             autocomplete="off"
+             class="kv-datagrid--pagination-number"
+             @change="handleInputChange"
+             @keyup.13="handleInputChange">
       页
     </span>
   </div>
@@ -28,7 +35,8 @@ export default {
   data() {
     return {
       currentPageIndex: 1,
-      currentPageSize: 10
+      currentPageSize: 10,
+      inputPageIndex: 1
     }
   },
   props: {
@@ -52,8 +60,37 @@ export default {
   methods: {
     handlePagerChange(pageIndex) {
       this.currentPageIndex = pageIndex
-    }
+    },
+    handleInputChange() {
+      debugger
+      let value = parseInt(this.inputPageIndex, 10);
+      if (Number.isNaN(value)) {
+        this.inputPageIndex = this.currentPageIndex
+        return
+      }
+      let index = this.getValidPageIndex(value)
+      this.inputPageIndex = index
+      this.currentPageIndex = index
+    },
+    getValidPageIndex(value) {
+      value = parseInt(value, 10);
+      if (Number.isNaN(value)) {
+        return 1
+      }
+      if (value > this.currentPageCount) {
+        return this.currentPageCount
+      }
+      if (value < 1) {
+        return 1
+      }
+      return value
+    },
   },
+  watch: {
+    currentPageIndex(value) {
+      this.inputPageIndex = value
+    }
+  }
 }
 </script>
 
@@ -106,7 +143,7 @@ export default {
 }
 
 .kv-datagrid--pagination-number {
-  -webkit-appearance: none;
+  appearance: none;
   background-color: #fff;
   background-image: none;
   border-radius: 4px;
@@ -122,6 +159,14 @@ export default {
   transition: border-color 0.2s cubic-bezier(0.645, 0.045, 0.355, 1);
   width: 50px;
   text-align: center;
+}
+
+.kv-datagrid--pagination-number::-webkit-outer-spin-button,
+.kv-datagrid--pagination-number::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+.kv-datagrid--pagination-number[type="number"] {
+  -moz-appearance: textfield;
 }
 </style>
 
