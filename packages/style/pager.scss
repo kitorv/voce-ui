@@ -6,20 +6,20 @@
   list-style: none;
 }
 .kv-datagrid--page-number {
+  padding: 0 4px;
+  background: #fff;
+  vertical-align: top;
   display: inline-block;
-  min-width: 28px;
+  font-size: 13px;
+  min-width: 35px;
   height: 28px;
-  margin-right: 8px;
-  line-height: 32px;
-  text-align: center;
-  vertical-align: middle;
-  list-style: none;
-  background-color: #fff;
-  border: 1px solid #d9d9d9;
-  border-radius: 4px;
-  outline: 0;
+  line-height: 28px;
   cursor: pointer;
-  user-select: none;
+  box-sizing: border-box;
+  text-align: center;
+  margin: 0;
+  border: 1px solid #e8e8ee;
+  border-radius: 3px;
 }
 
 .kv-datagrid--page-prev,
@@ -27,5 +27,4 @@
   color: #d9d9d9;
   border-color: transparent;
   transition: all 0.3s;
-  font-weight: bold;
 }
