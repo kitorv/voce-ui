@@ -5,6 +5,13 @@
       <div class="kv-datagrid--pagination-select">
         {{pageSize}}条/页
         <i class="kv-icon-down"></i>
+        <div class="kv-datagrid--pagination-select-dropdown">
+          <div class="kv-datagrid--pagination-select-option">10条/页</div>
+          <div class="kv-datagrid--pagination-select-option">10条/页</div>
+          <div class="kv-datagrid--pagination-select-option">10条/页</div>
+          <div class="kv-datagrid--pagination-select-option">10条/页</div>
+          <div class="kv-datagrid--pagination-select-option">10条/页</div>
+        </div>
       </div>
     </span>
     <pager class="kv-datagrid--pagination-pager"
@@ -117,12 +124,13 @@ export default {
 
 .kv-datagrid--pagination-select {
   position: relative;
-  padding: 0 25px 0 8px;
+  padding: 0 25px 0 15px;
   border-radius: 3px;
   border: 1px solid #e8e8e8;
   height: 28px;
   line-height: 28px;
   box-sizing: border-box;
+  min-width: 85px;
 
   .kv-icon-down {
     position: absolute;
@@ -130,6 +138,40 @@ export default {
     top: 50%;
     transform: translateY(-50%);
   }
+
+  &:hover {
+    border-color: #409eff;
+  }
+}
+
+.kv-datagrid--pagination-select-dropdown {
+  position: absolute;
+  left: 0;
+  top: 28px;
+  list-style: none;
+  padding: 6px 0;
+  box-sizing: border-box;
+  z-index: 5;
+  border: 1px solid #e8e8e8;
+  border-radius: 3px;
+  background-color: #fff;
+  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
+  margin: 5px 0;
+}
+
+.kv-datagrid--pagination-select-option {
+  font-size: 14px;
+  padding: 0 20px 0 15px;
+  position: relative;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: #606266;
+  height: 34px;
+  line-height: 34px;
+  box-sizing: border-box;
+  cursor: pointer;
+  min-width: 85px;
 }
 
 .kv-datagrid--pagination-pager {
