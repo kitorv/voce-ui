@@ -10,7 +10,8 @@
     <pager class="kv-datagrid--pagination-pager"
            :page-count="currentPageCount"
            :page-number="pageNumber"
-           :page-index="currentPageIndex"></pager>
+           :page-index="currentPageIndex"
+           @on-change="handlePagerChange"></pager>
     <span>
       前往
       <input class="kv-datagrid--pagination-number">
@@ -46,6 +47,11 @@ export default {
         return Math.max(1, this.pageCount);
       }
       return null;
+    }
+  },
+  methods: {
+    handlePagerChange(pageIndex) {
+      this.currentPageIndex = pageIndex
     }
   },
 }
