@@ -36,6 +36,9 @@ export default {
         row: this.row
       }
       return this.rowStyle.call(this.datagrid, params);
+    },
+    dataSource() {
+      return this.datagrid.dataSource
     }
   },
   methods: {
@@ -49,6 +52,17 @@ export default {
       if (this.datagrid.select) {
         this.row.selected = true
       }
+    },
+    collapseChildNodes(row) {
+      let childNodes = []
+      this.dataSource.forEach(dataRow => {
+        if (dataRow.parentId != row.id) return
+        dataRow.hidden = true
+        this.collapseChildNodes(dataRow)
+      });
+    },
+    expandChildNodes() {
+
     }
   },
   watch: {
@@ -70,6 +84,34 @@ export default {
         if (m.id == this.row.id) return
         m.selected = false
       })
+    },
+    'row.treeNodeExpand'(expand) {
+      console.log(expand);
+      if (expand) {
+        this.expandChildNodes(this.row)
+      } else {
+        this.collapseChildNodes(this.row)
+      }
+      // console.log(expand);
+      // console.log(this.dataSource);
+
+      // let treeExpandNodeId = this.datagrid.treeExpandNodeId
+      // if (!treeExpandNodeId) {
+      //   this.datagrid.treeExpandNodeId = this.row.id
+      // }
+      // let dataSource = this.datagrid.dataSource
+      // dataSource.map(row => {
+      //   if (row.parentId != this.row.id) return
+      //   row.hidden = !value
+      //   // row.hidden=value
+      //   // this.datagrid.treeExpandNodeId
+      //   // if (row.parentId != this.datagrid.treeExpandNodeId) return
+      //   // row.treeNodeExpand = value
+      // })
+      // // treeExpandNodeId
+      // console.log(this.row);
+      // console.log(value);
+      // console.log(this.datagrid.treeExpandNodeId);
     }
   }
 };

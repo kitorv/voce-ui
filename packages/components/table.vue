@@ -147,6 +147,8 @@ export default {
       orderType: null,
       // 排序字段
       orderKey: null,
+      // 树节点的列
+      treeKey: treeKey,
       // 编辑行
       editIndex: -1,
       // 编辑字段
