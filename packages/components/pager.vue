@@ -1,20 +1,37 @@
 <template>
   <ul class="kv-datagrid--page">
-    <li class="kv-datagrid--page-number">
+    <li :class="['kv-datagrid--page-number']"
+        @click="handlePageIndexChange(pageIndex-1)">
       <i class="kv-icon-left"></i>
     </li>
-    <li class="kv-datagrid--page-number">1</li>
-    <li class="kv-datagrid--page-number kv-datagrid--page-prev">
-      <i>•••</i>
+    <li :class="['kv-datagrid--page-number',{'kv-datagrid--page-avtive':pageIndex==1}]"
+        @click="handlePageIndexChange(1)">1</li>
+    <li v-if="showPrevMore"
+        class="kv-datagrid--page-number kv-datagrid--page-prev"
+        @mouseenter="prevMoreHover=true"
+        @mouseleave="prevMoreHover=false"
+        @click="handlePageIndexChange(pageIndex-pageNumber+2)">
+      <i v-if="prevMoreHover"
+         class="kv-icon-doubleleft"></i>
+      <i v-else>•••</i>
     </li>
     <li v-for="(page, index) in pageList"
         :key="index"
-        class="kv-datagrid--page-number">{{page}}</li>
-    <li class="kv-datagrid--page-number kv-datagrid--page-next">
-      <i>•••</i>
+        :class="['kv-datagrid--page-number',{'kv-datagrid--page-avtive':pageIndex==page}]"
+        @click="handlePageIndexChange(page)">{{page}}</li>
+    <li v-if="showNextMore"
+        class="kv-datagrid--page-number kv-datagrid--page-next"
+        @mouseenter="nextMoreHover=true"
+        @mouseleave="nextMoreHover=false"
+        @click="handlePageIndexChange(pageIndex+pageNumber-2)">
+      <i v-if="nextMoreHover"
+         class="kv-icon-doubleright"></i>
+      <i v-else>•••</i>
     </li>
-    <li class="kv-datagrid--page-number">{{pageCount}}</li>
-    <li class="kv-datagrid--page-number">
+    <li :class="['kv-datagrid--page-number',{'kv-datagrid--page-avtive':pageIndex==pageCount}]"
+        @click="handlePageIndexChange(pageCount)">{{pageCount}}</li>
+    <li class="kv-datagrid--page-number"
+        @click="handlePageIndexChange(pageIndex+1)">
       <i class="kv-icon-right"></i>
     </li>
   </ul>
@@ -22,6 +39,12 @@
 
 <script>
 export default {
+  data() {
+    return {
+      prevMoreHover: false,
+      nextMoreHover: false
+    }
+  },
   props: {
     pageIndex: { type: Number },
     pageCount: { type: Number },
@@ -53,6 +76,11 @@ export default {
         pageList.push(i)
       }
       return pageList
+    }
+  },
+  methods: {
+    handlePageIndexChange(pageIndex) {
+      this.$emit('on-change', pageIndex)
     }
   }
 }
