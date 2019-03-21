@@ -1,6 +1,6 @@
 <template>
   <ul class="kv-datagrid--page">
-    <li :class="['kv-datagrid--page-number']"
+    <li :class="['kv-datagrid--page-number',{'kv-datagrid--page-disabled':pageIndex<2}]"
         @click="handlePageIndexChange(pageIndex-1)">
       <i class="kv-icon-left"></i>
     </li>
@@ -28,9 +28,10 @@
          class="kv-icon-doubleright"></i>
       <i v-else>•••</i>
     </li>
-    <li :class="['kv-datagrid--page-number',{'kv-datagrid--page-avtive':pageIndex==pageCount}]"
+    <li v-if="pageCount>1"
+        :class="['kv-datagrid--page-number',{'kv-datagrid--page-avtive':pageIndex==pageCount}]"
         @click="handlePageIndexChange(pageCount)">{{pageCount}}</li>
-    <li class="kv-datagrid--page-number"
+    <li :class="['kv-datagrid--page-number',{'kv-datagrid--page-disabled':pageIndex>pageCount-1}]"
         @click="handlePageIndexChange(pageIndex+1)">
       <i class="kv-icon-right"></i>
     </li>
@@ -52,10 +53,10 @@ export default {
   },
   computed: {
     showPrevMore() {
-      return this.pageIndex > this.pageNumber - (this.pageNumber - 1) / 2;
+      return this.pageIndex > this.pageNumber - (this.pageNumber - 1) / 2 && this.pageCount > this.pageNumber;
     },
     showNextMore() {
-      return this.pageIndex < this.pageCount - (this.pageNumber - 1) / 2;
+      return this.pageIndex < this.pageCount - (this.pageNumber + 1) / 2 && this.pageCount > this.pageNumber;
     },
     pageList() {
       let startIndex = 2, endIndex = this.pageCount
@@ -80,6 +81,9 @@ export default {
   },
   methods: {
     handlePageIndexChange(pageIndex) {
+      if (this.pageIndex == pageIndex) return
+      if (pageIndex < 1) return
+      if (pageIndex > this.pageCount) return
       this.$emit('on-change', pageIndex)
     }
   }

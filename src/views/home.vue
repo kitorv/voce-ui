@@ -40,7 +40,7 @@ import Pagination from '../../packages/components/pagination'
 export default {
   components: { Pagination },
   data() {
-    return { total: 1000 }
+    return { total: 100 }
   }
 };
 </script>
