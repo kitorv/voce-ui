@@ -106,7 +106,6 @@ export default {
   },
   data() {
     let {
-      separateKeys,
       treeKey,
       columnRows,
       leafColumns,
@@ -125,7 +124,7 @@ export default {
       // 表头数据源包装构建
       headerDataSource: initProxyRows(this.header),
       // 数据源包装构建
-      dataSource: this.initProxyDataSource(separateKeys, treeKey),
+      dataSource: this.initProxyDataSource(treeKey),
       // 表尾数据源包装构建
       footerDataSource: initProxyRows(this.footer),
       // 垂直滚动条宽度
@@ -231,8 +230,7 @@ export default {
       let leftFixedColumns = [],
         rightFixedColumns = [],
         leafColumns = [];
-      let treeKey = null,
-        separateKeys = [];
+      let treeKey = null;
       // 设置单元格的colspan和rowspan
       const initCell = column => {
         const { children, fixed, type, separate, key } = column;
@@ -257,9 +255,6 @@ export default {
           rightFixedColumns.push(column);
         }
         initColumnProps.call(this, column);
-        if (separate && key) {
-          separateKeys.push(key);
-        }
         if (type == "tree" && !this.treeKey && key) {
           treeKey = key;
         }
@@ -275,14 +270,12 @@ export default {
         leftFixedColumns,
         rightFixedColumns,
         leafColumns,
-        treeKey,
-        separateKeys
+        treeKey
       };
     },
     // 初始化表体数据源代理，表体需要处理合并单元格数据和表体特有数据
-    initProxyDataSource(treeKey, separateKeys) {
+    initProxyDataSource(treeKey) {
       if (treeKey) return initTreeProxyRows(this.data);
-      if (separateKeys.length > 0) return initMegreProxyRows(this.data);
       return initProxyRows(this.data);
     },
     // 表格内容渲染完成根据内容调整表格

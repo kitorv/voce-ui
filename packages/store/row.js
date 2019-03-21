@@ -82,7 +82,7 @@ export const initMegreProxyRows = (keys, rows) => {
   let dataList = [];
   for (const key in dataMap) {
     const { row, children } = dataMap[key];
-    let newRow = Object.assign({ MERGE_DETAILROWS: children }, row);
+    let newRow = Object.assign({ children }, row);
     dataList.push(initProxyRow(newRow));
   }
   return dataList;
