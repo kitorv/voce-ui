@@ -23,7 +23,7 @@ export const initProxyRow = row => {
     // 树结构的父节点
     isLeaf: true,
     // 树节点展开
-    nodeExpand: true,
+    treeNodeExpand: true,
     // 行的数据
     data: row
   };
