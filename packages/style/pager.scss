@@ -21,11 +21,11 @@
   margin: 0;
   border: 1px solid #e8e8ee;
   border-radius: 3px;
+}
 
-  &:hover {
-    border-color: #409eff;
-    color: #409eff;
-  }
+.kv-datagrid--page-number:hover {
+  border-color: #409eff;
+  color: #409eff;
 }
 
 .kv-datagrid--page-prev,
@@ -46,8 +46,15 @@
 }
 
 .kv-datagrid--page-avtive,
-.kv-datagrid--page-avtive :hover {
-  color: #ffffff !important;
+.kv-datagrid--page-avtive:hover {
+  color: #ffffff;
   background-color: #409eff;
   border-color: #409eff;
+}
+
+.kv-datagrid--page-disabled,
+.kv-datagrid--page-disabled:hover {
+  color: #c0c4cc;
+  border-color: #c0c4cc;
+  cursor: not-allowed;
 }
