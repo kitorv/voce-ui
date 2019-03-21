@@ -1,0 +1,20 @@
+.kv-datagrid--body-cell-tree {
+  .kv-icon-caret-right {
+    display: inline-block;
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+}
+
+.kv-datagrid--body-cell-tree-space {
+  .kv-icon-caret-right {
+    visibility: hidden;
+    cursor: default;
+  }
+}
+
+.kv-datagrid--body-cell-tree-expand {
+  .kv-icon-caret-right {
+    transform: rotate(90deg);
+  }
+}
