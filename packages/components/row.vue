@@ -54,15 +54,18 @@ export default {
       }
     },
     collapseChildNodes(row) {
-      let childNodes = []
       this.dataSource.forEach(dataRow => {
         if (dataRow.parentId != row.id) return
         dataRow.hidden = true
         this.collapseChildNodes(dataRow)
       });
     },
-    expandChildNodes() {
-
+    expandChildNodes(row) {
+      this.dataSource.forEach(dataRow => {
+        if (dataRow.parentId != row.id) return
+        dataRow.hidden = !row.treeNodeExpand || row.hidden
+        this.expandChildNodes(dataRow)
+      });
     }
   },
   watch: {
@@ -86,32 +89,12 @@ export default {
       })
     },
     'row.treeNodeExpand'(expand) {
-      console.log(expand);
+      if (!this.datagrid.treeKey) return
       if (expand) {
         this.expandChildNodes(this.row)
       } else {
         this.collapseChildNodes(this.row)
       }
-      // console.log(expand);
-      // console.log(this.dataSource);
-
-      // let treeExpandNodeId = this.datagrid.treeExpandNodeId
-      // if (!treeExpandNodeId) {
-      //   this.datagrid.treeExpandNodeId = this.row.id
-      // }
-      // let dataSource = this.datagrid.dataSource
-      // dataSource.map(row => {
-      //   if (row.parentId != this.row.id) return
-      //   row.hidden = !value
-      //   // row.hidden=value
-      //   // this.datagrid.treeExpandNodeId
-      //   // if (row.parentId != this.datagrid.treeExpandNodeId) return
-      //   // row.treeNodeExpand = value
-      // })
-      // // treeExpandNodeId
-      // console.log(this.row);
-      // console.log(value);
-      // console.log(this.datagrid.treeExpandNodeId);
     }
   }
 };
