@@ -27,7 +27,7 @@
       };
     },
     methods: {
-      loadData({ pageIndex, pageSize }) {
+      loadData({ pageIndex, pageSize }, success) {
         let rows = [];
         for (let i = 0; i < pageSize; i++) {
           let no = (pageIndex - 1) * pageSize + i + 1;
@@ -38,7 +38,7 @@
             address: "address"
           });
         }
-        return { total: 1000, rows };
+        success({ total: 1000, rows });
       }
     }
   };
