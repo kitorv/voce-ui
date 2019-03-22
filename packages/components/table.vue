@@ -75,12 +75,6 @@
            :style="{'width':`${rightBodyWidth}px`,'right':`${vScrollSize}px`}">
         <table-footer :style="{'width':`${bodyWidth}px`}"></table-footer>
       </div>
-      <div v-if="pagination"
-           class="kv-datagrid--pagination">
-        <table-pager :page-count="50"
-                     :page-number="5"
-                     :page-index="48"></table-pager>
-      </div>
     </div>
     <!-- 表尾 -->
   </div>
