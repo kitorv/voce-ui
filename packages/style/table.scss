@@ -80,7 +80,7 @@
 }
 
 // 无数据占位
-.kv-datagrid--placeholder {
+.kv-datagrid--body-empty {
   position: relative;
   z-index: 1;
   font-size: 14px;
@@ -92,7 +92,7 @@
   height: 100%;
 }
 
-.kv-datagrid--placeholder-empty {
+.kv-datagrid--body-empty-placeholder {
   padding: 32px;
   font-size: 16px;
   line-height: 22px;
@@ -105,20 +105,22 @@
   }
 }
 
-.kv-datagrid--placeholder-fit {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 5;
-}
-
-.kv-datagrid--placeholder-image {
+.kv-datagrid--body-empty-image {
   height: 40px;
   margin-bottom: 10px;
 
   img {
     height: 100%;
+  }
+}
+
+.kv-datagrid--body-empty-fit {
+  .kv-datagrid--body-empty-placeholder {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 5;
   }
 }
 

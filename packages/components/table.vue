@@ -39,9 +39,9 @@
                     @on-after-render="handleBodyLayoutResize"></table-body>
         <div v-else
              :style="{'width':dataSource.length<1?`${bodyWidth}px`:'auto'}"
-             class="kv-datagrid--placeholder">
-          <div :class="['kv-datagrid--placeholder-empty',{'kv-datagrid--placeholder-fit':fit}]">
-            <div class="kv-datagrid--placeholder-image"><img src="../images/empty.svg"></div>
+             :class="['kv-datagrid--body-empty',{'kv-datagrid--body-empty-fit':fit}]">
+          <div class="kv-datagrid--body-empty-placeholder">
+            <div class="kv-datagrid--body-empty-image"><img src="../images/empty.svg"></div>
             <p>暂无数据</p>
           </div>
         </div>
