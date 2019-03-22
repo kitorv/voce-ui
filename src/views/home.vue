@@ -17,6 +17,8 @@
                      to="/example/render">自定义渲染</router-link>
         <router-link class="view-home--body-link"
                      to="/example/data">数据处理</router-link>
+        <router-link class="view-home--body-link"
+                     to="/example/pagination">分页查询</router-link>
       </div>
       <div class="view-home--body-content">
         <router-view></router-view>

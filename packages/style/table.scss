@@ -3,7 +3,6 @@
   position: relative;
   zoom: 1;
   box-sizing: border-box;
-  overflow: hidden;
   line-height: 1.5;
   color: #333333;
   background-color: #fafafa;
@@ -61,6 +60,19 @@
     right: 0;
     top: 0;
     z-index: 4;
+  }
+}
+
+.kv-datagrid--footer-pagination {
+  position: relative;
+  background-color: #ffffff;
+  padding: 5px;
+  overflow-x: hidden;
+  box-sizing: border-box;
+  // border-top: 1px solid #e8e8e8;
+
+  .kv-datagrid--pagination {
+    text-align: right;
   }
 }
 

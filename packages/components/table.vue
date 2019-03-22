@@ -77,6 +77,14 @@
       </div>
     </div>
     <!-- 表尾 -->
+    <div v-if="pagination"
+         ref="page"
+         class="kv-datagrid--footer-pagination">
+      <table-pagination :page-total="pageTotal"
+                        :page-size="pageSize"
+                        :page-index="pageIndex"
+                        @on-change="handlePageChange"></table-pagination>
+    </div>
   </div>
 </template>
 
@@ -84,7 +92,7 @@
 import TableHeader from "./header";
 import TableBody from "./body";
 import TableFooter from "./footer";
-import TablePager from "./pager"
+import TablePagination from "./pagination"
 import Mousewheel from "../directives/mousewheel.js";
 import debounce from "../utils/debounce.js";
 import scrollSize from "../utils/scrollsize.js";
@@ -93,7 +101,7 @@ import initColumnProps from "../store/column.js";
 
 export default {
   name: "datagird",
-  components: { TableHeader, TableBody, TableFooter, TablePager },
+  components: { TableHeader, TableBody, TableFooter, TablePagination },
   directives: { Mousewheel },
   provide() {
     return { datagrid: this };
@@ -123,7 +131,10 @@ export default {
       orderKey: null,
       treeKey: treeKey,
       editIndex: -1,
-      editKey: null
+      editKey: null,
+      pageIndex: 1,
+      pageSize: 10,
+      pageTotal: 0
     };
   },
   props: {
@@ -143,6 +154,7 @@ export default {
     cellSpan: { type: Function },
     pagination: { type: Boolean, default: false },
     showHeader: { type: Boolean, default: true },
+    loadData: { type: Function }
   },
   computed: {
     bodyStyle() {
@@ -241,9 +253,9 @@ export default {
       };
     },
     // 初始化表体数据源代理，表体需要处理合并单元格数据和表体特有数据
-    initProxyDataSource(treeKey) {
+    initProxyDataSource(treeKey, data) {
       if (treeKey || this.treeKey) return initTreeProxyRows(this.data);
-      return initProxyRows(this.data);
+      return initProxyRows(data || this.data);
     },
     // 表格内容渲染完成根据内容调整表格
     handleBodyLayoutResize() {
@@ -355,6 +367,9 @@ export default {
       if (this.$refs.footerWrapper) {
         this.footerHeight = this.$refs.footerWrapper.offsetHeight;
       }
+      if (this.$refs.page) {
+        this.footerHeight += this.$refs.page.offsetHeight;
+      }
       // 判断是否包含滚动态条，并计算出滚动条尺寸
       const bodyEl = this.$refs.body;
       if (!bodyEl) return
@@ -363,7 +378,18 @@ export default {
       // 自适应父容器表格滚动条要根据表体内容高度计算
       this.vScrollSize =
         bodyEl.scrollHeight > this.bodyHeight ? scrollSize() : 0;
+    },
+    handlePageChange(pageIndex, pageSize) {
+      if (!this.pagination) return
+      let { total, rows } = this.loadData({ pageIndex, pageSize })
+      this.dataSource = this.initProxyDataSource(null, rows)
+      this.pageIndex = pageIndex
+      this.pageSize = pageSize
+      this.pageTotal = total
     }
+  },
+  created() {
+    this.handlePageChange(this.pageIndex, this.pageSize)
   },
   mounted() {
     window.addEventListener("resize", this.handleLayoutReize(100));
