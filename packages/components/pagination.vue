@@ -60,7 +60,7 @@ export default {
     pageCount: { type: Number, default: 0 },
     pageIndex: { type: Number, default: 1 },
     pageNumber: { type: Number, default: 5 },
-    pageSizes: { type: Array, default: () => [10, 20, 30, 40, 50, 100] }
+    pageSizes: { type: Array, default: () => [10, 20, 50, 100] }
   },
   computed: {
     currentPageCount() {
@@ -112,13 +112,13 @@ export default {
   watch: {
     currentPageIndex(pageIndex) {
       this.inputPageIndex = pageIndex
-      this.$emit('on-change', { pageIndex, pageSize: this.currentPageSize })
+      this.$emit('on-change', pageIndex, this.currentPageSize)
     },
     currentPageSize(pageSize) {
       let pageIndex = this.currentPageIndex
       this.currentPageIndex = this.getValidPageIndex(pageIndex)
       if (pageIndex != this.currentPageIndex) return
-      this.$emit('on-change', { pageIndex, pageSize: this.currentPageSize })
+      this.$emit('on-change', pageIndex, this.currentPageSize)
     },
     pageIndex(value) {
       let pageIndex = this.getValidPageIndex(value)
@@ -131,4 +131,5 @@ export default {
   }
 }
 </script>
+
 
