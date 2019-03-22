@@ -48,9 +48,9 @@ export default {
   directives: { Clickoutside },
   data() {
     return {
-      currentPageIndex: 1,
+      currentPageIndex: this.pageIndex,
       currentPageSize: 10,
-      inputPageIndex: 1,
+      inputPageIndex: this.pageIndex,
       showDropdown: false
     }
   },
@@ -110,8 +110,23 @@ export default {
     }
   },
   watch: {
-    currentPageIndex(value) {
-      this.inputPageIndex = value
+    currentPageIndex(pageIndex) {
+      this.inputPageIndex = pageIndex
+      this.$emit('on-change', { pageIndex, pageSize: this.currentPageSize })
+    },
+    currentPageSize(pageSize) {
+      let pageIndex = this.currentPageIndex
+      this.currentPageIndex = this.getValidPageIndex(pageIndex)
+      if (pageIndex != this.currentPageIndex) return
+      this.$emit('on-change', { pageIndex, pageSize: this.currentPageSize })
+    },
+    pageIndex(value) {
+      let pageIndex = this.getValidPageIndex(value)
+      this.currentPageIndex = pageIndex
+      this.inputPageIndex = pageIndex
+    },
+    pageSize(pageSize) {
+      this.currentPageSize = pageSize
     }
   }
 }
