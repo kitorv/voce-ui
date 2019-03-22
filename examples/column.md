@@ -2,7 +2,7 @@
 
 ## 树形表格
 
-:::demo
+:::demo 列的`type`的类型为`tree`该列会生成树结构，树结构数据包含`children`的格式
 
 ```html
 <template>
