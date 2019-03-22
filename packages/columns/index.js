@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 export default {
-  width: 40,
+  width: 42,
   key: "",
   separate: false,
   columnFormatter: h => <div>#</div>,
