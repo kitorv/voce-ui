@@ -2,7 +2,7 @@
 
 ## 简单表格
 
-:::demo
+:::demo 基础的表格数据展示
 
 ```html
 <template>
@@ -47,7 +47,7 @@
 
 ## 表头分组
 
-:::demo
+:::demo `column`设置`children`属性嵌套`column`配置来进行表头分组
 
 ```html
 <template>
@@ -143,7 +143,7 @@
 
 ## 无数据
 
-:::demo
+:::demo 无数据会自动生成占位符显示
 
 ```html
 <template>

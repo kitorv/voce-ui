@@ -194,6 +194,19 @@ export default {
       box-shadow: none;
     }
   }
+
+  code {
+    color: #444;
+    background-color: #e6effb;
+    margin: 0 4px;
+    display: inline-block;
+    padding: 3px 7px;
+    border-radius: 3px;
+    height: 18px;
+    line-height: 18px;
+    font-family: Menlo, Monaco, Consolas, Courier, monospace;
+    font-size: 14px;
+  }
 }
 
 .kv-code-snippet--code {
