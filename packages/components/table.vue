@@ -101,51 +101,28 @@ export default {
   data() {
     let { treeKey, columnRows, leafColumns, leftFixedColumns, rightFixedColumns } = this.init();
     return {
-      // 列转行用于渲染表头数据
       columnRows: columnRows,
-      // 末级叶子列用于实际数据展示
       leafColumns: leafColumns,
-      // 左侧固定列
       leftFixedColumns: leftFixedColumns,
-      // 右侧固定列
       rightFixedColumns: rightFixedColumns,
-      // 表头数据源包装构建
       headerDataSource: initProxyRows(this.header),
-      // 数据源包装构建
       dataSource: this.initProxyDataSource(treeKey),
-      // 表尾数据源包装构建
       footerDataSource: initProxyRows(this.footer),
-      // 垂直滚动条宽度
       vScrollSize: 0,
-      // 水平滚动条宽度
       hScrollSize: 0,
-      // 左侧固定表格内容宽度
       leftBodyWidth: 0,
-      // 右侧固定表格内容宽度
       rightBodyWidth: 0,
-      // 表格内容宽度
       bodyWidth: 0,
-      // 表格内容高度
       bodyHeight: 0,
-      // 顶部表头布局高度
       headerHeight: 0,
-      // 底部表尾布局高度
       footerHeight: 0,
-      // 复选框全部勾选状态
       checkedAll: false,
-      // 复选半选中状态
       indeterminate: false,
-      // 整个表格高度
       height: 0,
-      // 排序方式
       orderType: null,
-      // 排序字段
       orderKey: null,
-      // 树节点的列
       treeKey: treeKey,
-      // 编辑行
       editIndex: -1,
-      // 编辑字段
       editKey: null
     };
   },
@@ -164,7 +141,7 @@ export default {
     cellClass: { type: Function },
     cellStyle: { type: Function },
     cellSpan: { type: Function },
-    pagination: { type: Boolean, default: true },
+    pagination: { type: Boolean, default: false },
     showHeader: { type: Boolean, default: true },
   },
   computed: {
@@ -381,8 +358,7 @@ export default {
       // 判断是否包含滚动态条，并计算出滚动条尺寸
       const bodyEl = this.$refs.body;
       if (!bodyEl) return
-      this.hScrollSize =
-        bodyEl.scrollWidth > bodyEl.offsetWidth ? scrollSize() : 0;
+      this.hScrollSize = bodyEl.scrollWidth > bodyEl.offsetWidth ? scrollSize() : 0;
       this.bodyHeight = this.height - this.headerHeight - this.footerHeight;
       // 自适应父容器表格滚动条要根据表体内容高度计算
       this.vScrollSize =
