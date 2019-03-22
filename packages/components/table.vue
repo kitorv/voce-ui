@@ -77,7 +77,7 @@
       </div>
     </div>
     <!-- 表尾 -->
-    <div v-if="pagination"
+    <div v-if="pagination&&dataSource.length>0"
          ref="page"
          class="kv-datagrid--footer-pagination">
       <table-pagination :page-total="pageTotal"
@@ -380,7 +380,7 @@ export default {
         bodyEl.scrollHeight > this.bodyHeight ? scrollSize() : 0;
     },
     handlePageChange(pageIndex, pageSize) {
-      if (!this.pagination) return
+      if (!this.pagination || !this.loadData) return
       let { total, rows } = this.loadData({ pageIndex, pageSize })
       this.dataSource = this.initProxyDataSource(null, rows)
       this.pageIndex = pageIndex
