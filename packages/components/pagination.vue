@@ -2,15 +2,20 @@
   <div class="kv-datagrid--pagination">
     <span>共 {{pageTotal}} 条</span>
     <span>
-      <div class="kv-datagrid--pagination-select">
-        {{pageSize}}条/页
+      <div class="kv-datagrid--pagination-select"
+           v-clickoutside="handleOutsideClick"
+           @click="showDropdown=!showDropdown">
+        {{currentPageSize}}条/页
         <i class="kv-icon-down"></i>
-        <div class="kv-datagrid--pagination-select-dropdown">
-          <div class="kv-datagrid--pagination-select-option">10条/页</div>
-          <div class="kv-datagrid--pagination-select-option">10条/页</div>
-          <div class="kv-datagrid--pagination-select-option">10条/页</div>
-          <div class="kv-datagrid--pagination-select-option">10条/页</div>
-          <div class="kv-datagrid--pagination-select-option">10条/页</div>
+        <div v-if="showDropdown"
+             class="kv-datagrid--pagination-select-dropdown">
+          <div v-for="(size, index) in pageSizes"
+               :key="index"
+               :class="[
+                'kv-datagrid--pagination-select-option',
+                {'kv-datagrid--pagination-select-active':size==currentPageSize}
+               ]"
+               @click.stop="handleSelctSize(size)">{{size}}条/页</div>
         </div>
       </div>
     </span>
@@ -36,14 +41,17 @@
 
 <script>
 import Pager from "./pager"
+import Clickoutside from '../directives/clickoutside.js'
 
 export default {
   components: { Pager },
+  directives: { Clickoutside },
   data() {
     return {
       currentPageIndex: 1,
       currentPageSize: 10,
-      inputPageIndex: 1
+      inputPageIndex: 1,
+      showDropdown: false
     }
   },
   props: {
@@ -51,7 +59,8 @@ export default {
     pageSize: { type: Number, default: 10 },
     pageCount: { type: Number, default: 0 },
     pageIndex: { type: Number, default: 1 },
-    pageNumber: { type: Number, default: 5 }
+    pageNumber: { type: Number, default: 5 },
+    pageSizes: { type: Array, default: () => [10, 20, 30, 40, 50, 100] }
   },
   computed: {
     currentPageCount() {
@@ -92,6 +101,13 @@ export default {
       }
       return value
     },
+    handleSelctSize(size) {
+      this.currentPageSize = size
+      this.showDropdown = false
+    },
+    handleOutsideClick() {
+      setTimeout(() => { this.showDropdown = false }, 10)
+    }
   },
   watch: {
     currentPageIndex(value) {
@@ -130,7 +146,9 @@ export default {
   height: 28px;
   line-height: 28px;
   box-sizing: border-box;
-  min-width: 85px;
+  min-width: 95px;
+  cursor: pointer;
+  user-select: none;
 
   .kv-icon-down {
     position: absolute;
@@ -171,7 +189,15 @@ export default {
   line-height: 34px;
   box-sizing: border-box;
   cursor: pointer;
-  min-width: 85px;
+  min-width: 92px;
+
+  &:hover {
+    background-color: #f5f7fa;
+  }
+}
+
+.kv-datagrid--pagination-select-active {
+  color: #409eff;
 }
 
 .kv-datagrid--pagination-pager {
