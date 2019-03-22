@@ -23,7 +23,7 @@
     </div>
     <!-- 表头 -->
     <!-- 表体 -->
-    <div class="kv-datagird--body">
+    <div :class="['kv-datagird--body',{'kv-datagird--body-vscroll':vScrollSize}]">
       <div v-if="leftFixedColumns.length>0"
            v-mousewheel="handleMousewheel"
            ref="leftBody"

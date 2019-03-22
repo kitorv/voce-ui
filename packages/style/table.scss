@@ -127,7 +127,7 @@
   border-left: 1px solid #e8e8e8;
   border-top: 1px solid #e8e8e8;
 
-  &::before {
+  .kv-datagrid--header::before {
     content: "";
     position: absolute;
     width: 100%;
@@ -137,6 +137,10 @@
     left: 0;
     bottom: 0;
     z-index: 5;
+  }
+
+  .kv-datagird--body-vscroll {
+    border-bottom: 1px solid #e8e8e8;
   }
 
   &::after {
