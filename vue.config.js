@@ -1,6 +1,6 @@
 const path = require("path");
 module.exports = {
-  publicPath: process.argv.includes("--docs") ? "/vue-datagrid" : "/",
+  publicPath: process.argv.includes("--docs") ? "/datagrid" : "/",
   chainWebpack: config => {
     config.module
       .rule("md")
