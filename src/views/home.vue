@@ -1,11 +1,11 @@
 <template>
   <div class="view-home">
-    <!-- <div class="view-home--header">
-      <div class="view-home--header-title">Vue-DataGrid</div>
-    </div> -->
+    <div class="view-home--header">
+      <div class="view-home--header-title">Kv-DataGrid</div>
+    </div>
     <div class="view-home--body">
       <div class="view-home--body-route">
-        <!-- <router-link class="view-home--body-link"
+        <router-link class="view-home--body-link"
                      to="/">基本功能</router-link>
         <router-link class="view-home--body-link"
                      to="/example/column">列配置</router-link>
@@ -16,32 +16,18 @@
         <router-link class="view-home--body-link"
                      to="/example/render">自定义渲染</router-link>
         <router-link class="view-home--body-link"
-                     to="/example/data">数据处理</router-link> -->
-
-        <!-- <router-link class="view-home--body-link"
-                     to="/4">样式</router-link>
-        <router-link class="view-home--body-link"
-                     to="/4">展开行</router-link>
-        <router-link class="view-home--body-link"
-                     to="/4">排序</router-link>
-        <router-link class="view-home--body-link"
-                     to="/4">单元格合并</router-link> -->
+                     to="/example/data">数据处理</router-link>
       </div>
       <div class="view-home--body-content">
-        <!-- <router-view></router-view> -->
-        <pagination :page-total="total"></pagination>
+        <router-view></router-view>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import Pagination from '../../packages/components/pagination'
 export default {
-  components: { Pagination },
-  data() {
-    return { total: 100 }
-  }
+
 };
 </script>
 
