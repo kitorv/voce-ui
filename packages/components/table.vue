@@ -381,11 +381,14 @@ export default {
     },
     handlePageChange(pageIndex, pageSize) {
       if (!this.pagination || !this.loadData) return
-      let { total, rows } = this.loadData({ pageIndex, pageSize })
-      this.dataSource = this.initProxyDataSource(null, rows)
-      this.pageIndex = pageIndex
-      this.pageSize = pageSize
-      this.pageTotal = total
+      let params = { pageIndex, pageSize, orderKey: this.orderKey, orderType: this.orderType }
+      let success = ({ total, rows }) => {
+        this.dataSource = this.initProxyDataSource(null, rows)
+        this.pageIndex = pageIndex
+        this.pageSize = pageSize
+        this.pageTotal = total
+      }
+      this.loadData(params, success)
     }
   },
   created() {
