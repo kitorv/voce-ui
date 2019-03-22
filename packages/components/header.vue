@@ -4,9 +4,9 @@
          cellpadding="0"
          border="0">
     <colgroup>
-      <col v-for="(column, index) in leafColumns"
-           :key="index"
-           :style="column.colStyle">
+      <table-col v-for="(column, index) in leafColumns"
+                 :key="index"
+                 :column="column"></table-col>
     </colgroup>
     <tr class="kv-datagrid--header-row"
         v-for="(colRow, index) in columnRows"
@@ -34,9 +34,10 @@
 <script>
 import TableColumn from "./column";
 import TableCell from "./cell";
+import TableCol from "./col"
 
 export default {
-  components: { TableColumn, TableCell },
+  components: { TableColumn, TableCell, TableCol },
   inject: ['datagrid'],
   computed: {
     data() {

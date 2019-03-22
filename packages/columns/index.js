@@ -4,5 +4,10 @@ export default {
   key: "",
   separate: false,
   columnFormatter: h => <div>#</div>,
-  formatter: (h, { index }) => <div>{index + 1}</div>
+  formatter: function(h, { index }) {
+    if (this.pagination) {
+      index = (this.pageIndex - 1) * this.pageSize + index;
+    }
+    return <div>{index + 1}</div>;
+  }
 };

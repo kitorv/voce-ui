@@ -91,7 +91,7 @@
 
 ## 复选框
 
-:::demo
+:::demo 列的`type`的类型为`checkbox`会自动生成复选框
 
 ```html
 <template>
@@ -137,7 +137,7 @@
 
 ## 行号
 
-:::demo
+:::demo 列的`type`的类型为`index`会自动生成序号
 
 ```html
 <template>

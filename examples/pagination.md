@@ -18,6 +18,7 @@
     data() {
       return {
         columns: [
+          { type: "index" },
           { key: "no", title: "序号" },
           { key: "name", title: "姓名" },
           { key: "age", title: "年龄" },
