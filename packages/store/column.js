@@ -12,8 +12,4 @@ export default function(column) {
     Object.assign(column, extColumn);
   }
   column.isLeaf = true;
-  column.colStyle = {
-    width: `${column.width}px`,
-    minWidth: `${column.width}px`
-  };
 }
