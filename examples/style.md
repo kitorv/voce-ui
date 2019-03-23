@@ -2,7 +2,7 @@
 
 ## 斑马线
 
-:::demo
+:::demo 设置`stripe`的值为`true`创建带有斑马纹的表格
 
 ```html
 <template>
@@ -53,7 +53,7 @@
 
 ## 无边框
 
-:::demo
+:::demo 默认自带边框，设置`border`的值为`false`不显示表格的边框
 
 ```html
 <template>
@@ -98,7 +98,7 @@
 
 ## 隐藏表头
 
-:::demo
+:::demo 设置`show-header`的值`false`则隐藏表头
 
 ```html
 <template>
@@ -153,7 +153,7 @@
 
 ## 行类样式
 
-:::demo
+:::demo 设置`row-class`属性，该属性为一个函数返回类样式名称，方法参数`{index,row,data}`
 
 ```html
 <template>
@@ -239,7 +239,7 @@
 
 ## 行样式
 
-:::demo
+:::demo 设置`row-style`属性，该属性为一个函数返回样式对象键值对，方法参数`{index,row,data}`
 
 ```html
 <template>
@@ -313,7 +313,7 @@
 
 ## 单元格类样式
 
-:::demo
+:::demo 设置`cell-class`属性，该属性为一个函数返回类样式名称，方法参数`{index,row,data,column}`
 
 ```html
 <template>
@@ -398,7 +398,7 @@
 
 ## 单元格样式
 
-:::demo
+:::demo 设置`cell-style`属性，该属性为一个函数返回样式对象键值对，方法参数`{index,row,data,column}`
 
 ```html
 <template>
@@ -472,7 +472,7 @@
 
 ## 对齐格式
 
-:::demo
+:::demo 设置`headerAlign`表头对其格式，设置`align`单元格对其格式，设置对其的类型参数有`leftt`,`center`,`right`
 
 ```html
 <template>
