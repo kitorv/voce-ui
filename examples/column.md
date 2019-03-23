@@ -183,7 +183,7 @@
 
 ## 固定列
 
-:::demo
+:::demo 设置`fixed`的值，`left`左侧固定，`right`右侧固定，默认不固定设置其他值也不固定
 
 ```html
 <template>
