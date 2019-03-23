@@ -1,6 +1,6 @@
 ## 单元格格式化
 
-:::demo
+:::demo 设置`formatter`属性返回格式化渲染内容，支持`jsx`和组件渲染
 
 ```html
 <template>
@@ -63,7 +63,7 @@
 
 ## 展开行
 
-:::demo
+:::demo 设置列的`type`属性为`expandsion`该列就会生成展开折叠操作图标，设置`slot`的`expansion`展开行的内容，如果需要自定义展开内容布局的样式设置`expansion-{class}`就会在该行追加`kv-datagrid--body-row-expansion-{class}`
 
 ```html
 <template>
@@ -115,7 +115,7 @@
 
 ## 自定义表头
 
-:::demo
+:::demo 设置`columnFormatter`进行表头的自定义渲染`
 
 ```html
 <template>
@@ -169,7 +169,7 @@
 
 ## 单元格合并
 
-:::demo
+:::demo 设置`cellSpan`属性，该属性为一个函数，返回`{rowSpan,colSpan}`返回的值对应占位行和列，返回的属性为 0 或者返回其他格式该单元格隐藏
 
 ```html
 <template>

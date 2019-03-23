@@ -2,7 +2,7 @@
 
 ## 行选中
 
-:::demo
+:::demo 设置`select`属性为`true`单击自动选中该行
 
 ```html
 <template>
@@ -47,7 +47,7 @@
 
 ## 排序
 
-:::demo
+:::demo 设置列的`sort`属性为`true`当前列可进行排序
 
 ```html
 <template>
@@ -92,7 +92,7 @@
 
 ## 表头数据
 
-:::demo
+:::demo 设置`header`进行表头数据渲染，可以设置列的`headerFormatter`进行自定义渲染
 
 ```html
 <template>
@@ -145,7 +145,7 @@
 
 ## 表尾数据
 
-:::demo
+:::demo 设置`footer`进行表尾数据渲染，可以设置列的`footerFormatter`进行自定义渲染
 
 ```html
 <template>
