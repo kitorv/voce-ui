@@ -80,23 +80,28 @@ export default {
       let { key, sort } = this.column;
       if (!sort) return;
       if (this.orderKey !== key) {
-        this.orderType = "normal";
+        this.orderType = null;
       }
       switch (this.orderType) {
         case "asc":
           this.orderType = "desc";
           break;
         case "desc":
-          this.orderType = "normal";
+          this.orderType = null;
           break;
         default:
           this.orderType = "asc";
           break;
       }
       this.orderKey = key;
+      if (this.datagrid.pagination) {
+        this.datagrid.loadAjaxData(1, this.datagrid.pageSize)
+        return
+      }
       let rows = this.datagrid.initProxyDataSource(this.datagrid.data);
-      if (this.orderType == "normal") {
+      if (!this.orderType) {
         this.datagrid.dataSource = rows;
+        return
       }
       rows.sort((x, y) => {
         if (this.orderType == "asc") {

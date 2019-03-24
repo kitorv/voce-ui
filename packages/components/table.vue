@@ -82,7 +82,7 @@
          class="kv-datagrid--footer-pagination">
       <table-pagination :page-total="pageTotal"
                         :page-size="pagination.pageSize"
-                        :page-index="pagination.pageIndex"
+                        :page-index="pageIndex"
                         :page-sizes="pagination.pageSizes"
                         :page-number="pagination.pageNumnber"
                         @on-change="loadAjaxData"></table-pagination>
@@ -134,7 +134,7 @@ export default {
       treeKey: treeKey,
       editIndex: -1,
       editKey: null,
-      pageIndex: 1,
+      pageIndex: this.pagination ? this.pagination.pageIndex : 1,
       pageSize: 10,
       pageTotal: 0
     };

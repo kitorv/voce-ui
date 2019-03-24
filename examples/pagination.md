@@ -20,8 +20,8 @@
         columns: [
           { type: "index" },
           { key: "no", title: "序号" },
-          { key: "name", title: "姓名" },
-          { key: "age", title: "年龄" },
+          { key: "name", title: "姓名", sort: true },
+          { key: "age", title: "年龄", sort: true },
           { key: "address", title: "地址" }
         ],
         data: [],
@@ -31,7 +31,7 @@
       };
     },
     methods: {
-      loadData({ pageIndex, pageSize }, success) {
+      loadData({ pageIndex, pageSize, orderType, orderKey }, success) {
         let rows = [];
         for (let i = 0; i < pageSize; i++) {
           let no = (pageIndex - 1) * pageSize + i + 1;
@@ -39,7 +39,7 @@
             no,
             name: `name-${no}`,
             age: no,
-            address: "address"
+            address: `${orderType}-${orderKey}`
           });
         }
         success({ total: 1000, rows });
