@@ -9,7 +9,7 @@
   <kv-datagrid
     :columns="columns"
     :data="data"
-    :pagination="true"
+    :pagination="pagination"
     :load-data="loadData"
   ></kv-datagrid>
 </template>
@@ -24,7 +24,10 @@
           { key: "age", title: "年龄" },
           { key: "address", title: "地址" }
         ],
-        data: []
+        data: [],
+        pagination: {
+          pageIndex: 1
+        }
       };
     },
     methods: {

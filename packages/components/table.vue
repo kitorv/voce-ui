@@ -81,9 +81,11 @@
          ref="page"
          class="kv-datagrid--footer-pagination">
       <table-pagination :page-total="pageTotal"
-                        :page-size="pageSize"
-                        :page-index="pageIndex"
-                        @on-change="handlePageChange"></table-pagination>
+                        :page-size="pagination.pageSize"
+                        :page-index="pagination.pageIndex"
+                        :page-sizes="pagination.pageSizes"
+                        :page-number="pagination.pageNumnber"
+                        @on-change="loadAjaxData"></table-pagination>
     </div>
   </div>
 </template>
@@ -152,7 +154,7 @@ export default {
     cellClass: { type: Function },
     cellStyle: { type: Function },
     cellSpan: { type: Function },
-    pagination: { type: Boolean, default: false },
+    pagination: { type: Object },
     showHeader: { type: Boolean, default: true },
     loadData: { type: Function }
   },
@@ -379,20 +381,22 @@ export default {
       this.vScrollSize =
         bodyEl.scrollHeight > this.bodyHeight ? scrollSize() : 0;
     },
-    handlePageChange(pageIndex, pageSize) {
+    loadAjaxData(pageIndex, pageSize) {
       if (!this.pagination || !this.loadData) return
       let params = { pageIndex, pageSize, orderKey: this.orderKey, orderType: this.orderType }
       let success = ({ total, rows }) => {
         this.dataSource = this.initProxyDataSource(null, rows)
-        this.pageIndex = pageIndex
-        this.pageSize = pageSize
+        this.pageSize = pageSize,
+          this.pageIndex = pageIndex
         this.pageTotal = total
       }
       this.loadData(params, success)
     }
   },
   created() {
-    this.handlePageChange(this.pageIndex, this.pageSize)
+    if (!this.pagination) return
+    let { pageIndex, pageSize } = this.pagination
+    this.loadAjaxData(pageIndex || this.pageIndex, pageSize || this.pageSize)
   },
   mounted() {
     window.addEventListener("resize", this.handleLayoutReize(100));
