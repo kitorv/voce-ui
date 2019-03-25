@@ -1,5 +1,3 @@
-/* eslint-disable prettier/prettier */
-
 let index = 0;
 
 // 代理行数据用于各种行状态操作的管理
@@ -24,6 +22,8 @@ export const initProxyRow = row => {
     isLeaf: true,
     // 树节点展开
     treeNodeExpand: true,
+    // 开启行编辑
+    edit: false,
     // 行的数据
     data: row
   };

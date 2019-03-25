@@ -60,7 +60,7 @@ td.kv-datagrid-demo--cell-error {
     margin-left: 10px;
   }
 }
-
+.kv-datagrid--cell-edit input,
 .kv-datagrid-demo--input {
   -webkit-appearance: none;
   background-color: #fff;
@@ -77,4 +77,10 @@ td.kv-datagrid-demo--cell-error {
   padding: 0 15px;
   transition: border-color 0.2s cubic-bezier(0.645, 0.045, 0.355, 1);
   width: 100%;
+}
+
+.kv-datagrid-demo--link {
+  cursor: pointer;
+  color: #409eff;
+  margin-right: 10px;
 }
