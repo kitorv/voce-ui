@@ -82,7 +82,7 @@ export default {
       return this.cellStyle.call(this.datagrid, params)
     },
     editable() {
-      return this.row.edit
+      return this.row.eidtable
       // let { key } = this.column;
       // let datagrid = this.datagrid;
       // return datagrid.editIndex == this.rowIndex && datagrid.editKey == key;
