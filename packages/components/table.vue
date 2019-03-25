@@ -81,7 +81,7 @@
          ref="page"
          class="kv-datagrid--footer-pagination">
       <table-pagination :page-total="pageTotal"
-                        :page-size="pagination.pageSize"
+                        :page-size="pageSize"
                         :page-index="pageIndex"
                         :page-sizes="pagination.pageSizes"
                         :page-number="pagination.pageNumnber"
@@ -135,7 +135,7 @@ export default {
       editIndex: -1,
       editKey: null,
       pageIndex: this.pagination ? this.pagination.pageIndex : 1,
-      pageSize: 10,
+      pageSize: this.pagination ? this.pagination.pageSize : 10,
       pageTotal: 0
     };
   },

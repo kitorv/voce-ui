@@ -34,10 +34,15 @@ export default {
     if (render) {
       content = render.call(this.datagrid, h, content, params);
     }
-    if (this.edit && edit) {
-      content = edit && edit.call(this.datagrid, h, params)
-    }
-    return <td rowspan={rowspan} colspan={colspan} style={this.tableCellStyle} on-click={this.handleCellClick} class={this.tableCellClass}>{content}</td>
+    // if (this.edit && edit) {
+    //   content = edit && edit.call(this.datagrid, h, params)
+    // }
+    return <td
+      rowspan={rowspan}
+      colspan={colspan}
+      style={this.tableCellStyle}
+      on-click={this.handleCellClick}
+      class={this.tableCellClass}>{content}</td>
 
   },
   computed: {
@@ -73,19 +78,19 @@ export default {
       }
       return this.cellStyle.call(this.datagrid, params)
     },
-    edit() {
-      let { key } = this.column;
-      let datagrid = this.datagrid;
-      return datagrid.editIndex == this.rowIndex && datagrid.editKey == key;
-    }
+    // edit() {
+    //   let { key } = this.column;
+    //   let datagrid = this.datagrid;
+    //   return datagrid.editIndex == this.rowIndex && datagrid.editKey == key;
+    // }
   },
   methods: {
     handleCellClick() {
-      let { edit, key } = this.column;
-      if (edit && key) {
-        this.datagrid.editIndex = this.rowIndex;
-        this.datagrid.editKey = key;
-      }
+      // let { edit, key } = this.column;
+      // if (edit && key) {
+      //   this.datagrid.editIndex = this.rowIndex;
+      //   this.datagrid.editKey = key;
+      // }
     },
     getCellSpan() {
       let rowspan = 1;
