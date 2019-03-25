@@ -52,7 +52,7 @@
 
 ## 行编辑
 
-:::demo 设置行的`edit`属性来开启或者关闭行编辑
+:::demo 设置行的`edit`属性来开启或者关闭行编辑，行编辑开始单元格会加上`kv-datagrid--cell-edit`类样式，可以调整编辑内容的组件样式
 
 ```html
 <template>
@@ -93,7 +93,7 @@
                   <a
                     class="kv-datagrid-demo--link"
                     on-click={() => {
-                      row.edit = true;
+                      row.eidtable = true;
                     }}
                   >
                     编辑
@@ -101,7 +101,7 @@
                   <a
                     class="kv-datagrid-demo--link"
                     on-click={() => {
-                      row.edit = false;
+                      row.eidtable = false;
                     }}
                   >
                     保存

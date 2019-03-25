@@ -23,7 +23,7 @@ export const initProxyRow = row => {
     // 树节点展开
     treeNodeExpand: true,
     // 开启行编辑
-    edit: false,
+    eidtable: false,
     // 行的数据
     data: row
   };
