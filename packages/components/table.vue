@@ -87,6 +87,7 @@
                         :page-number="pagination.pageNumnber"
                         @on-change="loadAjaxData"></table-pagination>
     </div>
+    <table-loading v-show="loading"></table-loading>
   </div>
 </template>
 
@@ -95,6 +96,7 @@ import TableHeader from "./header";
 import TableBody from "./body";
 import TableFooter from "./footer";
 import TablePagination from "./pagination"
+import TableLoading from "./loading"
 import Mousewheel from "../directives/mousewheel.js";
 import debounce from "../utils/debounce.js";
 import scrollSize from "../utils/scrollsize.js";
@@ -103,7 +105,7 @@ import initColumnProps from "../store/column.js";
 
 export default {
   name: "datagird",
-  components: { TableHeader, TableBody, TableFooter, TablePagination },
+  components: { TableHeader, TableBody, TableFooter, TablePagination, TableLoading },
   directives: { Mousewheel },
   provide() {
     return { datagrid: this };
@@ -157,7 +159,8 @@ export default {
     pagination: { type: Object },
     showHeader: { type: Boolean, default: true },
     loadData: { type: Function },
-    editable: { type: Boolean }
+    editable: { type: Boolean },
+    loading: { type: [Boolean, Object], default: null }
   },
   computed: {
     bodyStyle() {
