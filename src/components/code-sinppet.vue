@@ -6,11 +6,11 @@
     <div class="kv-code-snippet--desc">
       <slot></slot>
       <span class="kv-code-snippet--icon-code"
-            @click="showCode=!showCode">
+            @click="showCode = !showCode">
         <img v-if="showCode"
-             src="../assest/images/code-open.svg">
+             src="../assest/images/code-open.svg" />
         <img v-else
-             src="../assest/images/code.svg">
+             src="../assest/images/code.svg" />
       </span>
     </div>
     <div v-show="showCode"
@@ -25,7 +25,7 @@ export default {
   data() {
     return {
       showCode: false
-    }
+    };
   }
 };
 </script>
