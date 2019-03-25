@@ -43,11 +43,6 @@ export default new Router({
           path: "/example/data",
           name: "example-data",
           component: () => import("../examples/data.md")
-        },
-        {
-          path: "/example/pagination",
-          name: "example-pagination",
-          component: () => import("../examples/pagination.md")
         }
       ]
     }
