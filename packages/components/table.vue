@@ -132,8 +132,8 @@ export default {
       orderType: null,
       orderKey: null,
       treeKey: treeKey,
-      editIndex: -1,
-      editKey: null,
+      editRowIndex: null,
+      editColumnIndex: null,
       pageIndex: this.pagination ? this.pagination.pageIndex : 1,
       pageSize: this.pagination ? this.pagination.pageSize : 10,
       pageTotal: 0
@@ -156,7 +156,8 @@ export default {
     cellSpan: { type: Function },
     pagination: { type: Object },
     showHeader: { type: Boolean, default: true },
-    loadData: { type: Function }
+    loadData: { type: Function },
+    editable: { type: Boolean }
   },
   computed: {
     bodyStyle() {
