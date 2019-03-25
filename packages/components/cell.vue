@@ -82,19 +82,20 @@ export default {
       return this.cellStyle.call(this.datagrid, params)
     },
     editable() {
-      return this.row.eidtable
-      // let { key } = this.column;
-      // let datagrid = this.datagrid;
-      // return datagrid.editIndex == this.rowIndex && datagrid.editKey == key;
+      if (!this.datagrid.editable) {
+        return this.row.eidtable
+      }
+      let datagrid = this.datagrid;
+      return datagrid.editRowIndex == this.rowIndex && datagrid.editColumnIndex == this.columnIndex;
     }
   },
   methods: {
     handleCellClick() {
-      // let { edit, key } = this.column;
-      // if (edit && key) {
-      //   this.datagrid.editIndex = this.rowIndex;
-      //   this.datagrid.editKey = key;
-      // }
+      let { editor, key } = this.column;
+      if (editor && key) {
+        this.datagrid.editRowIndex = this.rowIndex;
+        this.datagrid.editColumnIndex = this.columnIndex;
+      }
     },
     getCellSpan() {
       let rowspan = 1;
