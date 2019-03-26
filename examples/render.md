@@ -113,6 +113,85 @@
 
 :::
 
+## 嵌套子表格
+
+:::demo 设置列的`type`属性为`expandsion`,插槽`slot`设置为`expansion-table`,设置对应的样式`kv-datagrid--body-expansion-table`
+
+```html
+<template>
+  <kv-datagrid :columns="columns" :data="data">
+    <div slot="expansion-table" slot-scope="{data}">
+      <kv-datagrid :columns="childColumns" :data="data.children"></kv-datagrid>
+    </div>
+  </kv-datagrid>
+</template>
+<script>
+  export default {
+    data() {
+      return {
+        columns: [
+          { type: "expansion" },
+          { key: "name", title: "姓名" },
+          { key: "age", title: "年龄" },
+          { key: "address", title: "地址" }
+        ],
+        childColumns: [
+          { key: "height", title: "身高" },
+          { key: "weight", title: "体重" }
+        ],
+        data: [
+          {
+            key: "1",
+            name: "John Brown",
+            age: 32,
+            address: "New York No. 1 Lake Park",
+            children: [
+              { height: "175cm", wieght: "65kg" },
+              { height: "171cm", wieght: "63kg" },
+              { height: "185cm", wieght: "55kg" }
+            ]
+          },
+          {
+            key: "2",
+            name: "Jim Green",
+            age: 42,
+            address: "London No. 1 Lake Park",
+            children: [
+              { height: "175cm", wieght: "65kg" },
+              { height: "171cm", wieght: "63kg" },
+              { height: "185cm", wieght: "55kg" }
+            ]
+          },
+          {
+            key: "3",
+            name: "Joe Black",
+            age: 32,
+            address: "Sidney No. 1 Lake Park",
+            children: [
+              { height: "175cm", wieght: "65kg" },
+              { height: "171cm", wieght: "63kg" },
+              { height: "185cm", wieght: "55kg" }
+            ]
+          }
+        ]
+      };
+    }
+  };
+</script>
+<style>
+  .kv-datagrid--body-expansion-table > td {
+    border-bottom: none;
+  }
+
+  .kv-datagrid--body-expansion-table .kv-datagrid-border {
+    border-top: none;
+    border-left: none;
+  }
+</style>
+```
+
+:::
+
 ## 自定义表头
 
 :::demo 设置`columnFormatter`进行表头的自定义渲染`
