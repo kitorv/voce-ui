@@ -87,7 +87,7 @@
                         :page-number="pagination.pageNumnber"
                         @on-change="loadAjaxData"></table-pagination>
     </div>
-    <table-loading v-show="loading"></table-loading>
+    <table-loading v-show="loadData?ajaxLoading:loading"></table-loading>
   </div>
 </template>
 
@@ -136,9 +136,10 @@ export default {
       treeKey: treeKey,
       editRowIndex: null,
       editColumnIndex: null,
-      pageIndex: this.pagination ? this.pagination.pageIndex : 1,
-      pageSize: this.pagination ? this.pagination.pageSize : 10,
-      pageTotal: 0
+      pageIndex: this.pagination && this.pagination.pageIndex || 1,
+      pageSize: this.pagination && this.pagination.pageSize || 10,
+      pageTotal: 0,
+      ajaxLoading: false
     };
   },
   props: {
@@ -386,6 +387,7 @@ export default {
         bodyEl.scrollHeight > this.bodyHeight ? scrollSize() : 0;
     },
     loadAjaxData(pageIndex, pageSize) {
+      this.ajaxLoading = true
       if (!this.pagination || !this.loadData) return
       let params = { pageIndex, pageSize, orderKey: this.orderKey, orderType: this.orderType }
       let success = ({ total, rows }) => {
@@ -393,14 +395,25 @@ export default {
         this.pageSize = pageSize,
           this.pageIndex = pageIndex
         this.pageTotal = total
+        this.ajaxLoading = false
       }
       this.loadData(params, success)
     }
   },
   created() {
-    if (!this.pagination) return
-    let { pageIndex, pageSize } = this.pagination
-    this.loadAjaxData(pageIndex || this.pageIndex, pageSize || this.pageSize)
+    if (this.pagination) {
+      let { pageIndex, pageSize } = this.pagination
+      this.loadAjaxData(pageIndex || this.pageIndex, pageSize || this.pageSize)
+      return
+    }
+    if (this.loadData) {
+      this.ajaxLoading = true
+      let success = ({ total, rows }) => {
+        this.dataSource = this.initProxyDataSource(null, rows)
+        this.ajaxLoading = false
+      }
+      this.loadData({ orderKey: this.orderKey, orderType: this.orderType }, success)
+    }
   },
   mounted() {
     window.addEventListener("resize", this.handleLayoutReize(100));
