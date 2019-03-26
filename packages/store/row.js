@@ -15,15 +15,13 @@ export const initProxyRow = row => {
     // 行选中状态
     selected: false,
     // 展开行状态
-    expand: false,
+    rowExpand: false,
     // 隐藏行
     hidden: false,
     // 树结构的父节点
     isLeaf: true,
     // 树节点展开
-    treeNodeExpand: true,
-    // 开启行编辑
-    eidtable: false,
+    nodeExpand: true,
     // 行的数据
     data: row
   };

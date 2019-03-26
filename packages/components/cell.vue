@@ -13,7 +13,7 @@ export default {
   render(h) {
     let { rowspan, colspan } = this.getCellSpan()
     if (!rowspan || !colspan) return ''
-    let { key, headerFormatter, formatter, footerFormatter, render, editor } = this.column;
+    let { key, headerFormatter, formatter, footerFormatter, render } = this.column;
     if (headerFormatter && this.type === "header") {
       formatter = headerFormatter;
     }
@@ -34,9 +34,6 @@ export default {
     if (render) {
       content = render.call(this.datagrid, h, content, params);
     }
-    if (this.editable && editor) {
-      content = editor.call(this.datagrid, h, params)
-    }
     return <td
       rowspan={rowspan}
       colspan={colspan}
@@ -47,16 +44,13 @@ export default {
   },
   computed: {
     tableCellClass() {
-      let { type, align, editor } = this.column;
+      let { type, align } = this.column;
       let classList = [];
       if (type) {
         classList.push(`kv-datagrid--cell-type-${type}`);
       }
       if (align) {
         classList.push(`kv-datagrid--align-${align}`);
-      }
-      if (this.editable && editor) {
-        classList.push(`kv-datagrid--cell-edit`);
       }
       if (this.cellClass) {
         let params = {
@@ -80,22 +74,11 @@ export default {
         column: this.column
       }
       return this.cellStyle.call(this.datagrid, params)
-    },
-    editable() {
-      if (!this.datagrid.editable) {
-        return this.row.eidtable
-      }
-      let datagrid = this.datagrid;
-      return datagrid.editRowIndex == this.rowIndex && datagrid.editColumnIndex == this.columnIndex;
     }
   },
   methods: {
     handleCellClick() {
-      let { editor, key } = this.column;
-      if (editor && key) {
-        this.datagrid.editRowIndex = this.rowIndex;
-        this.datagrid.editColumnIndex = this.columnIndex;
-      }
+
     },
     getCellSpan() {
       let rowspan = 1;

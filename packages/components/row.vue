@@ -67,7 +67,7 @@ export default {
     expandChildNodes(row) {
       this.dataSource.forEach(dataRow => {
         if (dataRow.parentId != row.id) return
-        dataRow.hidden = !row.treeNodeExpand || row.hidden
+        dataRow.hidden = !row.nodeExpand || row.hidden
         this.expandChildNodes(dataRow)
       });
     }
@@ -92,7 +92,7 @@ export default {
         m.selected = false
       })
     },
-    'row.treeNodeExpand'(expand) {
+    'row.nodeExpand'(expand) {
       if (!this.datagrid.treeKey) return
       if (expand) {
         this.expandChildNodes(this.row)

@@ -26,7 +26,7 @@
                     :column-index="cellIndex">
         </table-cell>
       </table-row>
-      <table-row-expansion v-if="row.expand"
+      <table-row-expansion v-if="row.rowExpand"
                            :key="`ex-${rowIndex}`"
                            :row="row"></table-row-expansion>
     </template>
