@@ -134,8 +134,6 @@ export default {
       orderType: null,
       orderKey: null,
       treeKey: treeKey,
-      editRowIndex: null,
-      editColumnIndex: null,
       pageIndex: this.pagination && this.pagination.pageIndex || 1,
       pageSize: this.pagination && this.pagination.pageSize || 10,
       pageTotal: 0,
@@ -160,7 +158,6 @@ export default {
     pagination: { type: Object },
     showHeader: { type: Boolean, default: true },
     loadData: { type: Function },
-    editable: { type: Boolean },
     loading: { type: [Boolean, Object], default: null }
   },
   computed: {

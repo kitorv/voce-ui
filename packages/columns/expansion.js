@@ -7,10 +7,10 @@ export default {
     <div
       class={[
         "kv-datagrid--body-cell-expansion",
-        { "kv-datagrid--body-cell-expansion-active": row.expand }
+        { "kv-datagrid--body-cell-expansion-active": row.rowExpand }
       ]}
       on-click={() => {
-        row.expand = !row.expand;
+        row.rowExpand = !row.rowExpand;
       }}
     >
       <i class="kv-icon-right" />
