@@ -31,17 +31,19 @@
     },
     methods: {
       loadData({ pageIndex, pageSize, orderType, orderKey }, success) {
-        let rows = [];
-        for (let i = 0; i < pageSize; i++) {
-          let no = (pageIndex - 1) * pageSize + i + 1;
-          rows.push({
-            no,
-            name: `name-${no}`,
-            age: no,
-            address: `${orderType}-${orderKey}`
-          });
-        }
-        success({ total: 1000, rows });
+        setTimeout(() => {
+          let rows = [];
+          for (let i = 0; i < pageSize; i++) {
+            let no = (pageIndex - 1) * pageSize + i + 1;
+            rows.push({
+              no,
+              name: `name-${no}`,
+              age: no,
+              address: `${orderType}-${orderKey}`
+            });
+          }
+          success({ total: 1000, rows });
+        }, 2000);
       }
     }
   };
