@@ -13,7 +13,7 @@
       </div>
       <div ref="header"
            class="kv-datagrid--header-center">
-        <table-header :column-rows="columnRows"></table-header>
+        <table-header></table-header>
       </div>
       <div v-if="rightFixedColumns.length>0"
            class="kv-datagrid--header-right"

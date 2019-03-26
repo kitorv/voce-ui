@@ -84,3 +84,14 @@ td.kv-datagrid-demo--cell-error {
   color: #409eff;
   margin-right: 10px;
 }
+
+.kv-datagrid--body-expansion-table {
+  > td {
+    border-bottom: none;
+  }
+
+  .kv-datagrid-border {
+    border-top: none;
+    border-left: none;
+  }
+}
