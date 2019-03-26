@@ -9,7 +9,8 @@ export default {
     return (
       <TableCheckbox
         indeterminate={this.indeterminate}
-        value={this.checkedAll}
+        value={this.checkedAll && this.dataSource.length > 0}
+        disabled={this.dataSource.length < 1}
         nativeOn-click={() => {
           let checkedAll = !this.checkedAll;
           this.checkedAll = checkedAll;
