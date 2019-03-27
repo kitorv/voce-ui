@@ -13,15 +13,20 @@
              src="../assest/images/code.svg" />
       </span>
     </div>
-    <div v-show="showCode"
-         class="kv-code-snippet--code highlight">
-      <slot name="highlight"></slot>
-    </div>
+    <collapse-transition>
+      <div v-show="showCode"
+           class="kv-code-snippet--code highlight">
+        <slot name="highlight"></slot>
+      </div>
+    </collapse-transition>
   </div>
 </template>
 
-<script type="text/babel">
+<script>
+import CollapseTransition from "./code-collapse"
+
 export default {
+  components: { CollapseTransition },
   data() {
     return {
       showCode: false
@@ -30,7 +35,7 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .kv-code-snippet {
   position: relative;
   box-sizing: border-box;
