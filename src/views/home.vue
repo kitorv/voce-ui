@@ -1,25 +1,33 @@
 <template>
   <div class="view-home">
     <div class="view-home--header">
-      <div class="view-home--header-title">Kv-DataGrid</div>
+      <div class="view-home--logo">Kv-DataGrid</div>
+      <a class="view-home--github"
+         href="https://github.com/kitorv/datagrid">
+        <i class="kv-icon-github"></i>
+      </a>
     </div>
     <div class="view-home--body">
-      <div class="view-home--body-route">
-        <router-link class="view-home--body-link"
+      <div class="view-home--route">
+        <div class="view-home--heading">开发指南</div>
+        <div class="view-home--heading">功能示例</div>
+        <router-link class="view-home--link"
                      to="/">基本功能</router-link>
-        <router-link class="view-home--body-link"
+        <router-link class="view-home--link"
                      to="/example/column">列配置</router-link>
-        <router-link class="view-home--body-link"
+        <router-link class="view-home--link"
                      to="/example/resize">宽高设置</router-link>
-        <router-link class="view-home--body-link"
+        <router-link class="view-home--link"
                      to="/example/style">样式定义</router-link>
-        <router-link class="view-home--body-link"
+        <router-link class="view-home--link"
                      to="/example/render">自定义渲染</router-link>
-        <router-link class="view-home--body-link"
+        <router-link class="view-home--link"
                      to="/example/data">数据处理</router-link>
       </div>
-      <div class="view-home--body-content">
-        <router-view></router-view>
+      <div class="view-home--page">
+        <div class="view-home--content">
+          <router-view></router-view>
+        </div>
       </div>
     </div>
   </div>
@@ -35,80 +43,120 @@ export default {};
 }
 
 .view-home--header {
-  transition: all 0.3s;
-  box-shadow: 0 2px 8px #f0f1f2;
-  position: relative;
-  z-index: 10;
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 20;
   height: 65px;
-  color: #444;
+  width: 100%;
+  background-color: #fff;
+  box-sizing: border-box;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.04);
 }
-.view-home--header-title {
+.view-home--logo {
   height: 65px;
   line-height: 65px;
   font-size: 25px;
   display: inline-block;
-  padding-left: 75px;
   font-weight: 700;
+  width: 240px;
+  text-align: center;
+  color: #409eff;
+}
+
+.view-home--github {
+  color: #444444;
+  font-size: 40px;
+  position: fixed;
+  right: 40px;
+  top: 10px;
+  text-decoration: none;
+  cursor: pointer;
 }
 
 .view-home--body {
-  position: relative;
-  display: flex;
-  padding: 40px 0 0;
-  margin-left: 0;
-  margin-right: 0;
-  height: auto;
-  zoom: 1;
-  box-sizing: border-box;
+  padding-top: 65px;
 }
 
-.view-home--body-route {
-  width: 250px;
-  border-right: 1px solid #e8e8ee;
-}
-
-.view-home--body-link {
-  font-size: 16px;
-  color: #333;
-  line-height: 40px;
-  height: 40px;
+.view-home--route {
+  position: fixed;
+  z-index: 30;
   margin: 0;
-  padding: 4px 25px;
-  text-decoration: none;
-  display: block;
-  position: relative;
-  transition: 0.15s ease-out;
-  font-weight: bold;
-  border-right: 3px solid transparent;
-  white-space: nowrap;
+  top: 65px;
+  left: 0;
+  bottom: 0;
+  box-sizing: border-box;
+  overflow-y: auto;
+  width: 240px;
+  font-size: 14px;
+  background-color: #f5f7fb;
+  margin: 0;
+  padding: 14px 0;
+}
+
+.view-home--heading {
+  color: #333333;
+  transition: color 0.15s ease;
   cursor: pointer;
+  font-size: 16px;
+  padding-left: 24px;
+  margin-top: 0;
+  margin-bottom: 4px;
+  box-sizing: border-box;
+  height: 40px;
+  line-height: 40px;
+  font-weight: bold;
+}
+
+.view-home--link {
+  position: relative;
+  font-weight: 400;
+  display: inline-block;
+  color: #444444;
+  border-left: 4px solid transparent;
+  padding: 8px 16px 8px 32px;
+  line-height: 1.5;
+  width: 100%;
+  box-sizing: border-box;
+  transition: all 0.3s ease;
+  font-size: 14px;
+  text-decoration: none;
 
   &:hover {
-    color: #41a259;
+    color: #409eff;
   }
 }
 
-.view-home--body-content {
-  flex: 1;
-  padding: 0 64px 64px 64px;
-  min-height: 500px;
-  overflow: hidden;
+.router-link-exact-active {
+  font-weight: 600;
+  border-left-color: #409eff;
+  color: #409eff;
+  background-color: #e6f7ff;
+  opacity: 1;
 }
 
-.router-link-exact-active {
-  color: #41a259;
-  background-color: #eeffde;
-  border-right-color: #41a259;
+.view-home--page {
+  padding-left: 240px;
+  background-color: #fdfdfd;
+}
+.view-home--content {
+  max-width: 1000px;
+  padding: 25px 50px 60px 50px;
+  margin: 0 auto;
 }
 
 .view-home /deep/ {
+  color: #444444;
+
   h1 {
-    color: #0d1a26;
     font-weight: 500;
     margin-bottom: 20px;
     margin-top: 8px;
     font-size: 30px;
     line-height: 38px;
+    border-bottom: 1px solid #f0f0f0;
+    padding-bottom: 10px;
   }
   h2,
   h3,

@@ -36,12 +36,13 @@ export default {
   box-sizing: border-box;
   width: 100%;
   margin: 0 0 16px;
-  border: 1px solid #ebedf0;
-  border-radius: 2px;
+  border-radius: 5px;
   transition: all 0.2s;
+  box-shadow: 0 6px 12px -2px rgba(0, 32, 128, 0.1), 0 0 0 1px #f0f2f7;
+  background-color: #ffffff;
 
   h1 {
-    color: #0d1a26;
+    color: #444444;
     font-weight: 500;
     margin-bottom: 20px;
     margin-top: 8px;
@@ -157,7 +158,7 @@ export default {
 
 .kv-code-snippet--demo {
   box-sizing: border-box;
-  padding: 20px 22px;
+  padding: 30px 35px;
   color: #333333;
   border-bottom: 1px solid #ebedf0;
 }
@@ -196,11 +197,11 @@ export default {
   }
 
   code {
-    color: #444;
-    background-color: #e6effb;
+    color: #333333;
+    background-color: #f2f4f5;
     margin: 0 4px;
     display: inline-block;
-    padding: 3px 7px;
+    padding: 2px 7px;
     border-radius: 3px;
     height: 18px;
     line-height: 18px;
@@ -214,7 +215,7 @@ export default {
   border-top: 1px solid #ebedf0;
 
   code {
-    background-color: #f7f7f7;
+    background-color: #f5f7fb;
     font-family: Consolas, Menlo, Courier, monospace;
     border: none;
     display: block;
