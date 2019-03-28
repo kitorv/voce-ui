@@ -84,15 +84,15 @@ export default {
     margin: 0;
     padding: 0;
   }
-  ul > li > p,
-  ol > li > p {
+  ul > li:not(.kv-datagrid--page-number) > p,
+  ol > li :not(.kv-datagrid--page-number) > p {
     margin: 0.2em 0;
   }
   ul {
     padding: 0;
     margin: 0;
   }
-  ul > li {
+  ul > li:not(.kv-datagrid--page-number) {
     list-style-type: circle;
     margin-left: 20px;
     padding-left: 4px;
