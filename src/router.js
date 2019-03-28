@@ -43,6 +43,11 @@ export default new Router({
           path: "/example/data",
           name: "example-data",
           component: () => import("../examples/data.md")
+        },
+        {
+          path: "/doc/api",
+          name: "doc-api",
+          component: () => import("../document/api.md")
         }
       ]
     }

@@ -10,6 +10,8 @@
     <div class="view-home--body">
       <div class="view-home--route">
         <div class="view-home--heading">开发指南</div>
+        <router-link class="view-home--link"
+                     to="/doc/api">Api文档</router-link>
         <div class="view-home--heading">功能示例</div>
         <router-link class="view-home--link"
                      to="/">基本功能</router-link>
@@ -179,6 +181,30 @@ export default {};
   }
   h6 {
     font-size: 12px;
+  }
+
+  .element-doc {
+    > table {
+      border-collapse: collapse;
+      border-spacing: 0;
+      empty-cells: show;
+      border: 1px solid #ebedf0;
+      width: 100%;
+      margin: 8px 0 16px;
+    }
+    > table th,
+    > table td {
+      color: #314659;
+      border: 1px solid #ebedf0;
+      text-align: left;
+      padding: 10px 15px;
+    }
+    > table th {
+      white-space: nowrap;
+      color: #5c6b77;
+      font-weight: 500;
+      background: rgba(0, 0, 0, 0.02);
+    }
   }
 }
 </style>
