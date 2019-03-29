@@ -10,8 +10,9 @@
     <div class="view-home--body">
       <div class="view-home--route">
         <div class="view-home--heading">开发指南</div>
+        <div class="view-home--heading">API文档</div>
         <router-link class="view-home--link"
-                     to="/doc/api">Api文档</router-link>
+                     to="/doc/attribute">属性</router-link>
         <div class="view-home--heading">功能示例</div>
         <router-link class="view-home--link"
                      to="/">基本功能</router-link>
@@ -100,7 +101,6 @@ export default {};
 .view-home--heading {
   color: #333333;
   transition: color 0.15s ease;
-  cursor: pointer;
   font-size: 16px;
   padding-left: 24px;
   margin-top: 0;

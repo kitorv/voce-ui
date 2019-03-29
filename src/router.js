@@ -45,9 +45,9 @@ export default new Router({
           component: () => import("../examples/data.md")
         },
         {
-          path: "/doc/api",
-          name: "doc-api",
-          component: () => import("../document/api.md")
+          path: "/doc/attribute",
+          name: "doc-attribute",
+          component: () => import("../document/attribute.md")
         }
       ]
     }
