@@ -42,7 +42,7 @@
              :class="['kv-datagrid--body-empty',{'kv-datagrid--body-empty-fit':fit}]">
           <div class="kv-datagrid--body-empty-placeholder">
             <div class="kv-datagrid--body-empty-image"><img src="../images/empty.svg"></div>
-            <p>暂无数据</p>
+            <p>{{emptyText}}</p>
           </div>
         </div>
       </div>
@@ -158,7 +158,8 @@ export default {
     pagination: { type: Object },
     showHeader: { type: Boolean, default: true },
     loadData: { type: Function },
-    loading: { type: [Boolean, Object], default: null }
+    loading: { type: [Boolean, Object], default: null },
+    emptyText: { type: String, default: "暂无数据" }
   },
   computed: {
     bodyStyle() {
