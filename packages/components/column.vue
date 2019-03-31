@@ -113,8 +113,9 @@ export default {
       });
       this.datagrid.dataSource = rows;
     },
-    handleCellClick() {
+    handleCellClick(event) {
       this.sortDataSource();
+      this.datagrid.$emit("column-click", this.column, event)
     }
   }
 };

@@ -394,6 +394,7 @@ export default {
           this.pageIndex = pageIndex
         this.pageTotal = total
         this.ajaxLoading = false
+        this.$emit('change', this.dataSource)
       }
       this.loadData(params, success)
     }
@@ -401,6 +402,10 @@ export default {
   watch: {
     checkedAll(value) {
       this.$emit("check-all", value, this.dataSource)
+    },
+    data() {
+      if (!this.loadData) return
+      this.$emit('change', this.dataSource)
     }
   },
   created() {
