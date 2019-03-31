@@ -398,6 +398,11 @@ export default {
       this.loadData(params, success)
     }
   },
+  watch: {
+    checkedAll(value) {
+      this.$emit("check-all", value, this.dataSource)
+    }
+  },
   created() {
     if (this.pagination) {
       let { pageIndex, pageSize } = this.pagination

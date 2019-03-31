@@ -8,7 +8,8 @@
       :style="tableRowStyle"
       @mouseenter="handleMouseEnter"
       @mouseleave="handleMouseLeave"
-      @click="handleClick">
+      @click="handleClick"
+      @dblclick="handleDoubleClick">
     <slot></slot>
   </tr>
 </template>
@@ -52,10 +53,17 @@ export default {
     handleMouseLeave() {
       this.row.hover = false;
     },
-    handleClick() {
+    handleClick(event) {
       if (this.datagrid.select) {
         this.row.selected = true
       }
+      this.datagrid.$emit("row-click", this.row, event)
+    },
+    handleDoubleClick(event) {
+      if (this.datagrid.select) {
+        this.row.selected = true
+      }
+      this.datagrid.$emit("row-dbclick", this.row, event)
     },
     collapseChildNodes(row) {
       this.dataSource.forEach(dataRow => {
@@ -83,6 +91,7 @@ export default {
         table.checkedAll = false;
         table.indeterminate = checkedRows.length > 0;
       }
+      this.datagrid.$emit("check", this.row)
     },
     "row.selected"(selected) {
       if (!selected) return
@@ -91,6 +100,7 @@ export default {
         if (m.id == this.row.id) return
         m.selected = false
       })
+      this.datagrid.$emit("select", this.row)
     },
     'row.nodeExpand'(expand) {
       if (!this.datagrid.treeKey) return

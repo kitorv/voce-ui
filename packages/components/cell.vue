@@ -39,6 +39,9 @@ export default {
       colspan={colspan}
       style={this.tableCellStyle}
       on-click={this.handleCellClick}
+      on-dblclick={this.handleDoubleClick}
+      on-mouseenter={this.handleCellMouseEnter}
+      on-mouseleave={this.handleCellMouseLeave}
       class={this.tableCellClass}>{content}</td>
 
   },
@@ -78,7 +81,16 @@ export default {
   },
   methods: {
     handleCellClick() {
-
+      this.datagrid.$emit('cell-click', this.row, this.column, event);
+    },
+    handleDoubleClick() {
+      this.datagrid.$emit('cell-dbclick', this.row, this.column, event);
+    },
+    handleCellMouseEnter() {
+      this.datagrid.$emit('cell-mouse-enter', this.row, this.column, event);
+    },
+    handleCellMouseLeave(event) {
+      this.datagrid.$emit('cell-mouse-leave', this.row, this.column, event);
     },
     getCellSpan() {
       let rowspan = 1;

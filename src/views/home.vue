@@ -13,6 +13,8 @@
         <div class="view-home--heading">API文档</div>
         <router-link class="view-home--link"
                      to="/doc/attribute">属性</router-link>
+        <router-link class="view-home--link"
+                     to="/doc/events">事件</router-link>
         <div class="view-home--heading">功能示例</div>
         <router-link class="view-home--link"
                      to="/">基本功能</router-link>
