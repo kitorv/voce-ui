@@ -109,6 +109,9 @@ export default {
       } else {
         this.collapseChildNodes(this.row)
       }
+    },
+    'row.rowExpand'() {
+      this.datagrid.$emit("row-expand", this.row, this.datagrid.dataSource)
     }
   }
 };
