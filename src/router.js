@@ -48,6 +48,11 @@ export default new Router({
           path: "/doc/attribute",
           name: "doc-attribute",
           component: () => import("../document/attribute.md")
+        },
+        {
+          path: "/doc/events",
+          name: "doc-events",
+          component: () => import("../document/events.md")
         }
       ]
     }
