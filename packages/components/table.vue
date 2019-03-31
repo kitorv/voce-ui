@@ -403,9 +403,14 @@ export default {
     checkedAll(value) {
       this.$emit("check-all", value, this.dataSource)
     },
-    data() {
-      if (!this.loadData) return
-      this.$emit('change', this.dataSource)
+
+
+    data: {
+      immediate: true,
+      handler() {
+        if (this.loadData) return
+        this.$emit('change', this.dataSource)
+      }
     }
   },
   created() {
