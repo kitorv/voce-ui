@@ -53,6 +53,16 @@ export default new Router({
           path: "/doc/events",
           name: "doc-events",
           component: () => import("../document/events.md")
+        },
+        {
+          path: "/doc/methods",
+          name: "doc-methods",
+          component: () => import("../document/methods.md")
+        },
+        {
+          path: "/doc/column",
+          name: "doc-column",
+          component: () => import("../document/column.md")
         }
       ]
     }

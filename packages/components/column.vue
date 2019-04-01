@@ -29,7 +29,6 @@ export default {
         </div>
       );
     }
-
     return (
       <th
         colspan={this.column.colSpan}

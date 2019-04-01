@@ -14,7 +14,11 @@
         <router-link class="view-home--link"
                      to="/doc/attribute">属性</router-link>
         <router-link class="view-home--link"
+                     to="/doc/column">列属性</router-link>
+        <router-link class="view-home--link"
                      to="/doc/events">事件</router-link>
+        <router-link class="view-home--link"
+                     to="/doc/methods">方法</router-link>
         <div class="view-home--heading">功能示例</div>
         <router-link class="view-home--link"
                      to="/">基本功能</router-link>
@@ -199,7 +203,7 @@ export default {};
       color: #314659;
       border: 1px solid #ebedf0;
       text-align: left;
-      padding: 10px 15px;
+      padding: 8px 12px;
     }
     > table th {
       white-space: nowrap;
