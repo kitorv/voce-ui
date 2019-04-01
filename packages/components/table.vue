@@ -387,24 +387,51 @@ export default {
     loadAjaxData(pageIndex, pageSize) {
       this.ajaxLoading = true
       if (!this.pagination || !this.loadData) return
-      let params = { pageIndex, pageSize, orderKey: this.orderKey, orderType: this.orderType }
+      let params = { orderKey: this.orderKey, orderType: this.orderType }
+      if (this.pagination) {
+        params.pageIndex = pageIndex
+        params.pageSize = pageSize
+      }
       let success = ({ total, rows }) => {
         this.dataSource = this.initProxyDataSource(null, rows)
-        this.pageSize = pageSize,
-          this.pageIndex = pageIndex
+        this.pageSize = pageSize
+        this.pageIndex = pageIndex
         this.pageTotal = total
         this.ajaxLoading = false
         this.$emit('change', this.dataSource)
       }
       this.loadData(params, success)
-    }
+    },
+    sort(orderKey, orderType) {
+      if (orderKey) {
+        this.orderKey = orderKey
+      }
+      if (orderType) {
+        this.orderType = orderType
+      }
+      if (this.pagination || this.loadData) {
+        this.loadAjaxData(1, this.pageSize)
+        return
+      }
+      let rows = this.initProxyDataSource()
+      if (orderKey) {
+        rows.sort((x, y) => {
+          if (this.orderType == "asc") {
+            return x.data[this.orderKey] > y.data[this.orderKey] ? 1 : -1;
+          }
+          if (this.orderType == "desc") {
+            return x.data[this.orderKey] > y.data[this.orderKey] ? -1 : 1;
+          }
+          return 0
+        });
+      }
+      this.dataSource = rows;
+    },
   },
   watch: {
     checkedAll(value) {
       this.$emit("check-all", value, this.dataSource)
     },
-
-
     data: {
       immediate: true,
       handler() {
@@ -414,19 +441,7 @@ export default {
     }
   },
   created() {
-    if (this.pagination) {
-      let { pageIndex, pageSize } = this.pagination
-      this.loadAjaxData(pageIndex || this.pageIndex, pageSize || this.pageSize)
-      return
-    }
-    if (this.loadData) {
-      this.ajaxLoading = true
-      let success = ({ total, rows }) => {
-        this.dataSource = this.initProxyDataSource(null, rows)
-        this.ajaxLoading = false
-      }
-      this.loadData({ orderKey: this.orderKey, orderType: this.orderType }, success)
-    }
+    this.loadAjaxData(this.pageIndex, this.pageSize)
   },
   mounted() {
     window.addEventListener("resize", this.handleLayoutReize(100));

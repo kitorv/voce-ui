@@ -30,7 +30,6 @@
                            :key="`ex-${rowIndex}`"
                            :row="row"></table-row-expansion>
     </template>
-
   </table>
 </template>
 

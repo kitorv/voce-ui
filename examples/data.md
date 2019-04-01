@@ -19,8 +19,8 @@
       return {
         columns: [
           { key: "no", title: "序号" },
-          { key: "name", title: "姓名", sort: true },
-          { key: "age", title: "年龄", sort: true },
+          { key: "name", title: "姓名", sortable: true },
+          { key: "age", title: "年龄", sortable: true },
           { key: "address", title: "地址" }
         ],
         data: [],
@@ -110,8 +110,8 @@
     data() {
       return {
         columns: [
-          { key: "name", title: "姓名", sort: true },
-          { key: "age", title: "年龄", sort: true },
+          { key: "name", title: "姓名", sortable: true },
+          { key: "age", title: "年龄", sortable: true },
           { key: "address", title: "地址" }
         ],
         data: [
