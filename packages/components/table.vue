@@ -427,6 +427,11 @@ export default {
       }
       this.dataSource = rows;
     },
+    load(pageIndex, pageSize, orderKey, orderType) {
+      this.orderType = orderType
+      this.orderKey = orderKey
+      this.loadAjaxData(pageIndex || 1, pageSize || this.pageSize)
+    }
   },
   watch: {
     checkedAll(value) {
