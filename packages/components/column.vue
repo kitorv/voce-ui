@@ -5,13 +5,13 @@ export default {
     column: { type: Object }
   },
   render(h) {
-    let { title, columnFormatter, sort } = this.column;
+    let { title, columnFormatter, sortable } = this.column;
     let content = title;
     if (columnFormatter) {
       content = columnFormatter.call(this.datagrid, h, { column: this.column });
     }
     let sortElement = "";
-    if (sort) {
+    if (sortable) {
       sortElement = (
         <div class="kv-datagrid--column-sort">
           <i
@@ -63,7 +63,7 @@ export default {
   },
   methods: {
     getColumnClass() {
-      let { type, headerAlign, sort } = this.column;
+      let { type, headerAlign, sortable } = this.column;
       let classList = [];
       if (type) {
         classList.push(`kv-datagrid--column-type-${type}`);
@@ -71,14 +71,14 @@ export default {
       if (headerAlign) {
         classList.push(`kv-datagrid--align-${headerAlign}`);
       }
-      if (sort) {
+      if (sortable) {
         classList.push("kv-datagrid--header-sort");
       }
       return classList.join(" ");
     },
-    sortDataSource() {
-      let { key, sort } = this.column;
-      if (!sort) return;
+    sort() {
+      let { key, sortable } = this.column;
+      if (!sortable) return;
       if (this.orderKey !== key) {
         this.orderType = null;
       }
@@ -94,27 +94,10 @@ export default {
           break;
       }
       this.orderKey = key;
-      if (this.datagrid.pagination) {
-        this.datagrid.loadAjaxData(1, this.datagrid.pageSize)
-        return
-      }
-      let rows = this.datagrid.initProxyDataSource(this.datagrid.data);
-      if (!this.orderType) {
-        this.datagrid.dataSource = rows;
-        return
-      }
-      rows.sort((x, y) => {
-        if (this.orderType == "asc") {
-          return x.data[this.orderKey] > y.data[this.orderKey] ? 1 : -1;
-        }
-        if (this.orderType == "desc") {
-          return x.data[this.orderKey] > y.data[this.orderKey] ? -1 : 1;
-        }
-      });
-      this.datagrid.dataSource = rows;
+      this.datagrid.sort(this.orderKey, this.orderType)
     },
     handleCellClick(event) {
-      this.sortDataSource();
+      this.sort();
       this.datagrid.$emit("column-click", this.column, event)
     }
   }
