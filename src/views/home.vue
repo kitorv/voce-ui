@@ -10,15 +10,21 @@
     <div class="view-home--body">
       <div class="view-home--route">
         <div class="view-home--heading">开发指南</div>
+
         <div class="view-home--heading">API文档</div>
         <router-link class="view-home--link"
                      to="/doc/attribute">属性</router-link>
         <router-link class="view-home--link"
                      to="/doc/column">列属性</router-link>
         <router-link class="view-home--link"
+                     to="/doc/row">行属性</router-link>
+        <router-link class="view-home--link"
                      to="/doc/events">事件</router-link>
         <router-link class="view-home--link"
                      to="/doc/methods">方法</router-link>
+        <router-link class="view-home--link"
+                     to="/doc/pagination">分页属性</router-link>
+
         <div class="view-home--heading">功能示例</div>
         <router-link class="view-home--link"
                      to="/">基本功能</router-link>
