@@ -12,7 +12,7 @@ export default new Router({
         {
           path: "/",
           name: "example",
-          component: () => import("../examples/basic.md")
+          component: () => import("../document/guide.md")
         },
         {
           path: "/example/basic",
@@ -73,6 +73,16 @@ export default new Router({
           path: "/doc/pagination",
           name: "doc-pagination",
           component: () => import("../document/pagination.md")
+        },
+        {
+          path: "/doc/guide",
+          name: "doc-guide",
+          component: () => import("../document/guide.md")
+        },
+        {
+          path: "/doc/changelog",
+          name: "doc-changelog",
+          component: () => import("../document/changelog.md")
         }
       ]
     }
