@@ -11,7 +11,7 @@
       <div class="view-home--route">
         <div class="view-home--heading">开发指南</div>
         <router-link class="view-home--link"
-                     to="/doc/guide">快速上手</router-link>
+                     to="/">快速上手</router-link>
         <router-link class="view-home--link"
                      to="/doc/changelog">更新日志</router-link>
 
@@ -31,7 +31,7 @@
 
         <div class="view-home--heading">功能示例</div>
         <router-link class="view-home--link"
-                     to="/">基本功能</router-link>
+                     to="/example/basic">基本功能</router-link>
         <router-link class="view-home--link"
                      to="/example/column">列配置</router-link>
         <router-link class="view-home--link"
