@@ -10,6 +10,10 @@
     <div class="view-home--body">
       <div class="view-home--route">
         <div class="view-home--heading">开发指南</div>
+        <router-link class="view-home--link"
+                     to="/doc/guide">快速上手</router-link>
+        <router-link class="view-home--link"
+                     to="/doc/changelog">更新日志</router-link>
 
         <div class="view-home--heading">API文档</div>
         <router-link class="view-home--link"
@@ -212,16 +216,40 @@ export default {};
     }
     > table th,
     > table td {
-      color: #314659;
+      color: #444444;
       border: 1px solid #ebedf0;
       text-align: left;
       padding: 8px 12px;
     }
     > table th {
       white-space: nowrap;
-      color: #5c6b77;
+      color: #333333;
       font-weight: 500;
       background: rgba(0, 0, 0, 0.02);
+    }
+
+    > pre > code.hljs {
+      font-family: Consolas, Menlo, Courier, monospace;
+      line-height: 1.5;
+      font-size: 14px;
+      padding: 18px 24px;
+      background-color: #fafafa;
+      border: 1px solid #eaeefb;
+      margin-bottom: 25px;
+      border-radius: 4px;
+    }
+
+    > p > code {
+      color: #333333;
+      background-color: #f2f4f5;
+      margin: 0 4px;
+      display: inline-block;
+      padding: 7px 10px;
+      border-radius: 3px;
+      height: 18px;
+      line-height: 18px;
+      font-family: Menlo, Monaco, Consolas, Courier, monospace;
+      font-size: 14px;
     }
   }
 }
