@@ -1,15 +1,30 @@
 {
   "name": "kv-datagrid",
   "version": "0.1.0",
-  "private": true,
+  "description": "A Table Component for Vue.js.",
+  "keywords": [
+    "vue",
+    "table"
+  ],
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "docs": "vue-cli-service build --docs --dest docs",
     "lint": "vue-cli-service lint"
   },
-  "dependencies": {
+  "main": "library/index.js",
+  "style": "style/index.css",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kitorv/datagrid.git"
+  },
+  "homepage": "https://kitorv.github.io/datagrid/",
+  "peerDependencies": {
     "vue": "^2.6.9"
+  },
+  "bugs": {
+    "url": "https://github.com/kitorv/datagrid/issues"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.4.0",
