@@ -82,6 +82,11 @@ export default {};
   top: 10px;
   text-decoration: none;
   cursor: pointer;
+  transition: all 0.3s;
+
+  &:hover {
+    transform: scale(1.2);
+  }
 }
 
 .view-home--body {
@@ -197,6 +202,7 @@ export default {};
       border: 1px solid #ebedf0;
       width: 100%;
       margin: 8px 0 16px;
+      font-size: 14px;
     }
     > table th,
     > table td {
