@@ -63,6 +63,16 @@ export default new Router({
           path: "/doc/column",
           name: "doc-column",
           component: () => import("../document/column.md")
+        },
+        {
+          path: "/doc/row",
+          name: "doc-row",
+          component: () => import("../document/row.md")
+        },
+        {
+          path: "/doc/pagination",
+          name: "doc-pagination",
+          component: () => import("../document/pagination.md")
         }
       ]
     }
