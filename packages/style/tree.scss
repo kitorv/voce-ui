@@ -1,4 +1,4 @@
-.kv-tale--body-cell-tree {
+.kv-table--body-cell-tree {
   .kv-icon-caret-right {
     display: inline-block;
     cursor: pointer;
@@ -6,14 +6,14 @@
   }
 }
 
-.kv-tale--body-cell-tree-space {
+.kv-table--body-cell-tree-space {
   .kv-icon-caret-right {
     visibility: hidden;
     cursor: default;
   }
 }
 
-.kv-tale--body-cell-tree-expand {
+.kv-table--body-cell-tree-expand {
   .kv-icon-caret-right {
     transform: rotate(90deg);
   }

@@ -1,8 +1,8 @@
 <template>
   <tr v-if="!row.hidden"
       :class="[
-        {'kv-datagird--row-hover':row.hover},
-        {'kv-datagird--row-selected':row.selected},
+        {'kv-table--row-hover':row.hover},
+        {'kv-table--row-selected':row.selected},
         tableRowClass
       ]"
       :style="tableRowStyle"

@@ -36,7 +36,7 @@ export default {
         class={this.getColumnClass()}
         on-click={this.handleCellClick}
       >
-        <div class="kv-datagird--column-content">{content}</div>
+        <div class="kv-table--column-content">{content}</div>
         {sortElement}
       </th>
     );

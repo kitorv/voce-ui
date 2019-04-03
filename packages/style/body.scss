@@ -1,14 +1,14 @@
 // 表体样式
-.kv-tale--body-table {
+.kv-table--body-table {
   width: 100%;
   table-layout: fixed;
 }
 
-.kv-tale--body-row {
+.kv-table--body-row {
   background-color: #ffffff;
 }
 
-.kv-tale--body-cell {
+.kv-table--body-cell {
   position: relative;
   min-width: 0;
   box-sizing: border-box;
@@ -20,11 +20,11 @@
   vertical-align: middle;
 }
 
-.kv-datagird--row-hover {
+.kv-table--row-hover {
   background-color: #e6f7ff;
 }
 
-.kv-datagird--row-selected {
+.kv-table--row-selected {
   color: #1f74ff;
   background-color: #e6f7ff;
 }

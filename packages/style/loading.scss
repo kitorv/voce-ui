@@ -1,4 +1,4 @@
-.kv-tale--loading {
+.kv-table--loading {
   position: absolute;
   z-index: 10;
   background-color: hsla(0, 0%, 100%, 0.5);
@@ -11,7 +11,7 @@
   width: 100%;
   transition: opacity 0.3s;
 }
-.kv-tale--loading-spinner {
+.kv-table--loading-spinner {
   top: 50%;
   margin-top: -21px;
   width: 100%;
@@ -19,13 +19,13 @@
   position: absolute;
 }
 
-.kv-tale--loading-icon {
+.kv-table--loading-icon {
   height: 42px;
   width: 42px;
   animation: loading-rotate 2s linear infinite;
 }
 
-.kv-tale--loading-path {
+.kv-table--loading-path {
   animation: loading-dash 1.5s ease-in-out infinite;
   stroke-dasharray: 90, 150;
   stroke-dashoffset: 0;
