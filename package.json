@@ -1,18 +1,21 @@
 {
-  "name": "kv-datagrid",
-  "version": "0.1.0",
+  "name": "kv-table",
+  "version": "0.1.0-alpha.1",
   "description": "A Table Component for Vue.js.",
   "keywords": [
     "vue",
-    "table"
+    "table",
+    "kv-table"
   ],
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
+    "build:style": "gulp build --gulpfile bulid/gulpfile.js",
+    "build:script": "vue-cli-service build --target lib --dest library src/index.js",
+    "build": "npm run build:script && npm run build:style",
     "docs": "vue-cli-service build --docs --dest docs",
     "lint": "vue-cli-service lint"
   },
-  "main": "library/index.js",
+  "main": "library/kv-table.common.js",
   "style": "style/index.css",
   "license": "MIT",
   "repository": {
@@ -20,7 +23,7 @@
     "url": "https://github.com/kitorv/datagrid.git"
   },
   "homepage": "https://kitorv.github.io/datagrid/",
-  "peerDependencies": {
+  "dependencies": {
     "vue": "^2.6.9"
   },
   "bugs": {
@@ -34,6 +37,10 @@
     "babel-eslint": "^10.0.1",
     "eslint": "^5.15.3",
     "eslint-plugin-vue": "^5.2.2",
+    "gulp": "^4.0.0",
+    "gulp-autoprefixer": "^6.0.0",
+    "gulp-cssmin": "^0.2.0",
+    "gulp-sass": "^4.0.2",
     "highlight.js": "^9.15.6",
     "markdown-it": "^8.4.2",
     "markdown-it-chain": "^1.3.0",
@@ -41,7 +48,7 @@
     "node-sass": "^4.11.0",
     "sass-loader": "^7.1.0",
     "vue-router": "^3.0.1",
-    "vue-template-compiler": "^2.6.9"
+    "vue-template-compiler": "^2.6.10"
   },
   "eslintConfig": {
     "root": true,

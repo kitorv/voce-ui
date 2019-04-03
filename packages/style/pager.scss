@@ -1,4 +1,4 @@
-.kv-datagrid--page {
+.kv-tale--page {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
@@ -6,7 +6,7 @@
   list-style: none;
 }
 
-.kv-datagrid--page-number {
+.kv-tale--page-number {
   padding: 0 4px;
   background: #fff;
   vertical-align: top;
@@ -23,13 +23,13 @@
   border-radius: 3px;
 }
 
-.kv-datagrid--page-number:hover {
+.kv-tale--page-number:hover {
   border-color: #409eff;
   color: #409eff;
 }
 
-.kv-datagrid--page-prev,
-.kv-datagrid--page-next {
+.kv-tale--page-prev,
+.kv-tale--page-next {
   color: #d9d9d9;
   border-color: transparent;
   transition: all 0.3s;
@@ -45,15 +45,15 @@
   }
 }
 
-.kv-datagrid--page-avtive,
-.kv-datagrid--page-avtive:hover {
+.kv-tale--page-avtive,
+.kv-tale--page-avtive:hover {
   color: #ffffff;
   background-color: #409eff;
   border-color: #409eff;
 }
 
-.kv-datagrid--page-disabled,
-.kv-datagrid--page-disabled:hover {
+.kv-tale--page-disabled,
+.kv-tale--page-disabled:hover {
   color: #c0c4cc;
   border-color: #c0c4cc;
   cursor: not-allowed;

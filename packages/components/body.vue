@@ -1,5 +1,5 @@
 <template>
-  <table class="kv-datagrid--body-table"
+  <table class="kv-table--body-table"
          cellspacing="0"
          cellpadding="0"
          border="0">
@@ -9,13 +9,13 @@
                  :column="column"></table-col>
     </colgroup>
     <template v-for="(row, rowIndex) in data">
-      <table-row class="kv-datagrid--body-row"
+      <table-row class="kv-table--body-row"
                  :row="row"
                  :key="rowIndex"
                  :row-class="rowClass"
                  :row-style="rowStyle"
                  :row-index="rowIndex">
-        <table-cell class="kv-datagrid--body-cell"
+        <table-cell class="kv-table--body-cell"
                     v-for="(column, cellIndex) in leafColumns"
                     :key="cellIndex"
                     :column="column"

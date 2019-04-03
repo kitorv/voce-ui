@@ -6,7 +6,7 @@
 
 ```html
 <template>
-  <kv-datagrid :columns="columns" :data="data" stripe></kv-datagrid>
+  <kv-table :columns="columns" :data="data" stripe></kv-table>
 </template>
 <script>
   export default {
@@ -57,7 +57,7 @@
 
 ```html
 <template>
-  <kv-datagrid :columns="columns" :data="data" :border="false"></kv-datagrid>
+  <kv-table :columns="columns" :data="data" :border="false"></kv-table>
 </template>
 <script>
   export default {
@@ -102,11 +102,11 @@
 
 ```html
 <template>
-  <kv-datagrid
+  <kv-table
     :columns="columns"
     :data="data"
     :show-header="false"
-  ></kv-datagrid>
+  ></kv-table>
 </template>
 <script>
   export default {
@@ -157,11 +157,11 @@
 
 ```html
 <template>
-  <kv-datagrid
+  <kv-table
     :columns="columns"
     :data="data"
     :row-class="rowClass"
-  ></kv-datagrid>
+  ></kv-table>
 </template>
 <script>
   export default {
@@ -211,22 +211,22 @@
           }
         ],
         rowClass({ index }) {
-          if (index == 1) return "kv-datagrid-demo--row-success";
-          if (index == 3) return "kv-datagrid-demo--row-error";
+          if (index == 1) return "kv-table-demo--row-success";
+          if (index == 3) return "kv-table-demo--row-error";
         }
       };
     }
   };
 </script>
 <style>
-  tr.kv-datagrid-demo--row-success {
+  tr.kv-table-demo--row-success {
     > td {
       background-color: #ebf9eb;
       color: #46c93a;
     }
   }
 
-  tr.kv-datagrid-demo--row-error {
+  tr.kv-table-demo--row-error {
     > td {
       background-color: #fcecee;
       color: #ff4757;
@@ -243,11 +243,11 @@
 
 ```html
 <template>
-  <kv-datagrid
+  <kv-table
     :columns="columns"
     :data="data"
     :row-style="rowStyle"
-  ></kv-datagrid>
+  ></kv-table>
 </template>
 <script>
   export default {
@@ -317,11 +317,11 @@
 
 ```html
 <template>
-  <kv-datagrid
+  <kv-table
     :columns="columns"
     :data="data"
     :cell-class="cellClass"
-  ></kv-datagrid>
+  ></kv-table>
 </template>
 <script>
   export default {
@@ -372,10 +372,10 @@
         ],
         cellClass({ index, column }) {
           if (index == 1 && column.key == "name") {
-            return "kv-datagrid-demo--cell-success";
+            return "kv-table-demo--cell-success";
           }
           if (index == 3 && column.key == "age") {
-            return "kv-datagrid-demo--cell-error";
+            return "kv-table-demo--cell-error";
           }
         }
       };
@@ -383,11 +383,11 @@
   };
 </script>
 <style>
-  td.kv-datagrid-demo--cell-success {
+  td.kv-table-demo--cell-success {
     background-color: #ebf9eb !important;
     color: #46c93a;
   }
-  td.kv-datagrid-demo--cell-error {
+  td.kv-table-demo--cell-error {
     background-color: #fcecee !important;
     color: #ff4757;
   }
@@ -402,11 +402,11 @@
 
 ```html
 <template>
-  <kv-datagrid
+  <kv-table
     :columns="columns"
     :data="data"
     :cell-style="cellStyle"
-  ></kv-datagrid>
+  ></kv-table>
 </template>
 <script>
   export default {
@@ -476,7 +476,7 @@
 
 ```html
 <template>
-  <kv-datagrid :columns="columns" :data="data"></kv-datagrid>
+  <kv-table :columns="columns" :data="data"></kv-table>
 </template>
 <script>
   export default {

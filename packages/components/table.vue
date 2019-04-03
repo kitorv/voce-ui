@@ -1,22 +1,22 @@
 <template>
-  <div :class="['kv-datagrid',{'kv-datagrid-border':columnRows.length>1||border},{'kv-datagrid-stripe':stripe}]"
+  <div :class="['kv-table',{'kv-table-border':columnRows.length>1||border},{'kv-table-stripe':stripe}]"
        :style="tableStyle">
     <!-- 表头 -->
     <div v-if="showHeader"
          ref="headerWrapper"
-         class="kv-datagrid--header"
+         class="kv-table--header"
          :style="{'padding-right': `${vScrollSize}px`}">
       <div v-if="leftFixedColumns.length>0"
-           class="kv-datagrid--header-left"
+           class="kv-table--header-left"
            :style="{'width':`${leftBodyWidth}px`}">
         <table-header :style="{'width':`${bodyWidth}px`}"></table-header>
       </div>
       <div ref="header"
-           class="kv-datagrid--header-center">
+           class="kv-table--header-center">
         <table-header></table-header>
       </div>
       <div v-if="rightFixedColumns.length>0"
-           class="kv-datagrid--header-right"
+           class="kv-table--header-right"
            :style="{'width':`${rightBodyWidth}px`,'right':`${vScrollSize}px`}">
         <table-header :style="{'width':`${bodyWidth}px`}"></table-header>
       </div>
@@ -27,21 +27,21 @@
       <div v-if="leftFixedColumns.length>0"
            v-mousewheel="handleMousewheel"
            ref="leftBody"
-           class="kv-datagrid--body-left"
+           class="kv-table--body-left"
            :style="{'width':`${leftBodyWidth}px`,'height':`${bodyHeight-hScrollSize}px`}">
         <table-body :style="{'width':`${bodyWidth}px`}"></table-body>
       </div>
       <div ref="body"
-           class="kv-datagrid--body-center"
+           class="kv-table--body-center"
            :style="bodyStyle"
            @scroll="handleBodyScroll">
         <table-body v-if="dataSource.length>0"
                     @on-after-render="handleBodyLayoutResize"></table-body>
         <div v-else
              :style="{'width':dataSource.length<1?`${bodyWidth}px`:'auto'}"
-             :class="['kv-datagrid--body-empty',{'kv-datagrid--body-empty-fit':fit}]">
-          <div class="kv-datagrid--body-empty-placeholder">
-            <div class="kv-datagrid--body-empty-image"><img src="../images/empty.svg"></div>
+             :class="['kv-table--body-empty',{'kv-table--body-empty-fit':fit}]">
+          <div class="kv-table--body-empty-placeholder">
+            <div class="kv-table--body-empty-image"><img src="../images/empty.svg"></div>
             <p>{{emptyText}}</p>
           </div>
         </div>
@@ -49,7 +49,7 @@
       <div v-if="rightFixedColumns.length>0"
            v-mousewheel="handleMousewheel"
            ref="rightBody"
-           class="kv-datagrid--body-right"
+           class="kv-table--body-right"
            :style="{'width':`${rightBodyWidth}px`,'height':`${bodyHeight-hScrollSize}px`,'right':`${vScrollSize}px`}">
         <table-body :style="{'width':`${bodyWidth}px`}"></table-body>
       </div>
@@ -57,21 +57,21 @@
     <!-- 表体 -->
     <!-- 表尾 -->
     <div ref="footerWrapper"
-         class="kv-datagrid--footer"
+         class="kv-table--footer"
          :style="{'padding-right': `${vScrollSize}px`}">
       <div v-if="leftFixedColumns.length>0"
-           class="kv-datagrid--body-left"
+           class="kv-table--body-left"
            :style="{'width':`${leftBodyWidth}px`,}">
         <table-footer :style="{'width':`${bodyWidth}px`}"></table-footer>
       </div>
       <div ref="footer"
            v-if="footer.length>0"
-           class="kv-datagrid--footer-center">
+           class="kv-table--footer-center">
         <table-footer>
         </table-footer>
       </div>
       <div v-if="rightFixedColumns.length>0"
-           class="kv-datagrid--body-right"
+           class="kv-table--body-right"
            :style="{'width':`${rightBodyWidth}px`,'right':`${vScrollSize}px`}">
         <table-footer :style="{'width':`${bodyWidth}px`}"></table-footer>
       </div>
@@ -79,7 +79,7 @@
     <!-- 表尾 -->
     <div v-if="pagination&&dataSource.length>0"
          ref="page"
-         class="kv-datagrid--footer-pagination">
+         class="kv-table--footer-pagination">
       <table-pagination :page-total="pageTotal"
                         :page-size="pageSize"
                         :page-index="pageIndex"

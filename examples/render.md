@@ -4,7 +4,7 @@
 
 ```html
 <template>
-  <kv-datagrid :columns="columns" :data="data"></kv-datagrid>
+  <kv-table :columns="columns" :data="data"></kv-table>
 </template>
 <script>
   export default {
@@ -15,7 +15,7 @@
             key: "name",
             title: "姓名",
             formatter(h, { data }) {
-              return <div class="kv-datagrid-demo--tag">{data.name}</div>;
+              return <div class="kv-table-demo--tag">{data.name}</div>;
             }
           },
           { key: "age", title: "年龄" },
@@ -26,8 +26,8 @@
             formatter(h, { data }) {
               return (
                 <div>
-                  <div class="kv-datagrid-demo--button">编辑</div>
-                  <div class="kv-datagrid-demo--button danger">删除</div>
+                  <div class="kv-table-demo--button">编辑</div>
+                  <div class="kv-table-demo--button danger">删除</div>
                 </div>
               );
             }
@@ -63,17 +63,17 @@
 
 ## 展开行
 
-:::demo 设置列的`type`属性为`expandsion`该列就会生成展开折叠操作图标，设置`slot`的`expansion`展开行的内容，如果需要自定义展开内容布局的样式设置`expansion-{class}`就会在该行追加`kv-datagrid--body-row-expansion-{class}`
+:::demo 设置列的`type`属性为`expandsion`该列就会生成展开折叠操作图标，设置`slot`的`expansion`展开行的内容，如果需要自定义展开内容布局的样式设置`expansion-{class}`就会在该行追加`kv-table--body-row-expansion-{class}`
 
 ```html
 <template>
-  <kv-datagrid :columns="columns" :data="data">
+  <kv-table :columns="columns" :data="data">
     <div slot="expansion" slot-scope="{data}" style="height:60px;padding:20px">
       <div>姓名：{{data.name}}</div>
       <div>年龄：{{data.age}}</div>
       <div>地址：{{data.address}}</div>
     </div>
-  </kv-datagrid>
+  </kv-table>
 </template>
 <script>
   export default {
@@ -115,15 +115,15 @@
 
 ## 嵌套子表格
 
-:::demo 设置列的`type`属性为`expandsion`,插槽`slot`设置为`expansion-table`,设置对应的样式`kv-datagrid--body-expansion-table`
+:::demo 设置列的`type`属性为`expandsion`,插槽`slot`设置为`expansion-table`,设置对应的样式`kv-table--body-expansion-table`
 
 ```html
 <template>
-  <kv-datagrid :columns="columns" :data="data">
+  <kv-table :columns="columns" :data="data">
     <div slot="expansion-table" slot-scope="{data}">
-      <kv-datagrid :columns="childColumns" :data="data.children"></kv-datagrid>
+      <kv-table :columns="childColumns" :data="data.children"></kv-table>
     </div>
-  </kv-datagrid>
+  </kv-table>
 </template>
 <script>
   export default {
@@ -179,11 +179,11 @@
   };
 </script>
 <style>
-  .kv-datagrid--body-expansion-table > td {
+  .kv-table--body-expansion-table > td {
     border-bottom: none;
   }
 
-  .kv-datagrid--body-expansion-table .kv-datagrid-border {
+  .kv-table--body-expansion-table .kv-table-border {
     border-top: none;
     border-left: none;
   }
@@ -198,7 +198,7 @@
 
 ```html
 <template>
-  <kv-datagrid :columns="columns" :data="data"></kv-datagrid>
+  <kv-table :columns="columns" :data="data"></kv-table>
 </template>
 <script>
   export default {
@@ -213,7 +213,7 @@
             columnFormatter: h => (
               <input
                 placeholder="自定义格式化文本框"
-                class="kv-datagrid-demo--input"
+                class="kv-table-demo--input"
               />
             )
           }
@@ -252,11 +252,11 @@
 
 ```html
 <template>
-  <kv-datagrid
+  <kv-table
     :columns="columns"
     :data="data"
     :cell-span="cellSpan"
-  ></kv-datagrid>
+  ></kv-table>
 </template>
 <script>
   export default {

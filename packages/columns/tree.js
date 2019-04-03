@@ -5,9 +5,9 @@ export default {
     return (
       <div
         class={[
-          "kv-datagrid--body-cell-tree",
-          { "kv-datagrid--body-cell-tree-space": row.isLeaf },
-          { "kv-datagrid--body-cell-tree-expand": row.nodeExpand }
+          "kv-table--body-cell-tree",
+          { "kv-table--body-cell-tree-space": row.isLeaf },
+          { "kv-table--body-cell-tree-expand": row.nodeExpand }
         ]}
         style={{ "padding-left": `${row.level * 15}px` }}
       >

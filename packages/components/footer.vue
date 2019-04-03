@@ -1,5 +1,5 @@
 <template>
-  <table class="kv-datagrid--footer-table"
+  <table class="kv-table--footer-table"
          cellspacing="0"
          cellpadding="0"
          border="0">
@@ -8,10 +8,10 @@
                  :key="index"
                  :column="column"></table-col>
     </colgroup>
-    <tr class="kv-datagrid--footer-row"
+    <tr class="kv-table--footer-row"
         v-for="(row, rowIndex) in data"
         :key="rowIndex">
-      <table-cell class="kv-datagrid--body-cell"
+      <table-cell class="kv-table--body-cell"
                   v-for="(column, cellIndex) in leafColumns"
                   :key="cellIndex"
                   type='footer'

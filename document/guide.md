@@ -3,18 +3,18 @@
 ## 安装
 
 ```bash
-npm i kv-datagrid -s
+npm i kv-table -s
 ```
 
 ## 引入
 
 ```javascript
 import Vue from "vue";
-import KvDatagrid from "kv-datagird";
-import "kv-datagrid/index.css";
+import KvTable from "kv-datagird";
+import "kv-table/index.css";
 import App from "./App.vue";
 
-Vue.use(KvDatagrid);
+Vue.use(KvTable);
 
 new Vue({
   el: "#app",
@@ -26,7 +26,7 @@ new Vue({
 
 ```html
 <template>
-  <kv-datagrid :columns="columns" :data="data"></kv-datagrid>
+  <kv-table :columns="columns" :data="data"></kv-table>
 </template>
 <script>
   export default {

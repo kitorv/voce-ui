@@ -1,14 +1,14 @@
 // 表体样式
-.kv-datagrid--body-table {
+.kv-tale--body-table {
   width: 100%;
   table-layout: fixed;
 }
 
-.kv-datagrid--body-row {
+.kv-tale--body-row {
   background-color: #ffffff;
 }
 
-.kv-datagrid--body-cell {
+.kv-tale--body-cell {
   position: relative;
   min-width: 0;
   box-sizing: border-box;

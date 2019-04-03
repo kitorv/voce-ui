@@ -1,9 +1,9 @@
-.kv-datagrid--header-table {
+.kv-tale--header-table {
   table-layout: fixed;
   width: 100%;
 }
 
-.kv-datagrid--header-column {
+.kv-tale--header-column {
   position: relative;
   box-sizing: border-box;
   min-width: 0;
@@ -18,7 +18,7 @@
   background-color: #fafafa;
 }
 
-.kv-datagrid--header-sort {
+.kv-tale--header-sort {
   padding-right: 20px;
   position: relative;
   word-wrap: normal;
@@ -26,7 +26,7 @@
   cursor: pointer;
 }
 
-.kv-datagrid--column-sort {
+.kv-tale--column-sort {
   position: absolute;
   top: 50%;
   right: 8px;
@@ -38,7 +38,7 @@
   transition: all 0.3s;
 }
 
-.kv-datagrid--column-sort-up {
+.kv-tale--column-sort-up {
   display: block;
   width: 0;
   height: 0;
@@ -48,12 +48,12 @@
   border-bottom: 5px solid #b2b2b2;
   margin-bottom: 2px;
 
-  &.kv-datagrid--column-sort-active {
+  &.kv-tale--column-sort-active {
     border-bottom-color: #1890ff;
   }
 }
 
-.kv-datagrid--column-sort-down {
+.kv-tale--column-sort-down {
   display: block;
   width: 0;
   height: 0;
@@ -61,7 +61,7 @@
   overflow: hidden;
   border-bottom: none;
   border-top: 5px solid #b2b2b2;
-  &.kv-datagrid--column-sort-active {
+  &.kv-tale--column-sort-active {
     border-top-color: #1890ff;
   }
 }

@@ -1,25 +1,25 @@
 <template>
-  <div class="kv-datagrid--pagination">
+  <div class="kv-table--pagination">
     <span>共 {{pageTotal}} 条</span>
     <span>
-      <div class="kv-datagrid--pagination-select"
+      <div class="kv-table--pagination-select"
            v-clickoutside="handleOutsideClick"
            @click="showDropdown=!showDropdown">
         {{currentPageSize}}条/页
         <i class="kv-icon-down"></i>
         <div v-if="showDropdown"
-             class="kv-datagrid--pagination-select-dropdown">
+             class="kv-table--pagination-select-dropdown">
           <div v-for="(size, index) in pageSizes"
                :key="index"
                :class="[
-                'kv-datagrid--pagination-select-option',
-                {'kv-datagrid--pagination-select-active':size==currentPageSize}
+                'kv-table--pagination-select-option',
+                {'kv-table--pagination-select-active':size==currentPageSize}
                ]"
                @click.stop="handleSelctSize(size)">{{size}}条/页</div>
         </div>
       </div>
     </span>
-    <pager class="kv-datagrid--pagination-pager"
+    <pager class="kv-table--pagination-pager"
            :page-count="currentPageCount"
            :page-number="pageNumber"
            :page-index="currentPageIndex"
@@ -31,7 +31,7 @@
              :max="currentPageCount"
              type="number"
              autocomplete="off"
-             class="kv-datagrid--pagination-number"
+             class="kv-table--pagination-number"
              @change="handleInputChange"
              @keyup.13="handleInputChange">
       页
