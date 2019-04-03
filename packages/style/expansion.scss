@@ -1,4 +1,4 @@
-.kv-tale--body-cell-expansion {
+.kv-table--body-cell-expansion {
   width: 100%;
   height: 100%;
   text-align: center;
@@ -11,13 +11,13 @@
   }
 }
 
-.kv-tale--body-cell-expansion-active {
+.kv-table--body-cell-expansion-active {
   .kv-icon-right {
     transform: rotate(90deg);
   }
 }
 
-.kv-tale--body-row-expansion {
+.kv-table--body-row-expansion {
   > td {
     border-bottom: 1px solid #e8e8e8;
   }

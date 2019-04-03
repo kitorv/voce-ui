@@ -1,7 +1,7 @@
 <template>
   <div class="view-home">
     <div class="view-home--header">
-      <div class="view-home--logo">kv-table</div>
+      <div class="view-home--logo">Kv-Table</div>
       <a class="view-home--github"
          href="https://github.com/kitorv/datagrid">
         <i class="kv-icon-github"></i>
@@ -80,8 +80,8 @@ export default {};
   display: inline-block;
   font-weight: 700;
   width: 240px;
-  text-align: center;
   color: #409eff;
+  padding-left: 24px;
 }
 
 .view-home--github {

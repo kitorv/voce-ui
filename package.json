@@ -4,8 +4,7 @@
   "description": "A Table Component for Vue.js.",
   "keywords": [
     "vue",
-    "table",
-    "kv-table"
+    "table"
   ],
   "scripts": {
     "serve": "vue-cli-service serve",
@@ -20,16 +19,14 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/kitorv/datagrid.git"
+    "url": "https://github.com/kitorv/kv-table.git"
   },
-  "homepage": "https://kitorv.github.io/datagrid/",
-  "dependencies": {
-    "vue": "^2.6.9"
-  },
+  "homepage": "https://kitorv.github.io/kv-table/",
   "bugs": {
-    "url": "https://github.com/kitorv/datagrid/issues"
+    "url": "https://github.com/kitorv/kv-table/issues"
   },
   "devDependencies": {
+    "vue": "^2.6.9",
     "@vue/cli-plugin-babel": "^3.4.0",
     "@vue/cli-plugin-eslint": "^3.4.0",
     "@vue/cli-service": "^3.4.0",

@@ -23,7 +23,7 @@
     </div>
     <!-- 表头 -->
     <!-- 表体 -->
-    <div :class="['kv-datagird--body',{'kv-datagird--body-vscroll':vScrollSize}]">
+    <div :class="['kv-table--body',{'kv-table--body-vscroll':vScrollSize}]">
       <div v-if="leftFixedColumns.length>0"
            v-mousewheel="handleMousewheel"
            ref="leftBody"
@@ -41,7 +41,6 @@
              :style="{'width':dataSource.length<1?`${bodyWidth}px`:'auto'}"
              :class="['kv-table--body-empty',{'kv-table--body-empty-fit':fit}]">
           <div class="kv-table--body-empty-placeholder">
-            <div class="kv-table--body-empty-image"><img src="../images/empty.svg"></div>
             <p>{{emptyText}}</p>
           </div>
         </div>

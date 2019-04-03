@@ -1,4 +1,4 @@
-.kv-tale--page {
+.kv-table--page {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
@@ -6,7 +6,7 @@
   list-style: none;
 }
 
-.kv-tale--page-number {
+.kv-table--page-number {
   padding: 0 4px;
   background: #fff;
   vertical-align: top;
@@ -23,13 +23,13 @@
   border-radius: 3px;
 }
 
-.kv-tale--page-number:hover {
+.kv-table--page-number:hover {
   border-color: #409eff;
   color: #409eff;
 }
 
-.kv-tale--page-prev,
-.kv-tale--page-next {
+.kv-table--page-prev,
+.kv-table--page-next {
   color: #d9d9d9;
   border-color: transparent;
   transition: all 0.3s;
@@ -45,15 +45,15 @@
   }
 }
 
-.kv-tale--page-avtive,
-.kv-tale--page-avtive:hover {
+.kv-table--page-avtive,
+.kv-table--page-avtive:hover {
   color: #ffffff;
   background-color: #409eff;
   border-color: #409eff;
 }
 
-.kv-tale--page-disabled,
-.kv-tale--page-disabled:hover {
+.kv-table--page-disabled,
+.kv-table--page-disabled:hover {
   color: #c0c4cc;
   border-color: #c0c4cc;
   cursor: not-allowed;

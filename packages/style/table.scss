@@ -1,5 +1,5 @@
 // 表格容器
-.kv-tale {
+.kv-table {
   position: relative;
   zoom: 1;
   box-sizing: border-box;
@@ -9,18 +9,18 @@
 }
 
 // 表格布局
-.kv-tale--header,
-.kv-datagird--body,
-.kv-tale--footer {
+.kv-table--header,
+.kv-table--body,
+.kv-table--footer {
   position: relative;
   box-sizing: border-box;
   font-size: 14px;
 }
 
 // 左侧固定列
-.kv-tale--header-left,
-.kv-tale--body-left,
-.kv-tale--body-left {
+.kv-table--header-left,
+.kv-table--body-left,
+.kv-table--body-left {
   position: absolute;
   left: 0;
   top: 0;
@@ -30,24 +30,24 @@
 }
 
 // 中心内容
-.kv-tale--header-center,
-.kv-tale--body-center,
-.kv-tale--footer-center {
+.kv-table--header-center,
+.kv-table--body-center,
+.kv-table--footer-center {
   position: relative;
   z-index: 1;
   overflow: auto;
 
   // 表头和表体禁用滚动条
-  &.kv-tale--header-center,
-  &.kv-tale--footer-center {
+  &.kv-table--header-center,
+  &.kv-table--footer-center {
     overflow: hidden;
   }
 }
 
 // 右侧固定列
-.kv-tale--header-right,
-.kv-tale--body-right,
-.kv-tale--footer-right {
+.kv-table--header-right,
+.kv-table--body-right,
+.kv-table--footer-right {
   position: absolute;
   right: 0;
   top: 0;
@@ -63,7 +63,7 @@
   }
 }
 
-.kv-tale--footer-pagination {
+.kv-table--footer-pagination {
   position: relative;
   background-color: #ffffff;
   padding: 10px 0 5px 5px;
@@ -73,14 +73,14 @@
   margin-left: -1px;
   z-index: 6;
 
-  .kv-tale--pagination {
+  .kv-table--pagination {
     text-align: right;
     padding-right: 0;
   }
 }
 
 // 无数据占位
-.kv-tale--body-empty {
+.kv-table--body-empty {
   position: relative;
   z-index: 1;
   font-size: 14px;
@@ -92,7 +92,7 @@
   height: 100%;
 }
 
-.kv-tale--body-empty-placeholder {
+.kv-table--body-empty-placeholder {
   padding: 32px;
   font-size: 16px;
   line-height: 22px;
@@ -105,17 +105,13 @@
   }
 }
 
-.kv-tale--body-empty-image {
+.kv-table--body-empty-image {
   height: 40px;
   margin-bottom: 10px;
-
-  img {
-    height: 100%;
-  }
 }
 
-.kv-tale--body-empty-fit {
-  .kv-tale--body-empty-placeholder {
+.kv-table--body-empty-fit {
+  .kv-table--body-empty-placeholder {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -125,11 +121,11 @@
 }
 
 // 表格边框
-.kv-tale-border {
+.kv-table-border {
   border-left: 1px solid #e8e8e8;
   border-top: 1px solid #e8e8e8;
 
-  .kv-tale--header::before {
+  .kv-table--header::before {
     content: "";
     position: absolute;
     width: 100%;
@@ -141,7 +137,7 @@
     z-index: 5;
   }
 
-  .kv-datagird--body-vscroll {
+  .kv-table--body-vscroll {
     border-bottom: 1px solid #e8e8e8;
   }
 
@@ -157,21 +153,21 @@
     z-index: 5;
   }
 
-  .kv-tale--header-table {
-    .kv-tale--header-column {
+  .kv-table--header-table {
+    .kv-table--header-column {
       border-right: 1px solid #e8e8e8;
     }
   }
 
-  .kv-tale--header-table,
-  .kv-tale--body-table,
-  .kv-tale--footer-table {
-    .kv-tale--body-cell {
+  .kv-table--header-table,
+  .kv-table--body-table,
+  .kv-table--footer-table {
+    .kv-table--body-cell {
       border-right: 1px solid #e8e8e8;
     }
   }
 
-  .kv-tale--loading {
+  .kv-table--loading {
     border-left: 1px solid rgba(255, 255, 255, 0.1);
     border-top: 1px solid rgba(255, 255, 255, 0.1);
     left: -1px;
@@ -180,19 +176,19 @@
 }
 
 // 斑马线
-.kv-tale-stripe {
-  .kv-tale--body-row:nth-child(2n + 1) {
+.kv-table-stripe {
+  .kv-table--body-row:nth-child(2n + 1) {
     background-color: #fafafa;
   }
 }
 
 // 对其格式
-.kv-tale--align-left {
+.kv-table--align-left {
   text-align: left !important;
 }
-.kv-tale--align-center {
+.kv-table--align-center {
   text-align: center !important;
 }
-.kv-tale--align-right {
+.kv-table--align-right {
   text-align: right !important;
 }

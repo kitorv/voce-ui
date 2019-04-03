@@ -1,4 +1,4 @@
-.kv-tale-checkbox {
+.kv-table-checkbox {
   position: relative;
   font-size: 14px;
   line-height: 1;
@@ -12,7 +12,7 @@
   vertical-align: middle;
 }
 
-.kv-tale-checkbox--inner {
+.kv-table-checkbox--inner {
   position: relative;
   top: 0;
   left: 0;
@@ -42,11 +42,11 @@
   }
 }
 
-.kv-tale-checkbox:hover .kv-tale-checkbox--inner {
+.kv-table-checkbox:hover .kv-table-checkbox--inner {
   border-color: #1890ff;
 }
 
-.kv-tale-checkbox--inner-input {
+.kv-table-checkbox--inner-input {
   position: absolute;
   left: 0;
   cursor: pointer;
@@ -61,25 +61,25 @@
   padding: 0;
 }
 
-.kv-tale-checkbox-checked {
-  .kv-tale-checkbox--inner {
+.kv-table-checkbox-checked {
+  .kv-table-checkbox--inner {
     background-color: #1890ff;
     border-color: #1890ff;
   }
 
-  .kv-tale-checkbox--inner:after {
+  .kv-table-checkbox--inner:after {
     transform: rotate(45deg) scale(1) translate(-50%, -50%);
     opacity: 1;
   }
 }
 
-.kv-tale-checkbox-indeterminate {
-  .kv-tale-checkbox--inner {
+.kv-table-checkbox-indeterminate {
+  .kv-table-checkbox--inner {
     background-color: #fff;
     border-color: #d9d9d9;
   }
 
-  .kv-tale-checkbox--inner:after {
+  .kv-table-checkbox--inner:after {
     transform: translate(-50%, -50%) scale(1);
     border: 0;
     left: 50%;
@@ -91,15 +91,15 @@
   }
 }
 
-.kv-tale-checkbox-disabled {
+.kv-table-checkbox-disabled {
   cursor: not-allowed;
 
-  .kv-tale-checkbox--inner,
-  .kv-tale-checkbox--inner:hover {
+  .kv-table-checkbox--inner,
+  .kv-table-checkbox--inner:hover {
     border-color: #d9d9d9;
     background-color: #f5f5f5;
 
-    .kv-tale-checkbox--inner-input {
+    .kv-table-checkbox--inner-input {
       cursor: not-allowed;
     }
   }

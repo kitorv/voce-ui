@@ -10,7 +10,7 @@ npm i kv-table -s
 
 ```javascript
 import Vue from "vue";
-import KvTable from "kv-datagird";
+import KvTable from "kv-table";
 import "kv-table/index.css";
 import App from "./App.vue";
 
