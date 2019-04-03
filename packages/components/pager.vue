@@ -1,13 +1,13 @@
 <template>
-  <ul class="kv-datagrid--page">
-    <li :class="['kv-datagrid--page-number',{'kv-datagrid--page-disabled':pageIndex<2}]"
+  <ul class="kv-table--page">
+    <li :class="['kv-table--page-number',{'kv-table--page-disabled':pageIndex<2}]"
         @click="handlePageIndexChange(pageIndex-1)">
       <i class="kv-icon-left"></i>
     </li>
-    <li :class="['kv-datagrid--page-number',{'kv-datagrid--page-avtive':pageIndex==1}]"
+    <li :class="['kv-table--page-number',{'kv-table--page-avtive':pageIndex==1}]"
         @click="handlePageIndexChange(1)">1</li>
     <li v-if="showPrevMore"
-        class="kv-datagrid--page-number kv-datagrid--page-prev"
+        class="kv-table--page-number kv-table--page-prev"
         @mouseenter="prevMoreHover=true"
         @mouseleave="prevMoreHover=false"
         @click="handlePageIndexChange(pageIndex-pageNumber+2)">
@@ -17,10 +17,10 @@
     </li>
     <li v-for="(page, index) in pageList"
         :key="index"
-        :class="['kv-datagrid--page-number',{'kv-datagrid--page-avtive':pageIndex==page}]"
+        :class="['kv-table--page-number',{'kv-table--page-avtive':pageIndex==page}]"
         @click="handlePageIndexChange(page)">{{page}}</li>
     <li v-if="showNextMore"
-        class="kv-datagrid--page-number kv-datagrid--page-next"
+        class="kv-table--page-number kv-table--page-next"
         @mouseenter="nextMoreHover=true"
         @mouseleave="nextMoreHover=false"
         @click="handlePageIndexChange(pageIndex+pageNumber-2)">
@@ -29,9 +29,9 @@
       <i v-else>•••</i>
     </li>
     <li v-if="pageCount>1"
-        :class="['kv-datagrid--page-number',{'kv-datagrid--page-avtive':pageIndex==pageCount}]"
+        :class="['kv-table--page-number',{'kv-table--page-avtive':pageIndex==pageCount}]"
         @click="handlePageIndexChange(pageCount)">{{pageCount}}</li>
-    <li :class="['kv-datagrid--page-number',{'kv-datagrid--page-disabled':pageIndex>pageCount-1}]"
+    <li :class="['kv-table--page-number',{'kv-table--page-disabled':pageIndex>pageCount-1}]"
         @click="handlePageIndexChange(pageIndex+1)">
       <i class="kv-icon-right"></i>
     </li>

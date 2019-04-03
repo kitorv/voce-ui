@@ -50,10 +50,10 @@ export default {
       let { type, align } = this.column;
       let classList = [];
       if (type) {
-        classList.push(`kv-datagrid--cell-type-${type}`);
+        classList.push(`kv-table--cell-type-${type}`);
       }
       if (align) {
-        classList.push(`kv-datagrid--align-${align}`);
+        classList.push(`kv-table--align-${align}`);
       }
       if (this.cellClass) {
         let params = {

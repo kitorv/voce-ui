@@ -18,7 +18,7 @@ export default {
       }
     }
     return (
-      <tr class={["kv-datagrid--body-row-expansion", `kv-datagrid--body-${expansionKey}`]} >
+      <tr class={["kv-table--body-row-expansion", `kv-table--body-${expansionKey}`]} >
         <td colspan={this.datagrid.leafColumns.length}>
           {slot({ row: this.row, data: this.row.data })}
         </td>

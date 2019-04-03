@@ -2,7 +2,7 @@ import Vue from "vue";
 import App from "./App.vue";
 import router from "./router";
 import KvCodeSnippet from "./components/code-sinppet";
-import KvDatagrid from "../packages/components/table";
+import KvTable from "./index";
 import hljs from "highlight.js";
 
 import "../packages/style/index.scss";
@@ -11,7 +11,7 @@ import "./assest/style/demo.scss";
 
 Vue.config.productionTip = false;
 Vue.component("kv-code-snippet", KvCodeSnippet);
-Vue.component("kv-datagrid", KvDatagrid);
+Vue.use(KvTable);
 
 router.afterEach(() => {
   Vue.nextTick(() => {

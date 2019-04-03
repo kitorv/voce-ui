@@ -6,7 +6,7 @@
 
 ```html
 <template>
-  <kv-datagrid :columns="columns" :data="data"></kv-datagrid>
+  <kv-table :columns="columns" :data="data"></kv-table>
 </template>
 <script>
   export default {
@@ -51,7 +51,7 @@
 
 ```html
 <template>
-  <kv-datagrid :columns="columns" :data="data"></kv-datagrid>
+  <kv-table :columns="columns" :data="data"></kv-table>
 </template>
 <script>
   export default {
@@ -147,7 +147,7 @@
 
 ```html
 <template>
-  <kv-datagrid :columns="columns" :data="data"></kv-datagrid>
+  <kv-table :columns="columns" :data="data"></kv-table>
 </template>
 <script>
   export default {
@@ -173,7 +173,7 @@
 
 ```html
 <template>
-  <kv-datagrid :columns="columns" :data="data" :loading="true"></kv-datagrid>
+  <kv-table :columns="columns" :data="data" :loading="true"></kv-table>
 </template>
 <script>
   export default {

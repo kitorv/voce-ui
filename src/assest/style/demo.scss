@@ -1,27 +1,27 @@
-tr.kv-datagrid-demo--row-success {
+tr.kv-table-demo--row-success {
   > td {
     background-color: #ebf9eb;
     color: #46c93a;
   }
 }
 
-tr.kv-datagrid-demo--row-error {
+tr.kv-table-demo--row-error {
   > td {
     background-color: #fcecee;
     color: #ff4757;
   }
 }
 
-td.kv-datagrid-demo--cell-success {
+td.kv-table-demo--cell-success {
   background-color: #ebf9eb !important;
   color: #46c93a;
 }
-td.kv-datagrid-demo--cell-error {
+td.kv-table-demo--cell-error {
   background-color: #fcecee !important;
   color: #ff4757;
 }
 
-.kv-datagrid-demo--tag {
+.kv-table-demo--tag {
   background-color: rgba(64, 158, 255, 0.1);
   display: inline-block;
   padding: 0 10px;
@@ -35,7 +35,7 @@ td.kv-datagrid-demo--cell-error {
   white-space: nowrap;
 }
 
-.kv-datagrid-demo--button {
+.kv-table-demo--button {
   display: inline-block;
   line-height: 1;
   white-space: nowrap;
@@ -60,8 +60,8 @@ td.kv-datagrid-demo--cell-error {
     margin-left: 10px;
   }
 }
-.kv-datagrid--cell-edit input,
-.kv-datagrid-demo--input {
+.kv-table--cell-edit input,
+.kv-table-demo--input {
   -webkit-appearance: none;
   background-color: #fff;
   background-image: none;
@@ -79,18 +79,18 @@ td.kv-datagrid-demo--cell-error {
   width: 100%;
 }
 
-.kv-datagrid-demo--link {
+.kv-table-demo--link {
   cursor: pointer;
   color: #409eff;
   margin-right: 10px;
 }
 
-.kv-datagrid--body-expansion-table {
+.kv-table--body-expansion-table {
   > td {
     border-bottom: none;
   }
 
-  .kv-datagrid-border {
+  .kv-table-border {
     border-top: none;
     border-left: none;
   }

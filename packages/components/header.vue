@@ -1,5 +1,5 @@
 <template>
-  <table class="kv-datagrid--header-table"
+  <table class="kv-table--header-table"
          cellspacing="0"
          cellpadding="0"
          border="0">
@@ -8,10 +8,10 @@
                  :key="index"
                  :column="column"></table-col>
     </colgroup>
-    <tr class="kv-datagrid--header-row"
+    <tr class="kv-table--header-row"
         v-for="(colRow, index) in columnRows"
         :key="index">
-      <table-column class="kv-datagrid--header-column"
+      <table-column class="kv-table--header-column"
                     v-for="(column, index) in colRow"
                     :key="index"
                     :column="column">
@@ -20,7 +20,7 @@
 
     <tr v-for="(row, rowIndex) in data"
         :key="`key_${rowIndex}`">
-      <table-cell class="kv-datagrid--body-cell"
+      <table-cell class="kv-table--body-cell"
                   v-for="(column, cellIndex) in leafColumns"
                   :key="`k_${cellIndex}`"
                   type="header"

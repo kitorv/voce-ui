@@ -1,11 +1,11 @@
 <template>
-  <label :class="['kv-datagrid-checkbox',{
-      'kv-datagrid-checkbox-checked':value,
-      'kv-datagrid-checkbox-indeterminate':!value&&indeterminate,
-      'kv-datagrid-checkbox-disabled':disabled
+  <label :class="['kv-table-checkbox',{
+      'kv-table-checkbox-checked':value,
+      'kv-table-checkbox-indeterminate':!value&&indeterminate,
+      'kv-table-checkbox-disabled':disabled
       }]">
-    <span class="kv-datagrid-checkbox--inner">
-      <input class="kv-datagrid-checkbox--inner-input"
+    <span class="kv-table-checkbox--inner">
+      <input class="kv-table-checkbox--inner-input"
              type="checkbox"
              v-model="model"
              :disabled="disabled">

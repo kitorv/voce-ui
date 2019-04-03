@@ -1,7 +1,7 @@
 <template>
   <div class="view-home">
     <div class="view-home--header">
-      <div class="view-home--logo">Kv-DataGrid</div>
+      <div class="view-home--logo">kv-table</div>
       <a class="view-home--github"
          href="https://github.com/kitorv/datagrid">
         <i class="kv-icon-github"></i>

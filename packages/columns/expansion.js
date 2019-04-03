@@ -6,8 +6,8 @@ export default {
   formatter: (h, { row }) => (
     <div
       class={[
-        "kv-datagrid--body-cell-expansion",
-        { "kv-datagrid--body-cell-expansion-active": row.rowExpand }
+        "kv-table--body-cell-expansion",
+        { "kv-table--body-cell-expansion-active": row.rowExpand }
       ]}
       on-click={() => {
         row.rowExpand = !row.rowExpand;

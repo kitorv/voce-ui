@@ -1,4 +1,4 @@
-.kv-datagrid--pagination {
+.kv-tale--pagination {
   white-space: nowrap;
   padding: 2px 5px;
 
@@ -13,12 +13,12 @@
     margin: 2px 5px;
   }
 
-  .kv-datagrid--page-number {
+  .kv-tale--page-number {
     margin: 2px 5px;
   }
 }
 
-.kv-datagrid--pagination-select {
+.kv-tale--pagination-select {
   position: relative;
   padding: 0 25px 0 15px;
   border-radius: 3px;
@@ -42,7 +42,7 @@
   }
 }
 
-.kv-datagrid--pagination-select-dropdown {
+.kv-tale--pagination-select-dropdown {
   position: absolute;
   left: 0;
   top: 28px;
@@ -57,7 +57,7 @@
   margin: 5px 0;
 }
 
-.kv-datagrid--pagination-select-option {
+.kv-tale--pagination-select-option {
   font-size: 14px;
   padding: 0 20px 0 15px;
   position: relative;
@@ -76,11 +76,11 @@
   }
 }
 
-.kv-datagrid--pagination-select-active {
+.kv-tale--pagination-select-active {
   color: #409eff;
 }
 
-.kv-datagrid--pagination-pager {
+.kv-tale--pagination-pager {
   user-select: none;
   list-style: none;
   display: inline-block;
@@ -90,7 +90,7 @@
   margin: 0;
 }
 
-.kv-datagrid--pagination-number {
+.kv-tale--pagination-number {
   appearance: none;
   background-color: #fff;
   background-image: none;
@@ -109,10 +109,10 @@
   text-align: center;
 }
 
-.kv-datagrid--pagination-number::-webkit-outer-spin-button,
-.kv-datagrid--pagination-number::-webkit-inner-spin-button {
+.kv-tale--pagination-number::-webkit-outer-spin-button,
+.kv-tale--pagination-number::-webkit-inner-spin-button {
   -webkit-appearance: none;
 }
-.kv-datagrid--pagination-number[type="number"] {
+.kv-tale--pagination-number[type="number"] {
   -moz-appearance: textfield;
 }

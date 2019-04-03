@@ -1,5 +1,5 @@
 // 表格容器
-.kv-datagrid {
+.kv-tale {
   position: relative;
   zoom: 1;
   box-sizing: border-box;
@@ -9,18 +9,18 @@
 }
 
 // 表格布局
-.kv-datagrid--header,
+.kv-tale--header,
 .kv-datagird--body,
-.kv-datagrid--footer {
+.kv-tale--footer {
   position: relative;
   box-sizing: border-box;
   font-size: 14px;
 }
 
 // 左侧固定列
-.kv-datagrid--header-left,
-.kv-datagrid--body-left,
-.kv-datagrid--body-left {
+.kv-tale--header-left,
+.kv-tale--body-left,
+.kv-tale--body-left {
   position: absolute;
   left: 0;
   top: 0;
@@ -30,24 +30,24 @@
 }
 
 // 中心内容
-.kv-datagrid--header-center,
-.kv-datagrid--body-center,
-.kv-datagrid--footer-center {
+.kv-tale--header-center,
+.kv-tale--body-center,
+.kv-tale--footer-center {
   position: relative;
   z-index: 1;
   overflow: auto;
 
   // 表头和表体禁用滚动条
-  &.kv-datagrid--header-center,
-  &.kv-datagrid--footer-center {
+  &.kv-tale--header-center,
+  &.kv-tale--footer-center {
     overflow: hidden;
   }
 }
 
 // 右侧固定列
-.kv-datagrid--header-right,
-.kv-datagrid--body-right,
-.kv-datagrid--footer-right {
+.kv-tale--header-right,
+.kv-tale--body-right,
+.kv-tale--footer-right {
   position: absolute;
   right: 0;
   top: 0;
@@ -63,7 +63,7 @@
   }
 }
 
-.kv-datagrid--footer-pagination {
+.kv-tale--footer-pagination {
   position: relative;
   background-color: #ffffff;
   padding: 10px 0 5px 5px;
@@ -73,14 +73,14 @@
   margin-left: -1px;
   z-index: 6;
 
-  .kv-datagrid--pagination {
+  .kv-tale--pagination {
     text-align: right;
     padding-right: 0;
   }
 }
 
 // 无数据占位
-.kv-datagrid--body-empty {
+.kv-tale--body-empty {
   position: relative;
   z-index: 1;
   font-size: 14px;
@@ -92,7 +92,7 @@
   height: 100%;
 }
 
-.kv-datagrid--body-empty-placeholder {
+.kv-tale--body-empty-placeholder {
   padding: 32px;
   font-size: 16px;
   line-height: 22px;
@@ -105,7 +105,7 @@
   }
 }
 
-.kv-datagrid--body-empty-image {
+.kv-tale--body-empty-image {
   height: 40px;
   margin-bottom: 10px;
 
@@ -114,8 +114,8 @@
   }
 }
 
-.kv-datagrid--body-empty-fit {
-  .kv-datagrid--body-empty-placeholder {
+.kv-tale--body-empty-fit {
+  .kv-tale--body-empty-placeholder {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -125,11 +125,11 @@
 }
 
 // 表格边框
-.kv-datagrid-border {
+.kv-tale-border {
   border-left: 1px solid #e8e8e8;
   border-top: 1px solid #e8e8e8;
 
-  .kv-datagrid--header::before {
+  .kv-tale--header::before {
     content: "";
     position: absolute;
     width: 100%;
@@ -157,21 +157,21 @@
     z-index: 5;
   }
 
-  .kv-datagrid--header-table {
-    .kv-datagrid--header-column {
+  .kv-tale--header-table {
+    .kv-tale--header-column {
       border-right: 1px solid #e8e8e8;
     }
   }
 
-  .kv-datagrid--header-table,
-  .kv-datagrid--body-table,
-  .kv-datagrid--footer-table {
-    .kv-datagrid--body-cell {
+  .kv-tale--header-table,
+  .kv-tale--body-table,
+  .kv-tale--footer-table {
+    .kv-tale--body-cell {
       border-right: 1px solid #e8e8e8;
     }
   }
 
-  .kv-datagrid--loading {
+  .kv-tale--loading {
     border-left: 1px solid rgba(255, 255, 255, 0.1);
     border-top: 1px solid rgba(255, 255, 255, 0.1);
     left: -1px;
@@ -180,19 +180,19 @@
 }
 
 // 斑马线
-.kv-datagrid-stripe {
-  .kv-datagrid--body-row:nth-child(2n + 1) {
+.kv-tale-stripe {
+  .kv-tale--body-row:nth-child(2n + 1) {
     background-color: #fafafa;
   }
 }
 
 // 对其格式
-.kv-datagrid--align-left {
+.kv-tale--align-left {
   text-align: left !important;
 }
-.kv-datagrid--align-center {
+.kv-tale--align-center {
   text-align: center !important;
 }
-.kv-datagrid--align-right {
+.kv-tale--align-right {
   text-align: right !important;
 }
