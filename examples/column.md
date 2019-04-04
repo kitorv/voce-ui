@@ -2,7 +2,7 @@
 
 ## 树形表格
 
-:::demo 列的`type`的类型为`tree`该列会生成树结构，树结构数据包含`children`的格式
+:::demo 列的`type`的类型为`tree`该列会生成树结构，树结构数据包含`children`的格式，通过`change`事件可以在加载数据通过属性`nodeExpend`设置节点的张开折叠
 
 ```html
 <template>
@@ -91,11 +91,25 @@
 
 ## 复选框
 
-:::demo 列的`type`的类型为`checkbox`会自动生成复选框
+:::demo 列的`type`的类型为`checkbox`会自动生成复选框，通过`change`事件获取`rows`数据进行状态更改操作选中也可以从实例属性`dataSource`获取行数据操作
 
 ```html
 <template>
-  <kv-table :columns="columns" :data="data"></kv-table>
+  <div>
+    <kv-table
+      :columns="columns"
+      :data="data"
+      @change="datarows=>{rows=datarows}"
+    ></kv-table>
+    <div style="margin-top:20px;">
+      <div class="kv-table-demo--button" @click="handleCheckedClick">
+        选中第二行
+      </div>
+      <div class="kv-table-demo--button" @click="handleCancelCheckedClick">
+        取消选中
+      </div>
+    </div>
+  </div>
 </template>
 <script>
   export default {
@@ -126,8 +140,19 @@
             age: 30,
             address: "Sidney No. 1 Lake Park"
           }
-        ]
+        ],
+        rows: []
       };
+    },
+    methods: {
+      handleCheckedClick() {
+        this.rows[1].checked = true;
+      },
+      handleCancelCheckedClick() {
+        this.rows.map(m => {
+          m.checked = false;
+        });
+      }
     }
   };
 </script>

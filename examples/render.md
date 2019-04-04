@@ -252,11 +252,7 @@
 
 ```html
 <template>
-  <kv-table
-    :columns="columns"
-    :data="data"
-    :cell-span="cellSpan"
-  ></kv-table>
+  <kv-table :columns="columns" :data="data" :cell-span="cellSpan"></kv-table>
 </template>
 <script>
   export default {
