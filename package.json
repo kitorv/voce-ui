@@ -1,6 +1,6 @@
 {
   "name": "kv-table",
-  "version": "0.1.0-alpha.1",
+  "version": "0.1.0-alpha.2",
   "description": "A Table Component for Vue.js.",
   "keywords": [
     "vue",
