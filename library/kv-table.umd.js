@@ -4,9 +4,9 @@
 	else if(typeof define === 'function' && define.amd)
 		define([], factory);
 	else if(typeof exports === 'object')
-		exports["kt-table"] = factory();
+		exports["kv-table"] = factory();
 	else
-		root["kt-table"] = factory();
+		root["kv-table"] = factory();
 })((typeof self !== 'undefined' ? self : this), function() {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
@@ -5575,4 +5575,4 @@ module.exports = '\x09\x0A\x0B\x0C\x0D\x20\xA0\u1680\u180E\u2000\u2001\u2002\u20
 
 /******/ });
 });
-//# sourceMappingURL=kt-table.umd.js.map
+//# sourceMappingURL=kv-table.umd.js.map
