@@ -1,0 +1,18 @@
+#项目构建环境Node
+language: node_js
+
+# Node版本 10
+node_js:
+  - "10"
+
+# 主分支自动构建
+branches:
+  only:
+    - master
+
+# 依赖安装
+install:
+  - npm install
+
+script:
+  - npm run build
