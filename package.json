@@ -13,7 +13,7 @@
     "build:script": "vue-cli-service  build --model production --target lib --dest library src/index.js",
     "build": "npm run build:script && npm run build:style",
     "deploy": "npm run docs && npm run build",
-    "docs": "vue-cli-service build --docs --dest docs",
+    "page": "vue-cli-service build",
     "lint": "vue-cli-service lint"
   },
   "main": "library/kv-table.common.js",
