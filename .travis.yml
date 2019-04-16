@@ -1,26 +1,32 @@
-#项目构建环境Node
+# 编译环境
 language: node_js
 
-# Node版本 10
+# Node 版本
 node_js:
   - "10"
 
-# 主分支自动构建
-branches:
-  only:
-    - master
-
-# 依赖安装
+# 安装依赖
 install:
   - npm install
 
+# 代码编译
 script:
-  - npm run page
+  - npm run build
 
+# 发布配置
 deploy:
-  provider: pages
-  skip_cleanup: true
-  github_token: $GITHUB_TOKEN
-  keep_history: true
-  on:
-    branch: master
+  # 发布到 gh-pages
+  - provider: pages
+    local_dir: dist
+    skip_cleanup: true
+    github_token: $GITHUB_TOKEN
+    keep_history: true
+    on:
+      branch: master
+  # 发布到 npm
+  - provider: npm
+    email: $NPM_EMAIL
+    api_key: $NPM_TOKEN
+    on:
+      tags: true
+      branch: master
