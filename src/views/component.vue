@@ -24,19 +24,12 @@
                      to="/3">Link</router-link>
       </div>
       <div class="k-v-conpoenent--page">
-        <div class="k-v-conpoenent--view"></div>
-      </div>
-    </div>
-  </div>
-  <!-- 
-
-
-      <div class="view-home--page">
-        <div class="view-home--content">
+        <div class="k-v-conpoenent--view">
           <router-view></router-view>
         </div>
       </div>
-    </div> -->
+    </div>
+  </div>
 </template>
 
 <script>

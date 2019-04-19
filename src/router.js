@@ -8,7 +8,13 @@ export default new Router({
     {
       path: "/",
       component: () => import("./views/component.vue"),
-      children: []
+      children: [
+        {
+          path: "/",
+          name: "hello",
+          component: () => import("./components/HelloWorldDoc.md")
+        }
+      ]
     }
   ]
 });
