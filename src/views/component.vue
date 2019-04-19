@@ -13,15 +13,9 @@
     <!-- content -->
     <div class="k-v-conpoenent--content">
       <div class="k-v-conpoenent--left">
-        <h3 class="k-v-conpoenent--group">Title</h3>
+        <h3 class="k-v-conpoenent--group">组件</h3>
         <router-link class="k-v-conpoenent--link"
-                     to="/">Link</router-link>
-        <router-link class="k-v-conpoenent--link"
-                     to="/1">Link</router-link>
-        <router-link class="k-v-conpoenent--link"
-                     to="/2">Link</router-link>
-        <router-link class="k-v-conpoenent--link"
-                     to="/3">Link</router-link>
+                     to="/">hello word</router-link>
       </div>
       <div class="k-v-conpoenent--page">
         <div class="k-v-conpoenent--view">
