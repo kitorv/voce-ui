@@ -8,9 +8,9 @@
       <span class="kv-code-snippet--icon-code"
             @click="showCode = !showCode">
         <img v-if="showCode"
-             src="../assets/code-open.svg" />
+             src="../assets/images/code-open.svg" />
         <img v-else
-             src="../assets/code-close.svg" />
+             src="../assets/images/code-close.svg" />
       </span>
     </div>
     <div v-show="showCode"

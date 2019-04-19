@@ -1,0 +1,40 @@
+@font-face {
+  font-family: "iconfont";
+  src: url("//at.alicdn.com/t/font_1070198_q2obbk2vxwb.eot?t=1555664957098"); /* IE9 */
+  src: url("//at.alicdn.com/t/font_1070198_q2obbk2vxwb.eot?t=1555664957098#iefix")
+      format("embedded-opentype"),
+    /* IE6-IE8 */
+      url("data:application/x-font-woff2;charset=utf-8;base64,d09GMgABAAAAAAMYAAsAAAAABtAAAALMAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHEIGVgCCcAqBXIFeATYCJAMICwYABCAFhG0HMBsEBsgekiSQ8AYKOHAAAA4i+H6/35737ldNqEWLnkVDE4tMp5KgBBolUCoheQn8Vef3Rp9ev5Xi0wofcvdkokn1dBbgSThBvMmTlW/gObWg4RP3Tv8KKJD5gHKZY/KnLqAuDqQA98Koi6RAAvBIGsYucAm3CVSNGUXYyy2uhhiJtSgQ95raATG5uCSxUlko1uxM4gUU5exJvAfgOfx8/IEjYsgUclbH4eX0bpj0OdOukBZFFmn2CVDM5wXbR44VIBGntfl9kmBcSTUvmwL7ag0+Z0YivlPs9ccTRVZzHYxA+T0pXOWtljK4rZH2gItR/4LYm/vsS/XzlzV7twi1z8zsY9cyDu3PPHsVbj4fuuN4tmnW7gmP3Gw6Nz+vubu2IBzOOPks4+BzePasetNRqH7cNjT8us78hpLxUkaUX4qHr0vbXQMinF8l55YMGTEJzFuTauZKuXUwf0O42KCsVaUNsT2nrW6Mzh0sTo3Jtzxa9siTRC8WZ6NzC2f3mjZC2riWNiivSgfBWr8cO1zXJfFNfokIkwD+1yTIH37ud7we5GhLHvc/RgIf70+OD5X9gqB8C4HgVyp6diVdZTmypCpq+zN7t6it2in+wQp3vRtrHtx3OZQNRgRLRlPkymbIxFlBQc0qiso2UbUsb39NDyOJVMGS5QCh7TgyTe/Itd0nE+ctCoa+o6gdEqrOI/3EmrnQ4qYy0sFJN3bORq1LD1DHxeOi1kqihnwdLKsKebWEGVoK7RZbsZRHAoTNscaYoTo4p0iZ7sdccB/x+XQMMt1DurjFzXlwjNVK655k6dL9EGcXQ3TgiG6o02xI00UXQP3BXFzp/ZUIVYhPB9bCqonXIhiDNj6ys7D1IPP0gV6se3nEMIPKgeMoRDE6P5QLvITPzutQsH6aB9GFs3CPyAaNYUW9aF+9ZX2j/+sOQZVlycKelCteadwd6gQA")
+      format("woff2"),
+    url("//at.alicdn.com/t/font_1070198_q2obbk2vxwb.woff?t=1555664957098")
+      format("woff"),
+    url("//at.alicdn.com/t/font_1070198_q2obbk2vxwb.ttf?t=1555664957098")
+      format("truetype"),
+    /* chrome, firefox, opera, Safari, Android, iOS 4.2+ */
+      url("//at.alicdn.com/t/font_1070198_q2obbk2vxwb.svg?t=1555664957098#iconfont")
+      format("svg"); /* iOS 4.1- */
+}
+
+.iconfont {
+  font-family: "iconfont" !important;
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.k-v-icon-github:before {
+  content: "\e677";
+}
+
+[class*="k-v-icon-"],
+[class^="k-v-icon-"] {
+  font-family: iconfont !important;
+  font-style: normal;
+  font-weight: 400;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
