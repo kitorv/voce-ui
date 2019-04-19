@@ -4,17 +4,22 @@ const VueTemplateComplier = require("vue-template-compiler");
 const hljs = require("highlight.js");
 const { parse, compileTemplate } = require("@vue/component-compiler-utils");
 
-module.exports = function (source) {
+module.exports = function(source) {
   // 需要解析成vue代码块集合
   const componentCodeList = [];
+  let styleCodeList = [];
   // 初始还MarkdownIt用于转换md文件为html
   const markdownIt = MarkdownIt({
     // 将markdown中的代码块用hljs高亮显示
-    highlight: function (str, lang) {
+    highlight: function(str, lang) {
       if (lang && hljs.getLanguage(lang)) {
-        return `<pre class="hljs"><code>${hljs.highlight(lang, str, true).value}</code></pre>`
+        return `<pre class="hljs"><code>${
+          hljs.highlight(lang, str, true).value
+        }</code></pre>`;
       }
-      return `<pre class="hljs"><code>${markdownIt.utils.escapeHtml(str)}</code></pre>`
+      return `<pre class="hljs"><code>${markdownIt.utils.escapeHtml(
+        str
+      )}</code></pre>`;
     }
   });
   // 使用【markdown-it-container】插件解析【:::snippet :::】代码块为vue渲染
@@ -34,11 +39,12 @@ module.exports = function (source) {
         const nextIndex = tokens[index + 1];
         const content = nextIndex.type === "fence" ? nextIndex.content : "";
         // 将content解析为vue组件基本属性对象;
-        let { template, script } = parse({
+        let { template, script, styles } = parse({
           source: content,
           compiler: VueTemplateComplier,
           needMap: false
         });
+        styleCodeList = styleCodeList.concat(styles);
         // 将template的转为render函数
         const { code } = compileTemplate({
           source: template.content,
@@ -47,7 +53,10 @@ module.exports = function (source) {
         // 获取script的代码
         script = script ? script.content : "";
         if (script) {
-          script = script.replace(/export\s+default/, "const exportJavaScript =");
+          script = script.replace(
+            /export\s+default/,
+            "const exportJavaScript ="
+          );
         } else {
           script = "const exportJavaScript = {} ;";
         }
@@ -77,7 +86,7 @@ module.exports = function (source) {
   return `
         <template>
           <div class="kv-snippet-doc">
-            ${ markdownIt.render(source)}
+            ${markdownIt.render(source)}
           </div>
         </template>
         <script>
@@ -87,5 +96,8 @@ module.exports = function (source) {
             ${componentCodeList.join(",")}
            }
          }
-       </script>`;
+       </script>
+       <style>
+         ${Array.from(styleCodeList, m => m.content).join("\n")}
+       </style>`;
 };
