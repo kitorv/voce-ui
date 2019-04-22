@@ -2,10 +2,10 @@ import Vue from "vue";
 import App from "./App.vue";
 import Router from "./router";
 import KvCodeSnippet from "./components/code-snippet";
-import KvWebComponents from "./index.js";
+import KvWebComponents from "../packages/index.js";
 import "highlight.js/styles/color-brewer.css";
 import "./assets/style/icon.scss";
-import "./index.scss";
+import "../packages/index.scss";
 
 Vue.config.productionTip = false;
 Vue.component("kv-code-snippet", KvCodeSnippet);
