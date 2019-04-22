@@ -194,7 +194,7 @@
 
 参照了 `Bootstrap` 响应式设计，预设尺寸：`xs`、`sm`、`md`、`lg` 和 `xl`。
 
-:::snippet 根据设备的大小设置对应显示大小
+:::snippet 根据设备的大小设置对应显示大小。
 
 ```html
 <template>
