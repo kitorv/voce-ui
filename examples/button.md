@@ -112,3 +112,36 @@
 ```
 
 :::
+
+### 按钮圆角
+
+按钮的圆角样式
+
+:::snippet 设置 circle 自动设置圆角样式
+
+```html
+<template>
+  <div>
+    <div class="kv-demo--button-bottom">
+      <kv-button icon="k-v-icon-github" circle>contetnt</kv-button>
+      <kv-button type="border" icon="k-v-icon-github" circle
+        >contetnt</kv-button
+      >
+      <kv-button type="flat" icon="k-v-icon-github" circle>contetnt</kv-button>
+    </div>
+    <div>
+      <kv-button icon="k-v-icon-github" circle></kv-button>
+      <kv-button type="border" icon="k-v-icon-github" circle></kv-button>
+      <kv-button type="flat" icon="k-v-icon-github" circle></kv-button>
+    </div>
+  </div>
+</template>
+
+<style>
+  .kv-demo--button-bottom {
+    margin-bottom: 15px;
+  }
+</style>
+```
+
+:::
