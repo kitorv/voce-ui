@@ -29,14 +29,13 @@ export default {
   }
 };
 </script>
-
-<style>
+<style lang="scss">
 .kv-code-snippet {
   position: relative;
   box-sizing: border-box;
   width: 100%;
   margin: 0 0 16px;
-  border-radius: 5px;
+  border-radius: 4px;
   transition: all 0.2s;
   box-shadow: 0 6px 12px -2px rgba(0, 32, 128, 0.1), 0 0 0 1px #f0f2f7;
   background-color: #ffffff;
@@ -56,6 +55,15 @@ export default {
   padding: 12px 50px 12px 20px;
   font-size: 14px;
   transition: background-color 0.4s;
+  line-height: 1.5;
+
+  code {
+    background: #fcfaff;
+    border: 1px solid #e2ddff;
+    border-radius: 3px;
+    color: #4b00da;
+    padding: 2px 4px;
+  }
 }
 
 .kv-code-snippet--icon-code {
@@ -67,37 +75,38 @@ export default {
   height: 18px;
   line-height: 18px;
   text-align: center;
-}
 
-.kv-code-snippet--icon-code img {
-  transition: all 0.4s;
-  user-select: none;
-  position: absolute;
-  left: 0;
-  top: 0;
-  margin: 0;
-  max-width: 100%;
-  width: 100%;
-  vertical-align: baseline;
-  box-shadow: none;
+  > img {
+    transition: all 0.4s;
+    user-select: none;
+    position: absolute;
+    left: 0;
+    top: 0;
+    margin: 0;
+    max-width: 100%;
+    width: 100%;
+    vertical-align: baseline;
+    box-shadow: none;
+  }
 }
 
 .kv-code-snippet--code {
   box-sizing: border-box;
   border-top: 1px solid #ebedf0;
-}
 
-.kv-code-snippet--code code{
-  background-color: #f5f7fb;
-  font-family: Consolas, Menlo, Courier, monospace;
-  border: none;
-  display: block;
-  font-size: 14px;
-  padding: 16px 32px;
-  line-height: 1.5;
-}
-.kv-code-snippet--code .hljs {
-  padding: 0;
-  margin: 0;
+  code {
+    background-color: #f5f7fb;
+    font-family: Consolas, Menlo, Courier, monospace;
+    border: none;
+    display: block;
+    font-size: 14px;
+    padding: 16px 32px;
+    line-height: 1.5;
+  }
+
+  .hljs {
+    padding: 0;
+    margin: 0;
+  }
 }
 </style>
