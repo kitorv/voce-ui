@@ -69,7 +69,7 @@
 
 ### Flex 的布局
 
-使用 css 的 flex 布局
+通过属性设置 `flex` 布局以及属性。
 
 :::snippet `kv-row` 设置 `type` 属性值：`flex` ,设置 `justify` 和 `align` 指定对其格式。
 
@@ -133,7 +133,7 @@
 
 ### Offset 偏移
 
-使用 css 的 flex 布局
+设置指定的偏移栏数。
 
 :::snippet `kv-col` 设置 `offset` 属性指定偏移占位。
 
