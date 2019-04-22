@@ -181,3 +181,15 @@
 ```
 
 :::
+
+### Attributes
+
+| 参数     | 说明         | 类型    | 可选值                               | 默认值  |
+| -------- | ------------ | ------- | ------------------------------------ | ------- |
+| size     | 尺寸         | string  | large / default / small              | default |
+| color    | 尺寸         | string  | primary / success / danger/ warining | —       |
+| type     | 类型         | string  | fill/border/flat                     | —       |
+| circle   | 是否圆角按钮 | boolean | —                                    | false   |
+| disabled | 是否禁用状态 | boolean | —                                    | false   |
+| icon     | 图标类名     | string  | —                                    | —       |
+| iconType | 按钮对其格式 | string  | left / right                         | left    |
