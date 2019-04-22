@@ -2,7 +2,6 @@ import Vue from "vue";
 import App from "./App.vue";
 import Router from "./router";
 import KvCodeSnippet from "./components/code-snippet";
-import KvHelloWorld from "./components/HelloWorld";
 import KvWebComponents from "./index.js";
 import "highlight.js/styles/color-brewer.css";
 import "./assets/style/icon.scss";
@@ -10,7 +9,7 @@ import "./index.scss";
 
 Vue.config.productionTip = false;
 Vue.component("kv-code-snippet", KvCodeSnippet);
-Vue.component("kv-hello-world", KvHelloWorld);
+
 Vue.use(KvWebComponents);
 
 new Vue({
