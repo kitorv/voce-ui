@@ -41,7 +41,9 @@ export default {
     ['xs', 'sm', 'md', 'lg', 'xl'].forEach(size => {
       if (typeof this[size] === 'number') {
         classList.push(`kv-col-${size}-${this[size]}`);
-      } else if (typeof this[size] === 'object') {
+        return
+      }
+      if (typeof this[size] === 'object') {
         let props = this[size];
         Object.keys(props).forEach(prop => {
           classList.push(
