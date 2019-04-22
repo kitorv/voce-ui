@@ -18,6 +18,8 @@
                      to="/">hello word</router-link>
         <router-link class="k-v-conpoenent--link"
                      to="/layout">Layout</router-link>
+        <router-link class="k-v-conpoenent--link"
+                     to="/button">Button</router-link>
       </div>
       <div class="k-v-conpoenent--page">
         <div class="k-v-conpoenent--view">

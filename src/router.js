@@ -18,6 +18,11 @@ export default new Router({
           path: "/layout",
           name: "component-layout",
           component: () => import("../examples/layout.md")
+        },
+        {
+          path: "/button",
+          name: "component-button",
+          component: () => import("../examples/button.md")
         }
       ]
     }
