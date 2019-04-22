@@ -22,6 +22,24 @@
 
 :::
 
+### 按钮禁用
+
+按钮状态禁用不会触发事件
+
+:::snippet 设置 disabled 属性来禁用按钮。
+
+```html
+<template>
+  <div>
+    <kv-button disabled>Primary</kv-button>
+    <kv-button type="border" disabled>Primary</kv-button>
+    <kv-button type="flat" disabled>Primary</kv-button>
+  </div>
+</template>
+```
+
+:::
+
 ### 按钮类别
 
 不用样式的按钮
@@ -142,6 +160,24 @@
     margin-bottom: 15px;
   }
 </style>
+```
+
+:::
+
+### 按钮大小
+
+设置按钮的不用尺寸
+
+:::snippet 通过 size 设置按钮大小
+
+```html
+<template>
+  <div>
+    <kv-button size="large">Large</kv-button>
+    <kv-button>Default</kv-button>
+    <kv-button size="small">Small</kv-button>
+  </div>
+</template>
 ```
 
 :::
