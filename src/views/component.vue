@@ -15,9 +15,7 @@
       <div class="k-v-conpoenent--left">
         <h3 class="k-v-conpoenent--group">组件</h3>
         <router-link class="k-v-conpoenent--link"
-                     to="/">hello word</router-link>
-        <router-link class="k-v-conpoenent--link"
-                     to="/layout">Layout</router-link>
+                     to="/">Layout</router-link>
         <router-link class="k-v-conpoenent--link"
                      to="/button">Button</router-link>
       </div>

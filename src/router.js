@@ -11,11 +11,6 @@ export default new Router({
       children: [
         {
           path: "/",
-          name: "hello",
-          component: () => import("./components/HelloWorldDoc.md")
-        },
-        {
-          path: "/layout",
           name: "component-layout",
           component: () => import("../examples/layout.md")
         },
