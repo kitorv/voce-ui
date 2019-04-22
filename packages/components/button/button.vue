@@ -1,14 +1,19 @@
 <template>
   <button v-bind="$attrs"
-          :class="['kv-button',`kv-button--type-${type}`,`kv-button--color-${color}`,{'kv-button--icon-circle':circle}]">
+          :class="[
+          'kv-button',
+          `kv-button--type-${type}`,
+          `kv-button--color-${color}`,
+          {'kv-button--circle':circle},
+          iconTypeClass]">
     <i v-if="icon&&iconType==='left'"
-       :class="['kv-button--icon',icon,iconTypeClass]"></i>
+       :class="icon"></i>
     <span v-if="$slots.default"
           class="kv-button--text">
       <slot />
     </span>
     <i v-if="icon&&iconType==='right'"
-       :class="['kv-button--icon',icon,iconTypeClass]"></i>
+       :class="icon"></i>
   </button>
 </template>
 

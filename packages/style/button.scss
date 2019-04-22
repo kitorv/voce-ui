@@ -12,8 +12,11 @@
   outline: none;
 }
 
-.kv-button--icon-circle {
-  border-radius: 50%;
+.kv-button--text {
+  position: relative;
+  height: 16px;
+  display: inline-block;
+  transition: all 0.3s ease;
 }
 
 .kv-button--type-fill {
@@ -44,6 +47,8 @@
 }
 
 .kv-button--type-border {
+  padding: 9px;
+
   &.kv-button--color-primary {
     border: 1px solid #2e74ff;
     color: #2e74ff;
@@ -109,25 +114,19 @@
   }
 }
 
-.kv-button--icon {
-  font-size: 16px;
-}
-
 .kv-button--icon-default {
-  font-size: 16px;
+  width: 36px;
+  height: 36px;
 }
 
-.kv-button--icon-left {
+.kv-button--icon-left > i {
   margin-right: 5px;
 }
 
-.kv-button--icon-right {
+.kv-button--icon-right > i {
   margin-left: 5px;
 }
 
-.kv-button--text {
-  position: relative;
-  color: inherit;
-  display: inline-block;
-  transition: all 0.25s ease;
+.kv-button--circle {
+  border-radius: 18px;
 }
