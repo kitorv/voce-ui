@@ -4,6 +4,7 @@
           'kv-button',
           `kv-button--type-${type}`,
           `kv-button--color-${color}`,
+          `kv-button--size-${size}`,
           {'kv-button--circle':circle},
           iconTypeClass]">
     <i v-if="icon&&iconType==='left'"
@@ -35,7 +36,11 @@ export default {
       type: String,
       default: "left"
     },
-    circle: Boolean
+    circle: Boolean,
+    size: {
+      type: String,
+      default: 'default'
+    }
   },
   computed: {
     iconTypeClass() {

@@ -10,6 +10,12 @@
   box-sizing: border-box;
   background: transparent;
   outline: none;
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: default;
+    pointer-events: none;
+  }
 }
 
 .kv-button--text {
@@ -129,4 +135,20 @@
 
 .kv-button--circle {
   border-radius: 18px;
+}
+
+.kv-button--size-large {
+  font-size: 16px;
+  padding: 13px;
+
+  &.kv-button--circl {
+    border-radius: 22px;
+  }
+}
+
+.kv-button--size-small {
+  padding: 6px 8px;
+  &.kv-button--circl {
+    border-radius: 14px;
+  }
 }
