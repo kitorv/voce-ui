@@ -1,12 +1,12 @@
 ## 按钮
 
-便于使用的按钮组件
+简单便于使用的按钮组件。
 
 ### 基础用法
 
-按钮的基本使用
+按钮的基本使用。
 
-:::snippet 通过 type 设置按钮类型，color 设置按钮的显示状态颜色
+:::snippet 通过 `type` 设置按钮类型，`color` 设置按钮的显示状态颜色。
 
 ```html
 <template>
@@ -24,9 +24,9 @@
 
 ### 按钮禁用
 
-按钮状态禁用不会触发事件
+按钮状态禁用不会触发事件。
 
-:::snippet 设置 disabled 属性来禁用按钮。
+:::snippet 设置 `disabled` 属性来禁用按钮。
 
 ```html
 <template>
@@ -44,7 +44,7 @@
 
 不用样式的按钮
 
-:::snippet 通过 type 设置按钮类型，设置 type 会给按钮加上`.kv-button--type-{type}`格式的样式可以进行扩展
+:::snippet 通过 `type` 设置按钮类型，设置 `type` 会给按钮加上`.kv-button--type-{type}`格式的样式可以进行扩展。
 
 ```html
 <template>
@@ -84,9 +84,9 @@
 
 ### 按钮图标
 
-不用样式的按钮
+通过图标增强按钮标识。
 
-:::snippet icon 设置图标样式，iconType 设置图标的在左侧还是右侧
+:::snippet `icon` 设置图标样式，`iconType` 设置图标的在左侧还是右侧。
 
 ```html
 <template>
@@ -133,9 +133,9 @@
 
 ### 按钮圆角
 
-按钮的圆角样式
+按钮圆角更多不同风格搭配。
 
-:::snippet 设置 circle 自动设置圆角样式
+:::snippet 设置 `circle` 自动设置圆角样式。
 
 ```html
 <template>
@@ -166,9 +166,9 @@
 
 ### 按钮大小
 
-设置按钮的不用尺寸
+不同尺寸的按钮适用于更多不同的场景。
 
-:::snippet 通过 size 设置按钮大小
+:::snippet 通过 `size` 设置按钮大小。
 
 ```html
 <template>

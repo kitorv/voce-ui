@@ -149,6 +149,14 @@ export default {};
 }
 
 .kv-snippet-doc {
+  > p > code {
+    background: #fcfaff;
+    border: 1px solid #e2ddff;
+    border-radius: 3px;
+    color: #4b00da;
+    padding: 2px 4px;
+  }
+
   > table {
     border-collapse: collapse;
     border-spacing: 0;
