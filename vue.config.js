@@ -1,3 +1,5 @@
+process.env.VERSION = require("./package.json").version;
+
 module.exports = {
   publicPath: "kv-web-components",
   chainWebpack: config => {
@@ -8,7 +10,9 @@ module.exports = {
       .loader("vue-loader")
       .end()
       .use("markdown-loader")
-      .loader(require("path").resolve(__dirname, "./webpack/markdown-loader.js"))
+      .loader(
+        require("path").resolve(__dirname, "./webpack/markdown-loader.js")
+      )
       .end();
   }
 };

@@ -16,6 +16,8 @@
         <h3 class="k-v-conpoenent--group">组件</h3>
         <router-link class="k-v-conpoenent--link"
                      to="/">hello word</router-link>
+        <router-link class="k-v-conpoenent--link"
+                     to="/layout">Layout</router-link>
       </div>
       <div class="k-v-conpoenent--page">
         <div class="k-v-conpoenent--view">
@@ -137,12 +139,47 @@ export default {};
 
 .k-v-conpoenent--page {
   padding-left: 240px;
-  background-color: #fdfdfd;
+  background-color: #ffffff;
 }
 
 .k-v-conpoenent--view {
   max-width: 1000px;
   padding: 25px 50px 60px 50px;
   margin: 0 auto;
+}
+
+.kv-snippet-doc {
+  > table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    empty-cells: show;
+    border: 1px solid #ebedf0;
+    width: 100%;
+    margin: 8px 0 16px;
+    font-size: 14px;
+
+    th,
+    td {
+      color: #314659;
+      border: 1px solid #ebedf0;
+      text-align: left;
+      padding: 8px 10px;
+
+      code {
+        background: #fcfaff;
+        border: 1px solid #e2ddff;
+        border-radius: 3px;
+        color: #4b00da;
+        padding: 2px 4px;
+      }
+    }
+
+    th {
+      white-space: nowrap;
+      color: #333333;
+      font-weight: 500;
+      background-color: #fafafa;
+    }
+  }
 }
 </style>
