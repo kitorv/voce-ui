@@ -1,6 +1,6 @@
 {
   "name": "kv-web-components",
-  "version": "0.1.6",
+  "version": "0.2.0",
   "description": "A Vue.js 2.x UI Toolkit for Web",
   "main": "lib/kv-web-components.common.js",
   "scripts": {
