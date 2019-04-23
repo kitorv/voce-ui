@@ -1,15 +1,12 @@
 {
   "name": "kv-web-components",
-  "version": "0.1.3",
+  "version": "0.1.2",
   "main": "lib/kv-web-components.common.js",
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lib": "vue-cli-service build --dest lib --target lib src/index.js",
     "lint": "vue-cli-service lint"
-  },
-  "dependencies": {
-    "vue": "^2.6.10"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.6.0",
@@ -23,6 +20,7 @@
     "markdown-it-container": "^2.0.0",
     "node-sass": "^4.11.0",
     "sass-loader": "^7.1.0",
+    "vue": "^2.6.10",
     "vue-router": "^3.0.6",
     "vue-template-compiler": "^2.5.21"
   },
