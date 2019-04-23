@@ -11,13 +11,13 @@ export default new Router({
       children: [
         {
           path: "/",
-          name: "component-layout",
-          component: () => import("../examples/layout.md")
+          name: "component-grid",
+          component: () => import("../packages/components/grid/index.md")
         },
         {
           path: "/button",
           name: "component-button",
-          component: () => import("../examples/button.md")
+          component: () => import("../packages/components/button/index.md")
         }
       ]
     }

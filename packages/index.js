@@ -1,10 +1,11 @@
-import KvRow from "./components/row";
-import KvCol from "./components/col";
+import KvGrid from "./components/grid";
 import KvButton from "./components/button";
+
+const { KvRow, KvCol } = KvGrid;
 
 const components = [KvRow, KvCol, KvButton];
 
-const install = function (Vue) {
+const install = function(Vue) {
   components.forEach(component => {
     Vue.component(component.name, component);
   });
