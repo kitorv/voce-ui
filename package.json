@@ -1,6 +1,7 @@
 {
   "name": "kv-web-components",
   "version": "0.1.6",
+  "description": "A Vue.js 2.x UI Toolkit for Web",
   "main": "lib/kv-web-components.common.js",
   "scripts": {
     "serve": "vue-cli-service serve",
@@ -8,6 +9,19 @@
     "lib": "vue-cli-service build --dest lib --target lib src/index.js",
     "lint": "vue-cli-service lint"
   },
+  "keywords": [
+    "vue",
+    "components"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kitorv/kv-web-components.git"
+  },
+  "homepage": "https://kitorv.github.io/kv-web-components/",
+  "bugs": {
+    "url": "https://github.com/kitorv/kv-web-components/issues"
+  },
+  "license": "MIT",
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.6.0",
     "@vue/cli-plugin-eslint": "^3.6.0",
