@@ -1,10 +1,10 @@
 <script>
 export default {
-  name: 'KvCol',
-  inject: ['kvRow'],
+  name: "KvCol",
+  componentName: "KvCol",
   props: {
     span: { type: Number, default: 24 },
-    tag: { type: String, default: 'div' },
+    tag: { type: String, default: "div" },
     offset: Number,
     pull: Number,
     push: Number,
@@ -16,46 +16,53 @@ export default {
   },
   computed: {
     gutter() {
-      if (!this.kvRow) return 0
-      return this.kvRow ? this.kvRow.gutter : 0;
+      let parent = this.$parent;
+      while (parent && parent.$options.componentName !== "KvRow") {
+        parent = parent.$parent;
+      }
+      return parent ? parent.gutter : 0;
     }
   },
   render(h) {
     let classList = [];
     let style = {};
     if (this.gutter) {
-      style.paddingLeft = this.gutter / 2 + 'px';
+      style.paddingLeft = this.gutter / 2 + "px";
       style.paddingRight = style.paddingLeft;
     }
-    ['span', 'offset', 'pull', 'push'].forEach(prop => {
+    ["span", "offset", "pull", "push"].forEach(prop => {
       if (this[prop] || this[prop] === 0) {
         classList.push(
-          prop !== 'span'
+          prop !== "span"
             ? `kv-col-${prop}-${this[prop]}`
             : `kv-col-${this[prop]}`
         );
       }
     });
-    ['xs', 'sm', 'md', 'lg', 'xl'].forEach(size => {
-      if (typeof this[size] === 'number') {
+    ["xs", "sm", "md", "lg", "xl"].forEach(size => {
+      if (typeof this[size] === "number") {
         classList.push(`kv-col-${size}-${this[size]}`);
-        return
+        return;
       }
-      if (typeof this[size] === 'object') {
+      if (typeof this[size] === "object") {
         let props = this[size];
         Object.keys(props).forEach(prop => {
           classList.push(
-            prop !== 'span'
+            prop !== "span"
               ? `kv-col-${size}-${prop}-${props[prop]}`
               : `kv-col-${size}-${props[prop]}`
           );
         });
       }
     });
-    return h(this.tag, {
-      class: ['kv-col', classList],
-      style
-    }, this.$slots.default);
+    return h(
+      this.tag,
+      {
+        class: ["kv-col", classList],
+        style
+      },
+      this.$slots.default
+    );
   }
 };
 </script>
