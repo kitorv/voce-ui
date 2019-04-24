@@ -13,15 +13,20 @@
              src="../assets/images/code-close.svg" />
       </span>
     </div>
-    <div v-show="showCode"
-         class="kv-code-snippet--code">
-      <slot name="code"></slot>
-    </div>
+    <kv-code-collapse>
+      <div v-show="showCode"
+           class="kv-code-snippet--code">
+        <slot name="code"></slot>
+      </div>
+    </kv-code-collapse>
   </div>
 </template>
 
 <script>
+import KvCodeCollapse from "./code-collapse"
+
 export default {
+  components: { KvCodeCollapse },
   data() {
     return {
       showCode: false
