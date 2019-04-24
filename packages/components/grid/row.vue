@@ -2,6 +2,9 @@
 export default {
   name: 'KvRow',
   componentName: 'KvRow',
+  provide() {
+    return { kvRow: this }
+  },
   props: {
     tag: { type: String, default: 'div' },
     gutter: Number,
