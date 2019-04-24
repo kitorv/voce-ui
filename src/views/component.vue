@@ -18,6 +18,8 @@
                      to="/">Layout</router-link>
         <router-link class="k-v-conpoenent--link"
                      to="/button">Button</router-link>
+        <router-link class="k-v-conpoenent--link"
+                     to="/checkbox">Checkbox</router-link>
       </div>
       <div class="k-v-conpoenent--page">
         <div class="k-v-conpoenent--view">

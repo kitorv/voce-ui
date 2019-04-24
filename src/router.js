@@ -18,6 +18,11 @@ export default new Router({
           path: "/button",
           name: "component-button",
           component: () => import("../packages/components/button/index.md")
+        },
+        {
+          path: "/checkbox",
+          name: "component-checkbox",
+          component: () => import("../packages/components/checkbox/index.md")
         }
       ]
     }
