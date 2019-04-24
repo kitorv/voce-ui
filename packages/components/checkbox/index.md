@@ -11,13 +11,13 @@
 ```html
 <template>
   <div>
-    <kv-checkbox></kv-checkbox>
+    <kv-checkbox v-model="checked"></kv-checkbox>
   </div>
 </template>
 <script>
   export default {
     data() {
-      return { value: true };
+      return { checked: true };
     }
   };
 </script>
