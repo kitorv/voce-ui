@@ -1,16 +1,13 @@
 <script>
 export default {
-  name: 'KvRow',
-  componentName: 'KvRow',
-  provide() {
-    return { kvRow: this }
-  },
+  name: "KvRow",
+  componentName: "KvRow",
   props: {
-    tag: { type: String, default: 'div' },
+    tag: { type: String, default: "div" },
     gutter: Number,
     type: String,
-    justify: { type: String, default: 'start' },
-    align: { type: String, default: 'top' }
+    justify: { type: String, default: "start" },
+    align: { type: String, default: "top" }
   },
   computed: {
     style() {
@@ -23,15 +20,19 @@ export default {
     }
   },
   render(h) {
-    return h(this.tag, {
-      class: [
-        'kv-row',
-        this.justify !== 'start' ? `kv-row--justify-${this.justify}` : '',
-        this.align !== 'top' ? `kv-row--align-${this.align}` : '',
-        { 'kv-row--flex': this.type === 'flex' }
-      ],
-      style: this.style
-    }, this.$slots.default);
+    return h(
+      this.tag,
+      {
+        class: [
+          "kv-row",
+          this.justify !== "start" ? `kv-row--justify-${this.justify}` : "",
+          this.align !== "top" ? `kv-row--align-${this.align}` : "",
+          { "kv-row--flex": this.type === "flex" }
+        ],
+        style: this.style
+      },
+      this.$slots.default
+    );
   }
 };
 </script>
