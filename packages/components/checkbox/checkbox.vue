@@ -32,10 +32,11 @@ export default {
     },
     model: {
       get() {
-        if (this.kvCheckboxGroup) {
-          return this.kvCheckboxGroup.value.includes(this.value)
+        if ({}.toString.call(this.model) === '[object Boolean]') {
+          return this.value
         }
-        return value
+        if (!this.kvCheckboxGroup) return this.value
+        return this.kvCheckboxGroup.value.includes(this.value)
       },
       set(value) {
         if (!this.kvCheckboxGroup) {
