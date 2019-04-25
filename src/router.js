@@ -23,6 +23,11 @@ export default new Router({
           path: "/checkbox",
           name: "component-checkbox",
           component: () => import("../packages/components/checkbox/index.md")
+        },
+        {
+          path: "/radio",
+          name: "component-radio",
+          component: () => import("../packages/components/radio/index.md")
         }
       ]
     }
