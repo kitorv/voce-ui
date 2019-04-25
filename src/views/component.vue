@@ -20,6 +20,8 @@
                      to="/button">Button 按钮</router-link>
         <router-link class="k-v-conpoenent--link"
                      to="/checkbox">Checkbox 复选框</router-link>
+        <router-link class="k-v-conpoenent--link"
+                     to="/radio">Radio 单选框</router-link>
       </div>
       <div class="k-v-conpoenent--page">
         <div class="k-v-conpoenent--view">
