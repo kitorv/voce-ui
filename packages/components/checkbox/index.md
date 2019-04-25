@@ -1,10 +1,8 @@
 # 复选框
 
-主要用于选项多选
-
 ## 基本功能
 
-:::snippet 使用 v-model 来进行数据绑定，值为 Boolean 类型
+:::snippet 使用 `v-model` 来进行数据绑定，值为 `Boolean` 类型。
 
 ```html
 <template>
@@ -34,7 +32,7 @@
 
 ## 复选框禁用
 
-:::snippet 通过 disabled 属性禁用复选框
+:::snippet 通过 `disabled` 属性禁用复选框。
 
 ```html
 <template>
