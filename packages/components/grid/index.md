@@ -1,12 +1,12 @@
-## Layout 布局
+# Grid 布局
 
-### 基础布局
+## 基础布局
 
 :::snippet 通过 `kv-row` 和 `kv-col` 组件，并通过 `kv-col` 组件的 `span` 属性自由地组合布局。
 
 ```html
 <template>
-  <div class="kv-demo--layout">
+  <div class="kv-demo--grid">
     <kv-row>
       <kv-col :span="24">
         <div>100%</div>
@@ -41,21 +41,21 @@
 </template>
 
 <style>
-  .kv-demo--layout .kv-row {
+  .kv-demo--grid .kv-row {
     border-top: 1px solid #d2d2d2;
   }
-  .kv-demo--layout .kv-row:last-child {
+  .kv-demo--grid .kv-row:last-child {
     border-bottom: 1px solid #d2d2d2;
   }
-  .kv-demo--layout .kv-col {
+  .kv-demo--grid .kv-col {
     color: #969696;
     background: #f5f7fb;
     border-left: 1px solid #d2d2d2;
   }
-  .kv-demo--layout .kv-col:last-child {
+  .kv-demo--grid .kv-col:last-child {
     border-right: 1px solid #d2d2d2;
   }
-  .kv-demo--layout .kv-col > div {
+  .kv-demo--grid .kv-col > div {
     padding: 6px;
   }
 </style>
@@ -63,13 +63,13 @@
 
 :::
 
-### Flex 的布局
+## Flex 的布局
 
 :::snippet `kv-row` 设置 `type` 属性值：`flex` ,设置 `justify` 和 `align` 指定对其格式。
 
 ```html
 <template>
-  <div class="kv-demo--layout">
+  <div class="kv-demo--grid">
     <kv-row type="flex" justify="start">
       <kv-col :key="index" v-for="index in 3" :span="4">
         <div>span-4</div>
@@ -100,21 +100,21 @@
 </template>
 
 <style>
-  .kv-demo--layout .kv-row {
+  .kv-demo--grid .kv-row {
     border-top: 1px solid #d2d2d2;
   }
-  .kv-demo--layout .kv-row:last-child {
+  .kv-demo--grid .kv-row:last-child {
     border-bottom: 1px solid #d2d2d2;
   }
-  .kv-demo--layout .kv-col {
+  .kv-demo--grid .kv-col {
     color: #969696;
     background: #f5f7fb;
     border-left: 1px solid #d2d2d2;
   }
-  .kv-demo--layout .kv-col:last-child {
+  .kv-demo--grid .kv-col:last-child {
     border-right: 1px solid #d2d2d2;
   }
-  .kv-demo--layout .kv-col > div {
+  .kv-demo--grid .kv-col > div {
     padding: 6px;
   }
   .kv-demo-layout--right-boder{
@@ -125,13 +125,13 @@
 
 :::
 
-### Offset 偏移
+## Offset 偏移
 
 :::snippet `kv-col` 设置 `offset` 属性指定偏移占位。
 
 ```html
 <template>
-  <div class="kv-demo--layout">
+  <div class="kv-demo--grid">
     <kv-row>
       <kv-col class="kv-demo-layout--right-boder" :span="6">
         <div>offset-6</div>
@@ -157,21 +157,21 @@
 </template>
 
 <style>
-  .kv-demo--layout .kv-row {
+  .kv-demo--grid .kv-row {
     border-top: 1px solid #d2d2d2;
   }
-  .kv-demo--layout .kv-row:last-child {
+  .kv-demo--grid .kv-row:last-child {
     border-bottom: 1px solid #d2d2d2;
   }
-  .kv-demo--layout .kv-col {
+  .kv-demo--grid .kv-col {
     color: #969696;
     background: #f5f7fb;
     border-left: 1px solid #d2d2d2;
   }
-  .kv-demo--layout .kv-col:last-child {
+  .kv-demo--grid .kv-col:last-child {
     border-right: 1px solid #d2d2d2;
   }
-  .kv-demo--layout .kv-col > div {
+  .kv-demo--grid .kv-col > div {
     padding: 6px;
   }
   .kv-demo-layout--right-boder {
@@ -182,13 +182,13 @@
 
 :::
 
-### 响应布局
+## 响应布局
 
 :::snippet 参照了 `Bootstrap` 响应式设计，预设尺寸：`xs`、`sm`、`md`、`lg` 和 `xl`。
 
 ```html
 <template>
-  <div class="kv-demo--layout">
+  <div class="kv-demo--grid">
     <kv-row>
       <kv-col :xs="8" :sm="6" :md="4" :lg="3" :xl="5" :span="8">
         <div>content</div>
@@ -204,21 +204,21 @@
 </template>
 
 <style>
-  .kv-demo--layout .kv-row {
+  .kv-demo--grid .kv-row {
     border-top: 1px solid #d2d2d2;
   }
-  .kv-demo--layout .kv-row:last-child {
+  .kv-demo--grid .kv-row:last-child {
     border-bottom: 1px solid #d2d2d2;
   }
-  .kv-demo--layout .kv-col {
+  .kv-demo--grid .kv-col {
     color: #969696;
     background: #f5f7fb;
     border-left: 1px solid #d2d2d2;
   }
-  .kv-demo--layout .kv-col:last-child {
+  .kv-demo--grid .kv-col:last-child {
     border-right: 1px solid #d2d2d2;
   }
-  .kv-demo--layout .kv-col > div {
+  .kv-demo--grid .kv-col > div {
     padding: 6px;
   }
 </style>
@@ -226,7 +226,7 @@
 
 :::
 
-### KvRow Attributes
+## KvRow Attributes
 
 | 参数    | 说明                                  | 类型   | 可选值                                      | 默认值 |
 | ------- | ------------------------------------- | ------ | ------------------------------------------- | ------ |
@@ -236,7 +236,7 @@
 | align   | flex 布局下的垂直排列方式             | string | top/middle/bottom                           | top    |
 | tag     | 自定义元素标签                        | string | \*                                          | div    |
 
-### KvCol Attributes
+## KvCol Attributes
 
 | 参数   | 说明                                   | 类型                                        | 可选值 | 默认值 |
 | ------ | -------------------------------------- | ------------------------------------------- | ------ | ------ |

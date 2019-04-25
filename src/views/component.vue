@@ -153,6 +153,10 @@ export default {};
 }
 
 .kv-snippet-doc {
+  > h3 {
+    margin-top: 20px;
+  }
+
   > p > code {
     background: #fcfaff;
     border: 1px solid #e2ddff;

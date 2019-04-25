@@ -1,9 +1,9 @@
 <template>
-  <label :class="['kv-radio',{'kv-radio--checked':model},{'kv-radio--disabled':isDisabled}]">
+  <label :class="['kv-radio',{'kv-radio--checked':model===value},{'kv-radio--disabled':isDisabled}]">
     <span class="kv-radio--check">
       <span class="kv-radio--check-inner"></span>
       <input type="radio"
-             :v-model="model"
+             v-model="model"
              :value="value" />
     </span>
     <span class="kv-radio--text"
@@ -17,7 +17,7 @@
 export default {
   name: "KvRadio",
   componentName: "KvRadio",
-  inject: ['kvRadioGroup'],
+  inject: ["kvRadioGroup"],
   props: {
     value: {
       type: [Number, String],
@@ -28,19 +28,18 @@ export default {
   computed: {
     model: {
       get() {
-        return this.kvRadioGroup.value === this.value;
+        return this.kvRadioGroup.value;
       },
       set(value) {
-        this.kvRadioGroup.value = value
-        this.kvRadioGroup.$emit("input", checkValue);
+        this.kvRadioGroup.$emit("input", value);
       }
     },
     isDisabled() {
       if (this.kvRadioGroup) {
-        return this.kvRadioGroup.disabled || this.disabled
+        return this.kvRadioGroup.disabled || this.disabled;
       }
-      return this.disabled
+      return this.disabled;
     }
   }
-}
+};
 </script>

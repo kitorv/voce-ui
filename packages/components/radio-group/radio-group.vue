@@ -8,10 +8,13 @@ export default {
   name: "KvRadioGroup",
   componentName: "KvRadioGroup",
   provide() {
-    return { kvRadioGroup: this }
+    return { kvRadioGroup: this };
   },
   props: {
-    value: [Number, String],
+    value: {
+      type: [Number, String],
+      required: true
+    },
     disabled: Boolean
   }
 };
