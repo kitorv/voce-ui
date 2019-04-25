@@ -4,8 +4,6 @@
 
 ### 基础布局
 
-使用单一分栏创建基础的栅格布局。
-
 :::snippet 通过 `kv-row` 和 `kv-col` 组件，并通过 `kv-col` 组件的 `span` 属性自由地组合布局。
 
 ```html
@@ -69,8 +67,6 @@
 
 ### Flex 的布局
 
-通过属性设置 `flex` 布局以及属性。
-
 :::snippet `kv-row` 设置 `type` 属性值：`flex` ,设置 `justify` 和 `align` 指定对其格式。
 
 ```html
@@ -133,8 +129,6 @@
 
 ### Offset 偏移
 
-设置指定的偏移栏数。
-
 :::snippet `kv-col` 设置 `offset` 属性指定偏移占位。
 
 ```html
@@ -192,9 +186,7 @@
 
 ### 响应布局
 
-参照了 `Bootstrap` 响应式设计，预设尺寸：`xs`、`sm`、`md`、`lg` 和 `xl`。
-
-:::snippet 根据设备的大小设置对应显示大小。
+:::snippet 参照了 `Bootstrap` 响应式设计，预设尺寸：`xs`、`sm`、`md`、`lg` 和 `xl`。
 
 ```html
 <template>

@@ -1,11 +1,16 @@
 <template>
-  <label :class="['kv-checkbox',{'kv-checkbox--checked':model},{'kv-checkbox--disabled':disabled}]">
+  <label :class="['kv-checkbox',{'kv-checkbox--checked':model},{'kv-checkbox--disabled':isDisabled}]">
     <span class="kv-checkbox--check">
       <span class="kv-checkbox--check-inner"></span>
       <input type="checkbox"
              v-model="model"
              :value="value"
-             :disabled="disabled" />
+             :disabled="isDisabled"
+             @change="handleValueChange" />
+    </span>
+    <span class="kv-checkbox--text"
+          v-if="$slots.default">
+      <slot></slot>
     </span>
   </label>
 </template>
@@ -53,11 +58,23 @@ export default {
         }
         this.kvCheckboxGroup.$emit("input", checkValue);
       }
+    },
+    isDisabled() {
+      if (this.kvCheckboxGroup) {
+        return this.kvCheckboxGroup.disabled || this.disabled
+      }
+      return this.disabled
     }
   },
   props: {
     value: [Boolean, Number, String],
     disabled: Boolean
-  }
+  },
+  methods: {
+    handleValueChange(event) {
+      const value = event.target.checked;
+      this.$emit('change', value, event);
+    }
+  },
 };
 </script>
