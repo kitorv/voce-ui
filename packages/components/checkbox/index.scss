@@ -24,16 +24,32 @@
 }
 
 .kv-checkbox--check-inner {
-  border: 1px solid #b4b4b4;
-  background-color: #ffffff;
+  border: $--checkbox-border;
+  background-color: $--checkbox-background-color;
   display: inline-block;
   position: relative;
-  border-radius: 2px;
+  border-radius: $--checkbox-border-radius;
   box-sizing: border-box;
   width: 18px;
   height: 18px;
   z-index: 1;
-  transition: border-color 0.3s, background-color 0.3s;
+  transition: all 0.3s;
+
+  &::after {
+    border: $--checkbox-tick-border;
+    box-sizing: content-box;
+    content: "";
+    border-left: 0;
+    border-top: 0;
+    height: 8px;
+    left: 5px;
+    position: absolute;
+    top: 1px;
+    width: 5px;
+    transition: all 0.05s;
+    transform-origin: center;
+    transform: rotate(0) scaleY(0);
+  }
 }
 
 .kv-checkbox--text {
@@ -44,22 +60,10 @@
 
 .kv-checkbox--checked {
   .kv-checkbox--check-inner {
-    background-color: #2e74ff;
-    border-color: #2e74ff;
+    background-color: $--color--primary;
+    border-color: $--color--primary;
   }
   .kv-checkbox--check-inner::after {
-    border: 2px solid #ffffff;
-    box-sizing: content-box;
-    content: "";
-    border-left: 0;
-    border-top: 0;
-    height: 8px;
-    left: 5px;
-    position: absolute;
-    top: 1px;
-    width: 5px;
-    transition: all 3s;
-    transform-origin: center;
     transform: rotate(45deg) scaleY(1);
   }
 }

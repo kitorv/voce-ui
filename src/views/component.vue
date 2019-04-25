@@ -15,11 +15,11 @@
       <div class="k-v-conpoenent--left">
         <h3 class="k-v-conpoenent--group">组件</h3>
         <router-link class="k-v-conpoenent--link"
-                     to="/">Layout</router-link>
+                     to="/">Grid 栅格</router-link>
         <router-link class="k-v-conpoenent--link"
-                     to="/button">Button</router-link>
+                     to="/button">Button 按钮</router-link>
         <router-link class="k-v-conpoenent--link"
-                     to="/checkbox">Checkbox</router-link>
+                     to="/checkbox">Checkbox 复选框</router-link>
       </div>
       <div class="k-v-conpoenent--page">
         <div class="k-v-conpoenent--view">

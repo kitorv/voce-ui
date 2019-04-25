@@ -7,9 +7,12 @@ $--color--white: #ffffff !default;
 $--color--black: #000000 !default;
 
 // button
-$--button-color: #ffffff;
-$--button-backgroud-color: transparent;
-$--button-border-radius: 4px;
+$--button-color: #ffffff !default;
+$--button-backgroud-color: transparent !default;
+$--button-border-radius: 4px !default;
 
 // checkbox
-$--checkbox-color: #444444;
+$--checkbox-border: 1px solid #b4b4b4 !default;
+$--checkbox-background-color: $--color--white !default;
+$--checkbox-border-radius: 2px !default;
+$--checkbox-tick-border: 2px solid #ffffff !default;
