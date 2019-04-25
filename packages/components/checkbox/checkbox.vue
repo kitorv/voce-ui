@@ -23,6 +23,10 @@ export default {
       checkboxGroup: null
     };
   },
+  props: {
+    value: [Boolean, Number, String],
+    disabled: Boolean
+  },
   computed: {
     kvCheckboxGroup() {
       if (this.checkboxGroup) return this.checkboxGroup;
@@ -65,10 +69,6 @@ export default {
       }
       return this.disabled
     }
-  },
-  props: {
-    value: [Boolean, Number, String],
-    disabled: Boolean
   },
   methods: {
     handleValueChange(event) {

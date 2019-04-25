@@ -1,5 +1,5 @@
 <template>
-  <label :class="['kv-radio']">
+  <label :class="['kv-radio',{'kv-radio--checked':true}]">
     <span class="kv-radio--check">
       <span class="kv-radio--check-inner"></span>
       <input type="radio" />
@@ -14,6 +14,10 @@
 <script>
 export default {
   name: "KvRadio",
-  componentName: "KvRadio"
+  componentName: "KvRadio",
+  props: {
+    value: [Number, String],
+    disabled: Boolean
+  },
 }
 </script>
