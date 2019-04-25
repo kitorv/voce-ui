@@ -34,4 +34,35 @@
   height: 18px;
   z-index: 1;
   transition: all 0.3s;
+
+  &::after {
+    position: absolute;
+    content: "";
+    top: 4px;
+    left: 4px;
+    width: 8px;
+    height: 8px;
+    background-color: $--color--primary;
+    border-top: 0;
+    border-left: 0;
+    border-radius: 50%;
+    opacity: 0;
+    transition: all 0.05s;
+  }
+}
+
+.kv-radio--checked {
+  .kv-radio--check-inner {
+    border-color: $--color--primary;
+  }
+
+  .kv-radio--check-inner::after {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.kv-radio--disabled {
+  opacity: 0.5;
+  pointer-events: none;
 }
