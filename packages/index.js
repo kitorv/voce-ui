@@ -3,7 +3,8 @@ import KvCol from "./components/col";
 import KvButton from "./components/button";
 import KvChcekboxGroup from "./components/checkbox-group";
 import KvChcekbox from "./components/checkbox";
-import KvRadio from "./components/radio";
+import KvRadio from "./components/radio-group";
+import KvRadioGroup from "./components/radio";
 
 const components = [
   KvRow,
@@ -11,6 +12,7 @@ const components = [
   KvButton,
   KvChcekboxGroup,
   KvChcekbox,
+  KvRadioGroup,
   KvRadio
 ];
 
