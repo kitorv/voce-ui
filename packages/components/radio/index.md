@@ -5,7 +5,9 @@
 ```html
 <template>
   <div>
-    <kv-radio></kv-radio>
+    <kv-radio-group>
+      <kv-radio value="A"></kv-radio>
+    </kv-radio-group>
   </div>
 </template>
 ```
