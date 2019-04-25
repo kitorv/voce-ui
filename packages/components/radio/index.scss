@@ -1,2 +1,37 @@
 @import "../../style/variable.scss";
 
+.kv-radio {
+  position: relative;
+  font-size: 14px;
+  display: inline-block;
+  white-space: nowrap;
+  user-select: none;
+  cursor: pointer;
+}
+
+.kv-radio--check {
+  white-space: nowrap;
+  cursor: pointer;
+  outline: none;
+  display: inline-block;
+  line-height: 1;
+  position: relative;
+  vertical-align: middle;
+
+  > input {
+    display: none;
+  }
+}
+
+.kv-radio--check-inner {
+  border: $--radio-border;
+  background-color: $--radio-background-color;
+  display: inline-block;
+  position: relative;
+  border-radius: 50%;
+  box-sizing: border-box;
+  width: 18px;
+  height: 18px;
+  z-index: 1;
+  transition: all 0.3s;
+}
