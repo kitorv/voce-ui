@@ -8,6 +8,11 @@ module.exports = {
       .test(/\.md/)
       .use("vue-loader")
       .loader("vue-loader")
+      .options({
+        compilerOptions: {
+          preserveWhitespace: false
+        }
+      })
       .end()
       .use("markdown-loader")
       .loader(

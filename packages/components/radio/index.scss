@@ -9,6 +9,10 @@
   cursor: pointer;
 }
 
+.kv-radio + .kv-radio {
+  margin-left: 15px;
+}
+
 .kv-radio--check {
   white-space: nowrap;
   cursor: pointer;
@@ -49,6 +53,12 @@
     opacity: 0;
     transition: all 0.05s;
   }
+}
+
+.kv-radio--text {
+  display: inline-block;
+  padding-left: 10px;
+  line-height: 20px;
 }
 
 .kv-radio--checked {

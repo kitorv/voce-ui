@@ -1,4 +1,4 @@
-# 复选框
+# Checkbox 复选框
 
 ## 基本功能
 
@@ -94,10 +94,10 @@
 
 ## KvCheckbox Attributes
 
-| 参数     | 说明         | 类型                  | 可选值 | 默认值 |
-| -------- | ------------ | --------------------- | ------ | ------ |
-| disabled | 是否禁用     | boolean               | —      | false  |
-| value    | 当前是否勾选 | boolean/number/string | —      | —      |
+| 参数     | 说明       | 类型                  | 可选值 | 默认值 |
+| -------- | ---------- | --------------------- | ------ | ------ |
+| disabled | 是否禁用   | boolean               | —      | false  |
+| value    | 复选框的值 | boolean/number/string | —      | —      |
 
 ## KvCheckbox Events
 
