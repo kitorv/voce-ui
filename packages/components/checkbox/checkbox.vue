@@ -75,6 +75,6 @@ export default {
       const value = event.target.checked;
       this.$emit('change', value, event);
     }
-  },
+  }
 };
 </script>
