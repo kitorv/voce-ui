@@ -11,6 +11,11 @@ export default new Router({
       children: [
         {
           path: "/",
+          name: "index",
+          component: () => import("../packages/components/grid/index.md")
+        },
+        {
+          path: "/grid",
           name: "component-grid",
           component: () => import("../packages/components/grid/index.md")
         },
