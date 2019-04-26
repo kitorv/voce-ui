@@ -46,9 +46,10 @@
     position: absolute;
     top: 1px;
     width: 5px;
-    transition: all 0.05s;
+    transition: all 0.2s;
     transform-origin: center;
-    transform: rotate(0) scaleY(0);
+    opacity: 0;
+    transform: rotate(45deg) scaleY(0);
   }
 }
 
@@ -64,6 +65,7 @@
     border-color: $--color--primary;
   }
   .kv-checkbox--check-inner::after {
+    opacity: 1;
     transform: rotate(45deg) scaleY(1);
   }
 }
