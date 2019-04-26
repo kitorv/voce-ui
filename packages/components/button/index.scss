@@ -2,7 +2,7 @@
 
 .kv-button {
   transition: all 0.2s ease;
-  padding: 10px;
+  padding: 0 11px;
   border: 0;
   border-radius: $--button-border-radius;
   cursor: pointer;
@@ -12,6 +12,9 @@
   box-sizing: border-box;
   background-color: $--button-backgroud-color;
   outline: none;
+  font-size: 14px;
+  height: 32px;
+  line-height: 32px;
 
   &:disabled {
     opacity: 0.5;
@@ -58,8 +61,6 @@
 }
 
 .kv-button--type-border {
-  padding: 9px;
-
   &.kv-button--color-primary {
     border: 1px solid $--color--primary;
     color: $--color--primary;
@@ -111,7 +112,7 @@
   &.kv-button--color-danger {
     color: $--color--danger;
     &:hover {
-      background-color: mix($--color--danger, $--color--danger, 90%);
+      background-color: mix($--color--white, $--color--danger, 90%);
     }
   }
 
@@ -124,34 +125,40 @@
 }
 
 .kv-button--icon-default {
-  width: 36px;
-  height: 36px;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  text-align: center;
 }
 
 .kv-button--icon-left > i {
-  margin-right: 5px;
+  margin-right: 6px;
 }
 
 .kv-button--icon-right > i {
-  margin-left: 5px;
+  margin-left: 6px;
 }
 
 .kv-button--circle {
-  border-radius: 18px;
+  border-radius: 16px;
 }
 
 .kv-button--size-large {
   font-size: 16px;
-  padding: 13px;
+  height: 40px;
+  line-height: 40px;
 
   &.kv-button--circle {
-    border-radius: 22px;
+    border-radius: 20px;
   }
 }
 
 .kv-button--size-small {
-  padding: 6px 8px;
+  font-size: 12px;
+  height: 24px;
+  line-height: 24px;
+
   &.kv-button--circle {
-    border-radius: 14px;
+    border-radius: 12px;
   }
 }

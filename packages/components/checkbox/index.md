@@ -6,7 +6,7 @@
 
 ```html
 <template>
-  <div class="kv-demo-checkbox">
+  <div>
     <kv-checkbox v-model="normal">未选中</kv-checkbox>
     <kv-checkbox v-model="checked">已选中</kv-checkbox>
   </div>
@@ -21,11 +21,6 @@
     }
   };
 </script>
-<style>
-  .kv-demo-checkbox .kv-checkbox {
-    margin-right: 15px;
-  }
-</style>
 ```
 
 :::
@@ -36,7 +31,7 @@
 
 ```html
 <template>
-  <div class="kv-demo-checkbox">
+  <div>
     <kv-checkbox v-model="normal" disabled>未选中</kv-checkbox>
     <kv-checkbox v-model="checked" disabled>已选中</kv-checkbox>
   </div>
@@ -51,11 +46,6 @@
     }
   };
 </script>
-<style>
-  .kv-demo-checkbox .kv-checkbox {
-    margin-right: 15px;
-  }
-</style>
 ```
 
 :::
@@ -66,7 +56,7 @@
 
 ```html
 <template>
-  <div class="kv-demo-checkbox">
+  <div>
     <kv-checkbox-group v-model="checkedList">
       <kv-checkbox :value="1">选项A</kv-checkbox>
       <kv-checkbox :value="2">选项B</kv-checkbox>
@@ -83,11 +73,6 @@
     }
   };
 </script>
-<style>
-  .kv-demo-checkbox .kv-checkbox {
-    margin-right: 15px;
-  }
-</style>
 ```
 
 :::

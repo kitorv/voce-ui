@@ -1,5 +1,9 @@
 <template>
-  <div>input</div>
+  <div :class="['kv-input']">
+    <input type="text"
+           class="kv-input--input"
+           v-bind="$attrs">
+  </div>
 </template>
 
 <script>

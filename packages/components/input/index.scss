@@ -1,1 +1,35 @@
 @import "../../style/variable.scss";
+
+.kv-input {
+  position: relative;
+  font-size: 14px;
+  display: inline-block;
+  width: 100%;
+}
+
+.kv-input--input {
+  background-color: #ffffff;
+  border: 1px solid #b4b4b4;
+  border-radius: 3px;
+  -webkit-appearance: none;
+  background-image: none;
+  box-sizing: border-box;
+  display: inline-block;
+  font-size: 14px;
+  height: 32px;
+  line-height: 1.5;
+  outline: none;
+  padding: 4px 11px;
+  transition: all 0.2s;
+  width: 100%;
+
+  &::placeholder {
+    font-size: 14px;
+    color: #b4b4b4;
+  }
+
+  &:focus {
+    outline: none;
+    border-color: $--color--primary;
+  }
+}
