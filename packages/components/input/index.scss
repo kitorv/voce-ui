@@ -35,6 +35,49 @@
   }
 }
 
+.kv-input--prepend,
+.kv-input--append {
+  line-height: normal;
+  display: inline-table;
+  width: 100%;
+  border-collapse: separate;
+
+  .kv-input--prepend-inner,
+  .kv-input--append-inner {
+    background-color: #f0f0f0;
+    border: 1px solid #b4b4b4;
+    vertical-align: middle;
+    display: table-cell;
+    position: relative;
+    padding: 0 20px;
+    width: 1px;
+    white-space: nowrap;
+  }
+}
+
+.kv-input--prepend {
+  .kv-input--prepend-inner {
+    border-top-left-radius: 3px;
+    border-bottom-left-radius: 3px;
+    border-right: none;
+  }
+  .kv-input--input {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+}
+.kv-input--append {
+  .kv-input--append-inner {
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+    border-left: none;
+  }
+  .kv-input--input {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+}
+
 .kv-input--prefix {
   .kv-input--input {
     padding-left: 30px;
@@ -46,7 +89,7 @@
     z-index: 2;
     line-height: 0;
     transform: translateY(-50%);
-    opacity: 0.7;
+    color: #999999;
   }
 }
 
@@ -61,7 +104,7 @@
     z-index: 2;
     line-height: 0;
     transform: translateY(-50%);
-    opacity: 0.7;
+    color: #999999;
   }
 }
 
