@@ -51,6 +51,14 @@
     opacity: 0;
     transform: rotate(45deg) scaleY(0);
   }
+
+  &:hover {
+    border-color: $--color--primary;
+  }
+}
+
+.kv-checkbox + .kv-checkbox {
+  margin-left: 15px;
 }
 
 .kv-checkbox--text {

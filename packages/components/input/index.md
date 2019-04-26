@@ -7,7 +7,7 @@
 ```html
 <template>
   <div>
-    <kv-input></kv-input>
+    <kv-input placeholder="请输入内容"></kv-input>
   </div>
 </template>
 ```
