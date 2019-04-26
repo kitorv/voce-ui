@@ -16,7 +16,12 @@
     <input type="text"
            class="kv-input--input"
            v-bind="$attrs"
-           :disabled="disabled">
+           v-model="model"
+           :disabled="disabled"
+           :autocomplete="autocomplete"
+           @focus="handleFocus"
+           @blur="handleBlur"
+           @change="handleChange">
     <span class="kv-input--suffix-inner"
           v-if="$slots.suffix">
       <slot name="suffix"></slot>
@@ -33,7 +38,30 @@ export default {
   name: 'KvInput',
   componentName: 'KvInput',
   props: {
-    disabled: Boolean
+    value: [Number, String],
+    disabled: Boolean,
+    autocomplete: { type: String, default: "off" }
+  },
+  computed: {
+    model: {
+      get() {
+        return this.value
+      },
+      set(value) {
+        this.$emit("input", value)
+      }
+    }
+  },
+  methods: {
+    handleFocus(event) {
+      this.$emit("focus", event);
+    },
+    handleBlur(event) {
+      this.$emit("blur", event);
+    },
+    handleChange(event) {
+      this.$emit("change", event.target.value, event);
+    }
   }
 }
 </script>
