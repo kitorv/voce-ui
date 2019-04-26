@@ -10,7 +10,7 @@
 
 ## 开发记录
 
-[http://www.kitorv.com/](http://www.kitorv.com/notes/vue/01) OR [https://kitorv.github.io/study-notes/](https://kitorv.github.io/study-notes/)
+[https://kitorv.github.io/study-notes/](https://kitorv.github.io/study-notes/)
 
 ## 安装
 
