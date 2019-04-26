@@ -33,6 +33,11 @@ export default new Router({
           path: "/radio",
           name: "component-radio",
           component: () => import("../packages/components/radio/index.md")
+        },
+        {
+          path: "/input",
+          name: "component-input",
+          component: () => import("../packages/components/input/index.md")
         }
       ]
     }
