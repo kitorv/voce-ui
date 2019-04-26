@@ -1,6 +1,5 @@
 <template>
   <div class="k-v-compoent">
-    <!-- top -->
     <div class="k-v-compoent--top">
       <div class="k-v-compoent--logo">
         <img src="../assets/images/kv-ui.jpg">
@@ -10,7 +9,6 @@
         <i class="k-v-icon-github"></i>
       </a>
     </div>
-    <!-- content -->
     <div class="k-v-conpoenent--content">
       <div class="k-v-conpoenent--left">
         <h3 class="k-v-conpoenent--group">组件</h3>
@@ -22,6 +20,8 @@
                      to="/checkbox">Checkbox 复选框</router-link>
         <router-link class="k-v-conpoenent--link"
                      to="/radio">Radio 单选框</router-link>
+        <router-link class="k-v-conpoenent--link"
+                     to="/input">Input 输入框</router-link>
       </div>
       <div class="k-v-conpoenent--page">
         <div class="k-v-conpoenent--view">

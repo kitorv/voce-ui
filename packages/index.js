@@ -5,6 +5,7 @@ import KvChcekboxGroup from "./components/checkbox-group";
 import KvChcekbox from "./components/checkbox";
 import KvRadio from "./components/radio-group";
 import KvRadioGroup from "./components/radio";
+import KvInput from "./components/input";
 
 const components = [
   KvRow,
@@ -13,7 +14,8 @@ const components = [
   KvChcekboxGroup,
   KvChcekbox,
   KvRadioGroup,
-  KvRadio
+  KvRadio,
+  KvInput
 ];
 
 const install = function(Vue) {
