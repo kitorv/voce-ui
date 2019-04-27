@@ -9,24 +9,24 @@
         <i class="k-v-icon-github"></i>
       </a>
     </div>
-    <div class="k-v-conpoenent--content">
-      <div class="k-v-conpoenent--left">
-        <h3 class="k-v-conpoenent--group">组件</h3>
-        <router-link class="k-v-conpoenent--link"
+    <div class="k-v-compoent--content">
+      <div class="k-v-compoent--left">
+        <h3 class="k-v-compoent--group">组件</h3>
+        <router-link class="k-v-compoent--link"
                      to="/">Grid 栅格</router-link>
-        <router-link class="k-v-conpoenent--link"
+        <router-link class="k-v-compoent--link"
                      to="/button">Button 按钮</router-link>
-        <router-link class="k-v-conpoenent--link"
+        <router-link class="k-v-compoent--link"
                      to="/checkbox">Checkbox 复选框</router-link>
-        <router-link class="k-v-conpoenent--link"
+        <router-link class="k-v-compoent--link"
                      to="/radio">Radio 单选框</router-link>
-        <router-link class="k-v-conpoenent--link"
+        <router-link class="k-v-compoent--link"
                      to="/input">Input 输入框</router-link>
-        <router-link class="k-v-conpoenent--link"
+        <router-link class="k-v-compoent--link"
                      to="/textarea">Textare 文本域</router-link>
       </div>
-      <div class="k-v-conpoenent--page">
-        <div class="k-v-conpoenent--view">
+      <div class="k-v-compoent--page">
+        <div class="k-v-compoent--view">
           <router-view></router-view>
         </div>
       </div>
@@ -84,11 +84,11 @@ export default {};
   }
 }
 
-.k-v-conpoenent--content {
+.k-v-compoent--content {
   padding-top: 65px;
 }
 
-.k-v-conpoenent--left {
+.k-v-compoent--left {
   position: fixed;
   z-index: 30;
   margin: 0;
@@ -104,7 +104,7 @@ export default {};
   padding: 14px 0;
 }
 
-.k-v-conpoenent--group {
+.k-v-compoent--group {
   color: #333333;
   font-size: 16px;
   padding-left: 16px;
@@ -116,7 +116,7 @@ export default {};
   font-weight: bold;
 }
 
-.k-v-conpoenent--link {
+.k-v-compoent--link {
   position: relative;
   display: inline-block;
   color: #444444;
@@ -143,12 +143,12 @@ export default {};
   opacity: 1;
 }
 
-.k-v-conpoenent--page {
+.k-v-compoent--page {
   padding-left: 240px;
   background-color: #ffffff;
 }
 
-.k-v-conpoenent--view {
+.k-v-compoent--view {
   max-width: 1000px;
   padding: 25px 50px 60px 50px;
   margin: 0 auto;
