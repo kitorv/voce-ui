@@ -38,6 +38,11 @@ export default new Router({
           path: "/input",
           name: "component-input",
           component: () => import("../packages/components/input/index.md")
+        },
+        {
+          path: "/textarea",
+          name: "component-textarea",
+          component: () => import("../packages/components/textarea/index.md")
         }
       ]
     }

@@ -22,6 +22,8 @@
                      to="/radio">Radio 单选框</router-link>
         <router-link class="k-v-conpoenent--link"
                      to="/input">Input 输入框</router-link>
+        <router-link class="k-v-conpoenent--link"
+                     to="/textarea">Textare 文本域</router-link>
       </div>
       <div class="k-v-conpoenent--page">
         <div class="k-v-conpoenent--view">
