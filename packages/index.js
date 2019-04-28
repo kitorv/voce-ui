@@ -8,6 +8,7 @@ import KvRadioGroup from "./components/radio";
 import KvInput from "./components/input";
 import KvTeatarea from "./components/textarea";
 import KvSelect from "./components/select";
+import KvDropdown from "./components/dropdown";
 
 const components = [
   KvRow,
@@ -19,7 +20,8 @@ const components = [
   KvRadio,
   KvInput,
   KvTeatarea,
-  KvSelect
+  KvSelect,
+  KvDropdown
 ];
 
 const install = function(Vue) {
