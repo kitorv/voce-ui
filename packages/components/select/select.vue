@@ -1,21 +1,18 @@
 <template>
-  <div v-clickoutside="handleClickOutside">
-    #select
-  </div>
+  <kv-dropdown class="kv-select">
+    <div slot="selection">
+      <input class="kv-select--input" />
+    </div>
+  </kv-dropdown>
 </template>
 
 <script>
-import clickoutside from "../../directives/clickoutside.js"
+import KvDropdown from "../dropdown/dropdown"
 
 export default {
   name: 'KvSelect',
   componentName: 'KvSelect',
-  directives: { clickoutside },
-  methods: {
-    handleClickOutside() {
-      console.log(1);
-    }
-  },
+  methods: {}
 }
 </script>
 

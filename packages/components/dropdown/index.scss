@@ -1,0 +1,18 @@
+.kv-dropdown {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.kv-dropdown--selection {
+  position: relative;
+}
+
+.kv-dropdown--panel {
+  position: absolute;
+  width: 100%;
+  box-sizing: border-box;
+  box-shadow: 0 0 2px #808080;
+  border-radius: 4px;
+}
