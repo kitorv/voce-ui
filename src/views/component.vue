@@ -24,6 +24,8 @@
                      to="/input">Input 输入框</router-link>
         <router-link class="k-v-compoent--link"
                      to="/textarea">Textare 文本域</router-link>
+        <router-link class="k-v-compoent--link"
+                     to="/select">Select 下拉框</router-link>
       </div>
       <div class="k-v-compoent--page">
         <div class="k-v-compoent--view">
