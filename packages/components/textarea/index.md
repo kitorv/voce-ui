@@ -30,7 +30,7 @@
 
 ## 文本域禁用
 
-:::snippet `kv-textarea` 初始化，默认宽度百分吧。
+:::snippet 通过 `disabled` 禁用文本域。
 
 ```html
 <template>
