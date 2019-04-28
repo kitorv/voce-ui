@@ -28,6 +28,25 @@
 
 :::
 
+## 文本域禁用
+
+:::snippet `kv-textarea` 初始化，默认宽度百分吧。
+
+```html
+<template>
+  <div class="kv-demo--textarea">
+    <kv-textarea placeholder="请输入内容" disabled></kv-textarea>
+  </div>
+</template>
+<style>
+  .kv-demo--textarea .kv-textarea {
+    width: 400px;
+  }
+</style>
+```
+
+:::
+
 ## 内容高度自适应
 
 :::snippet 设置 `autosize` 属性为 `true` 根据内容适应高度。
