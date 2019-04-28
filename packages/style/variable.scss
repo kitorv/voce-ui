@@ -20,3 +20,11 @@ $--checkbox-tick-border: 2px solid #ffffff !default;
 // radio
 $--radio-border: 1px solid #b4b4b4 !default;
 $--radio-background-color: $--color--white !default;
+
+// input
+$--input-border-color: #b4b4b4 !default;
+$--input-border: 1px solid $--input-border-color !default;
+$--input-background-color: $--color--white !default;
+$--input-border-radius: 3px !default;
+$--input-pend-background-color: #f0f0f0 !default;
+$--input-fix-color: #999999 !default;

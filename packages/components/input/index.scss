@@ -8,9 +8,9 @@
 }
 
 .kv-input--input {
-  background-color: #ffffff;
-  border: 1px solid #b4b4b4;
-  border-radius: 3px;
+  background-color: $--input-background-color;
+  border: $--input-border;
+  border-radius: $--input-border-radius;
   -webkit-appearance: none;
   background-image: none;
   box-sizing: border-box;
@@ -25,7 +25,7 @@
 
   &::placeholder {
     font-size: 14px;
-    color: #b4b4b4;
+    color: $--input-border-color;
   }
 
   &:focus,
@@ -44,8 +44,8 @@
 
   .kv-input--prepend-inner,
   .kv-input--append-inner {
-    background-color: #f0f0f0;
-    border: 1px solid #b4b4b4;
+    background-color: $--input-pend-background-color;
+    border: $--input-border;
     vertical-align: middle;
     display: table-cell;
     position: relative;
@@ -57,8 +57,8 @@
 
 .kv-input--prepend {
   .kv-input--prepend-inner {
-    border-top-left-radius: 3px;
-    border-bottom-left-radius: 3px;
+    border-top-left-radius: $--input-border-radius;
+    border-bottom-left-radius: $--input-border-radius;
     border-right: none;
   }
   .kv-input--input {
@@ -68,8 +68,8 @@
 }
 .kv-input--append {
   .kv-input--append-inner {
-    border-top-right-radius: 3px;
-    border-bottom-right-radius: 3px;
+    border-top-right-radius: $--input-border-radius;
+    border-bottom-right-radius: $--input-border-radius;
     border-left: none;
   }
   .kv-input--input {
@@ -89,7 +89,7 @@
     z-index: 2;
     line-height: 0;
     transform: translateY(-50%);
-    color: #999999;
+    color: $--input-fix-color;
   }
 }
 
@@ -104,7 +104,7 @@
     z-index: 2;
     line-height: 0;
     transform: translateY(-50%);
-    color: #999999;
+    color: $--input-fix-color;
   }
 }
 
