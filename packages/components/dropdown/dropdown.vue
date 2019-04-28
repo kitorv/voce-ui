@@ -1,12 +1,14 @@
 <template>
   <div class="kv-dropdown"
        v-clickoutside="handleClickOutSide">
-    <div class="kv-dropdown--selection">
+    <div class="kv-dropdown--selection"
+         @click="handleSelectionClick">
       <slot name="selection"></slot>
     </div>
-    <!-- <div class="kv-dropdown--panel">
+    <div class="kv-dropdown--panel"
+         v-show="visable">
       <slot name="panel"></slot>
-    </div> -->
+    </div>
   </div>
 </template>
 <script>
@@ -21,15 +23,11 @@ export default {
   },
   methods: {
     handleClickOutSide() {
-      //   this.$emit('input', false);
+      this.$emit("update:visable", false)
+    },
+    handleSelectionClick() {
+      this.$emit("update:visable", !this.visable)
     }
   }
-  //     handleSelectionClick() {
-  //       if (this.disabled) {
-  //         return;
-  //       }
-  //       this.$emit('input', !this.value);
-  //     }
-  //   }
 }    
 </script>
