@@ -8,6 +8,9 @@
               :style="textareaStyle"
               :rows="rows"
               v-model="model"
+              @focus="handleFocus"
+              @blur="handleBlur"
+              @change="handleChange"
               ref="textarea">
         </textarea>
   </div>
@@ -52,6 +55,15 @@ export default {
       const minRows = this.autosize.minRows || this.rows;
       const maxRows = this.autosize.maxRows;
       this.textareaStyle = calcTextareaHeight(this.$refs.textarea, minRows, maxRows);
+    },
+    handleFocus(event) {
+      this.$emit("focus", event);
+    },
+    handleBlur(event) {
+      this.$emit("blur", event);
+    },
+    handleChange(event) {
+      this.$emit("change", event.target.value, event);
     }
   },
   watch: {
