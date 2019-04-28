@@ -7,6 +7,7 @@ import KvRadio from "./components/radio-group";
 import KvRadioGroup from "./components/radio";
 import KvInput from "./components/input";
 import KvTeatarea from "./components/textarea";
+import KvSelect from "./components/select";
 
 const components = [
   KvRow,
@@ -17,10 +18,11 @@ const components = [
   KvRadioGroup,
   KvRadio,
   KvInput,
-  KvTeatarea
+  KvTeatarea,
+  KvSelect
 ];
 
-const install = function (Vue) {
+const install = function(Vue) {
   components.forEach(component => {
     Vue.component(component.name, component);
   });

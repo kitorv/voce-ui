@@ -43,6 +43,11 @@ export default new Router({
           path: "/textarea",
           name: "component-textarea",
           component: () => import("../packages/components/textarea/index.md")
+        },
+        {
+          path: "/select",
+          name: "component-select",
+          component: () => import("../packages/components/select/index.md")
         }
       ]
     }
