@@ -31,8 +31,9 @@ export default {
     value: {}
   },
   methods: {
-    setSelectText(value) {
-      this.selectText = value
+    handleOptionClick(option) {
+      this.selectText = option.text
+      this.visable = false
     }
   }
 }
