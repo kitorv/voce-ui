@@ -5,10 +5,12 @@
          @click="handleSelectionClick">
       <slot name="selection"></slot>
     </div>
-    <div class="kv-dropdown--panel"
-         v-show="visable">
-      <slot name="panel"></slot>
-    </div>
+    <transition name="kv-dropdown">
+      <div class="kv-dropdown--panel"
+           v-show="visable">
+        <slot name="panel"></slot>
+      </div>
+    </transition>
   </div>
 </template>
 <script>
