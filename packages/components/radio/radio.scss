@@ -1,0 +1,83 @@
+@import "../../style/variable.scss";
+
+.kv-radio {
+  position: relative;
+  font-size: 14px;
+  display: inline-block;
+  white-space: nowrap;
+  user-select: none;
+  cursor: pointer;
+}
+
+.kv-radio + .kv-radio {
+  margin-left: 15px;
+}
+
+.kv-radio--check {
+  white-space: nowrap;
+  cursor: pointer;
+  outline: none;
+  display: inline-block;
+  line-height: 1;
+  position: relative;
+  vertical-align: middle;
+
+  > input {
+    display: none;
+  }
+}
+
+.kv-radio--check-inner {
+  border: $--radio-border;
+  background-color: $--radio-background-color;
+  display: inline-block;
+  position: relative;
+  border-radius: 50%;
+  box-sizing: border-box;
+  width: 18px;
+  height: 18px;
+  z-index: 1;
+  transition: all 0.3s;
+
+  &:hover {
+    border-color: $--color--primary;
+  }
+
+  &::after {
+    position: absolute;
+    content: "";
+    top: 4px;
+    left: 4px;
+    width: 8px;
+    height: 8px;
+    background-color: $--color--primary;
+    border-top: 0;
+    border-left: 0;
+    border-radius: 50%;
+    opacity: 0;
+    transform: scale(0);
+    transition: all 0.2s;
+  }
+}
+
+.kv-radio--text {
+  display: inline-block;
+  padding-left: 10px;
+  line-height: 20px;
+}
+
+.kv-radio--checked {
+  .kv-radio--check-inner {
+    border-color: $--color--primary;
+  }
+
+  .kv-radio--check-inner::after {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.kv-radio--disabled {
+  opacity: 0.5;
+  pointer-events: none;
+}
