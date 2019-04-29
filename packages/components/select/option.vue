@@ -26,8 +26,7 @@ export default {
   },
   methods: {
     handleClick() {
-      this.kvSelect.setSelectText(this.text)
-      this.kvSelect.visable = false
+      this.kvSelect.handleOptionClick(this)
     }
   },
 };
