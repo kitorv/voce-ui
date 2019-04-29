@@ -1,6 +1,12 @@
 @import "../../style/variable.scss";
 @import "../dropdown/index.scss";
 
+.kv-select {
+  font-size: 14px;
+  display: inline-block;
+  width: 100%;
+}
+
 .kv-select--input {
   background-color: #ffffff;
   border: 1px solid #b4b4b4;
@@ -16,4 +22,24 @@
   padding: 4px 11px;
   transition: border-color 0.2s;
   width: 100%;
+}
+
+.kv-select--dropdown {
+  background-color: #ffffff;
+  padding: 0;
+  margin: 0;
+}
+
+.kv-select-option {
+  list-style: none;
+  position: relative;
+  display: block;
+  padding: 5px 12px;
+  overflow: hidden;
+  font-weight: normal;
+  line-height: 22px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
 }

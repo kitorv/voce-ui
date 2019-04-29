@@ -7,7 +7,7 @@
 ```html
 <template>
   <kv-select v-model="value" placeholder="请选择">
-    <kv-option v-for="item in options"> </kv-option>
+    <kv-option v-for="item in options" :value="item.value"> </kv-option>
   </kv-select>
 </template>
 

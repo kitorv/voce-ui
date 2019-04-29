@@ -2,8 +2,13 @@
   <kv-dropdown class="kv-select"
                :visable.sync="visable">
     <div slot="selection">
-      <input class="kv-select--input" />
+      <input class="kv-select--input"
+             v-model="selectText" />
     </div>
+    <ul slot="panel"
+        class="kv-select--dropdown">
+      <slot></slot>
+    </ul>
   </kv-dropdown>
 </template>
 
@@ -13,12 +18,23 @@ import KvDropdown from "../dropdown/dropdown"
 export default {
   name: 'KvSelect',
   componentName: 'KvSelect',
+  provide() {
+    return { kvSelect: this }
+  },
   data() {
     return {
-      visable: false
+      visable: false,
+      selectText: ""
     }
   },
-  methods: {}
+  props: {
+    value: {}
+  },
+  methods: {
+    setSelectText(value) {
+      this.selectText = value
+    }
+  }
 }
 </script>
 
