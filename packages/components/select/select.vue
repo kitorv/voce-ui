@@ -28,7 +28,14 @@ export default {
     }
   },
   props: {
-    value: {}
+    multiple: Boolean,
+    value: {
+      required: true
+    },
+    valueKey: {
+      type: String,
+      default: 'value'
+    },
   },
   methods: {
     handleOptionClick(option) {
