@@ -8,7 +8,8 @@
              v-if="mode!=='tags'"
              v-model="selectText"
              :placeholder="placeholder"
-             :disabled="disabled" />
+             :disabled="disabled"
+             readonly="readonly" />
       <div v-else
            class="kv-select--tags">
         <span v-for="(option, index) in selectText"

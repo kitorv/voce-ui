@@ -95,3 +95,8 @@
   opacity: 0.5;
   pointer-events: none;
 }
+
+.kv-select-option--disabled {
+  cursor: default;
+  opacity: 0.5;
+}

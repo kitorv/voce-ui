@@ -1,5 +1,7 @@
 <template>
-  <li :class="['kv-select-option',{'kv-select-option--selected':selected}]"
+  <li :class="['kv-select-option',
+              {'kv-select-option--selected':selected},
+              {'kv-select-option--disabled':disabled}]"
       @click="handleClick">
     <slot>{{ text }}</slot>
   </li>
@@ -16,7 +18,8 @@ export default {
     },
     label: {
       type: [String, Number]
-    }
+    },
+    disabled: Boolean
   },
   computed: {
     text() {
@@ -33,6 +36,7 @@ export default {
   },
   methods: {
     handleClick() {
+      if (this.disabled) return
       this.kvSelect.handleOptionClick(this)
     }
   },
