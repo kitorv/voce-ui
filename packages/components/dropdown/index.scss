@@ -13,9 +13,8 @@
   position: absolute;
   width: 100%;
   box-sizing: border-box;
-  box-shadow: 0 0 2px #808080;
   border-radius: 4px;
-  z-index: 100;
+  z-index: 1000;
 }
 
 .kv-dropdown-enter-active,
