@@ -2,8 +2,15 @@
   <kv-dropdown class="kv-select"
                :visable.sync="visable">
     <div slot="selection">
-      <input class="kv-select--input"
+      <input v-if="mode!=='tags'"
+             class="kv-select--input"
              v-model="selectText" />
+      <div v-else
+           class="kv-select--tags">
+        <span v-for="(option, index) in selectText"
+              :key="index"
+              class="kv-select--tags-item">{{option.text}}</span>
+      </div>
     </div>
     <ul slot="panel"
         class="kv-select--dropdown">
@@ -42,6 +49,9 @@ export default {
     selectText() {
       const selectValue = Array.isArray(this.value) ? this.value : [this.value]
       const selectText = []
+      if (this.mode == "tags") {
+        return this.options.filter(m => selectValue.includes(m.value))
+      }
       this.options.forEach(option => {
         if (!selectValue.includes(option.value)) return
         selectText.push(option.text)
