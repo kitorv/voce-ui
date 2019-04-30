@@ -2,13 +2,14 @@
 @import "../dropdown/index.scss";
 
 .kv-select {
+  position: relative;
   font-size: 14px;
-  display: inline-block;
-  width: 100%;
+  zoom: 1;
 }
 
 .kv-select--selection {
   position: relative;
+  box-sizing: border-box;
 }
 
 .kv-select--icon {
@@ -29,7 +30,7 @@
   -webkit-appearance: none;
   background-image: none;
   box-sizing: border-box;
-  display: inline-block;
+  display: block;
   font-size: 14px;
   height: 32px;
   line-height: 1.5;
@@ -37,10 +38,29 @@
   padding: 4px 30px 4px 11px;
   transition: border-color 0.2s;
   width: 100%;
+
+  &:focus,
+  &:hover {
+    outline: none;
+    border-color: $--color--primary;
+  }
+}
+
+.kv-select--input {
+  &::placeholder {
+    font-size: 14px;
+    color: $--input-border-color;
+  }
 }
 
 .kv-select--tags {
   padding: 0 4px;
+}
+
+.kv-select--placeholder {
+  color: #b4b4b4;
+  min-height: 32px;
+  padding: 4px 30px 4px 11px;
 }
 
 .kv-select--tags-item {
@@ -99,4 +119,5 @@
 .kv-select-option--disabled {
   cursor: default;
   opacity: 0.5;
+  pointer-events: none;
 }
