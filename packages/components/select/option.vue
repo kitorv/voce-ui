@@ -25,7 +25,7 @@ export default {
     },
     selected() {
       const selectValue = this.kvSelect.value
-      if (this.kvSelect.multiple) {
+      if (Array.isArray(selectValue)) {
         return selectValue.includes(this.value)
       }
       return selectValue === this.value
