@@ -1,12 +1,14 @@
 <template>
-  <kv-dropdown class="kv-select"
-               :visable.sync="visable">
+  <kv-dropdown :class="['kv-select',{'kv-select--disabled':disabled}]"
+               :visable.sync="visable"
+               :disabled="disabled">
     <div slot="selection"
          class="kv-select--selection">
       <input class="kv-select--input"
              v-if="mode!=='tags'"
              v-model="selectText"
-             :placeholder="placeholder" />
+             :placeholder="placeholder"
+             :disabled="disabled" />
       <div v-else
            class="kv-select--tags">
         <span v-for="(option, index) in selectText"
@@ -54,7 +56,8 @@ export default {
     placeholder: {
       type: String,
       default: "请选择"
-    }
+    },
+    disabled: Boolean
   },
   computed: {
     selectText() {

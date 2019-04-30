@@ -90,3 +90,8 @@
   color: $--color--primary;
   font-weight: 700;
 }
+
+.kv-select--disabled {
+  opacity: 0.5;
+  pointer-events: none;
+}

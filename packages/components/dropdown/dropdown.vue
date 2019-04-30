@@ -21,13 +21,17 @@ export default {
   componentName: 'KvDropdown',
   directives: { clickoutside },
   props: {
-    visable: Boolean
+    visable: Boolean,
+    disabled: Boolean
   },
   methods: {
     handleClickOutSide() {
       this.$emit("update:visable", false)
     },
     handleSelectionClick() {
+      if (!this.visable && this.disabled) {
+        return
+      }
       this.$emit("update:visable", !this.visable)
     }
   }
