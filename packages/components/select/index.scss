@@ -27,6 +27,7 @@
 .kv-select--dropdown {
   background-color: #ffffff;
   padding: 4px;
+  margin: 4px 0;
   box-shadow: 0 5px 20px 0 rgba(0, 0, 0, 0.08);
   border-radius: 3px;
   z-index: 1050;
@@ -51,7 +52,8 @@
   }
 }
 
-.kv-select-option--selected {
+.kv-select-option--selected,
+.kv-select-option--selected:hover {
   background-color: mix($--color--white, $--color--primary, 90%);
   color: $--color--primary;
   font-weight: 700;
