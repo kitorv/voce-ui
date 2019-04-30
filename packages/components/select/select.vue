@@ -12,6 +12,8 @@
              readonly="readonly" />
       <div v-else
            class="kv-select--tags">
+        <div v-if="selectText&&selectText.length<1"
+             class="kv-select--placeholder">{{placeholder}}</div>
         <span v-for="(option, index) in selectText"
               :key="index"
               class="kv-select--tags-item">{{option.text}}</span>
@@ -71,7 +73,7 @@ export default {
         if (!selectValue.includes(option.value)) return
         selectText.push(option.text)
       });
-      return selectText.join(".")
+      return selectText.join(",")
     }
   },
   methods: {
