@@ -55,7 +55,7 @@
 <template>
   <div>
     <div v-text="value"></div>
-    <kv-select v-model="value" placeholder="请选择" multiple>
+    <kv-select v-model="value" placeholder="请选择" mode="multiple">
       <kv-option v-for="{value,label} in options" :value="value" :label="label">
       </kv-option>
     </kv-select>

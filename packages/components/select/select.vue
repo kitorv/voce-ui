@@ -24,11 +24,11 @@ export default {
   data() {
     return {
       visable: false,
-      selectText: ""
+      options: []
     }
   },
   props: {
-    multiple: Boolean,
+    mode: String,
     value: {
       type: [Number, String, Array],
       required: true
@@ -38,12 +38,22 @@ export default {
       default: 'value'
     },
   },
+  computed: {
+    selectText() {
+      const selectValue = Array.isArray(this.value) ? this.value : [this.value]
+      const selectText = []
+      this.options.forEach(option => {
+        if (!selectValue.includes(option.value)) return
+        selectText.push(option.text)
+      });
+      return selectText.join(".")
+    }
+  },
   methods: {
     handleOptionClick(kvOption) {
       let value = this.value
       const optionValue = kvOption.value
       if (!Array.isArray(value)) {
-        this.selectText = kvOption.text
         this.visable = false
         this.$emit('input', optionValue)
         return
@@ -52,13 +62,12 @@ export default {
       if (optionIndex > -1) {
         value.splice(optionIndex, 1);
       } else {
-        if (this.multiple) {
+        if (this.mode) {
           value.push(optionValue)
         } else {
           value = [optionValue]
         }
       }
-      this.selectText = kvOption.text = value.join(",")
       this.$emit('input', value)
     }
   }
