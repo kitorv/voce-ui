@@ -35,6 +35,9 @@ export default {
     handleClick() {
       this.kvSelect.handleOptionClick(this)
     }
+  },
+  created() {
+    this.kvSelect.options.push(this)
   }
 };
 </script>
