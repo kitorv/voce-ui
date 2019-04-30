@@ -118,3 +118,43 @@
 ```
 
 :::
+
+## 自定义模板
+
+:::snippet 设置 mode 为 mutiple 或者 tags 选中多个选项。
+
+```html
+<template>
+  <div>
+    <kv-select v-model="value" placeholder="请选择">
+      <kv-option
+        v-for="{value,label} in options"
+        :key="value"
+        :value="value"
+        :label="label"
+      >
+        <span style="float: left">{{ label }}</span>
+        <span style="float: right; color: #8492a6;">{{ value }}</span>
+      </kv-option>
+    </kv-select>
+  </div>
+</template>
+
+<script>
+  export default {
+    data() {
+      return {
+        options: [
+          { value: 0, label: "primary" },
+          { value: 1, label: "success" },
+          { value: 2, label: "danger" },
+          { value: 3, label: "waring" }
+        ],
+        value: ""
+      };
+    }
+  };
+</script>
+```
+
+:::
