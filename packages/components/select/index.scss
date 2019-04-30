@@ -7,6 +7,7 @@
   width: 100%;
 }
 
+.kv-select--tags,
 .kv-select--input {
   background-color: #ffffff;
   border: 1px solid #b4b4b4;
@@ -22,6 +23,22 @@
   padding: 4px 11px;
   transition: border-color 0.2s;
   width: 100%;
+}
+
+.kv-select--tags {
+  padding: 0 4px;
+}
+
+.kv-select--tags-item {
+  display: inline-block;
+  box-sizing: border-box;
+  background-color: mix($--color--white, $--color--primary, 90%);
+  height: 24px;
+  line-height: 24px;
+  margin: 3px 6px 0 0;
+  font-size: 14px;
+  padding: 0 8px;
+  border-radius: 3px;
 }
 
 .kv-select--dropdown {
