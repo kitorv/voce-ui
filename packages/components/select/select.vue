@@ -6,10 +6,11 @@
          class="kv-select--selection">
       <input class="kv-select--input"
              v-if="mode!=='tags'"
-             v-model="selectText"
+             :value="selectText"
              :placeholder="placeholder"
              :disabled="disabled"
-             readonly="readonly" />
+             :readonly="!filter"
+             @input="handleFilterOption" />
       <div v-else
            class="kv-select--tags">
         <div v-if="selectText&&selectText.length<1"
@@ -60,7 +61,11 @@ export default {
       type: String,
       default: "请选择"
     },
-    disabled: Boolean
+    disabled: Boolean,
+    filter: {
+      type: [Boolean, Function],
+      default: false
+    }
   },
   computed: {
     selectText() {
@@ -96,6 +101,10 @@ export default {
         }
       }
       this.$emit('input', value)
+    },
+    handleFilterOption(event) {
+      console.log(event);
+
     }
   }
 }
