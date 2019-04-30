@@ -6,10 +6,13 @@
 
 ```html
 <template>
-  <kv-select v-model="value" placeholder="请选择">
-    <kv-option v-for="{value,label} in options" :value="value" :label="label">
-    </kv-option>
-  </kv-select>
+  <div>
+    <div v-text="value"></div>
+    <kv-select v-model="value" placeholder="请选择">
+      <kv-option v-for="{value,label} in options" :value="value" :label="label">
+      </kv-option>
+    </kv-select>
+  </div>
 </template>
 
 <script>

@@ -30,6 +30,7 @@ export default {
   props: {
     multiple: Boolean,
     value: {
+      type: [Number, String, Array],
       required: true
     },
     valueKey: {
@@ -38,9 +39,17 @@ export default {
     },
   },
   methods: {
-    handleOptionClick(option) {
-      this.selectText = option.text
-      this.visable = false
+    handleOptionClick(kvOption) {
+      if (Array.isArray(this.value)) {
+        // 多选
+      } else {
+        // 单选
+        this.selectText = kvOption.text
+        this.visable = false
+        this.$emit('imput', kvOption.value)
+      }
+      // this.selectText = option.text
+
     }
   }
 }
