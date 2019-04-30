@@ -44,8 +44,15 @@
   text-overflow: ellipsis;
   cursor: pointer;
   transition: background-color 0.3s ease;
+  margin: 2px 0;
 
   &:hover {
     background-color: #f5f5f5;
   }
+}
+
+.kv-select-option--selected {
+  background-color: mix($--color--white, $--color--primary, 90%);
+  color: $--color--primary;
+  font-weight: 700;
 }

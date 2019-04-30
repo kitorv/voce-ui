@@ -40,16 +40,14 @@ export default {
   },
   methods: {
     handleOptionClick(kvOption) {
-      if (Array.isArray(this.value)) {
+      if (this.multiple) {
         // 多选
       } else {
         // 单选
         this.selectText = kvOption.text
         this.visable = false
-        this.$emit('imput', kvOption.value)
+        this.$emit('input', kvOption.value)
       }
-      // this.selectText = option.text
-
     }
   }
 }
