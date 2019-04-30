@@ -1,7 +1,8 @@
 <template>
   <kv-dropdown class="kv-select"
                :visable.sync="visable">
-    <div slot="selection">
+    <div slot="selection"
+         class="kv-select--selection">
       <input v-if="mode!=='tags'"
              class="kv-select--input"
              v-model="selectText" />
@@ -11,6 +12,11 @@
               :key="index"
               class="kv-select--tags-item">{{option.text}}</span>
       </div>
+      <span class="kv-select--icon">
+        <slot name="icon">
+          <i class="kv-icon-down"></i>
+        </slot>
+      </span>
     </div>
     <ul slot="panel"
         class="kv-select--dropdown">

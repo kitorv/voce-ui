@@ -7,6 +7,20 @@
   width: 100%;
 }
 
+.kv-select--selection {
+  position: relative;
+}
+
+.kv-select--icon {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  z-index: 2;
+  line-height: 0;
+  transform: translateY(-50%);
+  color: #999999;
+}
+
 .kv-select--tags,
 .kv-select--input {
   background-color: #ffffff;
@@ -20,7 +34,7 @@
   height: 32px;
   line-height: 1.5;
   outline: none;
-  padding: 4px 11px;
+  padding: 4px 30px 4px 11px;
   transition: border-color 0.2s;
   width: 100%;
 }

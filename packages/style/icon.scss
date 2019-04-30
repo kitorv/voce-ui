@@ -1,0 +1,44 @@
+@font-face {
+  font-family: "iconfont";
+  src: url("//at.alicdn.com/t/font_1170435_wix5416hm7.eot?t=1556608872093"); /* IE9 */
+  src: url("//at.alicdn.com/t/font_1170435_wix5416hm7.eot?t=1556608872093#iefix")
+      format("embedded-opentype"),
+    /* IE6-IE8 */
+      url("data:application/x-font-woff2;charset=utf-8;base64,d09GMgABAAAAAALYAAsAAAAABtQAAAKLAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHEIGVgCDBgqBPIE2ATYCJAMMCwgABCAFhG0HNhv8BciemjwJZGUGikDEAwDgtnj4717yvpn5f0uvVHj78aVaaYETDpUqEvCABgNWOdb+nHs/gRxRzo+Y25eW08CY7QdjBsbs5qaB3ORyAZC51935//k8l9ObeHTv/BrfslzGGDTW8qNegHFAAe2NUWRFFAC3yC7iTlzEYwLNxhVy73cPTrpCCrQqEE+asuYKFVKKYlQbhbrhYBGvVBrTizReRt+PX9YiRFJlaOPBY5fsav3269uf3P+cc0KaIB+vkLHKpRCXjaVjXmHwXs12X3dzrQhpruz/ifS+s97pHy8RNdTZChblcuIbVEXwrSMSyKAuVta57Cls7+QQPZN7kdteGSciYsq7NIjfZSjJBFetkTpudj4vx+JR9b6FOXXCx/Sa9uOBxu6cSzypu3HAXzO78vdp/J5dNVvjqnjur52p9Y8Gu97iPbqCo3kNMVWF93gLu1ahn8nPPMeQN9OLQJAOn79cdTT+blTAVwfVyFvAIjSeMRz8QQOwr/gmFMjF1VN9GMkmAcWEZj/qPxTr9jve2QfuJTTqGxFpMJYhazRLFnYVlRYbqDXaQrMVPcdb9GC8ojRh2YWE0OkJSbvPyDq9koX9QaXfP2qd4UWzw0i5sMV8aJEOBmsCZLS+gzSJ2JiERCTuHgdlw1xjeVMkTgPjWhaVFZeWqz1gA5tjC99UyoXACDNioW7pOTBNghxGdJBEsSqEU19SgpveVCwRyxWxhwFrBCBD1u1ANBLChvlwIVL5/Dig2GBawzokPfVpgOG08ZEyxUoBZI/dBknu5RVuk6KcIGAIxhAWpFuaB0wmAnGa5+mARCimjig46pXgQRhqL17faX3fEWiGbsuRIkdR7smW7ZdMwsHlAgA=")
+      format("woff2"),
+    url("//at.alicdn.com/t/font_1170435_wix5416hm7.woff?t=1556608872093")
+      format("woff"),
+    url("//at.alicdn.com/t/font_1170435_wix5416hm7.ttf?t=1556608872093")
+      format("truetype"),
+    /* chrome, firefox, opera, Safari, Android, iOS 4.2+ */
+      url("//at.alicdn.com/t/font_1170435_wix5416hm7.svg?t=1556608872093#iconfont")
+      format("svg"); /* iOS 4.1- */
+}
+
+.iconfont {
+  font-family: "iconfont" !important;
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.kv-icon-down:before {
+  content: "\e7eb";
+}
+
+.kv-icon-close:before {
+  content: "\e7fc";
+}
+
+[class*="kv-icon-"],
+[class^="kv-icon-"] {
+  font-family: iconfont !important;
+  font-style: normal;
+  font-weight: 400;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
