@@ -133,8 +133,8 @@
         :value="value"
         :label="label"
       >
-        <span style="float: left">{{ label }}</span>
-        <span style="float: right; color: #8492a6;">{{ value }}</span>
+        <span style="float: left" v-text="label"></span>
+        <span style="float: right; color: #8492a6;" v-text="value"></span>
       </kv-option>
     </kv-select>
   </div>
@@ -150,6 +150,41 @@
           { value: 2, label: "danger" },
           { value: 3, label: "waring" }
         ],
+        value: ""
+      };
+    }
+  };
+</script>
+```
+
+:::
+
+## 选项分组
+
+:::snippet 通过 `kv-option` 的 `disabled` 属性禁用选项。
+
+```html
+<template>
+  <div>
+    <kv-select v-model="value" placeholder="请选择">
+      <kv-option-group title="Figures">
+        <kv-option value="0" label="Rombolid"></kv-option>
+        <kv-option value="1" label="Trapeze"></kv-option>
+        <kv-option value="2" label="Polygon"></kv-option>
+      </kv-option-group>
+      <kv-option-group title="Color">
+        <kv-option value="3" label="Red"></kv-option>
+        <kv-option value="4" label="Blue"></kv-option>
+        <kv-option value="5" label="Yellow"></kv-option>
+      </kv-option-group>
+    </kv-select>
+  </div>
+</template>
+
+<script>
+  export default {
+    data() {
+      return {
         value: ""
       };
     }
