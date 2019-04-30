@@ -1,5 +1,31 @@
 # Select 下拉框
 
+:::snippet
+
+```html
+<template>
+  <div>
+    <kv-select v-model="value" placeholder="请选择" :filter="true">
+      <kv-option value="0" label="Rombolid"></kv-option>
+      <kv-option value="1" label="Trapeze"></kv-option>
+      <kv-option value="2" label="Polygon"></kv-option>
+    </kv-select>
+  </div>
+</template>
+
+<script>
+  export default {
+    data() {
+      return {
+        value: ""
+      };
+    }
+  };
+</script>
+```
+
+:::
+
 ## 基础用法
 
 :::snippet `v-model` 的值为当前被选中的 `kv-option` 的 `value` 属性值。
@@ -177,6 +203,34 @@
         <kv-option value="4" label="Blue"></kv-option>
         <kv-option value="5" label="Yellow"></kv-option>
       </kv-option-group>
+    </kv-select>
+  </div>
+</template>
+
+<script>
+  export default {
+    data() {
+      return {
+        value: ""
+      };
+    }
+  };
+</script>
+```
+
+:::
+
+## 搜索过滤
+
+:::snippet
+
+```html
+<template>
+  <div>
+    <kv-select v-model="value" placeholder="请选择">
+      <kv-option value="0" label="Rombolid"></kv-option>
+      <kv-option value="1" label="Trapeze"></kv-option>
+      <kv-option value="2" label="Polygon"></kv-option>
     </kv-select>
   </div>
 </template>
