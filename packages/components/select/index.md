@@ -2,12 +2,11 @@
 
 ## 基础用法
 
-:::snippet v-model 的值为当前被选中的 kv-option 的 value 属性值。
+:::snippet `v-model` 的值为当前被选中的 `kv-option` 的 `value` 属性值。
 
 ```html
 <template>
   <div>
-    <div v-text="value"></div>
     <kv-select v-model="value" placeholder="请选择">
       <kv-option value="0" label="IT"></kv-option>
       <kv-option value="1" label="Blade Runner"></kv-option>
@@ -20,7 +19,7 @@
   export default {
     data() {
       return {
-        value: "1"
+        value: ""
       };
     }
   };

@@ -3,9 +3,10 @@
                :visable.sync="visable">
     <div slot="selection"
          class="kv-select--selection">
-      <input v-if="mode!=='tags'"
-             class="kv-select--input"
-             v-model="selectText" />
+      <input class="kv-select--input"
+             v-if="mode!=='tags'"
+             v-model="selectText"
+             :placeholder="placeholder" />
       <div v-else
            class="kv-select--tags">
         <span v-for="(option, index) in selectText"
@@ -50,6 +51,10 @@ export default {
       type: String,
       default: 'value'
     },
+    placeholder: {
+      type: String,
+      default: "请选择"
+    }
   },
   computed: {
     selectText() {
