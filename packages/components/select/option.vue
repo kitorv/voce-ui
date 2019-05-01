@@ -1,5 +1,6 @@
 <template>
-  <li :class="['kv-select-option',
+  <li v-if="visible"
+      :class="['kv-select-option',
               {'kv-select-option--selected':selected},
               {'kv-select-option--disabled':disabled}]"
       @click="handleClick">
@@ -8,9 +9,14 @@
 </template>
 <script>
 export default {
-  name: 'KvOption',
-  componentName: 'KvOption',
-  inject: ['kvSelect'],
+  name: "KvOption",
+  componentName: "KvOption",
+  inject: ["kvSelect"],
+  data() {
+    return {
+      visible: true
+    };
+  },
   props: {
     value: {
       type: [String, Number],
@@ -23,25 +29,25 @@ export default {
   },
   computed: {
     text() {
-      if (this.label != undefined) return this.label
-      return this.value
+      if (this.label != undefined) return this.label;
+      return this.value;
     },
     selected() {
-      const selectValue = this.kvSelect.value
+      const selectValue = this.kvSelect.value;
       if (Array.isArray(selectValue)) {
-        return selectValue.includes(this.value)
+        return selectValue.includes(this.value);
       }
-      return selectValue === this.value
+      return selectValue === this.value;
     }
   },
   methods: {
     handleClick() {
-      if (this.disabled) return
-      this.kvSelect.handleOptionClick(this)
+      if (this.disabled) return;
+      this.kvSelect.handleOptionClick(this);
     }
   },
   created() {
-    this.kvSelect.options.push(this)
+    this.kvSelect.options.push(this);
   }
 };
 </script>

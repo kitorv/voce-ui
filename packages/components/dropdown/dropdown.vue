@@ -7,7 +7,7 @@
     </div>
     <transition name="kv-dropdown">
       <div class="kv-dropdown--panel"
-           v-show="visable">
+           v-show="visible">
         <slot name="panel"></slot>
       </div>
     </transition>
@@ -21,18 +21,18 @@ export default {
   componentName: 'KvDropdown',
   directives: { clickoutside },
   props: {
-    visable: Boolean,
+    visible: Boolean,
     disabled: Boolean
   },
   methods: {
     handleClickOutSide() {
-      this.$emit("update:visable", false)
+      this.$emit("update:visible", false)
     },
     handleSelectionClick() {
-      if (!this.visable && this.disabled) {
+      if (!this.visible && this.disabled) {
         return
       }
-      this.$emit("update:visable", !this.visable)
+      this.$emit("update:visible", !this.visible)
     }
   }
 }    
