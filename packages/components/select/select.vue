@@ -128,16 +128,16 @@ export default {
     }
   },
   watch: {
-    // value() {
-    //   this.setQueryText();
-    // },
-    // visible(value) {
-    //   if (value) {
-    //     this.handleFilterOption();
-    //   } else {
-    //     this.setQueryText();
-    //   }
-    // }
+    value() {
+      this.setInputText();
+    },
+    visible(value) {
+      //   if (value) {
+      //     this.handleFilterOption();
+      //   } else {
+      // this.setInputText();
+      //   }
+    }
   },
   mounted() {
     this.setInputText();
