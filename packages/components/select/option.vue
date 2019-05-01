@@ -1,8 +1,8 @@
 <template>
   <li v-if="visible"
-      :class="['kv-select-option',
-              {'kv-select-option--selected':selected},
-              {'kv-select-option--disabled':disabled}]"
+      :class="['kv-option',
+              {'kv-option--selected':selected},
+              {'kv-option--disabled':disabled}]"
       @click="handleClick">
     <slot>{{ text }}</slot>
   </li>
@@ -44,6 +44,27 @@ export default {
     handleClick() {
       if (this.disabled) return;
       this.kvSelect.handleOptionClick(this);
+    },
+    select(select) {
+      let selectValue = this.kvSelect.value;
+      const optionValue = this.value;
+      if (Array.isArray(selectValue)) {
+        if (selectValue.includes(optionValue)) return;
+        selectValue.push(optionValue);
+        this.kvSelect.$emit("input", selectValue);
+        return;
+      }
+      this.kvSelect.$emit("input", optionValue);
+    },
+    unselect() {
+      let selectValue = this.kvSelect.value;
+      if (Array.isArray(selectValue)) {
+        const index = selectValue.findIndex(m => m === this.value);
+        if (index < 0) return;
+        selectValue.splice(index, 1);
+        this.kvSelect.$emit("input", selectValue);
+        return;
+      }
     }
   },
   created() {
