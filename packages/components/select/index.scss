@@ -134,25 +134,25 @@
 
 // ----------group-----------------
 
-// .kv-select-option-group,
-// .kv-select-option-group--content {
-//   padding: 0;
-//   margin: 0;
-//   list-style: none;
+.kv-select-option-group,
+.kv-select-option-group--content {
+  padding: 0;
+  margin: 0;
+  list-style: none;
 
-//   .kv-select-option {
-//     margin-left: 10px;
-//     list-style: none;
-//   }
-// }
+  .kv-option {
+    padding-left: 18px;
+    list-style: none;
+  }
+}
 
-// .kv-select-option-group--title {
-//   height: 32px;
-//   padding: 0 12px;
-//   font-size: 13px;
-//   line-height: 32px;
-//   opacity: 0.5;
-// }
+.kv-select-option-group--title {
+  height: 32px;
+  padding: 0 12px;
+  font-size: 13px;
+  line-height: 32px;
+  opacity: 0.5;
+}
 
 // .kv-select--empty {
 //   padding: 10px 0;
