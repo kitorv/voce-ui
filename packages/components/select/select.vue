@@ -15,8 +15,9 @@
         <div v-if="selectOptions&&selectOptions.length<1"
              class="kv-select--placeholder">{{placeholder}}</div>
         <span v-for="(option, index) in selectOptions"
+              @click.stop="handleTagClick(option)"
               :key="index"
-              class="kv-select--tags-item">{{option.text}}</span>
+              class="kv-select--tags-item">{{option.text}}<i class="kv-icon-close kv-select--tags-icon"></i></span>
       </div>
       <span class="kv-select--icon">
         <slot name="icon">
@@ -118,6 +119,9 @@ export default {
         return;
       }
       kvOption.select();
+    },
+    handleTagClick(kvOption) {
+      kvOption.unselect();
     },
     // handleFilterOption() {
     //   const value = this.queryText;
