@@ -6,9 +6,18 @@
          class="kv-select--selection">
       <div>{{value}}</div>
       <input class="kv-select--input"
+             v-if="mode!=='tags'"
              v-model="queryText"
              :placeholder="placeholder"
              :readonly="!filter" />
+      <div v-else
+           class="kv-select--tags">
+        <div v-if="selectOptions&&selectOptions.length<1"
+             class="kv-select--placeholder">{{placeholder}}</div>
+        <span v-for="(option, index) in selectOptions"
+              :key="index"
+              class="kv-select--tags-item">{{option.text}}</span>
+      </div>
       <span class="kv-select--icon">
         <slot name="icon">
           <i class="kv-icon-down"></i>
@@ -18,8 +27,8 @@
     <ul slot="panel"
         class="kv-select--dropdown">
       <slot></slot>
-      <div v-if="showEmpty"
-           class="kv-select--empty">暂无数据</div>
+      <!-- <div v-if="showEmpty"
+           class="kv-select--empty">暂无数据</div> -->
     </ul>
 
     <!-- <div slot="selection"
@@ -72,7 +81,7 @@ export default {
     };
   },
   props: {
-    // mode: String,
+    mode: String,
     value: { required: true },
     // valueKey: {
     //   type: String,
@@ -101,6 +110,7 @@ export default {
     handleOptionClick(kvOption) {
       if (!Array.isArray(this.value)) {
         kvOption.select();
+        this.visible = false;
         return;
       }
       if (kvOption.selected) {

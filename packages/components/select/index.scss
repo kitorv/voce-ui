@@ -12,7 +12,8 @@
   box-sizing: border-box;
 }
 
-.kv-select--input {
+.kv-select--input,
+.kv-select--tags {
   background-color: #ffffff;
   border: 1px solid #b4b4b4;
   border-radius: 3px;
@@ -24,9 +25,42 @@
   height: 32px;
   line-height: 1.5;
   outline: none;
-  padding: 4px 30px 4px 11px;
+
   transition: border-color 0.2s;
   width: 100%;
+
+  &.kv-select--input {
+    padding: 4px 30px 4px 11px;
+
+    &::placeholder {
+      font-size: 14px;
+      color: $--input-border-color;
+    }
+  }
+
+  &.kv-select--tags {
+    padding: 0;
+  }
+}
+
+.kv-select--tags-item {
+  display: inline-block;
+  box-sizing: border-box;
+  background-color: mix($--color--white, $--color--primary, 90%);
+  height: 24px;
+  line-height: 24px;
+  margin: 3px 0 0 6px;
+  font-size: 14px;
+  padding: 0 8px;
+  border-radius: 3px;
+}
+
+.kv-select--placeholder {
+  color: #b4b4b4;
+  min-height: 32px;
+  padding: 5px 30px 5px 11px;
+  box-sizing: border-box;
+  line-height: 1.5;
 }
 
 .kv-select--icon {
@@ -46,6 +80,11 @@
   box-shadow: 0 5px 20px 0 rgba(0, 0, 0, 0.08);
   border-radius: 3px;
   z-index: 1050;
+}
+
+.kv-select--disabled {
+  opacity: 0.5;
+  pointer-events: none;
 }
 
 // ----------option--------------
@@ -77,6 +116,12 @@
   font-weight: 700;
 }
 
+.kv-option--disabled {
+  cursor: default;
+  opacity: 0.5;
+  pointer-events: none;
+}
+
 // ----------group-----------------
 
 // .kv-select--tags,
@@ -100,46 +145,6 @@
 //     outline: none;
 //     border-color: $--color--primary;
 //   }
-// }
-
-// .kv-select--input {
-//   &::placeholder {
-//     font-size: 14px;
-//     color: $--input-border-color;
-//   }
-// }
-
-// .kv-select--tags {
-//   padding: 0 4px;
-// }
-
-// .kv-select--placeholder {
-//   color: #b4b4b4;
-//   min-height: 32px;
-//   padding: 4px 30px 4px 11px;
-// }
-
-// .kv-select--tags-item {
-//   display: inline-block;
-//   box-sizing: border-box;
-//   background-color: mix($--color--white, $--color--primary, 90%);
-//   height: 24px;
-//   line-height: 24px;
-//   margin: 3px 6px 0 0;
-//   font-size: 14px;
-//   padding: 0 8px;
-//   border-radius: 3px;
-// }
-
-// .kv-select--disabled {
-//   opacity: 0.5;
-//   pointer-events: none;
-// }
-
-// .kv-select-option--disabled {
-//   cursor: default;
-//   opacity: 0.5;
-//   pointer-events: none;
 // }
 
 // .kv-select-option-group,
