@@ -4,6 +4,26 @@
                :disabled="disabled">
     <div slot="selection"
          class="kv-select--selection">
+      <div>{{value}}</div>
+      <input class="kv-select--input"
+             v-model="queryText"
+             :placeholder="placeholder"
+             :readonly="!filter" />
+      <span class="kv-select--icon">
+        <slot name="icon">
+          <i class="kv-icon-down"></i>
+        </slot>
+      </span>
+    </div>
+    <ul slot="panel"
+        class="kv-select--dropdown">
+      <slot></slot>
+      <div v-if="showEmpty"
+           class="kv-select--empty">暂无数据</div>
+    </ul>
+
+    <!-- <div slot="selection"
+         class="kv-select--selection">
       <input class="kv-select--input"
              v-if="mode!=='tags'"
              v-model="queryText"
@@ -30,7 +50,7 @@
       <slot></slot>
       <div v-if="showEmpty"
            class="kv-select--empty">暂无数据</div>
-    </ul>
+    </ul> -->
   </kv-dropdown>
 </template>
 
@@ -52,15 +72,12 @@ export default {
     };
   },
   props: {
-    mode: String,
-    value: {
-      type: [Number, String, Array],
-      required: true
-    },
-    valueKey: {
-      type: String,
-      default: "value"
-    },
+    // mode: String,
+    value: { required: true },
+    // valueKey: {
+    //   type: String,
+    //   default: "value"
+    // },
     placeholder: {
       type: String,
       default: "请选择"
@@ -82,57 +99,48 @@ export default {
   },
   methods: {
     handleOptionClick(kvOption) {
-      let value = this.value;
-      const optionValue = kvOption.value;
-      if (!Array.isArray(value)) {
-        this.visible = false;
-        this.$emit("input", optionValue);
+      if (!Array.isArray(this.value)) {
+        kvOption.select();
         return;
       }
-      const optionIndex = this.value.findIndex(m => m === optionValue);
-      if (optionIndex > -1) {
-        value.splice(optionIndex, 1);
-      } else {
-        if (this.mode) {
-          value.push(optionValue);
-        } else {
-          value = [optionValue];
-        }
+      if (kvOption.selected) {
+        kvOption.unselect();
+        return;
       }
-      this.$emit("input", value);
+      kvOption.select();
     },
-    handleFilterOption() {
-      const value = this.queryText;
-      const parsedValue = value.replace(
-        /(\^|\(|\)|\[|\]|\$|\*|\+|\.|\?|\\|\{|\}|\|)/g,
-        "\\$1"
-      );
-      let showOptionNumber = 0;
-      this.options.forEach(option => {
-        option.visible = new RegExp(parsedValue, "i").test(option.text);
-        if (!option.visible) return;
-        showOptionNumber++;
-      });
-      this.showEmpty = showOptionNumber < 1;
-    },
-    setQueryText() {
+    // handleFilterOption() {
+    //   const value = this.queryText;
+    //   const parsedValue = value.replace(
+    //     /(\^|\(|\)|\[|\]|\$|\*|\+|\.|\?|\\|\{|\}|\|)/g,
+    //     "\\$1"
+    //   );
+    //   let showOptionNumber = 0;
+    //   this.options.forEach(option => {
+    //     option.visible = new RegExp(parsedValue, "i").test(option.text);
+    //     if (!option.visible) return;
+    //     showOptionNumber++;
+    //   });
+    //   this.showEmpty = showOptionNumber < 1;
+    // },
+    setInputText() {
       this.queryText = this.selectText;
     }
   },
   watch: {
-    value() {
-      this.setQueryText();
-    },
-    visible(value) {
-      if (value) {
-        this.handleFilterOption();
-      } else {
-        this.setQueryText();
-      }
-    }
+    // value() {
+    //   this.setQueryText();
+    // },
+    // visible(value) {
+    //   if (value) {
+    //     this.handleFilterOption();
+    //   } else {
+    //     this.setQueryText();
+    //   }
+    // }
   },
   mounted() {
-    this.setQueryText();
+    this.setInputText();
   }
 };
 </script>

@@ -1,6 +1,6 @@
 <template>
   <div class="kv-dropdown"
-       v-clickoutside="handleClickOutSide">
+       v-clickoutside="handleClickOutside">
     <div class="kv-dropdown--selection"
          @click="handleSelectionClick">
       <slot name="selection"></slot>
@@ -14,26 +14,26 @@
   </div>
 </template>
 <script>
-import clickoutside from '../../directives/clickoutside.js'
+import clickoutside from "../../directives/clickoutside.js";
 
 export default {
-  name: 'KvDropdown',
-  componentName: 'KvDropdown',
+  name: "KvDropdown",
+  componentName: "KvDropdown",
   directives: { clickoutside },
   props: {
     visible: Boolean,
     disabled: Boolean
   },
   methods: {
-    handleClickOutSide() {
-      this.$emit("update:visible", false)
+    handleClickOutside() {
+      this.$emit("update:visible", false);
     },
     handleSelectionClick() {
       if (!this.visible && this.disabled) {
-        return
+        return;
       }
-      this.$emit("update:visible", !this.visible)
+      this.$emit("update:visible", !this.visible);
     }
   }
-}    
+};
 </script>

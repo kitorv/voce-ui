@@ -12,17 +12,6 @@
   box-sizing: border-box;
 }
 
-.kv-select--icon {
-  position: absolute;
-  top: 50%;
-  right: 10px;
-  z-index: 2;
-  line-height: 0;
-  transform: translateY(-50%);
-  color: #999999;
-}
-
-.kv-select--tags,
 .kv-select--input {
   background-color: #ffffff;
   border: 1px solid #b4b4b4;
@@ -38,41 +27,16 @@
   padding: 4px 30px 4px 11px;
   transition: border-color 0.2s;
   width: 100%;
-
-  &:focus,
-  &:hover {
-    outline: none;
-    border-color: $--color--primary;
-  }
 }
 
-.kv-select--input {
-  &::placeholder {
-    font-size: 14px;
-    color: $--input-border-color;
-  }
-}
-
-.kv-select--tags {
-  padding: 0 4px;
-}
-
-.kv-select--placeholder {
-  color: #b4b4b4;
-  min-height: 32px;
-  padding: 4px 30px 4px 11px;
-}
-
-.kv-select--tags-item {
-  display: inline-block;
-  box-sizing: border-box;
-  background-color: mix($--color--white, $--color--primary, 90%);
-  height: 24px;
-  line-height: 24px;
-  margin: 3px 6px 0 0;
-  font-size: 14px;
-  padding: 0 8px;
-  border-radius: 3px;
+.kv-select--icon {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  z-index: 2;
+  line-height: 0;
+  transform: translateY(-50%);
+  color: #999999;
 }
 
 .kv-select--dropdown {
@@ -84,7 +48,9 @@
   z-index: 1050;
 }
 
-.kv-select-option {
+// ----------option--------------
+
+.kv-option {
   list-style: none;
   position: relative;
   display: block;
@@ -104,48 +70,102 @@
   }
 }
 
-.kv-select-option--selected,
-.kv-select-option--selected:hover {
+.kv-option--selected,
+.kv-option--selected:hover {
   background-color: mix($--color--white, $--color--primary, 90%);
   color: $--color--primary;
   font-weight: 700;
 }
 
-.kv-select--disabled {
-  opacity: 0.5;
-  pointer-events: none;
-}
+// ----------group-----------------
 
-.kv-select-option--disabled {
-  cursor: default;
-  opacity: 0.5;
-  pointer-events: none;
-}
+// .kv-select--tags,
+// .kv-select--input {
+//   background-color: #ffffff;
+//   border: 1px solid #b4b4b4;
+//   border-radius: 3px;
+//   -webkit-appearance: none;
+//   background-image: none;
+//   box-sizing: border-box;
+//   display: block;
+//   font-size: 14px;
+//   height: 32px;
+//   line-height: 1.5;
+//   outline: none;
+//   padding: 4px 30px 4px 11px;
+//   transition: border-color 0.2s;
 
-.kv-select-option-group,
-.kv-select-option-group--content {
-  padding: 0;
-  margin: 0;
-  list-style: none;
+//   &:focus,
+//   &:hover {
+//     outline: none;
+//     border-color: $--color--primary;
+//   }
+// }
 
-  .kv-select-option {
-    margin-left: 10px;
-    list-style: none;
-  }
-}
+// .kv-select--input {
+//   &::placeholder {
+//     font-size: 14px;
+//     color: $--input-border-color;
+//   }
+// }
 
-.kv-select-option-group--title {
-  height: 32px;
-  padding: 0 12px;
-  font-size: 13px;
-  line-height: 32px;
-  opacity: 0.5;
-}
+// .kv-select--tags {
+//   padding: 0 4px;
+// }
 
-.kv-select--empty {
-  padding: 10px 0;
-  margin: 0;
-  text-align: center;
-  color: #999;
-  font-size: 14px;
-}
+// .kv-select--placeholder {
+//   color: #b4b4b4;
+//   min-height: 32px;
+//   padding: 4px 30px 4px 11px;
+// }
+
+// .kv-select--tags-item {
+//   display: inline-block;
+//   box-sizing: border-box;
+//   background-color: mix($--color--white, $--color--primary, 90%);
+//   height: 24px;
+//   line-height: 24px;
+//   margin: 3px 6px 0 0;
+//   font-size: 14px;
+//   padding: 0 8px;
+//   border-radius: 3px;
+// }
+
+// .kv-select--disabled {
+//   opacity: 0.5;
+//   pointer-events: none;
+// }
+
+// .kv-select-option--disabled {
+//   cursor: default;
+//   opacity: 0.5;
+//   pointer-events: none;
+// }
+
+// .kv-select-option-group,
+// .kv-select-option-group--content {
+//   padding: 0;
+//   margin: 0;
+//   list-style: none;
+
+//   .kv-select-option {
+//     margin-left: 10px;
+//     list-style: none;
+//   }
+// }
+
+// .kv-select-option-group--title {
+//   height: 32px;
+//   padding: 0 12px;
+//   font-size: 13px;
+//   line-height: 32px;
+//   opacity: 0.5;
+// }
+
+// .kv-select--empty {
+//   padding: 10px 0;
+//   margin: 0;
+//   text-align: center;
+//   color: #999;
+//   font-size: 14px;
+// }
