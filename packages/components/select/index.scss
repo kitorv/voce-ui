@@ -55,6 +55,16 @@
   border-radius: 3px;
 }
 
+.kv-select--tags-icon {
+  margin-left: 4px;
+  opacity: 0.5;
+  cursor: pointer;
+
+  &:hover {
+    opacity: 1;
+  }
+}
+
 .kv-select--placeholder {
   color: #b4b4b4;
   min-height: 32px;
@@ -123,29 +133,6 @@
 }
 
 // ----------group-----------------
-
-// .kv-select--tags,
-// .kv-select--input {
-//   background-color: #ffffff;
-//   border: 1px solid #b4b4b4;
-//   border-radius: 3px;
-//   -webkit-appearance: none;
-//   background-image: none;
-//   box-sizing: border-box;
-//   display: block;
-//   font-size: 14px;
-//   height: 32px;
-//   line-height: 1.5;
-//   outline: none;
-//   padding: 4px 30px 4px 11px;
-//   transition: border-color 0.2s;
-
-//   &:focus,
-//   &:hover {
-//     outline: none;
-//     border-color: $--color--primary;
-//   }
-// }
 
 // .kv-select-option-group,
 // .kv-select-option-group--content {
