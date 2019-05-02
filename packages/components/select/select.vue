@@ -9,7 +9,8 @@
              v-if="mode!=='tags'"
              v-model="queryText"
              :placeholder="placeholder"
-             :readonly="!filter" />
+             :readonly="!filter"
+             @input="handleInputFilter" />
       <div v-else
            class="kv-select--tags">
         <div v-if="selectOptions&&selectOptions.length<1"
@@ -28,39 +29,9 @@
     <ul slot="panel"
         class="kv-select--dropdown">
       <slot></slot>
-      <!-- <div v-if="showEmpty"
-           class="kv-select--empty">暂无数据</div> -->
-    </ul>
-
-    <!-- <div slot="selection"
-         class="kv-select--selection">
-      <input class="kv-select--input"
-             v-if="mode!=='tags'"
-             v-model="queryText"
-             :placeholder="placeholder"
-             :disabled="disabled"
-             :readonly="!filter"
-             @input="handleFilterOption" />
-      <div v-else
-           class="kv-select--tags">
-        <div v-if="selectOptions&&selectOptions.length<1"
-             class="kv-select--placeholder">{{placeholder}}</div>
-        <span v-for="(option, index) in selectOptions"
-              :key="index"
-              class="kv-select--tags-item">{{option.text}}</span>
-      </div>
-      <span class="kv-select--icon">
-        <slot name="icon">
-          <i class="kv-icon-down"></i>
-        </slot>
-      </span>
-    </div>
-    <ul slot="panel"
-        class="kv-select--dropdown">
-      <slot></slot>
       <div v-if="showEmpty"
            class="kv-select--empty">暂无数据</div>
-    </ul> -->
+    </ul>
   </kv-dropdown>
 </template>
 
@@ -84,10 +55,6 @@ export default {
   props: {
     mode: String,
     value: { required: true },
-    // valueKey: {
-    //   type: String,
-    //   default: "value"
-    // },
     placeholder: {
       type: String,
       default: "请选择"
@@ -123,20 +90,24 @@ export default {
     handleTagClick(kvOption) {
       kvOption.unselect();
     },
-    // handleFilterOption() {
-    //   const value = this.queryText;
-    //   const parsedValue = value.replace(
-    //     /(\^|\(|\)|\[|\]|\$|\*|\+|\.|\?|\\|\{|\}|\|)/g,
-    //     "\\$1"
-    //   );
-    //   let showOptionNumber = 0;
-    //   this.options.forEach(option => {
-    //     option.visible = new RegExp(parsedValue, "i").test(option.text);
-    //     if (!option.visible) return;
-    //     showOptionNumber++;
-    //   });
-    //   this.showEmpty = showOptionNumber < 1;
-    // },
+    handleInputFilter() {
+      this.visible = true;
+      this.filterOption();
+    },
+    filterOption() {
+      const value = this.queryText;
+      const parsedValue = value.replace(
+        /(\^|\(|\)|\[|\]|\$|\*|\+|\.|\?|\\|\{|\}|\|)/g,
+        "\\$1"
+      );
+      let showOptionNumber = 0;
+      this.options.forEach(option => {
+        option.visible = new RegExp(parsedValue, "i").test(option.text);
+        if (!option.visible) return;
+        showOptionNumber++;
+      });
+      this.showEmpty = showOptionNumber < 1;
+    },
     setInputText() {
       this.queryText = this.selectText;
     }
@@ -146,11 +117,12 @@ export default {
       this.setInputText();
     },
     visible(value) {
-      //   if (value) {
-      //     this.handleFilterOption();
-      //   } else {
-      // this.setInputText();
-      //   }
+      if (value && this.filter) {
+        this.filterOption();
+      }
+      if (!value) {
+        this.setInputText();
+      }
     }
   },
   mounted() {
