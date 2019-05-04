@@ -41,6 +41,7 @@ import KvDropdown from "../dropdown/dropdown";
 export default {
   name: "KvSelect",
   componentName: "KvSelect",
+  components: { KvDropdown },
   provide() {
     return { kvSelect: this };
   },
