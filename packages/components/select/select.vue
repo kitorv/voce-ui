@@ -142,7 +142,7 @@ export default {
       if (!children || children.length < 1) return
       children.forEach(child => {
         if (child.$options.componentName === "KvOption") {
-          const visible = child.filterQuery(this.inputText)
+          const visible = child.filterQuery(this.inputText, this.filter)
           if (visible) visibleKeys.push(child.value)
         }
         this.filterOptions(child.$children, visibleKeys)
