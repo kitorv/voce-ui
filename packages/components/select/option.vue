@@ -33,42 +33,18 @@ export default {
       return this.value;
     },
     selected() {
-      const selectValue = this.kvSelect.value;
-      if (Array.isArray(selectValue)) {
-        return selectValue.includes(this.value);
-      }
-      return selectValue === this.value;
+      return this.kvSelect.selectValue.includes(this.value)
     }
   },
   methods: {
     handleClick() {
       if (this.disabled) return;
       this.kvSelect.handleOptionClick(this);
-    },
-    select(select) {
-      let selectValue = this.kvSelect.value;
-      const optionValue = this.value;
-      if (Array.isArray(selectValue)) {
-        if (selectValue.includes(optionValue)) return;
-        selectValue.push(optionValue);
-        this.kvSelect.$emit("input", selectValue);
-        return;
-      }
-      this.kvSelect.$emit("input", optionValue);
-    },
-    unselect() {
-      let selectValue = this.kvSelect.value;
-      if (Array.isArray(selectValue)) {
-        const index = selectValue.findIndex(m => m === this.value);
-        if (index < 0) return;
-        selectValue.splice(index, 1);
-        this.kvSelect.$emit("input", selectValue);
-        return;
-      }
     }
   },
   created() {
-    this.kvSelect.options.push(this);
+    const { value, text } = this
+    this.kvSelect.dataList[value] = { value, text }
   }
 };
 </script>
