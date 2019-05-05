@@ -69,7 +69,7 @@ export default {
       type: String,
       default: "请选择"
     },
-    // mode: String,
+    mode: String,
 
     // filter: {
     //   type: [Boolean, Function],
@@ -87,8 +87,18 @@ export default {
         }
         return [this.value]
       },
-      set() {
-
+      set(valueList) {
+        let selectValueList = Array.from(valueList, value => {
+          let selectValue = value
+          if (this.valueKey) {
+            selectValue = { [this.valueKey]: value }
+          }
+          if (this.labelKey) {
+            selectValue[this.labelKey] = this.dataList[value].text
+          }
+          return selectValue
+        })
+        this.$emit('input', Array.isArray(this.value) ? selectValueList : selectValueList[0])
       }
     },
     selectText() {
@@ -105,16 +115,19 @@ export default {
   },
   methods: {
     handleOptionClick(kvOption) {
-      // if (!Array.isArray(this.value)) {
-      //   kvOption.select();
-      //   this.visible = false;
-      //   return;
-      // }
-      // if (kvOption.selected) {
-      //   kvOption.unselect();
-      //   return;
-      // }
-      // kvOption.select();
+      if (!this.mode) {
+        this.selectValue = [kvOption.value]
+        this.visible = false
+        return
+      }
+      const selectValue = this.selectValue
+      const index = selectValue.findIndex(m => m === kvOption.value)
+      if (index < 0) {
+        selectValue.push(kvOption.value)
+      } else {
+        selectValue.splice(index, 1)
+      }
+      this.selectValue = selectValue
     },
     // handleTagClick(kvOption) {
     //   kvOption.unselect();
@@ -142,9 +155,9 @@ export default {
     // }
   },
   watch: {
-    // value() {
-    //   this.setInputText();
-    // },
+    selectValue() {
+      this.inputText = this.selectText
+    },
     // visible(value) {
     //   if (value && this.filter) {
     //     this.filterOption();
