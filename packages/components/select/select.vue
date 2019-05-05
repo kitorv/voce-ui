@@ -9,7 +9,9 @@
              v-model="inputText"
              class="kv-select--input"
              :placeholder="placeholder"
-             :readonly="true" />
+             :readonly="!filter"
+             @blur="inputText=selectText"
+             @input="handleTextInput" />
       <div v-else
            class="kv-select--tags">
         <div v-if="selectValue.length<1"
@@ -28,8 +30,8 @@
     <ul slot="panel"
         class="kv-select--dropdown">
       <slot></slot>
-      <!-- <div v-if="showEmpty"
-           class="kv-select--empty">暂无数据</div> -->
+      <li v-if="showEmpty"
+          class="kv-select--empty">暂无数据</li>
     </ul>
   </kv-dropdown>
 </template>
@@ -48,11 +50,8 @@ export default {
     return {
       visible: false,
       dataList: {},
-      inputText: ""
-      // optionList: []
-      // options: [],
-      // queryText: "",
-      // showEmpty: false
+      inputText: "",
+      showEmpty: false
     };
   },
   props: {
@@ -70,10 +69,10 @@ export default {
         return ['multiple', 'tags'].includes(value)
       }
     },
-    // filter: {
-    //   type: [Boolean, Function],
-    //   default: false
-    // }
+    filter: {
+      type: [Boolean, Function],
+      default: false
+    }
   },
   computed: {
     selectValue: {
@@ -135,40 +134,34 @@ export default {
       selectValue.splice(index, 1)
       this.selectValue = selectValue
     },
-    // handleInputFilter() {
-    //   this.visible = true;
-    //   this.filterOption();
-    // },
-    // filterOption() {
-    //   const value = this.queryText;
-    //   const parsedValue = value.replace(
-    //     /(\^|\(|\)|\[|\]|\$|\*|\+|\.|\?|\\|\{|\}|\|)/g,
-    //     "\\$1"
-    //   );
-    //   let showOptionNumber = 0;
-    //   this.options.forEach(option => {
-    //     option.visible = new RegExp(parsedValue, "i").test(option.text);
-    //     if (!option.visible) return;
-    //     showOptionNumber++;
-    //   });
-    //   this.showEmpty = showOptionNumber < 1;
-    // },
-    // setInputText() {
-    //   this.queryText = this.selectText;
-    // }
+    handleTextInput() {
+      let visibleKeys = this.filterOptions(this.$children)
+      this.showEmpty = visibleKeys.length < 1
+    },
+    filterOptions(children, visibleKeys = []) {
+      if (!children || children.length < 1) return
+      children.forEach(child => {
+        if (child.$options.componentName === "KvOption") {
+          const visible = child.filterQuery(this.inputText)
+          if (visible) visibleKeys.push(child.value)
+        }
+        this.filterOptions(child.$children, visibleKeys)
+      });
+      return visibleKeys
+    }
   },
   watch: {
     selectValue() {
       this.inputText = this.selectText
     },
-    // visible(value) {
-    //   if (value && this.filter) {
-    //     this.filterOption();
-    //   }
-    //   if (!value) {
-    //     this.setInputText();
-    //   }
-    // }
+    visible(value) {
+      if (value && this.filter) {
+        this.handleTextInput();
+      }
+      if (!value) {
+        this.inputText = this.selectText
+      }
+    }
   },
   mounted() {
     this.inputText = this.selectText
