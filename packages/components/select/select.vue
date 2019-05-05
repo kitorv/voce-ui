@@ -5,30 +5,25 @@
     <div slot="selection"
          class="kv-select--selection">
       <div>{{value}}</div>
-      <input class="kv-select--input"
+      <input v-if="mode!=='tags'"
              v-model="inputText"
+             class="kv-select--input"
              :placeholder="placeholder"
              :readonly="true" />
-      <!-- <input class="kv-select--input"
-             v-if="mode!=='tags'"
-             v-model="queryText"
-             :placeholder="placeholder"
-             :readonly="!filter"
-             @input="handleInputFilter" /> -->
-      <!-- <div v-else
+      <div v-else
            class="kv-select--tags">
-        <div v-if="selectOptions&&selectOptions.length<1"
+        <div v-if="selectValue.length<1"
              class="kv-select--placeholder">{{placeholder}}</div>
-        <span v-for="(option, index) in selectOptions"
-              @click.stop="handleTagClick(option)"
+        <span v-for="({value,text}, index) in selectOptions"
+              @click.stop="handleTagClick(value)"
               :key="index"
-              class="kv-select--tags-item">{{option.text}}<i class="kv-icon-close kv-select--tags-icon"></i></span>
+              class="kv-select--tags-item">{{text}}<i class="kv-icon-close kv-select--tags-icon"></i></span>
       </div>
       <span class="kv-select--icon">
         <slot name="icon">
           <i class="kv-icon-down"></i>
         </slot>
-      </span> -->
+      </span>
     </div>
     <ul slot="panel"
         class="kv-select--dropdown">
@@ -69,8 +64,12 @@ export default {
       type: String,
       default: "请选择"
     },
-    mode: String,
-
+    mode: {
+      type: String,
+      validator: function (value) {
+        return ['multiple', 'tags'].includes(value)
+      }
+    },
     // filter: {
     //   type: [Boolean, Function],
     //   default: false
@@ -107,11 +106,12 @@ export default {
         if (data === undefined) return
         return data.text
       }).join(",");
-    }
-    // selectOptions() {
-    //   const selectValue = Array.isArray(this.value) ? this.value : [this.value];
-    //   return this.options.filter(m => selectValue.includes(m.value));
-    // },
+    },
+    selectOptions() {
+      return Array.from(this.selectValue, value => {
+        return this.dataList[value]
+      })
+    },
   },
   methods: {
     handleOptionClick(kvOption) {
@@ -129,9 +129,12 @@ export default {
       }
       this.selectValue = selectValue
     },
-    // handleTagClick(kvOption) {
-    //   kvOption.unselect();
-    // },
+    handleTagClick(value) {
+      const selectValue = this.selectValue
+      const index = selectValue.findIndex(m => m === value)
+      selectValue.splice(index, 1)
+      this.selectValue = selectValue
+    },
     // handleInputFilter() {
     //   this.visible = true;
     //   this.filterOption();
