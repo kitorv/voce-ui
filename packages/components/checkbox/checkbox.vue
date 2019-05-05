@@ -18,28 +18,14 @@
 export default {
   name: "KvCheckbox",
   componentName: "KvCheckbox",
-  data() {
-    return {
-      checkboxGroup: null
-    };
+  inject: {
+    kvCheckboxGroup: { default: "" }
   },
   props: {
     value: [Boolean, Number, String],
     disabled: Boolean
   },
   computed: {
-    kvCheckboxGroup() {
-      if (this.checkboxGroup) return this.checkboxGroup;
-      let parent = this.$parent;
-      while (parent) {
-        if (parent.$options.componentName !== "KvCheckboxGroup") {
-          parent = parent.$parent;
-        } else {
-          this.checkboxGroup = parent;
-          return this.checkboxGroup;
-        }
-      }
-    },
     model: {
       get() {
         if ({}.toString.call(this.value) === "[object Boolean]") {

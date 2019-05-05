@@ -7,6 +7,9 @@
 export default {
   name: "KvCheckboxGroup",
   componentName: "KvCheckboxGroup",
+  provide() {
+    return { kvCheckboxGroup: this }
+  },
   props: {
     value: {
       type: Array,

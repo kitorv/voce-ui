@@ -2,6 +2,9 @@
 export default {
   name: "KvCol",
   componentName: "KvCol",
+  inject: {
+    KvRow: { default: "" }
+  },
   props: {
     span: { type: Number, default: 24 },
     tag: { type: String, default: "div" },
@@ -16,11 +19,7 @@ export default {
   },
   computed: {
     gutter() {
-      let parent = this.$parent;
-      while (parent && parent.$options.componentName !== "KvRow") {
-        parent = parent.$parent;
-      }
-      return parent ? parent.gutter : 0;
+      return this.KvRow ? this.KvRow.gutter : 0;
     }
   },
   render(h) {
