@@ -40,6 +40,14 @@ export default {
     handleClick() {
       if (this.disabled) return;
       this.kvSelect.handleOptionClick(this);
+    },
+    filterQuery(queryText) {
+      const parsedValue = queryText.replace(
+        /(\^|\(|\)|\[|\]|\$|\*|\+|\.|\?|\\|\{|\}|\|)/g,
+        "\\$1"
+      );
+      this.visible = new RegExp(parsedValue, "i").test(this.text);
+      return this.visible
     }
   },
   created() {
