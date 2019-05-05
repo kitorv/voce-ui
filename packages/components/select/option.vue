@@ -41,12 +41,16 @@ export default {
       if (this.disabled) return;
       this.kvSelect.handleOptionClick(this);
     },
-    filterQuery(queryText) {
-      const parsedValue = queryText.replace(
-        /(\^|\(|\)|\[|\]|\$|\*|\+|\.|\?|\\|\{|\}|\|)/g,
-        "\\$1"
-      );
-      this.visible = new RegExp(parsedValue, "i").test(this.text);
+    filterQuery(queryText, func) {
+      if (typeof func === "function") {
+        this.visible = func(this)
+      } else {
+        const parsedValue = queryText.replace(
+          /(\^|\(|\)|\[|\]|\$|\*|\+|\.|\?|\\|\{|\}|\|)/g,
+          "\\$1"
+        );
+        this.visible = new RegExp(parsedValue, "i").test(this.text);
+      }
       return this.visible
     }
   },
