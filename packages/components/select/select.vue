@@ -10,7 +10,6 @@
              class="kv-select--input"
              :placeholder="placeholder"
              :readonly="!filter"
-             @blur="inputText=selectText"
              @input="handleTextInput" />
       <div v-else
            class="kv-select--tags">
@@ -135,6 +134,7 @@ export default {
       this.selectValue = selectValue
     },
     handleTextInput() {
+      this.visible = true
       let visibleKeys = this.filterOptions(this.$children)
       this.showEmpty = visibleKeys.length < 1
     },
