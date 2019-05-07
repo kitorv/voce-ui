@@ -1,5 +1,5 @@
 <template>
-  <li v-if="visible"
+  <li v-show="visible"
       :class="['kv-option',
               {'kv-option--selected':selected},
               {'kv-option--disabled':disabled}]"
@@ -11,7 +11,10 @@
 export default {
   name: "KvOption",
   componentName: "KvOption",
-  inject: ["kvSelect"],
+  inject: {
+    kvSelect: { default: '' },
+    kvOptionGroup: { default: '' }
+  },
   data() {
     return {
       visible: true
@@ -52,6 +55,18 @@ export default {
         this.visible = new RegExp(parsedValue, "i").test(this.text);
       }
       return this.visible
+    }
+  },
+  watch: {
+    visible(value) {
+      if (!this.kvOptionGroup) return
+      const children = this.kvOptionGroup.$children
+      let visibleNumber = 0
+      children.forEach(child => {
+        if (!child.visible) return
+        visibleNumber++
+      });
+      this.kvOptionGroup.visible = visibleNumber === children.length
     }
   },
   created() {
