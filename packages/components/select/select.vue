@@ -9,7 +9,7 @@
              v-model="inputText"
              class="kv-select--input"
              :placeholder="placeholder"
-             :readonly="!filter"
+             :readonly="readonly"
              @input="handleTextInput" />
       <div v-else
            class="kv-select--tags">
@@ -64,107 +64,121 @@ export default {
     },
     mode: {
       type: String,
-      validator: function (value) {
-        return ['multiple', 'tags'].includes(value)
+      validator: function(value) {
+        return ["multiple", "tags"].includes(value);
       }
     },
     filter: {
       type: [Boolean, Function],
       default: false
-    }
+    },
+    remoteFilter: Function
   },
   computed: {
     selectValue: {
       get() {
         if (Array.isArray(this.value)) {
-          return this.valueKey ? Array.from(this.value, value => value[this.valueKey]) : this.value
+          return this.valueKey
+            ? Array.from(this.value, value => value[this.valueKey])
+            : this.value;
         }
         if (this.valueKey) {
-          return [this.value[this.valueKey]]
+          return [this.value[this.valueKey]];
         }
-        return [this.value]
+        return [this.value];
       },
       set(valueList) {
         let selectValueList = Array.from(valueList, value => {
-          let selectValue = value
+          let selectValue = value;
           if (this.valueKey) {
-            selectValue = { [this.valueKey]: value }
+            selectValue = { [this.valueKey]: value };
           }
           if (this.labelKey) {
-            selectValue[this.labelKey] = this.dataList[value].text
+            selectValue[this.labelKey] = this.dataList[value].text;
           }
-          return selectValue
-        })
-        this.$emit('input', Array.isArray(this.value) ? selectValueList : selectValueList[0])
+          return selectValue;
+        });
+        this.$emit(
+          "input",
+          Array.isArray(this.value) ? selectValueList : selectValueList[0]
+        );
       }
     },
     selectText() {
       return Array.from(this.selectValue, value => {
-        const data = this.dataList[value]
-        if (data === undefined) return
-        return data.text
+        const data = this.dataList[value];
+        if (data === undefined) return;
+        return data.text;
       }).join(",");
     },
     selectOptions() {
       return Array.from(this.selectValue, value => {
-        return this.dataList[value]
-      })
+        return this.dataList[value];
+      });
     },
+    readonly() {
+      if (this.remoteFilter) return false;
+      return !this.filter;
+    }
   },
   methods: {
     handleOptionClick(kvOption) {
       if (!this.mode) {
-        this.selectValue = [kvOption.value]
-        this.visible = false
-        return
+        this.selectValue = [kvOption.value];
+        this.visible = false;
+        return;
       }
-      const selectValue = this.selectValue
-      const index = selectValue.findIndex(m => m === kvOption.value)
+      const selectValue = this.selectValue;
+      const index = selectValue.findIndex(m => m === kvOption.value);
       if (index < 0) {
-        selectValue.push(kvOption.value)
+        selectValue.push(kvOption.value);
       } else {
-        selectValue.splice(index, 1)
+        selectValue.splice(index, 1);
       }
-      this.selectValue = selectValue
+      this.selectValue = selectValue;
     },
     handleTagClick(value) {
-      const selectValue = this.selectValue
-      const index = selectValue.findIndex(m => m === value)
-      selectValue.splice(index, 1)
-      this.selectValue = selectValue
+      const selectValue = this.selectValue;
+      const index = selectValue.findIndex(m => m === value);
+      selectValue.splice(index, 1);
+      this.selectValue = selectValue;
     },
     handleTextInput() {
-      this.visible = true
-      const visibleKeys = this.filterOptions(this.$children)
-      this.showEmpty = visibleKeys.length < 1
+      this.visible = true;
+      if (this.remoteFilter) {
+        this.remoteFilter(this.inputText);
+        return;
+      }
+      const visibleKeys = this.filterOptions(this.$children);
+      this.showEmpty = visibleKeys.length < 1;
     },
     filterOptions(children, visibleKeys = []) {
-      if (!children || children.length < 1) return
+      if (!children || children.length < 1) return;
       children.forEach(child => {
         if (child.$options.componentName === "KvOption") {
-          const visible = child.filterQuery(this.inputText, this.filter)
-          if (visible) visibleKeys.push(child.value)
+          const visible = child.filterQuery(this.inputText, this.filter);
+          if (visible) visibleKeys.push(child.value);
         }
-        this.filterOptions(child.$children, visibleKeys)
+        this.filterOptions(child.$children, visibleKeys);
       });
-      return visibleKeys
+      return visibleKeys;
     }
   },
   watch: {
     selectValue() {
-      this.inputText = this.selectText
+      this.inputText = this.selectText;
     },
     visible(value) {
-      if (value && this.filter) {
+      if (value && (this.filter || this.remoteFilter)) {
         this.handleTextInput();
       }
       if (!value) {
-        this.inputText = this.selectText
+        this.inputText = this.selectText;
       }
     }
   },
   mounted() {
-    this.inputText = this.selectText
+    this.inputText = this.selectText;
   }
 };
 </script>
