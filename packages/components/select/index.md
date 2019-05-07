@@ -192,7 +192,7 @@
 ```html
 <template>
   <div>
-    <kv-select v-model="value" placeholder="请选择">
+    <kv-select v-model="value" placeholder="请选择" :filter="true">
       <kv-option-group title="Figures">
         <kv-option value="0" label="Rombolid"></kv-option>
         <kv-option value="1" label="Trapeze"></kv-option>

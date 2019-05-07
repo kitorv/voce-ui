@@ -135,6 +135,8 @@ export default {
     },
     handleTextInput() {
       this.visible = true
+      console.log(this.$children);
+
       let visibleKeys = this.filterOptions(this.$children)
       this.showEmpty = visibleKeys.length < 1
     },
