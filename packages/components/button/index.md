@@ -55,7 +55,7 @@
       <kv-button type="border" color="warning">Warning</kv-button>
       <kv-button type="border" color="dark">Dark</kv-button>
     </div>
-    <div class="kv-demo--button-bottom">
+    <div>
       <kv-button type="flat">Primary</kv-button>
       <kv-button type="flat" color="success">Success</kv-button>
       <kv-button type="flat" color="danger">Danger</kv-button>
