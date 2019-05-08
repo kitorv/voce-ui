@@ -61,18 +61,19 @@ export default {
     visible: {
       immediate: true,
       handler: function (value) {
+        const diff = value ? 1 : -1
+        this.kvSelect.visibleOptionNumber += diff
         if (!this.kvOptionGroup) return
-        this.kvOptionGroup.visibleOptionNumber += value ? 1 : -1
+        this.kvOptionGroup.visibleOptionNumber += diff
       }
     }
   },
   created() {
     const { value, text } = this
     this.kvSelect.dataList[value] = { value, text }
-    this.kvSelect.optionNumber++
   },
-  destroyed() {
-    this.kvSelect.optionNumber--
+  beforeDestroy() {
+    this.visible = false
   }
 };
 </script>
