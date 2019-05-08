@@ -299,14 +299,17 @@
     },
     methods: {
       routeFilter(text) {
-        setTimeout(() => {
-          let filterList = this.dataList.filter(m => {
-            return m.value.toLowerCase().indexOf(text.toLowerCase()) > -1;
-          });
-          this.optionList = Array.from(filterList, m => {
-            return { value: m.id, label: m.value };
-          });
-        }, 100);
+        return new Promise((resolve, reject) => {
+          setTimeout(() => {
+            let filterList = this.dataList.filter(m => {
+              return m.value.toLowerCase().indexOf(text.toLowerCase()) > -1;
+            });
+            this.optionList = Array.from(filterList, m => {
+              return { value: m.id, label: m.value };
+            });
+            resolve();
+          }, 500);
+        });
       }
     }
   };
