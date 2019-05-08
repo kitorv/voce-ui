@@ -73,7 +73,8 @@ export default {
     this.kvSelect.dataList[value] = { value, text }
   },
   beforeDestroy() {
-    this.visible = false
+    if (!this.visible) return
+    this.kvSelect.visibleOptionNumber += this.visible ? -1 : 1
   }
 };
 </script>

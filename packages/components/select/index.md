@@ -260,8 +260,6 @@
 
 :::
 
----
-
 :::snippet
 
 ```html
@@ -280,7 +278,6 @@
     </kv-select>
   </div>
 </template>
-
 <script>
   export default {
     data() {
@@ -309,7 +306,7 @@
           this.optionList = Array.from(filterList, m => {
             return { value: m.id, label: m.value };
           });
-        }, 1000);
+        }, 100);
       }
     }
   };
@@ -317,6 +314,8 @@
 ```
 
 :::
+
+---
 
 :::snippet
 
