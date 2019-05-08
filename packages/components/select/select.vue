@@ -28,16 +28,15 @@
     </div>
     <ul slot="panel"
         class="kv-select--dropdown">
-      <slot></slot>
-      <li v-if="!visibleOptionNumber"
-          class="kv-select--empty">暂无数据</li>
+      <slot v-if="!loading"></slot>
+      <li v-if="!visibleOptionNumber||loading"
+          class="kv-select--empty">{{loading?"数据加载中":"暂无数据"}}</li>
     </ul>
   </kv-dropdown>
 </template>
 
 <script>
 import KvDropdown from "../dropdown/dropdown";
-import debounce from "../../utils/debounce.js"
 
 export default {
   name: "KvSelect",
@@ -52,6 +51,7 @@ export default {
       dataList: {},
       inputText: "",
       visibleOptionNumber: 0,
+      loading: false,
       timer: null
     };
   },
@@ -146,21 +146,24 @@ export default {
       this.selectValue = selectValue;
     },
     handleTextInput() {
-      this.visible = true;
-      if (this.remoteFilter) {
-        // console.log(this.inputText);
-        // this.visible = this.inputText !== ""
-        // this.$nextTick(() => {
-        //   clearTimeout(this.timer)
-        //   this.timer = setTimeout(() => {
-        //     this.remoteFilter(this.inputText);
-        //     console.log(1);
-
-        //   }, 200);
-        // })
-        return;
+      if (!this.remoteFilter) {
+        this.visible = true;
+        this.filterOptions(this.$children);
       }
-      this.filterOptions(this.$children);
+      this.loading = true
+      this.$nextTick(() => {
+        clearTimeout(this.timer)
+        this.timer = setTimeout(() => {
+          this.$nextTick(() => {
+            const result = this.remoteFilter(this.inputText);
+            result.then(() => {
+              this.loading = false
+            }).catch((err) => {
+              this.loading = false
+            });
+          })
+        }, 200);
+      })
     },
     filterOptions(children) {
       if (!children || children.length < 1) return;
@@ -177,12 +180,14 @@ export default {
       this.inputText = this.selectText;
     },
     visible(value) {
-      if (!value || this.remoteFilter) return
-      if (this.filter) {
+      if (!value) {
+        this.inputText = this.selectText
+        return
+      }
+      if (this.filter || this.remoteFilter) {
         this.handleTextInput();
         return
       }
-      this.inputText = this.selectText
     }
   },
   mounted() {
