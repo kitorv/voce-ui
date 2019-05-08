@@ -46,7 +46,7 @@ export default {
     },
     filterQuery(queryText, func) {
       if (typeof func === "function") {
-        this.visible = func(this)
+        this.visible = func(queryText, this)
       } else {
         const parsedValue = queryText.replace(
           /(\^|\(|\)|\[|\]|\$|\*|\+|\.|\?|\\|\{|\}|\|)/g,

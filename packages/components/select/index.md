@@ -224,24 +224,38 @@
 
 ```html
 <template>
-  <div>
+  <div class="kv-demo--select">
     <kv-select v-model="value" placeholder="请选择" filter>
+      <kv-option value="0" label="Rombolid"></kv-option>
+      <kv-option value="1" label="Trapeze"></kv-option>
+      <kv-option value="2" label="Polygon"></kv-option>
+    </kv-select>
+    <kv-select v-model="value2" placeholder="请选择" :filter="selfFilter">
       <kv-option value="0" label="Rombolid"></kv-option>
       <kv-option value="1" label="Trapeze"></kv-option>
       <kv-option value="2" label="Polygon"></kv-option>
     </kv-select>
   </div>
 </template>
-
 <script>
   export default {
     data() {
       return {
-        value: ""
+        value: "",
+        value2: "",
+        selfFilter(text, kvOption) {
+          return kvOption.value == 1;
+        }
       };
     }
   };
 </script>
+<style>
+  .kv-demo--select .kv-select {
+    width: 250px;
+    margin-right: 20px;
+  }
+</style>
 ```
 
 :::
