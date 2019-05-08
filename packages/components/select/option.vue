@@ -72,9 +72,10 @@ export default {
   created() {
     const { value, text } = this
     this.kvSelect.dataList[value] = { value, text }
+    this.kvSelect.optionNumber++
   },
   destroyed() {
-    console.log(1);
+    this.kvSelect.optionNumber--
   }
 };
 </script>
