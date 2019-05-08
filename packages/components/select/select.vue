@@ -29,7 +29,7 @@
     <ul slot="panel"
         class="kv-select--dropdown">
       <slot></slot>
-      <li v-if="showEmpty||optionNumber<1"
+      <li v-if="!visibleOptionNumber"
           class="kv-select--empty">暂无数据</li>
     </ul>
   </kv-dropdown>
@@ -50,8 +50,7 @@ export default {
       visible: false,
       dataList: {},
       inputText: "",
-      showEmpty: false,
-      optionNumber: 0
+      visibleOptionNumber: 0
     };
   },
   props: {
@@ -150,19 +149,16 @@ export default {
         this.remoteFilter(this.inputText);
         return;
       }
-      const visibleKeys = this.filterOptions(this.$children);
-      this.showEmpty = visibleKeys.length < 1;
+      this.filterOptions(this.$children);
     },
-    filterOptions(children, visibleKeys = []) {
+    filterOptions(children) {
       if (!children || children.length < 1) return;
       children.forEach(child => {
         if (child.$options.componentName === "KvOption") {
           const visible = child.filterQuery(this.inputText, this.filter);
-          if (visible) visibleKeys.push(child.value);
         }
-        this.filterOptions(child.$children, visibleKeys);
+        this.filterOptions(child.$children);
       });
-      return visibleKeys;
     }
   },
   watch: {
