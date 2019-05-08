@@ -34,9 +34,9 @@
 <template>
   <div>
     <kv-select v-model="value" placeholder="请选择">
-      <kv-option value="0" label="IT"></kv-option>
+      <!-- <kv-option value="0" label="IT"></kv-option>
       <kv-option value="1" label="Blade Runner"></kv-option>
-      <kv-option value="2" label="Thor Ragnarok"></kv-option>
+      <kv-option value="2" label="Thor Ragnarok"></kv-option> -->
     </kv-select>
   </div>
 </template>

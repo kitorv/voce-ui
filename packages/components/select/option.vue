@@ -72,6 +72,9 @@ export default {
   created() {
     const { value, text } = this
     this.kvSelect.dataList[value] = { value, text }
+  },
+  destroyed() {
+    console.log(1);
   }
 };
 </script>
