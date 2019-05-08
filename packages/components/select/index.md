@@ -260,7 +260,9 @@
 
 :::
 
-:::snippet
+## 远程过滤
+
+:::snippet 设置 `remote-filter` 返回一个 `Promise` 设置 `kv-option` 选项。
 
 ```html
 <template>
@@ -268,7 +270,20 @@
     <kv-select
       v-model="value"
       placeholder="请选择"
-      :remote-filter="routeFilter"
+      :remote-filter="remoteFilter"
+    >
+      <kv-option
+        v-for="option in optionList"
+        :value="option.value"
+        :label="option.label"
+      ></kv-option>
+    </kv-select>
+    <kv-select
+      v-model="value2"
+      placeholder="请选择"
+      :remote-filter="remoteFilter"
+      value-key="value"
+      label-key="label"
     >
       <kv-option
         v-for="option in optionList"
@@ -283,6 +298,7 @@
     data() {
       return {
         value: "",
+        value2: { value: 1, label: "value1" },
         dataList: [
           { id: 1, value: "value1" },
           { id: 2, value: "value2" },
@@ -298,7 +314,7 @@
       };
     },
     methods: {
-      routeFilter(text) {
+      remoteFilter(text) {
         return new Promise((resolve, reject) => {
           setTimeout(() => {
             let filterList = this.dataList.filter(m => {
@@ -311,88 +327,6 @@
           }, 500);
         });
       }
-    }
-  };
-</script>
-```
-
-:::
-
----
-
-:::snippet
-
-```html
-<template>
-  <div>
-    <kv-select
-      v-model="value"
-      placeholder="请选择"
-      :remote-filter="routeFilter"
-    >
-      <kv-option
-        v-for="option in optionList"
-        :value="option.value"
-        :label="option.label"
-      ></kv-option>
-    </kv-select>
-  </div>
-</template>
-
-<script>
-  export default {
-    data() {
-      return {
-        value: "",
-        dataList: [
-          { id: 1, value: "value1" },
-          { id: 2, value: "value2" },
-          { id: 3, value: "value3" },
-          { id: 4, value: "value4" },
-          { id: 5, value: "value5" },
-          { id: 6, value: "value6" },
-          { id: 7, value: "value7" },
-          { id: 8, value: "value8" },
-          { id: 9, value: "value9" }
-        ],
-        optionList: []
-      };
-    },
-    methods: {
-      routeFilter(text) {
-        let filterList = this.dataList.filter(m => {
-          return m.value.toLowerCase().indexOf(text.toLowerCase()) > -1;
-        });
-        this.optionList = Array.from(filterList, m => {
-          return { value: m.id, label: m.value };
-        });
-      }
-    }
-  };
-</script>
-```
-
-:::
-
-:::snippet
-
-```html
-<template>
-  <div>
-    <kv-select v-model="value" placeholder="请选择" :filter="true">
-      <kv-option value="0" label="Rombolid"></kv-option>
-      <kv-option value="1" label="Trapeze"></kv-option>
-      <kv-option value="2" label="Polygon"></kv-option>
-    </kv-select>
-  </div>
-</template>
-
-<script>
-  export default {
-    data() {
-      return {
-        value: "0"
-      };
     }
   };
 </script>
