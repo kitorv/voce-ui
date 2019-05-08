@@ -40,6 +40,62 @@
     },
     methods: {
       routeFilter(text) {
+        setTimeout(() => {
+          let filterList = this.dataList.filter(m => {
+            return m.value.toLowerCase().indexOf(text.toLowerCase()) > -1;
+          });
+          this.optionList = Array.from(filterList, m => {
+            return { value: m.id, label: m.value };
+          });
+        }, 1000);
+      }
+    }
+  };
+</script>
+```
+
+:::
+
+:::snippet
+
+```html
+<template>
+  <div>
+    <kv-select
+      v-model="value"
+      placeholder="请选择"
+      :remote-filter="routeFilter"
+    >
+      <kv-option
+        v-for="option in optionList"
+        :value="option.value"
+        :label="option.label"
+      ></kv-option>
+    </kv-select>
+  </div>
+</template>
+
+<script>
+  export default {
+    data() {
+      return {
+        value: "",
+        dataList: [
+          { id: 1, value: "value1" },
+          { id: 2, value: "value2" },
+          { id: 3, value: "value3" },
+          { id: 4, value: "value4" },
+          { id: 5, value: "value5" },
+          { id: 6, value: "value6" },
+          { id: 7, value: "value7" },
+          { id: 8, value: "value8" },
+          { id: 9, value: "value9" }
+        ],
+        optionList: []
+      };
+    },
+    methods: {
+      routeFilter(text) {
         let filterList = this.dataList.filter(m => {
           return m.value.toLowerCase().indexOf(text.toLowerCase()) > -1;
         });
