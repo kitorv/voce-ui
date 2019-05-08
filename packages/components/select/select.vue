@@ -55,8 +55,8 @@ export default {
     };
   },
   props: {
-    disabled: Boolean,
     value: { required: true },
+    disabled: Boolean,
     valueKey: String,
     labelKey: String,
     placeholder: {
