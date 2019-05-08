@@ -157,8 +157,14 @@ export default {
     visible(value) {
       if (value && this.filter) {
         this.handleTextInput();
+        return
       }
-      if (!value) {
+      if (value) {
+        // this.showEmpty = this.$children.$children.some(child => {
+        //   const componentName = child.$options.componentName
+        //   return componentName === "KvOption" || componentName === "KvOptionGroup"
+        // })
+      } else {
         this.inputText = this.selectText
       }
     }
