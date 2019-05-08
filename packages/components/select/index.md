@@ -18,7 +18,8 @@
   export default {
     data() {
       return {
-        value: ""
+        value: "",
+        value2: { value: "0", label: "IT" }
       };
     }
   };
@@ -218,6 +219,45 @@
 
 :::
 
+## 对象绑定
+
+:::snippet 通过 `value-key` 与 `label-key` 可以进行对象数据双向绑定，数据格式 `{ value, label }` 或者 `[{ value, label },...]` 。
+
+```html
+<template>
+  <div class="kv-demo--select">
+    <kv-select v-model="value" value-key="value" label-key="label">
+      <kv-option value="0" label="IT"></kv-option>
+      <kv-option value="1" label="Blade Runner"></kv-option>
+      <kv-option value="2" label="Thor Ragnarok"></kv-option>
+    </kv-select>
+    <kv-select v-model="value2" value-key="value" label-key="label" mode="tags">
+      <kv-option value="0" label="Rombolid"></kv-option>
+      <kv-option value="1" label="Trapeze"></kv-option>
+      <kv-option value="2" label="Polygon"></kv-option>
+    </kv-select>
+  </div>
+</template>
+<script>
+  export default {
+    data() {
+      return {
+        value: { value: "0", label: "IT" },
+        value2: [{ value: "0", label: "IT" }]
+      };
+    }
+  };
+</script>
+<style>
+  .kv-demo--select .kv-select {
+    width: 250px;
+    margin-right: 20px;
+  }
+</style>
+```
+
+:::
+
 ## 搜索过滤
 
 :::snippet 设置 `filter` 为 `true` 默认根据文本内容自动过滤，`filter` 设置为函数自动过滤规则。
@@ -262,7 +302,7 @@
 
 ## 远程过滤
 
-:::snippet 设置 `remote-filter` 返回一个 `Promise` 设置 `kv-option` 选项。
+:::snippet 设置 `remote-filter` 返回一个 `Promise` 设置 `kv-option` 选项，初始化设置选中项可以使用 `value-key` 与 `labelkey`来绑定复杂的对象。
 
 ```html
 <template>
@@ -334,3 +374,43 @@
 ```
 
 :::
+
+## KvSelect Attributes
+
+| 参数          | 说明                                           | 类型             | 可选值        | 默认值 |
+| ------------- | ---------------------------------------------- | ---------------- | ------------- | ------ |
+| value         | 选中数据的值，v-model 绑定                     | —                | —             | —      |
+| disabled      | 是否禁用                                       | boolean          | —             | false  |
+| placeholder   | 无数据占位符显示                               | string           | —             | 请选择 |
+| mode          | 配置多选模式，字符串或者标签展示               | string           | multiple/tags | —      |
+| filter        | 设置为 true 默认搜索，设置 function 自定义过滤 | boolean/function | —             | false  |
+| remote-filter | 远程数据过滤返回 Promise                       | function         | —             | —      |
+| value-key     | 对象或者对象数组数据初始化绑定赋值 value 字段  | string           | —             | —      |
+| label-key     | 对象或者对象数组数据初始化绑定赋值 label 字段  | string           | —             | —      |
+
+## KvSelect Slots
+
+| 名称 | 说明       |
+| ---- | ---------- |
+| —    | 下拉框选项 |
+| icon | 下拉图标   |
+
+## KvOption Attributes
+
+| 参数     | 说明                                      | 类型          | 可选值 | 默认值 |
+| -------- | ----------------------------------------- | ------------- | ------ | ------ |
+| value    | 选项的值                                  | string/number | —      | —      |
+| label    | 选项的标签，若不设置则默认与 `value` 相同 | string/number | —      | —      |
+| disabled | 是否禁用                                  | boolean       | —      | false  |
+
+## KvOption Slots
+
+| 名称 | 说明     |
+| ---- | -------- |
+| —    | 选项内容 |
+
+## KvOptionGroup Slots
+
+| 名称 | 说明               |
+| ---- | ------------------ |
+| —    | 分组下的下拉框选项 |
