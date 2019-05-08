@@ -190,6 +190,16 @@ export default {
       }
     }
   },
+  created() {
+    if (this.valueKey) {
+      const valueList = Array.isArray(this.value) ? this.value : [this.value]
+      valueList.forEach(data => {
+        const value = data[this.valueKey]
+        const text = data[this.labelKey]
+        this.dataList[value] = { value, text }
+      });
+    }
+  },
   mounted() {
     this.inputText = this.selectText;
   }
