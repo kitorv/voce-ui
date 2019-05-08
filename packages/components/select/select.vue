@@ -29,7 +29,7 @@
     <ul slot="panel"
         class="kv-select--dropdown">
       <slot></slot>
-      <li v-if="showEmpty"
+      <li v-if="showEmpty||optionNumber<1"
           class="kv-select--empty">暂无数据</li>
     </ul>
   </kv-dropdown>
@@ -50,7 +50,8 @@ export default {
       visible: false,
       dataList: {},
       inputText: "",
-      showEmpty: false
+      showEmpty: false,
+      optionNumber: 0
     };
   },
   props: {
@@ -64,7 +65,7 @@ export default {
     },
     mode: {
       type: String,
-      validator: function(value) {
+      validator: function (value) {
         return ["multiple", "tags"].includes(value);
       }
     },
@@ -173,19 +174,8 @@ export default {
         this.handleTextInput();
         return
       }
-<<<<<<< HEAD
-      if (value) {
-        // this.showEmpty = this.$children.$children.some(child => {
-        //   const componentName = child.$options.componentName
-        //   return componentName === "KvOption" || componentName === "KvOptionGroup"
-        // })
-      } else {
-        this.inputText = this.selectText
-=======
-      if (!value) {
-        this.inputText = this.selectText;
->>>>>>> bbc09cdc207f4e7a0c123bdf824632931f5c5210
-      }
+      if (value) return
+      this.inputText = this.selectText
     }
   },
   mounted() {
