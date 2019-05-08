@@ -7,7 +7,7 @@
 ```html
 <template>
   <div class="kv-demo--select">
-    <kv-select v-model="value" placeholder="请选择">
+    <kv-select v-model="value">
       <kv-option value="0" label="IT"></kv-option>
       <kv-option value="1" label="Blade Runner"></kv-option>
       <kv-option value="2" label="Thor Ragnarok"></kv-option>
@@ -18,7 +18,7 @@
   export default {
     data() {
       return {
-        value: "0"
+        value: ""
       };
     }
   };
@@ -39,7 +39,7 @@
 ```html
 <template>
   <div class="kv-demo--select">
-    <kv-select v-model="value" placeholder="请选择" disabled>
+    <kv-select v-model="value" disabled>
       <kv-option value="0" label="IT"></kv-option>
       <kv-option value="1" label="Blade Runner"></kv-option>
       <kv-option value="2" label="Thor Ragnarok"></kv-option>
@@ -71,7 +71,7 @@
 ```html
 <template>
   <div class="kv-demo--select">
-    <kv-select v-model="value" placeholder="请选择">
+    <kv-select v-model="value">
       <kv-option value="0" label="IT"></kv-option>
       <kv-option value="1" label="Blade Runner" disabled></kv-option>
       <kv-option value="2" label="Thor Ragnarok"></kv-option>
@@ -103,12 +103,12 @@
 ```html
 <template>
   <div class="kv-demo--select">
-    <kv-select v-model="values" placeholder="请选择" mode="multiple">
+    <kv-select v-model="values" mode="multiple">
       <kv-option value="0" label="IT"></kv-option>
       <kv-option value="1" label="Blade Runner"></kv-option>
       <kv-option value="2" label="Thor Ragnarok"></kv-option>
     </kv-select>
-    <kv-select v-model="tags" placeholder="请选择" mode="tags">
+    <kv-select v-model="tags" mode="tags">
       <kv-option value="0" label="IT"></kv-option>
       <kv-option value="1" label="Blade Runner"></kv-option>
       <kv-option value="2" label="Thor Ragnarok"></kv-option>
@@ -142,7 +142,7 @@
 ```html
 <template>
   <div class="kv-demo--select">
-    <kv-select v-model="value" placeholder="请选择">
+    <kv-select v-model="value">
       <kv-option
         v-for="{value,label} in options"
         :key="value"
@@ -186,7 +186,7 @@
 ```html
 <template>
   <div class="kv-demo--select">
-    <kv-select v-model="value" placeholder="请选择" filter>
+    <kv-select v-model="value">
       <kv-option-group title="Figures">
         <kv-option value="0" label="Rombolid"></kv-option>
         <kv-option value="1" label="Trapeze"></kv-option>
@@ -225,12 +225,12 @@
 ```html
 <template>
   <div class="kv-demo--select">
-    <kv-select v-model="value" placeholder="请选择" filter>
+    <kv-select v-model="value" filter>
       <kv-option value="0" label="Rombolid"></kv-option>
       <kv-option value="1" label="Trapeze"></kv-option>
       <kv-option value="2" label="Polygon"></kv-option>
     </kv-select>
-    <kv-select v-model="value2" placeholder="请选择" :filter="selfFilter">
+    <kv-select v-model="value2" :filter="selfFilter">
       <kv-option value="0" label="Rombolid"></kv-option>
       <kv-option value="1" label="Trapeze"></kv-option>
       <kv-option value="2" label="Polygon"></kv-option>
@@ -267,11 +267,7 @@
 ```html
 <template>
   <div class="kv-demo--select">
-    <kv-select
-      v-model="value"
-      placeholder="请选择"
-      :remote-filter="remoteFilter"
-    >
+    <kv-select v-model="value" :remote-filter="remoteFilter">
       <kv-option
         v-for="option in optionList"
         :value="option.value"
@@ -280,7 +276,6 @@
     </kv-select>
     <kv-select
       v-model="value2"
-      placeholder="请选择"
       :remote-filter="remoteFilter"
       value-key="value"
       label-key="label"

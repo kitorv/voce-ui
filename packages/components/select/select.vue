@@ -65,7 +65,7 @@ export default {
     },
     mode: {
       type: String,
-      validator: function (value) {
+      validator: function(value) {
         return ["multiple", "tags"].includes(value);
       }
     },
@@ -148,21 +148,24 @@ export default {
       if (!this.remoteFilter) {
         this.visible = true;
         this.filterOptions(this.$children);
+        return;
       }
-      this.loading = true
+      this.loading = true;
       this.$nextTick(() => {
-        clearTimeout(this.timer)
+        clearTimeout(this.timer);
         this.timer = setTimeout(() => {
           this.$nextTick(() => {
             const result = this.remoteFilter(this.inputText);
-            result.then(() => {
-              this.loading = false
-            }).catch((err) => {
-              this.loading = false
-            });
-          })
+            result
+              .then(() => {
+                this.loading = false;
+              })
+              .catch(err => {
+                this.loading = false;
+              });
+          });
         }, 200);
-      })
+      });
     },
     filterOptions(children) {
       if (!children || children.length < 1) return;
@@ -180,22 +183,22 @@ export default {
     },
     visible(value) {
       if (!value) {
-        this.inputText = this.selectText
-        return
+        this.inputText = this.selectText;
+        return;
       }
       if (this.filter || this.remoteFilter) {
         this.handleTextInput();
-        return
+        return;
       }
     }
   },
   created() {
     if (this.valueKey) {
-      const valueList = Array.isArray(this.value) ? this.value : [this.value]
+      const valueList = Array.isArray(this.value) ? this.value : [this.value];
       valueList.forEach(data => {
-        const value = data[this.valueKey]
-        const text = data[this.labelKey]
-        this.dataList[value] = { value, text }
+        const value = data[this.valueKey];
+        const text = data[this.labelKey];
+        this.dataList[value] = { value, text };
       });
     }
   },

@@ -15,9 +15,9 @@
 
 .kv-select--input,
 .kv-select--tags {
-  background-color: #ffffff;
-  border: 1px solid #b4b4b4;
-  border-radius: 3px;
+  background-color: $--select-background-color;
+  border: $--select-border;
+  border-radius: $--select-border-radius;
   -webkit-appearance: none;
   background-image: none;
   box-sizing: border-box;
@@ -35,13 +35,19 @@
 
     &::placeholder {
       font-size: 14px;
-      color: $--input-border-color;
+      color: $--select-border-color;
     }
   }
 
   &.kv-select--tags {
     padding: 0 0 3px 0;
     min-height: 32px;
+  }
+
+  &:focus,
+  &:hover {
+    outline: none;
+    border-color: $--color--primary;
   }
 }
 
@@ -54,7 +60,7 @@
   margin: 3px 0 0 6px;
   font-size: 14px;
   padding: 0 8px;
-  border-radius: 3px;
+  border-radius: $--select-tag-border-radius;
 }
 
 .kv-select--tags-icon {
@@ -68,7 +74,7 @@
 }
 
 .kv-select--placeholder {
-  color: #b4b4b4;
+  color: $--select-border-color;
   min-height: 32px;
   padding: 5px 30px 5px 11px;
   box-sizing: border-box;
@@ -82,11 +88,11 @@
   z-index: 2;
   line-height: 0;
   transform: translateY(-50%);
-  color: #999999;
+  color: $--select-icon-color;
 }
 
 .kv-select--dropdown {
-  background-color: #ffffff;
+  background-color: $--select-dropdown-background-color;
   padding: 4px;
   margin: 4px 0;
   box-shadow: 0 5px 20px 0 rgba(0, 0, 0, 0.08);
@@ -103,7 +109,7 @@
   padding: 10px 0;
   margin: 0;
   text-align: center;
-  color: #999;
+  color: $--select-border-color;
   font-size: 14px;
   list-style: none;
 }
@@ -123,10 +129,10 @@
   cursor: pointer;
   transition: background-color 0.3s ease;
   margin: 2px 0;
-  border-radius: 3px;
+  border-radius: $--select-option-border-radius;
 
   &:hover {
-    background-color: #f5f5f5;
+    background-color: mix($--color--white, $--select-border-color, 75%);
   }
 }
 
