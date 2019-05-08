@@ -1,5 +1,5 @@
 <template>
-  <li v-show="visible"
+  <li v-show="visibleOptionNumber>0"
       class="kv-select-option-group">
     <ul class="kv-select-option-group--content">
       <li class="kv-select-option-group--title">{{title}}</li>
@@ -17,7 +17,7 @@ export default {
   },
   data() {
     return {
-      visible: true
+      visibleOptionNumber: 0
     }
   },
   props: {

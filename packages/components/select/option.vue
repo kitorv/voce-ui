@@ -58,15 +58,12 @@ export default {
     }
   },
   watch: {
-    visible(value) {
-      if (!this.kvOptionGroup) return
-      const children = this.kvOptionGroup.$children
-      let visibleNumber = 0
-      children.forEach(child => {
-        if (!child.visible) return
-        visibleNumber++
-      });
-      this.kvOptionGroup.visible = visibleNumber === children.length
+    visible: {
+      immediate: true,
+      handler: function (value) {
+        if (!this.kvOptionGroup) return
+        this.kvOptionGroup.visibleOptionNumber += value ? 1 : -1
+      }
     }
   },
   created() {
