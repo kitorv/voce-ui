@@ -4,7 +4,7 @@
                :disabled="disabled">
     <div slot="selection"
          class="kv-select--selection">
-      <div>{{value}}</div>
+      <div>{{value}}{{visibleOptionNumber}}</div>
       <input v-if="mode!=='tags'"
              v-model="inputText"
              class="kv-select--input"
@@ -37,6 +37,7 @@
 
 <script>
 import KvDropdown from "../dropdown/dropdown";
+import debounce from "../../utils/debounce.js"
 
 export default {
   name: "KvSelect",
@@ -50,7 +51,8 @@ export default {
       visible: false,
       dataList: {},
       inputText: "",
-      visibleOptionNumber: 0
+      visibleOptionNumber: 0,
+      timer: null
     };
   },
   props: {
@@ -146,7 +148,16 @@ export default {
     handleTextInput() {
       this.visible = true;
       if (this.remoteFilter) {
-        this.remoteFilter(this.inputText);
+        // console.log(this.inputText);
+        // this.visible = this.inputText !== ""
+        // this.$nextTick(() => {
+        //   clearTimeout(this.timer)
+        //   this.timer = setTimeout(() => {
+        //     this.remoteFilter(this.inputText);
+        //     console.log(1);
+
+        //   }, 200);
+        // })
         return;
       }
       this.filterOptions(this.$children);
@@ -166,11 +177,11 @@ export default {
       this.inputText = this.selectText;
     },
     visible(value) {
-      if (value && (this.filter || this.remoteFilter)) {
+      if (!value || this.remoteFilter) return
+      if (this.filter) {
         this.handleTextInput();
         return
       }
-      if (value) return
       this.inputText = this.selectText
     }
   },
