@@ -266,7 +266,7 @@
 
 ```html
 <template>
-  <div>
+  <div class="kv-demo--select">
     <kv-select
       v-model="value"
       placeholder="请选择"
@@ -330,6 +330,12 @@
     }
   };
 </script>
+<style>
+  .kv-demo--select .kv-select {
+    width: 250px;
+    margin-right: 20px;
+  }
+</style>
 ```
 
 :::

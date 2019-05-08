@@ -4,7 +4,6 @@
                :disabled="disabled">
     <div slot="selection"
          class="kv-select--selection">
-      <div>{{value}}{{visibleOptionNumber}}</div>
       <input v-if="mode!=='tags'"
              v-model="inputText"
              class="kv-select--input"
