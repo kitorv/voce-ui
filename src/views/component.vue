@@ -124,7 +124,6 @@ export default {};
   position: relative;
   display: inline-block;
   color: #444444;
-  border-left: 4px solid transparent;
   padding: 8px 16px 8px 20px;
   line-height: 1.5;
   width: 100%;
@@ -136,15 +135,28 @@ export default {};
   &:hover {
     color: #5b3cc4;
   }
+
+  &::after {
+    content: "";
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 5px;
+    height: 100%;
+    background: #5b3cc4;
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
+    box-shadow: 1px 0 12px 0 #5b3cc4;
+  }
 }
 
 .router-link-exact-active {
-  font-weight: 600;
-  border-left-color: #5b3cc4;
-  color: #5b3cc4;
-  font-weight: bold;
-  background-color: #ede8ff;
-  opacity: 1;
+  background-color: #eceaf3;
+
+  &::after {
+    display: inline-block;
+  }
 }
 
 .k-v-compoent--page {
