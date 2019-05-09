@@ -7,6 +7,7 @@ import KvInput from "./components/input";
 import KvTeatarea from "./components/textarea";
 import KvSelect from "./components/select";
 import KvDropdown from "./components/dropdown";
+import KvDatePicker from "./components/datepicker"
 
 const components = [
   KvRow,
@@ -17,10 +18,11 @@ const components = [
   KvInput,
   KvTeatarea,
   KvSelect,
-  KvDropdown
+  KvDropdown,
+  KvDatePicker
 ];
 
-const install = function(Vue) {
+const install = function (Vue) {
   components.forEach(component => {
     Vue.use(component);
   });

@@ -48,6 +48,11 @@ export default new Router({
           path: "/select",
           name: "component-select",
           component: () => import("../packages/components/select/index.md")
+        },
+        {
+          path: "/datepicker",
+          name: "component-datepicker",
+          component: () => import("../packages/components/datepicker/index.md")
         }
       ]
     }
