@@ -22,6 +22,9 @@
     "url": "https://github.com/kitorv/kv-web-components/issues"
   },
   "license": "MIT",
+  "dependencies": {
+    "date-fns": "^1.30.1"
+  },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.6.0",
     "@vue/cli-plugin-eslint": "^3.6.0",
