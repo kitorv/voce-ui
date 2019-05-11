@@ -5,7 +5,7 @@
           v-for="week in weeks"
           :key="week">{{week}}</th>
     </tr>
-    <tr v-for="(row,index) in dateRows"
+    <tr v-for="(row,index) in dateRowList"
         :key="index">
       <td v-for="{text,type,disabled} in row"
           :key="text"
@@ -27,9 +27,7 @@ export default {
   name: "KvDateDay",
   componentName: "KvDateDay",
   data() {
-    return {
-      dateRowList: [[], [], [], [], [], []]
-    };
+    return {};
   },
   props: {
     weeks: {
@@ -43,14 +41,15 @@ export default {
     disabled: Function
   },
   computed: {
-    dateRows() {
+    dateRowList() {
       const firstDate = dateFns.startOfMonth(this.date);
       let diffDay = dateFns.getDay(firstDate) || 7;
       const startDate = dateFns.subDays(firstDate, diffDay);
+      const rowList = [[], [], [], [], [], []];
       for (let i = 0; i < 6; i++) {
-        const row = this.dateRowList[i];
+        const row = rowList[i];
         for (let j = 0; j < 7; j++) {
-          let cell = row[j] || {
+          let cell = {
             row: i,
             column: j,
             type: "normal",
@@ -80,10 +79,10 @@ export default {
           }
           cell.text = dateFns.getDate(currentDate);
           cell.date = currentDate;
-          this.$set(row, j, cell);
+          row.push(cell);
         }
       }
-      return this.dateRowList;
+      return rowList;
     }
   }
 };
