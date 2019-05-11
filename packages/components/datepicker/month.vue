@@ -1,10 +1,10 @@
 <template>
-  <table>
+  <table class="kv-date-month">
     <tr v-for="(row,index) in monthRowList"
         :key="index">
-      <td v-for="{text} in row"
+      <td class="kv-date-month--cell" v-for="{text} in row"
           :key="text">
-        <div>{{text}} </div>
+        <div class="kv-date-month--text">{{text}} </div>
       </td>
     </tr>
   </table>
