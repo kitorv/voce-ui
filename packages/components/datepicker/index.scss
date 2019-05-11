@@ -1,5 +1,144 @@
 @import "../../style/variable.scss";
 
+// ---------year----------
+
+.kv-date-year {
+  font-size: 14px;
+  border-collapse: collapse;
+  margin: 2px 0;
+}
+
+.kv-date-year--cell {
+  text-align: center;
+  padding: 30px 3px;
+  width: 70px;
+  box-sizing: border-box;
+}
+
+.kv-date-year--text {
+  box-sizing: border-box;
+  text-align: center;
+  height: 32px;
+  line-height: 32px;
+  cursor: pointer;
+  border-radius: 2px;
+}
+
+// .sh-year-table {
+
+//   td {
+
+//     div {
+
+//       &:hover {
+//         background: $--date-time-cell-hover-background-color;
+//       }
+//     }
+
+//     &.sh-year-tabble--select {
+//       div {
+//         background-color: $--date-time-select-background-color;
+//         color: $--date-time-select-color;
+
+//         &:hover {
+//           background: $--date-time-select-background-color;
+//         }
+//       }
+//     }
+
+//     &.sh-year-tabble--first-year,
+//     &.sh-year-tabble--last-year {
+//       div {
+//         color: $--date-time-prev-next-cell;
+//       }
+//     }
+
+//     &.sh-year-tabble--disabled {
+//       padding: 30px 0;
+
+//       div {
+//         cursor: not-allowed;
+//         color: $--date-time-disabled-color;
+//         background-color: $--date-time-disabled-background-color;
+//         border-radius: 0;
+//         border: 1px solid transparent;
+
+//         &:hover {
+//           background-color: $--date-time-disabled-background-color;
+//         }
+//       }
+//     }
+//   }
+// }
+
+// ---------month----------
+
+.kv-date-month {
+  font-size: 14px;
+  border-collapse: collapse;
+  margin: 2px 0;
+}
+
+.kv-date-month--cell {
+  text-align: center;
+  padding: 30px 3px;
+  width: 70px;
+  box-sizing: border-box;
+
+  &:hover > .kv-date-month--text {
+    background-color: #e6f7ff;
+  }
+}
+
+.kv-date-month--text {
+  box-sizing: border-box;
+  text-align: center;
+  height: 32px;
+  line-height: 32px;
+  cursor: pointer;
+  border-radius: 2px;
+}
+//   td {
+
+//       &:hover {
+//           div {
+//               background-color: $--date-time-cell-hover-background-color;
+//           }
+//       }
+
+//       div {
+
+//       }
+
+//       &.sh-month-table--select {
+//           div {
+//               background-color: $--date-time-select-background-color;
+//               color: $--date-time-select-color;
+
+//               &:hover {
+//                   background: $--date-time-select-background-color;
+//               }
+//           }
+//       }
+//   }
+
+//   .sh-month-table--disabled {
+//       padding: 30px 0;
+
+//       div {
+//           cursor: not-allowed;
+//           color: $--date-time-disabled-color;
+//           background-color: $--date-time-disabled-background-color;
+//           border-radius: 0;
+//           border: 1px solid transparent;
+
+//           &:hover {
+//               background-color: $--date-time-disabled-background-color;
+//           }
+//       }
+//   }
+// }
+
 // ---------day----------
 
 .kv-date-day {
