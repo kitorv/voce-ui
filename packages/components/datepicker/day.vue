@@ -1,18 +1,20 @@
 <template>
-  <table>
+  <table class="kv-date-day">
     <tr>
-      <th v-for="week in weeks"
+      <th class="kv-date-day--week"
+          v-for="week in weeks"
           :key="week">{{week}}</th>
     </tr>
-    <tr class="sh-date-table--row"
-        v-for="(row,index) in dateRows"
+    <tr v-for="(row,index) in dateRows"
         :key="index">
-      <td :class="['sh-date-table--'+cell.type,{
-                'sh-date-table--disabled':cell.disabled
-            }]"
-          v-for="cell in row"
-          :key="cell.text">
-        <div> {{cell.text}} </div>
+      <td v-for="{text,type,disabled} in row"
+          :key="text"
+          :class="[
+          'kv-date-day--cell',
+          'kv-date-day--'+type,
+          {'kv-date-day--disabled':disabled}]
+          ">
+        <div class="kv-date-day--text">{{text}}</div>
       </td>
     </tr>
   </table>
