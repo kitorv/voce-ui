@@ -1,23 +1,35 @@
 <template>
-  <table class="kv-date-day">
-    <tr>
-      <th class="kv-date-day--week"
-          v-for="week in weeks"
-          :key="week">{{week}}</th>
-    </tr>
-    <tr v-for="(row,index) in dateRowList"
-        :key="index">
-      <td v-for="{text,type,disabled} in row"
-          :key="text"
-          :class="[
-          'kv-date-day--cell',
-          'kv-date-day--'+type,
-          {'kv-date-day--disabled':disabled}]
-          ">
-        <div class="kv-date-day--text">{{text}}</div>
-      </td>
-    </tr>
-  </table>
+  <div class="kv-date-day">
+    <div class="kv-date-day--header">
+      <i class="kv-date-day--button kv-icon-doubleleft"></i>
+      <i class="kv-date-day--button kv-icon-left"></i>
+      <span>2019年</span>
+      <span>5月</span>
+      <i class="kv-date-day--button kv-icon-right"></i>
+      <i class="kv-date-day--button kv-icon-doubleright"></i>
+    </div>
+    <div class="kv-date-day--content">
+      <table class="kv-date-day--table">
+        <tr>
+          <th class="kv-date-day--week"
+              v-for="week in weeks"
+              :key="week">{{week}}</th>
+        </tr>
+
+        <tr v-for="(row,index) in dateRowList"
+            :key="index">
+          <td v-for="{text,type,disabled} in row"
+              :key="text"
+              :class="['kv-date-day--cell',{'kv-date-day--disabled':disabled}]">
+            <div class="kv-date-day--text">{{text}}</div>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <!--
+
+  </table> -->
 </template>
 
 <script>
@@ -27,7 +39,9 @@ export default {
   name: "KvDateDay",
   componentName: "KvDateDay",
   data() {
-    return {};
+    return {
+      dateRowList: []
+    };
   },
   props: {
     weeks: {
@@ -40,50 +54,119 @@ export default {
     },
     disabled: Function
   },
-  computed: {
-    dateRowList() {
-      const firstDate = dateFns.startOfMonth(this.date);
-      let diffDay = dateFns.getDay(firstDate) || 7;
-      const startDate = dateFns.subDays(firstDate, diffDay);
-      const rowList = [[], [], [], [], [], []];
-      for (let i = 0; i < 6; i++) {
-        const row = rowList[i];
-        for (let j = 0; j < 7; j++) {
-          let cell = {
-            row: i,
-            column: j,
-            type: "normal",
-            disabled: false
-          };
-          const currentDate = dateFns.addDays(startDate, i * 7 + j);
-          let type = "normal";
-          if (dateFns.isToday(currentDate)) {
-            type = "today";
+  watch: {
+    date: {
+      immediate: true,
+      handler() {
+        const firstDate = dateFns.startOfMonth(this.date);
+        let diffDay = dateFns.getDay(firstDate) || 7;
+        const startDate = dateFns.subDays(firstDate, diffDay);
+        const rowList = [[], [], [], [], [], []];
+        for (let i = 0; i < 6; i++) {
+          const row = rowList[i];
+          for (let j = 0; j < 7; j++) {
+            const currentDate = dateFns.addDays(startDate, i * 7 + j);
+            row.push({
+              isTody: dateFns.isToday(currentDate),
+              isPrevMonth: dateFns.isBefore(
+                currentDate,
+                dateFns.startOfMonth(this.date)
+              ),
+
+              isNextMonth: dateFns.isAfter(
+                currentDate,
+                dateFns.lastDayOfMonth(this.date)
+              ),
+              disabled: this.disabled ? this.disabled(currentDate) : false,
+              text: dateFns.getDate(currentDate),
+              date: currentDate
+            });
           }
-          if (dateFns.isBefore(currentDate, dateFns.startOfMonth(this.date))) {
-            type = "prev-month";
-          }
-          if (dateFns.isAfter(currentDate, dateFns.lastDayOfMonth(this.date))) {
-            type = "next-month";
-          }
-          if (
-            type != "prev-month" &&
-            type != "next-month" &&
-            dateFns.isSameDay(currentDate, this.date)
-          ) {
-            type = "select";
-          }
-          cell.type = type;
-          if (this.disabled) {
-            cell.disabled = this.disabledDate(moment(date));
-          }
-          cell.text = dateFns.getDate(currentDate);
-          cell.date = currentDate;
-          row.push(cell);
+          this.dateRowList = rowList;
         }
       }
-      return rowList;
     }
   }
 };
 </script>
+<style lang="scss" scoped>
+.kv-date-day {
+  display: inline-block;
+  font-size: 14px;
+}
+
+.kv-date-day--header {
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+  user-select: none;
+  position: relative;
+  border-bottom: 1px solid #b4b4b4;
+}
+
+.kv-date-day--button {
+  position: absolute;
+  top: 0;
+  display: inline-block;
+  padding: 0 5px;
+  font-size: 16px;
+  line-height: 40px;
+
+  &.kv-icon-doubleleft {
+    left: 7px;
+    font-size: 18px;
+  }
+
+  &.kv-icon-left {
+    left: 30px;
+  }
+
+  &.kv-icon-right {
+    right: 30px;
+  }
+
+  &.kv-icon-doubleright {
+    right: 7px;
+    font-size: 18px;
+  }
+}
+
+.kv-date-day--content {
+  padding: 8px 12px;
+}
+
+.kv-date-day--table {
+  width: 100%;
+  max-width: 100%;
+  background-color: transparent;
+  border-collapse: collapse;
+}
+
+.kv-date-day--week {
+  width: 36px;
+  padding: 6px 0;
+  line-height: 18px;
+  text-align: center;
+}
+
+.kv-date-day--cell {
+  box-sizing: border-box;
+  text-align: center;
+  border: 0;
+  height: 30px;
+  padding: 3px 0;
+}
+
+.kv-date-day--text {
+  width: 24px;
+  height: 24px;
+  margin: 0 auto;
+  padding: 0;
+  line-height: 22px;
+  text-align: center;
+  background-color: transparent;
+  border: 1px solid transparent;
+  border-radius: 2px;
+  transition: background-color 0.3s ease;
+}
+</style>

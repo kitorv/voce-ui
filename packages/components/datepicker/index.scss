@@ -2,27 +2,27 @@
 
 // ---------year----------
 
-.kv-date-year {
-  font-size: 14px;
-  border-collapse: collapse;
-  margin: 2px 0;
-}
+// .kv-date-year {
+//   font-size: 14px;
+//   border-collapse: collapse;
+//   margin: 2px 0;
+// }
 
-.kv-date-year--cell {
-  text-align: center;
-  padding: 30px 3px;
-  width: 70px;
-  box-sizing: border-box;
-}
+// .kv-date-year--cell {
+//   text-align: center;
+//   padding: 30px 3px;
+//   width: 70px;
+//   box-sizing: border-box;
+// }
 
-.kv-date-year--text {
-  box-sizing: border-box;
-  text-align: center;
-  height: 32px;
-  line-height: 32px;
-  cursor: pointer;
-  border-radius: 2px;
-}
+// .kv-date-year--text {
+//   box-sizing: border-box;
+//   text-align: center;
+//   height: 32px;
+//   line-height: 32px;
+//   cursor: pointer;
+//   border-radius: 2px;
+// }
 
 // .sh-year-table {
 
@@ -73,31 +73,31 @@
 
 // ---------month----------
 
-.kv-date-month {
-  font-size: 14px;
-  border-collapse: collapse;
-  margin: 2px 0;
-}
+// .kv-date-month {
+//   font-size: 14px;
+//   border-collapse: collapse;
+//   margin: 2px 0;
+// }
 
-.kv-date-month--cell {
-  text-align: center;
-  padding: 30px 3px;
-  width: 70px;
-  box-sizing: border-box;
+// .kv-date-month--cell {
+//   text-align: center;
+//   padding: 30px 3px;
+//   width: 70px;
+//   box-sizing: border-box;
 
-  &:hover > .kv-date-month--text {
-    background-color: #e6f7ff;
-  }
-}
+//   &:hover > .kv-date-month--text {
+//     background-color: #e6f7ff;
+//   }
+// }
 
-.kv-date-month--text {
-  box-sizing: border-box;
-  text-align: center;
-  height: 32px;
-  line-height: 32px;
-  cursor: pointer;
-  border-radius: 2px;
-}
+// .kv-date-month--text {
+//   box-sizing: border-box;
+//   text-align: center;
+//   height: 32px;
+//   line-height: 32px;
+//   cursor: pointer;
+//   border-radius: 2px;
+// }
 //   td {
 
 //       &:hover {
@@ -141,62 +141,62 @@
 
 // ---------day----------
 
-.kv-date-day {
-  user-select: none;
-  border-collapse: collapse;
-  font-size: 14px;
-}
+// .kv-date-day {
+//   user-select: none;
+//   border-collapse: collapse;
+//   font-size: 14px;
+// }
 
-.kv-date-day--week {
-  text-align: center;
-  padding: 5px;
-  color: #606266;
-  font-weight: 400;
-  line-height: 30px;
-  font-weight: 400;
-  font-style: normal;
-}
+// .kv-date-day--week {
+//   text-align: center;
+//   padding: 5px;
+//   color: #606266;
+//   font-weight: 400;
+//   line-height: 30px;
+//   font-weight: 400;
+//   font-style: normal;
+// }
 
-.kv-date-day--cell {
-  position: relative;
-  width: 40px;
-  height: 40px;
-  padding: 5px;
-  box-sizing: border-box;
-  text-align: center;
-  cursor: pointer;
+// .kv-date-day--cell {
+//   position: relative;
+//   width: 40px;
+//   height: 40px;
+//   padding: 5px;
+//   box-sizing: border-box;
+//   text-align: center;
+//   cursor: pointer;
 
-  .kv-date-day--text {
-    height: 30px;
-    width: 30px;
-    line-height: 30px;
-    box-sizing: border-box;
-    border-radius: 2px;
-    text-align: center;
-  }
+//   .kv-date-day--text {
+//     height: 30px;
+//     width: 30px;
+//     line-height: 30px;
+//     box-sizing: border-box;
+//     border-radius: 2px;
+//     text-align: center;
+//   }
 
-  &:hover > .kv-date-day--text {
-    background-color: #e6f7ff;
-  }
-}
+//   &:hover > .kv-date-day--text {
+//     background-color: #e6f7ff;
+//   }
+// }
 
-.kv-date-day--prev-month,
-.kv-date-day--next-month {
-  color: #c0c4cc;
-}
+// .kv-date-day--prev-month,
+// .kv-date-day--next-month {
+//   color: #c0c4cc;
+// }
 
-.kv-date-day--today {
-  color: $--color--primary;
-  font-weight: bold;
-}
+// .kv-date-day--today {
+//   color: $--color--primary;
+//   font-weight: bold;
+// }
 
-.kv-date-day--select {
-  &:hover > .kv-date-day--text,
-  .kv-date-day--text {
-    background-color: $--color--primary;
-    color: #ffffff;
-  }
-}
+// .kv-date-day--select {
+//   &:hover > .kv-date-day--text,
+//   .kv-date-day--text {
+//     background-color: $--color--primary;
+//     color: #ffffff;
+//   }
+// }
 
 //   .sh-date-table--disabled {
 //       padding-left: 0;
@@ -234,3 +234,5 @@
 //       }
 //   }
 // }
+
+
