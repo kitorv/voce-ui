@@ -1,6 +1,6 @@
 <template>
   <div class="kv-date-calendar">
-    <kv-date-day :date="date"></kv-date-day>
+    <kv-date-day :date.sync="date"></kv-date-day>
   </div>
 </template>
 <script>

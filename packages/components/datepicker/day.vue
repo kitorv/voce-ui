@@ -1,12 +1,16 @@
 <template>
   <div class="kv-date-day">
     <div class="kv-date-day--header">
-      <i class="kv-date-day--button kv-icon-doubleleft"></i>
-      <i class="kv-date-day--button kv-icon-left"></i>
-      <span>2019年</span>
-      <span>5月</span>
-      <i class="kv-date-day--button kv-icon-right"></i>
-      <i class="kv-date-day--button kv-icon-doubleright"></i>
+      <i class="kv-date-day--button kv-icon-doubleleft"
+         @click="handlePrevYearClick"></i>
+      <i class="kv-date-day--button kv-icon-left"
+         @click="handlePrevMonthClick"></i>
+      <span class="kv-date-day--year">{{year}}年</span>
+      <span class="kv-date-day--month">{{month}}月</span>
+      <i class="kv-date-day--button kv-icon-right"
+         @click="handleNextMonthClick"></i>
+      <i class="kv-date-day--button kv-icon-doubleright"
+         @click="handleNextYearClick"></i>
     </div>
     <div class="kv-date-day--content">
       <table class="kv-date-day--table">
@@ -53,6 +57,28 @@ export default {
       required: true
     },
     disabled: Function
+  },
+  computed: {
+    year() {
+      return dateFns.getYear(this.date);
+    },
+    month() {
+      return dateFns.getMonth(this.date) + 1;
+    }
+  },
+  methods: {
+    handlePrevYearClick() {
+      this.$emit("update:date", dateFns.subYears(this.date, 1));
+    },
+    handleNextYearClick() {
+      this.$emit("update:date", dateFns.addYears(this.date, 1));
+    },
+    handlePrevMonthClick() {
+      this.$emit("update:date", dateFns.subMonths(this.date, 1));
+    },
+    handleNextMonthClick() {
+      this.$emit("update:date", dateFns.addMonths(this.date, 1));
+    }
   },
   watch: {
     date: {
@@ -104,6 +130,15 @@ export default {
   border-bottom: 1px solid #b4b4b4;
 }
 
+.kv-date-day--year,
+.kv-date-day--month {
+  display: inline-block;
+  padding: 0 4px;
+  font-weight: bold;
+  line-height: 40px;
+  font-size: 16px;
+}
+
 .kv-date-day--button {
   position: absolute;
   top: 0;
@@ -111,6 +146,7 @@ export default {
   padding: 0 5px;
   font-size: 16px;
   line-height: 40px;
+  cursor: pointer;
 
   &.kv-icon-doubleleft {
     left: 7px;
