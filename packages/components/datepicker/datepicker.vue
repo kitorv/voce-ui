@@ -1,23 +1,16 @@
 <template>
   <div>
-    Date
-    <kv-date-day :date="date"></kv-date-day>
-    Month
-    <kv-date-month></kv-date-month>
-    Year
-    <kv-date-year :date="date"></kv-date-year>
+    <kv-date-calendar></kv-date-calendar>
   </div>
 </template>
 
 <script>
-import KvDateDay from "./day";
-import KvDateMonth from "./month";
-import KvDateYear from "./year";
+import KvDateCalendar from "./calendar";
 
 export default {
   name: "KvDatePicker",
   componentName: "KvDatePicker",
-  components: { KvDateYear, KvDateMonth, KvDateDay },
+  components: { KvDateCalendar },
   data() {
     return {
       date: new Date()
