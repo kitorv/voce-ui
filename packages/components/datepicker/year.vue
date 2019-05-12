@@ -86,7 +86,7 @@ export default {
 .kv-date-year--range {
   display: inline-block;
   padding: 0 4px;
-  font-weight: bold;
+  font-weight: 500;
   line-height: 40px;
   font-size: 16px;
 }
