@@ -6,9 +6,11 @@
                  v-model="dateValue"
                  @year-click="view='year'"
                  @month-click="view='month'"></kv-date-day>
+    <kv-date-month v-if="view==='month'"
+                   v-model="dateValue"
+                   @year-click="view='year'"></kv-date-month>
     <kv-date-year v-if="view==='year'"
                   v-model="dateValue"></kv-date-year>
-    <!--  <kv-date-month :date.sync="dateValue"></kv-date-month> -->
   </div>
 </template>
 <script>
@@ -22,7 +24,8 @@ export default {
   components: { KvDateYear, KvDateMonth, KvDateDay },
   data() {
     return {
-      view: "day"
+      view: "day",
+      prevView: null
     };
   },
   props: {
@@ -39,6 +42,11 @@ export default {
       set(value) {
         this.$emit("update:date", value);
       }
+    }
+  },
+  watch: {
+    view(view, prevView) {
+      this.prevView = prevView;
     }
   }
 };

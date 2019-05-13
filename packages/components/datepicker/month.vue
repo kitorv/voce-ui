@@ -3,7 +3,8 @@
     <div class="kv-date-month--header">
       <i class="kv-date-month--button kv-icon-doubleleft"
          @click="handlePrevYearClick"></i>
-      <span class="kv-date-month--range">{{year}}年</span>
+      <span class="kv-date-month--range"
+            @click="handleYearClick">{{year}}年</span>
       <i class="kv-date-month--button kv-icon-doubleright"
          @click="handleNextYearClick"></i>
     </div>
@@ -56,12 +57,19 @@ export default {
       year: null
     };
   },
+  model: {
+    prop: "date",
+    event: "input"
+  },
   methods: {
     handlePrevYearClick() {
-      this.$emit("update:date", dateFns.subYears(this.date, 1));
+      this.$emit("input", dateFns.subYears(this.date, 1));
     },
     handleNextYearClick() {
-      this.$emit("update:date", dateFns.addYears(this.date, 1));
+      this.$emit("input", dateFns.addYears(this.date, 1));
+    },
+    handleYearClick() {
+      this.$emit("year-click", this.date);
     }
   },
   watch: {
@@ -83,7 +91,9 @@ export default {
   }
 };
 </script>
-<style lang="scss" scoped>
+<style lang="scss" >
+@import "../../style/variable.scss";
+
 .kv-date-month {
   display: inline-block;
   font-size: 14px;
@@ -104,6 +114,7 @@ export default {
   font-weight: 500;
   line-height: 40px;
   font-size: 16px;
+  cursor: pointer;
 }
 
 .kv-date-month--button {
@@ -112,20 +123,12 @@ export default {
   display: inline-block;
   padding: 0 5px;
   font-size: 16px;
-  line-height: 40px;
+  line-height: 40px !important;
   cursor: pointer;
 
   &.kv-icon-doubleleft {
     left: 7px;
     font-size: 18px;
-  }
-
-  &.kv-icon-left {
-    left: 30px;
-  }
-
-  &.kv-icon-right {
-    right: 30px;
   }
 
   &.kv-icon-doubleright {
@@ -151,14 +154,22 @@ export default {
   border: 0;
   height: 55px;
   padding: 3px 0;
+  width: 84px;
+  cursor: pointer;
+}
+
+.kv-date-month--cell:hover {
+  .kv-date-month--text {
+    background-color: mix($--color--white, $--color--primary, 90%);
+  }
 }
 
 .kv-date-month--text {
-  width: 82px;
   height: 24px;
+  width: 60px;
   margin: 0 auto;
   padding: 0;
-  line-height: 22px;
+  line-height: 24px;
   text-align: center;
   background-color: transparent;
   border: 1px solid transparent;
