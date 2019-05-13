@@ -1,10 +1,13 @@
 <template>
   <div class="kv-date-calendar">
+    {{view}}
+    <br />
     <kv-date-day v-if="view==='day'"
                  v-model="dateValue"
-                 @year-click="view==='year'"
-                 @month-click="view==='month'"></kv-date-day>
-    <!-- <kv-date-year :date.sync="dateValue"></kv-date-year> -->
+                 @year-click="view='year'"
+                 @month-click="view='month'"></kv-date-day>
+    <kv-date-year v-if="view==='year'"
+                  v-model="dateValue"></kv-date-year>
     <!--  <kv-date-month :date.sync="dateValue"></kv-date-month> -->
   </div>
 </template>
