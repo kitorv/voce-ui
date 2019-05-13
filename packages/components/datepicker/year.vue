@@ -40,12 +40,16 @@ export default {
       required: true
     }
   },
+  model: {
+    prop: "date",
+    event: "input"
+  },
   methods: {
     handlePrevYearsClick() {
-      this.$emit("update:date", dateFns.subYears(this.date, 12));
+      this.$emit("input", dateFns.subYears(this.date, 12));
     },
     handleNextYearsClick() {
-      this.$emit("update:date", dateFns.addYears(this.date, 12));
+      this.$emit("input", dateFns.addYears(this.date, 12));
     }
   },
   watch: {
@@ -68,7 +72,9 @@ export default {
   }
 };
 </script>
-<style lang="scss" scoped>
+<style lang="scss">
+@import "../../style/variable.scss";
+
 .kv-date-year {
   display: inline-block;
   font-size: 14px;
@@ -97,7 +103,7 @@ export default {
   display: inline-block;
   padding: 0 5px;
   font-size: 16px;
-  line-height: 40px;
+  line-height: 40px !important;
   cursor: pointer;
 
   &.kv-icon-doubleleft {
@@ -112,7 +118,7 @@ export default {
 }
 
 .kv-date-year--content {
-  padding: 9px 12px;
+  padding: 7px 12px;
 }
 
 .kv-date-year--table {
@@ -126,16 +132,24 @@ export default {
   box-sizing: border-box;
   text-align: center;
   border: 0;
-  height: 55px;
+  height: 56px;
   padding: 3px 0;
+  width: 84px;
+  cursor: pointer;
+}
+
+.kv-date-year--cell:hover {
+  .kv-date-year--text {
+    background-color: mix($--color--white, $--color--primary, 90%);
+  }
 }
 
 .kv-date-year--text {
-  width: 82px;
   height: 24px;
+  width: 60px;
   margin: 0 auto;
   padding: 0;
-  line-height: 22px;
+  line-height: 24px;
   text-align: center;
   background-color: transparent;
   border: 1px solid transparent;
