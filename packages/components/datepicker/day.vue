@@ -5,8 +5,10 @@
          @click="handlePrevYearClick"></i>
       <i class="kv-date-day--button kv-icon-left"
          @click="handlePrevMonthClick"></i>
-      <span class="kv-date-day--year">{{year}}年</span>
-      <span class="kv-date-day--month">{{month}}月</span>
+      <span class="kv-date-day--year"
+            @click="handleYearClick">{{year}}年</span>
+      <span class="kv-date-day--month"
+            @click="handleMonthClick">{{month}}月</span>
       <i class="kv-date-day--button kv-icon-right"
          @click="handleNextMonthClick"></i>
       <i class="kv-date-day--button kv-icon-doubleright"
@@ -22,18 +24,20 @@
 
         <tr v-for="(row,index) in dateRowList"
             :key="index">
-          <td v-for="{text,type,disabled} in row"
+          <td v-for="{text,type,disabled,isPrevMonth,isNextMonth,isTody} in row"
               :key="text"
-              :class="['kv-date-day--cell',{'kv-date-day--disabled':disabled}]">
+              :class="['kv-date-day--cell',
+              {'kv-date-day--prev-month':isPrevMonth},
+              {'kv-date-day--next-month':isNextMonth},
+              {'kv-date-day--today':isTody},
+              {'kv-date-day--disabled':disabled}
+              ]">
             <div class="kv-date-day--text">{{text}}</div>
           </td>
         </tr>
       </table>
     </div>
   </div>
-  <!--
-
-  </table> -->
 </template>
 
 <script>
@@ -66,18 +70,28 @@ export default {
       return dateFns.getMonth(this.date) + 1;
     }
   },
+  model: {
+    prop: "date",
+    event: "input"
+  },
   methods: {
     handlePrevYearClick() {
-      this.$emit("update:date", dateFns.subYears(this.date, 1));
+      this.$emit("input", dateFns.subYears(this.date, 1));
     },
     handleNextYearClick() {
-      this.$emit("update:date", dateFns.addYears(this.date, 1));
+      this.$emit("input", dateFns.addYears(this.date, 1));
     },
     handlePrevMonthClick() {
-      this.$emit("update:date", dateFns.subMonths(this.date, 1));
+      this.$emit("input", dateFns.subMonths(this.date, 1));
     },
     handleNextMonthClick() {
-      this.$emit("update:date", dateFns.addMonths(this.date, 1));
+      this.$emit("input", dateFns.addMonths(this.date, 1));
+    },
+    handleYearClick() {
+      this.$emit("year-click", this.date);
+    },
+    handleMonthClick() {
+      this.$emit("month-click", this.date);
     }
   },
   watch: {
@@ -115,7 +129,9 @@ export default {
   }
 };
 </script>
-<style lang="scss" scoped>
+<style lang="scss">
+@import "../../style/variable.scss";
+
 .kv-date-day {
   display: inline-block;
   font-size: 14px;
@@ -127,7 +143,7 @@ export default {
   text-align: center;
   user-select: none;
   position: relative;
-  border-bottom: 1px solid #b4b4b4;
+  border-bottom: $--datepicker-border;
 }
 
 .kv-date-day--year,
@@ -137,6 +153,11 @@ export default {
   font-weight: 500;
   line-height: 40px;
   font-size: 16px;
+  cursor: pointer;
+
+  &:hover {
+    color: $--color--primary;
+  }
 }
 
 .kv-date-day--button {
@@ -145,8 +166,12 @@ export default {
   display: inline-block;
   padding: 0 5px;
   font-size: 16px;
-  line-height: 40px;
+  line-height: 40px !important;
   cursor: pointer;
+
+  &:hover {
+    color: $--color--primary;
+  }
 
   &.kv-icon-doubleleft {
     left: 7px;
@@ -191,6 +216,25 @@ export default {
   border: 0;
   height: 30px;
   padding: 3px 0;
+  cursor: pointer;
+}
+
+.kv-date-day--today {
+  .kv-date-day--text {
+    border-color: $--color--primary;
+    color: $--color--primary;
+  }
+}
+
+.kv-date-day--prev-month,
+.kv-date-day--next-month {
+  color: $--datepicker-border-color;
+}
+
+.kv-date-day--cell:hover {
+  .kv-date-day--text {
+    background-color: mix($--color--white, $--color--primary, 90%);
+  }
 }
 
 .kv-date-day--text {
