@@ -12,9 +12,10 @@
       <table class="kv-date-month--table">
         <tr v-for="(row,index) in monthRowList"
             :key="index">
-          <td class="kv-date-month--cell"
-              v-for="{text} in row"
-              :key="text">
+          <td v-for="{text,selected} in row"
+              :key="text"
+              :class="['kv-date-month--cell',
+              {'kv-date-month--selected':selected}]">
             <div class="kv-date-month--text">{{text}} </div>
           </td>
         </tr>
@@ -49,7 +50,8 @@ export default {
     date: {
       type: Date,
       required: true
-    }
+    },
+    selectValue: [Date, Array]
   },
   data() {
     return {
@@ -81,7 +83,10 @@ export default {
           const month = this.months[i];
           let index = Number.parseInt(i / 3);
           rowList[index].push({
-            text: month
+            text: month,
+            selected:
+              dateFns.isSameYear(this.selectValue, this.date) &&
+              i === dateFns.getMonth(this.selectValue)
           });
         }
         this.year = dateFns.getYear(this.date);
@@ -161,6 +166,15 @@ export default {
 .kv-date-month--cell:hover {
   .kv-date-month--text {
     background-color: mix($--color--white, $--color--primary, 90%);
+  }
+}
+
+.kv-date-month--selected,
+.kv-date-month--selected:hover {
+  .kv-date-month--text {
+    border-color: $--color--primary;
+    color: $--color--white;
+    background-color: $--color--primary;
   }
 }
 

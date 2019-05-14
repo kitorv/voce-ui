@@ -24,12 +24,13 @@
 
         <tr v-for="(row,index) in dateRowList"
             :key="index">
-          <td v-for="{text,type,disabled,isPrevMonth,isNextMonth,isTody} in row"
+          <td v-for="{text,type,disabled,selected,isPrevMonth,isNextMonth,isToday} in row"
               :key="text"
               :class="['kv-date-day--cell',
               {'kv-date-day--prev-month':isPrevMonth},
               {'kv-date-day--next-month':isNextMonth},
-              {'kv-date-day--today':isTody},
+              {'kv-date-day--today':isToday},
+              {'kv-date-day--selected':selected},
               {'kv-date-day--disabled':disabled}
               ]">
             <div class="kv-date-day--text">{{text}}</div>
@@ -60,6 +61,7 @@ export default {
       type: Date,
       required: true
     },
+    selectValue: [Date, Array],
     disabled: Function
   },
   computed: {
@@ -107,7 +109,7 @@ export default {
           for (let j = 0; j < 7; j++) {
             const currentDate = dateFns.addDays(startDate, i * 7 + j);
             row.push({
-              isTody: dateFns.isToday(currentDate),
+              isToday: dateFns.isToday(currentDate),
               isPrevMonth: dateFns.isBefore(
                 currentDate,
                 dateFns.startOfMonth(this.date)
@@ -117,6 +119,8 @@ export default {
                 currentDate,
                 dateFns.lastDayOfMonth(this.date)
               ),
+              // TODO 数组区间判断
+              selected: dateFns.isSameDay(currentDate, this.selectValue),
               disabled: this.disabled ? this.disabled(currentDate) : false,
               text: dateFns.getDate(currentDate),
               date: currentDate
@@ -237,12 +241,21 @@ export default {
   }
 }
 
+.kv-date-day--selected:hover,
+.kv-date-day--selected {
+  .kv-date-day--text {
+    border-color: $--color--primary;
+    color: $--color--white;
+    background-color: $--color--primary;
+  }
+}
+
 .kv-date-day--text {
   width: 24px;
   height: 24px;
   margin: 0 auto;
   padding: 0;
-  line-height: 22px;
+  line-height: 24px;
   text-align: center;
   background-color: transparent;
   border: 1px solid transparent;
