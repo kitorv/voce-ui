@@ -32,7 +32,8 @@
               {'kv-date-day--today':isToday},
               {'kv-date-day--selected':selected},
               {'kv-date-day--disabled':disabled}
-              ]">
+              ]"
+              @click="handleDateClick">
             <div class="kv-date-day--text">{{text}}</div>
           </td>
         </tr>
@@ -94,6 +95,9 @@ export default {
     },
     handleMonthClick() {
       this.$emit("month-click", this.date);
+    },
+    handleDateClick() {
+      this.$emit("date-click", this.date);
     }
   },
   watch: {
