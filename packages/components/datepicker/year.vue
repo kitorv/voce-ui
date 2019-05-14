@@ -14,7 +14,8 @@
           <td v-for="{text,selected} in row"
               :key="text"
               :class="['kv-date-year--cell',
-              {'kv-date-year--selected':selected}]">
+              {'kv-date-year--selected':selected}]"
+              @click="handleYearClick">
             <div class="kv-date-year--text"> {{text}} </div>
           </td>
         </tr>
@@ -52,6 +53,9 @@ export default {
     },
     handleNextYearsClick() {
       this.$emit("input", dateFns.addYears(this.date, 12));
+    },
+    handleYearClick() {
+      this.$emit("year-click", this.date);
     }
   },
   watch: {

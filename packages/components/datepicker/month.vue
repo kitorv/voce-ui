@@ -15,7 +15,8 @@
           <td v-for="{text,selected} in row"
               :key="text"
               :class="['kv-date-month--cell',
-              {'kv-date-month--selected':selected}]">
+              {'kv-date-month--selected':selected}]"
+              @click="handleMonthClick">
             <div class="kv-date-month--text">{{text}} </div>
           </td>
         </tr>
@@ -72,6 +73,9 @@ export default {
     },
     handleYearClick() {
       this.$emit("year-click", this.date);
+    },
+    handleMonthClick() {
+      this.$emit("month-click", this.date);
     }
   },
   watch: {
