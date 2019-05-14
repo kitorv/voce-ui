@@ -31,6 +31,5 @@ const install = function (Vue) {
 export default {
   version: process.env.VERSION,
   install,
-  KvRow,
-  KvCol
+  ...components
 };

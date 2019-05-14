@@ -11,9 +11,10 @@
       <table class="kv-date-year--table">
         <tr v-for="(row,index) in yearRowList"
             :key="index">
-          <td class="kv-date-year--cell"
-              v-for="{text} in row"
-              :key="text">
+          <td v-for="{text,selected} in row"
+              :key="text"
+              :class="['kv-date-year--cell',
+              {'kv-date-year--selected':selected}]">
             <div class="kv-date-year--text"> {{text}} </div>
           </td>
         </tr>
@@ -38,7 +39,8 @@ export default {
     date: {
       type: Date,
       required: true
-    }
+    },
+    selectValue: [Date, Array]
   },
   model: {
     prop: "date",
@@ -61,7 +63,10 @@ export default {
         let currentYear = year - (year % 10) - 1;
         for (let i = 0; i < 12; i++) {
           let index = Number.parseInt(i / 3);
-          rowList[index].push({ text: currentYear });
+          rowList[index].push({
+            text: currentYear,
+            selected: dateFns.getYear(this.selectValue) === currentYear
+          });
           currentYear++;
         }
         this.firstYear = rowList[0][0].text;
@@ -141,6 +146,15 @@ export default {
 .kv-date-year--cell:hover {
   .kv-date-year--text {
     background-color: mix($--color--white, $--color--primary, 90%);
+  }
+}
+
+.kv-date-year--selected,
+.kv-date-year--selected:hover {
+  .kv-date-year--text {
+    border-color: $--color--primary;
+    color: $--color--white;
+    background-color: $--color--primary;
   }
 }
 

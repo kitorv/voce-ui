@@ -1,7 +1,8 @@
 <template>
   <div>
     {{date}}
-    <kv-date-calendar :date.sync="date"></kv-date-calendar>
+    <kv-date-calendar :date="date"
+                      :value="date"></kv-date-calendar>
   </div>
 </template>
 
