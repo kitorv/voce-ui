@@ -9,7 +9,7 @@
 
 .kv-dropdown--panel {
   position: absolute;
-  width: 100%;
+  min-width: 100%;
   box-sizing: border-box;
   border-radius: 4px;
   z-index: 1000;
