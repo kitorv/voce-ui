@@ -7,31 +7,31 @@
       <div ref="hour"
            class="kv-date-time--select">
         <ul class="kv-date-time--select-list">
-          <li v-for="hour in 24"
-              :key="hour"
+          <li v-for="index in 24"
+              :key="index"
               :class="['kv-date-time--select-item',
-              {'kv-date-time--select-active':hour===selectHour}]"
-              @click="handleTimeClick">{{('0' + hour).slice(-2)}}</li>
+              {'kv-date-time--select-active':index===selectHour}]"
+              @click="handleTimeClick">{{timeText(index)}}</li>
         </ul>
       </div>
       <div ref="monute"
            class="kv-date-time--select">
         <ul class="kv-date-time--select-list">
-          <li v-for="monute in 60"
-              :key="monute"
+          <li v-for="index in 60"
+              :key="index"
               :class="['kv-date-time--select-item',
-              {'kv-date-time--select-active':monute===selectMinute}]"
-              @click="handleTimeClick">{{('0' + monute).slice(-2)}}</li>
+              {'kv-date-time--select-active':index===selectMinute}]"
+              @click="handleTimeClick">{{timeText(index)}}</li>
         </ul>
       </div>
       <div ref="second"
            class="kv-date-time--select">
         <ul class="kv-date-time--select-list">
-          <li v-for="second in 60"
-              :key="second"
+          <li v-for="index in 60"
+              :key="index"
               :class="['kv-date-time--select-item',
-              {'kv-date-time--select-active':second===selectSecond}]"
-              @click="handleTimeClick">{{('0' + second).slice(-2)}}</li>
+              {'kv-date-time--select-active':index===selectSecond}]"
+              @click="handleTimeClick">{{timeText(index)}}</li>
         </ul>
       </div>
     </div>
@@ -76,6 +76,9 @@ export default {
     },
     handleTimeClick() {
       this.$emit('time-click', this.selectHour, this.selectMinute, this.selectSecond)
+    },
+    timeText(value) {
+      return ('0' + (value - 1)).slice(-2)
     }
   },
   watch: {
