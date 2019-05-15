@@ -1,13 +1,14 @@
 <template>
   <div>
-    {{date}}
+    {{dateText}}
     <kv-date-calendar :date="date"
-                      :value="date"></kv-date-calendar>
+                      v-model="date"></kv-date-calendar>
   </div>
 </template>
 
 <script>
 import KvDateCalendar from "./calendar";
+import dateFns from "date-fns"
 
 export default {
   name: "KvDatePicker",
@@ -17,6 +18,11 @@ export default {
     return {
       date: new Date()
     };
+  },
+  computed: {
+    dateText() {
+      return dateFns.format(this.date, "YYYY-MM-DD HH:mm:ss")
+    }
   }
 };
 </script>

@@ -24,7 +24,7 @@
 
         <tr v-for="(row,index) in dateRowList"
             :key="index">
-          <td v-for="{text,type,disabled,selected,isPrevMonth,isNextMonth,isToday} in row"
+          <td v-for="{text,date,type,disabled,selected,isPrevMonth,isNextMonth,isToday} in row"
               :key="text"
               :class="['kv-date-day--cell',
               {'kv-date-day--prev-month':isPrevMonth},
@@ -33,7 +33,7 @@
               {'kv-date-day--selected':selected},
               {'kv-date-day--disabled':disabled}
               ]"
-              @click="handleDateClick">
+              @click="handleDateClick(date)">
             <div class="kv-date-day--text">{{text}}</div>
           </td>
         </tr>
@@ -96,8 +96,8 @@ export default {
     handleMonthClick() {
       this.$emit("month-click", this.date);
     },
-    handleDateClick() {
-      this.$emit("date-click", this.date);
+    handleDateClick(date) {
+      this.$emit("date-click", date);
     }
   },
   watch: {
@@ -105,6 +105,7 @@ export default {
       immediate: true,
       handler() {
         const firstDate = dateFns.startOfMonth(this.date);
+        // 时分秒设置 TODO
         let diffDay = dateFns.getDay(firstDate) || 7;
         const startDate = dateFns.subDays(firstDate, diffDay);
         const rowList = [[], [], [], [], [], []];
@@ -118,7 +119,6 @@ export default {
                 currentDate,
                 dateFns.startOfMonth(this.date)
               ),
-
               isNextMonth: dateFns.isAfter(
                 currentDate,
                 dateFns.lastDayOfMonth(this.date)
