@@ -102,9 +102,9 @@ export default {
 }
 
 .kv-date-picker--input {
-  background-color: $--select-background-color;
-  border: $--select-border;
-  border-radius: $--select-border-radius;
+  background-color: $--datepicker-background-color;
+  border: $--datepicker-border;
+  border-radius: $--datepicker-border-radius;
   -webkit-appearance: none;
   background-image: none;
   box-sizing: border-box;
@@ -112,7 +112,6 @@ export default {
   font-size: 14px;
   line-height: 1.5;
   outline: none;
-
   transition: border-color 0.2s;
   width: 100%;
 
@@ -122,7 +121,7 @@ export default {
 
     &::placeholder {
       font-size: 14px;
-      color: $--select-border-color;
+      color: $--datepicker-border-color;
     }
   }
 }
@@ -134,12 +133,12 @@ export default {
   z-index: 2;
   line-height: 0;
   transform: translateY(-50%);
-  color: $--select-icon-color;
+  color: $--datepicker-icon-color;
   font-size: 18px;
 }
 
 .kv-date-picker--panel {
-  background-color: $--select-dropdown-background-color;
+  background-color: $--datepicker-dropdown-background-color;
   padding: 4px;
   margin: 4px 0;
   box-shadow: 0 5px 20px 0 rgba(0, 0, 0, 0.08);
