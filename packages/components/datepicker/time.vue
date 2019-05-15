@@ -10,7 +10,7 @@
           <li v-for="index in 24"
               :key="index"
               :class="['kv-date-time--select-item',
-              {'kv-date-time--select-active':index===selectHour}]"
+              {'kv-date-time--select-active':index-1===selectHour}]"
               @click="handleTimeClick">{{timeText(index)}}</li>
         </ul>
       </div>
@@ -20,7 +20,7 @@
           <li v-for="index in 60"
               :key="index"
               :class="['kv-date-time--select-item',
-              {'kv-date-time--select-active':index===selectMinute}]"
+              {'kv-date-time--select-active':index-1===selectMinute}]"
               @click="handleTimeClick">{{timeText(index)}}</li>
         </ul>
       </div>
@@ -30,7 +30,7 @@
           <li v-for="index in 60"
               :key="index"
               :class="['kv-date-time--select-item',
-              {'kv-date-time--select-active':index===selectSecond}]"
+              {'kv-date-time--select-active':index-1===selectSecond}]"
               @click="handleTimeClick">{{timeText(index)}}</li>
         </ul>
       </div>
