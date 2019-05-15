@@ -15,6 +15,12 @@
                         :date="dateValue"
                         :select-value="dateValue"
                         @date-click="handleDateClick"></kv-date-calendar>
+      <kv-date-time :date="dateValue"
+                    :select-value="dateValue"></kv-date-time>
+      <div class="kv-date-picker--footer">
+        <a class="kv-date-picker--button-time">选择时间</a>
+        <a class="kv-date-picker--button-ok">确定</a>
+      </div>
     </div>
   </kv-dropdown>
 </template>
@@ -22,15 +28,16 @@
 <script>
 import KvDropdown from "../dropdown/dropdown"
 import KvDateCalendar from "./calendar";
+import KvDateTime from "./time"
 import dateFns from "date-fns"
 
 export default {
   name: "KvDatePicker",
   componentName: "KvDatePicker",
-  components: { KvDateCalendar },
+  components: { KvDateCalendar, KvDateTime },
   data() {
     return {
-      visible: false,
+      visible: true,
       inputText: null
     }
   },
@@ -141,9 +148,47 @@ export default {
   background-color: $--datepicker-dropdown-background-color;
   padding: 4px;
   margin: 4px 0;
-  box-shadow: 0 5px 20px 0 rgba(0, 0, 0, 0.08);
+  // box-shadow: 0 5px 20px 0 rgba(0, 0, 0, 0.08);
+  // box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
   border-radius: 3px;
   z-index: 1050;
+}
+
+.kv-date-picker--footer {
+  padding: 0 12px;
+  line-height: 38px;
+  border-top: $--datepicker-border;
+  text-align: right;
+}
+
+.kv-date-picker--button-time {
+  display: inline-block;
+  margin-right: 8px;
+  color: $--color--primary;
+  text-decoration: none;
+  background-color: transparent;
+  outline: none;
+  transition: color 0.3s;
+  cursor: pointer;
+}
+
+.kv-date-picker--button-ok {
+  position: relative;
+  display: inline-block;
+  text-align: center;
+  box-shadow: 0 2px 0 rgba(0, 0, 0, 0.015);
+  transition: all 0.3s;
+  user-select: none;
+  color: $--color--white;
+  background-color: $--color--primary;
+  border-color: $--color--primary;
+  height: 24px;
+  padding: 0 7px;
+  font-size: 14px;
+  border-radius: 3px;
+  line-height: 22px;
+  cursor: pointer;
 }
 </style>
 
