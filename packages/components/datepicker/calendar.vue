@@ -50,7 +50,6 @@ export default {
   },
   methods: {
     handleDateSelect(date) {
-      // TODO 保留时间
       this.$emit('input', date)
     },
     handleMonthSelect(date) {
