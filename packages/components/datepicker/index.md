@@ -8,8 +8,9 @@
 <template>
   <div>
     <kv-date-picker v-model="value"> </kv-date-picker>
-    <!-- <kv-date-picker v-model="value" type="month"></kv-date-picker> -->
-    <!-- <kv-date-picker v-model="value" type="year"></kv-date-picker> -->
+    <kv-date-picker v-model="value" type="month"></kv-date-picker>
+    <kv-date-picker v-model="value" type="year"></kv-date-picker>
+    <kv-date-picker v-model="value" type="datetime"></kv-date-picker>
   </div>
 </template>
 <script>

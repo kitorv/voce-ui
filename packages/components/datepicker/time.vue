@@ -11,7 +11,7 @@
               :key="index"
               :class="['kv-date-time--select-item',
               {'kv-date-time--select-active':index-1===selectHour}]"
-              @click="handleTimeClick">{{timeText(index)}}</li>
+              @click="handleTimeClick(index-1,selectMinute,selectSecond)">{{timeText(index)}}</li>
         </ul>
       </div>
       <div ref="monute"
@@ -21,7 +21,7 @@
               :key="index"
               :class="['kv-date-time--select-item',
               {'kv-date-time--select-active':index-1===selectMinute}]"
-              @click="handleTimeClick">{{timeText(index)}}</li>
+              @click="handleTimeClick(selectHour,index-1,selectSecond)">{{timeText(index)}}</li>
         </ul>
       </div>
       <div ref="second"
@@ -31,7 +31,7 @@
               :key="index"
               :class="['kv-date-time--select-item',
               {'kv-date-time--select-active':index-1===selectSecond}]"
-              @click="handleTimeClick">{{timeText(index)}}</li>
+              @click="handleTimeClick(selectHour,selectMinute,index-1)">{{timeText(index)}}</li>
         </ul>
       </div>
     </div>
@@ -55,30 +55,30 @@ export default {
   },
   computed: {
     dateText() {
-      return dateFns.format(this.date, "YYYY年M月D日")
+      return dateFns.format(this.date, "YYYY年M月D日");
     },
     dateValue() {
-      return this.selectValue || this.date
+      return this.selectValue || this.date;
     },
     selectHour() {
-      return dateFns.getHours(this.dateValue)
+      return dateFns.getHours(this.dateValue);
     },
     selectMinute() {
-      return dateFns.getMinutes(this.dateValue)
+      return dateFns.getMinutes(this.dateValue);
     },
     selectSecond() {
-      return dateFns.getSeconds(this.dateValue)
+      return dateFns.getSeconds(this.dateValue);
     }
   },
   methods: {
     calcScrollTop(value) {
-      return (value - 1) * 24;
+      return value * 24;
     },
-    handleTimeClick() {
-      this.$emit('time-click', this.selectHour, this.selectMinute, this.selectSecond)
+    handleTimeClick(hour, monute, second) {
+      this.$emit("time-click", hour, monute, second);
     },
     timeText(value) {
-      return ('0' + (value - 1)).slice(-2)
+      return ("0" + (value - 1)).slice(-2);
     }
   },
   watch: {
@@ -86,24 +86,24 @@ export default {
       immediate: true,
       handler(value) {
         this.$nextTick(() => {
-          this.$refs.hour.scrollTop = this.calcScrollTop(value)
-        })
+          this.$refs.hour.scrollTop = this.calcScrollTop(value);
+        });
       }
     },
     selectMinute: {
       immediate: true,
       handler(value) {
         this.$nextTick(() => {
-          this.$refs.monute.scrollTop = this.calcScrollTop(value)
-        })
+          this.$refs.monute.scrollTop = this.calcScrollTop(value);
+        });
       }
     },
     selectSecond: {
       immediate: true,
       handler(value) {
         this.$nextTick(() => {
-          this.$refs.second.scrollTop = this.calcScrollTop(value)
-        })
+          this.$refs.second.scrollTop = this.calcScrollTop(value);
+        });
       }
     }
   }
@@ -148,12 +148,12 @@ export default {
   position: relative;
   float: left;
   box-sizing: border-box;
-  height: 226px;
+  height: 100%;
   overflow: hidden;
   font-size: 14px;
   border-right: $--datepicker-border;
   width: 33.33%;
-  padding-bottom: 202px;
+  padding-bottom: 214px;
 
   &:last-child {
     border-right: none;
