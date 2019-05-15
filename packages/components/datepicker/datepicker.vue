@@ -11,32 +11,18 @@
     </div>
     <div slot="panel"
          class="kv-date-picker--panel">
-      <kv-date-calendar :date="dateValue"
+      <kv-date-calendar :type="type"
+                        :date="dateValue"
                         :select-value="dateValue"
                         @date-click="handleDateClick"></kv-date-calendar>
     </div>
   </kv-dropdown>
-  <!-- {{dateText}}
-    <br>
-    <kv-date-time :date="date"></kv-date-time>
-    <br>
-    <kv-date-calendar :date="date"
-                      v-model="date"></kv-date-calendar>
-    <br>
-    <kv-date-calendar :date="date"
-                      type="month"
-                      v-model="date"></kv-date-calendar>
-    <br>
-    <kv-date-calendar :date="date"
-                      type="year"
-                      v-model="date"></kv-date-calendar> -->
 </template>
 
 <script>
 import KvDropdown from "../dropdown/dropdown"
 import KvDateCalendar from "./calendar";
-import dateFns from "date-fns"
-// import KvDateTime from "./time"
+import dateFns, { format } from "date-fns"
 
 export default {
   name: "KvDatePicker",
@@ -50,7 +36,15 @@ export default {
   },
   props: {
     // TODO 区间
-    value: [String, Array]
+    value: [String, Array],
+    type: {
+      type: String,
+      validator: function (value) {
+        return ["year", "month", "date"].includes(value);
+      },
+      default: "date"
+    },
+    format: String
   },
   computed: {
     dateValue: {
@@ -59,11 +53,20 @@ export default {
       },
       set(value) {
         // TODO 多种情况判断
-        this.$emit('input', dateFns.format(value, "YYYY-MM-DD"))
+        this.$emit('input', dateFns.format(value, this.dateFormat))
       }
     },
     dateText() {
-      return dateFns.format(this.dateValue, "YYYY-MM-DD")
+      return dateFns.format(this.dateValue, this.dateFormat)
+    },
+    dateFormat() {
+      if (this.format) return this.format
+      const format = {
+        date: "YYYY-MM-DD",
+        month: "YYYY-MM",
+        year: "YYYY"
+      }
+      return format[this.type]
     }
   },
   methods: {
