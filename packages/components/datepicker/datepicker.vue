@@ -22,7 +22,7 @@
 <script>
 import KvDropdown from "../dropdown/dropdown"
 import KvDateCalendar from "./calendar";
-import dateFns, { format } from "date-fns"
+import dateFns from "date-fns"
 
 export default {
   name: "KvDatePicker",
