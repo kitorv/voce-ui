@@ -12,11 +12,11 @@
       <table class="kv-date-month--table">
         <tr v-for="(row,index) in monthRowList"
             :key="index">
-          <td v-for="{text,selected} in row"
+          <td v-for="{text,date,selected} in row"
               :key="text"
               :class="['kv-date-month--cell',
               {'kv-date-month--selected':selected}]"
-              @click="handleMonthClick">
+              @click="handleMonthClick(date)">
             <div class="kv-date-month--text">{{text}} </div>
           </td>
         </tr>
@@ -74,8 +74,8 @@ export default {
     handleYearClick() {
       this.$emit("year-click", this.date);
     },
-    handleMonthClick() {
-      this.$emit("month-click", this.date);
+    handleMonthClick(date) {
+      this.$emit("month-click", date);
     }
   },
   watch: {
@@ -90,7 +90,8 @@ export default {
             text: month,
             selected:
               dateFns.isSameYear(this.selectValue, this.date) &&
-              i === dateFns.getMonth(this.selectValue)
+              i === dateFns.getMonth(this.selectValue),
+            date: dateFns.setMonth(this.date, i)
           });
         }
         this.year = dateFns.getYear(this.date);

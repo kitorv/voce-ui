@@ -11,11 +11,11 @@
       <table class="kv-date-year--table">
         <tr v-for="(row,index) in yearRowList"
             :key="index">
-          <td v-for="{text,selected} in row"
+          <td v-for="{text,date,selected} in row"
               :key="text"
               :class="['kv-date-year--cell',
               {'kv-date-year--selected':selected}]"
-              @click="handleYearClick">
+              @click="handleYearClick(date)">
             <div class="kv-date-year--text"> {{text}} </div>
           </td>
         </tr>
@@ -54,8 +54,8 @@ export default {
     handleNextYearsClick() {
       this.$emit("input", dateFns.addYears(this.date, 12));
     },
-    handleYearClick() {
-      this.$emit("year-click", this.date);
+    handleYearClick(date) {
+      this.$emit("year-click", date);
     }
   },
   watch: {
@@ -69,6 +69,7 @@ export default {
           let index = Number.parseInt(i / 3);
           rowList[index].push({
             text: currentYear,
+            date: dateFns.setYear(this.date, currentYear),
             selected: dateFns.getYear(this.selectValue) === currentYear
           });
           currentYear++;
