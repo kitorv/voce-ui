@@ -1,6 +1,6 @@
 <template>
   <div class="kv-date-calendar">
-    <kv-date-day v-if="view==='day'"
+    <kv-date-day v-if="view==='date'"
                  v-model="dateValue"
                  :select-value="value"
                  @year-click="view='year'"
@@ -29,7 +29,7 @@ export default {
   components: { KvDateYear, KvDateMonth, KvDateDay },
   data() {
     return {
-      view: "day",
+      view: this.type,
       dateValue: this.date,
       prevView: null
     };
@@ -39,7 +39,14 @@ export default {
       type: Date,
       required: true
     },
-    value: [Date, Array]
+    value: [Date, Array],
+    type: {
+      type: String,
+      validator: function (value) {
+        return ["year", "month", "date"].includes(value);
+      },
+      default: "date"
+    }
   },
   methods: {
     handleDateSelect(date) {
@@ -47,16 +54,24 @@ export default {
       this.$emit('input', date)
     },
     handleMonthSelect(date) {
-      // TODO 月份选择还是日期选择
       const month = dateFns.getMonth(date)
       this.dateValue = dateFns.setMonth(this.dateValue, month)
-      this.view = "day"
+      // 月份选择直接赋值
+      if (this.type === "month") {
+        this.$emit('input', this.dateValue)
+        return
+      }
+      this.view = "date"
     },
     handleYearSelect(date) {
-      // TODO 年份选择
       const year = dateFns.getYear(date)
       this.dateValue = dateFns.setYear(this.dateValue, year)
-      this.view = this.prevView === "month" ? "month" : "day"
+      // 年份选择直接赋值
+      if (this.type === "year") {
+        this.$emit('input', this.dateValue)
+        return
+      }
+      this.view = this.prevView === "month" ? "month" : "date"
     }
   },
   watch: {

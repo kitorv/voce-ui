@@ -3,6 +3,14 @@
     {{dateText}}
     <kv-date-calendar :date="date"
                       v-model="date"></kv-date-calendar>
+    <br>
+    <kv-date-calendar :date="date"
+                      type="month"
+                      v-model="date"></kv-date-calendar>
+    <br>
+    <kv-date-calendar :date="date"
+                      type="year"
+                      v-model="date"></kv-date-calendar>
   </div>
 </template>
 
