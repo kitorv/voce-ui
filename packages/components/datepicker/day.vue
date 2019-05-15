@@ -104,8 +104,7 @@ export default {
     date: {
       immediate: true,
       handler() {
-        const firstDate = dateFns.startOfMonth(this.date);
-        // 时分秒设置 TODO
+        const firstDate = dateFns.setDate(this.date, 1);
         let diffDay = dateFns.getDay(firstDate) || 7;
         const startDate = dateFns.subDays(firstDate, diffDay);
         const rowList = [[], [], [], [], [], []];
