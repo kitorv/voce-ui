@@ -7,14 +7,14 @@
 ```html
 <template>
   <div>
-    <kv-date-picker v-model="checkedValue"> </kv-date-picker>
+    <kv-date-picker v-model="value"> </kv-date-picker>
   </div>
 </template>
 <script>
   export default {
     data() {
       return {
-        checkedValue: "A"
+        value: "2019-05-15"
       };
     }
   };

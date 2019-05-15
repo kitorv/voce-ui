@@ -65,7 +65,7 @@ export default {
     },
     mode: {
       type: String,
-      validator: function(value) {
+      validator: function (value) {
         return ["multiple", "tags"].includes(value);
       }
     },
