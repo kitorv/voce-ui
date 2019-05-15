@@ -1,4 +1,4 @@
-# Teatarea 文本域
+# Textarea 文本域
 
 ## 基础用法
 
