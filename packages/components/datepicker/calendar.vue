@@ -42,7 +42,7 @@ export default {
     selectValue: [Date, Array],
     type: {
       type: String,
-      validator: function (value) {
+      validator: function(value) {
         return ["year", "month", "date"].includes(value);
       },
       default: "date"
@@ -50,31 +50,31 @@ export default {
   },
   methods: {
     handleDateSelect(date) {
-      this.dateValue = date
-      this.handleCellClick()
+      this.dateValue = date;
+      this.handleCellClick();
     },
     handleMonthSelect(date) {
-      const month = dateFns.getMonth(date)
-      this.dateValue = dateFns.setMonth(this.dateValue, month)
+      const month = dateFns.getMonth(date);
+      this.dateValue = dateFns.setMonth(this.dateValue, month);
       // 月份选择直接赋值
       if (this.type === "month") {
-        this.handleCellClick()
-        return
+        this.handleCellClick();
+        return;
       }
-      this.view = "date"
+      this.view = "date";
     },
     handleYearSelect(date) {
-      const year = dateFns.getYear(date)
-      this.dateValue = dateFns.setYear(this.dateValue, year)
+      const year = dateFns.getYear(date);
+      this.dateValue = dateFns.setYear(this.dateValue, year);
       // 年份选择直接赋值
       if (this.type === "year") {
-        this.handleCellClick()
-        return
+        this.handleCellClick();
+        return;
       }
-      this.view = this.prevView === "month" ? "month" : "date"
+      this.view = this.prevView === "month" ? "month" : "date";
     },
     handleCellClick() {
-      this.$emit('date-click', this.dateValue)
+      this.$emit("date-click", this.dateValue);
     }
   },
   watch: {
@@ -89,7 +89,7 @@ export default {
 </script>
 <style lang="scss">
 .kv-date-calendar {
-  width: 278px;
+  width: 276px;
 }
 </style>
 

@@ -11,25 +11,31 @@
     </div>
     <div slot="panel"
          class="kv-date-picker--panel">
-      <kv-date-calendar :type="type"
+      <kv-date-calendar v-if="showCalendar"
+                        :type="calendarType"
                         :date="dateValue"
                         :select-value="dateValue"
                         @date-click="handleDateClick"></kv-date-calendar>
-      <kv-date-time :date="dateValue"
-                    :select-value="dateValue"></kv-date-time>
-      <div class="kv-date-picker--footer">
-        <a class="kv-date-picker--button-time">选择时间</a>
-        <a class="kv-date-picker--button-ok">确定</a>
+      <kv-date-time v-else
+                    :date="dateValue"
+                    :select-value="dateValue"
+                    @time-click="handleTimeClick"></kv-date-time>
+      <div class="kv-date-picker--footer"
+           v-if="showFooter">
+        <a class="kv-date-picker--button-time"
+           @click="showCalendar=!showCalendar">选择时间</a>
+        <a class="kv-date-picker--button-ok"
+           @click="visible=false">确定</a>
       </div>
     </div>
   </kv-dropdown>
 </template>
 
 <script>
-import KvDropdown from "../dropdown/dropdown"
+import KvDropdown from "../dropdown/dropdown";
 import KvDateCalendar from "./calendar";
-import KvDateTime from "./time"
-import dateFns from "date-fns"
+import KvDateTime from "./time";
+import dateFns from "date-fns";
 
 export default {
   name: "KvDatePicker",
@@ -37,17 +43,18 @@ export default {
   components: { KvDateCalendar, KvDateTime },
   data() {
     return {
-      visible: true,
-      inputText: null
-    }
+      visible: false,
+      inputText: null,
+      showCalendar: true
+    };
   },
   props: {
     // TODO 区间
     value: [String, Array],
     type: {
       type: String,
-      validator: function (value) {
-        return ["year", "month", "date"].includes(value);
+      validator: function(value) {
+        return ["year", "month", "date", "datetime"].includes(value);
       },
       default: "date"
     },
@@ -56,36 +63,51 @@ export default {
   computed: {
     dateValue: {
       get() {
-        return dateFns.parse(this.value)
+        return dateFns.parse(this.value);
       },
       set(value) {
         // TODO 多种情况判断
-        this.$emit('input', dateFns.format(value, this.dateFormat))
+        this.$emit("input", dateFns.format(value, this.dateFormat));
       }
     },
     dateText() {
-      return dateFns.format(this.dateValue, this.dateFormat)
+      return dateFns.format(this.dateValue, this.dateFormat);
     },
     dateFormat() {
-      if (this.format) return this.format
+      if (this.format) return this.format;
       const format = {
         date: "YYYY-MM-DD",
         month: "YYYY-MM",
-        year: "YYYY"
-      }
-      return format[this.type]
+        year: "YYYY",
+        datetime: "YYYY-MM-DD HH:mm:ss"
+      };
+      return format[this.type];
+    },
+    calendarType() {
+      if (this.type === "datetime") return "date";
+      return this.type;
+    },
+    showFooter() {
+      return ["datetime"].includes(this.type);
     }
   },
   methods: {
     handleDateClick(value) {
-      this.dateValue = value
+      this.dateValue = value;
+      if (this.showFooter) return;
+      this.visible = false;
+    },
+    handleTimeClick(hour, minute, second) {
+      let dateValue = dateFns.setHours(this.dateValue, hour);
+      dateValue = dateFns.setMinutes(dateValue, minute);
+      this.dateValue = dateFns.setSeconds(dateValue, second);
     }
   },
   watch: {
     dateValue: {
       immediate: true,
       handler() {
-        this.inputText = this.dateText
+        this.inputText = this.dateText;
       }
     }
   }
@@ -146,11 +168,8 @@ export default {
 
 .kv-date-picker--panel {
   background-color: $--datepicker-dropdown-background-color;
-  padding: 4px;
   margin: 4px 0;
-  // box-shadow: 0 5px 20px 0 rgba(0, 0, 0, 0.08);
-  // box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 5px 20px 0 rgba(0, 0, 0, 0.15);
   border-radius: 3px;
   z-index: 1050;
 }
