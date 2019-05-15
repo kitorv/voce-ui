@@ -243,7 +243,7 @@
     data() {
       return {
         value: { value: "0", label: "IT" },
-        value2: [{ value: "0", label: "IT" }]
+        value2: [{ value: "0", label: "Rombolid" }]
       };
     }
   };
