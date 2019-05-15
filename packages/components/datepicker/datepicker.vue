@@ -54,7 +54,7 @@ export default {
     type: {
       type: String,
       validator: function(value) {
-        return ["year", "month", "date", "datetime"].includes(value);
+        return ["year", "month", "date", "datetime", "time"].includes(value);
       },
       default: "date"
     },
@@ -79,16 +79,17 @@ export default {
         date: "YYYY-MM-DD",
         month: "YYYY-MM",
         year: "YYYY",
-        datetime: "YYYY-MM-DD HH:mm:ss"
+        datetime: "YYYY-MM-DD HH:mm:ss",
+        time: "HH:mm:ss"
       };
       return format[this.type];
     },
     calendarType() {
-      if (this.type === "datetime") return "date";
+      if (["datetime", "time"].includes(this.type)) return "date";
       return this.type;
     },
     showFooter() {
-      return ["datetime"].includes(this.type);
+      return ["datetime", "time"].includes(this.type);
     }
   },
   methods: {
