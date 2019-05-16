@@ -75,10 +75,10 @@
 
 .kv-select--placeholder {
   color: $--select-border-color;
-  min-height: 32px;
-  padding: 5px 30px 5px 11px;
+  padding: 5px 30px 0px 11px;
   box-sizing: border-box;
   line-height: 1.5;
+  box-sizing: border-box;
 }
 
 .kv-select--icon {
