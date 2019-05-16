@@ -5,6 +5,7 @@
          class="kv-date-picker--selection">
       <input v-model="inputText"
              class="kv-date-picker--input"
+             :placeholder="placeholder"
              @blur="handleInputBlur" />
       <span class="kv-date-picker--icon">
         <i class="kv-icon-calendar"></i>
@@ -23,11 +24,11 @@
         <kv-date-calendar v-if="showCalendar"
                           :type="calendarType"
                           :date="dateValue"
-                          :select-value="dateValue"
+                          :select-value="selectValue"
                           @date-click="handleDateClick"></kv-date-calendar>
         <kv-date-time v-else
                       :date="dateValue"
-                      :select-value="dateValue"
+                      :select-value="selectValue"
                       @time-click="handleTimeClick"></kv-date-time>
       </div>
       <div class="kv-date-picker--footer"
@@ -69,6 +70,10 @@ export default {
       },
       default: "date"
     },
+    placeholder: {
+      type: String,
+      default: "请选择日期"
+    },
     format: String,
     shortcuts: {
       type: Array,
@@ -90,8 +95,12 @@ export default {
         this.$emit("input", dateFns.format(value, this.dateFormat));
       }
     },
+    selectValue() {
+      // TODO 多类型判断
+      return this.value ? this.dateValue : null
+    },
     dateText() {
-      return dateFns.format(this.dateValue, this.dateFormat);
+      return this.value ? dateFns.format(this.dateValue, this.dateFormat) : "";
     },
     dateFormat() {
       if (this.format) return this.format;
