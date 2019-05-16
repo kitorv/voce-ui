@@ -135,7 +135,7 @@
     <div class="kv-demo--datepicker">
       <kv-date-picker
         v-model="value"
-        type="year"
+        type="yearrange"
         placeholder="请选择年份"
       ></kv-date-picker>
     </div>

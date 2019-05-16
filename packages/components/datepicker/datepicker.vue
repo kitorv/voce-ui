@@ -21,7 +21,11 @@
              @click="handleShortClick(value)">{{text}}</div>
       </div>
       <div class="kv-date-picker--content">
-        <kv-date-panel :date-view="dateView"
+        <kv-date-range v-if="isRange"
+                       :date="dateValue">
+        </kv-date-range>
+        <kv-date-panel v-else
+                       :date-view="dateView"
                        :type="type"
                        :date="dateValue"
                        :select-value="selectValue"
@@ -43,12 +47,13 @@
 <script>
 import KvDropdown from "../dropdown/dropdown";
 import KvDatePanel from "./panel"
+import KvDateRange from "./range"
 import dateFns from "date-fns";
 
 export default {
   name: "KvDatePicker",
   componentName: "KvDatePicker",
-  components: { KvDatePanel },
+  components: { KvDateRange, KvDatePanel },
   data() {
     return {
       visible: false,
@@ -62,7 +67,7 @@ export default {
     type: {
       type: String,
       validator: function (value) {
-        return ["year", "month", "date", "datetime", "time"].includes(value);
+        return ["year", "month", "date", "datetime", "time", "yearrange"].includes(value);
       },
       default: "date"
     },
@@ -114,6 +119,9 @@ export default {
     },
     showTimeCheckButton() {
       return !["time"].includes(this.type);
+    },
+    isRange() {
+      return ['yearrange'].includes(this.type)
     }
   },
   methods: {
