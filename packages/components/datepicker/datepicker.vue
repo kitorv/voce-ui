@@ -23,7 +23,9 @@
       <div class="kv-date-picker--content">
         <kv-date-range v-if="isRange"
                        :date="dateValue"
-                       :type="type">
+                       :type="type"
+                        :select-value="selectValue"
+                       @date-click="handleDateClick">
         </kv-date-range>
         <kv-date-panel v-else
                        :date-view="dateView"
@@ -47,8 +49,8 @@
 
 <script>
 import KvDropdown from "../dropdown/dropdown";
-import KvDatePanel from "./panel"
-import KvDateRange from "./range"
+import KvDatePanel from "./panel";
+import KvDateRange from "./range";
 import dateFns from "date-fns";
 
 export default {
@@ -59,7 +61,7 @@ export default {
     return {
       visible: false,
       inputText: null,
-      dateView: ['time'].includes(this.type) ? "time" : "date"
+      dateView: ["time"].includes(this.type) ? "time" : "date"
     };
   },
   props: {
@@ -67,8 +69,15 @@ export default {
     value: [String, Array],
     type: {
       type: String,
-      validator: function (value) {
-        return ["year", "month", "date", "datetime", "time", "yearrange"].includes(value);
+      validator: function(value) {
+        return [
+          "year",
+          "month",
+          "date",
+          "datetime",
+          "time",
+          "yearrange"
+        ].includes(value);
       },
       default: "date"
     },
@@ -85,20 +94,21 @@ export default {
   computed: {
     dateValue: {
       get() {
-        if (!this.isRange) return this.parseDateValue(this.value)
-        let [start, end] = Array.isArray(this.value) ? this.value : []
-        start = start ? this.parseDateValue(start) : new Date()
-        end = end ? this.parseDateValue(end) : new Date()
-        return [start, end]
+        if (!this.isRange) return this.parseDateValue(this.value);
+        let [start, end] = Array.isArray(this.value) ? this.value : [];
+        start = start ? this.parseDateValue(start) : new Date();
+        end = end ? this.parseDateValue(end) : new Date();
+        return [start, end];
       },
       set(value) {
+        debugger;
         // TODO 多种情况判断
         this.$emit("input", dateFns.format(value, this.dateFormat));
       }
     },
     selectValue() {
       // TODO 多类型判断
-      return this.value ? this.dateValue : null
+      return this.value ? this.dateValue : null;
     },
     dateText() {
       return this.value ? dateFns.format(this.dateValue, this.dateFormat) : "";
@@ -121,7 +131,7 @@ export default {
       return !["time"].includes(this.type);
     },
     isRange() {
-      return ['yearrange'].includes(this.type)
+      return ["yearrange"].includes(this.type);
     }
   },
   methods: {
@@ -131,7 +141,7 @@ export default {
       if (!dateFns.isValid(result)) {
         result = dateFns.parse(dateFns.format(new Date(), "YYYYMMDD ") + value);
       }
-      return result
+      return result;
     },
     handleDateClick(value) {
       this.dateValue = value;
@@ -145,19 +155,19 @@ export default {
     },
     handleInputBlur() {
       // TODO 光标离开无值清空处理
-      let result = dateFns.parse(this.inputText)
+      let result = dateFns.parse(this.inputText);
       if (dateFns.isValid(result)) {
-        this.dateValue = result
-        return
+        this.dateValue = result;
+        return;
       }
       this.inputText = this.dateText;
     },
     handleShortClick(value) {
-      this.dateValue = typeof value === "function" ? value() : value
-      this.visible = false
+      this.dateValue = typeof value === "function" ? value() : value;
+      this.visible = false;
     },
     handleTimeCheck() {
-      this.dateView = this.dateView === "date" ? "time" : "date"
+      this.dateView = this.dateView === "date" ? "time" : "date";
     }
   },
   watch: {
