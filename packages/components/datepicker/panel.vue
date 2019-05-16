@@ -25,7 +25,7 @@ export default {
       default: "date"
     },
     date: {
-      type: Date,
+      type: [Date, Array],
       required: true
     },
     selectValue: Date,
