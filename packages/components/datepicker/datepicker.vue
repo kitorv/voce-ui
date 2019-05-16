@@ -21,21 +21,18 @@
              @click="handleShortClick(value)">{{text}}</div>
       </div>
       <div class="kv-date-picker--content">
-        <kv-date-calendar v-if="showCalendar"
-                          :type="calendarType"
-                          :date="dateValue"
-                          :select-value="selectValue"
-                          @date-click="handleDateClick"></kv-date-calendar>
-        <kv-date-time v-else
-                      :date="dateValue"
-                      :select-value="selectValue"
-                      @time-click="handleTimeClick"></kv-date-time>
+        <kv-date-panel :date-view="dateView"
+                       :type="type"
+                       :date="dateValue"
+                       :select-value="selectValue"
+                       @date-click="handleDateClick"
+                       @time-click="handleTimeClick"></kv-date-panel>
       </div>
       <div class="kv-date-picker--footer"
            v-if="showFooter">
-        <a v-if="showTimeSelect"
+        <a v-if="showTimeCheckButton"
            class="kv-date-picker--button-time"
-           @click="showCalendarPanel=!showCalendarPanel">选择时间</a>
+           @click="handleTimeCheck">选择时间</a>
         <a class="kv-date-picker--button-ok"
            @click="visible=false">确定</a>
       </div>
@@ -45,19 +42,18 @@
 
 <script>
 import KvDropdown from "../dropdown/dropdown";
-import KvDateCalendar from "./calendar";
-import KvDateTime from "./time";
+import KvDatePanel from "./panel"
 import dateFns from "date-fns";
 
 export default {
   name: "KvDatePicker",
   componentName: "KvDatePicker",
-  components: { KvDateCalendar, KvDateTime },
+  components: { KvDatePanel },
   data() {
     return {
       visible: false,
       inputText: null,
-      showCalendarPanel: true
+      dateView: ['time'].includes(this.type) ? "time" : "date"
     };
   },
   props: {
@@ -113,17 +109,10 @@ export default {
       };
       return format[this.type];
     },
-    calendarType() {
-      if (["datetime", "time"].includes(this.type)) return "date";
-      return this.type;
-    },
-    showCalendar() {
-      return !["time"].includes(this.type) && this.showCalendarPanel
-    },
     showFooter() {
       return ["datetime", "time"].includes(this.type);
     },
-    showTimeSelect() {
+    showTimeCheckButton() {
       return !["time"].includes(this.type);
     }
   },
@@ -150,6 +139,9 @@ export default {
     handleShortClick(value) {
       this.dateValue = typeof value === "function" ? value() : value
       this.visible = false
+    },
+    handleTimeCheck() {
+      this.dateView = this.dateView === "date" ? "time" : "date"
     }
   },
   watch: {
