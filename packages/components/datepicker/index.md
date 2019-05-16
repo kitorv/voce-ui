@@ -1,5 +1,54 @@
 # KvDatePicker 时间框
 
+## 区间选择
+
+:::snippet 通过 type 设置年、月、日、周、时间的对应区间。
+
+```html
+<template>
+  <div>
+    <div class="kv-demo--datepicker">
+      <kv-date-picker
+        v-model="value"
+        type="yearrange"
+        placeholder="请选择年份"
+      ></kv-date-picker>
+    </div>
+  </div>
+</template>
+<script>
+  export default {
+    data() {
+      return {
+        value: [],
+        value2: "",
+        value3: "",
+        value4: "",
+        value5: ""
+      };
+    }
+  };
+</script>
+<style>
+  .kv-demo--datepicker {
+    margin-bottom: 20px;
+  }
+
+  .kv-demo--datepicker:last-child {
+    margin-bottom: 0;
+  }
+
+  .kv-demo--datepicker .kv-date-picker {
+    width: 220px;
+    padding-right: 20px;
+  }
+</style>
+```
+
+:::
+
+---
+
 ## 基本功能
 
 :::snippet 基本的日期选择,快捷菜单配置 `shortcuts` 属性值 `[{value,text}]` ，其中`value`可以使字符串、时间、方法。
@@ -121,80 +170,6 @@
     padding-right: 20px;
   }
 </style>
-```
-
-:::
-
-## 区间选择
-
-:::snippet 通过 type 设置年、月、日、周、时间的对应区间。
-
-```html
-<template>
-  <div>
-    <div class="kv-demo--datepicker">
-      <kv-date-picker
-        v-model="value"
-        type="yearrange"
-        placeholder="请选择年份"
-      ></kv-date-picker>
-    </div>
-  </div>
-</template>
-<script>
-  export default {
-    data() {
-      return {
-        value: "",
-        value2: "",
-        value3: "",
-        value4: "",
-        value5: ""
-      };
-    }
-  };
-</script>
-<style>
-  .kv-demo--datepicker {
-    margin-bottom: 20px;
-  }
-
-  .kv-demo--datepicker:last-child {
-    margin-bottom: 0;
-  }
-
-  .kv-demo--datepicker .kv-date-picker {
-    width: 220px;
-    padding-right: 20px;
-  }
-</style>
-```
-
-:::
-
-## 日期类型
-
-:::snippet
-
-```html
-<template>
-  <div>
-    <!-- <kv-date-picker v-model="value"> </kv-date-picker>
-    <kv-date-picker v-model="value" type="month"></kv-date-picker>
-    <kv-date-picker v-model="value" type="year"></kv-date-picker>
-    <kv-date-picker v-model="value" type="datetime"></kv-date-picker>
-    <kv-date-picker v-model="value" type="time"></kv-date-picker> -->
-  </div>
-</template>
-<script>
-  export default {
-    data() {
-      return {
-        value: "2019-05-16"
-      };
-    }
-  };
-</script>
 ```
 
 :::
