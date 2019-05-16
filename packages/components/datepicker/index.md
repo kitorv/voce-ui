@@ -63,7 +63,7 @@
   }
 
   .kv-demo--datepicker-block {
-    padding: 30px 0;
+    padding: 15px 0;
     text-align: center;
     border-right: 1px solid #eff2f6;
     flex: 1;
@@ -77,7 +77,109 @@
     display: block;
     color: #8492a6;
     font-size: 14px;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
+  }
+</style>
+```
+
+:::
+
+## 日期类型
+
+:::snippet 不同的日期选择类型设置 type 属性。
+
+```html
+<template>
+  <div>
+    <div class="kv-demo--datepicker">
+      <div class="kv-demo--datepicker-block">
+        <div class="kv-demo-datepicker-desc">年</div>
+        <kv-date-picker v-model="value"></kv-date-picker>
+      </div>
+      <div class="kv-demo--datepicker-block">
+        <div class="kv-demo-datepicker-desc">月</div>
+        <kv-date-picker
+          v-model="value2"
+          :shortcuts="shortcuts"
+        ></kv-date-picker>
+      </div>
+    </div>
+    <div class="kv-demo--datepicker">
+      <div class="kv-demo--datepicker-block">
+        <div class="kv-demo-datepicker-desc">年</div>
+        <kv-date-picker v-model="value"></kv-date-picker>
+      </div>
+      <div class="kv-demo--datepicker-block">
+        <div class="kv-demo-datepicker-desc">月</div>
+        <kv-date-picker
+          v-model="value2"
+          :shortcuts="shortcuts"
+        ></kv-date-picker>
+      </div>
+    </div>
+  </div>
+</template>
+<script>
+  export default {
+    data() {
+      return {
+        value: "",
+        value2: "",
+        shortcuts: [
+          { value: new Date(), text: "今天" },
+          {
+            value() {
+              const date = new Date();
+              date.setTime(date.getTime() - 3600 * 1000 * 24);
+              return date;
+            },
+            text: "昨天"
+          },
+          {
+            value() {
+              const date = new Date();
+              date.setTime(date.getTime() - 3600 * 1000 * 24 * 7);
+              return date;
+            },
+            text: "一周前"
+          }
+        ]
+      };
+    }
+  };
+</script>
+<style>
+  .kv-demo--datepicker {
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    border-bottom: 1px solid #eff2f6;
+  }
+
+  .kv-demo--datepicker:last-child {
+    border-bottom: none;
+  }
+
+  .kv-demo--datepicker .kv-date-picker {
+    width: 220px;
+  }
+
+  .kv-demo--datepicker-block {
+    padding: 15px 0;
+    text-align: center;
+    border-right: 1px solid #eff2f6;
+    flex: 1;
+  }
+
+  .kv-demo--datepicker-block:last-child {
+    border-right: none;
+  }
+
+  .kv-demo-datepicker-desc {
+    display: block;
+    color: #8492a6;
+    font-size: 14px;
+    margin-bottom: 15px;
   }
 </style>
 ```
