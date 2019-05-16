@@ -4,12 +4,16 @@
                    :date-view="dateView"
                    :type="dataType"
                    :date="startDateValue"
-                   :select-value="selectValue"></kv-date-panel>
+                   :select-value="selectValue"
+                   @date-click="handleStartDateClick"
+                   @time-click="handleTimeClick"></kv-date-panel>
     <kv-date-panel class="kv-date-range--right"
                    :date-view="dateView"
                    :type="dataType"
                    :date="endDateValue"
-                   :select-value="selectValue"></kv-date-panel>
+                   :select-value="selectValue"
+                   @date-click="handleDateClick"
+                   @time-click="handleTimeClick"></kv-date-panel>
   </div>
 </template>
 <script>
@@ -29,7 +33,7 @@ export default {
       type: [Date, Array],
       required: true
     },
-    selectValue: Date,
+    selectValue: [Date, Array],
     type: {
       type: String,
       default: "date"
@@ -64,6 +68,14 @@ export default {
           break;
       }
     }
+  },
+  methods: {
+    handleStartDateClick(date) {
+      this.selectValue[0] = date;
+      this.$emit("date-click", this.date);
+    },
+    handleDateClick() {},
+    handleTimeClick() {}
   },
   mounted() {
     console.log(this.type);
