@@ -22,7 +22,8 @@
       </div>
       <div class="kv-date-picker--content">
         <kv-date-range v-if="isRange"
-                       :date="dateValue">
+                       :date="dateValue"
+                       :type="type">
         </kv-date-range>
         <kv-date-panel v-else
                        :date-view="dateView"
@@ -84,12 +85,11 @@ export default {
   computed: {
     dateValue: {
       get() {
-        let result = dateFns.parse(this.value);
-        // 单独的时间格式转换补充年月日，等到dateFns后续2.0正式版会解决该问题在替换
-        if (!dateFns.isValid(result)) {
-          result = dateFns.parse(dateFns.format(new Date(), "YYYYMMDD ") + this.value);
-        }
-        return result
+        if (!this.isRange) return this.parseDateValue(this.value)
+        let [start, end] = Array.isArray(this.value) ? this.value : []
+        start = start ? this.parseDateValue(start) : new Date()
+        end = end ? this.parseDateValue(end) : new Date()
+        return [start, end]
       },
       set(value) {
         // TODO 多种情况判断
@@ -125,6 +125,14 @@ export default {
     }
   },
   methods: {
+    parseDateValue(value) {
+      let result = dateFns.parse(value);
+      // 单独的时间格式转换补充年月日，等到dateFns后续2.0正式版会解决该问题在替换
+      if (!dateFns.isValid(result)) {
+        result = dateFns.parse(dateFns.format(new Date(), "YYYYMMDD ") + value);
+      }
+      return result
+    },
     handleDateClick(value) {
       this.dateValue = value;
       if (this.showFooter) return;
