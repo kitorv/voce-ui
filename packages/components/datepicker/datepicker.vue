@@ -22,8 +22,9 @@
                     @time-click="handleTimeClick"></kv-date-time>
       <div class="kv-date-picker--footer"
            v-if="showFooter">
-        <a class="kv-date-picker--button-time"
-           @click="showCalendar=!showCalendar">选择时间</a>
+        <a v-if="showTimeSelect"
+           class="kv-date-picker--button-time"
+           @click="showCalendarPanel=!showCalendarPanel">选择时间</a>
         <a class="kv-date-picker--button-ok"
            @click="visible=false">确定</a>
       </div>
@@ -45,7 +46,7 @@ export default {
     return {
       visible: false,
       inputText: null,
-      showCalendar: true
+      showCalendarPanel: true
     };
   },
   props: {
@@ -53,7 +54,7 @@ export default {
     value: [String, Array],
     type: {
       type: String,
-      validator: function(value) {
+      validator: function (value) {
         return ["year", "month", "date", "datetime", "time"].includes(value);
       },
       default: "date"
@@ -63,7 +64,12 @@ export default {
   computed: {
     dateValue: {
       get() {
-        return dateFns.parse(this.value);
+        let result = dateFns.parse(this.value);
+        // 单独的时间格式转换补充年月日，等到dateFns后续2.0正式版会解决该问题在替换
+        if (!dateFns.isValid(result)) {
+          result = dateFns.parse(dateFns.format(new Date(), "YYYYMMDD ") + this.value);
+        }
+        return result
       },
       set(value) {
         // TODO 多种情况判断
@@ -88,8 +94,14 @@ export default {
       if (["datetime", "time"].includes(this.type)) return "date";
       return this.type;
     },
+    showCalendar() {
+      return !["time"].includes(this.type) && this.showCalendarPanel
+    },
     showFooter() {
       return ["datetime", "time"].includes(this.type);
+    },
+    showTimeSelect() {
+      return !["time"].includes(this.type);
     }
   },
   methods: {
