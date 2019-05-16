@@ -3,23 +3,33 @@
                :visible.sync="visible">
     <div slot="selection"
          class="kv-date-picker--selection">
-      <input class="kv-date-picker--input"
-             v-model="inputText" />
+      <input v-model="inputText"
+             class="kv-date-picker--input"
+             @blur="handleInputBlur" />
       <span class="kv-date-picker--icon">
         <i class="kv-icon-calendar"></i>
       </span>
     </div>
     <div slot="panel"
          class="kv-date-picker--panel">
-      <kv-date-calendar v-if="showCalendar"
-                        :type="calendarType"
-                        :date="dateValue"
-                        :select-value="dateValue"
-                        @date-click="handleDateClick"></kv-date-calendar>
-      <kv-date-time v-else
-                    :date="dateValue"
-                    :select-value="dateValue"
-                    @time-click="handleTimeClick"></kv-date-time>
+      <div v-if="shortcuts.length>0"
+           class="kv-date-picker--sidebar">
+        <div v-for="{value,text} in shortcuts"
+             :key="text"
+             class="kv-date-picker--sidebar-button"
+             @click="handleShortClick(value)">{{text}}</div>
+      </div>
+      <div class="kv-date-picker--content">
+        <kv-date-calendar v-if="showCalendar"
+                          :type="calendarType"
+                          :date="dateValue"
+                          :select-value="dateValue"
+                          @date-click="handleDateClick"></kv-date-calendar>
+        <kv-date-time v-else
+                      :date="dateValue"
+                      :select-value="dateValue"
+                      @time-click="handleTimeClick"></kv-date-time>
+      </div>
       <div class="kv-date-picker--footer"
            v-if="showFooter">
         <a v-if="showTimeSelect"
@@ -59,7 +69,11 @@ export default {
       },
       default: "date"
     },
-    format: String
+    format: String,
+    shortcuts: {
+      type: Array,
+      default: () => []
+    }
   },
   computed: {
     dateValue: {
@@ -114,6 +128,18 @@ export default {
       let dateValue = dateFns.setHours(this.dateValue, hour);
       dateValue = dateFns.setMinutes(dateValue, minute);
       this.dateValue = dateFns.setSeconds(dateValue, second);
+    },
+    handleInputBlur() {
+      let result = dateFns.parse(this.inputText)
+      if (dateFns.isValid(result)) {
+        this.dateValue = result
+        return
+      }
+      this.inputText = this.dateText;
+    },
+    handleShortClick(value) {
+      this.dateValue = typeof value === "function" ? value() : value
+      this.visible = false
     }
   },
   watch: {
@@ -134,6 +160,7 @@ export default {
 .kv-date-picker {
   position: relative;
   display: inline-block;
+  width: 100%;
   font-size: 14px;
   zoom: 1;
 }
@@ -185,6 +212,38 @@ export default {
   box-shadow: 0 5px 20px 0 rgba(0, 0, 0, 0.15);
   border-radius: 3px;
   z-index: 1050;
+}
+
+.kv-date-picker--content {
+  position: relative;
+}
+
+.kv-date-picker--sidebar {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 90px;
+  border-right: $--datepicker-border;
+  box-sizing: border-box;
+  padding-top: 6px;
+  background-color: $--datepicker-dropdown-background-color;
+  overflow: auto;
+  text-align: left;
+
+  & + .kv-date-picker--content {
+    margin-left: 90px;
+  }
+}
+
+.kv-date-picker--sidebar-button {
+  box-sizing: border-box;
+  height: 26px;
+  padding: 4px 9px;
+  cursor: pointer;
+
+  &:hover {
+    color: $--color--primary;
+  }
 }
 
 .kv-date-picker--footer {
