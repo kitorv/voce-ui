@@ -139,6 +139,7 @@ export default {
       this.dateValue = dateFns.setSeconds(dateValue, second);
     },
     handleInputBlur() {
+      // TODO 光标离开无值清空处理
       let result = dateFns.parse(this.inputText)
       if (dateFns.isValid(result)) {
         this.dateValue = result
