@@ -20,19 +20,14 @@
         ></kv-date-picker>
       </div>
     </div>
-    <!-- 
-    <kv-date-picker v-model="value" type="month"></kv-date-picker>
-    <kv-date-picker v-model="value" type="year"></kv-date-picker>
-    <kv-date-picker v-model="value" type="datetime"></kv-date-picker>
-    <kv-date-picker v-model="value" type="time"></kv-date-picker> -->
   </div>
 </template>
 <script>
   export default {
     data() {
       return {
-        value: "2019-05-16",
-        value2: "2019-05-16",
+        value: "",
+        value2: "",
         shortcuts: [
           { value: new Date(), text: "今天" },
           {
