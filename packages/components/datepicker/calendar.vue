@@ -14,6 +14,8 @@
     <kv-date-year v-if="view==='year'"
                   v-model="dateValue"
                   :select-value="selectValue"
+                  :max="max"
+                  :min="min"
                   @year-click="handleYearSelect"></kv-date-year>
   </div>
 </template>
@@ -42,11 +44,13 @@ export default {
     selectValue: [Date, Array],
     type: {
       type: String,
-      validator: function(value) {
+      validator: function (value) {
         return ["year", "month", "date"].includes(value);
       },
       default: "date"
-    }
+    },
+    max: Date,
+    min: Date
   },
   methods: {
     handleDateSelect(date) {
@@ -83,6 +87,9 @@ export default {
     },
     date(value) {
       this.dateValue = value;
+    },
+    dateValue(date) {
+      this.$emit('date-change', date)
     }
   }
 };

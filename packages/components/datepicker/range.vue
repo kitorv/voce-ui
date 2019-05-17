@@ -5,15 +5,19 @@
                    :type="dataType"
                    :date="startDateValue"
                    :select-value="selectValue"
+                   :max="maxStartSelectDate"
                    @date-click="handleStartDateClick"
-                   @time-click="handleTimeClick"></kv-date-panel>
+                   @time-click="handleTimeClick"
+                   @date-change="handleStartDateChange"></kv-date-panel>
     <kv-date-panel class="kv-date-range--right"
                    :date-view="dateView"
                    :type="dataType"
                    :date="endDateValue"
                    :select-value="selectValue"
+                   :min="minEndSelectDate"
                    @date-click="handleEndDateClick"
-                   @time-click="handleTimeClick"></kv-date-panel>
+                   @time-click="handleTimeClick"
+                   @date-change="handleEndDateChange"></kv-date-panel>
   </div>
 </template>
 <script>
@@ -22,6 +26,12 @@ import dateFns from "date-fns";
 
 export default {
   components: { KvDatePanel },
+  data() {
+    return {
+      maxStartSelectDate: null,
+      minEndSelectDate: null
+    }
+  },
   props: {
     dateView: {
       validator: function (value) {
@@ -93,7 +103,17 @@ export default {
       }
       this.$emit("date-click", [undefined, date]);
     },
-    handleTimeClick() { }
+    handleTimeClick() { },
+    handleStartDateChange(date) {
+      this.minEndSelectDate = date
+    },
+    handleEndDateChange(date) {
+      this.maxStartSelectDate = date
+    }
+  },
+  created() {
+    this.maxStartSelectDate = this.endDateValue
+    this.minEndSelectDate = this.startDateValue
   }
 };
 </script>
