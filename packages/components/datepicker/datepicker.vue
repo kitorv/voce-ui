@@ -167,7 +167,7 @@ export default {
     handleDateClick(value) {
       this.dateValue = value;
       if (this.showFooter) return;
-      // TODO
+      // TODO 区间关闭条件判断
       // this.visible = false;
     },
     handleTimeClick(hour, minute, second) {

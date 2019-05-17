@@ -14,8 +14,11 @@
           <td v-for="{text,date,selected} in row"
               :key="text"
               :class="['kv-date-year--cell',
-              {'kv-date-year--selected':selected}]"
-              @click="handleYearClick(date)">
+              {'kv-date-year--selected':selected},
+              {'kv-date-year--first':text===firstYear},
+              {'kv-date-year--last':text===lastYear}
+              ]"
+              @click="handleYearClick({date,text})">
             <div class="kv-date-year--text"> {{text}} </div>
           </td>
         </tr>
@@ -54,7 +57,15 @@ export default {
     handleNextYearsClick() {
       this.$emit("input", dateFns.addYears(this.date, 12));
     },
-    handleYearClick(date) {
+    handleYearClick({ date, text }) {
+      if (text === this.firstYear) {
+        this.handlePrevYearsClick()
+        return
+      }
+      if (text === this.lastYear) {
+        this.handleNextYearsClick()
+        return
+      }
       this.$emit("year-click", date);
     }
   },
@@ -75,7 +86,7 @@ export default {
           currentYear++;
         }
         this.firstYear = rowList[0][0].text;
-        this.lastYear = rowList[3][1].text;
+        this.lastYear = rowList[3][2].text;
         this.yearRowList = rowList;
       }
     }
@@ -161,6 +172,11 @@ export default {
     color: $--color--white;
     background-color: $--color--primary;
   }
+}
+
+.kv-date-year--first,
+.kv-date-year--last {
+  color: $--datepicker-border-color;
 }
 
 .kv-date-year--text {
