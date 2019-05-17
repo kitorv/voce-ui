@@ -1,5 +1,6 @@
 <template>
   <div class="kv-date-range">
+    {{endDateValue}}
     <kv-date-panel class="kv-date-range--left"
                    :date-view="dateView"
                    :type="dataType"
@@ -33,7 +34,7 @@ export default {
       type: [Date, Array],
       required: true
     },
-    selectValue: [Date, Array],
+    selectValue: Array,
     type: {
       type: String,
       default: "date"
@@ -49,7 +50,7 @@ export default {
         let startYear = dateFns.getYear(start);
         startYear = startYear - (startYear % 10) - 1;
         return dateFns.getYear(end) - startYear < 12
-          ? dateFns.addYears(start, 1)
+          ? dateFns.setYear(new Date(), startYear + 12)
           : end;
       }
     },
@@ -69,11 +70,6 @@ export default {
     },
     handleDateClick() { },
     handleTimeClick() { }
-  },
-  mounted() {
-    console.log(this.selectValue);
-    console.log(this.type);
-    console.log(this.date);
   }
 };
 </script>
