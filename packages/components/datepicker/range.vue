@@ -24,7 +24,7 @@ export default {
   components: { KvDatePanel },
   props: {
     dateView: {
-      validator: function(value) {
+      validator: function (value) {
         return ["date", "time"].includes(value);
       },
       default: "date"
@@ -52,13 +52,6 @@ export default {
           ? dateFns.addYears(start, 1)
           : end;
       }
-
-      // const deffYears = dateFns.differenceInCalendarYears(end, start);
-      // let currentYear = year - (year % 10) - 1;
-      // if (this.type === "yearrange" && deffYears < 12) {
-      //   end = dateFns.addYears(start, 11);
-      // }
-      // return end;
     },
     dataType() {
       switch (this.type) {
@@ -72,12 +65,13 @@ export default {
   methods: {
     handleStartDateClick(date) {
       this.selectValue[0] = date;
-      this.$emit("date-click", this.date);
+      this.$emit("date-click", this.selectValue);
     },
-    handleDateClick() {},
-    handleTimeClick() {}
+    handleDateClick() { },
+    handleTimeClick() { }
   },
   mounted() {
+    console.log(this.selectValue);
     console.log(this.type);
     console.log(this.date);
   }

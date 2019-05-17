@@ -57,12 +57,12 @@
 <template>
   <div>
     <div class="kv-demo--datepicker">
-      <kv-date-picker v-model="value"></kv-date-picker>
+      <!-- <kv-date-picker v-model="value"></kv-date-picker>
       <kv-date-picker
         v-model="value2"
         :shortcuts="shortcuts"
         placeholder="快捷选项"
-      ></kv-date-picker>
+      ></kv-date-picker> -->
     </div>
   </div>
 </template>
@@ -112,7 +112,7 @@
 ```html
 <template>
   <div>
-    <div class="kv-demo--datepicker">
+    <!-- <div class="kv-demo--datepicker">
       <kv-date-picker
         v-model="value"
         type="year"
@@ -139,7 +139,7 @@
         v-model="value5"
         type="time"
         placeholder="请选择时间"
-      ></kv-date-picker>
+      ></kv-date-picker> -->
     </div>
   </div>
 </template>
