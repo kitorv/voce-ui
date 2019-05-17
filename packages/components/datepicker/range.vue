@@ -1,6 +1,5 @@
 <template>
   <div class="kv-date-range">
-    {{endDateValue}}
     <kv-date-panel class="kv-date-range--left"
                    :date-view="dateView"
                    :type="dataType"
