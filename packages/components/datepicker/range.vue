@@ -6,7 +6,7 @@
                    :type="dataType"
                    :date="startDateValue"
                    :select-value="selectValue"
-                   @date-click="handleDateClick"
+                   @date-click="handleStartDateClick"
                    @time-click="handleTimeClick"></kv-date-panel>
     <kv-date-panel class="kv-date-range--right"
                    :date-view="dateView"
@@ -64,23 +64,33 @@ export default {
     }
   },
   methods: {
-    // handleStartDateClick(date) {
-    //   this.selectValue[0] = date;
-    //   this.$emit("date-click", this.selectValue);
-    // },
+    handleStartDateClick(date) {
+      let dateValue = this.selectValue
+      let [start, end] = dateValue
+      if (start && !end) {
+        let dateValue = dateFns.isBefore(start, date) ? [start, date] : [date, start]
+        this.$emit("date-click", dateValue);
+        return
+      }
+      if (!start && end) {
+        this.$emit("date-click", [date, end]);
+        return
+      }
+      this.$emit("date-click", [date]);
+    },
     // handleEndDateClick(date) {
     //   this.selectValue[1] = date;
     //   this.$emit("date-click", this.selectValue);
     // },
     handleDateClick(value) {
-      let [start, end] = this.selectValue
-      let dateValue = []
-      if ((start && end) || (!start && !end)) {
-        dateValue = [value]
-      } else {
-        dateValue = [start, value]
-      }
-      this.$emit("date-click", dateValue);
+      // let [start, end] = this.selectValue
+      // let dateValue = []
+      // if ((start && end) || (!start && !end)) {
+      //   dateValue = [value]
+      // } else {
+      //   dateValue = [start, value]
+      // }
+      // this.$emit("date-click", dateValue);
     },
     handleTimeClick() { }
   }
