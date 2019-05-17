@@ -13,7 +13,7 @@
                    :type="dataType"
                    :date="endDateValue"
                    :select-value="selectValue"
-                   @date-click="handleDateClick"
+                   @date-click="handleEndDateClick"
                    @time-click="handleTimeClick"></kv-date-panel>
   </div>
 </template>
@@ -66,6 +66,10 @@ export default {
   methods: {
     handleStartDateClick(date) {
       this.selectValue[0] = date;
+      this.$emit("date-click", this.selectValue);
+    },
+    handleEndDateClick(date) {
+      this.selectValue[1] = date;
       this.$emit("date-click", this.selectValue);
     },
     handleDateClick() { },
