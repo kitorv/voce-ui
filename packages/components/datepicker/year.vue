@@ -212,6 +212,7 @@ export default {
 
 .kv-date-year--range-select {
   .kv-date-year--text {
+    transition: none;
     width: 100%;
     background-color: mix($--color--white, $--color--primary, 90%);
   }
