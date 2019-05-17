@@ -48,10 +48,10 @@ export default {
       let [start, end] = this.date;
       if (this.type === "yearrange") {
         let startYear = dateFns.getYear(start);
+        let endYear = dateFns.getYear(end);
         startYear = startYear - (startYear % 10) - 1;
-        return dateFns.getYear(end) - startYear < 12
-          ? dateFns.setYear(new Date(), startYear + 12)
-          : end;
+        endYear = endYear - (endYear % 10) - 1;
+        return endYear - startYear < 11 ? dateFns.setYear(new Date(), startYear + 11) : end
       }
     },
     dataType() {
