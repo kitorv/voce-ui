@@ -30,11 +30,11 @@ export default {
     return {
       maxStartSelectDate: null,
       minEndSelectDate: null
-    }
+    };
   },
   props: {
     dateView: {
-      validator: function (value) {
+      validator: function(value) {
         return ["date", "time"].includes(value);
       },
       default: "date"
@@ -60,7 +60,9 @@ export default {
         let endYear = dateFns.getYear(end);
         startYear = startYear - (startYear % 10) - 1;
         endYear = endYear - (endYear % 10) - 1;
-        return endYear - startYear < 11 ? dateFns.setYear(new Date(), startYear + 11) : end
+        return endYear - startYear < 11
+          ? dateFns.setYear(new Date(), startYear + 11)
+          : end;
       }
     },
     dataType() {
@@ -74,46 +76,40 @@ export default {
   },
   methods: {
     handleStartDateClick(date) {
-      let dateValue = this.selectValue
-      let [start, end] = dateValue
+      let [start, end] = this.selectValue;
       if (start && !end) {
-        dateValue = dateFns.isBefore(start, date) ? [start, date] : [date, start]
-        this.$emit("date-click", dateValue);
-        return
+        this.$emit("date-click", [start, date].sort(dateFns.compareAsc));
+        return;
       }
       if (!start && end) {
-        dateValue = dateFns.isBefore(end, date) ? [end, date] : [date, end]
-        this.$emit("date-click", dateValue);
-        return
+        this.$emit("date-click", [end, date].sort(dateFns.compareAsc));
+        return;
       }
       this.$emit("date-click", [date]);
     },
     handleEndDateClick(date) {
-      let dateValue = this.selectValue
-      let [start, end] = dateValue
+      let [start, end] = this.selectValue;
       if (start && !end) {
-        dateValue = dateFns.isBefore(start, date) ? [start, date] : [date, start]
-        this.$emit("date-click", dateValue);
-        return
+        this.$emit("date-click", [start, date].sort(dateFns.compareAsc));
+        return;
       }
       if (!start && end) {
-        dateValue = dateFns.isBefore(end, date) ? [end, date] : [date, end]
-        this.$emit("date-click", dateValue);
-        return
+        this.$emit("date-click", [end, date].sort(dateFns.compareAsc));
+        return;
       }
       this.$emit("date-click", [undefined, date]);
     },
-    handleTimeClick() { },
+    handleTimeClick() {},
     handleStartDateChange(date) {
-      this.minEndSelectDate = date
+      this.minEndSelectDate = date;
     },
     handleEndDateChange(date) {
-      this.maxStartSelectDate = date
+      this.maxStartSelectDate = date;
     }
   },
   created() {
-    this.maxStartSelectDate = this.endDateValue
-    this.minEndSelectDate = this.startDateValue
+    this.maxStartSelectDate = this.endDateValue;
+    this.minEndSelectDate = this.startDateValue;
   }
 };
 </script>
