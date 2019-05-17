@@ -13,7 +13,7 @@
                    :type="dataType"
                    :date="endDateValue"
                    :select-value="selectValue"
-                   @date-click="handleDateClick"
+                   @date-click="handleEndDateClick"
                    @time-click="handleTimeClick"></kv-date-panel>
   </div>
 </template>
@@ -68,29 +68,31 @@ export default {
       let dateValue = this.selectValue
       let [start, end] = dateValue
       if (start && !end) {
-        let dateValue = dateFns.isBefore(start, date) ? [start, date] : [date, start]
+        dateValue = dateFns.isBefore(start, date) ? [start, date] : [date, start]
         this.$emit("date-click", dateValue);
         return
       }
       if (!start && end) {
-        this.$emit("date-click", [date, end]);
+        dateValue = dateFns.isBefore(end, date) ? [end, date] : [date, end]
+        this.$emit("date-click", dateValue);
         return
       }
       this.$emit("date-click", [date]);
     },
-    // handleEndDateClick(date) {
-    //   this.selectValue[1] = date;
-    //   this.$emit("date-click", this.selectValue);
-    // },
-    handleDateClick(value) {
-      // let [start, end] = this.selectValue
-      // let dateValue = []
-      // if ((start && end) || (!start && !end)) {
-      //   dateValue = [value]
-      // } else {
-      //   dateValue = [start, value]
-      // }
-      // this.$emit("date-click", dateValue);
+    handleEndDateClick(date) {
+      let dateValue = this.selectValue
+      let [start, end] = dateValue
+      if (start && !end) {
+        dateValue = dateFns.isBefore(start, date) ? [start, date] : [date, start]
+        this.$emit("date-click", dateValue);
+        return
+      }
+      if (!start && end) {
+        dateValue = dateFns.isBefore(end, date) ? [end, date] : [date, end]
+        this.$emit("date-click", dateValue);
+        return
+      }
+      this.$emit("date-click", [undefined, date]);
     },
     handleTimeClick() { }
   }
