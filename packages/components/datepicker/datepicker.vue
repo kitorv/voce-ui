@@ -24,7 +24,7 @@
         <kv-date-range v-if="isRange"
                        :date="dateValue"
                        :type="type"
-                        :select-value="selectValue"
+                       :select-value="selectValue"
                        @date-click="handleDateClick">
         </kv-date-range>
         <kv-date-panel v-else
@@ -69,7 +69,7 @@ export default {
     value: [String, Array],
     type: {
       type: String,
-      validator: function(value) {
+      validator: function (value) {
         return [
           "year",
           "month",
@@ -101,17 +101,37 @@ export default {
         return [start, end];
       },
       set(value) {
-        debugger;
-        // TODO 多种情况判断
-        this.$emit("input", dateFns.format(value, this.dateFormat));
+        if (!Array.isArray(value)) {
+          this.$emit("input", dateFns.format(value, this.dateFormat));
+          return
+        }
+        const [start, end] = value
+        let startValue = start ? dateFns.format(start, this.dateFormat) : ""
+        let endValue = end ? dateFns.format(end, this.dateFormat) : ""
+        this.$emit("input", [startValue, endValue]);
       }
     },
     selectValue() {
-      // TODO 多类型判断
-      return this.value ? this.dateValue : null;
+      if (!this.isRange) {
+        return this.value ? this.dateValue : null;
+      }
+      let [start, end] = this.value
+      if (start) {
+        start = this.parseDateValue(start)
+      }
+      if (end) {
+        end = this.parseDateValue(end)
+      }
+      return [start, end]
     },
     dateText() {
-      return this.value ? dateFns.format(this.dateValue, this.dateFormat) : "";
+      if (!Array.isArray(this.selectValue)) {
+        return this.value ? dateFns.format(this.selectValue, this.dateFormat) : "";
+      }
+      const [start, end] = this.selectValue
+      let startValue = start ? dateFns.format(start, this.dateFormat) : ""
+      let endValue = end ? dateFns.format(end, this.dateFormat) : ""
+      return [startValue, endValue].join(" - ")
     },
     dateFormat() {
       if (this.format) return this.format;
@@ -120,7 +140,8 @@ export default {
         month: "YYYY-MM",
         year: "YYYY",
         datetime: "YYYY-MM-DD HH:mm:ss",
-        time: "HH:mm:ss"
+        time: "HH:mm:ss",
+        yearrange: "YYYY"
       };
       return format[this.type];
     },
@@ -146,7 +167,8 @@ export default {
     handleDateClick(value) {
       this.dateValue = value;
       if (this.showFooter) return;
-      this.visible = false;
+      // TODO
+      // this.visible = false;
     },
     handleTimeClick(hour, minute, second) {
       let dateValue = dateFns.setHours(this.dateValue, hour);
