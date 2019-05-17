@@ -1,10 +1,12 @@
 <template>
   <div class="kv-date-year">
     <div class="kv-date-year--header">
-      <i class="kv-date-year--button kv-icon-doubleleft"
+      <i v-if="showPrevYears"
+         class="kv-date-year--button kv-icon-doubleleft"
          @click="handlePrevYearsClick"></i>
       <span class="kv-date-year--range">{{firstYear}}年-{{lastYear}}年</span>
-      <i class="kv-date-year--button kv-icon-doubleright"
+      <i v-if="showNextYears"
+         class="kv-date-year--button kv-icon-doubleright"
          @click="handleNextYearsClick"></i>
     </div>
     <div class="kv-date-year--content">
@@ -49,6 +51,16 @@ export default {
     max: Date,
     min: Date
   },
+  computed: {
+    showPrevYears() {
+      if (!this.min) return true;
+      return dateFns.differenceInCalendarYears(this.date, this.min) > 12;
+    },
+    showNextYears() {
+      if (!this.max) return true;
+      return dateFns.differenceInCalendarYears(this.max, this.date) > 12;
+    }
+  },
   model: {
     prop: "date",
     event: "input"
@@ -62,27 +74,32 @@ export default {
     },
     handleYearClick({ date, text }) {
       if (text === this.firstYear) {
-        this.handlePrevYearsClick()
-        return
+        this.handlePrevYearsClick();
+        return;
       }
       if (text === this.lastYear) {
-        this.handleNextYearsClick()
-        return
+        this.handleNextYearsClick();
+        return;
       }
       this.$emit("year-click", date);
     },
     isSelected(year) {
       if (!Array.isArray(this.selectValue)) {
-        return dateFns.getYear(this.selectValue) === year
+        return dateFns.getYear(this.selectValue) === year;
       }
-      let [startValue, endValue] = this.selectValue
-      return dateFns.getYear(startValue) === year || dateFns.getYear(endValue) === year
+      let [startValue, endValue] = this.selectValue;
+      return (
+        dateFns.getYear(startValue) === year ||
+        dateFns.getYear(endValue) === year
+      );
     },
     isRange(year) {
-      if (!Array.isArray(this.selectValue)) return false
-      let [startValue, endValue] = this.selectValue
-      if (!startValue || !endValue) return false
-      return dateFns.getYear(startValue) < year && dateFns.getYear(endValue) > year
+      if (!Array.isArray(this.selectValue)) return false;
+      let [startValue, endValue] = this.selectValue;
+      if (!startValue || !endValue) return false;
+      return (
+        dateFns.getYear(startValue) < year && dateFns.getYear(endValue) > year
+      );
     }
   },
   watch: {
