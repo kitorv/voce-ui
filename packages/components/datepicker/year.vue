@@ -67,9 +67,11 @@ export default {
   },
   methods: {
     handlePrevYearsClick() {
+      if (!this.showPrevYears) return;
       this.$emit("input", dateFns.subYears(this.date, 12));
     },
     handleNextYearsClick() {
+      if (!this.showNextYears) return;
       this.$emit("input", dateFns.addYears(this.date, 12));
     },
     handleYearClick({ date, text }) {
@@ -210,7 +212,16 @@ export default {
 
 .kv-date-year--range-select {
   .kv-date-year--text {
+    width: 100%;
     background-color: mix($--color--white, $--color--primary, 90%);
+  }
+
+  &.kv-date-year--first,
+  &.kv-date-year--last {
+    .kv-date-year--text {
+      background-color: $--datepicker-background-color;
+      cursor: default;
+    }
   }
 }
 
