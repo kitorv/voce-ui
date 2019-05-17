@@ -11,12 +11,13 @@
       <table class="kv-date-year--table">
         <tr v-for="(row,index) in yearRowList"
             :key="index">
-          <td v-for="{text,date,selected} in row"
+          <td v-for="{text,date,selected,isRange} in row"
               :key="text"
               :class="['kv-date-year--cell',
               {'kv-date-year--selected':selected},
+              {'kv-date-year--range-select':isRange},
               {'kv-date-year--first':text===firstYear},
-              {'kv-date-year--last':text===lastYear}
+              {'kv-date-year--last':text===lastYear},
               ]"
               @click="handleYearClick({date,text})">
             <div class="kv-date-year--text"> {{text}} </div>
@@ -27,7 +28,7 @@
   </div>
 </template>
 <script>
-import dateFns from "date-fns";
+import dateFns, { endOfYear } from "date-fns";
 
 export default {
   name: "KvDateYear",
@@ -74,6 +75,12 @@ export default {
       }
       let [startValue, endValue] = this.selectValue
       return dateFns.getYear(startValue) === year || dateFns.getYear(endValue) === year
+    },
+    isRange(year) {
+      if (!Array.isArray(this.selectValue)) return false
+      let [startValue, endValue] = this.selectValue
+      if (!startValue || !endValue) return false
+      return dateFns.getYear(startValue) < year && dateFns.getYear(endValue) > year
     }
   },
   watch: {
@@ -88,7 +95,8 @@ export default {
           rowList[index].push({
             text: currentYear,
             date: dateFns.setYear(this.date, currentYear),
-            selected: this.isSelected(currentYear)
+            selected: this.isSelected(currentYear),
+            isRange: this.isRange(currentYear)
           });
           currentYear++;
         }
@@ -178,6 +186,12 @@ export default {
     border-color: $--color--primary;
     color: $--color--white;
     background-color: $--color--primary;
+  }
+}
+
+.kv-date-year--range-select {
+  .kv-date-year--text {
+    background-color: mix($--color--white, $--color--primary, 90%);
   }
 }
 
