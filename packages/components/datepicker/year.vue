@@ -28,7 +28,7 @@
   </div>
 </template>
 <script>
-import dateFns, { endOfYear } from "date-fns";
+import dateFns from "date-fns";
 
 export default {
   name: "KvDateYear",
@@ -45,7 +45,9 @@ export default {
       type: Date,
       required: true
     },
-    selectValue: [Date, Array]
+    selectValue: [Date, Array],
+    max: Date,
+    min: Date
   },
   model: {
     prop: "date",

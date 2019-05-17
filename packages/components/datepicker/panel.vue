@@ -3,7 +3,10 @@
                     :type="dateType"
                     :date="date"
                     :select-value="selectValue"
-                    @date-click="handleDateClick"></kv-date-calendar>
+                    :max="max"
+                    :min="min"
+                    @date-click="handleDateClick"
+                    @date-change="handleDateChange"></kv-date-calendar>
   <kv-date-time v-else
                 :date="date"
                 :select-value="selectValue"
@@ -32,7 +35,9 @@ export default {
     type: {
       type: String,
       default: "date"
-    }
+    },
+    max: Date,
+    min: Date
   },
   computed: {
     dateType() {
@@ -45,6 +50,9 @@ export default {
     },
     handleTimeClick(hour, monute, second) {
       this.$emit("time-click", hour, monute, second);
+    },
+    handleDateChange(date) {
+      this.$emit('date-change', date)
     }
   },
 }
