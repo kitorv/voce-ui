@@ -67,6 +67,13 @@ export default {
         return
       }
       this.$emit("year-click", date);
+    },
+    isSelected(year) {
+      if (!Array.isArray(this.selectValue)) {
+        return dateFns.getYear(this.selectValue) === year
+      }
+      let [startValue, endValue] = this.selectValue
+      return dateFns.getYear(startValue) === year || dateFns.getYear(endValue) === year
     }
   },
   watch: {
@@ -81,7 +88,7 @@ export default {
           rowList[index].push({
             text: currentYear,
             date: dateFns.setYear(this.date, currentYear),
-            selected: dateFns.getYear(this.selectValue) === currentYear
+            selected: this.isSelected(currentYear)
           });
           currentYear++;
         }

@@ -6,14 +6,14 @@
                    :type="dataType"
                    :date="startDateValue"
                    :select-value="selectValue"
-                   @date-click="handleStartDateClick"
+                   @date-click="handleDateClick"
                    @time-click="handleTimeClick"></kv-date-panel>
     <kv-date-panel class="kv-date-range--right"
                    :date-view="dateView"
                    :type="dataType"
                    :date="endDateValue"
                    :select-value="selectValue"
-                   @date-click="handleEndDateClick"
+                   @date-click="handleDateClick"
                    @time-click="handleTimeClick"></kv-date-panel>
   </div>
 </template>
@@ -64,15 +64,24 @@ export default {
     }
   },
   methods: {
-    handleStartDateClick(date) {
-      this.selectValue[0] = date;
-      this.$emit("date-click", this.selectValue);
+    // handleStartDateClick(date) {
+    //   this.selectValue[0] = date;
+    //   this.$emit("date-click", this.selectValue);
+    // },
+    // handleEndDateClick(date) {
+    //   this.selectValue[1] = date;
+    //   this.$emit("date-click", this.selectValue);
+    // },
+    handleDateClick(value) {
+      let [start, end] = this.selectValue
+      let dateValue = []
+      if ((start && end) || (!start && !end)) {
+        dateValue = [value]
+      } else {
+        dateValue = [start, value]
+      }
+      this.$emit("date-click", dateValue);
     },
-    handleEndDateClick(date) {
-      this.selectValue[1] = date;
-      this.$emit("date-click", this.selectValue);
-    },
-    handleDateClick() { },
     handleTimeClick() { }
   }
 };
