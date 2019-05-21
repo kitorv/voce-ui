@@ -21,7 +21,8 @@
               {'kv-date-year--first':text===firstYear},
               {'kv-date-year--last':text===lastYear},
               ]"
-              @click="handleYearClick({date,text})">
+              @click="handleYearClick({date,text})"
+              @mouseenter="handleCellEnter(date)">
             <div class="kv-date-year--text"> {{text}} </div>
           </td>
         </tr>
@@ -84,6 +85,9 @@ export default {
         return;
       }
       this.$emit("year-click", date);
+    },
+    handleCellEnter(date) {
+      this.$emit("cell-enter", date);
     },
     isSelected(year) {
       if (!Array.isArray(this.selectValue)) {
