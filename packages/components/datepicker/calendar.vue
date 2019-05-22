@@ -16,7 +16,8 @@
                   :select-value="selectValue"
                   :max="max"
                   :min="min"
-                  @year-click="handleYearSelect"></kv-date-year>
+                  @year-click="handleYearSelect"
+                  @cell-enter="handleCellEnter"></kv-date-year>
   </div>
 </template>
 <script>
@@ -44,7 +45,7 @@ export default {
     selectValue: [Date, Array],
     type: {
       type: String,
-      validator: function (value) {
+      validator: function(value) {
         return ["year", "month", "date"].includes(value);
       },
       default: "date"
@@ -79,6 +80,9 @@ export default {
     },
     handleCellClick() {
       this.$emit("date-click", this.dateValue);
+    },
+    handleCellEnter(date) {
+      this.$emit("date-click", date);
     }
   },
   watch: {
@@ -89,7 +93,7 @@ export default {
       this.dateValue = value;
     },
     dateValue(date) {
-      this.$emit('date-change', date)
+      this.$emit("date-change", date);
     }
   }
 };
