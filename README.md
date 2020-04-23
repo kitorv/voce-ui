@@ -1,4 +1,4 @@
-# veloce-ui (WIP)
+# voce-ui (WIP)
 
 基于 Vue3.0 开发的组件库
 
