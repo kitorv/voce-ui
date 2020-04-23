@@ -1,0 +1,24 @@
+{
+  "name": "voce-ui",
+  "version": "1.0.0-alpha.0",
+  "description": "A Vue.js 3.0 UI Toolkit for Web",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kitorv/voce-ui.git"
+  },
+  "keywords": [
+    "vue3",
+    "Components",
+    "UI"
+  ],
+  "author": "kitorv",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/kitorv/voce-ui/issues"
+  },
+  "homepage": "https://github.com/kitorv/voce-ui#readme"
+}
