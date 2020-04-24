@@ -1,0 +1,9 @@
+{
+  "prettier.singleQuote": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+  },
+  "path-autocomplete.pathMappings": {
+    "@": "${folder}/src"
+  }
+}
