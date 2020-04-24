@@ -1,4 +1,5 @@
 const path = require("path");
+const { VueLoaderPlugin } = require("vue-loader");
 const HtmlWebpackplugin = require("html-webpack-plugin");
 
 module.exports = {
@@ -17,21 +18,32 @@ module.exports = {
     historyApiFallback: true,
     contentBase: path.resolve(__dirname, "public"),
     overlay: true,
-    clientLogLevel: "warning",
+    clientLogLevel: "error",
     compress: true,
     quiet: true,
   },
   module: {
     rules: [
       {
+        test: /\.vue$/,
+        use: {
+          loader: "vue-loader",
+          options: {
+            compilerOptions: { preserveWhitespace: false },
+          },
+        },
+      },
+      {
         test: /\.tsx?$/,
         use: {
-          loader: 'ts-loader'
-        }
-      }
-    ]
+          loader: "ts-loader",
+          options: { appendTsSuffixTo: [/\.vue$/] },
+        },
+      },
+    ],
   },
   plugins: [
+    new VueLoaderPlugin(),
     new HtmlWebpackplugin({
       template: "public/index.html",
       favicon: "public/favicon.ico",
