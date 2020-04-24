@@ -18,7 +18,7 @@ module.exports = {
       "@": path.resolve("src"),
     },
     extensions: [".js", ".jsx", ".ts", ".tsx", ".vue", ".json"],
-    // modules: ["node_modules"],
+    modules: ["node_modules"],
   },
   devServer: {
     inline: true,
