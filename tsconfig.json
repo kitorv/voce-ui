@@ -1,30 +1,22 @@
 {
-    "compilerOptions": {
-        "baseUrl": ".",
-        "outDir": "dist",
-        "sourceMap": false,
-        "target": "ESNext",
-        "module": "ESNext",
-        "moduleResolution": "node",
-        "allowJs": false,
-        "strict": true,
-        "noUnusedLocals": true,
-        "experimentalDecorators": true,
-        "resolveJsonModule": true,
-        "esModuleInterop": true,
-        "removeComments": false,
-        "jsx": "preserve",
-        "lib": [
-            "ESNext",
-            "DOM"
-        ],
-        "types": [
-            "node"
-        ],
-        "rootDir": "."
-    },
-    "include": [
-        "site/**/*",
-        "src/**/*"
-    ]
+  "compilerOptions": {
+    "baseUrl": ".",
+    "outDir": "dist",
+    "sourceMap": false,
+    "target": "ESNext",
+    "module": "ESNext",
+    "moduleResolution": "node",
+    "allowJs": false,
+    "strict": true,
+    "noUnusedLocals": true,
+    "experimentalDecorators": true,
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+    "removeComments": false,
+    "jsx": "preserve",
+    "lib": ["ESNext", "DOM"],
+    "types": ["node"],
+    "rootDir": "."
+  },
+  "include": ["site/**/*", "src/**/*"]
 }
