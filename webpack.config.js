@@ -1,8 +1,6 @@
 const path = require("path");
-const fs = require("fs");
 const { VueLoaderPlugin } = require("vue-loader");
 const HtmlWebpackplugin = require("html-webpack-plugin");
-const scssGlobalPath = "./src/styles/variable.scss";
 
 module.exports = {
   mode: "development",
@@ -54,7 +52,7 @@ module.exports = {
           {
             loader: "sass-loader",
             options: {
-              prependData: fs.readFileSync(scssGlobalPath, "utf-8"),
+              prependData: '@import "src/styles/variable.scss";',
             },
           },
         ],
