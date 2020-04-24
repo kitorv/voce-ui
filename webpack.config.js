@@ -1,6 +1,7 @@
 const path = require("path");
 const { VueLoaderPlugin } = require("vue-loader");
-const HtmlWebpackplugin = require("html-webpack-plugin");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
+const markdLoaderPlugin = require("./build/markdown-plugin");
 
 module.exports = {
   mode: "development",
@@ -17,7 +18,7 @@ module.exports = {
       "@": path.resolve("src"),
     },
     extensions: [".js", ".jsx", ".ts", ".tsx", ".vue", ".json"],
-    modules: ["node_modules"],
+    // modules: ["node_modules"],
   },
   devServer: {
     inline: true,
@@ -44,6 +45,15 @@ module.exports = {
         },
       },
       {
+        test: /\.md$/,
+        use: [
+          { loader: "vue-loader" },
+          {
+            loader: "./build/markdown-loader.js",
+          },
+        ],
+      },
+      {
         test: /\.scss$/,
         use: [
           { loader: "style-loader" },
@@ -61,7 +71,8 @@ module.exports = {
   },
   plugins: [
     new VueLoaderPlugin(),
-    new HtmlWebpackplugin({
+    new markdLoaderPlugin(),
+    new HtmlWebpackPlugin({
       template: "public/index.html",
       favicon: "public/favicon.ico",
     }),
