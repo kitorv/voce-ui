@@ -1,0 +1,19 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "webpack-dev-server",
+      "program": "${workspaceFolder}/node_modules/webpack-dev-server/bin/webpack-dev-server.js",
+      "args": ["--progress", "--inline", "--config", "webpack.config.js"]
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "webpack",
+      "program": "${workspaceFolder}/node_modules/webpack/bin/webpack.js",
+      "args": ["--progress", "--config", "webpack.config.js"]
+    }
+  ]
+}

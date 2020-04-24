@@ -30,6 +30,7 @@
     "autoprefixer": "^9.7.6",
     "css-loader": "^3.5.2",
     "html-webpack-plugin": "^4.2.0",
+    "markdown-it": "^10.0.0",
     "node-sass": "^4.13.1",
     "postcss-loader": "^3.0.0",
     "sass-loader": "^8.0.2",
