@@ -3,28 +3,37 @@
   "version": "1.0.0-alpha.0",
   "description": "A Vue.js 3.0 UI Toolkit for Web",
   "main": "index.js",
-  "scripts": {
-    "dev": "webpack-dev-server"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/kitorv/voce-ui.git"
-  },
   "keywords": [
     "vue",
     "vue3",
     "Components",
     "UI"
   ],
-  "author": "kitorv",
-  "license": "MIT",
+  "scripts": {
+    "dev": "webpack-dev-server"
+  },
+  "homepage": "https://github.com/kitorv/voce-ui#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kitorv/voce-ui.git"
+  },
   "bugs": {
     "url": "https://github.com/kitorv/voce-ui/issues"
   },
-  "homepage": "https://github.com/kitorv/voce-ui#readme",
+  "author": "kitorv",
+  "license": "MIT",
+  "dependencies": {
+    "vue": "^3.0.0-beta.3"
+  },
   "devDependencies": {
     "@vue/compiler-sfc": "^3.0.0-beta.3",
+    "autoprefixer": "^9.7.6",
+    "css-loader": "^3.5.2",
     "html-webpack-plugin": "^4.2.0",
+    "node-sass": "^4.13.1",
+    "postcss-loader": "^3.0.0",
+    "sass-loader": "^8.0.2",
+    "style-loader": "^1.1.4",
     "ts-loader": "^7.0.1",
     "typescript": "^3.8.3",
     "vue-loader": "^16.0.0-alpha.3",
@@ -32,7 +41,9 @@
     "webpack-cli": "^3.3.11",
     "webpack-dev-server": "^3.10.3"
   },
-  "dependencies": {
-    "vue": "^3.0.0-beta.3"
+  "postcss": {
+    "plugins": {
+      "autoprefixer": {}
+    }
   }
 }
