@@ -1,18 +1,18 @@
 <template>
-  <div class="v-index">
-    <div class="v-index--header">
-      <img class="v-index--header-logo" src="../images/logo.png" alt="logo" />
-      <div class="v-index--header-title">Veco</div>
+  <div class="vs-index">
+    <div class="vs-index--header">
+      <img class="vs-index--header-logo" src="../images/logo.png" alt="logo" />
+      <div class="vs-index--header-title">Veco</div>
     </div>
-    <div class="v-index--left">
+    <div class="vs-index--left">
       <v-left-menu-item
         v-for="(menu, index) in menuList"
         :key="index"
         :data="menu"
       />
     </div>
-    <div class="v-index--content">
-      <div class="v-index--content-view">
+    <div class="vs-index--content">
+      <div class="vs-index--content-view">
         <router-view></router-view>
       </div>
     </div>
@@ -290,7 +290,7 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-.v-index--header {
+.vs-index--header {
   position: fixed;
   top: 0;
   left: 0;
@@ -305,18 +305,18 @@ export default defineComponent({
   box-sizing: border-box;
 }
 
-.v-index--header-logo {
+.vs-index--header-logo {
   position: relative;
   height: 28px;
 }
 
-.v-index--header-title {
+.vs-index--header-title {
   font-size: 24px;
   font-weight: bold;
   padding: 0 12px;
 }
 
-.v-index--left {
+.vs-index--left {
   font-size: 14px;
   padding: 16px 0;
   width: 240px;
@@ -330,11 +330,11 @@ export default defineComponent({
   overflow-y: auto;
 }
 
-.v-index--content {
+.vs-index--content {
   padding-left: 240px;
 }
 
-.v-index--content-view {
+.vs-index--content-view {
   max-width: 1000px;
   padding: 30px 50px 60px 50px;
   margin: 0 auto;
