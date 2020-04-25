@@ -67,6 +67,32 @@ module.exports = {
           },
         ],
       },
+      {
+        test: /\.(svg|png|jpe?g|gif|webp|ico)(\?.*)?$/,
+        use: {
+          loader: "url-loader",
+          options: {
+            limit: 4096,
+            fallback: {
+              loader: "file-loader",
+              options: { name: "img/[name].[hash:8].[ext]" },
+            },
+          },
+        },
+      },
+      {
+        test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/i,
+        use: {
+          loader: "url-loader",
+          options: {
+            limit: 4096,
+            fallback: {
+              loader: "file-loader",
+              options: { name: "fonts/[name].[hash:8].[ext]" },
+            },
+          },
+        },
+      },
     ],
   },
   plugins: [
