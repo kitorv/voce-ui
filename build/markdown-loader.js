@@ -5,5 +5,5 @@ module.exports = function (source) {
   const markdownIt = MarkdownIt({ html: true });
   markdownIt.use(MarkdownItClass);
   source = markdownIt.render(source);
-  return `<template>${source}</template>`;
+  return `<template><div>${source}</div></template>`;
 };
