@@ -48,8 +48,6 @@ export default defineComponent({
         props.data.children &&
         props.data.children.length > 0,
     };
-    console.log(props.level);
-
     return { classes };
   },
 });
