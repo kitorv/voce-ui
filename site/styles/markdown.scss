@@ -51,6 +51,8 @@ p.vs-markdown-doc {
   line-height: 1.5;
   color: $-text-color-primary;
   font-size: 14px;
+  padding: 0;
+  margin: 0;
 }
 
 a.vs-markdown-doc {
@@ -104,7 +106,7 @@ code[class*="language-"] {
 }
 
 .vs-markdown-tip,
-.vs-markdown-warn {
+.vs-markdown-danger {
   padding: 12px 16px;
   border-radius: 4px;
   margin: 20px 0;
@@ -116,7 +118,7 @@ code[class*="language-"] {
   border-left: 5px solid $-color-primary;
 }
 
-.vs-markdown-warn {
+.vs-markdown-danger {
   background-color: mix($-color-danger, #ffffff, 5%);
   border-left: 5px solid$-color-danger;
 }

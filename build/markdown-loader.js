@@ -1,5 +1,6 @@
 const MarkdownIt = require("markdown-it");
 const MarkdownItClass = require("./markdown-it-class");
+const MarkdownItContainer = require("markdown-it-container");
 const hljs = require("highlight.js");
 
 module.exports = function (source) {
@@ -17,6 +18,32 @@ module.exports = function (source) {
 
   // 定义Markdown标签类名
   markdownIt.use(MarkdownItClass, "vs-markdown-doc");
+
+  // 解析markdown的 【:::tip 内容 ::::】 格式
+  markdownIt.use(MarkdownItContainer, "tip", {
+    validate(params) {
+      return params.trim().match(/^tip\s*(.*)$/);
+    },
+    // 代码块渲染
+    render(tokens, index) {
+      return tokens[index].nesting === 1
+        ? '<div class="vs-markdown-tip">'
+        : "</div>";
+    },
+  });
+
+  // 解析markdown的 【:::danger 内容 ::::】 格式
+  markdownIt.use(MarkdownItContainer, "danger", {
+    validate(params) {
+      return params.trim().match(/^danger\s*(.*)$/);
+    },
+    // 代码块渲染
+    render(tokens, index) {
+      return tokens[index].nesting === 1
+        ? '<div class="vs-markdown-danger">'
+        : "</div>";
+    },
+  });
 
   return `<template>
   <div class="vs-markdown-view">
