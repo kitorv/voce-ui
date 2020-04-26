@@ -296,13 +296,13 @@ export default defineComponent({
   left: 0;
   height: 48px;
   padding: 8px 32px;
-  position: relative;
   background: #ffffff;
   z-index: 1200;
   display: flex;
   align-items: center;
   box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.04);
   box-sizing: border-box;
+  width: 100%;
 }
 
 .vs-index--header-logo {
