@@ -1,6 +1,15 @@
 $-color-primary: #1890ff !default;
+$-color-success: #00c926 !default;
+$-color-danger: #f93c3c !default;
+$-color-warning: #ff7e22 !default;
+$-color-info: #b1b3b7 !default;
 
 $-text-color-primary: #333333 !default;
-$-color-text-regular: #666666 !default;
-$-color-text-secondary: #999999 !default;
-$-color-text-placeholder: #cccccc !default;
+$-text-color-regular: #666666 !default;
+$-text-color-secondary: #999999 !default;
+$-text-color-placeholder: #cccccc !default;
+
+$-border-color-base: #dcdfe6 !default;
+$-border-color-light: mix($-border-color-base, #ffffff, 90%) !default;
+$-border-color-lighter: mix($-border-color-base, #ffffff, 80%) !default;
+$-border-color-extra-light: mix($-border-color-base, #ffffff, 70%) !default;

@@ -103,7 +103,7 @@ export default defineComponent({
 
 .vs-left-menu-item--group {
   > .vs-left-menu-item--title {
-    color: $-color-text-secondary;
+    color: $-text-color-secondary;
     font-size: 14px;
     padding: 6px 8px 6px 24px;
   }

@@ -10,7 +10,7 @@
     "UI"
   ],
   "scripts": {
-    "dev": "webpack-dev-server"
+    "dev": "webpack-dev-server --progress --color"
   },
   "homepage": "https://github.com/kitorv/voce-ui#readme",
   "repository": {
@@ -23,13 +23,14 @@
   "author": "kitorv",
   "license": "MIT",
   "dependencies": {
-    "vue": "^3.0.0-beta.3"
+    "vue": "^3.0.0-beta.4"
   },
   "devDependencies": {
-    "@vue/compiler-sfc": "^3.0.0-beta.3",
+    "@vue/compiler-sfc": "^3.0.0-beta.4",
     "autoprefixer": "^9.7.6",
     "css-loader": "^3.5.2",
     "file-loader": "^6.0.0",
+    "highlight.js": "^10.0.0",
     "html-webpack-plugin": "^4.2.0",
     "markdown-it": "^10.0.0",
     "node-sass": "^4.13.1",
