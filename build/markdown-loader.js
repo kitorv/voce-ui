@@ -45,6 +45,34 @@ module.exports = function (source) {
     },
   });
 
+  // 解析markdown的 【:::danger 内容 ::::】 格式
+  markdownIt.use(MarkdownItContainer, "snippet", {
+    // 验证代码块为【:::snippet :::】才进行渲染
+    validate(params) {
+      return params.trim().match(/^snippet\s*(.*)$/);
+    },
+    // 代码块渲染
+    render(tokens, index) {
+      const token = tokens[index];
+      const tokenInfo = token.info.trim().match(/^snippet\s*(.*)$/);
+      if (token.nesting === 1) {
+        // 获取snippet第一行的表述内容
+        const hasTokenContent = tokenInfo && tokenInfo.length > 1;
+        const desccription = hasTokenContent ? tokenInfo[1] : "";
+        const desccriptionHtml = markdownIt.render(desccription);
+        // 获取vue组件示例的代码
+        const nextIndex = tokens[index + 1];
+        let constent = nextIndex.type === "fence" ? nextIndex.content : "";
+        // 将需要渲染的示例用nc-snippet组件包裹替换插槽显示示例效果
+        return `<vc-code-snippet>
+                  <template #description>${desccriptionHtml}</template>
+                  <template #example>EXAMPLE</template>
+                  <template #source>`;
+      }
+      return `    </template>
+                </vc-code-snippet> `;
+    },
+  });
   return `<template>
   <div class="vs-markdown-view">
     ${markdownIt.render(source)}
