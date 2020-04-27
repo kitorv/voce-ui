@@ -5,7 +5,7 @@
       <div class="vs-index--header-title">Veco</div>
     </div>
     <div class="vs-index--left">
-      <v-left-menu-item
+      <vc-left-menu-item
         v-for="(menu, index) in menuList"
         :key="index"
         :data="menu"
@@ -21,10 +21,10 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import VLeftMenuItem from "../components/left-menu-ietm.vue";
+import VcLeftMenuItem from "../components/left-menu-ietm.vue";
 
 export default defineComponent({
-  components: { VLeftMenuItem },
+  components: { VcLeftMenuItem },
   setup() {
     const menuList = [
       {

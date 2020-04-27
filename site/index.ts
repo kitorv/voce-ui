@@ -6,5 +6,9 @@ import "highlight.js/styles/color-brewer.css";
 import "./styles/markdown.scss";
 
 const app = createApp(App);
+
+import VcCodeSnippet from "./components/code-snippet.vue";
+app.component(VcCodeSnippet.name as string, VcCodeSnippet);
+
 app.use(Router);
 app.mount("#app");

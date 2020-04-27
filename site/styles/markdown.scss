@@ -95,7 +95,6 @@ code.vs-markdown-doc {
 }
 
 code[class*="language-"] {
-  border: 1px solid $-border-color-base;
   background: mix($-color-primary, #ffffff, 1%);
   font-family: Consolas, Menlo, Courier, monospace;
   display: block;

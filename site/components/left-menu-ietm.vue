@@ -1,15 +1,15 @@
 <template>
-  <div :class="['vs-left-menu-item', classes]">
+  <div :class="['vc-left-menu-item', classes]">
     <router-link
       v-if="data.path"
-      class="vs-left-menu-item--link"
+      class="vc-left-menu-item--link"
       :to="data.path"
     >
       {{ data.title }}
       <span v-text="data.subtitle" />
     </router-link>
-    <div v-else class="vs-left-menu-item--title" v-text="data.title" />
-    <vs-left-menu-item
+    <div v-else class="vc-left-menu-item--title" v-text="data.title" />
+    <vc-left-menu-item
       v-for="(child, index) in data.children"
       :key="index"
       :data="child"
@@ -29,7 +29,7 @@ export type MenuItemModel = {
 };
 
 export default defineComponent({
-  name: "vs-left-menu-item",
+  name: "vc-left-menu-item",
   props: {
     data: {
       type: Object as PropType<MenuItemModel>,
@@ -42,8 +42,8 @@ export default defineComponent({
   },
   setup(props) {
     const classes = {
-      "vs-left-menu-item--root": props.level === 0,
-      "vs-left-menu-item--group":
+      "vc-left-menu-item--root": props.level === 0,
+      "vc-left-menu-item--group":
         props.level > 0 &&
         props.data.children &&
         props.data.children.length > 0,
@@ -54,7 +54,7 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-.vs-left-menu-item--link {
+.vc-left-menu-item--link {
   display: block;
   position: relative;
   padding: 8px 24px;
@@ -92,8 +92,8 @@ export default defineComponent({
   }
 }
 
-.vs-left-menu-item--root {
-  > .vs-left-menu-item--title {
+.vc-left-menu-item--root {
+  > .vc-left-menu-item--title {
     font-size: 14px;
     color: $-text-color-primary;
     padding: 12px 8px 12px 24px;
@@ -101,8 +101,8 @@ export default defineComponent({
   }
 }
 
-.vs-left-menu-item--group {
-  > .vs-left-menu-item--title {
+.vc-left-menu-item--group {
+  > .vc-left-menu-item--title {
     color: $-text-color-secondary;
     font-size: 14px;
     padding: 6px 8px 6px 24px;
