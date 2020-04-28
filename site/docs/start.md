@@ -33,7 +33,7 @@ export default defineComponent({
 });
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .vs-component {
   color: #1f74ff;
 }

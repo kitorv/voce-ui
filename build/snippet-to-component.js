@@ -31,7 +31,7 @@ const importToRequire = (code) => {
   );
 };
 
-module.exports = (snippetCode) => {
+module.exports = (snippetCode, hash) => {
   const { descriptor, errors } = parse(snippetCode);
   if (errors && errors.length > 0) {
     throw errors;
@@ -44,15 +44,18 @@ module.exports = (snippetCode) => {
   scriptCode = importToRequire(scriptCode);
   scriptCode = scriptCode.replace(/export\s+default/, "const component =");
   if (template && template.content) {
-    // TODO scopedId
+    // vue 的 template 编译为渲染函数 render
     const { code } = compileTemplate({
       source: template.content,
-      filename: "component.vue",
+      filename: `snippet_component_${hash}.vue`,
+      compilerOptions: {
+        scopeId: `data-v-${hash}`,
+      },
       transformAssetUrls: true,
     });
+    // 将渲染函数设置到组件的 script 组件属性 render
     let templateCode = importToRequire(code).replace(/export\s+/, "");
-
-    scriptCode = `${scriptCode} ${templateCode} component.render = render; return component`;
+    scriptCode = `${scriptCode}; ${templateCode}; component.render = render; return component;`;
   }
   return scriptCode;
 };
