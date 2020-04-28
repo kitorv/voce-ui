@@ -37,7 +37,7 @@ export default defineComponent({
 
 .vc-code-snippet--example {
   box-sizing: border-box;
-  padding: 30px 35px;
+  padding: 26px 32px;
   color: $-text-color-primary;
   border-bottom: 1px solid $-border-color-light;
   font-size: 12px;

@@ -2,8 +2,9 @@ const MarkdownIt = require("markdown-it");
 const MarkdownItClass = require("./markdown-it-class");
 const MarkdownItContainer = require("markdown-it-container");
 const hljs = require("highlight.js");
-const hash = require("hash-sum");
+const hashSum = require("hash-sum");
 const snippetToVueComponent = require("./snippet-to-component");
+const snippetToVueStyle = require("./snippet-to-style");
 
 module.exports = function (source) {
   // 初始还MarkdownIt用于转换md文件为html
@@ -48,6 +49,7 @@ module.exports = function (source) {
   });
 
   const vueComponentList = [];
+  const vueStyleList = [];
 
   // 解析markdown的 【:::danger 内容 ::::】 格式
   markdownIt.use(MarkdownItContainer, "snippet", {
@@ -68,13 +70,14 @@ module.exports = function (source) {
         const nextIndex = tokens[index + 1];
         let content = nextIndex.type === "fence" ? nextIndex.content : "";
         // 示例代码解析为Vue组件
-        const hashCode = hash(content);
+        const hashCode = hashSum(content);
         const componentName = `msc-vue-snippet-code-${hashCode}`;
-        const componentScript = snippetToVueComponent(content);
+        const componentScript = snippetToVueComponent(content, hashCode);
         vueComponentList.push(
           `"${componentName}":(function () { ${componentScript} })()`
         );
-
+        const componentStyle = snippetToVueStyle(content, hashCode);
+        vueStyleList.push(componentStyle);
         // 将需要渲染的示例用nc-snippet组件包裹替换插槽显示示例效果
         return `<vc-code-snippet>
                   <template #description>${desccriptionHtml}</template>
@@ -97,5 +100,8 @@ module.exports = function (source) {
             export default defineComponent({
               components: {${vueComponentList.join(",")}}
             });
-          </script>`;
+          </script>
+          <style>
+             ${vueStyleList.join(",")}
+          </style>`;
 };
