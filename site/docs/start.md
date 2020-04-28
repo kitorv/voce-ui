@@ -1,4 +1,4 @@
-# Input 输入框
+# Test
 
 基础的数据输入。
 
@@ -14,7 +14,7 @@ Danger
 
 :::snippet 使用`v-mdoel`进行值的绑定。
 
-```html
+```vue
 <template>
   <div class="vs-component">
     <div v-text="value"></div>
@@ -22,19 +22,21 @@ Danger
 </template>
 
 <script>
-  export default {
-    data() {
-      return {
-        value: "Component Content",
-      };
-    },
-  };
+import { defineComponent, ref } from "vue";
+
+export default defineComponent({
+  name: "VcCodeSnippet",
+  setup() {
+    const value = ref("Component Text");
+    return { value };
+  },
+});
 </script>
 
 <style lang="scss">
-  .vs-component {
-    color: #1f74ff;
-  }
+.vs-component {
+  color: #1f74ff;
+}
 </style>
 ```
 
