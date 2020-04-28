@@ -4,6 +4,7 @@ import Router from "./router";
 
 import "highlight.js/styles/color-brewer.css";
 import "./styles/markdown.scss";
+import "../src/styles/icons.scss";
 
 const app = createApp(App);
 

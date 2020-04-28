@@ -95,11 +95,11 @@ code.vs-markdown-doc {
 }
 
 code[class*="language-"] {
-  background: mix($-color-primary, #ffffff, 1%);
+  background: mix($-text-color-primary, #ffffff, 2%);
   font-family: Consolas, Menlo, Courier, monospace;
   display: block;
   font-size: 14px;
-  padding: 8px 16px;
+  padding: 16px 20px;
   line-height: 1.5;
   border-radius: 5px;
 }
