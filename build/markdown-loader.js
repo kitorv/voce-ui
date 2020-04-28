@@ -2,6 +2,8 @@ const MarkdownIt = require("markdown-it");
 const MarkdownItClass = require("./markdown-it-class");
 const MarkdownItContainer = require("markdown-it-container");
 const hljs = require("highlight.js");
+const hash = require("hash-sum");
+const snippetToVueComponent = require("./snippet-to-component");
 
 module.exports = function (source) {
   // 初始还MarkdownIt用于转换md文件为html
@@ -45,6 +47,8 @@ module.exports = function (source) {
     },
   });
 
+  const vueComponentList = [];
+
   // 解析markdown的 【:::danger 内容 ::::】 格式
   markdownIt.use(MarkdownItContainer, "snippet", {
     // 验证代码块为【:::snippet :::】才进行渲染
@@ -62,11 +66,21 @@ module.exports = function (source) {
         const desccriptionHtml = markdownIt.render(desccription);
         // 获取vue组件示例的代码
         const nextIndex = tokens[index + 1];
-        let constent = nextIndex.type === "fence" ? nextIndex.content : "";
+        let content = nextIndex.type === "fence" ? nextIndex.content : "";
+        // 示例代码解析为Vue组件
+        const hashCode = hash(content);
+        const componentName = `msc-vue-snippet-code-${hashCode}`;
+        const componentScript = snippetToVueComponent(content);
+        vueComponentList.push(
+          `"${componentName}":(function () { ${componentScript} })()`
+        );
+
         // 将需要渲染的示例用nc-snippet组件包裹替换插槽显示示例效果
         return `<vc-code-snippet>
                   <template #description>${desccriptionHtml}</template>
-                  <template #example>EXAMPLE</template>
+                  <template #example>
+                    <${componentName} />
+                  </template>
                   <template #source>`;
       }
       return `    </template>
@@ -74,8 +88,14 @@ module.exports = function (source) {
     },
   });
   return `<template>
-  <div class="vs-markdown-view">
-    ${markdownIt.render(source)}
-  </div>
-</template>`;
+            <div class="nc-snippet-doc">
+              ${markdownIt.render(source)}
+            </div>
+          </template>
+          <script>
+            import { defineComponent } from "vue";
+            export default defineComponent({
+              components: {${vueComponentList.join(",")}}
+            });
+          </script>`;
 };
