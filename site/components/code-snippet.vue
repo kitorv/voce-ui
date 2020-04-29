@@ -9,13 +9,24 @@
         <i :class="codeIconClass"></i>
       </div>
     </div>
-    <div v-show="showCode" class="vc-code-snippet--code">
-      <slot name="source" />
-    </div>
+    <transition
+      leave-active-class="vc-code-snippet--transition"
+      enter-active-class="vc-code-snippet--transition"
+      @before-enter="transitionBeforeEnter"
+      @enter="transitionEnter"
+      @after-enter="transitionAfterEnter"
+      @before-leave="transitionBeforeLeave"
+      @leave="transitionLeave"
+      @after-leave="transitionAfterLeave"
+    >
+      <div v-show="showCode" class="vc-code-snippet--code" ref="codeEl">
+        <slot name="source" />
+      </div>
+    </transition>
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import { defineComponent, ref, computed } from "vue";
 
 export default defineComponent({
@@ -31,7 +42,46 @@ export default defineComponent({
       showCode.value = !showCode.value;
     };
 
-    return { showCode, codeIconClass, handleIconClick };
+    let codeEl = ref<HTMLDivElement>();
+
+    const transitionBeforeEnter = (el: HTMLElement) => {
+      el.style.maxHeight = "0px";
+    };
+
+    const transitionEnter = (el: HTMLElement) => {
+      if (!codeEl.value) return;
+      el.style.maxHeight = `${codeEl.value.scrollHeight}px`;
+    };
+
+    const transitionAfterEnter = (el: HTMLElement) => {
+      el.style.maxHeight = "auto";
+    };
+
+    const transitionBeforeLeave = (el: HTMLElement) => {
+      if (!codeEl.value) return;
+      el.style.maxHeight = `${codeEl.value.scrollHeight}px`;
+    };
+
+    const transitionLeave = (el: HTMLElement) => {
+      el.style.maxHeight = "0px";
+    };
+
+    const transitionAfterLeave = (el: HTMLElement) => {
+      el.style.maxHeight = "auto";
+    };
+
+    return {
+      showCode,
+      codeIconClass,
+      handleIconClick,
+      codeEl,
+      transitionBeforeEnter,
+      transitionEnter,
+      transitionAfterEnter,
+      transitionBeforeLeave,
+      transitionLeave,
+      transitionAfterLeave,
+    };
   },
 });
 </script>
@@ -84,10 +134,16 @@ export default defineComponent({
 .vc-code-snippet--code {
   box-sizing: border-box;
   border-top: 1px solid $-border-color-light;
+  box-sizing: border-box;
+  overflow: hidden;
 
   > pre {
     margin: 0;
     padding: 0;
   }
+}
+
+.vc-code-snippet--transition {
+  transition: 0.3s max-height ease-in-out;
 }
 </style>
