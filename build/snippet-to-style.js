@@ -15,6 +15,7 @@ module.exports = (snippetCode, hash) => {
       id: `data-v-${hash}`,
       scoped: true,
       trim: true,
+      preprocessLang: "node-scss",
     });
     styleCodeList.push(code);
     errorList = errorList.concat(errors);

@@ -6,7 +6,7 @@
 
 :::snippet 在标签上设置类名，类名格式：`v-icon-{name}`。
 
-```html
+```vue
 <template>
   <div class="vsc-icon">
     <i class="v-icon-code-expand"></i>
@@ -15,13 +15,13 @@
 </template>
 
 <style lang="scss" scoped>
-  .vsc-icon {
-    font-size: 28px;
-  }
+.vsc-icon {
+  font-size: 28px;
+}
 
-  .vsc-icon > i {
-    margin-right: 16px;
-  }
+.vsc-icon > i {
+  margin-right: 16px;
+}
 </style>
 ```
 

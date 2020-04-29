@@ -2,6 +2,7 @@ const MarkdownIt = require("markdown-it");
 const MarkdownItClass = require("./markdown-it-class");
 const MarkdownItContainer = require("markdown-it-container");
 const hljs = require("highlight.js");
+const hljsVueLanguage = require("./hilghlight-vue");
 const hashSum = require("hash-sum");
 const snippetToVueComponent = require("./snippet-to-component");
 const snippetToVueStyle = require("./snippet-to-style");
@@ -13,6 +14,7 @@ module.exports = function (source) {
     xhtmlOut: true,
     // 将markdown中的代码块用hljs高亮显示
     highlight: function (content, language) {
+      hljs.registerLanguage("vue", hljsVueLanguage);
       language = language && hljs.getLanguage(language) ? language : "html";
       const formatCode = hljs.highlight(language, content, true).value;
       return `<pre><code class="language-${language}">${formatCode}</code></pre>`;
@@ -91,7 +93,7 @@ module.exports = function (source) {
     },
   });
   return `<template>
-            <div class="nc-snippet-doc">
+            <div class="vs-markdown-view">
               ${markdownIt.render(source)}
             </div>
           </template>
@@ -101,7 +103,7 @@ module.exports = function (source) {
               components: {${vueComponentList.join(",")}}
             });
           </script>
-          <style>
-             ${vueStyleList.join(",")}
+          <style lang="scss">
+             ${vueStyleList.join(" ")}
           </style>`;
 };

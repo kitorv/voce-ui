@@ -17,6 +17,11 @@ const router = createRouter({
           name: "component-icon",
           component: () => import("@/components/icons/index.md"),
         },
+        {
+          path: "/component/color",
+          name: "component-color",
+          component: () => import("@/components/color/index.md"),
+        },
       ],
     },
   ],

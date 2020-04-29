@@ -70,7 +70,7 @@ module.exports = {
           {
             loader: "sass-loader",
             options: {
-              prependData: '@import "src/styles/variable.scss";',
+              prependData: '@import "src/components/color/index.scss";',
             },
           },
         ],
