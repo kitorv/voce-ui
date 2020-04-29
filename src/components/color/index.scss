@@ -1,0 +1,15 @@
+$-color-primary: #1f74ff !default;
+$-color-success: #46c93a !default;
+$-color-danger: #ff4757 !default;
+$-color-warning: #ffba00 !default;
+$-color-dark: #1e1e1e !default;
+
+$-text-color-primary: #333333 !default;
+$-text-color-regular: #666666 !default;
+$-text-color-secondary: #999999 !default;
+$-text-color-placeholder: #cccccc !default;
+
+$-border-color-base: #dcdfe6 !default;
+$-border-color-light: mix($-border-color-base, #ffffff, 80%) !default;
+$-border-color-lighter: mix($-border-color-base, #ffffff, 60%) !default;
+$-border-color-extra-light: mix($-border-color-base, #ffffff, 40%) !default;
