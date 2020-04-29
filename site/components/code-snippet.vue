@@ -15,9 +15,9 @@
       @before-enter="transitionBeforeEnter"
       @enter="transitionEnter"
       @after-enter="transitionAfterEnter"
-      @before-leave="transitionBeforeLeave"
-      @leave="transitionLeave"
-      @after-leave="transitionAfterLeave"
+      @before-leave="transitionEnter"
+      @leave="transitionBeforeEnter"
+      @after-leave="transitionAfterEnter"
     >
       <div v-show="showCode" class="vc-code-snippet--code" ref="codeEl">
         <slot name="source" />
@@ -57,19 +57,6 @@ export default defineComponent({
       el.style.maxHeight = "auto";
     };
 
-    const transitionBeforeLeave = (el: HTMLElement) => {
-      if (!codeEl.value) return;
-      el.style.maxHeight = `${codeEl.value.scrollHeight}px`;
-    };
-
-    const transitionLeave = (el: HTMLElement) => {
-      el.style.maxHeight = "0px";
-    };
-
-    const transitionAfterLeave = (el: HTMLElement) => {
-      el.style.maxHeight = "auto";
-    };
-
     return {
       showCode,
       codeIconClass,
@@ -78,9 +65,6 @@ export default defineComponent({
       transitionBeforeEnter,
       transitionEnter,
       transitionAfterEnter,
-      transitionBeforeLeave,
-      transitionLeave,
-      transitionAfterLeave,
     };
   },
 });
