@@ -6,7 +6,7 @@
 
 :::snippet 采用友好的蓝色作为主颜色。
 
-```html
+```vue
 <template>
   <div class="vsc-color">
     <ul>
@@ -15,37 +15,37 @@
   </div>
 </template>
 
-<style lang="scss">
-  .vsc-color {
-    ul {
-      display: flex;
-      align-items: center;
-      padding: 0;
-    }
-
-    li {
-      display: inline-flex;
-      position: relative;
-      width: 100px;
-      height: 100px;
-      margin: 0 10px;
-      color: #fff;
-      border-radius: 10px;
-      align-items: center;
-      justify-content: center;
-      transition: all 0.2s ease;
-    }
-
-    li:hover {
-      transform: translate(0, 8px);
-      box-shadow: 0px 0px 40px -10px rgba(255, 255, 255, 0) !important;
-    }
+<style lang="scss" scoped>
+.vsc-color {
+  ul {
+    display: flex;
+    align-items: center;
+    padding: 0;
   }
 
-  .vsc-color--primary {
-    background: $-color-primary;
-    box-shadow: 0px 15px 40px -10px rgba($-color-primary, 0.9);
+  li {
+    display: inline-flex;
+    position: relative;
+    width: 100px;
+    height: 100px;
+    margin: 0 10px;
+    color: #fff;
+    border-radius: 10px;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
   }
+
+  li:hover {
+    transform: translate(0, 8px);
+    box-shadow: 0px 0px 40px -10px rgba(255, 255, 255, 0) !important;
+  }
+}
+
+.vsc-color--primary {
+  background: $-color-primary;
+  box-shadow: 0px 15px 40px -10px rgba($-color-primary, 0.9);
+}
 </style>
 ```
 
@@ -67,7 +67,7 @@
   </div>
 </template>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .vsc-color {
   ul {
     display: flex;

@@ -43,7 +43,7 @@ export default defineComponent({
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 30px 10px;
+  padding: 24px 10px;
   border: 1px solid $-border-color-base;
   border-left: none;
   border-top: none;
@@ -58,7 +58,10 @@ export default defineComponent({
   > p {
     text-align: center;
     padding: 0;
-    margin: 20px 0 0 0;
+    margin: 0;
+    line-height: 1.5;
+    margin: 12px 0 0 0;
+    height: 36px;
   }
 }
 </style>
