@@ -15,7 +15,7 @@
   - [ ] 基础组件
     - [ ] Button 按钮
     - [ ] Color 色彩
-    - [ ] Icon 图标
+    - [x] Icon 图标
     - [ ] Link 链接
     - [ ] Text 文字
   - [ ] 布局

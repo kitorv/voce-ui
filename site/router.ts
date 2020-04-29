@@ -12,6 +12,11 @@ const router = createRouter({
           name: "doc-start",
           component: () => import("../site/docs/start.md"),
         },
+        {
+          path: "/component/icon",
+          name: "component-icon",
+          component: () => import("@/components/icons/index.md"),
+        },
       ],
     },
   ],

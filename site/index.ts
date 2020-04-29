@@ -11,5 +11,8 @@ const app = createApp(App);
 import VcCodeSnippet from "./components/code-snippet.vue";
 app.component(VcCodeSnippet.name as string, VcCodeSnippet);
 
+import VcIconView from "./views/icons.vue";
+app.component(VcIconView.name as string, VcIconView);
+
 app.use(Router);
 app.mount("#app");
