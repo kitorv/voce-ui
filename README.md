@@ -14,7 +14,7 @@
     - [ ] 更新日志
   - [ ] 基础组件
     - [ ] Button 按钮
-    - [ ] Color 色彩
+    - [x] Color 色彩
     - [x] Icon 图标
     - [ ] Link 链接
     - [ ] Text 文字
