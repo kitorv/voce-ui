@@ -34,6 +34,7 @@
     align-items: center;
     justify-content: center;
     transition: all 0.2s ease;
+    cursor: default;
   }
 
   li:hover {
@@ -86,6 +87,7 @@
     align-items: center;
     justify-content: center;
     transition: all 0.2s ease;
+    cursor: default;
   }
 
   li:hover {
@@ -153,6 +155,7 @@
     align-items: center;
     justify-content: center;
     transition: all 0.2s ease;
+    cursor: default;
   }
 
   li:hover {
@@ -220,6 +223,7 @@
     justify-content: center;
     transition: all 0.2s ease;
     color: $-text-color-primary;
+    cursor: default;
   }
 
   li:hover {

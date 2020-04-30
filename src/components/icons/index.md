@@ -16,7 +16,8 @@
 
 <style lang="scss" scoped>
 .vsc-icon {
-  font-size: 28px;
+  font-size: 32px;
+  color: $-text-color-regular;
 }
 
 .vsc-icon > i {
