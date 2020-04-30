@@ -219,6 +219,7 @@
     align-items: center;
     justify-content: center;
     transition: all 0.2s ease;
+    color: $-text-color-primary;
   }
 
   li:hover {
@@ -229,22 +230,18 @@
 
 .vsc-border-color--base {
   border: 1px solid $-border-color-base;
-  color: $-border-color-base;
 }
 
 .vsc-border-color--light {
   border: 1px solid $-border-color-light;
-  color: $-border-color-light;
 }
 
 .vsc-border-color--lighter {
   border: 1px solid $-border-color-lighter;
-  color: $-border-color-lighter;
 }
 
 .vsc-border-color--extra-light {
   border: 1px solid $-border-color-extra-light;
-  color: $-border-color-extra-light;
 }
 </style>
 ```
