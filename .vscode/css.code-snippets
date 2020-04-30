@@ -1,0 +1,67 @@
+{
+  "$-color-primary": {
+    "prefix": "$-color-primary",
+    "body": ["$-color-primary;$1"],
+    "description": "$-color-primary"
+  },
+  "$-color-success": {
+    "prefix": "$-color-success",
+    "body": ["$-color-success;$1"],
+    "description": "$-color-success"
+  },
+  "$-color-danger": {
+    "prefix": "$-color-danger",
+    "body": ["$-color-danger;$1"],
+    "description": "$-color-danger"
+  },
+  "$-color-warning": {
+    "prefix": "$-color-warning",
+    "body": ["$-color-warning;$1"],
+    "description": "$-color-warning"
+  },
+  "$-color-dark": {
+    "prefix": "$-color-dark",
+    "body": ["$-color-dark;$1"],
+    "description": "$-color-dark"
+  },
+  "$-text-color-primary": {
+    "prefix": "$-text-color-primary",
+    "body": ["$-text-color-primary;$1"],
+    "description": "$-text-color-primary"
+  },
+  "$-text-color-regular": {
+    "prefix": "$-",
+    "body": ["$-text-color-regular;$1"],
+    "description": "$-text-color-regular"
+  },
+  "$-text-color-secondary": {
+    "prefix": "$-text-color-secondary",
+    "body": ["$-text-color-secondary;$1"],
+    "description": "$-text-color-secondary"
+  },
+  "$-text-color-placeholder": {
+    "prefix": "$-text-color-placeholder",
+    "body": ["$-text-color-placeholder;$1"],
+    "description": "$-text-color-placeholder"
+  },
+  "$-border-color-base": {
+    "prefix": "$-border-color-base",
+    "body": ["$-border-color-base;$1"],
+    "description": "$-border-color-base"
+  },
+  "$-border-color-light": {
+    "prefix": "$-border-color-light",
+    "body": ["$-border-color-light;$1"],
+    "description": "$-border-color-light"
+  },
+  "$-border-color-lighter": {
+    "prefix": "$-border-color-lighter",
+    "body": ["$-border-color-lighter;$1"],
+    "description": "$-border-color-lighter"
+  },
+  "$-border-color-extra-light": {
+    "prefix": "$-border-color-extra-light",
+    "body": ["$-border-color-extra-light;$1"],
+    "description": "$-border-color-extra-light"
+  }
+}

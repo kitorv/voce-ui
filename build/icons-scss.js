@@ -55,25 +55,4 @@ request(`https:${iconfontCssUrl}`, (error, response) => {
       () => {}
     );
   });
-
-  // const scss = [
-  //   `[class*="v-icon-"],[class^="v-icon-"] {
-  //       font-family: nebula-iconfont !important;
-  //       font-style: normal;
-  //       font-weight: 400;
-  //       font-variant: normal;
-  //       text-transform: none;
-  //       line-height: 1;
-  //       -webkit-font-smoothing: antialiased;
-  //       -moz-osx-font-smoothing: grayscale;
-  //     }`,
-  // ];
-
-  //   fs.writeFile(
-  //     path.resolve(__dirname, "./icons.ts"),
-  //     prettier.format(`export default ${JSON.stringify(classsNames)};`, {
-  //       parser: "babel",
-  //     }),
-  //     () => {}
-  //   );
 });
