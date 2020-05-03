@@ -15,12 +15,12 @@ const router = createRouter({
         {
           path: "/component/icon",
           name: "component-icon",
-          component: () => import("@/components/icons/index.md"),
+          component: () => import("@/components/icons/README.md"),
         },
         {
           path: "/component/color",
           name: "component-color",
-          component: () => import("@/components/color/index.md"),
+          component: () => import("@/components/color/README.md"),
         },
       ],
     },
