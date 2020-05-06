@@ -9,8 +9,18 @@ const router = createRouter({
       children: [
         {
           path: "/",
-          name: "doc-start",
+          name: "docs-start",
           component: () => import("../site/docs/start.md"),
+        },
+        {
+          path: "/docs/theme",
+          name: "docs-theme",
+          component: () => import("../site/docs/theme.md"),
+        },
+        {
+          path: "/docs/changelog",
+          name: "docs-changelog",
+          component: () => import("../CHANGELOG.md"),
         },
         {
           path: "/component/icon",

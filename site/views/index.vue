@@ -31,8 +31,8 @@ export default defineComponent({
         title: "开发概览",
         children: [
           { path: "/", title: "快速上手" },
-          { path: "/develop/theme", title: "主题定制" },
-          { path: "/develop/changelog", title: "更新日志" },
+          { path: "/docs/theme", title: "主题定制" },
+          { path: "/docs/changelog", title: "更新日志" },
         ],
       },
       {

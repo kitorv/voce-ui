@@ -1,4 +1,6 @@
-module.exports = (hljs) => {
+const hljs = require("highlight.js");
+
+const vueLanguage = (hljs) => {
   return {
     subLanguage: "xml",
     contains: [
@@ -43,3 +45,7 @@ module.exports = (hljs) => {
     ],
   };
 };
+
+hljs.registerLanguage("vue", vueLanguage);
+
+module.exports = hljs;
