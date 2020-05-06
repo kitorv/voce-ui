@@ -90,7 +90,6 @@ export default defineComponent({
   padding: 26px 32px;
   color: $-text-color-primary;
   border-bottom: 1px solid $-border-color-light;
-  font-size: 12px;
 }
 
 .vc-code-snippet--desc {
