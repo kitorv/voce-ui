@@ -112,8 +112,8 @@
 }
 
 .vsc-color--dark {
-  background: $-color-dark;
-  box-shadow: 0px 15px 40px -10px rgba($-color-dark, 0.9);
+  background: $-color--dark;
+  box-shadow: 0px 15px 40px -10px rgba($-color--dark, 0.9);
 }
 </style>
 ```

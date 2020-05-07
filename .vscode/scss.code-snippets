@@ -19,9 +19,9 @@
     "body": "$-color--warning;$1",
     "description": "#ffba00"
   },
-  "$-color-dark": {
-    "prefix": "$-color-dark",
-    "body": "$-color-dark;$1",
+  "$-color--dark": {
+    "prefix": "$-color--dark",
+    "body": "$-color--dark;$1",
     "description": "#1e1e1e"
   },
   "$-color-text--primary": {
