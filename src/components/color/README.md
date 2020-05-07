@@ -44,8 +44,8 @@
 }
 
 .vsc-color--primary {
-  background: $-color-primary;
-  box-shadow: 0px 15px 40px -10px rgba($-color-primary, 0.9);
+  background: $-color--primary;
+  box-shadow: 0px 15px 40px -10px rgba($-color--primary, 0.9);
 }
 </style>
 ```
@@ -97,18 +97,18 @@
 }
 
 .vsc-color--success {
-  background: $-color-success;
-  box-shadow: 0px 15px 40px -10px rgba($-color-success, 0.9);
+  background: $-color--success;
+  box-shadow: 0px 15px 40px -10px rgba($-color--success, 0.9);
 }
 
 .vsc-color--danger {
-  background: $-color-danger;
-  box-shadow: 0px 15px 40px -10px rgba($-color-danger, 0.9);
+  background: $-color--danger;
+  box-shadow: 0px 15px 40px -10px rgba($-color--danger, 0.9);
 }
 
 .vsc-color--warning {
-  background: $-color-warning;
-  box-shadow: 0px 15px 40px -10px rgba($-color-warning, 0.9);
+  background: $-color--warning;
+  box-shadow: 0px 15px 40px -10px rgba($-color--warning, 0.9);
 }
 
 .vsc-color--dark {
@@ -165,23 +165,23 @@
 }
 
 .vsc-text-color--primary {
-  background: $-text-color-primary;
-  box-shadow: 0px 15px 40px -10px rgba($-text-color-primary, 0.9);
+  background: $-color-text--primary;
+  box-shadow: 0px 15px 40px -10px rgba($-color-text--primary, 0.9);
 }
 
 .vsc-text-color--regular {
-  background: $-text-color-regular;
-  box-shadow: 0px 15px 40px -10px rgba($-text-color-regular, 0.9);
+  background: $-color-text--regular;
+  box-shadow: 0px 15px 40px -10px rgba($-color-text--regular, 0.9);
 }
 
 .vsc-text-color--secondary {
-  background: $-text-color-secondary;
-  box-shadow: 0px 15px 40px -10px rgba($-text-color-secondary, 0.9);
+  background: $-color-text--secondary;
+  box-shadow: 0px 15px 40px -10px rgba($-color-text--secondary, 0.9);
 }
 
 .vsc-text-color--placeholder {
-  background: $-text-color-placeholder;
-  box-shadow: 0px 15px 40px -10px rgba($-text-color-placeholder, 0.9);
+  background: $-color-text--placeholder;
+  box-shadow: 0px 15px 40px -10px rgba($-color-text--placeholder, 0.9);
 }
 </style>
 ```
@@ -222,7 +222,7 @@
     align-items: center;
     justify-content: center;
     transition: all 0.2s ease;
-    color: $-text-color-primary;
+    color: $-color-text--primary;
     cursor: default;
   }
 
@@ -233,19 +233,19 @@
 }
 
 .vsc-border-color--base {
-  border: 1px solid $-border-color-base;
+  border: 1px solid $-color-border--base;
 }
 
 .vsc-border-color--light {
-  border: 1px solid $-border-color-light;
+  border: 1px solid $-color-border--light;
 }
 
 .vsc-border-color--lighter {
-  border: 1px solid $-border-color-lighter;
+  border: 1px solid $-color-border--lighter;
 }
 
 .vsc-border-color--extra-light {
-  border: 1px solid $-border-color-extra-light;
+  border: 1px solid $-color-border--extra-light;
 }
 </style>
 ```

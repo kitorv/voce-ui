@@ -22,7 +22,7 @@ export default defineComponent({
 
 <style lang="scss" scoped>
 .vs-icon-view {
-  border: 1px solid $-border-color-base;
+  border: 1px solid $-color-border--base;
   border-right: none;
   border-bottom: none;
   margin: 10px 0;
@@ -44,10 +44,10 @@ export default defineComponent({
   flex-direction: column;
   align-items: center;
   padding: 24px 10px;
-  border: 1px solid $-border-color-base;
+  border: 1px solid $-color-border--base;
   border-left: none;
   border-top: none;
-  color: $-text-color-regular;
+  color: $-color-text--regular;
   box-sizing: border-box;
   cursor: pointer;
 

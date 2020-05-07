@@ -21,6 +21,12 @@
       "name": "icons",
       "program": "${workspaceFolder}/build/icons-scss.js",
       "args": ["--iconfont", "//at.alicdn.com/t/font_1789069_dx9o26madeh.css"]
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "snippet",
+      "program": "${workspaceFolder}/build/scss-snippet.js"
     }
   ]
 }
