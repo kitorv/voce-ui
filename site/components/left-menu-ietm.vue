@@ -58,7 +58,7 @@ export default defineComponent({
   display: block;
   position: relative;
   padding: 8px 24px;
-  color: $-text-color-primary;
+  color: $-color-text--primary;
   font-weight: normal;
   line-height: 1.5;
   text-decoration: none;
@@ -71,13 +71,13 @@ export default defineComponent({
   &:hover {
     text-decoration: none;
     outline: 0;
-    color: $-color-primary;
-    background: mix($-color-primary, #ffffff, 3%);
+    color: $-color--primary;
+    background: mix($-color--primary, #ffffff, 3%);
   }
 
   &.router-link-exact-active {
-    background: mix($-color-primary, #ffffff, 3%);
-    color: $-color-primary;
+    background: mix($-color--primary, #ffffff, 3%);
+    color: $-color--primary;
   }
 
   &.router-link-exact-active::after {
@@ -87,15 +87,15 @@ export default defineComponent({
     left: 0;
     width: 5px;
     height: 100%;
-    background: $-color-primary;
-    box-shadow: 1px 0 12px 0 $-color-primary;
+    background: $-color--primary;
+    box-shadow: 1px 0 12px 0 $-color--primary;
   }
 }
 
 .vc-left-menu-item--root {
   > .vc-left-menu-item--title {
     font-size: 14px;
-    color: $-text-color-primary;
+    color: $-color-text--primary;
     padding: 12px 8px 12px 24px;
     font-weight: bold;
   }
@@ -103,7 +103,7 @@ export default defineComponent({
 
 .vc-left-menu-item--group {
   > .vc-left-menu-item--title {
-    color: $-text-color-secondary;
+    color: $-color-text--secondary;
     font-size: 14px;
     padding: 6px 8px 6px 24px;
   }

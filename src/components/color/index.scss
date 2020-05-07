@@ -1,15 +1,15 @@
-$-color-primary: #1f74ff !default;
-$-color-success: #46c93a !default;
-$-color-danger: #ff4757 !default;
-$-color-warning: #ffba00 !default;
+$-color--primary: #1f74ff !default;
+$-color--success: #46c93a !default;
+$-color--danger: #ff4757 !default;
+$-color--warning: #ffba00 !default;
 $-color-dark: #1e1e1e !default;
 
-$-text-color-primary: #333333 !default;
-$-text-color-regular: #666666 !default;
-$-text-color-secondary: #999999 !default;
-$-text-color-placeholder: #cccccc !default;
+$-color-text--primary: #333333 !default;
+$-color-text--regular: #666666 !default;
+$-color-text--secondary: #999999 !default;
+$-color-text--placeholder: #cccccc !default;
 
-$-border-color-base: #dcdfe6 !default;
-$-border-color-light: mix($-border-color-base, #ffffff, 85%) !default;
-$-border-color-lighter: mix($-border-color-base, #ffffff, 70%) !default;
-$-border-color-extra-light: mix($-border-color-base, #ffffff, 55%) !default;
+$-color-border--base: #dcdfe6 !default;
+$-color-border--light: mix($-color-border--base, #ffffff, 80%) !default;
+$-color-border--lighter: mix($-color-border--base, #ffffff, 60%) !default;
+$-color-border--extra-light: mix($-color-border--base, #ffffff, 40%) !default;

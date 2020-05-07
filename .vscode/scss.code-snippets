@@ -1,0 +1,67 @@
+{
+  "$-color--primary": {
+    "prefix": "$-color--primary",
+    "body": "$-color--primary;$1",
+    "description": "#1f74ff"
+  },
+  "$-color--success": {
+    "prefix": "$-color--success",
+    "body": "$-color--success;$1",
+    "description": "#46c93a"
+  },
+  "$-color--danger": {
+    "prefix": "$-color--danger",
+    "body": "$-color--danger;$1",
+    "description": "#ff4757"
+  },
+  "$-color--warning": {
+    "prefix": "$-color--warning",
+    "body": "$-color--warning;$1",
+    "description": "#ffba00"
+  },
+  "$-color-dark": {
+    "prefix": "$-color-dark",
+    "body": "$-color-dark;$1",
+    "description": "#1e1e1e"
+  },
+  "$-color-text--primary": {
+    "prefix": "$-color-text--primary",
+    "body": "$-color-text--primary;$1",
+    "description": "#333333"
+  },
+  "$-color-text--regular": {
+    "prefix": "$-color-text--regular",
+    "body": "$-color-text--regular;$1",
+    "description": "#666666"
+  },
+  "$-color-text--secondary": {
+    "prefix": "$-color-text--secondary",
+    "body": "$-color-text--secondary;$1",
+    "description": "#999999"
+  },
+  "$-color-text--placeholder": {
+    "prefix": "$-color-text--placeholder",
+    "body": "$-color-text--placeholder;$1",
+    "description": "#cccccc"
+  },
+  "$-color-border--base": {
+    "prefix": "$-color-border--base",
+    "body": "$-color-border--base;$1",
+    "description": "#dcdfe6"
+  },
+  "$-color-border--light": {
+    "prefix": "$-color-border--light",
+    "body": "$-color-border--light;$1",
+    "description": "mix($-color-border--base, #ffffff, 80%)"
+  },
+  "$-color-border--lighter": {
+    "prefix": "$-color-border--lighter",
+    "body": "$-color-border--lighter;$1",
+    "description": "mix($-color-border--base, #ffffff, 60%)"
+  },
+  "$-color-border--extra-light": {
+    "prefix": "$-color-border--extra-light",
+    "body": "$-color-border--extra-light;$1",
+    "description": "mix($-color-border--base, #ffffff, 40%)"
+  }
+}

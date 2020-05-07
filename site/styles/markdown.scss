@@ -2,7 +2,7 @@
   max-width: 1000px;
   padding: 30px 50px 60px 50px;
   margin: 0 auto;
-  color: $-text-color-primary;
+  color: $-color-text--primary;
   font-size: 14px;
   line-height: 1.5;
 
@@ -49,7 +49,7 @@ h6.vs-markdown-doc {
 
 p.vs-markdown-doc {
   line-height: 1.5;
-  color: $-text-color-primary;
+  color: $-color-text--primary;
   font-size: 14px;
   padding: 0;
   margin: 0;
@@ -57,14 +57,14 @@ p.vs-markdown-doc {
 
 a.vs-markdown-doc {
   text-decoration: none;
-  color: $-color-primary;
+  color: $-color--primary;
 }
 
 table.vs-markdown-doc {
   border-collapse: collapse;
   border-spacing: 0;
   empty-cells: show;
-  border: 1px solid $-border-color-base;
+  border: 1px solid $-color-border--base;
   width: 100%;
   margin: 8px 0 16px;
   font-size: 14px;
@@ -72,8 +72,8 @@ table.vs-markdown-doc {
 
 th.vs-markdown-doc,
 td.vs-markdown-doc {
-  color: $-text-color-primary;
-  border: 1px solid $-border-color-base;
+  color: $-color-text--primary;
+  border: 1px solid $-color-border--base;
   text-align: left;
   padding: 8px 10px;
   vertical-align: middle;
@@ -81,21 +81,21 @@ td.vs-markdown-doc {
 
 th.vs-markdown-doc {
   white-space: nowrap;
-  color: $-text-color-primary;
+  color: $-color-text--primary;
   font-weight: 500;
-  background-color: mix($-border-color-base, #ffffff, 25%);
+  background-color: mix($-color-border--base, #ffffff, 25%);
 }
 
 code.vs-markdown-doc {
   border-radius: 3px;
   padding: 2px 8px;
   margin: 0 4px;
-  color: $-color-primary;
-  background: mix($-color-primary, #ffffff, 5%);
+  color: $-color--primary;
+  background: mix($-color--primary, #ffffff, 5%);
 }
 
 code[class*="language-"] {
-  background: mix($-text-color-primary, #ffffff, 2%);
+  background: mix($-color-text--primary, #ffffff, 2%);
   font-family: Consolas, Menlo, Courier, monospace;
   display: block;
   font-size: 14px;
@@ -113,11 +113,11 @@ code[class*="language-"] {
 }
 
 .vs-markdown-tip {
-  background-color: mix($-color-primary, #ffffff, 5%);
-  border-left: 5px solid $-color-primary;
+  background-color: mix($-color--primary, #ffffff, 5%);
+  border-left: 5px solid $-color--primary;
 }
 
 .vs-markdown-danger {
-  background-color: mix($-color-danger, #ffffff, 5%);
-  border-left: 5px solid$-color-danger;
+  background-color: mix($-color--danger, #ffffff, 5%);
+  border-left: 5px solid$-color--danger;
 }

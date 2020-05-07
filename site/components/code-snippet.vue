@@ -78,8 +78,8 @@ export default defineComponent({
   margin: 0 0 16px;
   border-radius: 4px;
   transition: all 0.2s;
-  box-shadow: 0 6px 12px -2px mix($-color-primary, #ffffff, 10%),
-    0 0 0 1px $-border-color-base;
+  box-shadow: 0 6px 12px -2px mix($-color--primary, #ffffff, 10%),
+    0 0 0 1px $-color-border--base;
   background-color: #ffffff;
   text-align: left;
   margin-bottom: 30px;
@@ -88,8 +88,8 @@ export default defineComponent({
 .vc-code-snippet--example {
   box-sizing: border-box;
   padding: 26px 32px;
-  color: $-text-color-primary;
-  border-bottom: 1px solid $-border-color-light;
+  color: $-color-text--primary;
+  border-bottom: 1px solid $-color-border--light;
 }
 
 .vc-code-snippet--desc {
@@ -116,7 +116,7 @@ export default defineComponent({
 
 .vc-code-snippet--code {
   box-sizing: border-box;
-  border-top: 1px solid $-border-color-light;
+  border-top: 1px solid $-color-border--light;
   box-sizing: border-box;
   overflow: hidden;
 
