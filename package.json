@@ -25,10 +25,10 @@
   "author": "kitorv",
   "license": "MIT",
   "dependencies": {
-    "vue": "^3.0.0-beta.9"
+    "vue": "^3.0.0-beta.10"
   },
   "devDependencies": {
-    "@vue/compiler-sfc": "^3.0.0-beta.9",
+    "@vue/compiler-sfc": "^3.0.0-beta.10",
     "autoprefixer": "^9.7.6",
     "css-loader": "^3.5.2",
     "file-loader": "^6.0.0",

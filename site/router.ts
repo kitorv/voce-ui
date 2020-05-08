@@ -23,14 +23,19 @@ const router = createRouter({
           component: () => import("../CHANGELOG.md"),
         },
         {
-          path: "/component/icon",
-          name: "component-icon",
-          component: () => import("@/components/icons/README.md"),
+          path: "/component/button",
+          name: "component-button",
+          component: () => import("@/components/button/README.md"),
         },
         {
           path: "/component/color",
           name: "component-color",
           component: () => import("@/components/color/README.md"),
+        },
+        {
+          path: "/component/icon",
+          name: "component-icon",
+          component: () => import("@/components/icons/README.md"),
         },
       ],
     },

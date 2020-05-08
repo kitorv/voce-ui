@@ -4,12 +4,12 @@ $-color--danger: #ff4757 !default;
 $-color--warning: #ffba00 !default;
 $-color--dark: #1e1e1e !default;
 
-$-color-text--primary: #333333 !default;
-$-color-text--regular: #666666 !default;
-$-color-text--secondary: #999999 !default;
-$-color-text--placeholder: #cccccc !default;
+$-color--text-primary: #333333 !default;
+$-color--text-regular: #666666 !default;
+$-color--text-secondary: #999999 !default;
+$-color--text-placeholder: #cccccc !default;
 
-$-color-border--base: #dcdfe6 !default;
-$-color-border--light: mix($-color-border--base, #ffffff, 80%) !default;
-$-color-border--lighter: mix($-color-border--base, #ffffff, 60%) !default;
-$-color-border--extra-light: mix($-color-border--base, #ffffff, 40%) !default;
+$-color--border-base: #dcdfe6 !default;
+$-color--border-light: mix($-color--border-base, #ffffff, 80%) !default;
+$-color--border-lighter: mix($-color--border-base, #ffffff, 60%) !default;
+$-color--border-extra-light: mix($-color--border-base, #ffffff, 40%) !default;
