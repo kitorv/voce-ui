@@ -58,7 +58,7 @@ export default defineComponent({
   display: block;
   position: relative;
   padding: 8px 24px;
-  color: $-color-text--primary;
+  color: $-color--text-primary;
   font-weight: normal;
   line-height: 1.5;
   text-decoration: none;
@@ -95,7 +95,7 @@ export default defineComponent({
 .vc-left-menu-item--root {
   > .vc-left-menu-item--title {
     font-size: 14px;
-    color: $-color-text--primary;
+    color: $-color--text-primary;
     padding: 12px 8px 12px 24px;
     font-weight: bold;
   }
@@ -103,7 +103,7 @@ export default defineComponent({
 
 .vc-left-menu-item--group {
   > .vc-left-menu-item--title {
-    color: $-color-text--secondary;
+    color: $-color--text-secondary;
     font-size: 14px;
     padding: 6px 8px 6px 24px;
   }

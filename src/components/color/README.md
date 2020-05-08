@@ -165,23 +165,23 @@
 }
 
 .vsc-text-color--primary {
-  background: $-color-text--primary;
-  box-shadow: 0px 15px 40px -10px rgba($-color-text--primary, 0.9);
+  background: $-color--text-primary;
+  box-shadow: 0px 15px 40px -10px rgba($-color--text-primary, 0.9);
 }
 
 .vsc-text-color--regular {
-  background: $-color-text--regular;
-  box-shadow: 0px 15px 40px -10px rgba($-color-text--regular, 0.9);
+  background: $-color--text-regular;
+  box-shadow: 0px 15px 40px -10px rgba($-color--text-regular, 0.9);
 }
 
 .vsc-text-color--secondary {
-  background: $-color-text--secondary;
-  box-shadow: 0px 15px 40px -10px rgba($-color-text--secondary, 0.9);
+  background: $-color--text-secondary;
+  box-shadow: 0px 15px 40px -10px rgba($-color--text-secondary, 0.9);
 }
 
 .vsc-text-color--placeholder {
-  background: $-color-text--placeholder;
-  box-shadow: 0px 15px 40px -10px rgba($-color-text--placeholder, 0.9);
+  background: $-color--text-placeholder;
+  box-shadow: 0px 15px 40px -10px rgba($-color--text-placeholder, 0.9);
 }
 </style>
 ```
@@ -222,7 +222,7 @@
     align-items: center;
     justify-content: center;
     transition: all 0.2s ease;
-    color: $-color-text--primary;
+    color: $-color--text-primary;
     cursor: default;
   }
 
@@ -233,19 +233,19 @@
 }
 
 .vsc-border-color--base {
-  border: 1px solid $-color-border--base;
+  border: 1px solid $-color--border-base;
 }
 
 .vsc-border-color--light {
-  border: 1px solid $-color-border--light;
+  border: 1px solid $-color--border-light;
 }
 
 .vsc-border-color--lighter {
-  border: 1px solid $-color-border--lighter;
+  border: 1px solid $-color--border-lighter;
 }
 
 .vsc-border-color--extra-light {
-  border: 1px solid $-color-border--extra-light;
+  border: 1px solid $-color--border-extra-light;
 }
 </style>
 ```

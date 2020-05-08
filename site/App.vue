@@ -23,6 +23,6 @@ html {
 
 #app {
   height: 100%;
-  color: $-color-text--primary;
+  color: $-color--text-primary;
 }
 </style>

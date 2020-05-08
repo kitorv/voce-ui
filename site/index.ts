@@ -14,5 +14,8 @@ app.component(VcCodeSnippet.name as string, VcCodeSnippet);
 import VcIconView from "./views/icons.vue";
 app.component(VcIconView.name as string, VcIconView);
 
+import { install } from "../src/index";
+app.use(install);
+
 app.use(Router);
 app.mount("#app");

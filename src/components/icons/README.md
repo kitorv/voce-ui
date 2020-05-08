@@ -17,7 +17,7 @@
 <style lang="scss" scoped>
 .vsc-icon {
   font-size: 32px;
-  color: $-color-text--regular;
+  color: $-color--text-regular;
 }
 
 .vsc-icon > i {
@@ -32,4 +32,4 @@
 
 具体的图标展示
 
-<VcIconView/>
+<vc-icon-view/>

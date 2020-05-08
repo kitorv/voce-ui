@@ -2,7 +2,7 @@
   max-width: 1000px;
   padding: 30px 50px 60px 50px;
   margin: 0 auto;
-  color: $-color-text--primary;
+  color: $-color--text-primary;
   font-size: 14px;
   line-height: 1.5;
 
@@ -49,7 +49,7 @@ h6.vs-markdown-doc {
 
 p.vs-markdown-doc {
   line-height: 1.5;
-  color: $-color-text--primary;
+  color: $-color--text-primary;
   font-size: 14px;
   padding: 0;
   margin: 0;
@@ -64,7 +64,7 @@ table.vs-markdown-doc {
   border-collapse: collapse;
   border-spacing: 0;
   empty-cells: show;
-  border: 1px solid $-color-border--base;
+  border: 1px solid $-color--border-base;
   width: 100%;
   margin: 8px 0 16px;
   font-size: 14px;
@@ -72,8 +72,8 @@ table.vs-markdown-doc {
 
 th.vs-markdown-doc,
 td.vs-markdown-doc {
-  color: $-color-text--primary;
-  border: 1px solid $-color-border--base;
+  color: $-color--text-primary;
+  border: 1px solid $-color--border-base;
   text-align: left;
   padding: 8px 10px;
   vertical-align: middle;
@@ -81,9 +81,9 @@ td.vs-markdown-doc {
 
 th.vs-markdown-doc {
   white-space: nowrap;
-  color: $-color-text--primary;
+  color: $-color--text-primary;
   font-weight: 500;
-  background-color: mix($-color-border--base, #ffffff, 25%);
+  background-color: mix($-color--border-base, #ffffff, 25%);
 }
 
 code.vs-markdown-doc {
@@ -95,7 +95,7 @@ code.vs-markdown-doc {
 }
 
 code[class*="language-"] {
-  background: mix($-color-text--primary, #ffffff, 2%);
+  background: mix($-color--text-primary, #ffffff, 2%);
   font-family: Consolas, Menlo, Courier, monospace;
   display: block;
   font-size: 14px;
