@@ -1,7 +1,6 @@
 const path = require("path");
 const { VueLoaderPlugin } = require("vue-loader");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
-const markdLoaderPlugin = require("./build/markdown-plugin");
 
 module.exports = {
   mode: "development",
@@ -105,7 +104,6 @@ module.exports = {
   },
   plugins: [
     new VueLoaderPlugin(),
-    new markdLoaderPlugin(),
     new HtmlWebpackPlugin({
       template: "public/index.html",
       favicon: "public/favicon.ico",
