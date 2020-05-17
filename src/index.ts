@@ -1,13 +1,14 @@
 import { App } from "vue";
-import { install as ButtonInstall } from "./components/button/index";
+import { Button } from "./components/button";
 
-const components = [ButtonInstall];
+const components = [Button];
 
 export const install = function (app: App, opts = {}) {
-  components.forEach((component) => {
-    app.use(component);
+  components.forEach(({ install }) => {
+    if (!install) return;
+    app.use(install);
   });
 };
 
 export const version = require("../package.json").version;
-export * from "./components/button/index";
+export * from "./components/button";
