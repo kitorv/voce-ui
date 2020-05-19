@@ -49,6 +49,7 @@ module.exports = (snippetCode, hash) => {
       source: template.content,
       filename: `snippet_component_${hash}.vue`,
       compilerOptions: {
+        sourceMap: true,
         scopeId: `data-v-${hash}`,
       },
       transformAssetUrls: true,
