@@ -101,7 +101,7 @@ module.exports = function (source) {
               components: {${vueComponentList.join(",")}}
             });
           </script>
-          <style lang="scss">
+          <style lang="scss" scoped>
              ${vueStyleList.join(" ")}
           </style>`;
 };

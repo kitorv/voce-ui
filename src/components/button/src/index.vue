@@ -1,5 +1,7 @@
 <template>
-  <button class="v-button">Default</button>
+  <button :class="classList">
+    <slot />
+  </button>
 </template>
 
 <script lang="ts">
@@ -19,6 +21,10 @@ export default defineComponent({
       type: String as PropType<ButtonType>,
       default: "default" as ButtonType,
     },
+  },
+  setup(props) {
+    const classList = [`v-button`, `v-button--type-${props.type}`];
+    return { classList };
   },
 });
 </script>
@@ -51,7 +57,9 @@ export default defineComponent({
   &:focus {
     outline: 0;
   }
+}
 
+.v-button--type-default {
   &:hover {
     color: $-color--primary;
     background-color: #fff;
@@ -62,6 +70,33 @@ export default defineComponent({
     color: darken($-color--primary, 10%);
     background-color: #fff;
     border-color: darken($-color--primary, 10%);
+  }
+}
+
+$color-maps: (
+  primary: $-color--primary,
+  success: $-color--success,
+  warning: $-color--warning,
+  danger: $-color--danger,
+);
+
+@each $key in map-keys($color-maps) {
+  $color: map-get($color-maps, $key);
+
+  .v-button--type-#{$key} {
+    border-color: $color;
+    background: $color;
+    color: #ffffff;
+
+    &:hover {
+      border-color: mix($color, #ffffff, 90%);
+      background: mix($color, #ffffff, 90%);
+    }
+
+    &:active {
+      border-color: mix($color, #000000, 90%);
+      background: mix($color, #000000, 90%);
+    }
   }
 }
 </style>
