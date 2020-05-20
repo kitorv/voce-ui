@@ -1,15 +1,15 @@
 @font-face {
   font-family: "veco-iconfont";
-  src: url("/src/components/icons/src/.eot?t=1588148277386"); /* IE9 */
-  src: url("/src/components/icons/src/.eot?t=1588148277386#iefix")
+  src: url("/src/components/icons/src/.eot?t=1589980720283"); /* IE9 */
+  src: url("/src/components/icons/src/.eot?t=1589980720283#iefix")
       format("embedded-opentype"),
     /* IE6-IE8 */
-      url("data:application/x-font-woff2;charset=utf-8;base64,d09GMgABAAAAAAPgAAsAAAAACTgAAAORAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHEIGVgCDPgqEbINuATYCJAMcCxAABCAFhSkHYBviBxFVlPdkPw/sZg6LeIcAQlDXO1RTzVHL3oN43q6q99H9t3uhA6AIdM/MOQKQbXxQBCncnQYIIJD79NCqRBK51d7K2gr44De+4X3fuY4UCR9hRifPogTyfe0fdk1flh0cHDNdJej6Fu0YXZTB0cIDibTtu+xpRB/ALyg/6G5woK/8NgQIKE1NpGPnngNxGOyLBJCZ06aMwxXcmI5mwSF4DXcaZAcWpzaq28D26OflK/XFgcJq7Cv7Tu40kbYf+PhDr0iuMDJAoFkuCLD7QAM1AQMyuTE8Fp3kaqIJ9OcZGgIeBkF9kI8/kkmWNH2N3HDMjAMs/JcnKDQGxMM2p0LrUJz34AOeE4ssAsXw4ONXJwIt36ATBS3foRMNLT+g9va8yQcgHUgBjgBPsK0NsVWctEblIEOae8LsybE9sKLQpInhnqjIlPjK+bIylptXVvmjuMjKwpOTiyfHNpHqKAw3F5kyCSugMSCBybEAGff0UtY9MR5bHN9XeHDs8vGDhQYN3HPgxJUiQ+KL3MThk1dz83+FRKGo0KDo2qlDhWccOVN0ZOLy1bMlxuy/1n9vfiJvTP3VtpcbOKWoc/FA18uurp835kZpHh1Jx290PoUm57eOfX+69Okx7ys2sT1c5xLr0K7OrodtQpP2K4q+imP6fJY2F2aNGnXr9rXv484W+n4kOhp9L3xm3Lfb1+c1eVXmyB6zcHP0qG7zzTOmZVSRCb8T4+uMCgc8OcIy7DN0oPIB9Tii6WVqhVyyIJmc0kKAV834Fz7G70h/G5PR8r8LDQBP7g1rBHXDGwCHOnkLb95p6EAU6A2d7fGN1slTDlNCtcH2aYDOKCBwPPDeWwGyebGcpdBm6iCaRqEMFD7lQaNLUw1psI3BCnUAT5reEKhh3R/KcWiyFKC6C0AU90BJ9xy04j7CULNgFa6M0WvCNoLA4C5PDFXuSLAXGIUj/VNaDqXbrMsPLCeF2XdUozdSbVdffUOGhgMxUFPxjABZ9pr+VNvRkly4J+l4H7xnKuEWVtNQjTtER0dKjfvJUgcCDAUOUX8kWSwog1q1NA+qk5Pm33sHlZFnyJAedeQ7KAamYsslDNBQ5Nkchnc8srGN91a2hioRJ1iPyLQgeCfHSDWb2w1yKhUTMtEO4kk+1Jxub+2fwhQQsI/up0SLESue+OKwb6paFx6lzsa4cPwNK8sOyf5FE9wmO8HYexMHTCYAAAA=")
+      url("data:application/x-font-woff2;charset=utf-8;base64,d09GMgABAAAAAAR4AAsAAAAACewAAAQrAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHEIGVgCDVAqFeIRrATYCJAMgCxIABCAFhSkHaRuCCFGU7s0e2VfYlOFeSKB2dxKEAApeJofgvRk36BEgXztzbnkfAwA8EA8fa2Xvd/dAegMELBPHVH6j2JGMxQOFcmfD6uTdXK5lnkiVKK6KmPLJHtDe5PLkytbUGXYMTjhgHXisVYAX+8Q6/5dUpb5bkksAGMn2X6EhwUl9oc11qewGG3BiacyD0D7LXRECVelgXNYHlN73cI+go9wHlrxQwAYgQXElKeSVXjaMXV7k3QRynQ0UMxfX90lSRj8oEAdNnZFkIiarYIZysFhwZiZuiCknF5N3uO79fHw1PMokCin9yKW7FwSZrlP/M6WKcwfBPlwG7DxSDERGHC3M7RcJ6gOlcrk7ajLKxnYJdXE/6n9WjzgqXx1b+QevLNcURSWJVKYgiCLd1xBidzZK1LF0FKkLHSUqX3UkVL7pSKl815FR+ZFRcLF26Lg4Xxmd0RQ1+IXoQqdMVEiE0ZdKOjSrgu6c2ZlrZZ59wMEbEiAT+nkfDvyxACpw4LWZ1RPq/T3Y4wPn9uq7pN1DAJBOuVssyOKDWtxi3Lglq4riYGjAz1Rau+9BpBflZGBBNo3N0JOTdOYeG3mQWpa8K+JY6z7F92DH1YTndt0Zr08CL940y7PNmRv/KxA8tMaNXrZTfnG+F4aI4/kgidKX+kcbv8pI+OOZxqYqulcdGNhEZtcc+pvCFWyaoKLDiDj33ui0Tuk/A1jwt8AYeWvgRyzaO4ptJPf1tsbBLuZG7F59jfrjVWe/1YpzX1VehQw9v7r183Hnx1s+e46JLUguNj2hzWYn12JDxky/SSZ7XtV5Kpny4tDFxfO7fs/TVt9r7z66+50n277evTw99NKl9o7afL35YqWk7rGvSXvs+CfyXRfuNHd+jLMIqt8jSptCmif/QfK7J0zPhG9Mql+tZuE0CCSSA3/Vwyz4o/7jlibj/5Y5Gfjj65Kh0NIc+T3flF/DLtv/oUhGKhD/uxSnHi9n0kSWpakF2hRZ2QhpNUFuJPmD2jT3z5ChVq+iGRppFUGipDukGumHzLCjoaDGDChqZDHkBthwfo0WzomIrAH6ewggtPcWEo39Dan2viIyahSgoHV08RSLsKMgtzq2rlijd9TmMyQwBYLmK9Tk6GnmqEoXgWNHYvFd0AsOk9mx4lcPQQYmerSns7uotQQeyGGPCYp6r1Ia1SS6dLHifuA4SH2JFnDVaSjlj3Z1aeiDOjm6JG0GCTAKEKjtKqh9OOTRnH4l7TTIzt9R/Ht3AV2Bg5FNJikjDzNSwKxsZalhBhvaFLnk85qPu2TPCeW+ul4nKRpqNwm5qNndMsAx6og6WuyzJqgrnfZ2qPpGDcHz7W7q65w+4L6HBZDTP68cSaSRRSGKUYpyNFA8AUxyIyZN3VBRBzQVLvhRgSUvw1FAB5R95olctANHx2F+AIQAAA==")
       format("woff2"),
-    url("/src/components/icons/src/.woff?t=1588148277386") format("woff"),
-    url("/src/components/icons/src/.ttf?t=1588148277386") format("truetype"),
+    url("/src/components/icons/src/.woff?t=1589980720283") format("woff"),
+    url("/src/components/icons/src/.ttf?t=1589980720283") format("truetype"),
     /* chrome, firefox, opera, Safari, Android, iOS 4.2+ */
-      url("/src/components/icons/src/.svg?t=1588148277386#veco-iconfont")
+      url("/src/components/icons/src/.svg?t=1589980720283#veco-iconfont")
       format("svg"); /* iOS 4.1- */
 }
 
@@ -19,6 +19,10 @@
   font-style: normal;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.v-icon-search:before {
+  content: "\e8ef";
 }
 
 .v-icon-right:before {

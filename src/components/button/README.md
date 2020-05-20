@@ -27,3 +27,133 @@
 ```
 
 :::
+
+## 按钮形状
+
+:::snippet 通过 `shape` 设置按钮形状，可选值为 `circle` 、 `round` 或者不设置。
+
+```vue
+<template>
+  <div class="vsc-button">
+    <v-button type="primary">Default</v-button>
+    <v-button type="primary" shape="round">Round</v-button>
+    <v-button type="primary" shape="circle">C</v-button>
+    <v-button>Default</v-button>
+    <v-button shape="round">Round</v-button>
+    <v-button shape="circle">C</v-button>
+  </div>
+</template>
+
+<style lang="scss" scoped>
+.vsc-button {
+  .v-button {
+    margin-right: 12px;
+  }
+}
+</style>
+```
+
+:::
+
+## 按钮图标
+
+:::snippet 通过 `shape` 设置按钮形状，可选值为 `circle` 、 `round` 或者不设置。
+
+```vue
+<template>
+  <div class="vsc-button">
+    <v-button type="primary" icon="v-icon-search">Search</v-button>
+    <v-button type="primary" icon="v-icon-search" shape="round"
+      >Search</v-button
+    >
+    <v-button type="primary" icon="v-icon-search" shape="circle"></v-button>
+    <v-button icon="v-icon-search">Search</v-button>
+    <v-button icon="v-icon-search" shape="round">Search</v-button>
+    <v-button icon="v-icon-search" shape="circle"></v-button>
+  </div>
+</template>
+
+<style lang="scss" scoped>
+.vsc-button {
+  .v-button {
+    margin-right: 12px;
+  }
+}
+</style>
+```
+
+:::
+
+## 虚线边框
+
+:::snippet 通过 `dashed` 将边框设置为虚线。
+
+```vue
+<template>
+  <div class="vsc-button">
+    <v-button dashed>Dashed</v-button>
+    <v-button dashed shape="round">Dashed</v-button>
+    <v-button dashed shape="circle">D</v-button>
+  </div>
+</template>
+
+<style lang="scss" scoped>
+.vsc-button {
+  .v-button {
+    margin-right: 12px;
+  }
+}
+</style>
+```
+
+:::
+
+## 简洁按钮
+
+:::snippet 通过 `plain` 设置简洁显示模式。
+
+```vue
+<template>
+  <div class="vsc-button">
+    <v-button type="primary" plain>Primary</v-button>
+    <v-button type="success" plain>Success</v-button>
+    <v-button type="danger" plain>Danger</v-button>
+    <v-button type="warning" plain>Warning</v-button>
+  </div>
+</template>
+
+<style lang="scss" scoped>
+.vsc-button {
+  .v-button {
+    margin-right: 12px;
+  }
+}
+</style>
+```
+
+:::
+
+## 链接按钮
+
+:::snippet 通过 `link` 设置链接模式。
+
+```vue
+<template>
+  <div class="vsc-button">
+    <v-button type="primary" link>Primary</v-button>
+    <v-button type="success" link>Success</v-button>
+    <v-button type="danger" link>Danger</v-button>
+    <v-button type="warning" link>Warning</v-button>
+  </div>
+</template>
+
+<style lang="scss" scoped>
+.vsc-button {
+  .v-button {
+    margin-right: 12px;
+  }
+}
+</style>
+```
+
+:::
