@@ -1,6 +1,11 @@
 <template>
   <button :class="classList">
-    <slot />
+    <span v-if="icon" class="v-button--icon">
+      <i :class="icon"></i>
+    </span>
+    <span v-if="$slots.default" class="v-button--text">
+      <slot />
+    </span>
   </button>
 </template>
 
@@ -14,6 +19,8 @@ export type ButtonType =
   | "warning"
   | "danger";
 
+export type ButttonShape = "circle" | "round";
+
 export default defineComponent({
   name: "VButton",
   props: {
@@ -21,9 +28,23 @@ export default defineComponent({
       type: String as PropType<ButtonType>,
       default: "default" as ButtonType,
     },
+    shape: String as PropType<ButttonShape>,
+    icon: String,
+    dashed: Boolean,
+    plain: Boolean,
+    link: Boolean,
   },
   setup(props) {
-    const classList = [`v-button`, `v-button--type-${props.type}`];
+    const classList = [
+      `v-button`,
+      `v-button--type-${props.type}`,
+      {
+        [`v-button--shape-${props.shape}`]: props.shape,
+        "v-button--dashed": props.dashed,
+        "v-button--plain": props.plain,
+        "v-button--link": props.link,
+      },
+    ];
     return { classList };
   },
 });
@@ -33,7 +54,8 @@ export default defineComponent({
 .v-button {
   line-height: 1.5;
   position: relative;
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
   font-weight: 400;
   white-space: nowrap;
   text-align: center;
@@ -97,6 +119,56 @@ $color-maps: (
       border-color: mix($color, #000000, 90%);
       background: mix($color, #000000, 90%);
     }
+
+    &.v-button--plain {
+      color: $color;
+      background: #ffffff;
+
+      &:hover {
+        color: #ffffff;
+        background: mix($color, #ffffff, 90%);
+      }
+
+      &:active {
+        color: #ffffff;
+        background: mix($color, #000000, 90%);
+      }
+    }
+
+    &.v-button--link {
+      color: $color;
+      border-width: 0;
+      background-color: #ffffff;
+    }
   }
+}
+
+.v-button--shape-round {
+  height: 32px;
+  padding: 4px 16px;
+  font-size: 14px;
+  border-radius: 32px;
+}
+
+.v-button--shape-circle {
+  min-width: 32px;
+  padding-right: 0;
+  padding-left: 0;
+  justify-content: center;
+  border-radius: 50%;
+}
+
+.v-button--icon {
+  line-height: 1;
+  font-size: 16px;
+}
+
+.v-button--icon + .v-button--text {
+  margin-left: 6px;
+  line-height: 16px;
+}
+
+.v-button--dashed {
+  border-style: dashed;
 }
 </style>

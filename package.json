@@ -11,7 +11,7 @@
   ],
   "scripts": {
     "dev": "webpack-dev-server --progress --color",
-    "icons": "node build/icons-scss.js --iconfont //at.alicdn.com/t/font_1789069_so4jh0klryn.css",
+    "icons": "node build/icons-scss.js --iconfont //at.alicdn.com/t/font_1789069_icy23gy10m.css",
     "snippet": "node build/scss-snippet.js"
   },
   "homepage": "https://github.com/kitorv/voce-ui#readme",
@@ -38,6 +38,7 @@
     "markdown-it-container": "^2.0.0",
     "postcss-loader": "^3.0.0",
     "prettier": "^2.0.5",
+    "request": "^2.88.2",
     "sass": "^1.26.5",
     "sass-loader": "^8.0.2",
     "style-loader": "^1.1.4",

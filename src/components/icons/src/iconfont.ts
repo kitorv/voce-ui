@@ -1,4 +1,5 @@
 export default [
+  "v-icon-search",
   "v-icon-right",
   "v-icon-left",
   "v-icon-up",
