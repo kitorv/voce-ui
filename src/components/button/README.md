@@ -16,14 +16,6 @@
     <v-button type="danger">Danger</v-button>
   </div>
 </template>
-
-<style lang="scss" scoped>
-.vsc-button {
-  .v-button {
-    margin-right: 12px;
-  }
-}
-</style>
 ```
 
 :::
@@ -154,6 +146,24 @@
   }
 }
 </style>
+```
+
+:::
+
+## 按钮禁用
+
+:::snippet 通过属性`disabled`禁用按钮。
+
+```vue
+<template>
+  <div class="vsc-button">
+    <v-button disabled>Default</v-button>
+    <v-button type="primary" disabled>Primary</v-button>
+    <v-button type="primary" disabled plain>Plain</v-button>
+    <v-button type="primary" disabled dashed>Dashed</v-button>
+    <v-button type="primary" disabled link>Link</v-button>
+  </div>
+</template>
 ```
 
 :::

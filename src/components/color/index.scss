@@ -13,3 +13,7 @@ $-color--border-base: #dcdfe6 !default;
 $-color--border-light: mix($-color--border-base, #ffffff, 80%) !default;
 $-color--border-lighter: mix($-color--border-base, #ffffff, 60%) !default;
 $-color--border-extra-light: mix($-color--border-base, #ffffff, 40%) !default;
+
+$-color--disabled-color: #cccccc !default;
+$-color--disabled-background-color: #f2f2f2 !default;
+$-color--disabled-border-color: #dcdfe6 !default;

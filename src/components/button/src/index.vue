@@ -33,6 +33,7 @@ export default defineComponent({
     dashed: Boolean,
     plain: Boolean,
     link: Boolean,
+    disabled: Boolean,
   },
   setup(props) {
     const classList = [
@@ -43,6 +44,7 @@ export default defineComponent({
         "v-button--dashed": props.dashed,
         "v-button--plain": props.plain,
         "v-button--link": props.link,
+        "v-button--disabled": props.disabled,
       },
     ];
     return { classList };
@@ -95,6 +97,18 @@ export default defineComponent({
   }
 }
 
+.v-button--disabled {
+  cursor: not-allowed;
+  &,
+  &:hover,
+  &:focus,
+  &:active {
+    color: $-color--disabled-color;
+    background-color: $-color--disabled-background-color;
+    border-color: $-color--disabled-border-color;
+  }
+}
+
 $color-maps: (
   primary: $-color--primary,
   success: $-color--success,
@@ -123,22 +137,36 @@ $color-maps: (
     &.v-button--plain {
       color: $color;
       background: #ffffff;
-
-      &:hover {
-        color: #ffffff;
-        background: mix($color, #ffffff, 90%);
-      }
-
-      &:active {
-        color: #ffffff;
-        background: mix($color, #000000, 90%);
-      }
     }
 
     &.v-button--link {
       color: $color;
       border-width: 0;
       background-color: #ffffff;
+    }
+
+    &.v-button--disabled {
+      color: #ffffff;
+
+      &,
+      &:focus,
+      &:hover,
+      &:active {
+        border-color: mix($color, #ffffff, 60%);
+        background: mix($color, #ffffff, 60%);
+      }
+
+      &.v-button--dashed,
+      &.v-button--plain {
+        background-color: #ffffff;
+        color: mix($color, #ffffff, 60%);
+      }
+
+      &.v-button--link {
+        color: mix($color, #ffffff, 60%);
+        border-width: 0;
+        background-color: #ffffff;
+      }
     }
   }
 }
