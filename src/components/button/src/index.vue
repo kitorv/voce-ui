@@ -21,12 +21,18 @@ export type ButtonType =
 
 export type ButttonShape = "circle" | "round";
 
+export type ButttonSize = "large" | "default" | "small";
+
 export default defineComponent({
   name: "VButton",
   props: {
     type: {
       type: String as PropType<ButtonType>,
-      default: "default" as ButtonType,
+      default: "default",
+    },
+    size: {
+      type: String as PropType<ButttonSize>,
+      default: "default",
     },
     shape: String as PropType<ButttonShape>,
     icon: String,
@@ -34,17 +40,20 @@ export default defineComponent({
     plain: Boolean,
     link: Boolean,
     disabled: Boolean,
+    loading: Boolean,
   },
   setup(props) {
     const classList = [
       `v-button`,
       `v-button--type-${props.type}`,
+      `v-button--size-${props.size}`,
       {
         [`v-button--shape-${props.shape}`]: props.shape,
         "v-button--dashed": props.dashed,
         "v-button--plain": props.plain,
         "v-button--link": props.link,
         "v-button--disabled": props.disabled,
+        "v-button--loading": props.loading,
       },
     ];
     return { classList };
@@ -67,9 +76,6 @@ export default defineComponent({
   transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
   user-select: none;
   touch-action: manipulation;
-  height: 32px;
-  padding: 4px 15px;
-  font-size: 14px;
   border-radius: 2px;
   color: $-color--text-primary;
   background-color: #fff;
@@ -95,6 +101,61 @@ export default defineComponent({
     background-color: #fff;
     border-color: darken($-color--primary, 10%);
   }
+}
+
+.v-button--size-large {
+  height: 40px;
+  padding: 6px 15px;
+  font-size: 16px;
+
+  &.v-button--shape-round {
+    height: 40px;
+    padding: 6px 20px;
+    border-radius: 40px;
+  }
+
+  &.v-button--shape-circle {
+    min-width: 40px;
+  }
+}
+
+.v-button--size-default {
+  height: 32px;
+  padding: 4px 15px;
+  font-size: 14px;
+
+  &.v-button--shape-round {
+    height: 32px;
+    padding: 4px 16px;
+    border-radius: 32px;
+  }
+
+  &.v-button--shape-circle {
+    min-width: 32px;
+  }
+}
+
+.v-button--size-small {
+  height: 24px;
+  padding: 0 7px;
+  font-size: 14px;
+
+  &.v-button--shape-round {
+    height: 24px;
+    padding: 0 12px;
+    border-radius: 24px;
+  }
+
+  &.v-button--shape-circle {
+    min-width: 24px;
+  }
+}
+
+.v-button--shape-circle {
+  padding-right: 0;
+  padding-left: 0;
+  justify-content: center;
+  border-radius: 50%;
 }
 
 .v-button--disabled {
@@ -171,24 +232,13 @@ $color-maps: (
   }
 }
 
-.v-button--shape-round {
-  height: 32px;
-  padding: 4px 16px;
-  font-size: 14px;
-  border-radius: 32px;
-}
-
-.v-button--shape-circle {
-  min-width: 32px;
-  padding-right: 0;
-  padding-left: 0;
-  justify-content: center;
-  border-radius: 50%;
-}
-
 .v-button--icon {
   line-height: 1;
   font-size: 16px;
+}
+
+.v-button--text {
+  line-height: 1;
 }
 
 .v-button--icon + .v-button--text {

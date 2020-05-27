@@ -167,3 +167,46 @@
 ```
 
 :::
+
+## 按钮大小
+
+:::snippet 通过属性`size`设置按钮大小，可选值`large`、`default`、`small`。
+
+```vue
+<template>
+  <div class="vsc-button">
+    <div>
+      <v-button type="primary" size="large">Large</v-button>
+      <v-button type="primary" shape="round" size="large">Large</v-button>
+      <v-button type="primary" shape="circle" size="large">L</v-button>
+    </div>
+    <div>
+      <v-button type="primary">Default</v-button>
+      <v-button type="primary" shape="round">Ddefault</v-button>
+      <v-button type="primary" shape="circle">D</v-button>
+    </div>
+    <div>
+      <v-button type="primary" size="small">Small</v-button>
+      <v-button type="primary" shape="round" size="small">Small</v-button>
+      <v-button type="primary" shape="circle" size="small">S</v-button>
+    </div>
+  </div>
+</template>
+```
+
+:::
+
+## 基础用法
+
+:::snippet 通过按钮的类型 `type` 定义按钮的基础样式。
+
+```vue
+<template>
+  <div class="vsc-button">
+    <v-button type="primary" loading>Loading</v-button>
+    <v-button type="primary" loading icon="v-icon-search">Loading</v-button>
+  </div>
+</template>
+```
+
+:::
