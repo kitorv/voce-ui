@@ -1,4 +1,5 @@
 export default [
+  "v-icon-loading",
   "v-icon-code-expand",
   "v-icon-code-collapse",
   "v-icon-camera",

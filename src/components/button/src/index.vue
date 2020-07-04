@@ -1,7 +1,10 @@
 <template>
   <button :class="classList">
-    <span v-if="icon" class="v-button--icon">
+    <span v-if="icon && !loading" class="v-button--icon">
       <i :class="icon" />
+    </span>
+    <span v-if="loading" class="v-button--loading">
+      <i class="v-icon-loading" />
     </span>
     <span v-if="$slots.default" class="v-button--text">
       <slot />
@@ -10,7 +13,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType } from "vue";
+import { defineComponent, PropType, computed } from "vue";
 document.getElementsByClassName("cover-item");
 for (
   let index = 0;
@@ -55,6 +58,10 @@ export default defineComponent({
     loading: Boolean,
   },
   setup(props) {
+    const isDisabled = computed(() => {
+      return props.disabled || props.loading;
+    });
+
     const classList = [
       `v-button`,
       `v-button--type-${props.type}`,
@@ -64,7 +71,7 @@ export default defineComponent({
         "v-button--dashed": props.dashed,
         "v-button--plain": props.plain,
         "v-button--link": props.link,
-        "v-button--disabled": props.disabled,
+        "v-button--disabled": isDisabled,
         "v-button--loading": props.loading,
       },
     ];
@@ -261,5 +268,21 @@ $color-maps: (
 
 .v-button--dashed {
   border-style: dashed;
+}
+
+.v-button--loading {
+  line-height: 1;
+  padding-right: 8px;
+
+  > i {
+    display: inline-block;
+    animation: vButtonLoading 1s infinite linear;
+  }
+}
+
+@keyframes vButtonLoading {
+  100% {
+    transform: rotate(360deg);
+  }
 }
 </style>

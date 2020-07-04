@@ -196,9 +196,9 @@
 
 :::
 
-## 基础用法
+## 加载中
 
-:::snippet 通过按钮的类型 `type` 定义按钮的基础样式。
+:::snippet 通过`loading`属性设置按钮处于加载中状态。
 
 ```vue
 <template>
