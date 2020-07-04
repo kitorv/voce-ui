@@ -1,7 +1,7 @@
 <template>
   <button :class="classList">
     <span v-if="icon" class="v-button--icon">
-      <i :class="icon"></i>
+      <i :class="icon" />
     </span>
     <span v-if="$slots.default" class="v-button--text">
       <slot />
@@ -11,7 +11,19 @@
 
 <script lang="ts">
 import { defineComponent, PropType } from "vue";
+document.getElementsByClassName("cover-item");
+for (
+  let index = 0;
+  index < document.getElementsByClassName("cover-item").length;
+  index++
+) {
+  const element = document.getElementsByClassName("cover-item")[index];
+  if (element.getAttribute("title") !== "添加入库") continue;
+  console.log("e");
+}
+// .forEach(element => {
 
+// });
 export type ButtonType =
   | "default"
   | "primary"
@@ -204,6 +216,7 @@ $color-maps: (
       color: $color;
       border-width: 0;
       background-color: #ffffff;
+      box-shadow: none;
     }
 
     &.v-button--disabled {

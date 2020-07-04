@@ -2,7 +2,7 @@
   <div class="vs-index">
     <div class="vs-index--header">
       <img class="vs-index--header-logo" src="../images/logo.png" alt="logo" />
-      <div class="vs-index--header-title">Veco</div>
+      <div class="vs-index--header-title">VECO</div>
     </div>
     <div class="vs-index--left">
       <vc-left-menu-item
@@ -13,7 +13,7 @@
     </div>
     <div class="vs-index--content">
       <div class="vs-index--content-view">
-        <router-view></router-view>
+        <router-view />
       </div>
     </div>
   </div>

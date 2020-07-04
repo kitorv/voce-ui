@@ -35,7 +35,7 @@ export default defineComponent({
     let showCode = ref(false);
 
     const codeIconClass = computed(() => {
-      return showCode ? "v-icon-code-collapse" : "v-icon-code-expand";
+      return showCode.value ? "v-icon-code-collapse" : "v-icon-code-expand";
     });
 
     const handleIconClick = () => {
