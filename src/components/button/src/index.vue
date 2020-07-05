@@ -1,5 +1,5 @@
 <template>
-  <button :class="classList" @click="onClick">
+  <button :class="classList" @click="onClick($event)">
     <span v-if="icon && !loading" class="v-button--icon">
       <i :class="icon" />
     </span>
@@ -72,13 +72,14 @@ export default defineComponent({
 
     const router = useRouter();
 
-    const onClick = () => {
+    const onClick = (event: Event) => {
+      debugger;
       if (isDisabled.value) return;
-      if (props.to || router) {
+      if (props.to && router) {
         router.push(props.to as RouteLocationRaw);
         return;
       }
-      emit("click");
+      emit("click", event);
     };
 
     return { classList, isCircleLoadig, onClick };

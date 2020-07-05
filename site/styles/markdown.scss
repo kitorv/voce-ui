@@ -70,6 +70,10 @@ table.vs-markdown-doc {
   font-size: 14px;
 }
 
+tr.vs-markdown-doc td.vs-markdown-doc:nth-child(1) {
+  white-space: nowrap;
+}
+
 th.vs-markdown-doc,
 td.vs-markdown-doc {
   color: $-color--text-primary;
@@ -77,6 +81,17 @@ td.vs-markdown-doc {
   text-align: left;
   padding: 8px 10px;
   vertical-align: middle;
+
+  code.vs-markdown-doc {
+    margin: 0;
+    font-family: "Source Code Pro", "Monaco", "Inconsolata", monospace;
+  }
+
+  em.vs-markdown-doc {
+    font-style: normal;
+    color: $-color--primary;
+    font-family: "Source Code Pro", "Monaco", "Inconsolata", monospace;
+  }
 }
 
 th.vs-markdown-doc {
