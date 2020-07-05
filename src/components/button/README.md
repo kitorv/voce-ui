@@ -243,3 +243,39 @@ export default defineComponent({
 ```
 
 :::
+
+## 路由跳转
+
+:::snippet 设置属性`to`对应的`vue-router`配置项，进行路由跳转。
+
+```vue
+<template>
+  <div class="vsc-button">
+    <v-button type="primary" to="/">Route Link</v-button>
+  </div>
+</template>
+
+<script>
+import { defineComponent, ref } from "vue";
+
+export default defineComponent({
+  setup() {
+    const loading = ref(false);
+
+    const onClickLoading = () => {
+      loading.value = true;
+      setTimeout(() => {
+        loading.value = false;
+      }, 1500);
+    };
+
+    return {
+      loading,
+      onClickLoading,
+    };
+  },
+});
+</script>
+```
+
+:::

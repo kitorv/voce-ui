@@ -14,6 +14,7 @@
 
 <script lang="ts">
 import { defineComponent, PropType, computed } from "vue";
+import { useRouter, RouteLocationRaw } from "vue-router";
 
 export type ButtonType =
   | "default"
@@ -44,6 +45,7 @@ export default defineComponent({
     link: Boolean,
     disabled: Boolean,
     loading: Boolean,
+    to: [Object, String] as PropType<RouteLocationRaw>,
   },
   setup(props, { emit }) {
     const isDisabled = computed(() => {
@@ -68,7 +70,14 @@ export default defineComponent({
       },
     ];
 
+    const router = useRouter();
+
     const onClick = () => {
+      if (isDisabled.value) return;
+      if (props.to || router) {
+        router.push(props.to as RouteLocationRaw);
+        return;
+      }
       emit("click");
     };
 
