@@ -280,20 +280,24 @@ export default defineComponent({
 
 :::
 
+[button-type] = _default \| primary \| success \| warning \| danger_
+[button-size] = _large \| default \| small_
+[button-shape] = _circle \| round_
+
 ## Button Props
 
-| 属性     | 说明     | 类型               | 可选值                                               | 默认值    |
-| -------- | -------- | ------------------ | ---------------------------------------------------- | --------- |
-| type     | 类型     | _String_           | _default \| primary \| success \| warning \| danger_ | `default` |
-| size     | 尺寸     | _String_           | _large \| default \| small_                          | `default` |
-| shape    | 形状     | _String_           | _circle \| round_                                    | —         |
-| icon     | 图标     | _String_           | —                                                    | —         |
-| dashed   | 虚线边框 | _Boolean_          | —                                                    | `false`   |
-| plain    | 简洁模式 | _Boolean_          | —                                                    | `false`   |
-| link     | 链接模式 | _Boolean_          | —                                                    | `false`   |
-| disabled | 禁用状态 | _Boolean_          | —                                                    | `false`   |
-| loading  | 加载中   | _Boolean_          | —                                                    | `false`   |
-| to       | 路由     | _RouteLocationRaw_ | —                                                    | `false`   |
+| 属性     | 说明     | 类型               | 可选值           | 默认值    |
+| -------- | -------- | ------------------ | ---------------- | --------- |
+| type     | 类型     | _String_           | [[button-type]]  | `default` |
+| size     | 尺寸     | _String_           | [[button-size]]  | `default` |
+| shape    | 形状     | _String_           | [[button-shape]] | —         |
+| icon     | 图标     | _String_           | —                | —         |
+| dashed   | 虚线边框 | _Boolean_          | —                | `false`   |
+| plain    | 简洁模式 | _Boolean_          | —                | `false`   |
+| link     | 链接模式 | _Boolean_          | —                | `false`   |
+| disabled | 禁用状态 | _Boolean_          | —                | `false`   |
+| loading  | 加载中   | _Boolean_          | —                | `false`   |
+| to       | 路由     | _RouteLocationRaw_ | —                | `false`   |
 
 ## Button Events
 

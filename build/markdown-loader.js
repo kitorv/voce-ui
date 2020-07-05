@@ -1,12 +1,15 @@
 const MarkdownIt = require("markdown-it");
 const MarkdownItClass = require("./markdown-it-class");
 const MarkdownItContainer = require("markdown-it-container");
+const MarkdownVariable = require("./markdown-variable");
 const hljs = require("./markdown-hilghlight");
 const hashSum = require("hash-sum");
 const snippetToVueComponent = require("./snippet-to-component");
 const snippetToVueStyle = require("./snippet-to-style");
 
 module.exports = function (source) {
+  source = MarkdownVariable(source);
+
   // 初始还MarkdownIt用于转换md文件为html
   const markdownIt = new MarkdownIt({
     html: true,
