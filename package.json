@@ -30,10 +30,13 @@
   "devDependencies": {
     "@vue/compiler-sfc": "^3.0.0-beta.18",
     "autoprefixer": "^9.7.6",
+    "chalk": "^4.1.0",
     "css-loader": "^3.5.2",
     "file-loader": "^6.0.0",
+    "fs-extra": "^9.0.1",
     "highlight.js": "^10.0.0",
     "html-webpack-plugin": "^4.2.0",
+    "inquirer": "^7.3.0",
     "markdown-it": "^10.0.0",
     "markdown-it-container": "^2.0.0",
     "postcss-loader": "^3.0.0",
