@@ -1,12 +1,12 @@
 <template>
-  <button :class="classList">
+  <button :class="classList" @click="onClick">
     <span v-if="icon && !loading" class="v-button--icon">
       <i :class="icon" />
     </span>
-    <span v-if="loading" class="v-button--loading">
+    <span v-if="loading" class="v-button--loading-icon">
       <i class="v-icon-loading" />
     </span>
-    <span v-if="$slots.default" class="v-button--text">
+    <span v-if="$slots.default && !isCircleLoadig" class="v-button--text">
       <slot />
     </span>
   </button>
@@ -14,19 +14,7 @@
 
 <script lang="ts">
 import { defineComponent, PropType, computed } from "vue";
-document.getElementsByClassName("cover-item");
-for (
-  let index = 0;
-  index < document.getElementsByClassName("cover-item").length;
-  index++
-) {
-  const element = document.getElementsByClassName("cover-item")[index];
-  if (element.getAttribute("title") !== "添加入库") continue;
-  console.log("e");
-}
-// .forEach(element => {
 
-// });
 export type ButtonType =
   | "default"
   | "primary"
@@ -57,9 +45,13 @@ export default defineComponent({
     disabled: Boolean,
     loading: Boolean,
   },
-  setup(props) {
+  setup(props, { emit }) {
     const isDisabled = computed(() => {
       return props.disabled || props.loading;
+    });
+
+    const isCircleLoadig = computed(() => {
+      return props.loading && props.shape === "circle";
     });
 
     const classList = [
@@ -75,7 +67,12 @@ export default defineComponent({
         "v-button--loading": props.loading,
       },
     ];
-    return { classList };
+
+    const onClick = () => {
+      emit("click");
+    };
+
+    return { classList, isCircleLoadig, onClick };
   },
 });
 </script>
@@ -270,7 +267,7 @@ $color-maps: (
   border-style: dashed;
 }
 
-.v-button--loading {
+.v-button--loading-icon {
   line-height: 1;
   padding-right: 8px;
 
@@ -278,6 +275,10 @@ $color-maps: (
     display: inline-block;
     animation: vButtonLoading 1s infinite linear;
   }
+}
+
+.v-button--shape-circle .v-button--loading-icon {
+  padding-right: 0;
 }
 
 @keyframes vButtonLoading {

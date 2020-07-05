@@ -336,7 +336,7 @@ export default defineComponent({
 
 .vs-index--content-view {
   max-width: 1000px;
-  padding: 30px 50px 60px 50px;
+  padding: 72px 50px 60px 50px;
   margin: 0 auto;
 }
 </style>

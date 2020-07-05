@@ -8,6 +8,11 @@ const router = createRouter({
       component: () => import("../site/views/index.vue"),
       children: [
         {
+          path: "/test",
+          name: "common-test",
+          component: () => import("../site/views/test.vue"),
+        },
+        {
           path: "/",
           name: "docs-start",
           component: () => import("../site/docs/start.md"),
