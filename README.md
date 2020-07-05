@@ -13,7 +13,7 @@
     - [ ] 主题定制
     - [ ] 更新日志
   - [ ] 基础组件
-    - [ ] Button 按钮
+    - [x] Button 按钮
     - [x] Color 色彩
     - [x] Icon 图标
     - [ ] Link 链接
