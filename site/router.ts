@@ -42,6 +42,11 @@ const router = createRouter({
           name: "component-icon",
           component: () => import("@/components/icons/README.md"),
         },
+        {
+          path: "/component/link",
+          name: "component-link",
+          component: () => import("@/components/link/README.md"),
+        },
       ],
     },
   ],

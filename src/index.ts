@@ -1,7 +1,8 @@
 import { App } from "vue";
 import { Button } from "./components/button";
+import { Link } from "./components/link";
 
-const components = [Button];
+const components = [Button, Link];
 
 export const install = function (app: App, opts = {}) {
   components.forEach(({ install }) => {

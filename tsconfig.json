@@ -16,7 +16,8 @@
     "jsx": "preserve",
     "lib": ["ESNext", "DOM"],
     "types": ["node"],
-    "rootDir": "."
+    "rootDir": ".",
+    "paths": { "@": ["src"] }
   },
   "include": ["site/**/*", "src/**/*"]
 }

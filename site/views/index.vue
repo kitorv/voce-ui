@@ -49,237 +49,237 @@ export default defineComponent({
               { path: "/component/color", title: "Color", subtitle: "色彩" },
               { path: "/component/icon", title: "Icon", subtitle: "图标" },
               { path: "/component/link", title: "Link", subtitle: "链接" },
-              { path: "/component/text", title: "Text", subtitle: "文字" },
+              // { path: "/component/text", title: "Text", subtitle: "文字" },
             ],
           },
-          {
-            title: "布局",
-            children: [
-              { path: "/component/grid", title: "Grid", subtitle: "栅格" },
-              { path: "/component/layout", title: "Layout", subtitle: "布局" },
-            ],
-          },
-          {
-            title: "表单",
-            children: [
-              {
-                path: "/component/radio",
-                title: "Radio",
-                subtitle: "单选框",
-              },
-              {
-                path: "/component/checkbox",
-                title: "Checkbox",
-                subtitle: "复选框",
-              },
-              {
-                path: "/component/input",
-                title: "Input",
-                subtitle: "输入框",
-              },
-              {
-                path: "/component/textarea",
-                title: "Textarea",
-                subtitle: "文本域",
-              },
-              {
-                path: "/component/numberbox",
-                title: "Numberbox",
-                subtitle: "数字框",
-              },
-              {
-                path: "/component/number-range",
-                title: "NumberRange",
-                subtitle: "数字区间",
-              },
-              {
-                path: "/component/select",
-                title: "Select",
-                subtitle: "下拉框",
-              },
-              {
-                path: "/component/date-picker",
-                title: "DatePicker",
-                subtitle: "日期选择器",
-              },
-              {
-                path: "/component/switch",
-                title: "Switch",
-                subtitle: "开关按钮",
-              },
-              { path: "/component/rate", title: "Rate", subtitle: "评分" },
-              {
-                path: "/component/upload",
-                title: "Upload",
-                subtitle: "上传",
-              },
-              {
-                path: "/component/editor",
-                title: "Editor",
-                subtitle: "编辑器",
-              },
-              {
-                path: "/component/form",
-                title: "Form",
-                subtitle: "表单",
-              },
-            ],
-          },
-          {
-            title: "数据",
-            children: [
-              {
-                path: "/component/table",
-                title: "Table",
-                subtitle: "表格",
-              },
-              {
-                path: "/component/tree",
-                title: "Tree",
-                subtitle: "树",
-              },
-              {
-                path: "/component/card",
-                title: "Card",
-                subtitle: "卡片",
-              },
-              {
-                path: "/component/collapse",
-                title: "Collapse",
-                subtitle: "折叠面板",
-              },
-              {
-                path: "/component/pagination",
-                title: "Pagination",
-                subtitle: "分页",
-              },
-              {
-                path: "/component/badge",
-                title: "Badge",
-                subtitle: "徽标",
-              },
-              {
-                path: "/component/statistic",
-                title: "Statistic",
-                subtitle: "统计数值",
-              },
-              {
-                path: "/component/tag",
-                title: "Tag",
-                subtitle: "标签",
-              },
-              {
-                path: "/component/avatar",
-                title: "Avatar",
-                subtitle: "头像",
-              },
-              {
-                path: "/component/empty",
-                title: "Empty",
-                subtitle: "空状态",
-              },
-              {
-                path: "/component/image",
-                title: "Image",
-                subtitle: "图片",
-              },
-            ],
-          },
-          {
-            title: "导航",
-            children: [
-              {
-                path: "/component/tabs",
-                title: "Tabs",
-                subtitle: "标签页",
-              },
-              {
-                path: "/component/breadcrumb",
-                title: "Breadcrumb",
-                subtitle: "面包屑",
-              },
-              {
-                path: "/component/dropdown",
-                title: "Dropdown",
-                subtitle: "下拉菜单",
-              },
-              {
-                path: "/component/menu",
-                title: "Menu",
-                subtitle: "菜单",
-              },
-              {
-                path: "/component/steps",
-                title: "Steps",
-                subtitle: "步骤条",
-              },
-              {
-                path: "/component/drawer",
-                title: "Drawer",
-                subtitle: "抽屉",
-              },
-              {
-                path: "/component/page-header",
-                title: "PageHeader",
-                subtitle: "页头",
-              },
-              {
-                path: "/component/backtop",
-                title: "Backtop",
-                subtitle: "回到顶部",
-              },
-            ],
-          },
-          {
-            title: "反馈",
-            children: [
-              {
-                path: "/component/alert",
-                title: "Alert",
-                subtitle: "警告",
-              },
-              {
-                path: "/component/modal",
-                title: "Modal",
-                subtitle: "对话框",
-              },
-              {
-                path: "/component/message",
-                title: "Message",
-                subtitle: "全局提示",
-              },
-              {
-                path: "/component/notification",
-                title: "Notification",
-                subtitle: "通知提醒",
-              },
-              {
-                path: "/component/progress",
-                title: "Progress",
-                subtitle: "进度条",
-              },
-              {
-                path: "/component/popover",
-                title: "Popover",
-                subtitle: "气泡弹出框",
-              },
-              {
-                path: "/component/tooltip",
-                title: "Tooltip",
-                subtitle: "气泡提示",
-              },
-              {
-                path: "/component/spin",
-                title: "Spin",
-                subtitle: "加载中",
-              },
-              {
-                path: "/component/divider",
-                title: "Divider",
-                subtitle: "分割线",
-              },
-            ],
-          },
+          // {
+          //   title: "布局",
+          //   children: [
+          //     { path: "/component/grid", title: "Grid", subtitle: "栅格" },
+          //     { path: "/component/layout", title: "Layout", subtitle: "布局" },
+          //   ],
+          // },
+          // {
+          //   title: "表单",
+          //   children: [
+          //     {
+          //       path: "/component/radio",
+          //       title: "Radio",
+          //       subtitle: "单选框",
+          //     },
+          //     {
+          //       path: "/component/checkbox",
+          //       title: "Checkbox",
+          //       subtitle: "复选框",
+          //     },
+          //     {
+          //       path: "/component/input",
+          //       title: "Input",
+          //       subtitle: "输入框",
+          //     },
+          //     {
+          //       path: "/component/textarea",
+          //       title: "Textarea",
+          //       subtitle: "文本域",
+          //     },
+          //     {
+          //       path: "/component/numberbox",
+          //       title: "Numberbox",
+          //       subtitle: "数字框",
+          //     },
+          //     {
+          //       path: "/component/number-range",
+          //       title: "NumberRange",
+          //       subtitle: "数字区间",
+          //     },
+          //     {
+          //       path: "/component/select",
+          //       title: "Select",
+          //       subtitle: "下拉框",
+          //     },
+          //     {
+          //       path: "/component/date-picker",
+          //       title: "DatePicker",
+          //       subtitle: "日期选择器",
+          //     },
+          //     {
+          //       path: "/component/switch",
+          //       title: "Switch",
+          //       subtitle: "开关按钮",
+          //     },
+          //     { path: "/component/rate", title: "Rate", subtitle: "评分" },
+          //     {
+          //       path: "/component/upload",
+          //       title: "Upload",
+          //       subtitle: "上传",
+          //     },
+          //     {
+          //       path: "/component/editor",
+          //       title: "Editor",
+          //       subtitle: "编辑器",
+          //     },
+          //     {
+          //       path: "/component/form",
+          //       title: "Form",
+          //       subtitle: "表单",
+          //     },
+          //   ],
+          // },
+          // {
+          //   title: "数据",
+          //   children: [
+          //     {
+          //       path: "/component/table",
+          //       title: "Table",
+          //       subtitle: "表格",
+          //     },
+          //     {
+          //       path: "/component/tree",
+          //       title: "Tree",
+          //       subtitle: "树",
+          //     },
+          //     {
+          //       path: "/component/card",
+          //       title: "Card",
+          //       subtitle: "卡片",
+          //     },
+          //     {
+          //       path: "/component/collapse",
+          //       title: "Collapse",
+          //       subtitle: "折叠面板",
+          //     },
+          //     {
+          //       path: "/component/pagination",
+          //       title: "Pagination",
+          //       subtitle: "分页",
+          //     },
+          //     {
+          //       path: "/component/badge",
+          //       title: "Badge",
+          //       subtitle: "徽标",
+          //     },
+          //     {
+          //       path: "/component/statistic",
+          //       title: "Statistic",
+          //       subtitle: "统计数值",
+          //     },
+          //     {
+          //       path: "/component/tag",
+          //       title: "Tag",
+          //       subtitle: "标签",
+          //     },
+          //     {
+          //       path: "/component/avatar",
+          //       title: "Avatar",
+          //       subtitle: "头像",
+          //     },
+          //     {
+          //       path: "/component/empty",
+          //       title: "Empty",
+          //       subtitle: "空状态",
+          //     },
+          //     {
+          //       path: "/component/image",
+          //       title: "Image",
+          //       subtitle: "图片",
+          //     },
+          //   ],
+          // },
+          //   {
+          //     title: "导航",
+          //     children: [
+          //       {
+          //         path: "/component/tabs",
+          //         title: "Tabs",
+          //         subtitle: "标签页",
+          //       },
+          //       {
+          //         path: "/component/breadcrumb",
+          //         title: "Breadcrumb",
+          //         subtitle: "面包屑",
+          //       },
+          //       {
+          //         path: "/component/dropdown",
+          //         title: "Dropdown",
+          //         subtitle: "下拉菜单",
+          //       },
+          //       {
+          //         path: "/component/menu",
+          //         title: "Menu",
+          //         subtitle: "菜单",
+          //       },
+          //       {
+          //         path: "/component/steps",
+          //         title: "Steps",
+          //         subtitle: "步骤条",
+          //       },
+          //       {
+          //         path: "/component/drawer",
+          //         title: "Drawer",
+          //         subtitle: "抽屉",
+          //       },
+          //       {
+          //         path: "/component/page-header",
+          //         title: "PageHeader",
+          //         subtitle: "页头",
+          //       },
+          //       {
+          //         path: "/component/backtop",
+          //         title: "Backtop",
+          //         subtitle: "回到顶部",
+          //       },
+          //     ],
+          //   },
+          //   {
+          //     title: "反馈",
+          //     children: [
+          //       {
+          //         path: "/component/alert",
+          //         title: "Alert",
+          //         subtitle: "警告",
+          //       },
+          //       {
+          //         path: "/component/modal",
+          //         title: "Modal",
+          //         subtitle: "对话框",
+          //       },
+          //       {
+          //         path: "/component/message",
+          //         title: "Message",
+          //         subtitle: "全局提示",
+          //       },
+          //       {
+          //         path: "/component/notification",
+          //         title: "Notification",
+          //         subtitle: "通知提醒",
+          //       },
+          //       {
+          //         path: "/component/progress",
+          //         title: "Progress",
+          //         subtitle: "进度条",
+          //       },
+          //       {
+          //         path: "/component/popover",
+          //         title: "Popover",
+          //         subtitle: "气泡弹出框",
+          //       },
+          //       {
+          //         path: "/component/tooltip",
+          //         title: "Tooltip",
+          //         subtitle: "气泡提示",
+          //       },
+          //       {
+          //         path: "/component/spin",
+          //         title: "Spin",
+          //         subtitle: "加载中",
+          //       },
+          //       {
+          //         path: "/component/divider",
+          //         title: "Divider",
+          //         subtitle: "分割线",
+          //       },
+          //     ],
+          //   },
         ],
       },
     ];
