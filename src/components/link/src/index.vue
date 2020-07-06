@@ -28,13 +28,15 @@ export default defineComponent({
       type: Boolean,
       default: true,
     },
+    disabled: Boolean,
   },
   setup(props, { emit }) {
     const classList = [
       `v-link`,
       `v-link--type-${props.type}`,
       {
-        "v-link--underline": props.underline,
+        "v-link--underline": props.underline && !props.disabled,
+        "v-link--disabled": props.disabled,
       },
     ];
     return { classList };
@@ -69,6 +71,7 @@ export default defineComponent({
 }
 
 $color-maps: (
+  default: $-color--text-primary,
   primary: $-color--primary,
   success: $-color--success,
   warning: $-color--warning,
@@ -81,10 +84,15 @@ $color-maps: (
 
   .v-link--type-#{$key} {
     color: $color;
-  }
 
-  .v-link--type-#{$key}.v-link--underline:hover:after {
-    border-bottom-color: $color;
+    &.v-link--underline:hover:after {
+      border-bottom-color: $color;
+    }
+
+    &.v-link--disabled {
+      color: mix($color, #ffffff, 60%);
+      cursor: not-allowed;
+    }
   }
 }
 </style>

@@ -20,3 +20,22 @@
 ```
 
 :::
+
+## 禁用状态
+
+:::snippet 通过属性`disabled`禁用链接。
+
+```vue
+<template>
+  <div class="vsc-link">
+    <v-link disabled>Default</v-link>
+    <v-link type="primary" disabled>Primary</v-link>
+    <v-link type="success" disabled>Success</v-link>
+    <v-link type="warning" disabled>Warning</v-link>
+    <v-link type="danger" disabled>Danger</v-link>
+    <v-link type="info" disabled>Info</v-link>
+  </div>
+</template>
+```
+
+:::
