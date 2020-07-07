@@ -39,3 +39,33 @@
 ```
 
 :::
+
+## 下划线
+
+:::snippet 通过属性`underline`控制下划线显示和隐藏。
+
+```vue
+<template>
+  <div class="vsc-link">
+    <v-link>Underline</v-link>
+    <v-link :underline="false">NoUnderline</v-link>
+  </div>
+</template>
+```
+
+:::
+
+## 图标
+
+:::snippet 通过属性`prefix-icon`和`suffix-icon`设置前置图标和后置图标。
+
+```vue
+<template>
+  <div class="vsc-link">
+    <v-link prefix-icon="v-icon-edit-fill">Edit</v-link>
+    <v-link suffix-icon="v-icon-delete-fill">Delete</v-link>
+  </div>
+</template>
+```
+
+:::

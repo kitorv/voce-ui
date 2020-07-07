@@ -14,6 +14,7 @@
 
 <script lang="ts">
 import { defineComponent, PropType, computed } from "vue";
+import { IconType } from "../../icons";
 import { useRouter, RouteLocationRaw } from "vue-router";
 
 export type ButtonType =
@@ -39,7 +40,7 @@ export default defineComponent({
       default: "default",
     },
     shape: String as PropType<ButttonShape>,
-    icon: String,
+    icon: String as PropType<IconType>,
     dashed: Boolean,
     plain: Boolean,
     link: Boolean,

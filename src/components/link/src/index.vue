@@ -1,13 +1,16 @@
 <template>
   <a :class="classList" target="_blank">
+    <i v-if="prefixIcon" :class="['v-link--prefix-icon', prefixIcon]" />
     <span class="v-link--text">
       <slot />
     </span>
+    <i v-if="suffixIcon" :class="['v-link--suffix-icon', suffixIcon]" />
   </a>
 </template>
 
 <script lang="ts">
 import { defineComponent, PropType } from "vue";
+import { IconType } from "../../icons";
 
 export type LinkType =
   | "default"
@@ -29,6 +32,8 @@ export default defineComponent({
       default: true,
     },
     disabled: Boolean,
+    prefixIcon: String as PropType<IconType>,
+    suffixIcon: String as PropType<IconType>,
   },
   setup(props, { emit }) {
     const classList = [
@@ -94,5 +99,13 @@ $color-maps: (
       cursor: not-allowed;
     }
   }
+}
+
+.v-link--prefix-icon {
+  margin-right: 4px;
+}
+
+.v-link--suffix-icon {
+  margin-left: 4px;
 }
 </style>
