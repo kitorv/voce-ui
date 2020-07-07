@@ -1,5 +1,5 @@
 <template>
-  <a :class="classList" target="_blank">
+  <a :class="classList" v-bind="linkAttrs" @click="onClick($event)">
     <i v-if="prefixIcon" :class="['v-link--prefix-icon', prefixIcon]" />
     <span class="v-link--text">
       <slot />
@@ -9,8 +9,9 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType } from "vue";
+import { defineComponent, PropType, computed } from "vue";
 import { IconType } from "../../icons";
+import { useRouter, RouteLocationRaw } from "vue-router";
 
 export type LinkType =
   | "default"
@@ -34,6 +35,8 @@ export default defineComponent({
     disabled: Boolean,
     prefixIcon: String as PropType<IconType>,
     suffixIcon: String as PropType<IconType>,
+    href: String,
+    to: [Object, String] as PropType<RouteLocationRaw>,
   },
   setup(props, { emit }) {
     const classList = [
@@ -44,7 +47,27 @@ export default defineComponent({
         "v-link--disabled": props.disabled,
       },
     ];
-    return { classList };
+
+    const linkAttrs = computed(() => {
+      if (props.disabled || !props.href) return;
+      return {
+        target: "_blank",
+        href: props.href,
+      };
+    });
+
+    const router = useRouter();
+
+    const onClick = (event: Event) => {
+      if (!linkAttrs) return;
+      if (props.to && router) {
+        router.push(props.to as RouteLocationRaw);
+        return;
+      }
+      emit("click", event);
+    };
+
+    return { classList, linkAttrs, onClick };
   },
 });
 </script>

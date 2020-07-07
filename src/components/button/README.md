@@ -297,10 +297,16 @@ export default defineComponent({
 | link     | 链接模式 | _Boolean_          | —                | `false`   |
 | disabled | 禁用状态 | _Boolean_          | —                | `false`   |
 | loading  | 加载中   | _Boolean_          | —                | `false`   |
-| to       | 路由     | _RouteLocationRaw_ | —                | `false`   |
+| to       | 路由     | _RouteLocationRaw_ | —                | —         |
 
 ## Button Events
 
 | 事件名称 | 说明     | 回调参数      |
 | -------- | -------- | ------------- |
 | click    | 单击触发 | _event:Event_ |
+
+## Button Slots
+
+| 名称 | 说明     |
+| ---- | -------- |
+| —    | 按钮内容 |

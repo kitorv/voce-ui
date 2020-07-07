@@ -74,7 +74,6 @@ export default defineComponent({
     const router = useRouter();
 
     const onClick = (event: Event) => {
-      debugger;
       if (isDisabled.value) return;
       if (props.to && router) {
         router.push(props.to as RouteLocationRaw);
