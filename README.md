@@ -16,7 +16,7 @@
     - [x] Button 按钮
     - [x] Color 色彩
     - [x] Icon 图标
-    - [ ] Link 链接
+    - [x] Link 链接
     - [ ] Text 文字
   - [ ] 布局
     - [ ] Grid 栅格
