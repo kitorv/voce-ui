@@ -1,10 +1,10 @@
 # Link 链接
 
-文字超链接
+文字超链接。
 
 ## 基础用法
 
-:::snippet 通过按钮的类型 `type` 定义链接的基础样式。
+:::snippet 通过`type`定义链接的基础样式。
 
 ```vue
 <template>
@@ -23,7 +23,7 @@
 
 ## 禁用状态
 
-:::snippet 通过属性`disabled`禁用链接。
+:::snippet 通过`disabled`禁用链接。
 
 ```vue
 <template>
@@ -42,7 +42,7 @@
 
 ## 下划线
 
-:::snippet 通过属性`underline`控制下划线显示和隐藏。
+:::snippet 通过`underline`控制下划线显示和隐藏。
 
 ```vue
 <template>
@@ -57,7 +57,7 @@
 
 ## 图标
 
-:::snippet 通过属性`prefix-icon`和`suffix-icon`设置前置图标和后置图标。
+:::snippet 通过`prefix-icon`和`suffix-icon`设置前置图标和后置图标。
 
 ```vue
 <template>
@@ -72,7 +72,7 @@
 
 ## 链接跳转
 
-:::snippet 设置属性`href`链接的原始属性进行跳转，设置`to`属性对应的路由跳转配置。
+:::snippet 设置`href`链接的原始属性进行跳转，设置`to`属性对应的路由跳转配置。
 
 ```vue
 <template>

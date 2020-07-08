@@ -4,7 +4,7 @@
 
 ## 基础用法
 
-:::snippet 通过按钮的类型 `type` 定义按钮的基础样式。
+:::snippet 通过`type`定义按钮的基础样式。
 
 ```vue
 <template>
@@ -22,7 +22,7 @@
 
 ## 按钮形状
 
-:::snippet 通过 `shape` 设置按钮形状，可选值为 `circle` 、 `round` 或者不设置。
+:::snippet 通过`shape`设置按钮形状，可选值为`circle`、`round`或者不设置。
 
 ```vue
 <template>
@@ -49,7 +49,7 @@
 
 ## 按钮图标
 
-:::snippet 通过 `shape` 设置按钮形状，可选值为 `circle` 、 `round` 或者不设置。
+:::snippet 通过`shape`设置按钮形状，可选值为`circle`、`round`或者不设置。
 
 ```vue
 <template>
@@ -78,7 +78,7 @@
 
 ## 虚线边框
 
-:::snippet 通过 `dashed` 将边框设置为虚线。
+:::snippet 通过`dashed`将边框设置为虚线。
 
 ```vue
 <template>
@@ -102,7 +102,7 @@
 
 ## 简洁按钮
 
-:::snippet 通过 `plain` 设置简洁显示模式。
+:::snippet 通过`plain`设置简洁显示模式。
 
 ```vue
 <template>
@@ -127,7 +127,7 @@
 
 ## 链接按钮
 
-:::snippet 通过 `link` 设置链接模式。
+:::snippet 通过`link`设置链接模式。
 
 ```vue
 <template>
@@ -152,7 +152,7 @@
 
 ## 禁用状态
 
-:::snippet 通过属性`disabled`禁用按钮。
+:::snippet 通过`disabled`禁用按钮。
 
 ```vue
 <template>
@@ -246,7 +246,7 @@ export default defineComponent({
 
 ## 路由跳转
 
-:::snippet 设置属性`to`对应的`vue-router`配置项，进行路由跳转。
+:::snippet 设置`to`对应的`vue-router`配置项，进行路由跳转。
 
 ```vue
 <template>

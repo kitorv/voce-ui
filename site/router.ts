@@ -47,6 +47,11 @@ const router = createRouter({
           name: "component-link",
           component: () => import("@/components/link/README.md"),
         },
+        {
+          path: "/component/text",
+          name: "component-text",
+          component: () => import("@/components/text/README.md"),
+        },
       ],
     },
   ],

@@ -89,8 +89,8 @@ module.exports = function (source) {
                   </template>
                   <template #source>`;
       }
-      return `    </template>
-                </vc-code-snippet> `;
+      return `   </template>
+                </vc-code-snippet>`;
     },
   });
   return `<template>
