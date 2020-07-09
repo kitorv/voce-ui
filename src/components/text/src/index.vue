@@ -3,7 +3,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType, h } from "vue";
+import { defineComponent, PropType, h, Slots, VNode } from "vue";
 
 export type LevelType = 1 | 2 | 3 | 4 | 5 | 6;
 
@@ -23,25 +23,94 @@ export default defineComponent({
       type: String as PropType<TextType>,
       default: "default",
     },
+    disabled: Boolean,
+    mark: Boolean,
+    code: Boolean,
+    keyboard: Boolean,
+    underline: Boolean,
+    delete: Boolean,
+    strong: Boolean,
+    ellipsis: Boolean,
   },
-  setup(props, { slots }) {
+  setup(props, { slots, emit }) {
     const classList = [
       `v-text`,
       `v-text--type-${props.type}`,
       {
         [`v-text--level-${props.level}`]: props.level,
+        "v-text--disabled": props.disabled,
+        "v-text--ellipsis": props.ellipsis,
       },
     ];
 
+    let childrenNodes: Slots | VNode = slots;
+
+    if (props.mark) {
+      childrenNodes = h("mark", {}, childrenNodes);
+    }
+
+    if (props.code) {
+      childrenNodes = h("code", {}, childrenNodes);
+    }
+
+    if (props.keyboard) {
+      childrenNodes = h("kbd", {}, childrenNodes);
+    }
+
+    if (props.underline) {
+      childrenNodes = h("u", {}, childrenNodes);
+    }
+
+    if (props.delete) {
+      childrenNodes = h("del", {}, childrenNodes);
+    }
+
+    if (props.strong) {
+      childrenNodes = h("strong", {}, childrenNodes);
+    }
+
     const htmlTag = props.level ? `h${props.level}` : "span";
 
-    // return { classList };
-    return () => h(htmlTag, { class: classList }, slots);
+    const onClick = (event: Event) => {
+      if (props.disabled) return;
+      emit("click", event);
+    };
+
+    return () =>
+      h(
+        htmlTag,
+        {
+          class: classList,
+          onClick,
+        },
+        childrenNodes
+      );
   },
 });
 </script>
 
 <style lang="scss">
+.v-text {
+  code {
+    margin: 0 0.2em;
+    padding: 0.2em 0.4em 0.1em;
+    font-size: 85%;
+    background: rgba(150, 150, 150, 0.1);
+    border: 1px solid rgba(100, 100, 100, 0.2);
+    border-radius: 3px;
+  }
+
+  kbd {
+    margin: 0 0.2em;
+    padding: 0.15em 0.4em 0.1em;
+    font-size: 90%;
+    background: rgba(150, 150, 150, 0.06);
+    border: 1px solid rgba(100, 100, 100, 0.2);
+    border-bottom-width: 2px;
+    border-radius: 3px;
+  }
+}
+
 $color-maps: (
   default: $-color--text-primary,
   primary: $-color--primary,
@@ -98,5 +167,17 @@ h6.v-text {
   margin-top: 0.7em;
   margin-bottom: 0.5em;
   font-weight: 600;
+}
+
+.v-text--disabled {
+  cursor: not-allowed;
+  color: #999999;
+}
+
+.v-text--ellipsis {
+  display: block;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 </style>

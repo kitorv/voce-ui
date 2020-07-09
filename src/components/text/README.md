@@ -21,7 +21,7 @@
 
 :::
 
-## 基础用法
+## 基础类型
 
 :::snippet 通过`type`定义文本的基础样式。
 
@@ -39,3 +39,67 @@
 ```
 
 :::
+
+## 内置类型
+
+:::snippet 内置不同样式的文本。
+
+```vue
+<template>
+  <div class="vsc-text">
+    <v-text disabled>Disabled</v-text>
+    <v-text mark>Mark</v-text>
+    <v-text code>Code</v-text>
+    <v-text keyboard>Keyboard</v-text>
+    <v-text underline>Underline</v-text>
+    <v-text delete>Delete</v-text>
+    <v-text strong>Strong</v-text>
+  </div>
+</template>
+```
+
+:::
+
+## 文本省略
+
+:::snippet 通过`ellipsis`超出自身宽度或者超出父容器宽度自动显示省略号。
+
+```vue
+<template>
+  <div class="vsc-text">
+    <v-text ellipsis>Ellipsis Ellipsis Ellipsis</v-text>
+  </div>
+</template>
+```
+
+:::
+
+## Text Props
+
+[text-type] = _default \| primary \| success \| warning \| danger \| info_
+[levle-type] = _1 \| 2 \| 3 \| 4 \| 5 \| 6_
+
+| 属性      | 说明     | 类型      | 可选值         | 默认值    |
+| --------- | -------- | --------- | -------------- | --------- |
+| type      | 类型     | _String_  | [[text-type]]  | `default` |
+| level     | 标题类型 | _Number_  | [[levle-type]] | —         |
+| disabled  | 禁用     | _Boolean_ | —              | `false`   |
+| mark      | 标记     | _Boolean_ | —              | `false`   |
+| code      | 代码块   | _Boolean_ | —              | `false`   |
+| keyboard  | 键盘样式 | _Boolean_ | —              | `false`   |
+| underline | 下划线   | _Boolean_ | —              | `false`   |
+| delete    | 删除线   | _Boolean_ | —              | `false`   |
+| strong    | 加粗     | _Boolean_ | —              | `false`   |
+| ellipsis  | 省略号   | _Boolean_ | —              | `false`   |
+
+## Text Events
+
+| 事件名称 | 说明     | 回调参数      |
+| -------- | -------- | ------------- |
+| click    | 单击触发 | _event:Event_ |
+
+## Text Slots
+
+| 名称 | 说明     |
+| ---- | -------- |
+| —    | 文本内容 |
