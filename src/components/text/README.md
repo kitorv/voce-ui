@@ -9,12 +9,12 @@
 ```vue
 <template>
   <div class="vsc-text">
-    <v-text :level="1">H1.VECO</v-text>
-    <v-text :level="2">H2.VECO</v-text>
-    <v-text :level="3">H3.VECO</v-text>
-    <v-text :level="4">H4.VECO</v-text>
-    <v-text :level="5">H5.VECO</v-text>
-    <v-text :level="6">H6.VECO</v-text>
+    <v-text title="h1">H1.VECO</v-text>
+    <v-text title="h2">H2.VECO</v-text>
+    <v-text title="h3">H3.VECO</v-text>
+    <v-text title="h4">H4.VECO</v-text>
+    <v-text title="h5">H5.VECO</v-text>
+    <v-text title="h6">H6.VECO</v-text>
   </div>
 </template>
 ```
@@ -77,12 +77,12 @@
 ## Text Props
 
 [text-type] = _default \| primary \| success \| warning \| danger \| info_
-[levle-type] = _1 \| 2 \| 3 \| 4 \| 5 \| 6_
+[title-type] = _h1 \| h2 \| h3 \| h4 \| h5 \| h6_
 
 | 属性      | 说明     | 类型      | 可选值         | 默认值    |
 | --------- | -------- | --------- | -------------- | --------- |
 | type      | 类型     | _String_  | [[text-type]]  | `default` |
-| level     | 标题类型 | _Number_  | [[levle-type]] | —         |
+| title     | 标题类型 | _String_  | [[title-type]] | —         |
 | disabled  | 禁用     | _Boolean_ | —              | `false`   |
 | mark      | 标记     | _Boolean_ | —              | `false`   |
 | code      | 代码块   | _Boolean_ | —              | `false`   |

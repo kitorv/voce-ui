@@ -5,7 +5,7 @@
 <script lang="ts">
 import { defineComponent, PropType, h, Slots, VNode } from "vue";
 
-export type LevelType = 1 | 2 | 3 | 4 | 5 | 6;
+export type TitleType = "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
 
 export type TextType =
   | "default"
@@ -18,7 +18,7 @@ export type TextType =
 export default defineComponent({
   name: "VText",
   props: {
-    level: Number as PropType<LevelType>,
+    title: String as PropType<TitleType>,
     type: {
       type: String as PropType<TextType>,
       default: "default",
@@ -37,7 +37,7 @@ export default defineComponent({
       `v-text`,
       `v-text--type-${props.type}`,
       {
-        [`v-text--level-${props.level}`]: props.level,
+        [`v-text--level-${props.title}`]: props.title,
         "v-text--disabled": props.disabled,
         "v-text--ellipsis": props.ellipsis,
       },
@@ -69,7 +69,7 @@ export default defineComponent({
       childrenNodes = h("strong", {}, childrenNodes);
     }
 
-    const htmlTag = props.level ? `h${props.level}` : "span";
+    const htmlTag = props.title ? props.title : "span";
 
     const onClick = (event: Event) => {
       if (props.disabled) return;
