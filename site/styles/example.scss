@@ -19,3 +19,22 @@
     width: 60px;
   }
 }
+
+.vsc-grid {
+  .v-col {
+    margin-top: 8px;
+    margin-bottom: 8px;
+    color: #fff;
+    text-align: center;
+    border-radius: 0;
+    padding: 12px 0;
+  }
+
+  .v-row > .v-col:nth-child(2n + 1) {
+    background: mix($-color--primary, #ffffff, 75%);
+  }
+
+  .v-row > .v-col:nth-child(2n) {
+    background: $-color--primary;
+  }
+}

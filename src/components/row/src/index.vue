@@ -1,5 +1,7 @@
 <template>
-  <span>ROW<slot /></span>
+  <div class="v-row">
+    <slot />
+  </div>
 </template>
 
 <script lang="ts">
@@ -12,4 +14,14 @@ export default defineComponent({
 });
 </script>
 
-<style lang="scss"></style>
+<style lang="scss">
+.v-row {
+  display: flex;
+  flex-flow: row wrap;
+
+  &::before,
+  &::after {
+    display: flex;
+  }
+}
+</style>
