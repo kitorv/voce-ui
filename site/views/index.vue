@@ -52,13 +52,13 @@ export default defineComponent({
               { path: "/component/text", title: "Text", subtitle: "文本" },
             ],
           },
-          // {
-          //   title: "布局",
-          //   children: [
-          //     { path: "/component/grid", title: "Grid", subtitle: "栅格" },
-          //     { path: "/component/layout", title: "Layout", subtitle: "布局" },
-          //   ],
-          // },
+          {
+            title: "布局",
+            children: [
+              { path: "/component/grid", title: "Grid", subtitle: "栅格" },
+              // { path: "/component/layout", title: "Layout", subtitle: "布局" },
+            ],
+          },
           // {
           //   title: "表单",
           //   children: [

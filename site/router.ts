@@ -52,6 +52,11 @@ const router = createRouter({
           name: "component-text",
           component: () => import("@/components/text/README.md"),
         },
+        {
+          path: "/component/grid",
+          name: "component-grid",
+          component: () => import("@/components/row/README.md"),
+        },
       ],
     },
   ],
