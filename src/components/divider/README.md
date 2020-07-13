@@ -79,3 +79,20 @@
 ```
 
 :::
+
+## Divider Props
+
+[divider-type] = _horizontal \| vertical_
+[orientation-type] = _left \| center\| right_
+
+| 属性        | 说明     | 类型      | 可选值               | 默认值       |
+| ----------- | -------- | --------- | -------------------- | ------------ |
+| type        | 类型     | _String_  | [[divider-type]]     | `horizontal` |
+| orientation | 描述位置 | _String_  | [[orientation-type]] | `center`     |
+| plain       | 简洁描述 | _Boolean_ | —                    | `false`      |
+
+## Divider Slots
+
+| 名称 | 说明     |
+| ---- | -------- |
+| —    | 分割描述 |
