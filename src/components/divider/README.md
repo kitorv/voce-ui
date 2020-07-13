@@ -4,12 +4,16 @@
 
 ## 基础用法
 
-:::snippet
+:::snippet 默认为水平分割线，放置于文字中间。
 
 ```vue
 <template>
-  <div class="vsc-grid">
+  <div class="vsc-divider">
+    <p>A Vue.js 3.0 UI Toolkit for Web</p>
     <v-divider></v-divider>
+    <p>A Vue.js 3.0 UI Toolkit for Web</p>
+    <v-divider></v-divider>
+    <p>A Vue.js 3.0 UI Toolkit for Web</p>
   </div>
 </template>
 ```
