@@ -84,7 +84,6 @@ export default defineComponent({
   outline: none;
   padding: 0;
   font-size: 14px;
-  font-weight: 500;
   cursor: pointer;
 }
 

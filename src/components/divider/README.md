@@ -42,7 +42,7 @@
 
 ## 简洁描述
 
-:::snippet 使用`plain`可以设置为更轻量的分割文字样式。。
+:::snippet 通过`plain`设置为更轻量的分割文字样式。。
 
 ```vue
 <template>
@@ -54,6 +54,26 @@
     <p>A Vue.js 3.0 UI Toolkit for Web</p>
     <v-divider orientation="right" plain>Right Text</v-divider>
     <p>A Vue.js 3.0 UI Toolkit for Web</p>
+  </div>
+</template>
+```
+
+:::
+
+## 垂直分割
+
+:::snippet 通过`type`设置为`vertical`在行内垂直分割内容。
+
+```vue
+<template>
+  <div class="vsc-divider">
+    <v-link type="primary">Primary</v-link>
+    <v-divider type="vertical"></v-divider>
+    <v-link type="primary">Primary</v-link>
+    <v-divider type="vertical"></v-divider>
+    <v-link type="primary">Primary</v-link>
+    <v-divider type="vertical"></v-divider>
+    <v-link type="primary">Primary</v-link>
   </div>
 </template>
 ```
