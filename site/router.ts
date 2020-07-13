@@ -53,6 +53,11 @@ const router = createRouter({
           component: () => import("@/components/text/README.md"),
         },
         {
+          path: "/component/divider",
+          name: "component-divider",
+          component: () => import("@/components/divider/README.md"),
+        },
+        {
           path: "/component/grid",
           name: "component-grid",
           component: () => import("@/components/row/README.md"),

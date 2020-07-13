@@ -2,10 +2,11 @@ import { App } from "vue";
 import { Button } from "./components/button";
 import { Link } from "./components/link";
 import { Text } from "./components/text";
+import { Divider } from "./components/divider";
 import { Row } from "./components/row";
 import { Col } from "./components/col";
 
-const components = [Button, Link, Text, Row, Col];
+const components = [Button, Link, Text, Divider, Row, Col];
 
 export const install = function (app: App) {
   components.forEach(({ install }) => {

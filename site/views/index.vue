@@ -55,6 +55,11 @@ export default defineComponent({
           {
             title: "布局",
             children: [
+              {
+                path: "/component/divider",
+                title: "Divider",
+                subtitle: "分割线",
+              },
               { path: "/component/grid", title: "Grid", subtitle: "栅格" },
               // { path: "/component/layout", title: "Layout", subtitle: "布局" },
             ],
