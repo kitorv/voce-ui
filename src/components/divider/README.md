@@ -39,3 +39,23 @@
 ```
 
 :::
+
+## 简洁描述
+
+:::snippet 使用`plain`可以设置为更轻量的分割文字样式。。
+
+```vue
+<template>
+  <div class="vsc-divider">
+    <p>A Vue.js 3.0 UI Toolkit for Web</p>
+    <v-divider orientation="left" plain>Left Text</v-divider>
+    <p>A Vue.js 3.0 UI Toolkit for Web</p>
+    <v-divider plain>Text</v-divider>
+    <p>A Vue.js 3.0 UI Toolkit for Web</p>
+    <v-divider orientation="right" plain>Right Text</v-divider>
+    <p>A Vue.js 3.0 UI Toolkit for Web</p>
+  </div>
+</template>
+```
+
+:::

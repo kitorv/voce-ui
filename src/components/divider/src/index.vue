@@ -24,6 +24,7 @@ export default defineComponent({
       type: String as PropType<OrientationType>,
       default: "center",
     },
+    plain: Boolean,
   },
   setup(props, { slots, emit }) {
     const showText = slots.default && props.type !== "vertical";
@@ -36,6 +37,7 @@ export default defineComponent({
         "v-divider--with-text": showText,
         "v-divider--with-text-left": showText && props.orientation === "left",
         "v-divider--with-text-right": showText && props.orientation === "right",
+        "v-divider--plain": showText && props.plain,
       },
     ];
 
@@ -125,5 +127,10 @@ export default defineComponent({
 .v-divider--text {
   display: inline-block;
   padding: 0 1em;
+}
+
+.v-divider--plain {
+  font-weight: 400;
+  font-size: 14px;
 }
 </style>
