@@ -19,6 +19,7 @@
     - [x] Link 链接
     - [x] Text 文本
   - [ ] 布局
+    - [x] Divider 分割线
     - [ ] Grid 栅格
     - [ ] Layout 布局
   - [ ] 表单
