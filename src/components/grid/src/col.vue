@@ -14,7 +14,7 @@ import {
 } from "vue";
 import { VRow } from "./row.vue";
 
-export type SpanType =
+type ColSpanType =
   | 0
   | 1
   | 2
@@ -41,10 +41,15 @@ export type SpanType =
   | 23
   | 24;
 
+export type ColSpan = ColSpanType;
+
+export type ColOffset = ColSpanType;
+
 export default defineComponent({
   name: "VCol",
   props: {
-    span: Number as PropType<SpanType>,
+    span: Number as PropType<ColSpan>,
+    offset: Number as PropType<ColOffset>,
   },
   setup(props, { slots, emit }) {
     const vRow = inject<VRow>("VRow", { gutter: [0, 0] });
@@ -53,6 +58,7 @@ export default defineComponent({
       `v-col`,
       {
         [`v-col--${props.span}`]: props.span,
+        [`v-col--offset-${props.offset}`]: props.offset,
       },
     ];
 
@@ -94,9 +100,9 @@ export default defineComponent({
     max-width: $value;
   }
 
-  // .n-col-offset-#{$i} {
-  //   margin-left: (1 / 24 * $i * 100) * 1%;
-  // }
+  .v-col--offset-#{$i} {
+    margin-left: $value;
+  }
 
   // .n-col-pull-#{$i} {
   //   position: relative;

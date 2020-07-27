@@ -98,7 +98,7 @@
     &:nth-child(2n + 1) {
       background: #ffffff;
       > div {
-        padding: 8px 0px;
+        padding: 12px 0px;
         background: mix($-color--primary, #ffffff, 75%);
       }
     }
@@ -106,13 +106,43 @@
     &:nth-child(2n) {
       background: #ffffff;
       > div {
-        padding: 8px 0px;
+        padding: 12px 0px;
         background: $-color--primary;
       }
     }
   }
 }
 </style>
+```
+
+:::
+
+## 左右偏移
+
+:::snippet 通过`offset`属性设置偏移的列数。
+
+```vue
+<template>
+  <div class="vsc-grid">
+    <v-row>
+      <v-col :span="8">col-8</v-col>
+      <v-col :span="8" :offset="8">col-8</v-col>
+    </v-row>
+    <v-row>
+      <v-col :span="6" :offset="6">
+        col-6 col-offset-6
+      </v-col>
+      <v-col :span="6" :offset="6">
+        col-6 col-offset-6
+      </v-col>
+    </v-row>
+    <v-row>
+      <v-col :span="12" :offset="6">
+        col-12 col-offset-6
+      </v-col>
+    </v-row>
+  </div>
+</template>
 ```
 
 :::
