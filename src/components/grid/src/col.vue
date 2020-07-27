@@ -45,11 +45,17 @@ export type ColSpan = ColSpanType;
 
 export type ColOffset = ColSpanType;
 
+export type ColPull = ColSpanType;
+
+export type ColPush = ColSpanType;
+
 export default defineComponent({
   name: "VCol",
   props: {
     span: Number as PropType<ColSpan>,
     offset: Number as PropType<ColOffset>,
+    pull: Number as PropType<ColPull>,
+    push: Number as PropType<ColPush>,
   },
   setup(props, { slots, emit }) {
     const vRow = inject<VRow>("VRow", { gutter: [0, 0] });
@@ -59,6 +65,8 @@ export default defineComponent({
       {
         [`v-col--${props.span}`]: props.span,
         [`v-col--offset-${props.offset}`]: props.offset,
+        [`v-col--pull-${props.pull}`]: props.pull,
+        [`v-col--push-${props.push}`]: props.push,
       },
     ];
 
@@ -104,40 +112,12 @@ export default defineComponent({
     margin-left: $value;
   }
 
-  // .n-col-pull-#{$i} {
-  //   position: relative;
-  //   right: (1 / 24 * $i * 100) * 1%;
-  // }
+  .v-col--pull-#{$i} {
+    right: $value;
+  }
 
-  // .n-col-push-#{$i} {
-  //   position: relative;
-  //   left: (1 / 24 * $i * 100) * 1%;
-  // }
+  .v-col--push-#{$i} {
+    left: $value;
+  }
 }
-
-// .ant-col-24 {
-//     display: block;
-//     -webkit-box-flex: 0;
-//     -ms-flex: 0 0 100%;
-//     flex: 0 0 100%;
-//     max-width: 100%
-// }
-
-// .ant-col-push-24 {
-//     left: 100%
-// }
-
-// .ant-col-pull-24 {
-//     right: 100%
-// }
-
-// .ant-col-offset-24 {
-//     margin-left: 100%
-// }
-
-// .ant-col-order-24 {
-//     -webkit-box-ordinal-group: 25;
-//     -ms-flex-order: 24;
-//     order: 24
-// }
 </style>

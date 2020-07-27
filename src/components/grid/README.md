@@ -10,22 +10,22 @@
 <template>
   <div class="vsc-grid">
     <v-row>
-      <v-col :span="24">v-col</v-col>
+      <v-col :span="24">col</v-col>
     </v-row>
     <v-row>
-      <v-col :span="12">v-col-12</v-col>
-      <v-col :span="12">v-col-12</v-col>
+      <v-col :span="12">col-12</v-col>
+      <v-col :span="12">col-12</v-col>
     </v-row>
     <v-row>
-      <v-col :span="8">v-col-8</v-col>
-      <v-col :span="8">v-col-8</v-col>
-      <v-col :span="8">v-col-8</v-col>
+      <v-col :span="8">col-8</v-col>
+      <v-col :span="8">col-8</v-col>
+      <v-col :span="8">col-8</v-col>
     </v-row>
     <v-row>
-      <v-col :span="6">v-col-6</v-col>
-      <v-col :span="6">v-col-6</v-col>
-      <v-col :span="6">v-col-6</v-col>
-      <v-col :span="6">v-col-6</v-col>
+      <v-col :span="6">col-6</v-col>
+      <v-col :span="6">col-6</v-col>
+      <v-col :span="6">col-6</v-col>
+      <v-col :span="6">col-6</v-col>
     </v-row>
   </div>
 </template>
@@ -143,6 +143,151 @@
     </v-row>
   </div>
 </template>
+```
+
+:::
+
+## 排序
+
+:::snippet 通过`push`和`pull`可以改变列的顺序。
+
+```vue
+<template>
+  <div class="vsc-grid">
+    <v-row>
+      <v-col :span="18" :push="6">col-6 col-pull-18</v-col>
+      <v-col :span="6" :pull="18">col-18 col-push-6</v-col>
+    </v-row>
+  </div>
+</template>
+```
+
+:::
+
+## 排版
+
+:::snippet 通过`justify`控制`Col`的排版方式，可选值`start`、`center`、`end`、`space-between`、`space-around`。
+
+```vue
+<template>
+  <div class="vsc-grid">
+    <v-divider orientation="left">
+      Start
+    </v-divider>
+    <v-row justify="start">
+      <v-col :span="4">col-4</v-col>
+      <v-col :span="4">col-4</v-col>
+      <v-col :span="4">col-4</v-col>
+      <v-col :span="4">col-4</v-col>
+    </v-row>
+    <v-divider orientation="left">
+      Center
+    </v-divider>
+    <v-row justify="center">
+      <v-col :span="4">col-4</v-col>
+      <v-col :span="4">col-4</v-col>
+      <v-col :span="4">col-4</v-col>
+      <v-col :span="4">col-4</v-col>
+    </v-row>
+    <v-divider orientation="left">
+      End
+    </v-divider>
+    <v-row justify="end">
+      <v-col :span="4">col-4</v-col>
+      <v-col :span="4">col-4</v-col>
+      <v-col :span="4">col-4</v-col>
+      <v-col :span="4">col-4</v-col>
+    </v-row>
+    <v-divider orientation="left">
+      Space-Between
+    </v-divider>
+    <v-row justify="space-between">
+      <v-col :span="4">col-4</v-col>
+      <v-col :span="4">col-4</v-col>
+      <v-col :span="4">col-4</v-col>
+      <v-col :span="4">col-4</v-col>
+    </v-row>
+    <v-divider orientation="left">
+      Space-Around
+    </v-divider>
+    <v-row justify="space-around">
+      <v-col :span="4">col-4</v-col>
+      <v-col :span="4">col-4</v-col>
+      <v-col :span="4">col-4</v-col>
+      <v-col :span="4">col-4</v-col>
+    </v-row>
+  </div>
+</template>
+
+<style lang="scss" scoped>
+.vsc-grid {
+  .v-row {
+    background: rgba(128, 128, 128, 0.08);
+  }
+}
+</style>
+```
+
+:::
+
+## 对齐
+
+:::snippet 通过`align`设置垂直对齐，可选值`top`、`middle`、`bottom`。
+
+```vue
+<template>
+  <div class="vsc-grid">
+    <v-divider orientation="left">
+      Top
+    </v-divider>
+    <v-row justify="space-around" align="top">
+      <v-col :span="4">col-4</v-col>
+      <v-col :span="4">col-4</v-col>
+      <v-col :span="4">col-4</v-col>
+      <v-col :span="4">col-4</v-col>
+    </v-row>
+    <v-divider orientation="left">
+      Top
+    </v-divider>
+    <v-row justify="space-around" align="middle">
+      <v-col :span="4">col-4</v-col>
+      <v-col :span="4">col-4</v-col>
+      <v-col :span="4">col-4</v-col>
+      <v-col :span="4">col-4</v-col>
+    </v-row>
+    <v-divider orientation="left">
+      Top
+    </v-divider>
+    <v-row justify="space-around" align="bottom">
+      <v-col :span="4">col-4</v-col>
+      <v-col :span="4">col-4</v-col>
+      <v-col :span="4">col-4</v-col>
+      <v-col :span="4">col-4</v-col>
+    </v-row>
+  </div>
+</template>
+
+<style lang="scss" scoped>
+.vsc-grid {
+  .v-row {
+    background: rgba(128, 128, 128, 0.08);
+  }
+
+  .v-col {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .v-row > .v-col:nth-child(2n) {
+    height: 40px;
+  }
+
+  .v-row > .v-col:nth-child(2n + 1) {
+    height: 80px;
+  }
+}
+</style>
 ```
 
 :::

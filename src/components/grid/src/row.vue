@@ -1,5 +1,5 @@
 <template>
-  <div class="v-row" :style="rowStyle">
+  <div :class="rowClass" :style="rowStyle">
     <slot />
   </div>
 </template>
@@ -15,6 +15,15 @@ import {
 
 export type RowGutter = number;
 
+export type RowJustify =
+  | "start"
+  | "end"
+  | "center"
+  | "space-around"
+  | "space-between";
+
+export type RowAlign = "top" | "middle" | "bottom";
+
 export interface VRow {
   gutter: [number, number];
 }
@@ -23,6 +32,8 @@ export default defineComponent({
   name: "VRow",
   props: {
     gutter: [Number, Array] as PropType<RowGutter | Array<RowGutter>>,
+    justify: String as PropType<RowJustify>,
+    align: String as PropType<RowAlign>,
   },
   setup(props, { slots, emit }) {
     const normalizedGutter = computed((): [number, number] => {
@@ -48,9 +59,21 @@ export default defineComponent({
       return style;
     });
 
+    const rowClass = [
+      "v-row",
+      { "v-row--start": props.justify === "start" },
+      { "v-row--center": props.justify === "center" },
+      { "v-row--end": props.justify === "end" },
+      { "v-row--space-around": props.justify === "space-around" },
+      { "v-row--space-between": props.justify === "space-between" },
+      { "v-row--top": props.align === "top" },
+      { "v-row--middle": props.align === "middle" },
+      { "v-row--bottom": props.align === "bottom" },
+    ];
+
     provide<VRow>("VRow", { gutter: normalizedGutter.value });
 
-    return { rowStyle };
+    return { rowClass, rowStyle };
   },
 });
 </script>
@@ -64,5 +87,37 @@ export default defineComponent({
   &::after {
     display: flex;
   }
+}
+
+.v-row--start {
+  justify-content: flex-start;
+}
+
+.v-row--center {
+  justify-content: center;
+}
+
+.v-row--end {
+  justify-content: flex-end;
+}
+
+.v-row--space-between {
+  justify-content: space-between;
+}
+
+.v-row--space-around {
+  justify-content: space-around;
+}
+
+.v-row--top {
+  align-items: flex-start;
+}
+
+.v-row--middle {
+  align-items: center;
+}
+
+.v-row--bottom {
+  align-items: flex-end;
 }
 </style>
