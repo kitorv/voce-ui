@@ -1,11 +1,18 @@
 <template>
-  <div :class="classList">
+  <div :class="colClass" :style="colStyle">
     <slot />
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType } from "vue";
+import {
+  defineComponent,
+  PropType,
+  inject,
+  computed,
+  CSSProperties,
+} from "vue";
+import { VRow } from "./row.vue";
 
 export type SpanType =
   | 0
@@ -40,14 +47,30 @@ export default defineComponent({
     span: Number as PropType<SpanType>,
   },
   setup(props, { slots, emit }) {
-    const classList = [
+    const vRow = inject<VRow>("VRow", { gutter: [0, 0] });
+
+    const colClass = [
       `v-col`,
       {
         [`v-col--${props.span}`]: props.span,
       },
     ];
 
-    return { classList };
+    const colStyle = computed(() => {
+      const style: CSSProperties = {};
+      const [hGutter, vGutter] = vRow.gutter;
+      if (hGutter > 0) {
+        style.paddingLeft = `${hGutter / 2}px`;
+        style.paddingRight = `${hGutter / 2}px`;
+      }
+      if (vGutter > 0) {
+        style.paddingTop = `${vGutter / 2}px`;
+        style.paddingBottom = `${vGutter / 2}px`;
+      }
+      return style;
+    });
+
+    return { colClass, colStyle };
   },
 });
 </script>
@@ -55,6 +78,7 @@ export default defineComponent({
 <style lang="scss">
 .v-col {
   position: relative;
+  box-sizing: border-box;
 }
 
 .v-col-0 {
