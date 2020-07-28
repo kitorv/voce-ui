@@ -291,3 +291,77 @@
 ```
 
 :::
+
+## Flex 填充
+
+:::snippet 通过属性`flex`设置填充。
+
+```vue
+<template>
+  <div class="vsc-grid">
+    <v-row>
+      <v-col :flex="2">2 / 5</v-col>
+      <v-col :flex="3">3 / 5</v-col>
+    </v-row>
+    <v-row>
+      <v-col flex="100px">100px</v-col>
+      <v-col flex="auto">Fill</v-col>
+    </v-row>
+    <v-row>
+      <v-col flex="1 1 200px">1 1 200px</v-col>
+      <v-col flex="0 1 300px">0 1 300px</v-col>
+    </v-row>
+  </div>
+</template>
+```
+
+:::
+
+## 响应布局
+
+:::snippet `span`、`pull`、`push`、`offset`、`order`属性可以通过内嵌到`xs`、`sm`、`md`、`lg`、`xl`、`xxl` 属性中来使用，直接设置`xs=24`相当于`span=24`。
+
+```vue
+<template>
+  <div class="vsc-grid">
+    <v-row>
+      <v-col :xs="2" :sm="4" :md="6" :lg="8" :xl="10" :xxl="8">
+        Col
+      </v-col>
+      <v-col :xs="20" :sm="16" :md="12" :lg="8" :xl="4" :xxl="8">
+        Col
+      </v-col>
+      <v-col :xs="2" :sm="4" :md="6" :lg="8" :xl="10" :xxl="8">
+        Col
+      </v-col>
+    </v-row>
+    <v-row>
+      <v-col :xs="2" :sm="4" :md="6" :lg="8" :xl="10" :xxl="6">
+        Col
+      </v-col>
+      <v-col
+        :xs="20"
+        :sm="16"
+        :md="12"
+        :lg="8"
+        :xl="4"
+        :xxl="{ span: 6, offset: 3 }"
+      >
+        Col
+      </v-col>
+      <v-col
+        :xs="2"
+        :sm="4"
+        :md="6"
+        :lg="8"
+        :xl="10"
+        :xxl="{ span: 6, offset: 3 }"
+      >
+        Col
+      </v-col>
+    </v-row>
+  </div>
+</template>
+```
+
+:::
