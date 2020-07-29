@@ -20,7 +20,7 @@
     - [x] Text 文本
   - [ ] 布局
     - [x] Divider 分割线
-    - [ ] Grid 栅格
+    - [x] Grid 栅格
     - [ ] Layout 布局
   - [ ] 表单
     - [ ] Checkbox 复选框
