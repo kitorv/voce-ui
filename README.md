@@ -21,7 +21,8 @@
   - [ ] 布局
     - [x] Divider 分割线
     - [x] Grid 栅格
-    - [ ] Layout 布局
+    - [x] Layout 布局
+    - [ ] Space 间距
   - [ ] 表单
     - [ ] Checkbox 复选框
     - [ ] DatePicker 日期选择器
