@@ -14,7 +14,7 @@ import iconList from "../../src/components/icons/src/iconfont";
 export default defineComponent({
   name: "VcIconView",
   setup() {
-    const icons = reactive(iconList);
+    const icons = reactive(iconList.sort());
     return { icons };
   },
 });
