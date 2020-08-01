@@ -67,6 +67,11 @@ const router = createRouter({
           name: "component-layout",
           component: () => import("@/components/layout/README.md"),
         },
+        {
+          path: "/component/space",
+          name: "component-space",
+          component: () => import("@/components/space/README.md"),
+        },
       ],
     },
   ],

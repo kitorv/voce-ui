@@ -90,7 +90,6 @@ export default defineComponent({
         }
         if (typeof propSize === "object") {
           sizeProps = propSize || {};
-          debugger;
         }
 
         const { span, offset, push, pull } = sizeProps;

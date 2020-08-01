@@ -18,11 +18,11 @@
     - [x] Icon 图标
     - [x] Link 链接
     - [x] Text 文本
-  - [ ] 布局
+  - [x] 布局
     - [x] Divider 分割线
     - [x] Grid 栅格
     - [x] Layout 布局
-    - [ ] Space 间距
+    - [x] Space 间距
   - [ ] 表单
     - [ ] Checkbox 复选框
     - [ ] DatePicker 日期选择器

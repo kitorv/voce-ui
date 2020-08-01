@@ -6,8 +6,9 @@ import { Divider } from "./components/divider";
 import { Row } from "./components/row";
 import { Col } from "./components/col";
 import { Layout } from "./components/layout";
+import { Space } from "./components/space";
 
-const components = [Button, Link, Text, Divider, Row, Col, Layout];
+const components = [Button, Link, Text, Divider, Row, Col, Layout, Space];
 
 export const install = function (app: App) {
   components.forEach(({ install }) => {

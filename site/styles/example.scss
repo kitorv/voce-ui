@@ -40,6 +40,7 @@
 }
 
 .vsc-layout {
+  margin: 6px 0;
   font-size: 18px;
   text-align: center;
   height: 400px;
@@ -75,5 +76,13 @@
     align-items: center;
     justify-content: center;
     height: 64px;
+  }
+}
+
+.vsc-space {
+  padding: 6px 0;
+
+  .v-space + .v-space {
+    margin-top: 16px;
   }
 }
