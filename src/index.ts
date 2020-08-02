@@ -7,8 +7,21 @@ import { Row } from "./components/row";
 import { Col } from "./components/col";
 import { Layout } from "./components/layout";
 import { Space } from "./components/space";
+import { Breadcrumb } from "./components/breadcrumb";
+import { BreadcrumbItem } from "./components//breadcrumb-item";
 
-const components = [Button, Link, Text, Divider, Row, Col, Layout, Space];
+const components = [
+  Button,
+  Link,
+  Text,
+  Divider,
+  Row,
+  Col,
+  Layout,
+  Space,
+  Breadcrumb,
+  BreadcrumbItem,
+];
 
 export const install = function (app: App) {
   components.forEach(({ install }) => {

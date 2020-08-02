@@ -65,6 +65,52 @@ export default defineComponent({
               { path: "/component/space", title: "Space", subtitle: "间距" },
             ],
           },
+          {
+            title: "导航",
+            children: [
+              {
+                path: "/component/breadcrumb",
+                title: "Breadcrumb",
+                subtitle: "面包屑",
+              },
+              //       {
+              //         path: "/component/tabs",
+              //         title: "Tabs",
+              //         subtitle: "标签页",
+              //       },
+
+              //       {
+              //         path: "/component/dropdown",
+              //         title: "Dropdown",
+              //         subtitle: "下拉菜单",
+              //       },
+              //       {
+              //         path: "/component/menu",
+              //         title: "Menu",
+              //         subtitle: "菜单",
+              //       },
+              //       {
+              //         path: "/component/steps",
+              //         title: "Steps",
+              //         subtitle: "步骤条",
+              //       },
+              //       {
+              //         path: "/component/drawer",
+              //         title: "Drawer",
+              //         subtitle: "抽屉",
+              //       },
+              //       {
+              //         path: "/component/page-header",
+              //         title: "PageHeader",
+              //         subtitle: "页头",
+              //       },
+              //       {
+              //         path: "/component/backtop",
+              //         title: "Backtop",
+              //         subtitle: "回到顶部",
+              //       },
+            ],
+          },
           // {
           //   title: "表单",
           //   children: [

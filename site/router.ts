@@ -72,6 +72,11 @@ const router = createRouter({
           name: "component-space",
           component: () => import("@/components/space/README.md"),
         },
+        {
+          path: "/component/breadcrumb",
+          name: "component-breadcrumb",
+          component: () => import("@/components/breadcrumb/README.md"),
+        },
       ],
     },
   ],

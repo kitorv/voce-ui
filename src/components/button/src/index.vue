@@ -48,6 +48,7 @@ export default defineComponent({
     loading: Boolean,
     to: [Object, String] as PropType<RouteLocationRaw>,
   },
+  emits: ["click"],
   setup(props, { emit }) {
     const isDisabled = computed(() => {
       return props.disabled || props.loading;
