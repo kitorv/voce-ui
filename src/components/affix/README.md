@@ -4,13 +4,13 @@
 
 ## 基础用法
 
-:::snippet 元素不可见的时候固定在顶部。
+:::snippet 通过`offset-top`和`offset-bottom`设置固定的位置。
 
 ```vue
 <template>
-  <div class="vsc-breadcrumb">
+  <div class="vsc-affix">
     <v-affix>
-      Affix Top
+      <v-button type="primary">Affix Top</v-button>
     </v-affix>
   </div>
 </template>
