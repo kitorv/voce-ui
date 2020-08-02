@@ -7,6 +7,7 @@ import { Row } from "./components/row";
 import { Col } from "./components/col";
 import { Layout } from "./components/layout";
 import { Space } from "./components/space";
+import { Affix } from "./components/affix";
 import { Breadcrumb } from "./components/breadcrumb";
 import { BreadcrumbItem } from "./components//breadcrumb-item";
 
@@ -19,6 +20,7 @@ const components = [
   Col,
   Layout,
   Space,
+  Affix,
   Breadcrumb,
   BreadcrumbItem,
 ];
@@ -31,4 +33,5 @@ export const install = function (app: App) {
 };
 
 export const version = require("../package.json").version;
-export * from "./components/button";
+
+// export * from "./components/button";

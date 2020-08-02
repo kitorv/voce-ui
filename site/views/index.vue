@@ -69,6 +69,11 @@ export default defineComponent({
             title: "导航",
             children: [
               {
+                path: "/component/affix",
+                title: "Affix",
+                subtitle: "固钉",
+              },
+              {
                 path: "/component/breadcrumb",
                 title: "Breadcrumb",
                 subtitle: "面包屑",

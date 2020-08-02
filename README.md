@@ -24,14 +24,11 @@
     - [x] Layout 布局
     - [x] Space 间距
   - [ ] 导航
-    - [ ] Backtop 回到顶部
     - [x] Breadcrumb 面包屑
-    - [ ] Drawer 抽屉
     - [ ] Dropdown 下拉菜单
     - [ ] Menu 菜单
     - [ ] PageHeader 页头
     - [ ] Steps 步骤条
-    - [ ] Tabs 标签页
   - [ ] 表单
     - [ ] Checkbox 复选框
     - [ ] DatePicker 日期选择器
@@ -58,6 +55,7 @@
     - [ ] Tag 标签
     - [ ] Tree 树
     - [ ] Table 表格
+    - [ ] Tabs 标签页
   - [ ] 反馈
     - [ ] Alert 警告
     - [ ] Divider 分割线
