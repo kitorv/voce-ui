@@ -9,7 +9,11 @@
 ```vue
 <template>
   <div class="vsc-affix">
-    <v-affix>
+    <v-affix :offset-top="0">
+      <v-button type="primary">Affix Top</v-button>
+    </v-affix>
+    <div style="height:800px" />
+    <v-affix :offset-bottom="0">
       <v-button type="primary">Affix Top</v-button>
     </v-affix>
   </div>
