@@ -1,5 +1,14 @@
 <script lang="ts">
-import { defineComponent, h, PropType, CSSProperties, computed } from "vue";
+import {
+  defineComponent,
+  h,
+  PropType,
+  CSSProperties,
+  computed,
+  VNode,
+  Fragment,
+  isVNode,
+} from "vue";
 
 export type SpaceDirection = "vertical" | "horizontal";
 
@@ -67,15 +76,36 @@ export default defineComponent({
       return `${sizeValue}px`;
     });
 
-    const childVNodes = Array.from(slots.default(), (vNode, index) => {
-      const sizeValue = index != 0 ? size.value : 0;
+    const createSpaceItem = (vNode: VNode, isFirst: boolean = false) => {
+      const sizeValue = isFirst ? 0 : size.value;
 
       const marginTop = props.direction === "vertical" ? sizeValue : 0;
       const marginLeft = props.direction === "horizontal" ? sizeValue : 0;
 
       const itemStyle: CSSProperties = { marginTop, marginLeft };
       return h("div", { class: "v-space--item", style: itemStyle }, vNode);
-    });
+    };
+    const createSpaceItemList = () => {
+      if (!slots.default) return [];
+      let isFirstNode = true;
+
+      const createNewNode = (vNode: VNode) => {
+        const newVNode = createSpaceItem(vNode, isFirstNode);
+        isFirstNode = false;
+        return newVNode;
+      };
+
+      return Array.from(slots.default(), (vNode, index) => {
+        if (vNode.type !== Fragment) {
+          return createNewNode(vNode);
+        }
+        if (!vNode.children || !Array.isArray(vNode.children)) return vNode;
+        return Array.from(vNode.children, (childVNode) => {
+          if (!isVNode(childVNode)) return childVNode;
+          return createNewNode(childVNode);
+        });
+      });
+    };
 
     const classList = ["v-space", `v-space--direction-${props.direction}`];
 
@@ -83,7 +113,7 @@ export default defineComponent({
       return h(
         "div",
         { class: classList, style: surroundStyle.value },
-        childVNodes
+        createSpaceItemList()
       );
     };
   },
