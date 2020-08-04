@@ -17,12 +17,14 @@ import {
   CSSProperties,
 } from "vue";
 
+export type AffixTarget = HTMLElement | Window;
+
 export default defineComponent({
   name: "VAffix",
   props: {
     offsetTop: Number,
     offsetBottom: Number,
-    target: Object as PropType<HTMLElement | Window>,
+    target: [HTMLElement, Window] as PropType<AffixTarget>,
   },
   emits: ["change"],
   setup(props, { emit }) {
@@ -64,12 +66,19 @@ export default defineComponent({
       const { offsetTop, offsetBottom } = props;
       const targetRect = getTargetRect();
       const affixReact = affixRef.value.getBoundingClientRect();
-      const { width, height } = affixReact;
+
+      const width = `${affixReact.width}px`;
+      const height = `${affixReact.height}px`;
 
       const fixedTop = getFixedTop(affixReact, targetRect, offsetTop);
 
       if (fixedTop !== undefined) {
-        affixStyle.value = { position: "fixed", top: fixedTop, width, height };
+        affixStyle.value = {
+          position: "fixed",
+          top: `${fixedTop}px`,
+          width,
+          height,
+        };
         placeholderStyle.value = { width, height };
         return;
       }
@@ -78,7 +87,7 @@ export default defineComponent({
       if (fixedBottom !== undefined) {
         affixStyle.value = {
           position: "fixed",
-          bottom: fixedBottom,
+          bottom: `${fixedBottom}px`,
           width,
           height,
         };

@@ -24,6 +24,7 @@
     - [x] Layout 布局
     - [x] Space 间距
   - [ ] 导航
+    - [x] Affix 固钉
     - [x] Breadcrumb 面包屑
     - [ ] Dropdown 下拉菜单
     - [ ] Menu 菜单
