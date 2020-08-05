@@ -33,58 +33,52 @@ export default defineComponent({
     ellipsis: Boolean,
   },
   setup(props, { slots, emit }) {
-    const classList = [
-      `v-text`,
-      `v-text--type-${props.type}`,
-      {
-        [`v-text--level-${props.title}`]: props.title,
-        "v-text--disabled": props.disabled,
-        "v-text--ellipsis": props.ellipsis,
-      },
-    ];
-
-    let childrenNodes: Slots | VNode = slots;
-
-    if (props.mark) {
-      childrenNodes = h("mark", {}, childrenNodes);
-    }
-
-    if (props.code) {
-      childrenNodes = h("code", {}, childrenNodes);
-    }
-
-    if (props.keyboard) {
-      childrenNodes = h("kbd", {}, childrenNodes);
-    }
-
-    if (props.underline) {
-      childrenNodes = h("u", {}, childrenNodes);
-    }
-
-    if (props.delete) {
-      childrenNodes = h("del", {}, childrenNodes);
-    }
-
-    if (props.strong) {
-      childrenNodes = h("strong", {}, childrenNodes);
-    }
-
-    const htmlTag = props.title ? props.title : "span";
-
-    const onClick = (event: Event) => {
-      if (props.disabled) return;
-      emit("click", event);
-    };
-
-    return () =>
-      h(
-        htmlTag,
+    return () => {
+      const classes = [
+        `v-text`,
+        `v-text--type-${props.type}`,
         {
-          class: classList,
-          onClick,
+          [`v-text--level-${props.title}`]: props.title,
+          "v-text--disabled": props.disabled,
+          "v-text--ellipsis": props.ellipsis,
         },
-        childrenNodes
-      );
+      ];
+
+      let childrenNodes: Slots | VNode = slots;
+
+      if (props.mark) {
+        childrenNodes = h("mark", {}, childrenNodes);
+      }
+
+      if (props.code) {
+        childrenNodes = h("code", {}, childrenNodes);
+      }
+
+      if (props.keyboard) {
+        childrenNodes = h("kbd", {}, childrenNodes);
+      }
+
+      if (props.underline) {
+        childrenNodes = h("u", {}, childrenNodes);
+      }
+
+      if (props.delete) {
+        childrenNodes = h("del", {}, childrenNodes);
+      }
+
+      if (props.strong) {
+        childrenNodes = h("strong", {}, childrenNodes);
+      }
+
+      const htmlTag = props.title ? props.title : "span";
+
+      const onClick = (event: Event) => {
+        if (props.disabled) return;
+        emit("click", event);
+      };
+
+      return h(htmlTag, { class: classes, onClick }, childrenNodes);
+    };
   },
 });
 </script>

@@ -1,5 +1,5 @@
 <template>
-  <a :class="classList" v-bind="linkAttrs" @click="onClick($event)">
+  <a :class="classes" v-bind="linkAttrs" @click="onClick($event)">
     <i v-if="prefixIcon" :class="['v-link--prefix-icon', prefixIcon]" />
     <span class="v-link--text">
       <slot />
@@ -39,14 +39,16 @@ export default defineComponent({
     to: [Object, String] as PropType<RouteLocationRaw>,
   },
   setup(props, { emit }) {
-    const classList = [
-      `v-link`,
-      `v-link--type-${props.type}`,
-      {
-        "v-link--underline": props.underline && !props.disabled,
-        "v-link--disabled": props.disabled,
-      },
-    ];
+    const classes = computed(() => {
+      return [
+        `v-link`,
+        `v-link--type-${props.type}`,
+        {
+          "v-link--underline": props.underline && !props.disabled,
+          "v-link--disabled": props.disabled,
+        },
+      ];
+    });
 
     const linkAttrs = computed(() => {
       if (props.disabled || !props.href) return;
@@ -67,7 +69,7 @@ export default defineComponent({
       emit("click", event);
     };
 
-    return { classList, linkAttrs, onClick };
+    return { classes, linkAttrs, onClick };
   },
 });
 </script>

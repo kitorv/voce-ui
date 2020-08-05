@@ -11,6 +11,9 @@ import { Affix } from "./components/affix";
 import { Breadcrumb } from "./components/breadcrumb";
 import { BreadcrumbItem } from "./components//breadcrumb-item";
 
+import "./components/color";
+import "./components/icons";
+
 const components = [
   Button,
   Link,

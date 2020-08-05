@@ -1,12 +1,12 @@
 <template>
-  <button :class="classList" @click="onClick($event)">
-    <span v-if="icon && !loading" class="v-button--icon">
+  <button :class="classes" @click="onClick($event)">
+    <span v-if="isShowIcon" class="v-button--icon">
       <i :class="icon" />
     </span>
     <span v-if="loading" class="v-button--loading-icon">
       <i class="v-icon-loading" />
     </span>
-    <span v-if="$slots.default && !isCircleLoadig" class="v-button--text">
+    <span v-if="isShowText" class="v-button--text">
       <slot />
     </span>
   </button>
@@ -49,28 +49,35 @@ export default defineComponent({
     to: [Object, String] as PropType<RouteLocationRaw>,
   },
   emits: ["click"],
-  setup(props, { emit }) {
+  setup(props, { slots, emit }) {
     const isDisabled = computed(() => {
       return props.disabled || props.loading;
     });
 
-    const isCircleLoadig = computed(() => {
-      return props.loading && props.shape === "circle";
+    const isShowIcon = computed(() => {
+      return props.icon && !props.loading;
     });
 
-    const classList = [
-      `v-button`,
-      `v-button--type-${props.type}`,
-      `v-button--size-${props.size}`,
-      {
-        [`v-button--shape-${props.shape}`]: props.shape,
-        "v-button--dashed": props.dashed,
-        "v-button--plain": props.plain,
-        "v-button--link": props.link,
-        "v-button--disabled": isDisabled,
-        "v-button--loading": props.loading,
-      },
-    ];
+    const isShowText = computed(() => {
+      const isCircleLoading = props.loading && props.shape === "circle";
+      return slots.default && !isCircleLoading;
+    });
+
+    const classes = computed(() => {
+      return [
+        `v-button`,
+        `v-button--type-${props.type}`,
+        `v-button--size-${props.size}`,
+        {
+          [`v-button--shape-${props.shape}`]: props.shape,
+          "v-button--dashed": props.dashed,
+          "v-button--plain": props.plain,
+          "v-button--link": props.link,
+          "v-button--disabled": isDisabled.value,
+          "v-button--loading": props.loading,
+        },
+      ];
+    });
 
     const router = useRouter();
 
@@ -83,7 +90,7 @@ export default defineComponent({
       emit("click", event);
     };
 
-    return { classList, isCircleLoadig, onClick };
+    return { classes, isShowIcon, isShowText, onClick };
   },
 });
 </script>

@@ -1,7 +1,10 @@
 const fs = require("fs");
 const path = require("path");
 const postcss = require("postcss");
-const scssPath = path.resolve(__dirname, "../src/components/color/index.scss");
+const scssPath = path.resolve(
+  __dirname,
+  "../src/components/color/src/index.scss"
+);
 const scssContent = fs.readFileSync(scssPath, "utf-8");
 const scssNodes = postcss.parse(scssContent).nodes;
 const prettier = require("prettier");
