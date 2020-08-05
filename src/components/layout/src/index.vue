@@ -4,49 +4,44 @@ import { defineComponent, computed, h } from "vue";
 export default defineComponent({
   name: "VLayout",
   setup(props, { slots }) {
-    const direction = computed(() => {
-      return slots.left || slots.right ? "horizontal" : "vertical";
-    });
+    return () => {
+      const direction = slots.left || slots.right ? "horizontal" : "vertical";
 
-    const classList = ["v-layout", `v-layout--directiom-${direction.value}`];
+      const classes = ["v-layout", `v-layout--directiom-${direction}`];
 
-    const left = computed(() => {
-      if (!slots.left) return;
-      return h("div", { class: "v-layout--left" }, slots.left());
-    });
+      const left = computed(() => {
+        if (!slots.left) return;
+        return h("div", { class: "v-layout--left" }, slots.left());
+      });
 
-    const right = computed(() => {
-      if (!slots.right) return;
-      return h("div", { class: "v-layout--right" }, slots.right());
-    });
+      const right = computed(() => {
+        if (!slots.right) return;
+        return h("div", { class: "v-layout--right" }, slots.right());
+      });
 
-    const header = computed(() => {
-      if (!slots.header) return;
-      return h("div", { class: "v-layout--header" }, slots.header());
-    });
-    const body = computed(() => {
-      if (!slots.default) return;
-      return h("div", { class: "v-layout--body" }, slots.default());
-    });
-    const footer = computed(() => {
-      if (!slots.footer) return;
-      return h("div", { class: "v-layout--footer" }, slots.footer());
-    });
+      const header = computed(() => {
+        if (!slots.header) return;
+        return h("div", { class: "v-layout--header" }, slots.header());
+      });
+      const body = computed(() => {
+        if (!slots.default) return;
+        return h("div", { class: "v-layout--body" }, slots.default());
+      });
+      const footer = computed(() => {
+        if (!slots.footer) return;
+        return h("div", { class: "v-layout--footer" }, slots.footer());
+      });
 
-    const content = [header.value, body.value, footer.value];
+      const content = [header.value, body.value, footer.value];
 
-    if (slots.left || slots.right) {
-      return () => {
-        return h("div", { class: classList }, [
+      if (slots.left || slots.right) {
+        return h("div", { class: classes }, [
           left.value,
           h("div", { class: "v-layout--content" }, content),
           right.value,
         ]);
-      };
-    }
-
-    return () => {
-      return h("div", { class: classList }, content);
+      }
+      return h("div", { class: classes }, content);
     };
   },
 });

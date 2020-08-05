@@ -36,37 +36,11 @@ export default defineComponent({
     left: Number,
   },
   setup(props, { slots }) {
-    if (!slots.default) return;
-
     const sizes: Record<SpaceSizeType, number> = {
       small: 8,
       medium: 16,
       large: 24,
     };
-
-    const normalizeSurround = () => {
-      if (!props.surround) return [0, 0];
-      if (typeof props.surround === "string") {
-        const size = sizes[props.surround];
-        return [size, size];
-      }
-      if (Array.isArray(props.surround)) {
-        return [props.surround[0], props.surround[1]];
-      }
-      return [props.surround, props.surround];
-    };
-
-    const surroundStyle = computed(() => {
-      const [vertical, horizontal] = normalizeSurround();
-
-      const style: CSSProperties = {
-        paddingTop: `${props.top || vertical}px`,
-        paddingBottom: `${props.bottom || vertical}px`,
-        paddingLeft: `${props.left || horizontal}px`,
-        paddingRight: `${props.right || horizontal}px`,
-      };
-      return style;
-    });
 
     const size = computed(() => {
       let sizeValue = props.size;
@@ -107,12 +81,37 @@ export default defineComponent({
       });
     };
 
-    const classList = ["v-space", `v-space--direction-${props.direction}`];
-
     return () => {
+      if (!slots.default) return;
+
+      const normalizeSurround = () => {
+        if (!props.surround) return [0, 0];
+        if (typeof props.surround === "string") {
+          const size = sizes[props.surround];
+          return [size, size];
+        }
+        if (Array.isArray(props.surround)) {
+          return [props.surround[0], props.surround[1]];
+        }
+        return [props.surround, props.surround];
+      };
+
+      const surroundStyle = computed(() => {
+        const [vertical, horizontal] = normalizeSurround();
+        const style: CSSProperties = {
+          paddingTop: `${props.top || vertical}px`,
+          paddingBottom: `${props.bottom || vertical}px`,
+          paddingLeft: `${props.left || horizontal}px`,
+          paddingRight: `${props.right || horizontal}px`,
+        };
+        return style;
+      });
+
+      const classes = ["v-space", `v-space--direction-${props.direction}`];
+
       return h(
         "div",
-        { class: classList, style: surroundStyle.value },
+        { class: classes, style: surroundStyle.value },
         createSpaceItemList()
       );
     };

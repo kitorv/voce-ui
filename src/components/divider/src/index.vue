@@ -1,5 +1,5 @@
 <template>
-  <div :class="classList">
+  <div :class="classes">
     <span v-if="showText" class="v-divider--text">
       <slot />
     </span>
@@ -7,7 +7,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType } from "vue";
+import { defineComponent, PropType, computed } from "vue";
 
 export type DividerType = "horizontal" | "vertical";
 
@@ -27,21 +27,26 @@ export default defineComponent({
     plain: Boolean,
   },
   setup(props, { slots, emit }) {
-    const showText = slots.default && props.type !== "vertical";
+    const showText = computed(() => {
+      return slots.default && props.type !== "vertical";
+    });
 
-    const classList = [
-      "v-divider",
-      `v-divider--type-${props.type}`,
-      `v-divider--orientation-${props.orientation}`,
-      {
-        "v-divider--with-text": showText,
-        "v-divider--with-text-left": showText && props.orientation === "left",
-        "v-divider--with-text-right": showText && props.orientation === "right",
-        "v-divider--plain": showText && props.plain,
-      },
-    ];
+    const classes = computed(() => {
+      return [
+        "v-divider",
+        `v-divider--type-${props.type}`,
+        `v-divider--orientation-${props.orientation}`,
+        {
+          "v-divider--with-text": showText,
+          "v-divider--with-text-left": showText && props.orientation === "left",
+          "v-divider--with-text-right":
+            showText && props.orientation === "right",
+          "v-divider--plain": showText && props.plain,
+        },
+      ];
+    });
 
-    return { classList, showText };
+    return { classes, showText };
   },
 });
 </script>

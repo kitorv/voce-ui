@@ -77,7 +77,7 @@ export default defineComponent({
     xxl: [Number, Object] as PropType<ColSpan | ColSize>,
   },
   setup(props, { slots, emit }) {
-    const vRow = inject<VRow>("VRow", { gutter: [0, 0] });
+    const vRow = inject<VRow>("VRow");
 
     const sizeClass = computed(() => {
       const sizes: Array<ColSizeType> = ["xs", "sm", "md", "lg", "xl", "xxl"];
@@ -104,16 +104,18 @@ export default defineComponent({
       return sizeClasses;
     });
 
-    const colClass = [
-      `v-col`,
-      {
-        [`v-col--${props.span}`]: props.span,
-        [`v-col--offset-${props.offset}`]: props.offset,
-        [`v-col--pull-${props.pull}`]: props.pull,
-        [`v-col--push-${props.push}`]: props.push,
-        ...sizeClass.value,
-      },
-    ];
+    const colClass = computed(() => {
+      return [
+        `v-col`,
+        {
+          [`v-col--${props.span}`]: props.span,
+          [`v-col--offset-${props.offset}`]: props.offset,
+          [`v-col--pull-${props.pull}`]: props.pull,
+          [`v-col--push-${props.push}`]: props.push,
+          ...sizeClass.value,
+        },
+      ];
+    });
 
     const parseFlex = () => {
       if (!props.flex) return;
@@ -128,7 +130,7 @@ export default defineComponent({
 
     const colStyle = computed(() => {
       const style: CSSProperties = {};
-      const [hGutter, vGutter] = vRow.gutter;
+      const [hGutter, vGutter] = vRow ? vRow.gutter.value : [0, 0];
       if (hGutter > 0) {
         style.paddingLeft = `${hGutter / 2}px`;
         style.paddingRight = `${hGutter / 2}px`;

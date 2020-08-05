@@ -11,6 +11,7 @@ import {
   computed,
   CSSProperties,
   provide,
+  ComputedRef,
 } from "vue";
 
 export type RowGutter = number;
@@ -25,7 +26,7 @@ export type RowJustify =
 export type RowAlign = "top" | "middle" | "bottom";
 
 export interface VRow {
-  gutter: [number, number];
+  gutter: ComputedRef<[number, number]>;
 }
 
 export default defineComponent({
@@ -59,19 +60,21 @@ export default defineComponent({
       return style;
     });
 
-    const rowClass = [
-      "v-row",
-      { "v-row--start": props.justify === "start" },
-      { "v-row--center": props.justify === "center" },
-      { "v-row--end": props.justify === "end" },
-      { "v-row--space-around": props.justify === "space-around" },
-      { "v-row--space-between": props.justify === "space-between" },
-      { "v-row--top": props.align === "top" },
-      { "v-row--middle": props.align === "middle" },
-      { "v-row--bottom": props.align === "bottom" },
-    ];
+    const rowClass = computed(() => {
+      return [
+        "v-row",
+        { "v-row--start": props.justify === "start" },
+        { "v-row--center": props.justify === "center" },
+        { "v-row--end": props.justify === "end" },
+        { "v-row--space-around": props.justify === "space-around" },
+        { "v-row--space-between": props.justify === "space-between" },
+        { "v-row--top": props.align === "top" },
+        { "v-row--middle": props.align === "middle" },
+        { "v-row--bottom": props.align === "bottom" },
+      ];
+    });
 
-    provide<VRow>("VRow", { gutter: normalizedGutter.value });
+    provide<VRow>("VRow", { gutter: normalizedGutter });
 
     return { rowClass, rowStyle };
   },
