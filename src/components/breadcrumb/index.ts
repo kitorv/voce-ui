@@ -5,4 +5,6 @@ Component.install = function (app: App) {
   app.component(Component.name as string, Component);
 };
 
+export * from "./src/breadcrumb.vue";
+
 export const Breadcrumb = Component;

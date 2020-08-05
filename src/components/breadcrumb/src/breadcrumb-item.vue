@@ -9,7 +9,7 @@
   </span>
 </template>
 <script lang="ts">
-import { defineComponent, inject, ref, PropType } from "vue";
+import { defineComponent, inject, ref, PropType, computed } from "vue";
 import { VBreadcrumb } from "./breadcrumb.vue";
 import { RouteLocationRaw, useRouter } from "vue-router";
 
@@ -21,8 +21,9 @@ export default defineComponent({
   emits: ["click"],
   setup(props, { emit }) {
     const vBreadcrumb = inject<VBreadcrumb>("VBreadcrumb");
-    const separator = vBreadcrumb ? vBreadcrumb.separator : ref("/");
-
+    const separator = computed(() => {
+      return vBreadcrumb ? vBreadcrumb.separator.value : ref("/");
+    });
     const router = useRouter();
 
     const onClick = (event: Event) => {

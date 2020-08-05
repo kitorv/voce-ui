@@ -4,10 +4,10 @@
   </div>
 </template>
 <script lang="ts">
-import { defineComponent, provide } from "vue";
+import { defineComponent, provide, ComputedRef, computed } from "vue";
 
 export type VBreadcrumb = {
-  separator: string;
+  separator: ComputedRef<string>;
 };
 
 export default defineComponent({
@@ -20,7 +20,9 @@ export default defineComponent({
   },
   setup(props) {
     provide<VBreadcrumb>("VBreadcrumb", {
-      separator: props.separator,
+      separator: computed(() => {
+        return props.separator;
+      }),
     });
   },
 });
