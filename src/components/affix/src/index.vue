@@ -16,6 +16,7 @@ import {
   Ref,
   CSSProperties,
 } from "vue";
+import { nextZIndex } from "../../../utils";
 
 export type AffixTarget = HTMLElement | Window;
 
@@ -69,6 +70,7 @@ export default defineComponent({
 
       const width = `${affixReact.width}px`;
       const height = `${affixReact.height}px`;
+      const zIndex = nextZIndex();
 
       const fixedTop = getFixedTop(affixReact, targetRect, offsetTop);
 
@@ -78,6 +80,7 @@ export default defineComponent({
           top: `${fixedTop}px`,
           width,
           height,
+          zIndex,
         };
         placeholderStyle.value = { width, height };
         return;
@@ -90,6 +93,7 @@ export default defineComponent({
           bottom: `${fixedBottom}px`,
           width,
           height,
+          zIndex,
         };
         placeholderStyle.value = { width, height };
         return;
@@ -113,9 +117,3 @@ export default defineComponent({
   },
 });
 </script>
-
-<style lang="scss">
-.v-affix {
-  z-index: 10000;
-}
-</style>
