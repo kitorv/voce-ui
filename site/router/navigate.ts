@@ -11,6 +11,11 @@ const routes: Array<RouteRecordRaw> = [
     name: "component-breadcrumb",
     component: () => import("@/components/breadcrumb/README.md"),
   },
+  {
+    path: "/component/dropdown",
+    name: "component-dropdown",
+    component: () => import("@/components/dropdown/README.md"),
+  },
 ];
 
 export default routes;

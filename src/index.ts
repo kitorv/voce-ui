@@ -9,7 +9,8 @@ import { Layout } from "./components/layout";
 import { Space } from "./components/space";
 import { Affix } from "./components/affix";
 import { Breadcrumb } from "./components/breadcrumb";
-import { BreadcrumbItem } from "./components//breadcrumb-item";
+import { BreadcrumbItem } from "./components/breadcrumb-item";
+import { Dropdown } from "./components/dropdown";
 
 import "./components/color";
 import "./components/icons";
@@ -26,6 +27,7 @@ const components = [
   Affix,
   Breadcrumb,
   BreadcrumbItem,
+  Dropdown,
 ];
 
 export const install = function (app: App) {
