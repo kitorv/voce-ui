@@ -4,29 +4,26 @@
     {
       "type": "node",
       "request": "launch",
-      "name": "webpack-dev-server",
-      "program": "${workspaceFolder}/node_modules/webpack-dev-server/bin/webpack-dev-server.js",
-      "args": ["--progress", "--inline", "--config", "webpack.config.js"]
-    },
-    {
-      "type": "node",
-      "request": "launch",
-      "name": "webpack",
-      "program": "${workspaceFolder}/node_modules/webpack/bin/webpack.js",
-      "args": ["--progress", "--config", "webpack.config.js"]
+      "name": "serve",
+      "program": "${workspaceFolder}/node_modules/.bin/vue-cli-service",
+      "args": ["serve"],
+      "env": {
+        "VUE_CLI_SERVICE_CONFIG_PATH": "${workspaceFolder}/vue.config.js"
+      }
     },
     {
       "type": "node",
       "request": "launch",
       "name": "icons",
-      "program": "${workspaceFolder}/scripts/icons-scss.js",
+      "program": "${workspaceFolder}/scripts/iconfont-to-scss.js",
       "console": "integratedTerminal"
     },
     {
       "type": "node",
       "request": "launch",
       "name": "snippet",
-      "program": "${workspaceFolder}/build/scss-snippet.js"
+      "program": "${workspaceFolder}/scripts/scss-to-snippet.js",
+      "console": "integratedTerminal"
     }
   ]
 }

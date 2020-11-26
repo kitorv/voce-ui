@@ -12,7 +12,6 @@ import { Breadcrumb } from "./components/breadcrumb";
 import { BreadcrumbItem } from "./components/breadcrumb-item";
 import { Dropdown } from "./components/dropdown";
 
-import "./components/color";
 import "./components/icons";
 
 const components = [

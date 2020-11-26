@@ -63,5 +63,20 @@
     "prefix": "$-color--border-extra-light",
     "body": "$-color--border-extra-light;$1",
     "description": "mix($-color--border-base, #ffffff, 40%)"
+  },
+  "$-color--disabled-color": {
+    "prefix": "$-color--disabled-color",
+    "body": "$-color--disabled-color;$1",
+    "description": "#cccccc"
+  },
+  "$-color--disabled-background-color": {
+    "prefix": "$-color--disabled-background-color",
+    "body": "$-color--disabled-background-color;$1",
+    "description": "#f2f2f2"
+  },
+  "$-color--disabled-border-color": {
+    "prefix": "$-color--disabled-border-color",
+    "body": "$-color--disabled-border-color;$1",
+    "description": "#dcdfe6"
   }
 }

@@ -6,7 +6,7 @@ const path = require("path");
 const postcss = require("postcss");
 const prettier = require("prettier");
 
-const getIconfontCssUrl = async () => {
+const inputIconfontCssUrl = async () => {
   console.log(`${chalk.bgBlue.black("Icons")} fetch iconfont to scss`);
 
   const { value } = await inquirer.prompt([
@@ -14,6 +14,7 @@ const getIconfontCssUrl = async () => {
       type: "input",
       name: "value",
       message: "please input iconfont.css link",
+      default:"//at.alicdn.com/t/font_1922968_ofdcsdfws5s.css"
     },
   ]);
   return value;
@@ -28,9 +29,8 @@ const fetchIconfontCss = async (iconfontCssUrl) => {
   });
 };
 
-const downloadFontFiles = (iconfontCssUrl) => {
+const downloadIconFontFiles = (iconfontCssUrl) => {
   const directory = path.resolve(__dirname, "../src/components/icons/src");
-
   ["eot", "woff", "ttf", "svg"].forEach((fileSuffix) => {
     const iconfontPath = `${directory}/iconfont.${fileSuffix}`;
     const stream = fsExtra.createWriteStream(iconfontPath);
@@ -39,7 +39,7 @@ const downloadFontFiles = (iconfontCssUrl) => {
   });
 };
 
-const repelceIconfontLocalFile = (iconfontCssUrl, cssContent) => {
+const repelceIconFontLocalFile = (iconfontCssUrl, cssContent) => {
   const urlRegex = new RegExp(iconfontCssUrl.replace(".css", ""), "g");
   cssContent = cssContent.replace(urlRegex, "/src/components/icons/src/");
   return prettier.format(cssContent, { parser: "css" });
@@ -64,11 +64,11 @@ const classToTypeScriptFile = (cssContent) => {
 };
 
 const iconsToScss = async () => {
-  const iconfontCssUrl = await getIconfontCssUrl();
+  const iconfontCssUrl = await inputIconfontCssUrl();
   if (!iconfontCssUrl) return;
-  downloadFontFiles(iconfontCssUrl);
+  downloadIconFontFiles(iconfontCssUrl);
   const cssContent = await fetchIconfontCss(iconfontCssUrl);
-  const css = repelceIconfontLocalFile(iconfontCssUrl, cssContent);
+  const css = repelceIconFontLocalFile(iconfontCssUrl, cssContent);
   const directory = path.resolve(__dirname, "../src/components/icons/src");
   fsExtra.outputFile(`${directory}/iconfont.scss`, css);
   classToTypeScriptFile(cssContent);
