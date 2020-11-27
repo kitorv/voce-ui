@@ -6,5 +6,6 @@ Component.install = function (app: App) {
 };
 
 export * from "./src/index.vue";
+export * from "./src/interface";
 
 export const Divider = Component;

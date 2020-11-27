@@ -8,10 +8,7 @@
 
 <script lang="ts">
 import { defineComponent, PropType, computed } from "vue";
-
-export type DividerType = "horizontal" | "vertical";
-
-export type OrientationType = "left" | "center" | "right";
+import { DividerOrientation, DividerType } from "./interface";
 
 export default defineComponent({
   name: "VDivider",
@@ -21,10 +18,13 @@ export default defineComponent({
       default: "horizontal",
     },
     orientation: {
-      type: String as PropType<OrientationType>,
-      default: "center",
+      type: String as PropType<DividerOrientation>,
+      default: "center" as DividerOrientation,
     },
-    plain: Boolean,
+    plain: {
+      type: Boolean,
+      default: false,
+    },
   },
   setup(props, { slots, emit }) {
     const showText = computed(() => {
@@ -37,11 +37,9 @@ export default defineComponent({
         `v-divider--type-${props.type}`,
         `v-divider--orientation-${props.orientation}`,
         {
-          "v-divider--with-text": showText,
-          "v-divider--with-text-left": showText && props.orientation === "left",
-          "v-divider--with-text-right":
-            showText && props.orientation === "right",
-          "v-divider--plain": showText && props.plain,
+          "v-divider--with-text": showText.value,
+          [`v-divider--with-text-${props.orientation}`]: showText.value,
+          "v-divider--plain": showText.value && props.plain,
         },
       ];
     });

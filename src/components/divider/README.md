@@ -8,13 +8,11 @@
 
 ```vue
 <template>
-  <div class="vsc-divider">
-    <p>A Vue.js 3.0 UI Toolkit for Web</p>
-    <v-divider></v-divider>
-    <p>A Vue.js 3.0 UI Toolkit for Web</p>
-    <v-divider></v-divider>
-    <p>A Vue.js 3.0 UI Toolkit for Web</p>
-  </div>
+  <p>A Vue.js 3.0 UI Toolkit for Web</p>
+  <v-divider></v-divider>
+  <p>A Vue.js 3.0 UI Toolkit for Web</p>
+  <v-divider></v-divider>
+  <p>A Vue.js 3.0 UI Toolkit for Web</p>
 </template>
 ```
 
@@ -26,15 +24,13 @@
 
 ```vue
 <template>
-  <div class="vsc-divider">
-    <p>A Vue.js 3.0 UI Toolkit for Web</p>
-    <v-divider orientation="left">Left Text</v-divider>
-    <p>A Vue.js 3.0 UI Toolkit for Web</p>
-    <v-divider>Text</v-divider>
-    <p>A Vue.js 3.0 UI Toolkit for Web</p>
-    <v-divider orientation="right">Right Text</v-divider>
-    <p>A Vue.js 3.0 UI Toolkit for Web</p>
-  </div>
+  <p>A Vue.js 3.0 UI Toolkit for Web</p>
+  <v-divider orientation="left">Left Text</v-divider>
+  <p>A Vue.js 3.0 UI Toolkit for Web</p>
+  <v-divider>Text</v-divider>
+  <p>A Vue.js 3.0 UI Toolkit for Web</p>
+  <v-divider orientation="right">Right Text</v-divider>
+  <p>A Vue.js 3.0 UI Toolkit for Web</p>
 </template>
 ```
 
@@ -46,15 +42,13 @@
 
 ```vue
 <template>
-  <div class="vsc-divider">
-    <p>A Vue.js 3.0 UI Toolkit for Web</p>
-    <v-divider orientation="left" plain>Left Text</v-divider>
-    <p>A Vue.js 3.0 UI Toolkit for Web</p>
-    <v-divider plain>Text</v-divider>
-    <p>A Vue.js 3.0 UI Toolkit for Web</p>
-    <v-divider orientation="right" plain>Right Text</v-divider>
-    <p>A Vue.js 3.0 UI Toolkit for Web</p>
-  </div>
+  <p>A Vue.js 3.0 UI Toolkit for Web</p>
+  <v-divider orientation="left" plain>Left Text</v-divider>
+  <p>A Vue.js 3.0 UI Toolkit for Web</p>
+  <v-divider plain>Text</v-divider>
+  <p>A Vue.js 3.0 UI Toolkit for Web</p>
+  <v-divider orientation="right" plain>Right Text</v-divider>
+  <p>A Vue.js 3.0 UI Toolkit for Web</p>
 </template>
 ```
 
@@ -66,15 +60,13 @@
 
 ```vue
 <template>
-  <div class="vsc-divider">
-    <v-link type="primary">Primary</v-link>
-    <v-divider type="vertical"></v-divider>
-    <v-link type="primary">Primary</v-link>
-    <v-divider type="vertical"></v-divider>
-    <v-link type="primary">Primary</v-link>
-    <v-divider type="vertical"></v-divider>
-    <v-link type="primary">Primary</v-link>
-  </div>
+  <v-link type="primary">Primary</v-link>
+  <v-divider type="vertical"></v-divider>
+  <v-link type="primary">Primary</v-link>
+  <v-divider type="vertical"></v-divider>
+  <v-link type="primary">Primary</v-link>
+  <v-divider type="vertical"></v-divider>
+  <v-link type="primary">Primary</v-link>
 </template>
 ```
 

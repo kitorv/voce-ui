@@ -5,7 +5,7 @@ import { Icon } from "./components/icon";
 import { Link } from "./components/link";
 import { Text } from "./components/text";
 
-// import { Divider } from "./components/divider";
+import { Divider } from "./components/divider";
 // import { Row } from "./components/row";
 // import { Col } from "./components/col";
 // import { Layout } from "./components/layout";
@@ -20,7 +20,8 @@ const components = [
   Icon,
   Link,
   Text,
-  // Divider,
+
+  Divider,
   // Row,
   // Col,
   // Layout,

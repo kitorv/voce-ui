@@ -52,19 +52,19 @@ export default defineComponent({
               { path: "/component/text", title: "Text", subtitle: "文本" },
             ],
           },
-          // {
-          //   title: "布局",
-          //   children: [
-          //     {
-          //       path: "/component/divider",
-          //       title: "Divider",
-          //       subtitle: "分割线",
-          //     },
-          //     { path: "/component/grid", title: "Grid", subtitle: "栅格" },
-          //     { path: "/component/layout", title: "Layout", subtitle: "布局" },
-          //     { path: "/component/space", title: "Space", subtitle: "间距" },
-          //   ],
-          // },
+          {
+            title: "布局",
+            children: [
+              {
+                path: "/component/divider",
+                title: "Divider",
+                subtitle: "分割线",
+              },
+              // { path: "/component/grid", title: "Grid", subtitle: "栅格" },
+              // { path: "/component/layout", title: "Layout", subtitle: "布局" },
+              // { path: "/component/space", title: "Space", subtitle: "间距" },
+            ],
+          },
           // {
           //   title: "导航",
           //   children: [

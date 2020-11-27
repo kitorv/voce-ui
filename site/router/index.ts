@@ -1,7 +1,7 @@
 import { createRouter, createWebHashHistory } from "vue-router";
 import developRoutes from "./develop";
 import commonRoutes from "./common";
-// import layoutRoutes from "./layout";
+import layoutRoutes from "./layout";
 // import navigateRoutes from "./navigate";
 
 const router = createRouter({
@@ -21,7 +21,7 @@ const router = createRouter({
         },
         ...developRoutes,
         ...commonRoutes,
-        // ...layoutRoutes,
+        ...layoutRoutes,
         // ...navigateRoutes,
       ],
     },
