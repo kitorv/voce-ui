@@ -162,17 +162,17 @@ export default defineComponent({
       margin: 6px 12px 6px 0;
     }
   }
+
+  &-text {
+    span.v-text {
+      margin: 6px 12px 6px 0;
+    }
+
+    .v-text--ellipsis {
+      width: 60px;
+    }
+  }
 }
-
-// .vsc-text {
-//   span.v-text {
-//     margin: 6px 12px 6px 0;
-//   }
-
-//   .v-text--ellipsis {
-//     width: 60px;
-//   }
-// }
 
 // .vsc-grid {
 //   .v-col {

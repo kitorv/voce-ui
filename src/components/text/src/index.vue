@@ -4,33 +4,51 @@
 
 <script lang="ts">
 import { defineComponent, PropType, h, Slots, VNode } from "vue";
-
-export type TitleType = "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
-
-export type TextType =
-  | "default"
-  | "primary"
-  | "success"
-  | "warning"
-  | "danger"
-  | "info";
+import { TextType, TitleType } from "./interface";
 
 export default defineComponent({
   name: "VText",
   props: {
-    title: String as PropType<TitleType>,
+    title: {
+      type: String as PropType<TitleType>,
+      default: undefined,
+    },
     type: {
       type: String as PropType<TextType>,
       default: "default",
     },
-    disabled: Boolean,
-    mark: Boolean,
-    code: Boolean,
-    keyboard: Boolean,
-    underline: Boolean,
-    delete: Boolean,
-    strong: Boolean,
-    ellipsis: Boolean,
+    disabled: {
+      type: Boolean,
+      default: false,
+    },
+    mark: {
+      type: Boolean,
+      default: false,
+    },
+    code: {
+      type: Boolean,
+      default: false,
+    },
+    keyboard: {
+      type: Boolean,
+      default: false,
+    },
+    underline: {
+      type: Boolean,
+      default: false,
+    },
+    delete: {
+      type: Boolean,
+      default: false,
+    },
+    strong: {
+      type: Boolean,
+      default: false,
+    },
+    ellipsis: {
+      type: Boolean,
+      default: false,
+    },
   },
   setup(props, { slots, emit }) {
     return () => {

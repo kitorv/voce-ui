@@ -3,7 +3,8 @@ import { App } from "vue";
 import { Button } from "./components/button";
 import { Icon } from "./components/icon";
 import { Link } from "./components/link";
-// import { Text } from "./components/text";
+import { Text } from "./components/text";
+
 // import { Divider } from "./components/divider";
 // import { Row } from "./components/row";
 // import { Col } from "./components/col";
@@ -18,7 +19,7 @@ const components = [
   Button,
   Icon,
   Link,
-  // Text,
+  Text,
   // Divider,
   // Row,
   // Col,
@@ -39,4 +40,4 @@ export const install = function (app: App) {
 
 export const version = require("../package.json").version;
 
-// export * from "./components/button";
+// export * from "./components/*";

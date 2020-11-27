@@ -8,14 +8,12 @@
 
 ```vue
 <template>
-  <div class="vsc-text">
-    <v-text title="h1">H1.VECO</v-text>
-    <v-text title="h2">H2.VECO</v-text>
-    <v-text title="h3">H3.VECO</v-text>
-    <v-text title="h4">H4.VECO</v-text>
-    <v-text title="h5">H5.VECO</v-text>
-    <v-text title="h6">H6.VECO</v-text>
-  </div>
+  <v-text title="h1">H1.VECO</v-text>
+  <v-text title="h2">H2.VECO</v-text>
+  <v-text title="h3">H3.VECO</v-text>
+  <v-text title="h4">H4.VECO</v-text>
+  <v-text title="h5">H5.VECO</v-text>
+  <v-text title="h6">H6.VECO</v-text>
 </template>
 ```
 
@@ -27,14 +25,12 @@
 
 ```vue
 <template>
-  <div class="vsc-text">
-    <v-text>Default</v-text>
-    <v-text type="primary">Primary</v-text>
-    <v-text type="success">Success</v-text>
-    <v-text type="warning">Warning</v-text>
-    <v-text type="danger">Danger</v-text>
-    <v-text type="info">Info</v-text>
-  </div>
+  <v-text>Default</v-text>
+  <v-text type="primary">Primary</v-text>
+  <v-text type="success">Success</v-text>
+  <v-text type="warning">Warning</v-text>
+  <v-text type="danger">Danger</v-text>
+  <v-text type="info">Info</v-text>
 </template>
 ```
 
@@ -46,15 +42,13 @@
 
 ```vue
 <template>
-  <div class="vsc-text">
-    <v-text disabled>Disabled</v-text>
-    <v-text mark>Mark</v-text>
-    <v-text code>Code</v-text>
-    <v-text keyboard>Keyboard</v-text>
-    <v-text underline>Underline</v-text>
-    <v-text delete>Delete</v-text>
-    <v-text strong>Strong</v-text>
-  </div>
+  <v-text disabled>Disabled</v-text>
+  <v-text mark>Mark</v-text>
+  <v-text code>Code</v-text>
+  <v-text keyboard>Keyboard</v-text>
+  <v-text underline>Underline</v-text>
+  <v-text delete>Delete</v-text>
+  <v-text strong>Strong</v-text>
 </template>
 ```
 
@@ -66,9 +60,7 @@
 
 ```vue
 <template>
-  <div class="vsc-text">
-    <v-text ellipsis>Ellipsis Ellipsis Ellipsis</v-text>
-  </div>
+  <v-text ellipsis>Ellipsis Ellipsis Ellipsis</v-text>
 </template>
 ```
 
