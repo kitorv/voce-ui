@@ -172,26 +172,30 @@ export default defineComponent({
       width: 60px;
     }
   }
+
+  &-grid {
+    .v-col {
+      margin-top: 8px;
+      margin-bottom: 8px;
+      color: #fff;
+      text-align: center;
+      border-radius: 0;
+      padding: 12px 0;
+    }
+
+    .v-row > .v-col:nth-child(2n + 1) > div {
+      background: mix($-color--primary, #ffffff, 75%);
+      padding: 12px 0px;
+      width: 100%;
+    }
+
+    .v-row > .v-col:nth-child(2n) > div {
+      background: $-color--primary;
+      padding: 12px 0px;
+      width: 100%;
+    }
+  }
 }
-
-// .vsc-grid {
-//   .v-col {
-//     margin-top: 8px;
-//     margin-bottom: 8px;
-//     color: #fff;
-//     text-align: center;
-//     border-radius: 0;
-//     padding: 12px 0;
-//   }
-
-//   .v-row > .v-col:nth-child(2n + 1) {
-//     background: mix($-color--primary, #ffffff, 75%);
-//   }
-
-//   .v-row > .v-col:nth-child(2n) {
-//     background: $-color--primary;
-//   }
-// }
 
 // .vsc-layout {
 //   margin: 6px 0;

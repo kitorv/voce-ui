@@ -6,11 +6,11 @@ const routes: Array<RouteRecordRaw> = [
     name: "component-divider",
     component: () => import("@/components/divider/README.md"),
   },
-  // {
-  //   path: "/component/grid",
-  //   name: "component-grid",
-  //   component: () => import("@/components/grid/README.md"),
-  // },
+  {
+    path: "/component/grid",
+    name: "component-grid",
+    component: () => import("@/components/grid/README.md"),
+  },
   // {
   //   path: "/component/layout",
   //   name: "component-layout",

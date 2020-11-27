@@ -8,26 +8,44 @@
 
 ```vue
 <template>
-  <div class="vsc-grid">
-    <v-row>
-      <v-col :span="24">col</v-col>
-    </v-row>
-    <v-row>
-      <v-col :span="12">col-12</v-col>
-      <v-col :span="12">col-12</v-col>
-    </v-row>
-    <v-row>
-      <v-col :span="8">col-8</v-col>
-      <v-col :span="8">col-8</v-col>
-      <v-col :span="8">col-8</v-col>
-    </v-row>
-    <v-row>
-      <v-col :span="6">col-6</v-col>
-      <v-col :span="6">col-6</v-col>
-      <v-col :span="6">col-6</v-col>
-      <v-col :span="6">col-6</v-col>
-    </v-row>
-  </div>
+  <v-row>
+    <v-col :span="24">
+      <div>col</div>
+    </v-col>
+  </v-row>
+  <v-row>
+    <v-col :span="12">
+      <div>col-12</div>
+    </v-col>
+    <v-col :span="12">
+      <div>col-12</div>
+    </v-col>
+  </v-row>
+  <v-row>
+    <v-col :span="8">
+      <div>col-8</div>
+    </v-col>
+    <v-col :span="8">
+      <div>col-8</div>
+    </v-col>
+    <v-col :span="8">
+      <div>col-8</div>
+    </v-col>
+  </v-row>
+  <v-row>
+    <v-col :span="6">
+      <div>col-6</div>
+    </v-col>
+    <v-col :span="6">
+      <div>col-6</div>
+    </v-col>
+    <v-col :span="6">
+      <div>col-6</div>
+    </v-col>
+    <v-col :span="6">
+      <div>col-6</div>
+    </v-col>
+  </v-row>
 </template>
 ```
 
@@ -39,80 +57,49 @@
 
 ```vue
 <template>
-  <div class="vsc-grid">
-    <v-divider orientation="left">
-      Horizontal
-    </v-divider>
-    <v-row :gutter="16">
-      <v-col :span="6">
-        <div>col-6</div>
-      </v-col>
-      <v-col :span="6">
-        <div>col-6</div>
-      </v-col>
-      <v-col :span="6">
-        <div>col-6</div>
-      </v-col>
-      <v-col :span="6">
-        <div>col-6</div>
-      </v-col>
-    </v-row>
-    <v-divider orientation="left">
-      Vertical
-    </v-divider>
-    <v-row :gutter="[16, 16]">
-      <v-col :span="6">
-        <div>col-6</div>
-      </v-col>
-      <v-col :span="6">
-        <div>col-6</div>
-      </v-col>
-      <v-col :span="6">
-        <div>col-6</div>
-      </v-col>
-      <v-col :span="6">
-        <div>col-6</div>
-      </v-col>
-      <v-col :span="6">
-        <div>col-6</div>
-      </v-col>
-      <v-col :span="6">
-        <div>col-6</div>
-      </v-col>
-      <v-col :span="6">
-        <div>col-6</div>
-      </v-col>
-      <v-col :span="6">
-        <div>col-6</div>
-      </v-col>
-    </v-row>
-  </div>
+  <v-divider orientation="left"> Horizontal </v-divider>
+  <v-row :gutter="16">
+    <v-col :span="6">
+      <div>col-6</div>
+    </v-col>
+    <v-col :span="6">
+      <div>col-6</div>
+    </v-col>
+    <v-col :span="6">
+      <div>col-6</div>
+    </v-col>
+    <v-col :span="6">
+      <div>col-6</div>
+    </v-col>
+  </v-row>
+  <v-divider orientation="left"> Vertical </v-divider>
+  <v-row :gutter="[16, 16]">
+    <v-col :span="6">
+      <div>col-6</div>
+    </v-col>
+    <v-col :span="6">
+      <div>col-6</div>
+    </v-col>
+    <v-col :span="6">
+      <div>col-6</div>
+    </v-col>
+    <v-col :span="6">
+      <div>col-6</div>
+    </v-col>
+    <v-col :span="6">
+      <div>col-6</div>
+    </v-col>
+    <v-col :span="6">
+      <div>col-6</div>
+    </v-col>
+    <v-col :span="6">
+      <div>col-6</div>
+    </v-col>
+    <v-col :span="6">
+      <div>col-6</div>
+    </v-col>
+  </v-row>
 </template>
-
-<style lang="scss" scoped>
-.vsc-grid {
-  .v-row > .v-col {
-    margin: 0;
-    padding: 0;
-
-    &:nth-child(2n + 1) {
-      background: #ffffff;
-      > div {
-        padding: 12px 0px;
-        background: mix($-color--primary, #ffffff, 75%);
-      }
-    }
-
-    &:nth-child(2n) {
-      background: #ffffff;
-      > div {
-        padding: 12px 0px;
-        background: $-color--primary;
-      }
-    }
-  }
-}
-</style>
 ```
 
 :::
@@ -123,25 +110,27 @@
 
 ```vue
 <template>
-  <div class="vsc-grid">
-    <v-row>
-      <v-col :span="8">col-8</v-col>
-      <v-col :span="8" :offset="8">col-8</v-col>
-    </v-row>
-    <v-row>
-      <v-col :span="6" :offset="6">
-        col-6 col-offset-6
-      </v-col>
-      <v-col :span="6" :offset="6">
-        col-6 col-offset-6
-      </v-col>
-    </v-row>
-    <v-row>
-      <v-col :span="12" :offset="6">
-        col-12 col-offset-6
-      </v-col>
-    </v-row>
-  </div>
+  <v-row>
+    <v-col :span="8">
+      <div>col-8</div>
+    </v-col>
+    <v-col :span="8" :offset="8">
+      <div>col-8</div>
+    </v-col>
+  </v-row>
+  <v-row>
+    <v-col :span="6" :offset="6">
+      <div>col-6 col-offset-6</div>
+    </v-col>
+    <v-col :span="6" :offset="6">
+      <div>col-6 col-offset-6</div>
+    </v-col>
+  </v-row>
+  <v-row>
+    <v-col :span="12" :offset="6">
+      <div>col-12 col-offset-6</div>
+    </v-col>
+  </v-row>
 </template>
 ```
 
@@ -153,12 +142,14 @@
 
 ```vue
 <template>
-  <div class="vsc-grid">
-    <v-row>
-      <v-col :span="18" :push="6">col-6 col-pull-18</v-col>
-      <v-col :span="6" :pull="18">col-18 col-push-6</v-col>
-    </v-row>
-  </div>
+  <v-row>
+    <v-col :span="18" :push="6">
+      <div>col-6 col-pull-18</div>
+    </v-col>
+    <v-col :span="6" :pull="18">
+      <div>col-18 col-push-6</div>
+    </v-col>
+  </v-row>
 </template>
 ```
 
@@ -170,60 +161,86 @@
 
 ```vue
 <template>
-  <div class="vsc-grid">
-    <v-divider orientation="left">
-      Start
-    </v-divider>
-    <v-row justify="start">
-      <v-col :span="4">col-4</v-col>
-      <v-col :span="4">col-4</v-col>
-      <v-col :span="4">col-4</v-col>
-      <v-col :span="4">col-4</v-col>
-    </v-row>
-    <v-divider orientation="left">
-      Center
-    </v-divider>
-    <v-row justify="center">
-      <v-col :span="4">col-4</v-col>
-      <v-col :span="4">col-4</v-col>
-      <v-col :span="4">col-4</v-col>
-      <v-col :span="4">col-4</v-col>
-    </v-row>
-    <v-divider orientation="left">
-      End
-    </v-divider>
-    <v-row justify="end">
-      <v-col :span="4">col-4</v-col>
-      <v-col :span="4">col-4</v-col>
-      <v-col :span="4">col-4</v-col>
-      <v-col :span="4">col-4</v-col>
-    </v-row>
-    <v-divider orientation="left">
-      Space-Between
-    </v-divider>
-    <v-row justify="space-between">
-      <v-col :span="4">col-4</v-col>
-      <v-col :span="4">col-4</v-col>
-      <v-col :span="4">col-4</v-col>
-      <v-col :span="4">col-4</v-col>
-    </v-row>
-    <v-divider orientation="left">
-      Space-Around
-    </v-divider>
-    <v-row justify="space-around">
-      <v-col :span="4">col-4</v-col>
-      <v-col :span="4">col-4</v-col>
-      <v-col :span="4">col-4</v-col>
-      <v-col :span="4">col-4</v-col>
-    </v-row>
-  </div>
+  <v-divider orientation="left"> Start </v-divider>
+  <v-row justify="start">
+    <v-col :span="4">
+      <div>col-4</div>
+    </v-col>
+    <v-col :span="4">
+      <div>col-4</div>
+    </v-col>
+    <v-col :span="4">
+      <div>col-4</div>
+    </v-col>
+    <v-col :span="4">
+      <div>col-4</div>
+    </v-col>
+  </v-row>
+  <v-divider orientation="left"> Center </v-divider>
+  <v-row justify="center">
+    <v-col :span="4">
+      <div>col-4</div>
+    </v-col>
+    <v-col :span="4">
+      <div>col-4</div>
+    </v-col>
+    <v-col :span="4">
+      <div>col-4</div>
+    </v-col>
+    <v-col :span="4">
+      <div>col-4</div>
+    </v-col>
+  </v-row>
+  <v-divider orientation="left"> End </v-divider>
+  <v-row justify="end">
+    <v-col :span="4">
+      <div>col-4</div>
+    </v-col>
+    <v-col :span="4">
+      <div>col-4</div>
+    </v-col>
+    <v-col :span="4">
+      <div>col-4</div>
+    </v-col>
+    <v-col :span="4">
+      <div>col-4</div>
+    </v-col>
+  </v-row>
+  <v-divider orientation="left"> Space-Between </v-divider>
+  <v-row justify="space-between">
+    <v-col :span="4">
+      <div>col-4</div>
+    </v-col>
+    <v-col :span="4">
+      <div>col-4</div>
+    </v-col>
+    <v-col :span="4">
+      <div>col-4</div>
+    </v-col>
+    <v-col :span="4">
+      <div>col-4</div>
+    </v-col>
+  </v-row>
+  <v-divider orientation="left"> Space-Around </v-divider>
+  <v-row justify="space-around">
+    <v-col :span="4">
+      <div>col-4</div>
+    </v-col>
+    <v-col :span="4">
+      <div>col-4</div>
+    </v-col>
+    <v-col :span="4">
+      <div>col-4</div>
+    </v-col>
+    <v-col :span="4">
+      <div>col-4</div>
+    </v-col>
+  </v-row>
 </template>
 
 <style lang="scss" scoped>
-.vsc-grid {
-  .v-row {
-    background: rgba(128, 128, 128, 0.08);
-  }
+.v-row {
+  background: rgba(128, 128, 128, 0.08);
 }
 </style>
 ```
@@ -236,56 +253,70 @@
 
 ```vue
 <template>
-  <div class="vsc-grid">
-    <v-divider orientation="left">
-      Top
-    </v-divider>
-    <v-row justify="space-around" align="top">
-      <v-col :span="4">col-4</v-col>
-      <v-col :span="4">col-4</v-col>
-      <v-col :span="4">col-4</v-col>
-      <v-col :span="4">col-4</v-col>
-    </v-row>
-    <v-divider orientation="left">
-      Top
-    </v-divider>
-    <v-row justify="space-around" align="middle">
-      <v-col :span="4">col-4</v-col>
-      <v-col :span="4">col-4</v-col>
-      <v-col :span="4">col-4</v-col>
-      <v-col :span="4">col-4</v-col>
-    </v-row>
-    <v-divider orientation="left">
-      Top
-    </v-divider>
-    <v-row justify="space-around" align="bottom">
-      <v-col :span="4">col-4</v-col>
-      <v-col :span="4">col-4</v-col>
-      <v-col :span="4">col-4</v-col>
-      <v-col :span="4">col-4</v-col>
-    </v-row>
-  </div>
+  <v-divider orientation="left"> Top </v-divider>
+  <v-row justify="space-around" align="top">
+    <v-col :span="4">
+      <div>col-4</div>
+    </v-col>
+    <v-col :span="4">
+      <div>col-4</div>
+    </v-col>
+    <v-col :span="4">
+      <div>col-4</div>
+    </v-col>
+    <v-col :span="4">
+      <div>col-4</div>
+    </v-col>
+  </v-row>
+  <v-divider orientation="left"> Top </v-divider>
+  <v-row justify="space-around" align="middle">
+    <v-col :span="4">
+      <div>col-4</div>
+    </v-col>
+    <v-col :span="4">
+      <div>col-4</div>
+    </v-col>
+    <v-col :span="4">
+      <div>col-4</div>
+    </v-col>
+    <v-col :span="4">
+      <div>col-4</div>
+    </v-col>
+  </v-row>
+  <v-divider orientation="left"> Top </v-divider>
+  <v-row justify="space-around" align="bottom">
+    <v-col :span="4">
+      <div>col-4</div>
+    </v-col>
+    <v-col :span="4">
+      <div>col-4</div>
+    </v-col>
+    <v-col :span="4">
+      <div>col-4</div>
+    </v-col>
+    <v-col :span="4">
+      <div>col-4</div>
+    </v-col>
+  </v-row>
 </template>
 
 <style lang="scss" scoped>
-.vsc-grid {
-  .v-row {
-    background: rgba(128, 128, 128, 0.08);
-  }
+.v-row {
+  background: rgba(128, 128, 128, 0.08);
+}
 
-  .v-col {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
+.v-col {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
-  .v-row > .v-col:nth-child(2n) {
-    height: 40px;
-  }
+.v-row > .v-col:nth-child(2n) > div {
+  height: 40px;
+}
 
-  .v-row > .v-col:nth-child(2n + 1) {
-    height: 80px;
-  }
+.v-row > .v-col:nth-child(2n + 1) > div {
+  height: 80px;
 }
 </style>
 ```
@@ -298,20 +329,30 @@
 
 ```vue
 <template>
-  <div class="vsc-grid">
-    <v-row>
-      <v-col :flex="2">2 / 5</v-col>
-      <v-col :flex="3">3 / 5</v-col>
-    </v-row>
-    <v-row>
-      <v-col flex="100px">100px</v-col>
-      <v-col flex="auto">Fill</v-col>
-    </v-row>
-    <v-row>
-      <v-col flex="1 1 200px">1 1 200px</v-col>
-      <v-col flex="0 1 300px">0 1 300px</v-col>
-    </v-row>
-  </div>
+  <v-row>
+    <v-col :flex="2">
+      <div>2 / 5</div>
+    </v-col>
+    <v-col :flex="3">
+      <div>3 / 5</div>
+    </v-col>
+  </v-row>
+  <v-row>
+    <v-col flex="100px">
+      <div>100px</div>
+    </v-col>
+    <v-col flex="auto">
+      <div>Fill</div>
+    </v-col>
+  </v-row>
+  <v-row>
+    <v-col flex="1 1 200px">
+      <div>1 1 200px</div>
+    </v-col>
+    <v-col flex="0 1 300px">
+      <div>0 1 300px</div>
+    </v-col>
+  </v-row>
 </template>
 ```
 
@@ -323,44 +364,42 @@
 
 ```vue
 <template>
-  <div class="vsc-grid">
-    <v-row>
-      <v-col :xs="2" :sm="4" :md="6" :lg="8" :xl="10" :xxl="8">
-        Col
-      </v-col>
-      <v-col :xs="20" :sm="16" :md="12" :lg="8" :xl="4" :xxl="8">
-        Col
-      </v-col>
-      <v-col :xs="2" :sm="4" :md="6" :lg="8" :xl="10" :xxl="8">
-        Col
-      </v-col>
-    </v-row>
-    <v-row>
-      <v-col :xs="2" :sm="4" :md="6" :lg="8" :xl="10" :xxl="6">
-        Col
-      </v-col>
-      <v-col
-        :xs="20"
-        :sm="16"
-        :md="12"
-        :lg="8"
-        :xl="4"
-        :xxl="{ span: 6, offset: 3 }"
-      >
-        Col
-      </v-col>
-      <v-col
-        :xs="2"
-        :sm="4"
-        :md="6"
-        :lg="8"
-        :xl="10"
-        :xxl="{ span: 6, offset: 3 }"
-      >
-        Col
-      </v-col>
-    </v-row>
-  </div>
+  <v-row>
+    <v-col :xs="2" :sm="4" :md="6" :lg="8" :xl="10" :xxl="8">
+      <div>Col</div>
+    </v-col>
+    <v-col :xs="20" :sm="16" :md="12" :lg="8" :xl="4" :xxl="8">
+      <div>Col</div>
+    </v-col>
+    <v-col :xs="2" :sm="4" :md="6" :lg="8" :xl="10" :xxl="8">
+      <div>Col</div>
+    </v-col>
+  </v-row>
+  <v-row>
+    <v-col :xs="2" :sm="4" :md="6" :lg="8" :xl="10" :xxl="6">
+      <div>Col</div>
+    </v-col>
+    <v-col
+      :xs="20"
+      :sm="16"
+      :md="12"
+      :lg="8"
+      :xl="4"
+      :xxl="{ span: 6, offset: 3 }"
+    >
+      <div>Col</div>
+    </v-col>
+    <v-col
+      :xs="2"
+      :sm="4"
+      :md="6"
+      :lg="8"
+      :xl="10"
+      :xxl="{ span: 6, offset: 3 }"
+    >
+      <div>Col</div>
+    </v-col>
+  </v-row>
 </template>
 ```
 
@@ -387,17 +426,17 @@
 
 | 属性   | 说明                                                           | 类型               | 可选值 | 默认值 |
 | ------ | -------------------------------------------------------------- | ------------------ | ------ | ------ |
-| span   | 栅格占位格数，为 0 时隐藏列                                    | _Number_           | `1-24` | —      |
-| offset | 栅格左侧的间隔格数，间隔内不可以有栅格                         | _Number_           | `1-24` | `0`    |
-| pull   | 栅格向左移动格数                                               | _Number_           | `1-24` | `0`    |
-| push   | 栅格向右移动格数                                               | _Number_           | `1-24` | `0`    |
+| span   | 栅格占位格数，为 0 时隐藏列                                    | _Number_           | _1-24_ | `24`   |
+| offset | 栅格左侧的间隔格数，间隔内不可以有栅格                         | _Number_           | _1-24_ | `0`    |
+| pull   | 栅格向左移动格数                                               | _Number_           | _1-24_ | `0`    |
+| push   | 栅格向右移动格数                                               | _Number_           | _1-24_ | `0`    |
 | flex   | Flex 布局属性                                                  | _Number \| String_ | —      | —      |
-| xs     | 屏幕 `< 576px` 响应式栅格，可为栅格数或一个包含其他属性的对象  | _Number \| Object_ | —      | —      |
-| sm     | 屏幕 `≥ 576px` 响应式栅格，可为栅格数或一个包含其他属性的对象  | _Number \| Object_ | —      | —      |
-| md     | 屏幕 `≥ 768px` 响应式栅格，可为栅格数或一个包含其他属性的对象  | _Number \| Object_ | —      | —      |
-| lg     | 屏幕 `≥ 992px` 响应式栅格，可为栅格数或一个包含其他属性的对象  | _Number \| Object_ | —      | —      |
-| xl     | 屏幕 `≥ 1200px` 响应式栅格，可为栅格数或一个包含其他属性的对象 | _Number \| Object_ | —      | —      |
-| xxl    | 屏幕 `≥ 1600px` 响应式栅格，可为栅格数或一个包含其他属性的对象 | _Number \| Object_ | —      | —      |
+| xs     | 屏幕 `< 576px` 响应式栅格，可为栅格数或一个包含其他属性的对象  | _Number \| Object_ | —      | `24`   |
+| sm     | 屏幕 `≥ 576px` 响应式栅格，可为栅格数或一个包含其他属性的对象  | _Number \| Object_ | —      | `24`   |
+| md     | 屏幕 `≥ 768px` 响应式栅格，可为栅格数或一个包含其他属性的对象  | _Number \| Object_ | —      | `24`   |
+| lg     | 屏幕 `≥ 992px` 响应式栅格，可为栅格数或一个包含其他属性的对象  | _Number \| Object_ | —      | `24`   |
+| xl     | 屏幕 `≥ 1200px` 响应式栅格，可为栅格数或一个包含其他属性的对象 | _Number \| Object_ | —      | `24`   |
+| xxl    | 屏幕 `≥ 1600px` 响应式栅格，可为栅格数或一个包含其他属性的对象 | _Number \| Object_ | —      | `24`   |
 
 ## Col Slots
 

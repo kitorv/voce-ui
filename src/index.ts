@@ -6,8 +6,8 @@ import { Link } from "./components/link";
 import { Text } from "./components/text";
 
 import { Divider } from "./components/divider";
-// import { Row } from "./components/row";
-// import { Col } from "./components/col";
+import { Row } from "./components/row";
+import { Col } from "./components/col";
 // import { Layout } from "./components/layout";
 // import { Space } from "./components/space";
 // import { Affix } from "./components/affix";
@@ -22,8 +22,8 @@ const components = [
   Text,
 
   Divider,
-  // Row,
-  // Col,
+  Row,
+  Col,
   // Layout,
   // Space,
   // Affix,
