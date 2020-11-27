@@ -9,7 +9,7 @@
       <span v-text="data.subtitle" />
     </router-link>
     <div v-else class="vc-left-menu-item--title" v-text="data.title" />
-    <vc-left-menu-item
+    <vc-index-menu
       v-for="(child, index) in data.children"
       :key="index"
       :data="child"
@@ -29,7 +29,7 @@ export type MenuItemModel = {
 };
 
 export default defineComponent({
-  name: "vc-left-menu-item",
+  name: "VcIndexMenu",
   props: {
     data: {
       type: Object as PropType<MenuItemModel>,

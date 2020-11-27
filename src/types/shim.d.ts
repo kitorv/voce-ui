@@ -1,11 +1,11 @@
 declare module "*.vue" {
-  import { ComponentOptions } from "vue";
-  let component: ComponentOptions;
+  import type { DefineComponent } from "vue";
+  const component: DefineComponent;
   export default component;
 }
 
 declare module "*.md" {
-  import { ComponentOptions } from "vue";
-  let component: ComponentOptions;
+  import type { DefineComponent } from "vue";
+  const component: DefineComponent;
   export default component;
 }

@@ -5,7 +5,7 @@
       <div class="vs-index--header-title">VECO</div>
     </div>
     <div class="vs-index--left">
-      <vc-left-menu-item
+      <vc-index-menu
         v-for="(menu, index) in menuList"
         :key="index"
         :data="menu"
@@ -21,10 +21,10 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import VcLeftMenuItem from "../components/left-menu-ietm.vue";
+import VcIndexMenu from "../components/index-menu.vue";
 
 export default defineComponent({
-  components: { VcLeftMenuItem },
+  components: { VcIndexMenu },
   setup() {
     const menuList = [
       {
@@ -41,81 +41,81 @@ export default defineComponent({
           {
             title: "通用",
             children: [
-              {
-                path: "/component/button",
-                title: "Button",
-                subtitle: "按钮",
-              },
-              { path: "/component/color", title: "Color", subtitle: "色彩" },
+              // {
+              //   path: "/component/button",
+              //   title: "Button",
+              //   subtitle: "按钮",
+              // },
+              // { path: "/component/color", title: "Color", subtitle: "色彩" },
               { path: "/component/icon", title: "Icon", subtitle: "图标" },
-              { path: "/component/link", title: "Link", subtitle: "链接" },
-              { path: "/component/text", title: "Text", subtitle: "文本" },
+              // { path: "/component/link", title: "Link", subtitle: "链接" },
+              // { path: "/component/text", title: "Text", subtitle: "文本" },
             ],
           },
-          {
-            title: "布局",
-            children: [
-              {
-                path: "/component/divider",
-                title: "Divider",
-                subtitle: "分割线",
-              },
-              { path: "/component/grid", title: "Grid", subtitle: "栅格" },
-              { path: "/component/layout", title: "Layout", subtitle: "布局" },
-              { path: "/component/space", title: "Space", subtitle: "间距" },
-            ],
-          },
-          {
-            title: "导航",
-            children: [
-              {
-                path: "/component/affix",
-                title: "Affix",
-                subtitle: "固钉",
-              },
-              {
-                path: "/component/breadcrumb",
-                title: "Breadcrumb",
-                subtitle: "面包屑",
-              },
-              {
-                path: "/component/dropdown",
-                title: "Dropdown",
-                subtitle: "下拉菜单",
-              },
-              //       {
-              //         path: "/component/tabs",
-              //         title: "Tabs",
-              //         subtitle: "标签页",
-              //       },
+          // {
+          //   title: "布局",
+          //   children: [
+          //     {
+          //       path: "/component/divider",
+          //       title: "Divider",
+          //       subtitle: "分割线",
+          //     },
+          //     { path: "/component/grid", title: "Grid", subtitle: "栅格" },
+          //     { path: "/component/layout", title: "Layout", subtitle: "布局" },
+          //     { path: "/component/space", title: "Space", subtitle: "间距" },
+          //   ],
+          // },
+          // {
+          //   title: "导航",
+          //   children: [
+          //     {
+          //       path: "/component/affix",
+          //       title: "Affix",
+          //       subtitle: "固钉",
+          //     },
+          //     {
+          //       path: "/component/breadcrumb",
+          //       title: "Breadcrumb",
+          //       subtitle: "面包屑",
+          //     },
+          //     {
+          //       path: "/component/dropdown",
+          //       title: "Dropdown",
+          //       subtitle: "下拉菜单",
+          //     },
+          //     //       {
+          //     //         path: "/component/tabs",
+          //     //         title: "Tabs",
+          //     //         subtitle: "标签页",
+          //     //       },
 
-              //       {
-              //         path: "/component/menu",
-              //         title: "Menu",
-              //         subtitle: "菜单",
-              //       },
-              //       {
-              //         path: "/component/steps",
-              //         title: "Steps",
-              //         subtitle: "步骤条",
-              //       },
-              //       {
-              //         path: "/component/drawer",
-              //         title: "Drawer",
-              //         subtitle: "抽屉",
-              //       },
-              //       {
-              //         path: "/component/page-header",
-              //         title: "PageHeader",
-              //         subtitle: "页头",
-              //       },
-              //       {
-              //         path: "/component/backtop",
-              //         title: "Backtop",
-              //         subtitle: "回到顶部",
-              //       },
-            ],
-          },
+          //     //       {
+          //     //         path: "/component/menu",
+          //     //         title: "Menu",
+          //     //         subtitle: "菜单",
+          //     //       },
+          //     //       {
+          //     //         path: "/component/steps",
+          //     //         title: "Steps",
+          //     //         subtitle: "步骤条",
+          //     //       },
+          //     //       {
+          //     //         path: "/component/drawer",
+          //     //         title: "Drawer",
+          //     //         subtitle: "抽屉",
+          //     //       },
+          //     //       {
+          //     //         path: "/component/page-header",
+          //     //         title: "PageHeader",
+          //     //         subtitle: "页头",
+          //     //       },
+          //     //       {
+          //     //         path: "/component/backtop",
+          //     //         title: "Backtop",
+          //     //         subtitle: "回到顶部",
+          //     //       },
+          //   ],
+          // },
           // {
           //   title: "表单",
           //   children: [

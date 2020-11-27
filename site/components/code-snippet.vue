@@ -28,6 +28,7 @@
 
 <script lang="ts">
 import { defineComponent, ref, computed } from "vue";
+import "highlight.js/styles/color-brewer.css";
 
 export default defineComponent({
   name: "VcCodeSnippet",

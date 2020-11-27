@@ -1,7 +1,7 @@
 <template>
   <div class="vs-icon-view">
     <div class="vs-icon-view--item" v-for="(icon, index) in icons" :key="index">
-      <i :class="icon" />
+      <v-icon :type="icon" />
       <p>{{ icon }}</p>
     </div>
   </div>
@@ -9,12 +9,14 @@
 
 <script lang="ts">
 import { defineComponent, reactive } from "vue";
-import iconList from "../../src/components/icons/src/iconfont";
+import iconList from "../../src/components/icon/src/iconfont";
 
 export default defineComponent({
   name: "VcIconView",
   setup() {
-    const icons = reactive(iconList.sort());
+    const icons = reactive(
+      iconList.map((i) => i.replace("v-icon-", "")).sort()
+    );
     return { icons };
   },
 });

@@ -23,7 +23,7 @@ module.exports = function (source) {
   });
 
   // 定义Markdown标签类名
-  markdownIt.use(MarkdownItClass, "vs-markdown-doc");
+  markdownIt.use(MarkdownItClass, "vc-markdown-doc");
 
   // 解析markdown的 【:::tip 内容 ::::】 格式
   markdownIt.use(MarkdownItContainer, "tip", {
@@ -33,7 +33,7 @@ module.exports = function (source) {
     // 代码块渲染
     render(tokens, index) {
       return tokens[index].nesting === 1
-        ? '<div class="vs-markdown-tip">'
+        ? '<div class="vc-markdown-tip">'
         : "</div>";
     },
   });
@@ -46,7 +46,7 @@ module.exports = function (source) {
     // 代码块渲染
     render(tokens, index) {
       return tokens[index].nesting === 1
-        ? '<div class="vs-markdown-danger">'
+        ? '<div class="vc-markdown-danger">'
         : "</div>";
     },
   });
@@ -94,9 +94,9 @@ module.exports = function (source) {
     },
   });
   return `<template>
-            <div class="vs-markdown-view">
+            <vc-markdown-view>
               ${markdownIt.render(source)}
-            </div>
+            </vc-markdown-view>
           </template>
           <script>
             import { defineComponent } from "vue";

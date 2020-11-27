@@ -1,82 +1,82 @@
 {
   "$-color--primary": {
     "prefix": "$-color--primary",
-    "body": "$-color--primary;$1",
+    "body": "$-color--primary",
     "description": "#1f74ff"
   },
   "$-color--success": {
     "prefix": "$-color--success",
-    "body": "$-color--success;$1",
+    "body": "$-color--success",
     "description": "#46c93a"
   },
   "$-color--danger": {
     "prefix": "$-color--danger",
-    "body": "$-color--danger;$1",
+    "body": "$-color--danger",
     "description": "#ff4757"
   },
   "$-color--warning": {
     "prefix": "$-color--warning",
-    "body": "$-color--warning;$1",
+    "body": "$-color--warning",
     "description": "#ffba00"
   },
   "$-color--dark": {
     "prefix": "$-color--dark",
-    "body": "$-color--dark;$1",
+    "body": "$-color--dark",
     "description": "#1e1e1e"
   },
   "$-color--text-primary": {
     "prefix": "$-color--text-primary",
-    "body": "$-color--text-primary;$1",
+    "body": "$-color--text-primary",
     "description": "#333333"
   },
   "$-color--text-regular": {
     "prefix": "$-color--text-regular",
-    "body": "$-color--text-regular;$1",
+    "body": "$-color--text-regular",
     "description": "#666666"
   },
   "$-color--text-secondary": {
     "prefix": "$-color--text-secondary",
-    "body": "$-color--text-secondary;$1",
+    "body": "$-color--text-secondary",
     "description": "#999999"
   },
   "$-color--text-placeholder": {
     "prefix": "$-color--text-placeholder",
-    "body": "$-color--text-placeholder;$1",
+    "body": "$-color--text-placeholder",
     "description": "#cccccc"
   },
   "$-color--border-base": {
     "prefix": "$-color--border-base",
-    "body": "$-color--border-base;$1",
+    "body": "$-color--border-base",
     "description": "#dcdfe6"
   },
   "$-color--border-light": {
     "prefix": "$-color--border-light",
-    "body": "$-color--border-light;$1",
+    "body": "$-color--border-light",
     "description": "mix($-color--border-base, #ffffff, 80%)"
   },
   "$-color--border-lighter": {
     "prefix": "$-color--border-lighter",
-    "body": "$-color--border-lighter;$1",
+    "body": "$-color--border-lighter",
     "description": "mix($-color--border-base, #ffffff, 60%)"
   },
   "$-color--border-extra-light": {
     "prefix": "$-color--border-extra-light",
-    "body": "$-color--border-extra-light;$1",
+    "body": "$-color--border-extra-light",
     "description": "mix($-color--border-base, #ffffff, 40%)"
   },
   "$-color--disabled-color": {
     "prefix": "$-color--disabled-color",
-    "body": "$-color--disabled-color;$1",
+    "body": "$-color--disabled-color",
     "description": "#cccccc"
   },
   "$-color--disabled-background-color": {
     "prefix": "$-color--disabled-background-color",
-    "body": "$-color--disabled-background-color;$1",
+    "body": "$-color--disabled-background-color",
     "description": "#f2f2f2"
   },
   "$-color--disabled-border-color": {
     "prefix": "$-color--disabled-border-color",
-    "body": "$-color--disabled-border-color;$1",
+    "body": "$-color--disabled-border-color",
     "description": "#dcdfe6"
   }
 }

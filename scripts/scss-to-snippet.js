@@ -13,7 +13,7 @@ let snippets = "";
 scssNodes.forEach((node) => {
   const snippetName = node.prop;
   const snippetValue = node.value.replace("!default", "").trim();
-  snippets += `"${snippetName}":{"prefix":"${snippetName}","body":"${snippetName};$1","description":"${snippetValue}"},`;
+  snippets += `"${snippetName}":{"prefix":"${snippetName}","body":"${snippetName}","description":"${snippetValue}"},`;
 });
 
 fs.writeFile(

@@ -3,7 +3,8 @@
     "source.fixAll.eslint": true
   },
   "path-autocomplete.pathMappings": {
-    "@": "${folder}/src"
+    "@": "${folder}/src",
+    "@utils": "${folder}/src/utils",
   },
   "prettier.vueIndentScriptAndStyle": false,
 

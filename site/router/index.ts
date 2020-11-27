@@ -1,8 +1,8 @@
 import { createRouter, createWebHashHistory } from "vue-router";
 import developRoutes from "./develop";
 import commonRoutes from "./common";
-import layoutRoutes from "./layout";
-import navigateRoutes from "./navigate";
+// import layoutRoutes from "./layout";
+// import navigateRoutes from "./navigate";
 
 const router = createRouter({
   history: createWebHashHistory(),
@@ -19,8 +19,8 @@ const router = createRouter({
         },
         ...developRoutes,
         ...commonRoutes,
-        ...layoutRoutes,
-        ...navigateRoutes,
+        // ...layoutRoutes,
+        // ...navigateRoutes,
       ],
     },
   ],

@@ -46,6 +46,7 @@ module.exports = (snippetCode, hash) => {
   if (template && template.content) {
     // vue 的 template 编译为渲染函数 render
     const { code } = compileTemplate({
+      id: hash,
       source: template.content,
       filename: `snippet_component_${hash}.vue`,
       compilerOptions: {
