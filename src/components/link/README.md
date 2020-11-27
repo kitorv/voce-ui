@@ -8,14 +8,12 @@
 
 ```vue
 <template>
-  <div class="vsc-link">
-    <v-link>Default</v-link>
-    <v-link type="primary">Primary</v-link>
-    <v-link type="success">Success</v-link>
-    <v-link type="warning">Warning</v-link>
-    <v-link type="danger">Danger</v-link>
-    <v-link type="info">Info</v-link>
-  </div>
+  <v-link>Default</v-link>
+  <v-link type="primary">Primary</v-link>
+  <v-link type="success">Success</v-link>
+  <v-link type="warning">Warning</v-link>
+  <v-link type="danger">Danger</v-link>
+  <v-link type="info">Info</v-link>
 </template>
 ```
 
@@ -27,14 +25,12 @@
 
 ```vue
 <template>
-  <div class="vsc-link">
-    <v-link disabled>Default</v-link>
-    <v-link type="primary" disabled>Primary</v-link>
-    <v-link type="success" disabled>Success</v-link>
-    <v-link type="warning" disabled>Warning</v-link>
-    <v-link type="danger" disabled>Danger</v-link>
-    <v-link type="info" disabled>Info</v-link>
-  </div>
+  <v-link disabled>Default</v-link>
+  <v-link type="primary" disabled>Primary</v-link>
+  <v-link type="success" disabled>Success</v-link>
+  <v-link type="warning" disabled>Warning</v-link>
+  <v-link type="danger" disabled>Danger</v-link>
+  <v-link type="info" disabled>Info</v-link>
 </template>
 ```
 
@@ -46,10 +42,8 @@
 
 ```vue
 <template>
-  <div class="vsc-link">
-    <v-link>Underline</v-link>
-    <v-link :underline="false">NoUnderline</v-link>
-  </div>
+  <v-link>Underline</v-link>
+  <v-link :underline="false">NoUnderline</v-link>
 </template>
 ```
 
@@ -61,10 +55,8 @@
 
 ```vue
 <template>
-  <div class="vsc-link">
-    <v-link prefix-icon="v-icon-edit-fill">Edit</v-link>
-    <v-link suffix-icon="v-icon-delete-fill">Delete</v-link>
-  </div>
+  <v-link prefix-icon="v-icon-edit-fill">Edit</v-link>
+  <v-link suffix-icon="v-icon-delete-fill">Delete</v-link>
 </template>
 ```
 
@@ -76,10 +68,8 @@
 
 ```vue
 <template>
-  <div class="vsc-link">
-    <v-link href="/">Href</v-link>
-    <v-link to="/">RouteLink</v-link>
-  </div>
+  <v-link href="/">Href</v-link>
+  <v-link to="/">RouteLink</v-link>
 </template>
 ```
 

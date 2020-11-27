@@ -48,7 +48,7 @@ export default defineComponent({
               },
               { path: "/component/color", title: "Color", subtitle: "色彩" },
               { path: "/component/icon", title: "Icon", subtitle: "图标" },
-              // { path: "/component/link", title: "Link", subtitle: "链接" },
+              { path: "/component/link", title: "Link", subtitle: "链接" },
               // { path: "/component/text", title: "Text", subtitle: "文本" },
             ],
           },

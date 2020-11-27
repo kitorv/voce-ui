@@ -2,8 +2,7 @@ import { App } from "vue";
 
 import { Button } from "./components/button";
 import { Icon } from "./components/icon";
-
-// import { Link } from "./components/link";
+import { Link } from "./components/link";
 // import { Text } from "./components/text";
 // import { Divider } from "./components/divider";
 // import { Row } from "./components/row";
@@ -18,8 +17,7 @@ import { Icon } from "./components/icon";
 const components = [
   Button,
   Icon,
-
-  // Link,
+  Link,
   // Text,
   // Divider,
   // Row,

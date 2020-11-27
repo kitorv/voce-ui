@@ -14,11 +14,11 @@ const routes: Array<RouteRecordRaw> = [
     path: "/component/icon",
     component: () => import("@/components/icon/README.md"),
   },
-  // {
-  //   path: "/component/link",
-  //   name: "component-link",
-  //   component: () => import("@/components/link/README.md"),
-  // },
+  {
+    path: "/component/link",
+    name: "component-link",
+    component: () => import("@/components/link/README.md"),
+  },
   // {
   //   path: "/component/text",
   //   name: "component-text",

@@ -156,13 +156,13 @@ export default defineComponent({
       margin: 6px 12px 6px 0;
     }
   }
-}
 
-// .vsc-link {
-//   .v-link {
-//     margin: 6px 12px 6px 0;
-//   }
-// }
+  &-link {
+    .v-link {
+      margin: 6px 12px 6px 0;
+    }
+  }
+}
 
 // .vsc-text {
 //   span.v-text {

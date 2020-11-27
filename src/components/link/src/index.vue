@@ -10,33 +10,39 @@
 
 <script lang="ts">
 import { defineComponent, PropType, computed } from "vue";
-import { IconType } from "../../icons";
-import { useRouter, RouteLocationRaw } from "vue-router";
-
-export type LinkType =
-  | "default"
-  | "primary"
-  | "success"
-  | "warning"
-  | "danger"
-  | "info";
+import { LinkType } from "./interface";
+import { RouteLocationRaw } from "vue-router";
+import { useRawRouter } from "@/utils";
+import { IconType } from "@/components/icon";
 
 export default defineComponent({
   name: "VLink",
   props: {
     type: {
       type: String as PropType<LinkType>,
-      default: "default",
+      default: "default" as LinkType,
     },
     underline: {
       type: Boolean,
       default: true,
     },
     disabled: Boolean,
-    prefixIcon: String as PropType<IconType>,
-    suffixIcon: String as PropType<IconType>,
-    href: String,
-    to: [Object, String] as PropType<RouteLocationRaw>,
+    prefixIcon: {
+      type: String as PropType<IconType>,
+      default: undefined,
+    },
+    suffixIcon: {
+      type: String as PropType<IconType>,
+      default: undefined,
+    },
+    href: {
+      type: String,
+      default: undefined,
+    },
+    to: {
+      type: [Object, String] as PropType<RouteLocationRaw>,
+      default: undefined,
+    },
   },
   setup(props, { emit }) {
     const classes = computed(() => {
@@ -58,12 +64,11 @@ export default defineComponent({
       };
     });
 
-    const router = useRouter();
-
+    const router = useRawRouter();
     const onClick = (event: Event) => {
       if (!linkAttrs) return;
       if (props.to && router) {
-        router.push(props.to as RouteLocationRaw);
+        router.push(props.to);
         return;
       }
       emit("click", event);
