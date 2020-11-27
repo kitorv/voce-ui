@@ -17,9 +17,9 @@
     "lib": ["ESNext", "DOM"],
     "types": ["node"],
     "rootDir": ".",
-    "paths": { 
-      "@": ["src"] ,
-      "@utils": ["src/utils/index.ts"] ,
+    "paths": {
+      "@/*": ["src/*"],
+      "@utils": ["src/utils/index.ts"]
     }
   },
   "include": ["site/**/*", "src/**/*"]

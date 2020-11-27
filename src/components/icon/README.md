@@ -8,10 +8,8 @@
 
 ```vue
 <template>
-  <div class="vsc-icon">
-    <v-icon type="code-expand" />
-    <v-icon type="code-collapse" />
-  </div>
+  <v-icon type="code-expand" />
+  <v-icon type="code-collapse" />
 </template>
 ```
 
@@ -23,17 +21,15 @@
 
 ```vue
 <template>
-  <div class="vsc-icon">
-    <v-icon type="star-fill" effect="default" />
-    <v-icon type="star-fill" effect="regular" />
-    <v-icon type="star-fill" effect="secondary" />
-    <v-icon type="star-fill" effect="placeholder" />
-    <v-icon type="star-fill" effect="primary" />
-    <v-icon type="star-fill" effect="success" />
-    <v-icon type="star-fill" effect="warning" />
-    <v-icon type="star-fill" effect="danger" />
-    <v-icon type="star-fill" effect="dark" />
-  </div>
+  <v-icon type="star-fill" effect="default" />
+  <v-icon type="star-fill" effect="regular" />
+  <v-icon type="star-fill" effect="secondary" />
+  <v-icon type="star-fill" effect="placeholder" />
+  <v-icon type="star-fill" effect="primary" />
+  <v-icon type="star-fill" effect="success" />
+  <v-icon type="star-fill" effect="warning" />
+  <v-icon type="star-fill" effect="danger" />
+  <v-icon type="star-fill" effect="dark" />
 </template>
 ```
 
@@ -45,12 +41,10 @@
 
 ```vue
 <template>
-  <div class="vsc-icon">
-    <v-icon type="heart-fill" :size="16" />
-    <v-icon type="heart-fill" :size="24" />
-    <v-icon type="heart-fill" :size="32" />
-    <v-icon type="heart-fill" :size="40" />
-  </div>
+  <v-icon type="heart-fill" :size="16" />
+  <v-icon type="heart-fill" :size="24" />
+  <v-icon type="heart-fill" :size="32" />
+  <v-icon type="heart-fill" :size="40" />
 </template>
 ```
 

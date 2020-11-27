@@ -1,7 +1,8 @@
 import { App } from "vue";
 
+import { Button } from "./components/button";
 import { Icon } from "./components/icon";
-// import { Button } from "./components/button";
+
 // import { Link } from "./components/link";
 // import { Text } from "./components/text";
 // import { Divider } from "./components/divider";
@@ -15,8 +16,9 @@ import { Icon } from "./components/icon";
 // import { Dropdown } from "./components/dropdown";
 
 const components = [
+  Button,
   Icon,
-  // Button,
+
   // Link,
   // Text,
   // Divider,

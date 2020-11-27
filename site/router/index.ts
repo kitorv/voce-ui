@@ -9,12 +9,14 @@ const router = createRouter({
   routes: [
     {
       path: "/",
-      name: "home",
+      redirect: "/docs/start",
+    },
+    {
+      path: "/home",
       component: () => import("../views/index.vue"),
       children: [
         {
           path: "/test",
-          name: "common-test",
           component: () => import("../views/test.vue"),
         },
         ...developRoutes,

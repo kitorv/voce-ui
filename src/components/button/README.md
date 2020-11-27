@@ -8,13 +8,11 @@
 
 ```vue
 <template>
-  <div class="vsc-button">
-    <v-button>Default</v-button>
-    <v-button type="primary">Primary</v-button>
-    <v-button type="success">Success</v-button>
-    <v-button type="warning">Warning</v-button>
-    <v-button type="danger">Danger</v-button>
-  </div>
+  <v-button>Default</v-button>
+  <v-button type="primary">Primary</v-button>
+  <v-button type="success">Success</v-button>
+  <v-button type="warning">Warning</v-button>
+  <v-button type="danger">Danger</v-button>
 </template>
 ```
 
@@ -22,56 +20,34 @@
 
 ## 按钮形状
 
-:::snippet 通过`shape`设置按钮形状，可选值为`circle`、`round`或者不设置。
+:::snippet 通过`shape`设置形状，可选值为`default`、`circle`、`round`。
 
 ```vue
 <template>
-  <div class="vsc-button">
-    <v-button type="primary">Default</v-button>
-    <v-button type="primary" shape="round">Round</v-button>
-    <v-button type="primary" shape="circle">C</v-button>
-    <v-button>Default</v-button>
-    <v-button shape="round">Round</v-button>
-    <v-button shape="circle">C</v-button>
-  </div>
+  <v-button type="primary">Default</v-button>
+  <v-button type="primary" shape="round">Round</v-button>
+  <v-button type="primary" shape="circle">C</v-button>
+  <v-button>Default</v-button>
+  <v-button shape="round">Round</v-button>
+  <v-button shape="circle">C</v-button>
 </template>
-
-<style lang="scss" scoped>
-.vsc-button {
-  .v-button {
-    margin-right: 12px;
-  }
-}
-</style>
 ```
 
 :::
 
 ## 按钮图标
 
-:::snippet 通过`shape`设置按钮形状，可选值为`circle`、`round`或者不设置。
+:::snippet 通过`icon`设置图标，可选值对应图标`Icon`组件的类型。
 
 ```vue
 <template>
-  <div class="vsc-button">
-    <v-button type="primary" icon="v-icon-search">Search</v-button>
-    <v-button type="primary" icon="v-icon-search" shape="round"
-      >Search</v-button
-    >
-    <v-button type="primary" icon="v-icon-search" shape="circle"></v-button>
-    <v-button icon="v-icon-search">Search</v-button>
-    <v-button icon="v-icon-search" shape="round">Search</v-button>
-    <v-button icon="v-icon-search" shape="circle"></v-button>
-  </div>
+  <v-button type="primary" icon="search">Search</v-button>
+  <v-button type="primary" icon="search" shape="round">Search</v-button>
+  <v-button type="primary" icon="search" shape="circle"></v-button>
+  <v-button icon="search">Search</v-button>
+  <v-button icon="search" shape="round">Search</v-button>
+  <v-button icon="search" shape="circle"></v-button>
 </template>
-
-<style lang="scss" scoped>
-.vsc-button {
-  .v-button {
-    margin-right: 12px;
-  }
-}
-</style>
 ```
 
 :::
@@ -82,20 +58,10 @@
 
 ```vue
 <template>
-  <div class="vsc-button">
-    <v-button dashed>Dashed</v-button>
-    <v-button dashed shape="round">Dashed</v-button>
-    <v-button dashed shape="circle">D</v-button>
-  </div>
+  <v-button dashed>Dashed</v-button>
+  <v-button dashed shape="round">Dashed</v-button>
+  <v-button dashed shape="circle">D</v-button>
 </template>
-
-<style lang="scss" scoped>
-.vsc-button {
-  .v-button {
-    margin-right: 12px;
-  }
-}
-</style>
 ```
 
 :::
@@ -106,12 +72,10 @@
 
 ```vue
 <template>
-  <div class="vsc-button">
-    <v-button type="primary" plain>Primary</v-button>
-    <v-button type="success" plain>Success</v-button>
-    <v-button type="danger" plain>Danger</v-button>
-    <v-button type="warning" plain>Warning</v-button>
-  </div>
+  <v-button type="primary" plain>Primary</v-button>
+  <v-button type="success" plain>Success</v-button>
+  <v-button type="danger" plain>Danger</v-button>
+  <v-button type="warning" plain>Warning</v-button>
 </template>
 
 <style lang="scss" scoped>
@@ -131,21 +95,11 @@
 
 ```vue
 <template>
-  <div class="vsc-button">
-    <v-button type="primary" link>Primary</v-button>
-    <v-button type="success" link>Success</v-button>
-    <v-button type="danger" link>Danger</v-button>
-    <v-button type="warning" link>Warning</v-button>
-  </div>
+  <v-button type="primary" link>Primary</v-button>
+  <v-button type="success" link>Success</v-button>
+  <v-button type="danger" link>Danger</v-button>
+  <v-button type="warning" link>Warning</v-button>
 </template>
-
-<style lang="scss" scoped>
-.vsc-button {
-  .v-button {
-    margin-right: 12px;
-  }
-}
-</style>
 ```
 
 :::
@@ -156,13 +110,11 @@
 
 ```vue
 <template>
-  <div class="vsc-button">
-    <v-button disabled>Default</v-button>
-    <v-button type="primary" disabled>Primary</v-button>
-    <v-button type="primary" disabled plain>Plain</v-button>
-    <v-button type="primary" disabled dashed>Dashed</v-button>
-    <v-button type="primary" disabled link>Link</v-button>
-  </div>
+  <v-button disabled>Default</v-button>
+  <v-button type="primary" disabled>Primary</v-button>
+  <v-button type="primary" disabled plain>Plain</v-button>
+  <v-button type="primary" disabled dashed>Dashed</v-button>
+  <v-button type="primary" disabled link>Link</v-button>
 </template>
 ```
 
@@ -174,22 +126,20 @@
 
 ```vue
 <template>
-  <div class="vsc-button">
-    <div>
-      <v-button type="primary" size="large">Large</v-button>
-      <v-button type="primary" shape="round" size="large">Large</v-button>
-      <v-button type="primary" shape="circle" size="large">L</v-button>
-    </div>
-    <div>
-      <v-button type="primary">Default</v-button>
-      <v-button type="primary" shape="round">Ddefault</v-button>
-      <v-button type="primary" shape="circle">D</v-button>
-    </div>
-    <div>
-      <v-button type="primary" size="small">Small</v-button>
-      <v-button type="primary" shape="round" size="small">Small</v-button>
-      <v-button type="primary" shape="circle" size="small">S</v-button>
-    </div>
+  <div>
+    <v-button type="primary" size="large">Large</v-button>
+    <v-button type="primary" shape="round" size="large">Large</v-button>
+    <v-button type="primary" shape="circle" size="large">L</v-button>
+  </div>
+  <div>
+    <v-button type="primary">Default</v-button>
+    <v-button type="primary" shape="round">Ddefault</v-button>
+    <v-button type="primary" shape="circle">D</v-button>
+  </div>
+  <div>
+    <v-button type="primary" size="small">Small</v-button>
+    <v-button type="primary" shape="round" size="small">Small</v-button>
+    <v-button type="primary" shape="circle" size="small">S</v-button>
   </div>
 </template>
 ```
@@ -202,21 +152,19 @@
 
 ```vue
 <template>
-  <div class="vsc-button">
-    <v-button type="primary" loading>Loading</v-button>
-    <v-button type="primary" shape="circle" loading>L</v-button>
-    <v-button type="primary" icon="v-icon-search" shape="circle" loading />
-    <v-button type="primary" :loading="loading" @click="onClickLoading"
-      >Click Me!</v-button
-    >
-    <v-button
-      type="primary"
-      icon="v-icon-poweroff"
-      shape="circle"
-      :loading="loading"
-      @click="onClickLoading"
-    />
-  </div>
+  <v-button type="primary" loading>Loading</v-button>
+  <v-button type="primary" shape="circle" loading>L</v-button>
+  <v-button type="primary" icon="search" shape="circle" loading />
+  <v-button type="primary" :loading="loading" @click="onClickLoading"
+    >Click Me!</v-button
+  >
+  <v-button
+    type="primary"
+    icon="poweroff"
+    shape="circle"
+    :loading="loading"
+    @click="onClickLoading"
+  />
 </template>
 
 <script>
@@ -250,9 +198,7 @@ export default defineComponent({
 
 ```vue
 <template>
-  <div class="vsc-button">
-    <v-button type="primary" to="/">Route Link</v-button>
-  </div>
+  <v-button type="primary" to="/">Route Link</v-button>
 </template>
 
 <script>

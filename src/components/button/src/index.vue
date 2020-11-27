@@ -1,10 +1,10 @@
 <template>
-  <button :class="classes" @click="onClick($event)">
+  <button :class="classes" @click="onClick">
     <span v-if="isShowIcon" class="v-button--icon">
-      <i :class="icon" />
+      <v-icon :type="icon" />
     </span>
     <span v-if="loading" class="v-button--loading-icon">
-      <i class="v-icon-loading" />
+      <v-icon type="loading" />
     </span>
     <span v-if="isShowText" class="v-button--text">
       <slot />
@@ -13,40 +13,54 @@
 </template>
 
 <script lang="ts">
+import { useRawRouter } from "@/utils";
 import { defineComponent, PropType, computed } from "vue";
-import { IconType } from "../../icons";
-import { useRouter, RouteLocationRaw } from "vue-router";
-
-export type ButtonType =
-  | "default"
-  | "primary"
-  | "success"
-  | "warning"
-  | "danger";
-
-export type ButttonShape = "circle" | "round";
-
-export type ButttonSize = "large" | "default" | "small";
+import { RouteLocationRaw } from "vue-router";
+import { ButtonIcon, ButtonType, ButttonShape, ButttonSize } from "./interface";
 
 export default defineComponent({
   name: "VButton",
   props: {
     type: {
       type: String as PropType<ButtonType>,
-      default: "default",
+      default: "default" as ButtonType,
     },
     size: {
       type: String as PropType<ButttonSize>,
-      default: "default",
+      default: "default" as ButttonSize,
     },
-    shape: String as PropType<ButttonShape>,
-    icon: String as PropType<IconType>,
-    dashed: Boolean,
-    plain: Boolean,
-    link: Boolean,
-    disabled: Boolean,
-    loading: Boolean,
-    to: [Object, String] as PropType<RouteLocationRaw>,
+    shape: {
+      type: String as PropType<ButttonShape>,
+      default: "default" as ButttonShape,
+    },
+    icon: {
+      type: String as PropType<ButtonIcon>,
+      default: undefined,
+    },
+    dashed: {
+      type: Boolean,
+      default: false,
+    },
+    plain: {
+      type: Boolean,
+      default: false,
+    },
+    link: {
+      type: Boolean,
+      default: false,
+    },
+    disabled: {
+      type: Boolean,
+      default: false,
+    },
+    loading: {
+      type: Boolean,
+      default: false,
+    },
+    to: {
+      type: [Object, String] as PropType<RouteLocationRaw>,
+      default: undefined,
+    },
   },
   emits: ["click"],
   setup(props, { slots, emit }) {
@@ -79,12 +93,11 @@ export default defineComponent({
       ];
     });
 
-    const router = useRouter();
-
+    const router = useRawRouter();
     const onClick = (event: Event) => {
       if (isDisabled.value) return;
       if (props.to && router) {
-        router.push(props.to as RouteLocationRaw);
+        router.push(props.to);
         return;
       }
       emit("click", event);
@@ -289,7 +302,7 @@ $color-maps: (
   line-height: 1;
   padding-right: 8px;
 
-  > i {
+  > .v-icon {
     display: inline-block;
     animation: vButtonLoading 1s infinite linear;
   }

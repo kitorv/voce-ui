@@ -1,11 +1,11 @@
 import { RouteRecordRaw } from "vue-router";
 
 const routes: Array<RouteRecordRaw> = [
-  // {
-  //   path: "/component/button",
-  //   name: "component-button",
-  //   component: () => import("@/components/button/README.md"),
-  // },
+  {
+    path: "/component/button",
+    name: "component-button",
+    component: () => import("@/components/button/README.md"),
+  },
   {
     path: "/component/color",
     component: () => import("@/components/color/README.md"),
