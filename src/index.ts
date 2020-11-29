@@ -8,7 +8,12 @@ import { Text } from "./components/text";
 import { Divider } from "./components/divider";
 import { Row } from "./components/row";
 import { Col } from "./components/col";
-// import { Layout } from "./components/layout";
+import { Layout } from "./components/layout";
+import { LayoutHeader } from "./components/layout-header";
+import { LayoutContent } from "./components/layout-content";
+import { LayoutFooter } from "./components/layout-footer";
+import { LayoutLeft } from "./components/layout-left";
+import { LayoutRight } from "./components/layout-right";
 // import { Space } from "./components/space";
 // import { Affix } from "./components/affix";
 // import { Breadcrumb } from "./components/breadcrumb";
@@ -24,7 +29,12 @@ const components = [
   Divider,
   Row,
   Col,
-  // Layout,
+  Layout,
+  LayoutHeader,
+  LayoutContent,
+  LayoutFooter,
+  LayoutLeft,
+  LayoutRight,
   // Space,
   // Affix,
   // Breadcrumb,

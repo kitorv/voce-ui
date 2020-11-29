@@ -113,7 +113,7 @@ th.vc-markdown-doc {
   white-space: nowrap;
   color: $-color--text-primary;
   font-weight: 500;
-  background-color: mix($-color--border-base, #ffffff, 25%);
+  background-color: mix($-color--border-base, #ffffff, 50%);
 }
 
 code.vc-markdown-doc {

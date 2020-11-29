@@ -4,163 +4,81 @@
 
 ## 基础用法
 
-:::snippet 通过插槽`header`和`footer`设置顶部和底部布局。
+:::snippet 基础页面上中下布局。
 
 ```vue
 <template>
-  <div class="vsc-layout">
-    <v-layout>
-      <template #header>
-        <div slot="header">Header</div>
-      </template>
-      <div>Main</div>
-      <template #footer>
-        <div>Footer</div>
-      </template>
-    </v-layout>
-  </div>
+  <v-layout>
+    <v-layout-header>Header</v-layout-header>
+    <v-layout-content>Content</v-layout-content>
+    <v-layout-footer>Footer</v-layout-footer>
+  </v-layout>
 </template>
 ```
 
 :::
 
-## 左侧边栏
+## 左右侧边栏
 
-:::snippet 通过插槽`left`设置左侧边栏。
+:::snippet 基础页面左中右布局。
 
 ```vue
 <template>
-  <div class="vsc-layout">
-    <v-layout>
-      <template #left>
-        <div>Left</div>
-      </template>
-      <div>Main</div>
-    </v-layout>
-  </div>
+  <v-layout>
+    <v-layout-left :width="160">Left</v-layout-left>
+    <v-layout-content>Content</v-layout-content>
+    <v-layout-right :width="160">Right</v-layout-right>
+  </v-layout>
 </template>
 ```
 
 :::
 
-## 右侧边栏
+## 嵌套布局
 
-:::snippet 通过插槽`right`设置右侧边栏。
+:::snippet 通过嵌套进行复制的布局。
 
 ```vue
 <template>
-  <div class="vsc-layout">
+  <v-layout>
+    <v-layout-left :width="160">Left</v-layout-left>
     <v-layout>
-      <div>Main</div>
-      <template #right>
-        <div>Right</div>
-      </template>
+      <v-layout-header>Header</v-layout-header>
+      <v-layout-content>Content</v-layout-content>
+      <v-layout-footer>Footer</v-layout-footer>
     </v-layout>
-  </div>
-</template>
-```
+  </v-layout>
 
-:::
-
-## 嵌套左侧边栏
-
-:::snippet `Layout`组件相互嵌套构成嵌套左侧边栏布局。
-
-```vue
-<template>
-  <div class="vsc-layout">
+  <v-layout>
     <v-layout>
-      <template #footer>
-        <div>Footer</div>
-      </template>
-      <template #header>
-        <div slot="header">Header</div>
-      </template>
-      <div>Main</div>
-      <template #footer>
-        <div>Footer</div>
-      </template>
+      <v-layout-header>Header</v-layout-header>
+      <v-layout-content>Content</v-layout-content>
+      <v-layout-footer>Footer</v-layout-footer>
     </v-layout>
-  </div>
-</template>
-```
+    <v-layout-right :width="160">Right</v-layout-right>
+  </v-layout>
 
-:::
-
-## 嵌套右侧边栏
-
-:::snippet `Layout`组件相互嵌套构成嵌套左侧栏布局。
-
-```vue
-<template>
-  <div class="vsc-layout">
-    <v-layout>
-      <template #header>
-        <div slot="header">Header</div>
-      </template>
-      <div>Main</div>
-      <template #footer>
-        <div>Footer</div>
-      </template>
-      <template #right>
-        <div>Right</div>
-      </template>
-    </v-layout>
-  </div>
-</template>
-```
-
-:::
-
-## 内嵌左侧边栏
-
-:::snippet `Layout`组件相互嵌套构成内嵌左侧栏布局。
-
-```vue
-<template>
-  <div class="vsc-layout">
-    <v-layout>
-      <template #header>
-        <div slot="header">Header</div>
-      </template>
+  <v-layout>
+    <v-layout-header>Header</v-layout-header>
+    <v-layout-content>
       <v-layout>
-        <template #left>
-          <div>Left</div>
-        </template>
-        <div>Main</div>
+        <v-layout-left :width="160">Left</v-layout-left>
+        <v-layout-content>Content</v-layout-content>
       </v-layout>
-      <template #footer>
-        <div>Footer</div>
-      </template>
-    </v-layout>
-  </div>
-</template>
-```
+    </v-layout-content>
+    <v-layout-footer>Footer</v-layout-footer>
+  </v-layout>
 
-:::
-
-## 内嵌右侧边栏
-
-:::snippet `Layout`组件相互嵌套构成内嵌右侧栏布局。
-
-```vue
-<template>
-  <div class="vsc-layout">
-    <v-layout>
-      <template #header>
-        <div slot="header">Header</div>
-      </template>
+  <v-layout>
+    <v-layout-header>Header</v-layout-header>
+    <v-layout-content>
       <v-layout>
-        <div>Main</div>
-        <template #right>
-          <div>Right</div>
-        </template>
+        <v-layout-content>Content</v-layout-content>
+        <v-layout-right :width="160">Right</v-layout-right>
       </v-layout>
-      <template #footer>
-        <div>Footer</div>
-      </template>
-    </v-layout>
-  </div>
+    </v-layout-content>
+    <v-layout-footer>Footer</v-layout-footer>
+  </v-layout>
 </template>
 ```
 
@@ -168,10 +86,36 @@
 
 ## Layout Slots
 
-| 名称   | 说明     |
-| ------ | -------- |
-| —      | 布局内容 |
-| header | 顶部内容 |
-| footer | 底部内容 |
-| left   | 左侧内容 |
-| right  | 右侧内容 |
+| 名称 | 说明     |
+| ---- | -------- |
+| —    | 布局内容 |
+
+## LayoutHeader Slots
+
+| 名称 | 说明     |
+| ---- | -------- |
+| —    | 顶部内容 |
+
+## LayoutFooter Slots
+
+| 名称 | 说明     |
+| ---- | -------- |
+| —    | 底部内容 |
+
+## LayoutLeft Slots
+
+| 名称 | 说明     |
+| ---- | -------- |
+| —    | 左侧内容 |
+
+## LayoutRight Slots
+
+| 名称 | 说明     |
+| ---- | -------- |
+| —    | 右侧内容 |
+
+## LayoutContent Slots
+
+| 名称 | 说明     |
+| ---- | -------- |
+| —    | 主要内容 |

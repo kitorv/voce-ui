@@ -1,48 +1,31 @@
+<template>
+  <section :class="classes">
+    <slot />
+  </section>
+</template>
+
 <script lang="ts">
-import { defineComponent, computed, h } from "vue";
+import { Component, computed, defineComponent } from "vue";
+import VLayoutHeader from "./header.vue";
 
 export default defineComponent({
   name: "VLayout",
   setup(props, { slots }) {
-    return () => {
-      const direction = slots.left || slots.right ? "horizontal" : "vertical";
-
-      const classes = ["v-layout", `v-layout--directiom-${direction}`];
-
-      const left = computed(() => {
-        if (!slots.left) return;
-        return h("div", { class: "v-layout--left" }, slots.left());
+    const isVertical = computed(() => {
+      if (!slots.default) return false;
+      const vNodes = slots.default();
+      return vNodes.some((vNode) => {
+        const componentName = (vNode.type as Component).name;
+        if (!componentName) return false;
+        return [VLayoutHeader.name].includes(componentName);
       });
+    });
 
-      const right = computed(() => {
-        if (!slots.right) return;
-        return h("div", { class: "v-layout--right" }, slots.right());
-      });
+    const classes = computed(() => {
+      return ["v-layout", { "v-layout--vertical": isVertical.value }];
+    });
 
-      const header = computed(() => {
-        if (!slots.header) return;
-        return h("div", { class: "v-layout--header" }, slots.header());
-      });
-      const body = computed(() => {
-        if (!slots.default) return;
-        return h("div", { class: "v-layout--body" }, slots.default());
-      });
-      const footer = computed(() => {
-        if (!slots.footer) return;
-        return h("div", { class: "v-layout--footer" }, slots.footer());
-      });
-
-      const content = [header.value, body.value, footer.value];
-
-      if (slots.left || slots.right) {
-        return h("div", { class: classes }, [
-          left.value,
-          h("div", { class: "v-layout--content" }, content),
-          right.value,
-        ]);
-      }
-      return h("div", { class: classes }, content);
-    };
+    return { classes };
   },
 });
 </script>
@@ -57,29 +40,7 @@ export default defineComponent({
   box-sizing: border-box;
 }
 
-.v-layout--directiom-vertical {
+.v-layout--vertical {
   flex-direction: column;
-
-  > .v-layout--body {
-    flex: 1;
-    min-height: 0;
-  }
-}
-
-.v-layout--directiom-horizontal {
-  flex-direction: row;
-
-  > .v-layout--content {
-    flex: 1;
-    min-width: 0;
-    display: flex;
-    height: 100%;
-    flex-direction: column;
-
-    > .v-layout--body {
-      flex: 1;
-      min-height: 0;
-    }
-  }
 }
 </style>

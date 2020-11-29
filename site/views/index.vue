@@ -61,7 +61,7 @@ export default defineComponent({
                 subtitle: "分割线",
               },
               { path: "/component/grid", title: "Grid", subtitle: "栅格" },
-              // { path: "/component/layout", title: "Layout", subtitle: "布局" },
+              { path: "/component/layout", title: "Layout", subtitle: "布局" },
               // { path: "/component/space", title: "Space", subtitle: "间距" },
             ],
           },

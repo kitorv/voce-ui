@@ -11,11 +11,11 @@ const routes: Array<RouteRecordRaw> = [
     name: "component-grid",
     component: () => import("@/components/grid/README.md"),
   },
-  // {
-  //   path: "/component/layout",
-  //   name: "component-layout",
-  //   component: () => import("@/components/layout/README.md"),
-  // },
+  {
+    path: "/component/layout",
+    name: "component-layout",
+    component: () => import("@/components/layout/README.md"),
+  },
   // {
   //   path: "/component/space",
   //   name: "component-space",

@@ -195,47 +195,51 @@ export default defineComponent({
       width: 100%;
     }
   }
+
+  &-layout {
+    > .v-layout {
+      font-size: 18px;
+      text-align: center;
+      height: 400px;
+      color: #ffffff;
+    }
+
+    > .v-layout + .v-layout {
+      margin-top: 32px;
+    }
+
+    .v-layout-header {
+      background: mix($-color--primary, #ffffff, 75%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 64px;
+    }
+
+    .v-layout-content {
+      background: $-color--primary;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .v-layout-footer {
+      background: mix($-color--primary, #ffffff, 75%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 64px;
+    }
+
+    .v-layout-left,
+    .v-layout-right {
+      background: mix($-color--primary, #ffffff, 85%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  }
 }
-
-// .vsc-layout {
-//   margin: 6px 0;
-//   font-size: 18px;
-//   text-align: center;
-//   height: 400px;
-//   color: #ffffff;
-
-//   .v-layout--left,
-//   .v-layout--right {
-//     background: mix($-color--primary, #ffffff, 70%);
-//     display: flex;
-//     align-items: center;
-//     justify-content: center;
-//     width: 160px;
-//   }
-
-//   .v-layout--header {
-//     background: mix($-color--primary, #ffffff, 40%);
-//     display: flex;
-//     align-items: center;
-//     justify-content: center;
-//     height: 64px;
-//   }
-
-//   .v-layout--body {
-//     background: mix($-color--primary, #ffffff, 60%);
-//     display: flex;
-//     align-items: center;
-//     justify-content: center;
-//   }
-
-//   .v-layout--footer {
-//     background: mix($-color--primary, #ffffff, 40%);
-//     display: flex;
-//     align-items: center;
-//     justify-content: center;
-//     height: 64px;
-//   }
-// }
 
 // .vsc-affix {
 //   .v-button {
