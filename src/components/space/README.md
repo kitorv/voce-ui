@@ -8,21 +8,18 @@
 
 ```vue
 <template>
-  <div class="vsc-space">
-    <v-space>
-      <div class="vsc-space--holder"></div>
-      <div class="vsc-space--holder"></div>
-      <div class="vsc-space--holder"></div>
-      <div class="vsc-space--holder"></div>
-      <div class="vsc-space--holder"></div>
-      <div class="vsc-space--holder"></div>
-    </v-space>
-  </div>
+  <v-space>
+    <div class="vsc-space--holder"></div>
+    <div class="vsc-space--holder"></div>
+    <div class="vsc-space--holder"></div>
+    <div class="vsc-space--holder"></div>
+    <div class="vsc-space--holder"></div>
+  </v-space>
 </template>
 
 <style lang="scss" scoped>
 .vsc-space--holder {
-  background: #cccccc;
+  background: $-color--primary;
   width: 80px;
   height: 80px;
 }
@@ -37,22 +34,18 @@
 
 ```vue
 <template>
-  <div class="vsc-space">
-    <v-space :size="16" direction="vertical">
-      <div class="vsc-space--holder"></div>
-      <div class="vsc-space--holder"></div>
-      <div class="vsc-space--holder"></div>
-      <div class="vsc-space--holder"></div>
-      <div class="vsc-space--holder"></div>
-      <div class="vsc-space--holder"></div>
-    </v-space>
-  </div>
+  <v-space :size="16" direction="vertical">
+    <div class="vsc-space--holder"></div>
+    <div class="vsc-space--holder"></div>
+    <div class="vsc-space--holder"></div>
+    <div class="vsc-space--holder"></div>
+  </v-space>
 </template>
 
 <style lang="scss" scoped>
 .vsc-space--holder {
-  background: #cccccc;
-  height: 40px;
+  background: $-color--primary;
+  height: 80px;
 }
 </style>
 ```
@@ -61,12 +54,12 @@
 
 ## 内部间距
 
-:::snippet 通过`surround`设置内部间距，也可以单独设置`top`、`bottom`、`right`、`left`设置指定位置边距会优先级高于`surround`。
+:::snippet 通过`top`、`bottom`、`right`、`left`设置内部间距。
 
 ```vue
 <template>
   <div class="vsc-space">
-    <v-space :surround="16" direction="vertical">
+    <v-space :top="16" :right="16" :bottom="16" :left="16" direction="vertical">
       <div class="vsc-space--holder"></div>
     </v-space>
   </div>
@@ -79,7 +72,7 @@
 }
 
 .vsc-space--holder {
-  background: #cccccc;
+  background: $-color--primary;
   height: 200px;
 }
 </style>
@@ -89,41 +82,36 @@
 
 ## 间距尺寸
 
-:::snippet 可以通过`size`、`surround`的可选值`large`、`medium`、`small`设置间距大小也可以通过自定义数值大小来设置间距。
+:::snippet 可以通过`size`的可选值`large`、`medium`、`small`设置间距大小也可以通过自定义数值大小来设置间距。
 
 ```vue
 <template>
-  <div class="vsc-space">
-    <v-space size="small">
-      <div class="vsc-space--holder"></div>
-      <div class="vsc-space--holder"></div>
-      <div class="vsc-space--holder"></div>
-      <div class="vsc-space--holder"></div>
-      <div class="vsc-space--holder"></div>
-      <div class="vsc-space--holder"></div>
-    </v-space>
-    <v-space size="medium">
-      <div class="vsc-space--holder"></div>
-      <div class="vsc-space--holder"></div>
-      <div class="vsc-space--holder"></div>
-      <div class="vsc-space--holder"></div>
-      <div class="vsc-space--holder"></div>
-      <div class="vsc-space--holder"></div>
-    </v-space>
-    <v-space size="large">
-      <div class="vsc-space--holder"></div>
-      <div class="vsc-space--holder"></div>
-      <div class="vsc-space--holder"></div>
-      <div class="vsc-space--holder"></div>
-      <div class="vsc-space--holder"></div>
-      <div class="vsc-space--holder"></div>
-    </v-space>
-  </div>
+  <v-space size="small">
+    <div class="vsc-space--holder"></div>
+    <div class="vsc-space--holder"></div>
+    <div class="vsc-space--holder"></div>
+    <div class="vsc-space--holder"></div>
+    <div class="vsc-space--holder"></div>
+  </v-space>
+  <v-space size="medium">
+    <div class="vsc-space--holder"></div>
+    <div class="vsc-space--holder"></div>
+    <div class="vsc-space--holder"></div>
+    <div class="vsc-space--holder"></div>
+    <div class="vsc-space--holder"></div>
+  </v-space>
+  <v-space size="large">
+    <div class="vsc-space--holder"></div>
+    <div class="vsc-space--holder"></div>
+    <div class="vsc-space--holder"></div>
+    <div class="vsc-space--holder"></div>
+    <div class="vsc-space--holder"></div>
+  </v-space>
 </template>
 
 <style lang="scss" scoped>
 .vsc-space--holder {
-  background: #cccccc;
+  background: $-color--primary;
   width: 80px;
   height: 80px;
 }
@@ -138,15 +126,15 @@
 
 ## Space Props
 
-| 属性      | 说明     | 类型                        | 可选值              | 默认值       |
-| --------- | -------- | --------------------------- | ------------------- | ------------ |
-| direction | 间距方向 | _String_                    | [[space-direction]] | `horizontal` |
-| size      | 间距尺寸 | _String \| Number_          | [[space-size]]      | `small`      |
-| surround  | 环绕间距 | _String \| Number \| Array_ | [[space-surround]]  | —            |
-| top       | 顶部间距 | _Number_                    | —                   | —            |
-| right     | 右侧间距 | _Number_                    | —                   | —            |
-| bottom    | 底部间距 | _Number_                    | —                   | —            |
-| left      | 左侧间距 | _Number_                    | —                   | —            |
+| 属性      | 说明           | 类型               | 可选值              | 默认值       |
+| --------- | -------------- | ------------------ | ------------------- | ------------ |
+| direction | 间距方向       | _String_           | [[space-direction]] | `horizontal` |
+| size      | 间距尺寸       | _String \| Number_ | [[space-size]]      | `small`      |
+| top       | 顶部间距       | _Number_           | —                   | —            |
+| right     | 右侧间距       | _Number_           | —                   | —            |
+| bottom    | 底部间距       | _Number_           | —                   | —            |
+| left      | 左侧间距       | _Number_           | —                   | —            |
+| fit       | 自适应容器大小 | _Boolean_          | —                   | `true`       |
 
 ## Space Slots
 

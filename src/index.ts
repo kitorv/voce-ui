@@ -14,7 +14,7 @@ import { LayoutContent } from "./components/layout-content";
 import { LayoutFooter } from "./components/layout-footer";
 import { LayoutLeft } from "./components/layout-left";
 import { LayoutRight } from "./components/layout-right";
-// import { Space } from "./components/space";
+import { Space } from "./components/space";
 // import { Affix } from "./components/affix";
 // import { Breadcrumb } from "./components/breadcrumb";
 // import { BreadcrumbItem } from "./components/breadcrumb-item";
@@ -35,7 +35,8 @@ const components = [
   LayoutFooter,
   LayoutLeft,
   LayoutRight,
-  // Space,
+  Space,
+
   // Affix,
   // Breadcrumb,
   // BreadcrumbItem,

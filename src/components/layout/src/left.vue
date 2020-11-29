@@ -32,5 +32,6 @@ export default defineComponent({
 .v-layout-left {
   overflow: auto;
   height: 100%;
+  box-sizing: border-box;
 }
 </style>

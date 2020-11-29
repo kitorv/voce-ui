@@ -1,22 +1,14 @@
-<script lang="ts">
+<script lang="tsx">
 import {
-  defineComponent,
-  h,
-  PropType,
-  CSSProperties,
   computed,
-  VNode,
+  CSSProperties,
+  defineComponent,
   Fragment,
   isVNode,
+  PropType,
+  VNode,
 } from "vue";
-
-export type SpaceDirection = "vertical" | "horizontal";
-
-export type SpaceSizeType = "small" | "medium" | "large";
-
-export type SpaceSize = SpaceSizeType | number;
-
-export type SpaceSurround = SpaceSizeType | Array<number> | number;
+import { SpaceDirection, SpaceSize, SpaceSizeType } from "./interface";
 
 export default defineComponent({
   name: "VSpace",
@@ -29,20 +21,35 @@ export default defineComponent({
       type: [Number, String] as PropType<SpaceSize>,
       default: "small" as SpaceSize,
     },
-    surround: [Number, Array, String] as PropType<SpaceSurround>,
-    top: Number,
-    right: Number,
-    bottom: Number,
-    left: Number,
+    top: {
+      type: Number,
+      default: 0,
+    },
+    right: {
+      type: Number,
+      default: 0,
+    },
+    bottom: {
+      type: Number,
+      default: 0,
+    },
+    left: {
+      type: Number,
+      default: 0,
+    },
+    fit: {
+      type: Boolean,
+      default: true,
+    },
   },
   setup(props, { slots }) {
-    const sizes: Record<SpaceSizeType, number> = {
-      small: 8,
-      medium: 16,
-      large: 24,
-    };
-
     const size = computed(() => {
+      const sizes: Record<SpaceSizeType, number> = {
+        small: 8,
+        medium: 16,
+        large: 24,
+      };
+
       let sizeValue = props.size;
       if (typeof props.size === "string") {
         sizeValue = sizes[props.size];
@@ -50,30 +57,31 @@ export default defineComponent({
       return `${sizeValue}px`;
     });
 
-    const createSpaceItem = (vNode: VNode, isFirst: boolean = false) => {
-      const sizeValue = isFirst ? 0 : size.value;
-
-      const marginTop = props.direction === "vertical" ? sizeValue : 0;
-      const marginLeft = props.direction === "horizontal" ? sizeValue : 0;
-
-      const itemStyle: CSSProperties = { marginTop, marginLeft };
-      return h("div", { class: "v-space--item", style: itemStyle }, vNode);
+    const createSpaceItem = (vNode: VNode, isFirstVNode: boolean = false) => {
+      const sizeValue = isFirstVNode ? 0 : size.value;
+      const paddingTop = props.direction === "vertical" ? sizeValue : 0;
+      const paddingLeft = props.direction === "horizontal" ? sizeValue : 0;
+      const style: CSSProperties = { paddingTop, paddingLeft };
+      return (
+        <div class="v-space--item" style={style}>
+          {vNode}
+        </div>
+      );
     };
+
     const createSpaceItemList = () => {
       if (!slots.default) return [];
-      let isFirstNode = true;
-
+      let isFirstVNode = true;
       const createNewNode = (vNode: VNode) => {
-        const newVNode = createSpaceItem(vNode, isFirstNode);
-        isFirstNode = false;
+        const newVNode = createSpaceItem(vNode, isFirstVNode);
+        isFirstVNode = false;
         return newVNode;
       };
-
       return Array.from(slots.default(), (vNode, index) => {
         if (vNode.type !== Fragment) {
           return createNewNode(vNode);
         }
-        if (!vNode.children || !Array.isArray(vNode.children)) return vNode;
+        if (!Array.isArray(vNode.children)) return vNode;
         return Array.from(vNode.children, (childVNode) => {
           if (!isVNode(childVNode)) return childVNode;
           return createNewNode(childVNode);
@@ -81,38 +89,28 @@ export default defineComponent({
       });
     };
 
-    return () => {
-      if (!slots.default) return;
+    const classes = computed(() => {
+      return [
+        "v-space",
+        `v-space--direction-${props.direction}`,
+        { "v-space--fit": props.fit },
+      ];
+    });
 
-      const normalizeSurround = () => {
-        if (!props.surround) return [0, 0];
-        if (typeof props.surround === "string") {
-          const size = sizes[props.surround];
-          return [size, size];
-        }
-        if (Array.isArray(props.surround)) {
-          return [props.surround[0], props.surround[1]];
-        }
-        return [props.surround, props.surround];
+    const style = computed<CSSProperties>(() => {
+      return {
+        paddingTop: `${props.top}px`,
+        paddingRight: `${props.right}px`,
+        paddingBottom: `${props.bottom}px`,
+        paddingLeft: `${props.left}px`,
       };
+    });
 
-      const surroundStyle = computed(() => {
-        const [vertical, horizontal] = normalizeSurround();
-        const style: CSSProperties = {
-          paddingTop: `${props.top || vertical}px`,
-          paddingBottom: `${props.bottom || vertical}px`,
-          paddingLeft: `${props.left || horizontal}px`,
-          paddingRight: `${props.right || horizontal}px`,
-        };
-        return style;
-      });
-
-      const classes = ["v-space", `v-space--direction-${props.direction}`];
-
-      return h(
-        "div",
-        { class: classes, style: surroundStyle.value },
-        createSpaceItemList()
+    return () => {
+      return (
+        <div class={classes.value} style={style.value}>
+          {createSpaceItemList()}
+        </div>
       );
     };
   },
@@ -121,12 +119,16 @@ export default defineComponent({
 
 <style lang="scss">
 .v-space {
-  display: flex;
+  display: inline-flex;
   box-sizing: border-box;
 }
 
 .v-space--direction-vertical {
   flex-direction: column;
+}
+
+.v-space--fit {
+  display: flex;
 }
 
 .v-space--item {

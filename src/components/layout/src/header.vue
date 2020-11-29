@@ -12,3 +12,9 @@ export default defineComponent({
   setup(props, { slots }) {},
 });
 </script>
+
+<style lang="scss">
+.v-layout-header {
+  box-sizing: border-box;
+}
+</style>
