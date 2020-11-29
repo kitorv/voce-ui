@@ -200,7 +200,7 @@ export default defineComponent({
     > .v-layout {
       font-size: 18px;
       text-align: center;
-      height: 400px;
+      height: 360px;
       color: #ffffff;
     }
 
@@ -208,12 +208,13 @@ export default defineComponent({
       margin-top: 32px;
     }
 
-    .v-layout-header {
+    .v-layout-header,
+    .v-layout-footer {
       background: mix($-color--primary, #ffffff, 75%);
       display: flex;
       align-items: center;
       justify-content: center;
-      height: 64px;
+      height: 80px;
     }
 
     .v-layout-content {
@@ -221,14 +222,6 @@ export default defineComponent({
       display: flex;
       align-items: center;
       justify-content: center;
-    }
-
-    .v-layout-footer {
-      background: mix($-color--primary, #ffffff, 75%);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      height: 64px;
     }
 
     .v-layout-left,
@@ -239,19 +232,17 @@ export default defineComponent({
       justify-content: center;
     }
   }
+
+  &-space {
+    .v-space + .v-space {
+      margin-top: 16px;
+    }
+  }
 }
 
 // .vsc-affix {
 //   .v-button {
 //     margin: 6px 0;
-//   }
-// }
-
-// .vsc-space {
-//   padding: 6px 0;
-
-//   .v-space + .v-space {
-//     margin-top: 16px;
 //   }
 // }
 </style>
