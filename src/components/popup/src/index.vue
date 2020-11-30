@@ -1,11 +1,16 @@
 <template>
-  <v-popup></v-popup>
+  <div>Popup</div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from "vue";
-
 export default defineComponent({
-  name: "VDropdown",
+  name: "VPopup",
+  props: {},
+  setup(props, { emit }) {
+    return {};
+  },
 });
 </script>
+
+<style lang="scss"></style>

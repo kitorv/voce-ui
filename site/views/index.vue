@@ -78,13 +78,13 @@ export default defineComponent({
                 title: "Breadcrumb",
                 subtitle: "面包屑",
               },
+              {
+                path: "/component/dropdown",
+                title: "Dropdown",
+                subtitle: "下拉菜单",
+              },
             ],
 
-            //     {
-            //       path: "/component/dropdown",
-            //       title: "Dropdown",
-            //       subtitle: "下拉菜单",
-            //     },
             //     //       {
             //     //         path: "/component/tabs",
             //     //         title: "Tabs",
