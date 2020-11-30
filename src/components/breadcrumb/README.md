@@ -8,13 +8,11 @@
 
 ```vue
 <template>
-  <div class="vsc-breadcrumb">
-    <v-breadcrumb>
-      <v-breadcrumb-item to="/">Home</v-breadcrumb-item>
-      <v-breadcrumb-item to="/">View</v-breadcrumb-item>
-      <v-breadcrumb-item to="/">Component</v-breadcrumb-item>
-    </v-breadcrumb>
-  </div>
+  <v-breadcrumb>
+    <v-breadcrumb-item to="/">Home</v-breadcrumb-item>
+    <v-breadcrumb-item to="/">View</v-breadcrumb-item>
+    <v-breadcrumb-item>Component</v-breadcrumb-item>
+  </v-breadcrumb>
 </template>
 ```
 
@@ -26,13 +24,11 @@
 
 ```vue
 <template>
-  <div class="vsc-breadcrumb">
-    <v-breadcrumb separator=">">
-      <v-breadcrumb-item to="/">Home</v-breadcrumb-item>
-      <v-breadcrumb-item to="/">view</v-breadcrumb-item>
-      <v-breadcrumb-item to="/">Component</v-breadcrumb-item>
-    </v-breadcrumb>
-  </div>
+  <v-breadcrumb separator=">">
+    <v-breadcrumb-item to="/">Home</v-breadcrumb-item>
+    <v-breadcrumb-item to="/">view</v-breadcrumb-item>
+    <v-breadcrumb-item>Component</v-breadcrumb-item>
+  </v-breadcrumb>
 </template>
 ```
 

@@ -17,8 +17,8 @@ import { LayoutRight } from "./components/layout-right";
 import { Space } from "./components/space";
 
 import { Affix } from "./components/affix";
-// import { Breadcrumb } from "./components/breadcrumb";
-// import { BreadcrumbItem } from "./components/breadcrumb-item";
+import { Breadcrumb } from "./components/breadcrumb";
+import { BreadcrumbItem } from "./components/breadcrumb-item";
 // import { Dropdown } from "./components/dropdown";
 
 const components = [
@@ -39,8 +39,8 @@ const components = [
   Space,
 
   Affix,
-  // Breadcrumb,
-  // BreadcrumbItem,
+  Breadcrumb,
+  BreadcrumbItem,
   // Dropdown,
 ];
 

@@ -9,23 +9,25 @@
   </span>
 </template>
 <script lang="ts">
-import { defineComponent, inject, ref, PropType, computed } from "vue";
-import { VBreadcrumb } from "./breadcrumb.vue";
-import { RouteLocationRaw, useRouter } from "vue-router";
+import { useRawRouter } from "@/utils";
+import { defineComponent, inject, PropType, computed } from "vue";
+import { RouteLocationRaw } from "vue-router";
+import { BreadcrumbProvide, BreadcrumbProvideKey } from "./interface";
 
 export default defineComponent({
   name: "VBreadcrumbItem",
   props: {
-    to: [Object, String] as PropType<RouteLocationRaw>,
+    to: {
+      type: [Object, String] as PropType<RouteLocationRaw>,
+      default: undefined,
+    },
   },
   emits: ["click"],
   setup(props, { emit }) {
-    const vBreadcrumb = inject<VBreadcrumb>("VBreadcrumb");
-    const separator = computed(() => {
-      return vBreadcrumb ? vBreadcrumb.separator.value : ref("/");
-    });
-    const router = useRouter();
+    const vBreadcrumb = inject<BreadcrumbProvide>(BreadcrumbProvideKey)!;
+    const separator = computed(() => vBreadcrumb.separator.value);
 
+    const router = useRawRouter();
     const onClick = (event: Event) => {
       if (props.to && router) {
         router.push(props.to as RouteLocationRaw);

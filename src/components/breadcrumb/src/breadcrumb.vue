@@ -4,11 +4,8 @@
   </div>
 </template>
 <script lang="ts">
-import { defineComponent, provide, ComputedRef, computed } from "vue";
-
-export type VBreadcrumb = {
-  separator: ComputedRef<string>;
-};
+import { defineComponent, provide, computed } from "vue";
+import { BreadcrumbProvide, BreadcrumbProvideKey } from "./interface";
 
 export default defineComponent({
   name: "VBreadcrumb",
@@ -19,10 +16,8 @@ export default defineComponent({
     },
   },
   setup(props) {
-    provide<VBreadcrumb>("VBreadcrumb", {
-      separator: computed(() => {
-        return props.separator;
-      }),
+    provide<BreadcrumbProvide>(BreadcrumbProvideKey, {
+      separator: computed(() => props.separator),
     });
   },
 });
@@ -47,7 +42,7 @@ export default defineComponent({
 
     .v-breadcrumb-item--link:hover {
       color: $-color--text-primary;
-      cursor: default;
+      cursor: auto;
     }
   }
 }

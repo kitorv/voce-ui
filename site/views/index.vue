@@ -73,12 +73,13 @@ export default defineComponent({
                 title: "Affix",
                 subtitle: "固钉",
               },
+              {
+                path: "/component/breadcrumb",
+                title: "Breadcrumb",
+                subtitle: "面包屑",
+              },
             ],
-            //     {
-            //       path: "/component/breadcrumb",
-            //       title: "Breadcrumb",
-            //       subtitle: "面包屑",
-            //     },
+
             //     {
             //       path: "/component/dropdown",
             //       title: "Dropdown",
