@@ -18,8 +18,7 @@
     "types": ["node"],
     "rootDir": ".",
     "paths": {
-      "@/*": ["src/*"],
-      "@utils": ["src/utils/index.ts"]
+      "@/*": ["src/*"]
     }
   },
   "include": ["site/**/*", "src/**/*"]

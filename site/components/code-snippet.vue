@@ -238,11 +238,11 @@ export default defineComponent({
       margin-top: 16px;
     }
   }
-}
 
-// .vsc-affix {
-//   .v-button {
-//     margin: 6px 0;
-//   }
-// }
+  &-affix {
+    .v-button {
+      margin: 6px 0;
+    }
+  }
+}
 </style>

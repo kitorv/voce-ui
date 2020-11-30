@@ -13,35 +13,42 @@ import {
   onUnmounted,
   PropType,
   ref,
-  Ref,
   CSSProperties,
 } from "vue";
-import { nextZIndex } from "../../../utils";
-
-export type AffixTarget = HTMLElement | Window;
+import { AffixTarget } from "./interface";
+import { nextZIndex } from "@/utils";
 
 export default defineComponent({
   name: "VAffix",
   props: {
-    offsetTop: Number,
-    offsetBottom: Number,
-    target: [HTMLElement, Window] as PropType<AffixTarget>,
+    offsetTop: {
+      type: Number,
+      default: 0,
+    },
+    offsetBottom: {
+      type: Number,
+      default: 0,
+    },
+    target: {
+      type: [HTMLElement, Window] as PropType<AffixTarget>,
+      default: undefined,
+    },
   },
   emits: ["change"],
   setup(props, { emit }) {
-    const affixRef = ref<unknown>() as Ref<HTMLDivElement>;
+    const affixRef = ref<HTMLDivElement>();
 
     const getTargetRect = () => {
       if (!props.target || props.target === window) {
-        return { top: 0, bottom: window.innerHeight } as ClientRect;
+        return { top: 0, bottom: window.innerHeight } as DOMRect;
       }
-      const targetElement = props.target as HTMLElement;
-      return targetElement.getBoundingClientRect();
+      const el = props.target as HTMLElement;
+      return el.getBoundingClientRect();
     };
 
     const getFixedTop = (
-      placeholderReact: ClientRect,
-      targetRect: ClientRect,
+      placeholderReact: DOMRect,
+      targetRect: DOMRect,
       offsetTop?: number
     ) => {
       if (offsetTop === undefined) return;
@@ -50,8 +57,8 @@ export default defineComponent({
     };
 
     const getFixedBottom = (
-      placeholderReact: ClientRect,
-      targetRect: ClientRect,
+      placeholderReact: DOMRect,
+      targetRect: DOMRect,
       offsetBottom?: number
     ) => {
       if (offsetBottom === undefined) return;
@@ -64,6 +71,7 @@ export default defineComponent({
     const placeholderStyle = ref<CSSProperties>();
 
     const scroll = () => {
+      if (!affixRef.value) return;
       const { offsetTop, offsetBottom } = props;
       const targetRect = getTargetRect();
       const affixReact = affixRef.value.getBoundingClientRect();

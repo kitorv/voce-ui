@@ -8,11 +8,9 @@
 
 ```vue
 <template>
-  <div class="vsc-affix">
-    <v-affix :offset-top="200">
-      <v-button type="primary">Affix Top</v-button>
-    </v-affix>
-  </div>
+  <v-affix :offset-top="200">
+    <v-button type="primary">Affix Top</v-button>
+  </v-affix>
 </template>
 ```
 
@@ -24,11 +22,9 @@
 
 ```vue
 <template>
-  <div class="vsc-affix">
-    <v-affix :offset-bottom="0">
-      <v-button type="primary">Affix Bottom</v-button>
-    </v-affix>
-  </div>
+  <v-affix :offset-bottom="0">
+    <v-button type="primary">Affix Bottom</v-button>
+  </v-affix>
 </template>
 ```
 
@@ -40,11 +36,9 @@
 
 ```vue
 <template>
-  <div class="vsc-affix">
-    <v-affix :offset-top="500" :target="target">
-      <v-button type="primary">Affix Target</v-button>
-    </v-affix>
-  </div>
+  <v-affix :offset-top="500" :target="target">
+    <v-button type="primary">Affix Target</v-button>
+  </v-affix>
 </template>
 
 <script lang="ts">
