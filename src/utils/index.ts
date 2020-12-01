@@ -1,2 +1,2 @@
 export * from "./z-index";
-export * from "./router"
+export * from "./router";

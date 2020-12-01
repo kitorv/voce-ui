@@ -6,8 +6,8 @@ export const useRawRouter = (): Router => {
   return app.appContext.config.globalProperties.$router as Router;
 };
 
-export const useRawRoute = ():  Ref<RouteLocationNormalizedLoaded> => {
+export const useRawRoute = (): Ref<RouteLocationNormalizedLoaded> => {
   const app = getCurrentInstance()!;
-  const router= app.appContext.config.globalProperties.$router as Router;
- return router.currentRoute
+  const router = app.appContext.config.globalProperties.$router as Router;
+  return router.currentRoute;
 };
