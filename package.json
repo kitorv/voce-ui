@@ -27,6 +27,7 @@
   "author": "kitorv",
   "license": "MIT",
   "dependencies": {
+    "@popperjs/core": "^2.5.4",
     "vue": "^3.0.3"
   },
   "devDependencies": {
