@@ -1,19 +1,24 @@
 <template>
-  <div class="vsc-affix">
-    <v-affix :offset-bottom="600" :target="target">
-      <div style="height: 1000px"></div>
-      <v-button type="primary">Affix Target</v-button>
-    </v-affix>
+  <div style="padding: 100px">
+    <v-dropdown>
+      <template #trigger>
+        <v-link>下拉菜单</v-link>
+      </template>
+      <template #content>
+        <v-dropdown-menu>
+          <v-dropdown-menu-item>1st menu item</v-dropdown-menu-item>
+          <v-dropdown-menu-item>2nd menu item</v-dropdown-menu-item>
+          <v-dropdown-menu-item>3rd menu item</v-dropdown-menu-item>
+        </v-dropdown-menu>
+      </template>
+    </v-dropdown>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, markRaw, ref } from "vue";
+import { defineComponent } from "vue";
 
 export default defineComponent({
-  setup() {
-    const target = ref(markRaw(window));
-    return { target };
-  },
+  setup() {},
 });
 </script>

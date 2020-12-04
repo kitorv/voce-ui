@@ -15,15 +15,15 @@ const router = createRouter({
       path: "/home",
       component: () => import("../views/index.vue"),
       children: [
-        {
-          path: "/test",
-          component: () => import("../views/test.vue"),
-        },
         ...developRoutes,
         ...commonRoutes,
         ...layoutRoutes,
         ...navigateRoutes,
       ],
+    },
+    {
+      path: "/test",
+      component: () => import("../views/test.vue"),
     },
   ],
 });

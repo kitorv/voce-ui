@@ -1,5 +1,5 @@
 <template>
-  <router-view></router-view>
+  <router-view />
 </template>
 
 <script lang="ts">
@@ -19,10 +19,10 @@ html {
   font-weight: 400;
   -webkit-font-smoothing: antialiased;
   -webkit-tap-highlight-color: transparent;
+  color: $-color--text-primary;
 }
 
 #app {
   height: 100%;
-  color: $-color--text-primary;
 }
 </style>

@@ -8,9 +8,9 @@
 
 ```vue
 <template>
-  <div class="vsc-dropdown">
-    <v-dropdown></v-dropdown>
-  </div>
+  <v-dropdown>
+    <template #trigger> </template>
+  </v-dropdown>
 </template>
 ```
 

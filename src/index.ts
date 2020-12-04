@@ -20,6 +20,8 @@ import { Affix } from "./components/affix";
 import { Breadcrumb } from "./components/breadcrumb";
 import { BreadcrumbItem } from "./components/breadcrumb-item";
 import { Dropdown } from "./components/dropdown";
+import { DropdownMenu } from "./components/dropdown-menu";
+import { DropdownMenuItem } from "./components/dropdown-menu-item";
 
 import { Popup } from "./components/popup";
 
@@ -44,6 +46,8 @@ const components = [
   Breadcrumb,
   BreadcrumbItem,
   Dropdown,
+  DropdownMenu,
+  DropdownMenuItem,
 
   Popup,
 ];
