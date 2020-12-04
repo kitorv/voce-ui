@@ -53,7 +53,8 @@ const createDocumentHandler = (
     ) {
       return;
     }
-    binding.value();
+
+    binding.value(mousedown);
   };
 };
 

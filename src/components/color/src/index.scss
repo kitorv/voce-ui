@@ -17,15 +17,3 @@ $-color--border-extra-light: mix($-color--border-base, #ffffff, 40%) !default;
 $-color--disabled-color: #cccccc !default;
 $-color--disabled-background-color: #f2f2f2 !default;
 $-color--disabled-border-color: #dcdfe6 !default;
-
-[class*="v-"],
-[class*="v-"] *,
-[class*="v-"] :after,
-[class*="v-"] :before,
-[class^="v-"],
-[class^="v-"] *,
-[class^="v-"] :after,
-[class^="v-"] :before {
-  -webkit-box-sizing: border-box;
-  box-sizing: border-box;
-}

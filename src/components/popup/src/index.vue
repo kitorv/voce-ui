@@ -3,11 +3,13 @@
     <slot name="trigger" />
   </div>
   <teleport to="body">
-    <transition name="transition">
-      <div v-click-outside="onOutsdieClick" v-show="visible" ref="contentRef">
-        <slot name="content" />
-      </div>
-    </transition>
+    <div ref="contentRef">
+      <transition :name="transition">
+        <div v-click-outside="onOutsdieClick" v-show="visible">
+          <slot name="content" />
+        </div>
+      </transition>
+    </div>
   </teleport>
 </template>
 
@@ -20,7 +22,7 @@ import ClickOutside from "@/directives/click-outside";
 export default defineComponent({
   name: "VPopup",
   directives: { ClickOutside },
-  emits: ["update:visible"],
+  emits: ["update:visible", "update:placement"],
   props: {
     visible: {
       type: Boolean,
@@ -32,26 +34,41 @@ export default defineComponent({
     },
     placement: {
       type: String as PropType<PopupPlacement>,
-      default: "bottom",
+      default: "bottom" as PopupPlacement,
     },
   },
   setup(props, { emit }) {
-    let popper: Instance;
+    let popper: Instance | undefined;
     const triggerRef = ref<HTMLDivElement>();
     const contentRef = ref<HTMLDivElement>();
+
+    const createPopperInstacne = () => {
+      if (!triggerRef.value || !contentRef.value) return;
+      return createPopper(triggerRef.value, contentRef.value, {
+        placement: props.placement,
+      });
+    };
+
     watch(
       () => props.visible,
       () => {
-        if (popper) return;
-        if (!triggerRef.value || !contentRef.value) return;
-        popper = createPopper(triggerRef.value, contentRef.value, {
-          placement: props.placement,
-        });
+        if (!popper) {
+          popper = createPopperInstacne();
+        } else {
+          popper.update();
+        }
+        emit("update:placement", popper?.state.placement);
       }
     );
 
-    const onOutsdieClick = () => {
-      if (!props.visible) return;
+    const onOutsdieClick = (event: MouseEvent) => {
+      if (
+        !props.visible ||
+        !triggerRef.value ||
+        triggerRef.value.contains(event.target as HTMLElement)
+      ) {
+        return;
+      }
       emit("update:visible", false);
     };
 
