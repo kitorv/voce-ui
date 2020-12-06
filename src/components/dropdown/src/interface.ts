@@ -1,5 +1,3 @@
-import { Dropdown } from "..";
-
 export type DropdownPlacement =
   | "top"
   | "top-start"
