@@ -46,6 +46,7 @@ export default defineComponent({
       if (!referenceRef.value || !contentRef.value) return;
       return createPopper(referenceRef.value, contentRef.value, {
         placement: props.placement,
+        modifiers: [],
       });
     };
 
@@ -57,6 +58,8 @@ export default defineComponent({
         } else {
           popper.update();
         }
+        console.log(popper);
+
         emit("update:placement", popper?.state.placement);
       }
     );

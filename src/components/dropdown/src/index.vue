@@ -33,6 +33,10 @@ export default defineComponent({
       type: String as PropType<DropdownPlacement>,
       default: "bottom-start" as DropdownPlacement,
     },
+    arrow: {
+      type: Boolean,
+      default: false,
+    },
   },
   setup(props) {
     const visible = ref(false);
