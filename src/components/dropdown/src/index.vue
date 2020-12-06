@@ -5,13 +5,13 @@
     v-model:placement="autoPlacement"
     :transition="transition"
   >
-    <template #trigger>
-      <div @click="onTriggerClick">
-        <slot name="trigger" />
+    <template #reference>
+      <div v-on="referenceEvents">
+        <slot name="reference" />
       </div>
     </template>
     <template #content>
-      <div class="v-dropdown--content">
+      <div v-on="contentEvents" class="v-dropdown--content">
         <slot name="content" />
       </div>
     </template>
@@ -20,11 +20,15 @@
 
 <script lang="ts">
 import { computed, defineComponent, PropType, ref, watch } from "vue";
-import { DropdownPlacement } from "./interface";
+import { DropdownPlacement, DropdownTrigger } from "./interface";
 
 export default defineComponent({
   name: "VDropdown",
   props: {
+    trigger: {
+      type: String as PropType<DropdownTrigger>,
+      default: "hover" as DropdownTrigger,
+    },
     placement: {
       type: String as PropType<DropdownPlacement>,
       default: "bottom-start" as DropdownPlacement,
@@ -32,9 +36,30 @@ export default defineComponent({
   },
   setup(props) {
     const visible = ref(false);
-    const onTriggerClick = () => {
-      visible.value = !visible.value;
-    };
+    // const onReferenceClick = () => {
+    //   visible.value = !visible.value;
+    // };
+    let setTimeoutId: number;
+    const referenceEvents = computed(() => {
+      if (props.trigger === "hover") {
+        return {
+          mouseenter() {
+            clearTimeout(setTimeoutId);
+            visible.value = true;
+          },
+          mouseleave() {
+            clearTimeout(setTimeoutId);
+            setTimeoutId = window.setTimeout(() => {
+              visible.value = false;
+            }, 200);
+          },
+        };
+      }
+    });
+    const contentEvents = computed(() => {
+      if (props.trigger !== "hover") return;
+      return referenceEvents.value;
+    });
 
     const autoPlacement = ref<DropdownPlacement>();
     watch(
@@ -49,7 +74,13 @@ export default defineComponent({
       return `v-dropdown--transition-${position}`;
     });
 
-    return { visible, onTriggerClick, autoPlacement, transition };
+    return {
+      visible,
+      referenceEvents,
+      contentEvents,
+      autoPlacement,
+      transition,
+    };
   },
 });
 </script>
@@ -60,6 +91,10 @@ export default defineComponent({
   position: relative;
   font-size: 14px;
   cursor: pointer;
+}
+
+.v-dropdown--content {
+  padding: 4px 0;
 }
 
 .v-dropdown--transition-bottom {

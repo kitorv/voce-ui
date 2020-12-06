@@ -132,6 +132,7 @@ code[class*="language-"] {
   padding: 16px 20px;
   line-height: 1.5;
   border-radius: 5px;
+  overflow-y: auto;
 }
 
 .vc-markdown-tip,

@@ -55,8 +55,8 @@
 
 ```vue
 <template>
-  <v-link prefix-icon="v-icon-edit-fill">Edit</v-link>
-  <v-link suffix-icon="v-icon-delete-fill">Delete</v-link>
+  <v-link prefix-icon="edit-fill">Edit</v-link>
+  <v-link suffix-icon="delete-fill">Delete</v-link>
 </template>
 ```
 

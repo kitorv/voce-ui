@@ -1,6 +1,6 @@
 <template>
-  <div v-bind="$attrs" ref="triggerRef">
-    <slot name="trigger" />
+  <div v-bind="$attrs" ref="referenceRef">
+    <slot name="reference" />
   </div>
   <teleport to="body">
     <div ref="contentRef">
@@ -39,12 +39,12 @@ export default defineComponent({
   },
   setup(props, { emit }) {
     let popper: Instance | undefined;
-    const triggerRef = ref<HTMLDivElement>();
+    const referenceRef = ref<HTMLDivElement>();
     const contentRef = ref<HTMLDivElement>();
 
     const createPopperInstacne = () => {
-      if (!triggerRef.value || !contentRef.value) return;
-      return createPopper(triggerRef.value, contentRef.value, {
+      if (!referenceRef.value || !contentRef.value) return;
+      return createPopper(referenceRef.value, contentRef.value, {
         placement: props.placement,
       });
     };
@@ -64,15 +64,15 @@ export default defineComponent({
     const onOutsdieClick = (event: MouseEvent) => {
       if (
         !props.visible ||
-        !triggerRef.value ||
-        triggerRef.value.contains(event.target as HTMLElement)
+        !referenceRef.value ||
+        referenceRef.value.contains(event.target as HTMLElement)
       ) {
         return;
       }
       emit("update:visible", false);
     };
 
-    return { triggerRef, contentRef, onOutsdieClick };
+    return { referenceRef, contentRef, onOutsdieClick };
   },
 });
 </script>

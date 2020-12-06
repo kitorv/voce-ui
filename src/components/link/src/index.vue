@@ -1,10 +1,10 @@
 <template>
   <a :class="classes" v-bind="linkAttrs" @click="onClick($event)">
-    <i v-if="prefixIcon" :class="['v-link--prefix-icon', prefixIcon]" />
+    <v-icon v-if="prefixIcon" class="v-link--prefix-icon" :type="prefixIcon" />
     <span class="v-link--text">
       <slot />
     </span>
-    <i v-if="suffixIcon" :class="['v-link--suffix-icon', suffixIcon]" />
+    <v-icon v-if="suffixIcon" class="v-link--suffix-icon" :type="suffixIcon" />
   </a>
 </template>
 

@@ -1,8 +1,8 @@
 <template>
   <div style="padding: 300px">
     <v-dropdown>
-      <template #trigger>
-        <v-link>下拉菜单</v-link>
+      <template #reference>
+        <v-link type="primary" suffix-icon="down">Hover Me</v-link>
       </template>
       <template #content>
         <v-dropdown-menu>
@@ -14,11 +14,3 @@
     </v-dropdown>
   </div>
 </template>
-
-<script lang="ts">
-import { defineComponent } from "vue";
-
-export default defineComponent({
-  setup() {},
-});
-</script>

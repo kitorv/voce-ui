@@ -1,3 +1,5 @@
+import { Dropdown } from "..";
+
 export type DropdownPlacement =
   | "top"
   | "top-start"
@@ -5,3 +7,5 @@ export type DropdownPlacement =
   | "bottom"
   | "bottom-start"
   | "bottom-end";
+
+export type DropdownTrigger = "hover" | "click" | "contextMenu";
