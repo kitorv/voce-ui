@@ -1,14 +1,29 @@
 <template>
-  <div class="v-dropdown-menu-item">
+  <div :class="classes">
     <slot />
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { computed, defineComponent } from "vue";
 
 export default defineComponent({
   name: "VDropdownMenuItem",
+  props: {
+    disabled: {
+      type: Boolean,
+      default: false,
+    },
+  },
+  setup(props) {
+    const classes = computed(() => {
+      return [
+        "v-dropdown-menu-item",
+        { "v-dropdown-menu-item-disabled": props.disabled },
+      ];
+    });
+    return { classes };
+  },
 });
 </script>
 
@@ -27,6 +42,14 @@ export default defineComponent({
 
   &:hover {
     background: darken(#ffffff, 8%);
+  }
+}
+
+.v-dropdown-menu-item-disabled {
+  &,
+  &:hover {
+    color: rgba(0, 0, 0, 0.25);
+    cursor: not-allowed;
   }
 }
 </style>

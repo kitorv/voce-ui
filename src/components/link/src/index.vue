@@ -81,12 +81,11 @@ export default defineComponent({
 
 <style lang="scss">
 .v-link {
+  position: relative;
   display: inline-flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  vertical-align: middle;
-  position: relative;
   text-decoration: none;
   outline: none;
   padding: 0;

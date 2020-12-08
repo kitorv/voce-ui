@@ -1,25 +1,24 @@
 <template>
   <v-popup
     class="v-dropdown"
-    v-model:visible="visible"
     v-model:placement="autoPlacement"
     :transition="transition"
+    :trigger="trigger"
   >
     <template #reference>
-      <div v-on="referenceEvents">
-        <slot name="reference" />
-      </div>
+      <slot name="reference" />
+    </template>
+    <template v-if="arrow" #arrow>
+      <div class="v-dropdown--arrow" :placement="autoPlacement" />
     </template>
     <template #content>
-      <div v-on="contentEvents" class="v-dropdown--content">
-        <slot name="content" />
-      </div>
+      <slot name="content" />
     </template>
   </v-popup>
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, PropType, ref, watch } from "vue";
+import { computed, defineComponent, PropType, ref } from "vue";
 import { DropdownPlacement, DropdownTrigger } from "./interface";
 
 export default defineComponent({
@@ -39,49 +38,21 @@ export default defineComponent({
     },
   },
   setup(props) {
-    const visible = ref(false);
-    // const onReferenceClick = () => {
-    //   visible.value = !visible.value;
-    // };
-    let setTimeoutId: number;
-    const referenceEvents = computed(() => {
-      if (props.trigger === "hover") {
-        return {
-          mouseenter() {
-            clearTimeout(setTimeoutId);
-            visible.value = true;
-          },
-          mouseleave() {
-            clearTimeout(setTimeoutId);
-            setTimeoutId = window.setTimeout(() => {
-              visible.value = false;
-            }, 200);
-          },
-        };
-      }
-    });
-    const contentEvents = computed(() => {
-      if (props.trigger !== "hover") return;
-      return referenceEvents.value;
+    const contentClasses = computed(() => {
+      return [
+        "v-dropdown--content",
+        { "v-dropdown--content-with-arrow": props.arrow },
+      ];
     });
 
-    const autoPlacement = ref<DropdownPlacement>();
-    watch(
-      () => props.placement,
-      (value) => {
-        autoPlacement.value = value;
-      },
-      { immediate: true }
-    );
+    const autoPlacement = ref<DropdownPlacement>(props.placement);
     const transition = computed(() => {
       const position = autoPlacement.value?.includes("top") ? "top" : "bottom";
       return `v-dropdown--transition-${position}`;
     });
 
     return {
-      visible,
-      referenceEvents,
-      contentEvents,
+      contentClasses,
       autoPlacement,
       transition,
     };
@@ -95,6 +66,17 @@ export default defineComponent({
   position: relative;
   font-size: 14px;
   cursor: pointer;
+}
+
+.v-dropdown--arrow {
+  display: block;
+  width: 0;
+  height: 0;
+  background: 0 0;
+  border-style: solid;
+  border-width: 4px;
+  transform: rotate(45deg);
+  margin: 4px;
 }
 
 .v-dropdown--content {
@@ -133,5 +115,23 @@ export default defineComponent({
     opacity: 0;
     transform: scaleY(0);
   }
+}
+
+.v-dropdown--content-with-arrow[placement^="top"] {
+  padding-bottom: 8px;
+}
+
+.v-dropdown--arrow[placement^="top"] {
+  border-color: transparent #ffffff #ffffff transparent;
+  box-shadow: 4px 4px 6px rgba(0, 0, 0, 0.06);
+}
+
+.v-dropdown--content-with-arrow[placement^="bottom"] {
+  padding-top: 8px;
+}
+
+.v-dropdown--arrow[placement^="bottom"] {
+  border-color: #ffffff transparent transparent #ffffff;
+  box-shadow: -4px -4px 6px rgba(0, 0, 0, 0.06);
 }
 </style>

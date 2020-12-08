@@ -1,3 +1,5 @@
+export type PopupTrigger = "hover" | "click" | "contextMenu";
+
 export type PopupPlacement =
   | "top"
   | "top-start"

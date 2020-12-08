@@ -1,3 +1,5 @@
+import { PopupTrigger } from "@/components/popup";
+
 export type DropdownPlacement =
   | "top"
   | "top-start"
@@ -6,4 +8,4 @@ export type DropdownPlacement =
   | "bottom-start"
   | "bottom-end";
 
-export type DropdownTrigger = "hover" | "click" | "contextMenu";
+export type DropdownTrigger = PopupTrigger;
