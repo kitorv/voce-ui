@@ -5,10 +5,27 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent, inject, provide } from "vue";
+import {
+  DropdownMenuProvide,
+  DropdownMenuProvideKey,
+  DropdownProvide,
+  DropdownProvideKey,
+} from "./interface";
 
 export default defineComponent({
   name: "VDropdownMenu",
+  emits: ["click"],
+  setup(props, { emit }) {
+    const mDropdown = inject<DropdownProvide>(DropdownProvideKey);
+
+    provide<DropdownMenuProvide>(DropdownMenuProvideKey, {
+      execOnClick(value) {
+        emit("click", value);
+        mDropdown?.updateVisible(false);
+      },
+    });
+  },
 });
 </script>
 

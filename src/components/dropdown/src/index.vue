@@ -21,8 +21,13 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, PropType, ref } from "vue";
-import { DropdownPlacement, DropdownTrigger } from "./interface";
+import { computed, defineComponent, PropType, provide, ref } from "vue";
+import {
+  DropdownPlacement,
+  DropdownProvide,
+  DropdownProvideKey,
+  DropdownTrigger,
+} from "./interface";
 
 export default defineComponent({
   name: "VDropdown",
@@ -42,6 +47,12 @@ export default defineComponent({
   },
   setup(props) {
     const visible = ref(false);
+
+    provide<DropdownProvide>(DropdownProvideKey, {
+      updateVisible(value) {
+        visible.value = value;
+      },
+    });
 
     const autoPlacement = ref<DropdownPlacement>(props.placement);
 

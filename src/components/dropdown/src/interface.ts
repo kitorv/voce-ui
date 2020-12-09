@@ -9,3 +9,15 @@ export type DropdownPlacement =
   | "bottom-end";
 
 export type DropdownTrigger = PopupTrigger;
+
+export interface DropdownProvide {
+  updateVisible: (value: boolean) => void;
+}
+
+export const DropdownProvideKey = Symbol();
+
+export interface DropdownMenuProvide {
+  execOnClick: (value?: string | number | object) => void;
+}
+
+export const DropdownMenuProvideKey = Symbol();

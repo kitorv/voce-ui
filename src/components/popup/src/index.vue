@@ -9,6 +9,7 @@
         v-click-outside="onOutsdieClick"
         ref="contentRef"
         class="v-popup--content"
+        :style="contentStyle"
       >
         <div
           v-if="$slots.arrow"

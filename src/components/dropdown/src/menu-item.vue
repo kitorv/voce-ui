@@ -1,28 +1,40 @@
 <template>
-  <div :class="classes">
+  <div :class="classes" @click="onClick">
     <slot />
   </div>
 </template>
 
 <script lang="ts">
-import { computed, defineComponent } from "vue";
+import { computed, defineComponent, inject } from "vue";
+import { DropdownMenuProvide, DropdownMenuProvideKey } from "./interface";
 
 export default defineComponent({
   name: "VDropdownMenuItem",
   props: {
+    value: {
+      type: [String, Number, Object],
+      default: undefined,
+    },
     disabled: {
       type: Boolean,
       default: false,
     },
   },
   setup(props) {
+    const vMenu = inject<DropdownMenuProvide>(DropdownMenuProvideKey);
+
     const classes = computed(() => {
       return [
         "v-dropdown-menu-item",
         { "v-dropdown-menu-item-disabled": props.disabled },
       ];
     });
-    return { classes };
+
+    const onClick = () => {
+      vMenu?.execOnClick(props.value);
+    };
+
+    return { classes, onClick };
   },
 });
 </script>
