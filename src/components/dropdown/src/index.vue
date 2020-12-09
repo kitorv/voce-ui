@@ -1,6 +1,7 @@
 <template>
   <v-popup
     class="v-dropdown"
+    v-model:visible="visible"
     v-model:placement="autoPlacement"
     :transition="transition"
     :trigger="trigger"
@@ -9,10 +10,12 @@
       <slot name="reference" />
     </template>
     <template v-if="arrow" #arrow>
-      <div class="v-dropdown--arrow" :placement="autoPlacement" />
+      <div :class="arrowClass" />
     </template>
     <template #content>
-      <slot name="content" />
+      <div :class="contentClasses" :placement="autoPlacement">
+        <slot name="content" />
+      </div>
     </template>
   </v-popup>
 </template>
@@ -38,23 +41,32 @@ export default defineComponent({
     },
   },
   setup(props) {
-    const contentClasses = computed(() => {
-      return [
-        "v-dropdown--content",
-        { "v-dropdown--content-with-arrow": props.arrow },
-      ];
-    });
+    const visible = ref(false);
 
     const autoPlacement = ref<DropdownPlacement>(props.placement);
+
+    const position = computed(() => {
+      return autoPlacement.value?.includes("top") ? "top" : "bottom";
+    });
+
     const transition = computed(() => {
-      const position = autoPlacement.value?.includes("top") ? "top" : "bottom";
-      return `v-dropdown--transition-${position}`;
+      return `v-dropdown--transition-${position.value}`;
+    });
+
+    const arrowClass = computed(() => {
+      return ["v-dropdown--arrow", `v-dropdown--arrow-${position.value}`];
+    });
+
+    const contentClasses = computed(() => {
+      return ["v-dropdown--content", `v-dropdown--content-${position.value}`];
     });
 
     return {
+      visible,
       contentClasses,
       autoPlacement,
       transition,
+      arrowClass,
     };
   },
 });
@@ -117,20 +129,20 @@ export default defineComponent({
   }
 }
 
-.v-dropdown--content-with-arrow[placement^="top"] {
+.v-dropdown--content-top {
   padding-bottom: 8px;
 }
 
-.v-dropdown--arrow[placement^="top"] {
+.v-dropdown--content-bottom {
+  padding-top: 8px;
+}
+
+.v-dropdown--arrow-top {
   border-color: transparent #ffffff #ffffff transparent;
   box-shadow: 4px 4px 6px rgba(0, 0, 0, 0.06);
 }
 
-.v-dropdown--content-with-arrow[placement^="bottom"] {
-  padding-top: 8px;
-}
-
-.v-dropdown--arrow[placement^="bottom"] {
+.v-dropdown--arrow-bottom {
   border-color: #ffffff transparent transparent #ffffff;
   box-shadow: -4px -4px 6px rgba(0, 0, 0, 0.06);
 }

@@ -3,47 +3,43 @@
     <slot name="reference" />
   </div>
   <teleport to="body">
-    <div ref="contentRef" class="v-popup--content" v-on="contentEvents">
-      <transition :name="transition">
+    <transition :name="transition">
+      <div
+        v-show="isVisible"
+        v-click-outside="onOutsdieClick"
+        ref="contentRef"
+        class="v-popup--content"
+      >
         <div
-          v-click-outside="onOutsdieClick"
-          v-show="visible"
-          :style="contentStyle"
+          v-if="$slots.arrow"
+          ref="arrowRef"
+          class="v-popup--content-arrow"
+          :style="arrowStyle"
         >
-          <div
-            v-if="$slots.arrow"
-            ref="arrowRef"
-            class="v-popup--content-arrow"
-            :style="arrowStyle"
-          >
-            <slot name="arrow" />
-          </div>
-          <slot name="content" />
+          <slot name="arrow" />
         </div>
-      </transition>
-    </div>
+        <slot name="content" />
+      </div>
+    </transition>
   </teleport>
 </template>
 
 <script lang="ts">
-import {
-  computed,
-  CSSProperties,
-  defineComponent,
-  PropType,
-  ref,
-  watch,
-} from "vue";
+import { computed, CSSProperties, defineComponent, PropType, ref } from "vue";
 import { PopupPlacement, PopupTrigger } from "./interface";
 import ClickOutside from "@/directives/click-outside";
-import { createPopper, Instance } from "@popperjs/core";
 import { nextZIndex } from "@/utils";
+import { createPopper, Instance } from "@popperjs/core";
 
 export default defineComponent({
   name: "VPopup",
   directives: { ClickOutside },
   emits: ["update:visible", "update:placement"],
   props: {
+    visible: {
+      type: Boolean,
+      default: false,
+    },
     trigger: {
       type: String as PropType<PopupTrigger>,
       default: "hover" as PopupTrigger,
@@ -58,44 +54,6 @@ export default defineComponent({
     },
   },
   setup(props, { emit }) {
-    const visible = ref(false);
-    let setTimeoutId: number;
-    const referenceEvents = computed(() => {
-      if (props.trigger === "hover") {
-        return {
-          mouseenter() {
-            clearTimeout(setTimeoutId);
-            visible.value = true;
-          },
-          mouseleave() {
-            clearTimeout(setTimeoutId);
-            setTimeoutId = window.setTimeout(() => {
-              visible.value = false;
-            }, 200);
-          },
-        };
-      }
-      if (props.trigger === "click") {
-        return {
-          click() {
-            visible.value = !visible.value;
-          },
-        };
-      }
-      if (props.trigger === "contextMenu") {
-        return {
-          contextMenu(event: Event) {
-            event.preventDefault();
-            visible.value = true;
-          },
-        };
-      }
-    });
-    const contentEvents = computed(() => {
-      if (props.trigger !== "hover") return {};
-      return referenceEvents.value;
-    });
-
     let popper: Instance | undefined;
     const referenceRef = ref<HTMLDivElement>();
     const arrowRef = ref<HTMLDivElement>();
@@ -106,24 +64,18 @@ export default defineComponent({
         placement: props.placement,
         modifiers: [
           {
+            name: "computeStyles",
+            options: { gpuAcceleration: false, adaptive: false },
+          },
+          {
             name: "arrow",
             options: { element: arrowRef.value, padding: 10 },
           },
         ],
       });
     };
+
     const zIndex = ref(nextZIndex());
-    watch(visible, async () => {
-      if (visible.value) {
-        zIndex.value = nextZIndex();
-      }
-      if (!popper) {
-        popper = createPopperInstacne();
-      } else {
-        await popper.update();
-      }
-      emit("update:placement", popper?.state.options.placement);
-    });
     const arrowStyle = computed<CSSProperties>(() => {
       return { zIndex: zIndex.value + 1 };
     });
@@ -131,19 +83,68 @@ export default defineComponent({
       return { position: "relative", zIndex: zIndex.value };
     });
 
+    const isVisible = computed({
+      get() {
+        return props.visible;
+      },
+      async set(value) {
+        if (value) {
+          zIndex.value = nextZIndex();
+        }
+        emit("update:visible", value);
+        if (!popper) {
+          popper = await createPopperInstacne();
+        } else {
+          await popper?.update();
+        }
+        emit("update:placement", popper?.state.placement);
+      },
+    });
+
+    const referenceEvents = computed(() => {
+      if (props.trigger === "hover") {
+        let setTimeoutId: number;
+        return {
+          mouseenter() {
+            clearTimeout(setTimeoutId);
+            isVisible.value = true;
+          },
+          mouseleave() {
+            clearTimeout(setTimeoutId);
+            setTimeoutId = window.setTimeout(() => {
+              isVisible.value = false;
+            }, 200);
+          },
+        };
+      }
+      if (props.trigger === "click") {
+        return {
+          click() {
+            isVisible.value = !isVisible.value;
+          },
+        };
+      }
+    });
+    const contentEvents = computed(() => {
+      if (props.trigger === "hover") {
+        return referenceEvents.value;
+      }
+      return {};
+    });
+
     const onOutsdieClick = (event: MouseEvent) => {
       if (
-        !visible.value ||
+        !isVisible.value ||
         !referenceRef.value ||
         referenceRef.value.contains(event.target as HTMLElement)
       ) {
         return;
       }
-      visible.value = false;
+      isVisible.value = false;
     };
 
     return {
-      visible,
+      isVisible,
       referenceRef,
       referenceEvents,
       arrowRef,
