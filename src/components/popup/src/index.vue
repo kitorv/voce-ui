@@ -23,7 +23,7 @@
 
 <script lang="ts">
 import { computed, CSSProperties, defineComponent, PropType, ref } from "vue";
-import { PopupPlacement, PopupTrigger } from "./interface";
+import { PopupOffset, PopupPlacement, PopupTrigger } from "./interface";
 import ClickOutside from "@/directives/click-outside";
 import { nextZIndex } from "@/utils";
 import { createPopper, Instance } from "@popperjs/core";
@@ -49,6 +49,10 @@ export default defineComponent({
       type: String,
       default: undefined,
     },
+    offset: {
+      type: [Array, Function] as PropType<PopupOffset>,
+      default: () => [0, 0],
+    },
   },
   setup(props, { emit }) {
     let popperInstance: Instance | undefined;
@@ -68,7 +72,21 @@ export default defineComponent({
           },
           {
             name: "arrow",
-            options: { element: "v-popup-arrow", padding: 10 },
+            options: { element: "[popup-arrow]", padding: 10 },
+          },
+          {
+            name: "offset",
+            options: {
+              offset: (state: {
+                reference: DOMRect;
+                popper: DOMRect;
+                placement: PopupPlacement;
+              }) => {
+                if (Array.isArray(props.offset)) return props.offset;
+                const { reference, popper, placement } = state;
+                return props.offset({ reference, placement, popup: popper });
+              },
+            },
           },
           {
             name: "popupAttributes",
@@ -78,7 +96,7 @@ export default defineComponent({
               const attrs = state.attributes.popper;
               const popupAttrs: Record<string, string | boolean> = {};
               for (const key in attrs) {
-                const pKey = key.replace("data-popper", "v-popup");
+                const pKey = key.replace("data-popper", "popup");
                 popupAttrs[pKey] = attrs[key];
               }
               state.attributes.popper = popupAttrs;

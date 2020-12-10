@@ -5,12 +5,14 @@
     :placement="placement"
     transition="v-dropdown"
     :trigger="trigger"
+    :offset="offset"
   >
     <template #reference>
       <slot name="reference" />
     </template>
     <template #content>
-      <div>
+      <div class="v-dropdown--arrow" popup-arrow />
+      <div :class="conntentClasses">
         <slot name="content" />
       </div>
     </template>
@@ -18,7 +20,8 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType, provide, ref } from "vue";
+import { PopupOffsetFunc } from "@/components/popup";
+import { computed, defineComponent, PropType, provide, ref } from "vue";
 import {
   DropdownPlacement,
   DropdownProvide,
@@ -51,24 +54,29 @@ export default defineComponent({
       },
     });
 
-    // const position = computed(() => {
-    //   return autoPlacement.value?.includes("top") ? "top" : "bottom";
-    // });
+    const conntentClasses = computed(() => {
+      return [
+        "v-dropdown--content",
+        { "v-dropdown--content-with-arrow": props.arrow },
+      ];
+    });
 
-    // const transition = computed(() => {
-    //   return `v-dropdown--transition-${position.value}`;
-    // });
+    const offset: PopupOffsetFunc = ({ placement }) => {
+      console.log(placement);
 
-    // const arrowClass = computed(() => {
-    //   return ["v-dropdown--arrow", `v-dropdown--arrow-${position.value}`];
-    // });
-
-    // const contentClasses = computed(() => {
-    //   return ["v-dropdown--content", `v-dropdown--content-${position.value}`];
-    // });
+      if (["top-start", "top", "top-end"].includes(placement)) {
+        return [0, 4];
+      }
+      if (["bottom-start", "bottom", "bottom-end"].includes(placement)) {
+        return [0, 4];
+      }
+      return [10, 10];
+    };
 
     return {
       visible,
+      offset,
+      conntentClasses,
     };
   },
 });
@@ -90,11 +98,10 @@ export default defineComponent({
   border-style: solid;
   border-width: 4px;
   transform: rotate(45deg);
-  margin: 4px;
 }
 
 .v-dropdown--content {
-  padding: 4px 0;
+  // padding: 4px 0;
 }
 
 .v-dropdown {
@@ -105,11 +112,11 @@ export default defineComponent({
     transition: transform 0.3s cubic-bezier(0.23, 1, 0.32, 1),
       opacity 0.3s cubic-bezier(0.23, 1, 0.32, 1);
 
-    &[v-popup-placement^="top"] {
+    &[popup-placement^="top"] {
       transform-origin: center bottom;
     }
 
-    &[v-popup-placement^="bottom"] {
+    &[popup-placement^="bottom"] {
       transform-origin: center top;
     }
   }
@@ -137,42 +144,19 @@ export default defineComponent({
 //   right: 0;
 // }
 
-// .v-dropdown--transition-bottom {
-//   &-enter-active,
-//   &-leave-active {
-//     opacity: 1;
-//     transform: scaleY(1);
-//     transition: transform 0.3s cubic-bezier(0.23, 1, 0.32, 1),
-//       opacity 0.3s cubic-bezier(0.23, 1, 0.32, 1);
-//     transform-origin: center top;
+[popup-placement^="top"] {
+  .v-dropdown--arrow {
+    // border-color: transparent #ffffff #ffffff transparent;
+    box-shadow: 4px 4px 6px rgba(0, 0, 0, 0.06);
+    bottom: 0;
+    z-index: 1;
+  }
+}
+// &[popup-placement^="bottom"] {
+//     padding-top: 8px;
 //   }
-
-//   &-enter-from,
-//   &-leave-to {
-//     opacity: 0;
-//     transform: scaleY(0);
-//   }
-// }
-
-// .v-dropdown--transition-top {
-//   &-enter-active,
-//   &-leave-active {
-//     opacity: 1;
-//     transform: scaleY(1);
-//     transition: transform 0.3s cubic-bezier(0.23, 1, 0.32, 1),
-//       opacity 0.3s cubic-bezier(0.23, 1, 0.32, 1);
-//     transform-origin: center bottom;
-//   }
-
-//   &-enter-from,
-//   &-leave-to {
-//     opacity: 0;
-//     transform: scaleY(0);
-//   }
-// }
-
 // .v-dropdown--content-top {
-//   padding-bottom: 8px;
+//   padding-top: 8px;
 // }
 
 // .v-dropdown--content-bottom {

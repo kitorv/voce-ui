@@ -13,3 +13,11 @@ export type PopupPlacement =
   | "right"
   | "right-start"
   | "right-end";
+
+export type PopupOffsetFunc = (state: {
+  reference: DOMRect;
+  popup: DOMRect;
+  placement: PopupPlacement;
+}) => [number, number];
+
+export type PopupOffset = PopupOffsetFunc | ReturnType<PopupOffsetFunc>;
