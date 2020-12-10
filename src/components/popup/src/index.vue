@@ -3,22 +3,18 @@
     <slot name="reference" />
   </div>
   <teleport to="body">
-    <transition :name="transition">
+    <transition
+      :name="transition"
+      @before-enter="onBeforeEnter"
+      @after-leave="onAfterLeave"
+    >
       <div
         v-show="isVisible"
-        v-click-outside="onOutsdieClick"
+        v-click-outside="onOutsideClick"
         ref="contentRef"
         class="v-popup--content"
         :style="contentStyle"
       >
-        <div
-          v-if="$slots.arrow"
-          ref="arrowRef"
-          class="v-popup--content-arrow"
-          :style="arrowStyle"
-        >
-          <slot name="arrow" />
-        </div>
         <slot name="content" />
       </div>
     </transition>
@@ -55,13 +51,15 @@ export default defineComponent({
     },
   },
   setup(props, { emit }) {
-    let popper: Instance | undefined;
+    let popperInstance: Instance | undefined;
     const referenceRef = ref<HTMLDivElement>();
-    const arrowRef = ref<HTMLDivElement>();
     const contentRef = ref<HTMLDivElement>();
+
     const createPopperInstacne = () => {
-      if (!referenceRef.value || !contentRef.value) return;
-      return createPopper(referenceRef.value, contentRef.value, {
+      const referenceEl = referenceRef.value;
+      const contentEl = contentRef.value;
+      if (!referenceEl || !contentEl) return;
+      popperInstance = createPopper(referenceEl, contentEl, {
         placement: props.placement,
         modifiers: [
           {
@@ -70,70 +68,66 @@ export default defineComponent({
           },
           {
             name: "arrow",
-            options: { element: arrowRef.value, padding: 10 },
+            options: { element: "v-popup-arrow", padding: 10 },
+          },
+          {
+            name: "popupAttributes",
+            enabled: true,
+            phase: "beforeWrite",
+            fn({ state }) {
+              const attrs = state.attributes.popper;
+              const popupAttrs: Record<string, string | boolean> = {};
+              for (const key in attrs) {
+                const pKey = key.replace("data-popper", "v-popup");
+                popupAttrs[pKey] = attrs[key];
+              }
+              state.attributes.popper = popupAttrs;
+            },
+            requires: ["computeStyles"],
           },
         ],
       });
     };
 
+    const destroyPopperInstance = () => {
+      if (!popperInstance) return;
+      popperInstance.destroy();
+    };
+
     const zIndex = ref(nextZIndex());
-    const arrowStyle = computed<CSSProperties>(() => {
-      return { zIndex: zIndex.value + 1 };
-    });
     const contentStyle = computed<CSSProperties>(() => {
-      return { position: "relative", zIndex: zIndex.value };
+      return { zIndex: zIndex.value };
     });
 
     const isVisible = computed({
       get() {
         return props.visible;
       },
-      async set(value) {
-        if (value) {
-          zIndex.value = nextZIndex();
-        }
+      set(value) {
         emit("update:visible", value);
-        if (!popper) {
-          popper = await createPopperInstacne();
-        } else {
-          await popper?.update();
-        }
-        emit("update:placement", popper?.state.placement);
+        if (!value) return;
+        zIndex.value = nextZIndex();
+        createPopperInstacne();
       },
     });
 
     const referenceEvents = computed(() => {
-      if (props.trigger === "hover") {
-        let setTimeoutId: number;
-        return {
-          mouseenter() {
-            clearTimeout(setTimeoutId);
-            isVisible.value = true;
-          },
-          mouseleave() {
-            clearTimeout(setTimeoutId);
-            setTimeoutId = window.setTimeout(() => {
-              isVisible.value = false;
-            }, 200);
-          },
-        };
-      }
-      if (props.trigger === "click") {
-        return {
-          click() {
-            isVisible.value = !isVisible.value;
-          },
-        };
-      }
-    });
-    const contentEvents = computed(() => {
-      if (props.trigger === "hover") {
-        return referenceEvents.value;
-      }
-      return {};
+      return {
+        click() {
+          isVisible.value = !isVisible.value;
+        },
+      };
     });
 
-    const onOutsdieClick = (event: MouseEvent) => {
+    let destroyTimeoutId = -1;
+    const onAfterLeave = () => {
+      destroyTimeoutId = window.setTimeout(destroyPopperInstance, 200);
+    };
+    const onBeforeEnter = () => {
+      clearTimeout(destroyTimeoutId);
+    };
+
+    const onOutsideClick = (event: Event) => {
       if (
         !isVisible.value ||
         !referenceRef.value ||
@@ -148,28 +142,12 @@ export default defineComponent({
       isVisible,
       referenceRef,
       referenceEvents,
-      arrowRef,
-      arrowStyle,
+      onBeforeEnter,
+      onAfterLeave,
       contentRef,
-      contentEvents,
       contentStyle,
-      onOutsdieClick,
+      onOutsideClick,
     };
   },
 });
 </script>
-
-<style lang="scss">
-.v-popup--content[data-popper-placement^="top"] .v-popup--content-arrow {
-  bottom: 0;
-}
-.v-popup--content[data-popper-placement^="right"] .v-popup--content-arrow {
-  left: 0;
-}
-.v-popup--content[data-popper-placement^="bottom"] .v-popup--content-arrow {
-  top: 0;
-}
-.v-popup--content[data-popper-placement^="left"] .v-popup--content-arrow {
-  right: 0;
-}
-</style>
