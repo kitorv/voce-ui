@@ -83,6 +83,11 @@ export default defineComponent({
                 title: "Dropdown",
                 subtitle: "下拉菜单",
               },
+              {
+                path: "/component/menu",
+                title: "Menu",
+                subtitle: "菜单",
+              },
             ],
 
             //     //       {
@@ -91,11 +96,6 @@ export default defineComponent({
             //     //         subtitle: "标签页",
             //     //       },
 
-            //     //       {
-            //     //         path: "/component/menu",
-            //     //         title: "Menu",
-            //     //         subtitle: "菜单",
-            //     //       },
             //     //       {
             //     //         path: "/component/steps",
             //     //         title: "Steps",

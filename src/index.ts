@@ -22,6 +22,8 @@ import { BreadcrumbItem } from "./components/breadcrumb-item";
 import { Dropdown } from "./components/dropdown";
 import { DropdownMenu } from "./components/dropdown-menu";
 import { DropdownMenuItem } from "./components/dropdown-menu-item";
+import { Menu } from "./components/menu";
+import { MenuItem } from "./components/menu-item";
 
 import { Popup } from "./components/popup";
 
@@ -48,6 +50,8 @@ const components = [
   Dropdown,
   DropdownMenu,
   DropdownMenuItem,
+  Menu,
+  MenuItem,
 
   Popup,
 ];
