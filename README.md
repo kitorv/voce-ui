@@ -26,7 +26,7 @@
   - [ ] 导航
     - [x] Affix 固钉
     - [x] Breadcrumb 面包屑
-    - [ ] Dropdown 下拉菜单
+    - [x] Dropdown 下拉菜单
     - [ ] Menu 菜单
     - [ ] PageHeader 页头
     - [ ] Steps 步骤条
@@ -70,4 +70,4 @@
     - [ ] Tooltip 气泡提示
 - [ ] 代码优化，文档完善
 - [ ] Typescript 支持优化
-- [ ] 自动化部署和发布
+- [ ] 自动化部署和发布到 NPM
