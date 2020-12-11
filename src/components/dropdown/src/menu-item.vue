@@ -31,6 +31,7 @@ export default defineComponent({
     });
 
     const onClick = () => {
+      if (props.disabled) return;
       vMenu?.execOnClick(props.value);
     };
 

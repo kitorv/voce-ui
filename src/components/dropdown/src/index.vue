@@ -11,7 +11,7 @@
       <slot name="reference" />
     </template>
     <template #content>
-      <div class="v-dropdown--arrow" popup-arrow />
+      <div v-if="arrow" class="v-dropdown--arrow" popup-arrow />
       <div :class="conntentClasses">
         <slot name="content" />
       </div>
@@ -61,7 +61,9 @@ export default defineComponent({
       ];
     });
 
-    const offset: PopupOffset = [0, 8];
+    const offset: PopupOffset = () => {
+      return props.arrow ? [0, 8] : [0, 0];
+    };
 
     return {
       visible,

@@ -246,8 +246,8 @@ export default defineComponent({
   }
 
   &-dropdown {
-    .v-space + .v-space {
-      margin-top: 8px;
+    .v-dropdown {
+      margin: 6px 12px 6px 0;
     }
   }
 }

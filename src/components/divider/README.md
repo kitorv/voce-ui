@@ -75,13 +75,13 @@
 ## Divider Props
 
 [divider-type] = _horizontal \| vertical_
-[orientation-type] = _left \| center\| right_
+[divider-orientation] = _left \| center\| right_
 
-| 属性        | 说明     | 类型      | 可选值               | 默认值       |
-| ----------- | -------- | --------- | -------------------- | ------------ |
-| type        | 类型     | _String_  | [[divider-type]]     | `horizontal` |
-| orientation | 描述位置 | _String_  | [[orientation-type]] | `center`     |
-| plain       | 简洁描述 | _Boolean_ | —                    | `false`      |
+| 属性        | 说明                             | 类型      | 默认值       |
+| ----------- | -------------------------------- | --------- | ------------ |
+| type        | 类型：[[divider-type]]           | _String_  | `horizontal` |
+| orientation | 描述位置:[[divider-orientation]] | _String_  | `center`     |
+| plain       | 简洁描述                         | _Boolean_ | `false`      |
 
 ## Divider Slots
 

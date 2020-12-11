@@ -232,24 +232,24 @@ export default defineComponent({
 
 ## Button Props
 
-| 属性     | 说明     | 类型               | 可选值           | 默认值    |
-| -------- | -------- | ------------------ | ---------------- | --------- |
-| type     | 类型     | _String_           | [[button-type]]  | `default` |
-| size     | 尺寸     | _String_           | [[button-size]]  | `default` |
-| shape    | 形状     | _String_           | [[button-shape]] | —         |
-| icon     | 图标     | _String_           | —                | —         |
-| dashed   | 虚线边框 | _Boolean_          | —                | `false`   |
-| plain    | 简洁模式 | _Boolean_          | —                | `false`   |
-| link     | 链接模式 | _Boolean_          | —                | `false`   |
-| disabled | 禁用状态 | _Boolean_          | —                | `false`   |
-| loading  | 加载中   | _Boolean_          | —                | `false`   |
-| to       | 路由     | _RouteLocationRaw_ | —                | —         |
+| 属性     | 说明                  | 类型               | 默认值    |
+| -------- | --------------------- | ------------------ | --------- |
+| type     | 类型：[[button-type]] | _String_           | `default` |
+| size     | 尺寸：[[button-size]] | _String_           | `default` |
+| shape    | 形状：[button-shape]] | _String_           | —         |
+| icon     | 图标                  | _String_           | —         |
+| dashed   | 虚线边框              | _Boolean_          | `false`   |
+| plain    | 简洁模式              | _Boolean_          | `false`   |
+| link     | 链接模式              | _Boolean_          | `false`   |
+| disabled | 禁用状态              | _Boolean_          | `false`   |
+| loading  | 加载中                | _Boolean_          | `false`   |
+| to       | 路由                  | _RouteLocationRaw_ | —         |
 
 ## Button Events
 
 | 事件名称 | 说明     | 回调参数      |
 | -------- | -------- | ------------- |
-| click    | 单击触发 | _event:Event_ |
+| click    | 点击触发 | _event:Event_ |
 
 ## Button Slots
 

@@ -98,7 +98,7 @@ module.exports = function (source) {
               ${markdownIt.render(source)}
             </vc-markdown-view>
           </template>
-          <script>
+          <script lang="ts">
             import { defineComponent } from "vue";
             export default defineComponent({
               components: {${vueComponentList.join(",")}}

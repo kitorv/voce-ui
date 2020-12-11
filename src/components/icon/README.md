@@ -60,8 +60,8 @@
 
 [icon-effect] = _dark \| regular \| secondary \| placeholder \| primary \| success \| danger \| warning_
 
-| 属性   | 说明 | 类型     | 可选值          | 默认值 |
-| ------ | ---- | -------- | --------------- | ------ |
-| type   | 类型 | _String_ | —               | —      |
-| size   | 尺寸 | _Number_ | —               | —      |
-| effect | 颜色 | _String_ | [[icon-effect]] | —      |
+| 属性   | 说明                  | 类型     | 默认值 |
+| ------ | --------------------- | -------- | ------ |
+| type   | 类型                  | _String_ | —      |
+| size   | 尺寸                  | _Number_ | —      |
+| effect | 颜色：[[icon-effect]] | _String_ | —      |

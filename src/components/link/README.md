@@ -79,21 +79,21 @@
 
 [link-type] = _default \| primary \| success \| warning \| danger \| info_
 
-| 属性        | 说明     | 类型               | 可选值        | 默认值    |
-| ----------- | -------- | ------------------ | ------------- | --------- |
-| type        | 类型     | _String_           | [[link-type]] | `default` |
-| underline   | 下划线   | _Boolean_          | —             | `false`   |
-| disabled    | 禁用状态 | _Boolean_          | —             | `false`   |
-| prefix-icon | 前置图标 | _String_           | —             | —         |
-| suffix-icon | 后置图标 | _String_           | —             | —         |
-| href        | 跳转链接 | _String_           | —             | —         |
-| to          | 路由     | _RouteLocationRaw_ | —             | —         |
+| 属性        | 说明                | 类型               | 默认值    |
+| ----------- | ------------------- | ------------------ | --------- |
+| type        | 类型：[[link-type]] | _String_           | `default` |
+| underline   | 下划线              | _Boolean_          | `false`   |
+| disabled    | 禁用状态            | _Boolean_          | `false`   |
+| prefix-icon | 前置图标            | _String_           | —         |
+| suffix-icon | 后置图标            | _String_           | —         |
+| href        | 跳转链接            | _String_           | —         |
+| to          | 路由                | _RouteLocationRaw_ | —         |
 
 ## Link Events
 
 | 事件名称 | 说明     | 回调参数      |
 | -------- | -------- | ------------- |
-| click    | 单击触发 | _event:Event_ |
+| click    | 点击触发 | _event:Event_ |
 
 ## Link Slots
 

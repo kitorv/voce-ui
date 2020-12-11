@@ -36,9 +36,9 @@
 
 ## Breadcrumb Props
 
-| 参数      | 说明   | 类型     | 可选值 | 默认值 |
-| --------- | ------ | -------- | ------ | ------ |
-| separator | 分隔符 | _String_ | —      | `/`    |
+| 参数      | 说明   | 类型     | 默认值 |
+| --------- | ------ | -------- | ------ |
+| separator | 分隔符 | _String_ | `/`    |
 
 ## Breadcrumb Slots
 
@@ -48,15 +48,15 @@
 
 ## BreadcrumbItem Props
 
-| 参数 | 说明         | 类型               | 可选值 | 默认值 |
-| ---- | ------------ | ------------------ | ------ | ------ |
-| to   | 路由跳转配置 | _RouteLocationRaw_ | —      | —      |
+| 参数 | 说明         | 类型               | 默认值 |
+| ---- | ------------ | ------------------ | ------ |
+| to   | 路由跳转配置 | _RouteLocationRaw_ | —      |
 
 ## BreadcrumbItem Events
 
 | 事件名称 | 说明     | 回调参数      |
 | -------- | -------- | ------------- |
-| click    | 单击触发 | _event:Event_ |
+| click    | 点击触发 | _event:Event_ |
 
 ## BreadcrumbItem Slots
 

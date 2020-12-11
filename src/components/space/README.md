@@ -126,15 +126,15 @@
 
 ## Space Props
 
-| 属性      | 说明           | 类型               | 可选值              | 默认值       |
-| --------- | -------------- | ------------------ | ------------------- | ------------ |
-| direction | 间距方向       | _String_           | [[space-direction]] | `horizontal` |
-| size      | 间距尺寸       | _String \| Number_ | [[space-size]]      | `small`      |
-| top       | 顶部间距       | _Number_           | —                   | —            |
-| right     | 右侧间距       | _Number_           | —                   | —            |
-| bottom    | 底部间距       | _Number_           | —                   | —            |
-| left      | 左侧间距       | _Number_           | —                   | —            |
-| fit       | 自适应容器大小 | _Boolean_          | —                   | `true`       |
+| 属性      | 说明                          | 类型               | 可选值 默认值 |
+| --------- | ----------------------------- | ------------------ | ------------- |
+| direction | 间距方向：[[space-direction]] | _String_           | `horizontal`  |
+| size      | 间距尺寸：[[space-size]]      | _String \| Number_ | `small`       |
+| top       | 顶部间距                      | _Number_           | —             |
+| right     | 右侧间距                      | _Number_           | —             |
+| bottom    | 底部间距                      | _Number_           | —             |
+| left      | 左侧间距                      | _Number_           | —             |
+| fit       | 自适应容器大小                | _Boolean_          | `true`        |
 
 ## Space Slots
 
