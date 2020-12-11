@@ -11,6 +11,7 @@
       <div
         v-show="isVisible"
         v-click-outside="onOutsideClick"
+        v-on="contentEvents"
         ref="contentRef"
         class="v-popup--content"
         :style="contentStyle"
@@ -39,7 +40,7 @@ export default defineComponent({
     },
     trigger: {
       type: String as PropType<PopupTrigger>,
-      default: "hover" as PopupTrigger,
+      default: "click" as PopupTrigger,
     },
     placement: {
       type: String as PropType<PopupPlacement>,
@@ -129,12 +130,34 @@ export default defineComponent({
       },
     });
 
+    let setTimeoutId: number;
     const referenceEvents = computed(() => {
+      if (props.trigger === "hover") {
+        return {
+          mouseenter() {
+            clearTimeout(setTimeoutId);
+            isVisible.value = true;
+          },
+          mouseleave() {
+            setTimeoutId = window.setTimeout(() => {
+              clearTimeout(setTimeoutId);
+              isVisible.value = false;
+            }, 200);
+          },
+        };
+      }
       return {
         click() {
           isVisible.value = !isVisible.value;
         },
       };
+    });
+
+    const contentEvents = computed(() => {
+      if (props.trigger === "hover") {
+        return referenceEvents.value;
+      }
+      return {};
     });
 
     let destroyTimeoutId = -1;
@@ -163,6 +186,7 @@ export default defineComponent({
       onBeforeEnter,
       onAfterLeave,
       contentRef,
+      contentEvents,
       contentStyle,
       onOutsideClick,
     };

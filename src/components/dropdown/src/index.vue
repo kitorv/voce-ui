@@ -20,7 +20,7 @@
 </template>
 
 <script lang="ts">
-import { PopupOffsetFunc } from "@/components/popup";
+import { PopupOffset } from "@/components/popup";
 import { computed, defineComponent, PropType, provide, ref } from "vue";
 import {
   DropdownPlacement,
@@ -61,17 +61,7 @@ export default defineComponent({
       ];
     });
 
-    const offset: PopupOffsetFunc = ({ placement }) => {
-      console.log(placement);
-
-      if (["top-start", "top", "top-end"].includes(placement)) {
-        return [0, 4];
-      }
-      if (["bottom-start", "bottom", "bottom-end"].includes(placement)) {
-        return [0, 4];
-      }
-      return [10, 10];
-    };
+    const offset: PopupOffset = [0, 8];
 
     return {
       visible,
@@ -101,7 +91,34 @@ export default defineComponent({
 }
 
 .v-dropdown--content {
-  // padding: 4px 0;
+  position: relative;
+  padding: 4px 0;
+}
+
+[popup-placement^="top"] {
+  .v-dropdown--content-with-arrow::before {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: -8px;
+    left: 0;
+    z-index: -9999;
+    opacity: 0.0001;
+    content: " ";
+  }
+}
+
+[popup-placement^="bottom"] {
+  .v-dropdown--content-with-arrow::before {
+    position: absolute;
+    top: -8px;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: -9999;
+    opacity: 0.0001;
+    content: " ";
+  }
 }
 
 .v-dropdown {
@@ -128,48 +145,21 @@ export default defineComponent({
   }
 }
 
-//
-
-// v-popup-placement="bottom-start"
-// .v-popup--content[data-popper-placement^="top"] .v-popup--content-arrow {
-//   bottom: 0;
-// }
-// .v-popup--content[data-popper-placement^="right"] .v-popup--content-arrow {
-//   left: 0;
-// }
-// .v-popup--content[data-popper-placement^="bottom"] .v-popup--content-arrow {
-//   top: 0;
-// }
-// .v-popup--content[data-popper-placement^="left"] .v-popup--content-arrow {
-//   right: 0;
-// }
-
 [popup-placement^="top"] {
   .v-dropdown--arrow {
-    // border-color: transparent #ffffff #ffffff transparent;
+    border-color: transparent #ffffff #ffffff transparent;
     box-shadow: 4px 4px 6px rgba(0, 0, 0, 0.06);
     bottom: 0;
     z-index: 1;
   }
 }
-// &[popup-placement^="bottom"] {
-//     padding-top: 8px;
-//   }
-// .v-dropdown--content-top {
-//   padding-top: 8px;
-// }
 
-// .v-dropdown--content-bottom {
-//   padding-top: 8px;
-// }
-
-// .v-dropdown--arrow-top {
-//   border-color: transparent #ffffff #ffffff transparent;
-//   box-shadow: 4px 4px 6px rgba(0, 0, 0, 0.06);
-// }
-
-// .v-dropdown--arrow-bottom {
-//   border-color: #ffffff transparent transparent #ffffff;
-//   box-shadow: -4px -4px 6px rgba(0, 0, 0, 0.06);
-// }
+[popup-placement^="bottom"] {
+  .v-dropdown--arrow {
+    border-color: #ffffff transparent transparent #ffffff;
+    box-shadow: -4px -4px 6px rgba(0, 0, 0, 0.06);
+    top: 0;
+    z-index: 1;
+  }
+}
 </style>
