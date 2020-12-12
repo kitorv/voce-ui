@@ -5,11 +5,12 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, PropType } from "vue";
-import { MenuMode } from "./interface";
+import { computed, defineComponent, PropType, provide } from "vue";
+import { MenuMode, MenuProvide, MenuProvideKey } from "./interface";
 
 export default defineComponent({
   name: "VMenu",
+  emits: ["update:active-index"],
   props: {
     mode: {
       type: String as PropType<MenuMode>,
@@ -20,8 +21,14 @@ export default defineComponent({
       default: undefined,
     },
   },
-  setup(props, { attrs }) {
-    console.log(attrs);
+  setup(props, { emit }) {
+    provide<MenuProvide>(MenuProvideKey, {
+      mode: computed(() => props.mode),
+      activeIndex: computed(() => props.activeIndex),
+      updateActiveIndex(value) {
+        emit("update:active-index", value);
+      },
+    });
 
     const classes = computed(() => {
       return ["v-menu", `v-v-menu--mode-${props.mode}`];
