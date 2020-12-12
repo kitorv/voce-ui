@@ -5,7 +5,9 @@
       <v-menu-item icon="appstore-fill" inndex="2" disabled>
         Menu Two
       </v-menu-item>
-      <v-menu-item icon="appstore-fill" index="3">Menu Three</v-menu-item>
+      <v-sub-menu icon="appstore-fill" title="Menu Three">
+        Menu Three
+      </v-sub-menu>
       <v-menu-item icon="appstore-fill" index="4">Menu Four</v-menu-item>
     </v-menu>
   </div>

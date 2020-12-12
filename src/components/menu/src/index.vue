@@ -31,7 +31,7 @@ export default defineComponent({
     });
 
     const classes = computed(() => {
-      return ["v-menu", `v-v-menu--mode-${props.mode}`];
+      return ["v-menu", `v-menu--mode-${props.mode}`];
     });
     return { classes };
   },
@@ -48,7 +48,7 @@ export default defineComponent({
   transition: background-color 0.3s, width 0.3s cubic-bezier(0.2, 0, 0, 1) 0s;
 }
 
-.v-v-menu--mode-horizontal {
+.v-menu--mode-horizontal {
   line-height: 46px;
   border-bottom: 1px solid $-color--border-base;
   white-space: nowrap;

@@ -36,14 +36,14 @@ export default defineComponent({
       const isActive = vMenu.activeIndex.value === props.index;
       return [
         "v-menu-item",
-        `v-v-menu-item--${vMenu.mode.value}`,
+        `v-menu-item--${vMenu.mode.value}`,
         { "v-menu-item--active": isActive && !props.disabled },
         { "v-menu-item--disabled": props.disabled },
       ];
     });
 
     const onContentClick = () => {
-      if (props.disabled) return;
+      if (props.disabled || props.index === undefined) return;
       vMenu.updateActiveIndex(props.index);
     };
 
@@ -77,7 +77,7 @@ export default defineComponent({
   transition: all 0.3s;
 }
 
-.v-v-menu-item--horizontal {
+.v-menu-item--horizontal {
   display: inline-block;
   vertical-align: bottom;
 
