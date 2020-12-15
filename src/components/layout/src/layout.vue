@@ -6,7 +6,7 @@
 
 <script lang="ts">
 import { Component, computed, defineComponent } from "vue";
-import VLayoutHeader from "./header.vue";
+import VLayoutHeader from "./layout-header.vue";
 
 export default defineComponent({
   name: "VLayout",

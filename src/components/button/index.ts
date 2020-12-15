@@ -1,11 +1,10 @@
 import { App } from "vue";
-import Component from "./src/index.vue";
+import Button from "./src/button.vue";
 
-Component.install = function (app: App) {
-  app.component(Component.name!, Component);
+export default (app: App) => {
+  app.component(Button.name!, Button);
 };
 
-export * from "./src/index.vue";
 export * from "./src/interface";
 
-export const Button = Component;
+export { Button };

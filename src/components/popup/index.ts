@@ -1,11 +1,10 @@
 import { App } from "vue";
-import Component from "./src/index.vue";
+import Popup from "./src/popup.vue";
 
-Component.install = function (app: App) {
-  app.component(Component.name!, Component);
+export default (app: App) => {
+  app.component(Popup.name!, Popup);
 };
 
-export * from "./src/index.vue";
 export * from "./src/interface";
 
-export const Popup = Component;
+export { Popup };

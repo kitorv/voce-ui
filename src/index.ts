@@ -1,32 +1,21 @@
 import { App } from "vue";
 
-import { Button } from "./components/button";
-import { Icon } from "./components/icon";
-import { Link } from "./components/link";
-import { Text } from "./components/text";
+import Button from "./components/button";
+import Icon from "./components/icon";
+import Link from "./components/link";
+import Text from "./components/text";
 
-import { Divider } from "./components/divider";
-import { Row } from "./components/row";
-import { Col } from "./components/col";
-import { Layout } from "./components/layout";
-import { LayoutHeader } from "./components/layout-header";
-import { LayoutContent } from "./components/layout-content";
-import { LayoutFooter } from "./components/layout-footer";
-import { LayoutLeft } from "./components/layout-left";
-import { LayoutRight } from "./components/layout-right";
-import { Space } from "./components/space";
+import Divider from "./components/divider";
+import Grid from "./components/grid";
+import Layout from "./components/layout";
+import Space from "./components/space";
 
-import { Affix } from "./components/affix";
-import { Breadcrumb } from "./components/breadcrumb";
-import { BreadcrumbItem } from "./components/breadcrumb-item";
-import { Dropdown } from "./components/dropdown";
-import { DropdownMenu } from "./components/dropdown-menu";
-import { DropdownMenuItem } from "./components/dropdown-menu-item";
-import { Menu } from "./components/menu";
-import { MenuItem } from "./components/menu-item";
-import { SubMenu } from "./components/submenu";
+import Affix from "./components/affix";
+import Breadcrumb from "./components/breadcrumb";
+import Dropdown from "./components/dropdown";
+import Menu from "./components/menu";
 
-import { Popup } from "./components/popup";
+import Popup from "./components/popup";
 
 const components = [
   Button,
@@ -35,31 +24,20 @@ const components = [
   Text,
 
   Divider,
-  Row,
-  Col,
+  Grid,
   Layout,
-  LayoutHeader,
-  LayoutContent,
-  LayoutFooter,
-  LayoutLeft,
-  LayoutRight,
   Space,
 
   Affix,
   Breadcrumb,
-  BreadcrumbItem,
   Dropdown,
-  DropdownMenu,
-  DropdownMenuItem,
   Menu,
-  MenuItem,
-  SubMenu,
 
   Popup,
 ];
 
 export const install = function (app: App) {
-  components.forEach(({ install }) => {
+  components.forEach((install) => {
     if (!install) return;
     app.use(install);
   });

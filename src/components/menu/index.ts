@@ -1,11 +1,14 @@
 import { App } from "vue";
-import Component from "./src/menu.vue";
+import Menu from "./src/menu.vue";
+import MenuItem from "./src/menu-item.vue";
+import SubMenu from "./src/sub-menu.vue";
 
-Component.install = function (app: App) {
-  app.component(Component.name!, Component);
+export default (app: App) => {
+  app.component(Menu.name!, Menu);
+  app.component(MenuItem.name!, MenuItem);
+  app.component(SubMenu.name!, SubMenu);
 };
 
-export * from "./src/menu.vue";
 export * from "./src/interface";
 
-export const Menu = Component;
+export { Menu, MenuItem, SubMenu };

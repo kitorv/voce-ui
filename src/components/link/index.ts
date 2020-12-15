@@ -1,11 +1,10 @@
 import { App } from "vue";
-import Component from "./src/index.vue";
+import Link from "./src/link.vue";
 
-Component.install = function (app: App) {
-  app.component(Component.name!, Component);
+export default (app: App) => {
+  app.component(Link.name!, Link);
 };
 
-export * from "./src/index.vue";
 export * from "./src/interface";
 
-export const Link = Component;
+export { Link };

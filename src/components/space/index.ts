@@ -1,10 +1,10 @@
 import { App } from "vue";
-import Component from "./src/index.vue";
+import Space from "./src/space.vue";
 
-Component.install = function (app: App) {
-  app.component(Component.name as string, Component);
+export default (app: App) => {
+  app.component(Space.name as string, Space);
 };
 
-export * from "./src/index.vue";
+export * from "./src/interface";
 
-export const Space = Component;
+export { Space };

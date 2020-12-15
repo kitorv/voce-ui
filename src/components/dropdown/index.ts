@@ -1,10 +1,14 @@
 import { App } from "vue";
-import Component from "./src/index.vue";
+import Dropdown from "./src/dropdown.vue";
+import DropdownMenu from "./src/dropdown-menu.vue";
+import DropdownMenuItem from "./src/dropdown-menu-item.vue";
 
-Component.install = function (app: App) {
-  app.component(Component.name as string, Component);
+export default (app: App) => {
+  app.component(Dropdown.name!, Dropdown);
+  app.component(DropdownMenu.name!, DropdownMenu);
+  app.component(DropdownMenuItem.name!, DropdownMenuItem);
 };
 
-export * from "./src/index.vue";
+export * from "./src/interface";
 
-export const Dropdown = Component;
+export { Dropdown, DropdownMenu, DropdownMenuItem };

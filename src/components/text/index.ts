@@ -1,11 +1,10 @@
 import { App } from "vue";
-import Component from "./src/index.vue";
+import Text from "./src/text.vue";
 
-Component.install = function (app: App) {
-  app.component(Component.name!, Component);
+export default (app: App) => {
+  app.component(Text.name!, Text);
 };
 
-export * from "./src/index.vue";
 export * from "./src/interface";
 
-export const Text = Component;
+export { Text };

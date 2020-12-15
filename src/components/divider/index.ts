@@ -1,11 +1,10 @@
 import { App } from "vue";
-import Component from "./src/index.vue";
+import Divider from "./src/divider.vue";
 
-Component.install = function (app: App) {
-  app.component(Component.name as string, Component);
+export default (app: App) => {
+  app.component(Divider.name as string, Divider);
 };
 
-export * from "./src/index.vue";
 export * from "./src/interface";
 
-export const Divider = Component;
+export { Divider };
