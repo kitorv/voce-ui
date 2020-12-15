@@ -27,7 +27,7 @@
   "author": "kitorv",
   "license": "MIT",
   "dependencies": {
-    "@popperjs/core": "^2.5.4",
+    "@popperjs/core": "^2.6.0",
     "vue": "^3.0.4"
   },
   "devDependencies": {
@@ -39,16 +39,16 @@
     "chalk": "^4.1.0",
     "fs-extra": "^9.0.1",
     "inquirer": "^7.3.3",
-    "markdown-it": "^12.0.2",
+    "markdown-it": "^12.0.3",
     "markdown-it-container": "^3.0.0",
     "node-sass": "^5.0.0",
     "prettier": "^2.2.1",
     "request": "^2.88.2",
-    "sass": "^1.29.0",
+    "sass": "^1.30.0",
     "sass-loader": "^10.1.0",
-    "typescript": "^4.1.2",
-    "vue-loader": "^16.1.0",
-    "vue-router": "^4.0.0-rc.6"
+    "typescript": "^4.1.3",
+    "vue-loader": "^16.1.1",
+    "vue-router": "^4.0.1"
   },
   "babel": {
     "presets": [

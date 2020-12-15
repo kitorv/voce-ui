@@ -49,8 +49,25 @@ export default defineComponent({
 }
 
 .v-menu--mode-horizontal {
-  line-height: 46px;
   border-bottom: 1px solid $-color--border-base;
   white-space: nowrap;
+
+  .v-sub-menu {
+    display: inline-block;
+    vertical-align: bottom;
+  }
+
+  .v-menu-item {
+    display: inline-block;
+    vertical-align: bottom;
+  }
+
+  .v-menu-item-content {
+    border-bottom: 2px solid transparent;
+    transition: color 0.3s cubic-bezier(0.645, 0.045, 0.355, 1),
+      border-color 0.3s cubic-bezier(0.645, 0.045, 0.355, 1),
+      background-color 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+    margin-bottom: -1px;
+  }
 }
 </style>

@@ -12,3 +12,7 @@ export interface MenuProvide {
 }
 
 export const MenuProvideKey = Symbol();
+
+export interface SubMenuProvide {}
+
+export const SubMenuProvideKey = Symbol();

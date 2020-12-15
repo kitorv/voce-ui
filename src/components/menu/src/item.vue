@@ -36,7 +36,6 @@ export default defineComponent({
       const isActive = vMenu.activeIndex.value === props.index;
       return [
         "v-menu-item",
-        `v-menu-item--${vMenu.mode.value}`,
         { "v-menu-item--active": isActive && !props.disabled },
         { "v-menu-item--disabled": props.disabled },
       ];
@@ -59,6 +58,7 @@ export default defineComponent({
   margin: 0;
   padding: 0 20px;
   white-space: nowrap;
+  line-height: 48px;
   cursor: pointer;
 }
 
@@ -75,19 +75,6 @@ export default defineComponent({
   margin-right: 8px;
   font-size: 18px;
   transition: all 0.3s;
-}
-
-.v-menu-item--horizontal {
-  display: inline-block;
-  vertical-align: bottom;
-
-  .v-menu-item-content {
-    border-bottom: 2px solid transparent;
-    transition: color 0.3s cubic-bezier(0.645, 0.045, 0.355, 1),
-      border-color 0.3s cubic-bezier(0.645, 0.045, 0.355, 1),
-      background-color 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
-    margin-bottom: -1px;
-  }
 }
 
 .v-menu-item:hover,
