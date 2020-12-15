@@ -21,3 +21,5 @@ export type PopupOffsetFunc = (state: {
 }) => [number, number];
 
 export type PopupOffset = PopupOffsetFunc | ReturnType<PopupOffsetFunc>;
+
+export type PopupTarget = string | HTMLElement;

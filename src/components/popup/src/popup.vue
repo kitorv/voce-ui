@@ -2,7 +2,7 @@
   <div ref="referenceRef" v-bind="$attrs" v-on="referenceEvents">
     <slot name="reference" />
   </div>
-  <teleport to="body">
+  <teleport :to="target">
     <transition
       :name="transition"
       @before-enter="onBeforeEnter"
@@ -24,7 +24,12 @@
 
 <script lang="ts">
 import { computed, CSSProperties, defineComponent, PropType, ref } from "vue";
-import { PopupOffset, PopupPlacement, PopupTrigger } from "./interface";
+import {
+  PopupOffset,
+  PopupPlacement,
+  PopupTarget,
+  PopupTrigger,
+} from "./interface";
 import ClickOutside from "@/directives/click-outside";
 import { nextZIndex } from "@/utils";
 import { createPopper, Instance } from "@popperjs/core";
@@ -53,6 +58,10 @@ export default defineComponent({
     offset: {
       type: [Array, Function] as PropType<PopupOffset>,
       default: () => [0, 0],
+    },
+    target: {
+      type: [String, Object] as PropType<PopupTarget>,
+      default: "body" as PopupTarget,
     },
   },
   setup(props, { emit }) {

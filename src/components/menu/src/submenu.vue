@@ -1,10 +1,11 @@
 <template>
   <v-popup
     v-model:visible="isCollapse"
-    class="v-sub-menu"
+    class="v-submenu"
     trigger="click"
     :placement="placement"
     :offset="[0, 6]"
+    :tatget="tatget"
   >
     <template #reference>
       <v-menu-item :icon="icon">
@@ -12,7 +13,7 @@
       </v-menu-item>
     </template>
     <template #content>
-      <div class="v-sub-menu-content">
+      <div ref="submenuRef" class="v-submenu-content">
         <slot />
       </div>
     </template>
@@ -25,7 +26,7 @@ import { SubMenuProvide, SubMenuProvideKey } from "./interface";
 import VMenuItem from "./menu-item.vue";
 
 export default defineComponent({
-  name: "VSubMenu",
+  name: "VSubmenu",
   components: { VMenuItem },
   props: {
     icon: {
@@ -38,14 +39,22 @@ export default defineComponent({
     },
   },
   setup() {
-    provide<SubMenuProvide>(SubMenuProvideKey, {});
+    const submenuRef = ref<HTMLDivElement>();
+
+    provide<SubMenuProvide>(SubMenuProvideKey, {
+      target: computed(() => submenuRef.value),
+    });
 
     // const vMenu = inject<MenuProvide>(MenuProvideKey)!;
 
-    const vSubMenu = inject<SubMenuProvide>(SubMenuProvideKey);
+    const vSubMenu = inject<SubMenuProvide>(SubMenuProvideKey, null);
 
     const placement = computed(() => {
       return vSubMenu ? "right-start" : "bottom-start";
+    });
+
+    const tatget = computed(() => {
+      return "";
     });
 
     const isCollapse = ref(false);
@@ -54,13 +63,13 @@ export default defineComponent({
       isCollapse.value = !isCollapse.value;
     };
 
-    return { placement, isCollapse, onMenuItemClick };
+    return { tatget, placement, isCollapse, onMenuItemClick };
   },
 });
 </script>
 
 <style lang="scss">
-.v-sub-menu-content {
+.v-submenu-content {
   font-size: 14px;
   box-shadow: 0 3px 6px -4px rgba(0, 0, 0, 0.12),
     0 6px 16px 0 rgba(0, 0, 0, 0.08), 0 9px 28px 8px rgba(0, 0, 0, 0.05);

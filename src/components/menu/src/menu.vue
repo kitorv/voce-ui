@@ -52,7 +52,7 @@ export default defineComponent({
   border-bottom: 1px solid $-color--border-base;
   white-space: nowrap;
 
-  .v-sub-menu {
+  .v-submenu {
     display: inline-block;
     vertical-align: bottom;
   }
