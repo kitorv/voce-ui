@@ -6,7 +6,12 @@
 
 <script lang="ts">
 import { computed, defineComponent, PropType, provide } from "vue";
-import { MenuMode, MenuProvide, MenuProvideKey } from "./interface";
+import {
+  MenuMode,
+  MenuProvide,
+  MenuProvideKey,
+  MenuSubmenu,
+} from "./interface";
 
 export default defineComponent({
   name: "VMenu",
@@ -22,11 +27,31 @@ export default defineComponent({
     },
   },
   setup(props, { emit }) {
+    const vSubmenuList: Map<symbol, MenuSubmenu> = new Map();
+
     provide<MenuProvide>(MenuProvideKey, {
       mode: computed(() => props.mode),
       activeIndex: computed(() => props.activeIndex),
       updateActiveIndex(value) {
         emit("update:active-index", value);
+      },
+      addSubmenu(key, submenu) {
+        vSubmenuList.set(key, submenu);
+      },
+      delSubmenu(key) {
+        vSubmenuList.delete(key);
+      },
+      expandSubmenu(keys) {
+        for (const [key, submenu] of vSubmenuList) {
+          if (keys && !keys.includes(key)) continue;
+          submenu.expand();
+        }
+      },
+      collapseSubmenu(keys) {
+        for (const [key, submenu] of vSubmenuList) {
+          if (keys && !keys.includes(key)) continue;
+          submenu.collapse();
+        }
       },
     });
 

@@ -179,6 +179,7 @@ export default defineComponent({
 
     const onOutsideClick = (event: Event) => {
       if (
+        props.trigger === "manual" ||
         !isVisible.value ||
         !referenceRef.value ||
         referenceRef.value.contains(event.target as HTMLElement)

@@ -2,7 +2,7 @@
   <v-popup
     v-model:visible="isCollapse"
     class="v-submenu"
-    trigger="click"
+    trigger="manual"
     :placement="placement"
     :offset="[0, 6]"
     :tatget="tatget"

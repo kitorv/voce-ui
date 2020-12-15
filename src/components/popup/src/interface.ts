@@ -1,4 +1,4 @@
-export type PopupTrigger = "hover" | "click";
+export type PopupTrigger = "hover" | "click" | "manual";
 
 export type PopupPlacement =
   | "top"
