@@ -23,7 +23,14 @@
 </template>
 
 <script lang="ts">
-import { computed, CSSProperties, defineComponent, PropType, ref } from "vue";
+import {
+  computed,
+  CSSProperties,
+  defineComponent,
+  PropType,
+  ref,
+  watch,
+} from "vue";
 import {
   PopupOffset,
   PopupPlacement,
@@ -133,10 +140,12 @@ export default defineComponent({
       },
       set(value) {
         emit("update:visible", value);
-        if (!value) return;
-        zIndex.value = nextZIndex();
-        createPopperInstacne();
       },
+    });
+    watch(isVisible, () => {
+      if (!isVisible.value) return;
+      zIndex.value = nextZIndex();
+      createPopperInstacne();
     });
 
     let setTimeoutId: number;

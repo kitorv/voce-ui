@@ -1,5 +1,5 @@
 import { IconType } from "@/components/icon";
-import { ComputedRef, Ref } from "vue";
+import { ComputedRef } from "vue";
 
 export type MenuMode = "horizontal" | "vertical";
 
@@ -16,14 +16,12 @@ export interface MenuProvide {
   updateActiveIndex: (index: number | string | undefined) => void;
   addSubmenu: (key: symbol, submenu: MenuSubmenu) => void;
   delSubmenu: (key: symbol) => void;
-  expandSubmenu: (keys?: Array<symbol>) => void;
-  collapseSubmenu: (keys?: Array<symbol>) => void;
+  // expandSubmenu: (keys?: Array<symbol>) => void;
+  // collapseSubmenu: (keys?: Array<symbol>) => void;
 }
 
 export const MenuProvideKey = Symbol();
 
-export type SubMenuProvide = {
-  target: Ref<HTMLElement | undefined>;
-} | null;
+export type SubMenuProvide = {} | null;
 
 export const SubMenuProvideKey = Symbol();

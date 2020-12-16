@@ -5,15 +5,23 @@
     trigger="manual"
     :placement="placement"
     :offset="[0, 6]"
-    :tatget="tatget"
+    :target="target"
   >
     <template #reference>
-      <v-menu-item :icon="icon">
+      <v-menu-item
+        :icon="icon"
+        @mouseenter="onMouseenter"
+        @mouseleave="onMouseleave"
+      >
         {{ title }}
       </v-menu-item>
     </template>
     <template #content>
-      <div ref="submenuRef" class="v-submenu-content">
+      <div
+        class="v-submenu-content"
+        @mouseenter="onMouseenter"
+        @mouseleave="onMouseleave"
+      >
         <slot />
       </div>
     </template>
@@ -21,8 +29,20 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, inject, provide, ref } from "vue";
-import { SubMenuProvide, SubMenuProvideKey } from "./interface";
+import {
+  computed,
+  defineComponent,
+  inject,
+  onBeforeMount,
+  provide,
+  ref,
+} from "vue";
+import {
+  MenuProvide,
+  MenuProvideKey,
+  SubMenuProvide,
+  SubMenuProvideKey,
+} from "./interface";
 import VMenuItem from "./menu-item.vue";
 
 export default defineComponent({
@@ -39,13 +59,9 @@ export default defineComponent({
     },
   },
   setup() {
-    const submenuRef = ref<HTMLDivElement>();
+    provide<SubMenuProvide>(SubMenuProvideKey, {});
 
-    provide<SubMenuProvide>(SubMenuProvideKey, {
-      target: computed(() => submenuRef.value),
-    });
-
-    // const vMenu = inject<MenuProvide>(MenuProvideKey)!;
+    const vMenu = inject<MenuProvide>(MenuProvideKey)!;
 
     const vSubMenu = inject<SubMenuProvide>(SubMenuProvideKey, null);
 
@@ -53,17 +69,43 @@ export default defineComponent({
       return vSubMenu ? "right-start" : "bottom-start";
     });
 
-    const tatget = computed(() => {
-      return "";
+    const target = computed(() => {
+      return vSubMenu ? "" : "body";
     });
 
     const isCollapse = ref(false);
 
-    const onMenuItemClick = () => {
-      isCollapse.value = !isCollapse.value;
+    let setTimeoutId: number;
+    const onMouseenter = () => {
+      clearTimeout(setTimeoutId);
+      isCollapse.value = true;
+    };
+    const onMouseleave = () => {
+      // if (vSubMenu) {
+      //   clearTimeout(setTimeoutId);
+      //   return;
+      // }
+      // setTimeoutId = window.setTimeout(() => {
+      //   clearTimeout(setTimeoutId);
+      //   // if (vSubMenu) return;
+      //   // isCollapse.value = false;
+      //   console.log("l", vSubMenu);
+      // }, 200);
     };
 
-    return { tatget, placement, isCollapse, onMenuItemClick };
+    const key = Symbol();
+    onBeforeMount(() => {
+      vMenu.addSubmenu(key, {
+        expand() {
+          isCollapse.value = true;
+        },
+        collapse() {
+          isCollapse.value = false;
+        },
+      });
+    });
+
+    return { target, placement, isCollapse, onMouseenter, onMouseleave };
   },
 });
 </script>

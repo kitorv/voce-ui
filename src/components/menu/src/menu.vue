@@ -41,18 +41,6 @@ export default defineComponent({
       delSubmenu(key) {
         vSubmenuList.delete(key);
       },
-      expandSubmenu(keys) {
-        for (const [key, submenu] of vSubmenuList) {
-          if (keys && !keys.includes(key)) continue;
-          submenu.expand();
-        }
-      },
-      collapseSubmenu(keys) {
-        for (const [key, submenu] of vSubmenuList) {
-          if (keys && !keys.includes(key)) continue;
-          submenu.collapse();
-        }
-      },
     });
 
     const classes = computed(() => {
