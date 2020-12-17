@@ -166,11 +166,14 @@ export default defineComponent({
           },
         };
       }
-      return {
-        click() {
-          isVisible.value = !isVisible.value;
-        },
-      };
+      if (props.trigger === "click") {
+        return {
+          click() {
+            isVisible.value = !isVisible.value;
+          },
+        };
+      }
+      return {};
     });
 
     const contentEvents = computed(() => {
