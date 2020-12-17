@@ -2,7 +2,7 @@
   <div ref="referenceRef" v-bind="$attrs" v-on="referenceEvents">
     <slot name="reference" />
   </div>
-  <teleport :to="target">
+  <v-popup-teleport :to="target">
     <transition
       :name="transition"
       @before-enter="onBeforeEnter"
@@ -19,7 +19,7 @@
         <slot name="content" />
       </div>
     </transition>
-  </teleport>
+  </v-popup-teleport>
 </template>
 
 <script lang="ts">
@@ -40,9 +40,11 @@ import {
 import ClickOutside from "@/directives/click-outside";
 import { nextZIndex } from "@/utils";
 import { createPopper, Instance } from "@popperjs/core";
+import VPopupTeleport from "./popup-teleport.vue";
 
 export default defineComponent({
   name: "VPopup",
+  components: { VPopupTeleport },
   directives: { ClickOutside },
   emits: ["update:visible", "update:placement"],
   props: {

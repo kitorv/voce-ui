@@ -70,7 +70,7 @@ export default defineComponent({
     });
 
     const target = computed(() => {
-      return vSubMenu ? "" : "body";
+      return vSubMenu ? null : "body";
     });
 
     const isCollapse = ref(false);
@@ -81,16 +81,11 @@ export default defineComponent({
       isCollapse.value = true;
     };
     const onMouseleave = () => {
-      // if (vSubMenu) {
-      //   clearTimeout(setTimeoutId);
-      //   return;
-      // }
-      // setTimeoutId = window.setTimeout(() => {
-      //   clearTimeout(setTimeoutId);
-      //   // if (vSubMenu) return;
-      //   // isCollapse.value = false;
-      //   console.log("l", vSubMenu);
-      // }, 200);
+      setTimeoutId = window.setTimeout(() => {
+        clearTimeout(setTimeoutId);
+        if (vSubMenu) return;
+        vMenu.collapseAll();
+      }, 200);
     };
 
     const key = Symbol();

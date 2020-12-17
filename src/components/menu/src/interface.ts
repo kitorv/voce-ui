@@ -16,6 +16,7 @@ export interface MenuProvide {
   updateActiveIndex: (index: number | string | undefined) => void;
   addSubmenu: (key: symbol, submenu: MenuSubmenu) => void;
   delSubmenu: (key: symbol) => void;
+  collapseAll: () => void;
   // expandSubmenu: (keys?: Array<symbol>) => void;
   // collapseSubmenu: (keys?: Array<symbol>) => void;
 }

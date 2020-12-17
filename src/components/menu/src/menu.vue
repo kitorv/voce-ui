@@ -41,6 +41,11 @@ export default defineComponent({
       delSubmenu(key) {
         vSubmenuList.delete(key);
       },
+      collapseAll() {
+        vSubmenuList.forEach((submenu) => {
+          submenu.collapse();
+        });
+      },
     });
 
     const classes = computed(() => {
