@@ -25,14 +25,19 @@ export default defineComponent({
       type: [String, Number],
       default: undefined,
     },
+    collapse: {
+      type: Boolean,
+      default: false,
+    },
   },
   setup(props, { emit }) {
     const vSubmenuList: Map<symbol, MenuSubmenu> = new Map();
 
     provide<MenuProvide>(MenuProvideKey, {
+      collapse: computed(() => props.collapse),
       mode: computed(() => props.mode),
       inline: computed(() => {
-        return props.mode === "vertical";
+        return props.mode === "vertical" && !props.collapse;
       }),
       activeIndex: computed(() => props.activeIndex),
       updateActiveIndex(value) {
@@ -122,8 +127,5 @@ export default defineComponent({
 .v-menu--mode-vertical {
   width: 250px;
   border-right: 1px solid $-color--border-base;
-
-  .v-menu-item--root {
-  }
 }
 </style>

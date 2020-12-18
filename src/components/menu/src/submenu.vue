@@ -24,6 +24,8 @@
       <v-summenu-title
         :icon="icon"
         :title="title"
+        :style="titleStyle"
+        :arrow="isShowArrow"
         @mouseenter="onMouseenter"
         @mouseleave="onMouseleave"
       />
@@ -99,7 +101,10 @@ export default defineComponent({
     });
 
     const placement = computed(() => {
-      return vSubMenu ? "right-start" : "bottom-start";
+      if (vMenu.mode.value === "horizontal") {
+        return vSubMenu ? "right-start" : "bottom-start";
+      }
+      return "right-start";
     });
 
     const target = computed(() => {

@@ -13,6 +13,7 @@ export interface MenuSubmenu {
 }
 
 export interface MenuProvide {
+  collapse: ComputedRef<boolean>;
   mode: ComputedRef<MenuMode>;
   inline: ComputedRef<boolean>;
   activeIndex: ComputedRef<number | string | undefined>;
@@ -21,8 +22,6 @@ export interface MenuProvide {
   delSubmenu: (key: symbol) => void;
   closeAllSubmenu: () => void;
   computedPaddingLeft: (level: number) => number;
-  // expandSubmenu: (keys?: Array<symbol>) => void;
-  // collapseSubmenu: (keys?: Array<symbol>) => void;
 }
 
 export const MenuProvideKey = Symbol();
