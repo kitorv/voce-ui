@@ -1,17 +1,29 @@
 <template>
-  <div :class="classes">
-    <div class="v-menu-item-content" @click="onContentClick">
-      <v-icon v-if="icon" :type="icon" class="v-menu-item-content-icon" />
-      <div class="v-menu-item-content-text">
+  <div :class="classes" :style="contentStyle">
+    <div class="v-menu-item--content" @click="onContentClick">
+      <v-icon v-if="icon" :type="icon" class="v-menu-item--content-icon" />
+      <span>
         <slot />
-      </div>
+      </span>
     </div>
   </div>
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, inject, PropType } from "vue";
-import { MenuItemIcon, MenuProvide, MenuProvideKey } from "./interface";
+import {
+  computed,
+  CSSProperties,
+  defineComponent,
+  inject,
+  PropType,
+} from "vue";
+import {
+  MenuItemIcon,
+  MenuProvide,
+  MenuProvideKey,
+  SubMenuProvide,
+  SubMenuProvideKey,
+} from "./interface";
 
 export default defineComponent({
   name: "VMenuItem",
@@ -32,6 +44,15 @@ export default defineComponent({
   setup(props) {
     const vMenu = inject<MenuProvide>(MenuProvideKey)!;
 
+    const vSubMenu = inject<SubMenuProvide>(SubMenuProvideKey, null);
+
+    const contentStyle = computed<CSSProperties>(() => {
+      const level = vSubMenu ? vSubMenu.level.value + 1 : 1;
+      return {
+        paddingLeft: `${vMenu.computedPaddingLeft(level)}px`,
+      };
+    });
+
     const classes = computed(() => {
       const isActive = vMenu.activeIndex.value === props.index;
       return [
@@ -46,40 +67,15 @@ export default defineComponent({
       vMenu.updateActiveIndex(props.index);
     };
 
-    return { classes, onContentClick };
+    return { classes, onContentClick, contentStyle };
   },
 });
 </script>
 
 <style lang="scss">
-.v-menu-item {
-  position: relative;
-  display: block;
-  margin: 0;
-  padding: 0 20px;
-  white-space: nowrap;
-  line-height: 48px;
-  cursor: pointer;
-}
-
-.v-menu-item-content {
-  display: flex;
-  align-items: center;
-}
-
-.v-menu-item-content-text {
-  flex: 1;
-}
-
-.v-menu-item-content-icon {
-  margin-right: 8px;
-  font-size: 18px;
-  transition: all 0.3s;
-}
-
 .v-menu-item:hover,
 .v-menu-item--active {
-  .v-menu-item-content {
+  .v-menu-item--content {
     color: $-color--primary;
     border-color: $-color--primary;
   }
@@ -87,7 +83,7 @@ export default defineComponent({
 
 .v-menu-item--disabled,
 .v-menu-item--disabled:hover {
-  .v-menu-item-content {
+  .v-menu-item--content {
     color: $-color--text-placeholder;
     background: 0 0;
     border-color: transparent;

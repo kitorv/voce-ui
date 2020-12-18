@@ -1,5 +1,18 @@
 <template>
+  <div v-if="isInline" class="v-submenu v-submenu--inline">
+    <v-summenu-title
+      :icon="icon"
+      :title="title"
+      :style="titleStyle"
+      :arrow="isShowArrow"
+      @click="onClick"
+    />
+    <div v-if="isCollapse" class="v-submenu--inline-content">
+      <slot />
+    </div>
+  </div>
   <v-popup
+    v-else
     v-model:visible="isCollapse"
     class="v-submenu"
     trigger="manual"
@@ -8,17 +21,16 @@
     :target="target"
   >
     <template #reference>
-      <v-menu-item
+      <v-summenu-title
         :icon="icon"
+        :title="title"
         @mouseenter="onMouseenter"
         @mouseleave="onMouseleave"
-      >
-        {{ title }}
-      </v-menu-item>
+      />
     </template>
     <template #content>
       <div
-        class="v-submenu-content"
+        class="v-submenu--popup-content"
         @mouseenter="onMouseenter"
         @mouseleave="onMouseleave"
       >
@@ -31,26 +43,30 @@
 <script lang="ts">
 import {
   computed,
+  CSSProperties,
   defineComponent,
   inject,
   onBeforeMount,
+  PropType,
   provide,
   ref,
 } from "vue";
 import {
   MenuProvide,
   MenuProvideKey,
+  SubmenuIcon,
   SubMenuProvide,
   SubMenuProvideKey,
 } from "./interface";
-import VMenuItem from "./menu-item.vue";
+
+import VSummenuTitle from "./submenu-title.vue";
 
 export default defineComponent({
   name: "VSubmenu",
-  components: { VMenuItem },
+  components: { VSummenuTitle },
   props: {
     icon: {
-      type: String,
+      type: String as PropType<SubmenuIcon>,
       default: undefined,
     },
     title: {
@@ -59,11 +75,28 @@ export default defineComponent({
     },
   },
   setup() {
-    provide<SubMenuProvide>(SubMenuProvideKey, {});
-
     const vMenu = inject<MenuProvide>(MenuProvideKey)!;
 
     const vSubMenu = inject<SubMenuProvide>(SubMenuProvideKey, null);
+
+    const level = computed(() => {
+      if (!vSubMenu) return 1;
+      return vSubMenu.level.value + 1;
+    });
+
+    const titleStyle = computed<CSSProperties>(() => {
+      return {
+        paddingLeft: `${vMenu.computedPaddingLeft(level.value)}px`,
+      };
+    });
+
+    provide<SubMenuProvide>(SubMenuProvideKey, { level });
+
+    const isInline = computed(() => vMenu.inline.value);
+
+    const isShowArrow = computed(() => {
+      return vMenu.mode.value === "vertical";
+    });
 
     const placement = computed(() => {
       return vSubMenu ? "right-start" : "bottom-start";
@@ -75,6 +108,10 @@ export default defineComponent({
 
     const isCollapse = ref(false);
 
+    const onClick = () => {
+      isCollapse.value = !isCollapse.value;
+    };
+
     let setTimeoutId: number;
     const onMouseenter = () => {
       clearTimeout(setTimeoutId);
@@ -84,7 +121,7 @@ export default defineComponent({
       setTimeoutId = window.setTimeout(() => {
         clearTimeout(setTimeoutId);
         if (vSubMenu) return;
-        vMenu.collapseAll();
+        vMenu.closeAllSubmenu();
       }, 200);
     };
 
@@ -100,13 +137,23 @@ export default defineComponent({
       });
     });
 
-    return { target, placement, isCollapse, onMouseenter, onMouseleave };
+    return {
+      isInline,
+      target,
+      placement,
+      isCollapse,
+      onClick,
+      onMouseenter,
+      onMouseleave,
+      titleStyle,
+      isShowArrow,
+    };
   },
 });
 </script>
 
 <style lang="scss">
-.v-submenu-content {
+.v-submenu--popup-content {
   font-size: 14px;
   box-shadow: 0 3px 6px -4px rgba(0, 0, 0, 0.12),
     0 6px 16px 0 rgba(0, 0, 0, 0.08), 0 9px 28px 8px rgba(0, 0, 0, 0.05);
