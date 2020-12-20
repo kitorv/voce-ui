@@ -15,19 +15,19 @@ export interface MenuSubmenu {
 export interface MenuProvide {
   collapse: ComputedRef<boolean>;
   mode: ComputedRef<MenuMode>;
-  inline: ComputedRef<boolean>;
   activeIndex: ComputedRef<number | string | undefined>;
   updateActiveIndex: (index: number | string | undefined) => void;
   addSubmenu: (key: symbol, submenu: MenuSubmenu) => void;
   delSubmenu: (key: symbol) => void;
   closeAllSubmenu: () => void;
-  computedPaddingLeft: (level: number) => number;
+  computedPaddingLeft: (level: number) => string;
 }
 
 export const MenuProvideKey = Symbol();
 
 export type SubMenuProvide = {
   level: ComputedRef<number>;
+  updateActive: (active: boolean) => void;
 } | null;
 
 export const SubMenuProvideKey = Symbol();

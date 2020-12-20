@@ -1,30 +1,18 @@
 <template>
-  <div v-if="isInline" class="v-submenu v-submenu--inline">
-    <v-summenu-title
-      :icon="icon"
-      :title="title"
-      :style="titleStyle"
-      :arrow="isShowArrow"
-      @click="onClick"
-    />
-    <div v-if="isCollapse" class="v-submenu--inline-content">
-      <slot />
-    </div>
-  </div>
   <v-popup
-    v-else
     v-model:visible="isCollapse"
     class="v-submenu"
     trigger="manual"
     :placement="placement"
-    :offset="[0, 6]"
+    :offset="offset"
     :target="target"
+    transition="v-submenu--popup-content"
   >
     <template #reference>
       <v-summenu-title
         :icon="icon"
         :title="title"
-        :style="titleStyle"
+        :active="isTitleActive"
         :arrow="isShowArrow"
         @mouseenter="onMouseenter"
         @mouseleave="onMouseleave"
@@ -40,18 +28,32 @@
       </div>
     </template>
   </v-popup>
+  <!-- <div v-if="isInline" class="v-submenu v-submenu--inline">
+    <v-summenu-title
+      :icon="icon"
+      :title="title"
+      :style="titleStyle"
+      :arrow="isShowArrow"
+      @click="onClick"
+    />
+    <div v-if="isCollapse" class="v-submenu--inline-content">
+      <slot />
+    </div>
+  </div>
+  -->
 </template>
 
 <script lang="ts">
+import { PopupOffset } from "@/components/popup";
 import {
   computed,
-  CSSProperties,
   defineComponent,
   inject,
   onBeforeMount,
   PropType,
   provide,
   ref,
+  watch,
 } from "vue";
 import {
   MenuProvide,
@@ -60,7 +62,6 @@ import {
   SubMenuProvide,
   SubMenuProvideKey,
 } from "./interface";
-
 import VSummenuTitle from "./submenu-title.vue";
 
 export default defineComponent({
@@ -79,43 +80,70 @@ export default defineComponent({
   setup() {
     const vMenu = inject<MenuProvide>(MenuProvideKey)!;
 
-    const vSubMenu = inject<SubMenuProvide>(SubMenuProvideKey, null);
+    const vSubmenu = inject<SubMenuProvide>(SubMenuProvideKey, null);
+
+    const isCollapse = ref(false);
+
+    const isActive = ref(false);
+    watch(
+      isActive,
+      (value) => {
+        vSubmenu?.updateActive(value);
+      },
+      { immediate: true }
+    );
+
+    const isTitleActive = computed(() => {
+      return isActive.value || isCollapse.value;
+    });
+
+    // const titleStyle = computed<CSSProperties>(() => {
+    //   if (vMenu.mode.value === "horizontal") return {};
+    //   return {
+    //     paddingLeft: `${vMenu.computedPaddingLeft(level.value)}px`,
+    //   };
+    // });
 
     const level = computed(() => {
-      if (!vSubMenu) return 1;
-      return vSubMenu.level.value + 1;
+      if (!vSubmenu) return 1;
+      return vSubmenu.level.value + 1;
     });
 
-    const titleStyle = computed<CSSProperties>(() => {
-      return {
-        paddingLeft: `${vMenu.computedPaddingLeft(level.value)}px`,
-      };
+    provide<SubMenuProvide>(SubMenuProvideKey, {
+      level,
+      updateActive(active) {
+        isActive.value = active;
+      },
     });
 
-    provide<SubMenuProvide>(SubMenuProvideKey, { level });
-
-    const isInline = computed(() => vMenu.inline.value);
+    // const isInline = computed(() => vMenu.inline.value);
 
     const isShowArrow = computed(() => {
-      return vMenu.mode.value === "vertical";
+      if (vMenu.mode.value === "horizontal") {
+        return vSubmenu;
+      }
+      return false;
     });
 
     const placement = computed(() => {
       if (vMenu.mode.value === "horizontal") {
-        return vSubMenu ? "right-start" : "bottom-start";
+        return vSubmenu ? "right-start" : "bottom-start";
       }
       return "right-start";
     });
 
     const target = computed(() => {
-      return vSubMenu ? null : "body";
+      return vSubmenu ? null : "body";
     });
 
-    const isCollapse = ref(false);
+    const offset = computed<PopupOffset>(() => {
+      if (placement.value === "bottom-start") return [20, 6];
+      return [0, 6];
+    });
 
-    const onClick = () => {
-      isCollapse.value = !isCollapse.value;
-    };
+    // const onClick = () => {
+    //   isCollapse.value = !isCollapse.value;
+    // };
 
     let setTimeoutId: number;
     const onMouseenter = () => {
@@ -125,8 +153,7 @@ export default defineComponent({
     const onMouseleave = () => {
       setTimeoutId = window.setTimeout(() => {
         clearTimeout(setTimeoutId);
-        if (vSubMenu) return;
-        vMenu.closeAllSubmenu();
+        isCollapse.value = false;
       }, 200);
     };
 
@@ -143,24 +170,51 @@ export default defineComponent({
     });
 
     return {
-      isInline,
-      target,
-      placement,
       isCollapse,
-      onClick,
+      isTitleActive,
+      isShowArrow,
+      placement,
+      target,
+      offset,
       onMouseenter,
       onMouseleave,
-      titleStyle,
-      isShowArrow,
+      // isInline,
+
+      // isCollapse,
+      // onClick,
+
+      // titleStyle,
+      // isShowArrow,
     };
   },
 });
 </script>
 
 <style lang="scss">
+// .v-submenu--popup{
+
+// }
+
 .v-submenu--popup-content {
   font-size: 14px;
   box-shadow: 0 3px 6px -4px rgba(0, 0, 0, 0.12),
     0 6px 16px 0 rgba(0, 0, 0, 0.08), 0 9px 28px 8px rgba(0, 0, 0, 0.05);
+}
+
+.v-submenu--popup-content {
+  &-enter-active,
+  &-leave-active {
+    opacity: 1;
+    transform: scaleY(1);
+    transform-origin: center top;
+    transition: transform 0.3s cubic-bezier(0.23, 1, 0.32, 1),
+      opacity 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+  }
+
+  &-enter-from,
+  &-leave-to {
+    opacity: 0;
+    transform: scaleY(0);
+  }
 }
 </style>

@@ -34,11 +34,8 @@ export default defineComponent({
     const vSubmenuList: Map<symbol, MenuSubmenu> = new Map();
 
     provide<MenuProvide>(MenuProvideKey, {
-      collapse: computed(() => props.collapse),
       mode: computed(() => props.mode),
-      inline: computed(() => {
-        return props.mode === "vertical" && !props.collapse;
-      }),
+      collapse: computed(() => props.collapse),
       activeIndex: computed(() => props.activeIndex),
       updateActiveIndex(value) {
         emit("update:active-index", value);
@@ -50,18 +47,17 @@ export default defineComponent({
         vSubmenuList.delete(key);
       },
       closeAllSubmenu() {
-        vSubmenuList.forEach((submenu) => {
-          submenu.collapse();
-        });
+        vSubmenuList.forEach((submenu) => submenu.collapse());
       },
       computedPaddingLeft(level) {
-        return level * 24;
+        return `${level * 24}px`;
       },
     });
 
     const classes = computed(() => {
       return ["v-menu", `v-menu--mode-${props.mode}`];
     });
+
     return { classes };
   },
 });
@@ -89,6 +85,13 @@ export default defineComponent({
   height: 40px;
   box-sizing: border-box;
   cursor: pointer;
+}
+
+.v-submenu-title:hover .v-submenu-title--content,
+.v-submenu-title--active .v-submenu-title--content,
+.v-menu-item:hover .v-menu-item--content,
+.v-menu-item--active .v-menu-item--content {
+  color: $-color--primary;
 }
 
 .v-submenu-title--content-icon,
@@ -122,10 +125,18 @@ export default defineComponent({
       border-color 0.3s cubic-bezier(0.645, 0.045, 0.355, 1),
       background-color 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
   }
+
+  .v-submenu-title:hover .v-submenu-title--content,
+  .v-submenu-title--active .v-submenu-title--content,
+  .v-menu-item:hover .v-menu-item--content,
+  .v-menu-item--active .v-menu-item--content {
+    color: $-color--primary;
+    border-color: $-color--primary;
+  }
 }
 
-.v-menu--mode-vertical {
-  width: 250px;
-  border-right: 1px solid $-color--border-base;
-}
+// .v-menu--mode-vertical {
+//   width: 250px;
+//   border-right: 1px solid $-color--border-base;
+// }
 </style>
