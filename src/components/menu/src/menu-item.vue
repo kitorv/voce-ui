@@ -1,5 +1,5 @@
 <template>
-  <div :class="classes">
+  <div :class="classes" :style="style">
     <div class="v-menu-item--content" @click="onClick">
       <v-icon v-if="icon" :type="icon" class="v-menu-item--content-icon" />
       <span>
@@ -12,6 +12,7 @@
 <script lang="ts">
 import {
   computed,
+  CSSProperties,
   defineComponent,
   inject,
   nextTick,
@@ -47,13 +48,14 @@ export default defineComponent({
 
     const vSubmenu = inject<SubMenuProvide>(SubMenuProvideKey, null);
 
-    // const contentStyle = computed<CSSProperties>(() => {
-    //   if (vMenu.mode.value === "horizontal") return {};
-    //   const level = vSubMenu ? vSubMenu.level.value + 1 : 1;
-    //   return {
-    //     paddingLeft: `${vMenu.computedPaddingLeft(level)}px`,
-    //   };
-    // });
+    const style = computed<CSSProperties>(() => {
+      if (vMenu.mode.value === "horizontal") return {};
+      const level = vSubmenu ? vSubmenu.level.value + 1 : 1;
+      return {
+        paddingLeft: vMenu.computedPaddingLeft(level),
+      };
+    });
+
     const isActive = computed(() => {
       return vMenu.activeIndex.value === props.index;
     });
@@ -77,26 +79,20 @@ export default defineComponent({
     const onClick = () => {
       if (props.disabled) return;
       vMenu.updateActiveIndex(props.index);
-      vMenu.closeAllSubmenu();
+      if (!vMenu.inline.value) {
+        vMenu.closeAllSubmenu();
+      }
       nextTick(() => {
         vSubmenu?.updateActive(isActive.value);
       });
     };
 
-    return { classes, onClick };
+    return { classes, style, onClick };
   },
 });
 </script>
 
 <style lang="scss">
-// .v-menu-item:hover,
-// .v-menu-item--active {
-//   .v-menu-item--content {
-//     color: $-color--primary;
-//     border-color: $-color--primary;
-//   }
-// }
-
 .v-menu-item--disabled,
 .v-menu-item--disabled:hover {
   .v-menu-item--content {

@@ -36,6 +36,9 @@ export default defineComponent({
     provide<MenuProvide>(MenuProvideKey, {
       mode: computed(() => props.mode),
       collapse: computed(() => props.collapse),
+      inline: computed(() => {
+        return props.mode === "vertical";
+      }),
       activeIndex: computed(() => props.activeIndex),
       updateActiveIndex(value) {
         emit("update:active-index", value);
@@ -47,7 +50,7 @@ export default defineComponent({
         vSubmenuList.delete(key);
       },
       closeAllSubmenu() {
-        vSubmenuList.forEach((submenu) => submenu.collapse());
+        vSubmenuList.forEach((submenu) => submenu.close());
       },
       computedPaddingLeft(level) {
         return `${level * 24}px`;
@@ -135,8 +138,8 @@ export default defineComponent({
   }
 }
 
-// .v-menu--mode-vertical {
-//   width: 250px;
-//   border-right: 1px solid $-color--border-base;
-// }
+.v-menu--mode-vertical {
+  width: 250px;
+  border-right: 1px solid $-color--border-base;
+}
 </style>

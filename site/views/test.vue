@@ -23,7 +23,7 @@
     </v-menu>
     <br />
     <br />
-    <!-- <v-menu v-model:active-index="activeIndex" mode="vertical">
+    <v-menu v-model:active-index="activeIndex" mode="vertical">
       <v-menu-item icon="appstore-fill" index="1">Menu One</v-menu-item>
       <v-menu-item icon="appstore-fill" inndex="2" disabled>
         Menu Two
@@ -43,7 +43,14 @@
         <v-menu-item index="3-6">Menu One</v-menu-item>
       </v-submenu>
       <v-menu-item icon="appstore-fill" index="4">Menu Four</v-menu-item>
+      <v-submenu icon="appstore-fill" title="Menu Five">
+        <v-menu-item index="5-1">Menu One</v-menu-item>
+        <v-menu-item index="5-2">Menu One</v-menu-item>
+        <v-menu-item index="5-3">Menu One</v-menu-item>
+        <v-menu-item index="5-4">Menu One</v-menu-item>
+      </v-submenu>
     </v-menu>
+    <!-- 
     <br />
     <br />
     <v-menu v-model:active-index="activeIndex" mode="vertical" collapse>
