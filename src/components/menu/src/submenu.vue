@@ -8,9 +8,11 @@
       :style="titleStyle"
       @click="onClick"
     />
-    <div v-if="isCollapse" class="v-submenu--inline-content">
-      <slot />
-    </div>
+    <v-transition name="collapse">
+      <div v-show="isCollapse" class="v-submenu--inline-content">
+        <slot />
+      </div>
+    </v-transition>
   </div>
   <v-popup
     v-else

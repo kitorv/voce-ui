@@ -17,6 +17,8 @@ import Menu from "./components/menu";
 
 import Popup from "./components/popup";
 
+import Transition from "./components/transition";
+
 const components = [
   Button,
   Icon,
@@ -34,6 +36,7 @@ const components = [
   Menu,
 
   Popup,
+  Transition,
 ];
 
 export const install = function (app: App) {
