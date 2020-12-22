@@ -105,7 +105,7 @@ export default defineComponent({
     });
 
     const titleStyle = computed<CSSProperties>(() => {
-      if (vMenu.mode.value === "horizontal") return {};
+      if (vMenu.mode.value === "horizontal" || vMenu.collapse.value) return {};
       return {
         paddingLeft: vMenu.computedPaddingLeft(level.value),
       };
@@ -135,7 +135,7 @@ export default defineComponent({
       if (vMenu.mode.value === "horizontal") {
         return !!vSubmenu;
       }
-      return false;
+      return !vMenu.collapse.value;
     });
 
     const placement = computed(() => {

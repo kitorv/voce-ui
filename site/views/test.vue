@@ -22,8 +22,13 @@
       <v-menu-item icon="appstore-fill" index="4">Menu Four</v-menu-item>
     </v-menu>
     <br />
+    <div @click="onClick">展开/折叠</div>
     <br />
-    <v-menu v-model:active-index="activeIndex" mode="vertical">
+    <v-menu
+      v-model:active-index="activeIndex"
+      mode="vertical"
+      :collapse="collapse"
+    >
       <v-menu-item icon="appstore-fill" index="1">Menu One</v-menu-item>
       <v-menu-item icon="appstore-fill" inndex="2" disabled>
         Menu Two
@@ -40,7 +45,7 @@
           <v-menu-item index="3-5-4">Menu One</v-menu-item>
         </v-submenu>
         <v-menu-item index="3-6">Menu One</v-menu-item>
-        <v-menu-item index="3-6">Menu One</v-menu-item>
+        <v-menu-item index="3-7">Menu One</v-menu-item>
       </v-submenu>
       <v-menu-item icon="appstore-fill" index="4">Menu Four</v-menu-item>
       <v-submenu icon="appstore-fill" title="Menu Five">
@@ -84,7 +89,13 @@ export default defineComponent({
   setup() {
     const activeIndex = ref("1");
 
-    return { activeIndex };
+    const collapse = ref(false);
+
+    const onClick = () => {
+      collapse.value = !collapse.value;
+    };
+
+    return { activeIndex, collapse, onClick };
   },
 });
 </script>

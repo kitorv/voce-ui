@@ -58,7 +58,14 @@ export default defineComponent({
     });
 
     const classes = computed(() => {
-      return ["v-menu", `v-menu--mode-${props.mode}`];
+      return [
+        "v-menu",
+        `v-menu--mode-${props.mode}`,
+        {
+          "v-menu--inline-collapse":
+            props.mode === "vertical" && props.collapse,
+        },
+      ];
     });
 
     return { classes };
@@ -139,7 +146,40 @@ export default defineComponent({
 }
 
 .v-menu--mode-vertical {
+  transition: background-color 0.3s, width 0.3s cubic-bezier(0.2, 0, 0, 1) 0s;
   width: 250px;
+
+  &.v-menu--inline-collapse {
+    width: 80px;
+  }
+
   border-right: 1px solid $-color--border-base;
+
+  .v-submenu-title--content-text,
+  .v-menu-item--content-text {
+    opacity: 1;
+    transition: opacity 0.3s cubic-bezier(0.645, 0.045, 0.355, 1),
+      width 0.3s cubic-bezier(0.645, 0.045, 0.355, 1), color 0.3s;
+  }
+
+  .v-submenu-title--collapse,
+  .v-menu-item--collapse {
+    font-size: 16px;
+    padding: 0 32px;
+
+    .v-submenu-title--content-icon,
+    .v-menu-item--content-icon {
+      margin-right: 0;
+    }
+
+    .v-submenu-title--content-text,
+    .v-menu-item--content-text {
+      display: inline-block;
+      max-width: 0;
+      opacity: 0;
+    }
+
+    text-overflow: clip;
+  }
 }
 </style>

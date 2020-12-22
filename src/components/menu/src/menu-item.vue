@@ -2,7 +2,7 @@
   <div :class="classes" :style="style">
     <div class="v-menu-item--content" @click="onClick">
       <v-icon v-if="icon" :type="icon" class="v-menu-item--content-icon" />
-      <span>
+      <span class="v-menu-item--content-text">
         <slot />
       </span>
     </div>
@@ -49,7 +49,7 @@ export default defineComponent({
     const vSubmenu = inject<SubMenuProvide>(SubMenuProvideKey, null);
 
     const style = computed<CSSProperties>(() => {
-      if (vMenu.mode.value === "horizontal") return {};
+      if (vMenu.mode.value === "horizontal" || vMenu.collapse.value) return {};
       const level = vSubmenu ? vSubmenu.level.value + 1 : 1;
       return {
         paddingLeft: vMenu.computedPaddingLeft(level),
@@ -64,7 +64,7 @@ export default defineComponent({
       isActive,
       (value) => {
         vSubmenu?.updateActive(false);
-        if (value) {
+        if (value && vMenu.inline.value) {
           vSubmenu?.open();
         }
         nextTick(() => {
@@ -77,8 +77,11 @@ export default defineComponent({
     const classes = computed(() => {
       return [
         "v-menu-item",
-        { "v-menu-item--active": isActive.value },
-        { "v-menu-item--disabled": props.disabled },
+        {
+          "v-menu-item--active": isActive.value,
+          "v-menu-item--disabled": props.disabled,
+          "v-menu-item--collapse": vMenu.collapse.value && !vSubmenu,
+        },
       ];
     });
 
