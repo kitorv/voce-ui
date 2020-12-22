@@ -28,14 +28,14 @@
   "license": "MIT",
   "dependencies": {
     "@popperjs/core": "^2.6.0",
-    "vue": "^3.0.3"
+    "vue": "^3.0.4"
   },
   "devDependencies": {
     "@vue/babel-plugin-jsx": "^1.0.0-rc.3",
     "@vue/cli-plugin-babel": "^4.5.9",
     "@vue/cli-plugin-typescript": "^4.5.9",
     "@vue/cli-service": "^4.5.9",
-    "@vue/compiler-sfc": "^3.0.3",
+    "@vue/compiler-sfc": "^3.0.4",
     "chalk": "^4.1.0",
     "fs-extra": "^9.0.1",
     "inquirer": "^7.3.3",

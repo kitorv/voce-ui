@@ -62,8 +62,14 @@ export default defineComponent({
 
     watch(
       isActive,
-      () => {
+      (value) => {
         vSubmenu?.updateActive(false);
+        if (value) {
+          vSubmenu?.open();
+        }
+        nextTick(() => {
+          vSubmenu?.updateActive(isActive.value);
+        });
       },
       { immediate: true }
     );
@@ -82,9 +88,6 @@ export default defineComponent({
       if (!vMenu.inline.value) {
         vMenu.closeAllSubmenu();
       }
-      nextTick(() => {
-        vSubmenu?.updateActive(isActive.value);
-      });
     };
 
     return { classes, style, onClick };
