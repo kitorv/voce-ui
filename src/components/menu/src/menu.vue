@@ -5,7 +5,7 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, PropType, provide } from "vue";
+import { computed, defineComponent, PropType, provide, watch } from "vue";
 import {
   MenuMode,
   MenuProvide,
@@ -56,6 +56,14 @@ export default defineComponent({
         return `${level * 24}px`;
       },
     });
+
+    watch(
+      () => props.collapse,
+      (value) => {
+        if (props.mode === "horizontal" || !value) return;
+        vSubmenuList.forEach((submenu) => submenu.close());
+      }
+    );
 
     const classes = computed(() => {
       return [
@@ -110,6 +118,11 @@ export default defineComponent({
   transition: all 0.3s;
 }
 
+.v-submenu-title--content-text,
+.v-menu-item--content-text {
+  display: inline-block;
+}
+
 .v-menu--mode-horizontal {
   height: 48px;
   border-bottom: 1px solid $-color--border-base;
@@ -145,12 +158,16 @@ export default defineComponent({
   }
 }
 
-.v-menu--mode-vertical {
+.zz {
   transition: background-color 0.3s, width 0.3s cubic-bezier(0.2, 0, 0, 1) 0s;
-  width: 250px;
+}
+
+.v-menu--mode-vertical {
+  width: 100%;
 
   &.v-menu--inline-collapse {
     width: 80px;
+    transition: background-color 0.3s, width 0.3s cubic-bezier(0.2, 0, 0, 1) 0s;
   }
 
   border-right: 1px solid $-color--border-base;
@@ -164,22 +181,21 @@ export default defineComponent({
 
   .v-submenu-title--collapse,
   .v-menu-item--collapse {
-    font-size: 16px;
     padding: 0 32px;
+    overflow: hidden;
+    text-overflow: clip;
 
     .v-submenu-title--content-icon,
     .v-menu-item--content-icon {
       margin-right: 0;
+      font-size: 16px;
     }
 
     .v-submenu-title--content-text,
     .v-menu-item--content-text {
-      display: inline-block;
       max-width: 0;
       opacity: 0;
     }
-
-    text-overflow: clip;
   }
 }
 </style>

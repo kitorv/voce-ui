@@ -77,21 +77,4 @@ export default defineComponent({
   top: 50%;
   transform: translateY(-50%);
 }
-
-// .v-submenu-title--content-text {
-//   opacity: 1;
-//   transition: opacity 3s cubic-bezier(0.645, 0.045, 0.355, 1),
-//     width 3s cubic-bezier(0.645, 0.045, 0.355, 1), color 3s;
-//   background: #0094ff;
-// }
-
-// .v-submenu-title--collapse {
-//   .v-submenu-title--content-text {
-//     display: inline-block;
-//     max-width: 0;
-//     opacity: 0;
-//   }
-
-//   text-overflow: clip;
-// }
 </style>

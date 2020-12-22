@@ -194,23 +194,12 @@ export default defineComponent({
       offset,
       onMouseenter,
       onMouseleave,
-      // isInline,
-
-      // isCollapse,
-      // onClick,
-
-      // titleStyle,
-      // isShowArrow,
     };
   },
 });
 </script>
 
 <style lang="scss">
-// .v-submenu--popup{
-
-// }
-
 .v-submenu--popup-content {
   font-size: 14px;
   box-shadow: 0 3px 6px -4px rgba(0, 0, 0, 0.12),
