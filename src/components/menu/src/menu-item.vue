@@ -69,7 +69,7 @@ export default defineComponent({
       (value) => {
         vMenu.inactiveAllSubmenu();
         if (!value) return;
-        if (vMenu.inline.value) {
+        if (vMenu.mode.value !== "horizontal" && !vMenu.collapse.value) {
           vSubmenu?.open();
         }
         nextTick(() => {
@@ -93,7 +93,7 @@ export default defineComponent({
     const onClick = () => {
       if (props.disabled) return;
       vMenu.updateActiveIndex(props.index);
-      if (!vMenu.inline.value) {
+      if (vMenu.mode.value === "horizontal") {
         vMenu.closeAllSubmenu();
       }
     };

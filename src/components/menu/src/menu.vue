@@ -5,7 +5,7 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, PropType, provide, ref, watch } from "vue";
+import { computed, defineComponent, PropType, provide, watch } from "vue";
 import {
   MenuMode,
   MenuProvide,
@@ -37,8 +37,6 @@ export default defineComponent({
       return props.mode === "vertical" && props.collapse;
     });
 
-    const isInline = ref(!isCollapse.value);
-
     // let setTimeoutId: number = -1;
     // watch(isCollapse, () => {
     //   clearTimeout(setTimeoutId);
@@ -50,10 +48,6 @@ export default defineComponent({
     provide<MenuProvide>(MenuProvideKey, {
       mode: computed(() => props.mode),
       collapse: isCollapse,
-      inline: computed(() => {
-        if (props.mode === "horizontal") return false;
-        return isInline.value;
-      }),
       activeIndex: computed(() => props.activeIndex),
       updateActiveIndex(value) {
         emit("update:active-index", value);
@@ -219,6 +213,7 @@ export default defineComponent({
     .v-menu-item--content-text {
       max-width: 0;
       opacity: 0;
+      text-overflow: ellipsis;
     }
   }
 }

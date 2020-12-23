@@ -112,9 +112,7 @@ export default defineComponent({
       return vSubmenu.level.value + 1;
     });
 
-    const isInline = computed(() => {
-      return vMenu.inline.value;
-    });
+    const isInline = ref(true);
 
     provide<SubMenuProvide>(SubMenuProvideKey, {
       level,
