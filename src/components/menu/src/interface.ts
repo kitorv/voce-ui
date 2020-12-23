@@ -32,7 +32,6 @@ export const MenuProvideKey = Symbol();
 export type SubMenuProvide = {
   level: ComputedRef<number>;
   active: () => void;
-  open: () => void;
 } | null;
 
 export const SubMenuProvideKey = Symbol();

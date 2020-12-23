@@ -37,14 +37,6 @@ export default defineComponent({
       return props.mode === "vertical" && props.collapse;
     });
 
-    // let setTimeoutId: number = -1;
-    // watch(isCollapse, () => {
-    //   clearTimeout(setTimeoutId);
-    //   window.setTimeout(() => {
-    //     isInline.value = !isCollapse.value;
-    //   }, 300);
-    // });
-
     provide<MenuProvide>(MenuProvideKey, {
       mode: computed(() => props.mode),
       collapse: isCollapse,
@@ -69,23 +61,19 @@ export default defineComponent({
       },
     });
 
-    watch(
-      () => props.collapse,
-      (value) => {
-        if (props.mode === "horizontal") return;
-        vSubmenuList.forEach((submenu) => {
-          if (value) {
-            submenu.close();
-            return;
-          }
-          if (submenu.isActive.value) {
-            submenu.open();
-          } else {
-            submenu.close();
-          }
-        });
-      }
-    );
+    watch(isCollapse, (value) => {
+      vSubmenuList.forEach((submenu) => {
+        if (value) {
+          submenu.close();
+          return;
+        }
+        if (submenu.isActive.value) {
+          submenu.open();
+        } else {
+          submenu.close();
+        }
+      });
+    });
 
     const classes = computed(() => {
       return [

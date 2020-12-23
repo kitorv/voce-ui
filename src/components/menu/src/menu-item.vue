@@ -48,12 +48,8 @@ export default defineComponent({
 
     const vSubmenu = inject<SubMenuProvide>(SubMenuProvideKey, null);
 
-    const style = computed<CSSProperties>(() => {
-      if (
-        vMenu.mode.value === "horizontal" ||
-        (vMenu.collapse.value && !vSubmenu)
-      )
-        return {};
+    const style = computed<CSSProperties | undefined>(() => {
+      if (vMenu.mode.value === "horizontal" || vMenu.collapse.value) return;
       const level = vSubmenu ? vSubmenu.level.value + 1 : 1;
       return {
         paddingLeft: vMenu.computedPaddingLeft(level),
@@ -66,13 +62,10 @@ export default defineComponent({
 
     watch(
       isActive,
-      (value) => {
+      () => {
         vMenu.inactiveAllSubmenu();
-        if (!value) return;
-        if (vMenu.mode.value !== "horizontal" && !vMenu.collapse.value) {
-          vSubmenu?.open();
-        }
         nextTick(() => {
+          if (!isActive.value) return;
           vSubmenu?.active();
         });
       },

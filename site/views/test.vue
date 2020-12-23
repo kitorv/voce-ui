@@ -89,7 +89,7 @@ import { defineComponent, ref } from "vue";
 
 export default defineComponent({
   setup() {
-    const activeIndex = ref("1");
+    const activeIndex = ref("3-5-2");
 
     const collapse = ref(false);
 

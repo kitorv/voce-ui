@@ -8,7 +8,7 @@
       :style="titleStyle"
       @click="onClick"
     />
-    <v-transition name="collapse">
+    <v-transition name="collapse" @after-leave="onInlineAfterLeave">
       <div v-show="isCollapse" class="v-submenu--inline-content">
         <slot />
       </div>
@@ -53,6 +53,7 @@ import {
   CSSProperties,
   defineComponent,
   inject,
+  nextTick,
   onBeforeMount,
   PropType,
   provide,
@@ -85,7 +86,35 @@ export default defineComponent({
 
     const vSubmenu = inject<SubMenuProvide>(SubMenuProvideKey, null);
 
+    const isInlineValue = computed(() => {
+      return vMenu.mode.value === "vertical" && !vMenu.collapse.value;
+    });
+    const isInline = ref(isInlineValue.value);
+
     const isCollapse = ref(false);
+
+    const openSubmenu = () => {
+      isInline.value = isInlineValue.value;
+      nextTick(() => {
+        isCollapse.value = true;
+      });
+    };
+
+    const closeSubmenu = () => {
+      if (isCollapse.value) {
+        isCollapse.value = false;
+        return;
+      }
+      nextTick(() => {
+        isInline.value = isInlineValue.value;
+      });
+    };
+
+    const onInlineAfterLeave = () => {
+      nextTick(() => {
+        isInline.value = isInlineValue.value;
+      });
+    };
 
     const isActive = ref(false);
 
@@ -96,40 +125,29 @@ export default defineComponent({
       return isActive.value;
     });
 
-    const titleStyle = computed<CSSProperties>(() => {
-      if (
-        vMenu.mode.value === "horizontal" ||
-        (vMenu.collapse.value && !vSubmenu)
-      )
-        return {};
+    const level = computed(() => {
+      return vSubmenu ? vSubmenu.level.value + 1 : 1;
+    });
+
+    const titleStyle = computed<CSSProperties | undefined>(() => {
+      if (vMenu.mode.value === "horizontal" || vMenu.collapse.value) return;
       return {
         paddingLeft: vMenu.computedPaddingLeft(level.value),
       };
     });
-
-    const level = computed(() => {
-      if (!vSubmenu) return 1;
-      return vSubmenu.level.value + 1;
-    });
-
-    const isInline = ref(true);
 
     provide<SubMenuProvide>(SubMenuProvideKey, {
       level,
       active() {
         vSubmenu?.active();
         isActive.value = true;
-      },
-      open() {
-        vSubmenu?.open();
-        isCollapse.value = true;
+        if (vMenu.mode.value === "horizontal" || vMenu.collapse.value) return;
+        openSubmenu();
       },
     });
 
     const isShowArrow = computed(() => {
-      if (vMenu.mode.value === "horizontal") {
-        return !!vSubmenu;
-      }
+      if (vMenu.mode.value === "horizontal") return !!vSubmenu;
       return true;
     });
 
@@ -150,18 +168,22 @@ export default defineComponent({
     });
 
     const onClick = () => {
-      isCollapse.value = !isCollapse.value;
+      if (isCollapse.value) {
+        closeSubmenu();
+      } else {
+        openSubmenu();
+      }
     };
 
     let setTimeoutId: number;
     const onMouseenter = () => {
       clearTimeout(setTimeoutId);
-      isCollapse.value = true;
+      openSubmenu();
     };
     const onMouseleave = () => {
       setTimeoutId = window.setTimeout(() => {
         clearTimeout(setTimeoutId);
-        isCollapse.value = false;
+        closeSubmenu();
       }, 200);
     };
 
@@ -169,12 +191,8 @@ export default defineComponent({
     onBeforeMount(() => {
       vMenu.addSubmenu(key, {
         isActive: computed(() => isActive.value),
-        open() {
-          isCollapse.value = true;
-        },
-        close() {
-          isCollapse.value = false;
-        },
+        open: openSubmenu,
+        close: closeSubmenu,
         active() {
           isActive.value = true;
         },
@@ -196,6 +214,7 @@ export default defineComponent({
       offset,
       onMouseenter,
       onMouseleave,
+      onInlineAfterLeave,
     };
   },
 });
