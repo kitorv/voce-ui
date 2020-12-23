@@ -8,8 +8,11 @@ export type MenuItemIcon = IconType;
 export type SubmenuIcon = IconType;
 
 export interface MenuSubmenu {
+  isActive: ComputedRef<boolean>;
   open: () => void;
   close: () => void;
+  active: () => void;
+  inactive: () => void;
 }
 
 export interface MenuProvide {
@@ -21,6 +24,7 @@ export interface MenuProvide {
   addSubmenu: (key: symbol, submenu: MenuSubmenu) => void;
   delSubmenu: (key: symbol) => void;
   closeAllSubmenu: () => void;
+  inactiveAllSubmenu: () => void;
   computedPaddingLeft: (level: number) => string;
 }
 
@@ -28,7 +32,7 @@ export const MenuProvideKey = Symbol();
 
 export type SubMenuProvide = {
   level: ComputedRef<number>;
-  updateActive: (active: boolean) => void;
+  active: () => void;
   open: () => void;
 } | null;
 

@@ -22,7 +22,7 @@
       <v-menu-item icon="appstore-fill" index="4">Menu Four</v-menu-item>
     </v-menu>
     <br />
-    <div @click="onClick">展开/折叠</div>
+    <div @click="onClick" style="cursor: pointer">展开/折叠</div>
     <br />
     <div style="width: 250px">
       <v-menu

@@ -14,13 +14,7 @@
 
 <script lang="ts">
 import { computed, defineComponent, inject, PropType } from "vue";
-import {
-  MenuProvide,
-  MenuProvideKey,
-  SubmenuIcon,
-  SubMenuProvide,
-  SubMenuProvideKey,
-} from "./interface";
+import { MenuProvide, MenuProvideKey, SubmenuIcon } from "./interface";
 
 export default defineComponent({
   props: {
@@ -44,7 +38,7 @@ export default defineComponent({
   setup(props) {
     const vMenu = inject<MenuProvide>(MenuProvideKey)!;
 
-    const vSubmenu = inject<SubMenuProvide>(SubMenuProvideKey, null);
+    // const vSubmenu = inject<SubMenuProvide>(SubMenuProvideKey, null);
 
     const classes = computed(() => {
       return [
@@ -52,7 +46,7 @@ export default defineComponent({
         {
           "v-submenu-title--active": props.active,
           "v-submenu-title--arrow": props.arrow,
-          "v-submenu-title--collapse": vMenu.collapse.value && vSubmenu,
+          "v-submenu-title--collapse": vMenu.collapse.value,
         },
       ];
     });
@@ -76,5 +70,6 @@ export default defineComponent({
   right: 16px;
   top: 50%;
   transform: translateY(-50%);
+  transition: all 0.3s;
 }
 </style>

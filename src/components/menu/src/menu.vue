@@ -5,7 +5,7 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, PropType, provide, watch } from "vue";
+import { computed, defineComponent, PropType, provide, ref, watch } from "vue";
 import {
   MenuMode,
   MenuProvide,
@@ -33,11 +33,26 @@ export default defineComponent({
   setup(props, { emit }) {
     const vSubmenuList: Map<symbol, MenuSubmenu> = new Map();
 
+    const isCollapse = computed(() => {
+      return props.mode === "vertical" && props.collapse;
+    });
+
+    const isInline = ref(!isCollapse.value);
+
+    // let setTimeoutId: number = -1;
+    // watch(isCollapse, () => {
+    //   clearTimeout(setTimeoutId);
+    //   window.setTimeout(() => {
+    //     isInline.value = !isCollapse.value;
+    //   }, 300);
+    // });
+
     provide<MenuProvide>(MenuProvideKey, {
       mode: computed(() => props.mode),
-      collapse: computed(() => props.collapse),
+      collapse: isCollapse,
       inline: computed(() => {
-        return props.mode === "vertical";
+        if (props.mode === "horizontal") return false;
+        return isInline.value;
       }),
       activeIndex: computed(() => props.activeIndex),
       updateActiveIndex(value) {
@@ -52,6 +67,9 @@ export default defineComponent({
       closeAllSubmenu() {
         vSubmenuList.forEach((submenu) => submenu.close());
       },
+      inactiveAllSubmenu() {
+        vSubmenuList.forEach((submenu) => submenu.inactive());
+      },
       computedPaddingLeft(level) {
         return `${level * 24}px`;
       },
@@ -60,8 +78,18 @@ export default defineComponent({
     watch(
       () => props.collapse,
       (value) => {
-        if (props.mode === "horizontal" || !value) return;
-        vSubmenuList.forEach((submenu) => submenu.close());
+        if (props.mode === "horizontal") return;
+        vSubmenuList.forEach((submenu) => {
+          if (value) {
+            submenu.close();
+            return;
+          }
+          if (submenu.isActive.value) {
+            submenu.open();
+          } else {
+            submenu.close();
+          }
+        });
       }
     );
 
@@ -70,8 +98,7 @@ export default defineComponent({
         "v-menu",
         `v-menu--mode-${props.mode}`,
         {
-          "v-menu--inline-collapse":
-            props.mode === "vertical" && props.collapse,
+          "v-menu--inline-collapse": isCollapse.value,
         },
       ];
     });
@@ -102,6 +129,8 @@ export default defineComponent({
   line-height: 40px;
   height: 40px;
   box-sizing: border-box;
+  transition: border-color 0.3s, background-color 0.3s,
+    padding 0.15s cubic-bezier(0.645, 0.045, 0.355, 1);
   cursor: pointer;
 }
 
@@ -158,18 +187,8 @@ export default defineComponent({
   }
 }
 
-.zz {
-  transition: background-color 0.3s, width 0.3s cubic-bezier(0.2, 0, 0, 1) 0s;
-}
-
 .v-menu--mode-vertical {
   width: 100%;
-
-  &.v-menu--inline-collapse {
-    width: 80px;
-    transition: background-color 0.3s, width 0.3s cubic-bezier(0.2, 0, 0, 1) 0s;
-  }
-
   border-right: 1px solid $-color--border-base;
 
   .v-submenu-title--content-text,
@@ -191,11 +210,22 @@ export default defineComponent({
       font-size: 16px;
     }
 
+    .v-submenu-title--content-arrow {
+      opacity: 0;
+      font-size: 0;
+    }
+
     .v-submenu-title--content-text,
     .v-menu-item--content-text {
       max-width: 0;
       opacity: 0;
     }
   }
+}
+
+.v-menu--inline-collapse {
+  width: 80px;
+  transition: background-color 0.3s, width 0.3s cubic-bezier(0.2, 0, 0, 1) 0s;
+  overflow: hidden;
 }
 </style>

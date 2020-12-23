@@ -57,7 +57,6 @@ import {
   PropType,
   provide,
   ref,
-  watch,
 } from "vue";
 import {
   MenuProvide,
@@ -89,13 +88,6 @@ export default defineComponent({
     const isCollapse = ref(false);
 
     const isActive = ref(false);
-    watch(
-      isActive,
-      (value) => {
-        vSubmenu?.updateActive(value);
-      },
-      { immediate: true }
-    );
 
     const isTitleActive = computed(() => {
       if (vMenu.mode.value === "horizontal") {
@@ -105,7 +97,11 @@ export default defineComponent({
     });
 
     const titleStyle = computed<CSSProperties>(() => {
-      if (vMenu.mode.value === "horizontal" || vMenu.collapse.value) return {};
+      if (
+        vMenu.mode.value === "horizontal" ||
+        (vMenu.collapse.value && !vSubmenu)
+      )
+        return {};
       return {
         paddingLeft: vMenu.computedPaddingLeft(level.value),
       };
@@ -122,8 +118,9 @@ export default defineComponent({
 
     provide<SubMenuProvide>(SubMenuProvideKey, {
       level,
-      updateActive(active) {
-        isActive.value = active;
+      active() {
+        vSubmenu?.active();
+        isActive.value = true;
       },
       open() {
         vSubmenu?.open();
@@ -135,7 +132,7 @@ export default defineComponent({
       if (vMenu.mode.value === "horizontal") {
         return !!vSubmenu;
       }
-      return !vMenu.collapse.value;
+      return true;
     });
 
     const placement = computed(() => {
@@ -173,11 +170,18 @@ export default defineComponent({
     const key = Symbol();
     onBeforeMount(() => {
       vMenu.addSubmenu(key, {
+        isActive: computed(() => isActive.value),
         open() {
           isCollapse.value = true;
         },
         close() {
           isCollapse.value = false;
+        },
+        active() {
+          isActive.value = true;
+        },
+        inactive() {
+          isActive.value = false;
         },
       });
     });
