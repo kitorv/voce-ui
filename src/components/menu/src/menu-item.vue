@@ -61,13 +61,11 @@ export default defineComponent({
     });
 
     watch(
-      isActive,
+      [isActive, vMenu.collapse],
       () => {
         vMenu.inactiveAllSubmenu();
-        nextTick(() => {
-          if (!isActive.value) return;
-          vSubmenu?.active();
-        });
+        if (!isActive.value) return;
+        nextTick(vSubmenu?.active);
       },
       { immediate: true }
     );

@@ -5,7 +5,15 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, PropType, provide, watch } from "vue";
+import {
+  computed,
+  defineComponent,
+  nextTick,
+  PropType,
+  provide,
+  ref,
+  watch,
+} from "vue";
 import {
   MenuMode,
   MenuProvide,
@@ -33,13 +41,34 @@ export default defineComponent({
   setup(props, { emit }) {
     const vSubmenuList: Map<symbol, MenuSubmenu> = new Map();
 
-    const isCollapse = computed(() => {
-      return props.mode === "vertical" && props.collapse;
-    });
+    const isCollapse = ref(props.mode === "vertical" && props.collapse);
+
+    watch(
+      () => props.collapse,
+      () => {
+        nextTick(() => {
+          if (isCollapse.value) {
+            inline.value = true;
+          }
+          nextTick(() => {
+            isCollapse.value = props.collapse;
+          });
+        });
+      }
+    );
+
+    const inline = ref(true);
+    const onTransitionAfterLeave = () => {
+      nextTick(() => {
+        inline.value = props.mode === "vertical" && !props.collapse;
+      });
+    };
 
     provide<MenuProvide>(MenuProvideKey, {
       mode: computed(() => props.mode),
-      collapse: isCollapse,
+      collapse: computed(() => {
+        return isCollapse.value;
+      }),
       activeIndex: computed(() => props.activeIndex),
       updateActiveIndex(value) {
         emit("update:active-index", value);
@@ -85,7 +114,7 @@ export default defineComponent({
       ];
     });
 
-    return { classes };
+    return { classes, isCollapse, onTransitionAfterLeave };
   },
 });
 </script>
@@ -97,10 +126,10 @@ export default defineComponent({
   font-size: 14px;
   text-align: left;
   background: #ffffff;
-  transition: background-color 0.3s, width 0.3s cubic-bezier(0.2, 0, 0, 1) 0s;
+  transition: background-color 0.3s, width 0.3s cubic-bezier(0.2, 0, 0, 1);
 }
 
-.v-submenu-title,
+.v-submenu--title,
 .v-menu-item {
   position: relative;
   display: block;
@@ -116,22 +145,24 @@ export default defineComponent({
   cursor: pointer;
 }
 
-.v-submenu-title:hover .v-submenu-title--content,
-.v-submenu-title--active .v-submenu-title--content,
+.v-submenu--title:hover .v-submenu--title-content,
+.v-submenu--title-active .v-submenu--title-content,
 .v-menu-item:hover .v-menu-item--content,
 .v-menu-item--active .v-menu-item--content {
   color: $-color--primary;
 }
 
-.v-submenu-title--content-icon,
+.v-submenu--title-content-icon,
 .v-menu-item--content-icon {
   margin-right: 8px;
   transition: all 0.3s;
 }
 
-.v-submenu-title--content-text,
+.v-submenu--title-content-text,
 .v-menu-item--content-text {
   display: inline-block;
+  transition: opacity 0.3s cubic-bezier(0.645, 0.045, 0.355, 1),
+    width 0.3s cubic-bezier(0.645, 0.045, 0.355, 1), color 0.3s;
 }
 
 .v-menu--mode-horizontal {
@@ -145,64 +176,59 @@ export default defineComponent({
     vertical-align: bottom;
   }
 
-  .v-submenu-title,
+  .v-submenu--title,
   .v-menu-item {
     line-height: 46px;
     height: 46px;
     padding: 0 20px;
   }
 
-  .v-submenu-title--content,
-  .v-menu-item--content {
-    border-bottom: 2px solid transparent;
-    transition: color 0.3s cubic-bezier(0.645, 0.045, 0.355, 1),
-      border-color 0.3s cubic-bezier(0.645, 0.045, 0.355, 1),
-      background-color 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
-  }
+  //   .v-submenu--title-content,
+  //   .v-menu-item--content {
+  //     border-bottom: 2px solid transparent;
+  //     transition: color 0.3s cubic-bezier(0.645, 0.045, 0.355, 1),
+  //       border-color 0.3s cubic-bezier(0.645, 0.045, 0.355, 1),
+  //       background-color 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+  //   }
 
-  .v-submenu-title:hover .v-submenu-title--content,
-  .v-submenu-title--active .v-submenu-title--content,
-  .v-menu-item:hover .v-menu-item--content,
-  .v-menu-item--active .v-menu-item--content {
-    color: $-color--primary;
-    border-color: $-color--primary;
-  }
+  //   .v-submenu--title:hover .v-submenu--title-content,
+  //   .v-submenu--title-active .v-submenu--title-content,
+  //   .v-menu-item:hover .v-menu-item--content,
+  //   .v-menu-item--active .v-menu-item--content {
+  //     color: $-color--primary;
+  //     border-color: $-color--primary;
+  //   }
 }
 
 .v-menu--mode-vertical {
   width: 100%;
   border-right: 1px solid $-color--border-base;
 
-  .v-submenu-title--content-text,
-  .v-menu-item--content-text {
-    opacity: 1;
-    transition: opacity 0.3s cubic-bezier(0.645, 0.045, 0.355, 1),
-      width 0.3s cubic-bezier(0.645, 0.045, 0.355, 1), color 0.3s;
-  }
+  //   .v-submenu--title-content-text,
+  //   .v-menu-item--content-text {
+  //     opacity: 1;
+  //     transition: opacity 0.3s cubic-bezier(0.645, 0.045, 0.355, 1),
+  //       width 0.3s cubic-bezier(0.645, 0.045, 0.355, 1), color 0.3s;
+  //   }
 
-  .v-submenu-title--collapse,
+  .v-submenu--title-collapse,
   .v-menu-item--collapse {
     padding: 0 32px;
     overflow: hidden;
     text-overflow: clip;
+  }
 
-    .v-submenu-title--content-icon,
-    .v-menu-item--content-icon {
-      margin-right: 0;
-      font-size: 16px;
-    }
+  .v-submenu--title-collapse .v-submenu--title-content-icon,
+  .v-menu-item--collapse .v-menu-item--content-icon {
+    margin-right: 0;
+    font-size: 16px;
+  }
 
-    .v-submenu-title--content-arrow {
-      opacity: 0;
-      font-size: 0;
-    }
-
-    .v-submenu-title--content-text,
-    .v-menu-item--content-text {
-      max-width: 0;
-      opacity: 0;
-      text-overflow: ellipsis;
-    }
+  .v-submenu--title-collapse .v-submenu--title-content-text,
+  .v-menu-item--collapse .v-menu-item--content-text {
+    max-width: 0;
+    opacity: 0;
+    text-overflow: ellipsis;
   }
 }
 
@@ -211,4 +237,9 @@ export default defineComponent({
   transition: background-color 0.3s, width 0.3s cubic-bezier(0.2, 0, 0, 1) 0s;
   overflow: hidden;
 }
+
+// .v-menu--transition {
+//   height: 0;
+//   width: 100%;
+// }
 </style>
