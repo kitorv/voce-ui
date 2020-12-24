@@ -5,15 +5,7 @@
 </template>
 
 <script lang="ts">
-import {
-  computed,
-  defineComponent,
-  nextTick,
-  PropType,
-  provide,
-  ref,
-  watch,
-} from "vue";
+import { computed, defineComponent, PropType, provide, watch } from "vue";
 import {
   MenuMode,
   MenuProvide,
@@ -41,38 +33,13 @@ export default defineComponent({
   setup(props, { emit }) {
     const vSubmenuList: Map<symbol, MenuSubmenu> = new Map();
 
-    const isCollapse = ref(props.mode === "vertical" && props.collapse);
-
-    watch(
-      () => props.collapse,
-      () => {
-        nextTick(() => {
-          if (isCollapse.value) {
-            inline.value = true;
-          }
-          nextTick(() => {
-            isCollapse.value = props.collapse;
-          });
-        });
-      }
-    );
-
-    const inline = ref(true);
-    const onTransitionAfterLeave = () => {
-      nextTick(() => {
-        inline.value = props.mode === "vertical" && !props.collapse;
-      });
-    };
-
-    //  computed(() => {
-    //       return props.mode === "vertical" && props.collapse;
-    //     });
+    const isCollapse = computed(() => {
+      return props.mode === "vertical" && props.collapse;
+    });
 
     provide<MenuProvide>(MenuProvideKey, {
       mode: computed(() => props.mode),
-      collapse: computed(() => {
-        return isCollapse.value;
-      }),
+      collapse: isCollapse,
       activeIndex: computed(() => props.activeIndex),
       updateActiveIndex(value) {
         emit("update:active-index", value);
@@ -118,7 +85,7 @@ export default defineComponent({
       ];
     });
 
-    return { classes, isCollapse, onTransitionAfterLeave };
+    return { classes, isCollapse };
   },
 });
 </script>

@@ -30,7 +30,7 @@
       @after-leave="onInlineAfterLeave"
     >
       <div
-        v-show="isCollapse"
+        v-show="isExpand"
         ref="contentRef"
         class="v-submenu--inline-content"
         @mouseenter="onTitleMouseenter"
@@ -42,7 +42,7 @@
     <teleport v-else to="body">
       <v-transition name="slide-up">
         <div
-          v-show="isCollapse"
+          v-show="isExpand"
           ref="contentRef"
           class="v-submenu--popup-content"
           @mouseenter="onTitleMouseenter"
@@ -53,47 +53,6 @@
       </v-transition>
     </teleport>
   </div>
-  <!-- <div v-if="isInline" class="v-submenu v-submenu--inline">
-    <v-summenu-title
-      :icon="icon"
-      :title="title"
-      :active="isTitleActive"
-      :arrow="isShowArrow"
-      :style="titleStyle"
-      @click="onClick"
-    />
-
-  </div>
-  <v-popup
-    v-else
-    v-model:visible="isCollapse"
-    class="v-submenu"
-    trigger="manual"
-    :placement="placement"
-    :offset="offset"
-    :target="target"
-    transition="v-submenu--popup-content"
-  >
-    <template #reference>
-      <v-summenu-title
-        :icon="icon"
-        :title="title"
-        :active="isTitleActive"
-        :arrow="isShowArrow"
-        @mouseenter="onMouseenter"
-        @mouseleave="onMouseleave"
-      />
-    </template>
-    <template #content>
-      <div
-        class="v-submenu--popup-content"
-        @mouseenter="onMouseenter"
-        @mouseleave="onMouseleave"
-      >
-        <slot />
-      </div>
-    </template>
-  </v-popup> -->
 </template>
 
 <script lang="ts">
@@ -143,7 +102,7 @@ export default defineComponent({
       return vSubmenu ? vSubmenu.level.value + 1 : 1;
     });
 
-    const isCollapse = ref(false);
+    const isExpand = ref(false);
 
     const isActive = ref(false);
 
@@ -163,14 +122,14 @@ export default defineComponent({
       open() {
         isInline.value = isInlineValue.value;
         nextTick(() => {
-          isCollapse.value = true;
+          isExpand.value = true;
         });
       },
       close() {
-        if (!isCollapse.value) {
+        if (!isExpand.value) {
           isInline.value = isInlineValue.value;
         }
-        isCollapse.value = false;
+        isExpand.value = false;
       },
       active() {
         isActive.value = true;
@@ -191,19 +150,23 @@ export default defineComponent({
     });
 
     const titleArrowIcon = computed(() => {
-      return vMenu.mode.value === "horizontal" ? "right" : "down";
+      if (vMenu.mode.value === "horizontal") return "right";
+      if (!vMenu.collapse.value) return "down";
+      return vSubmenu ? "right" : "down";
     });
 
     const isShowTitleArrow = computed(() => {
-      if (vMenu.mode.value === "horizontal") return !!vSubmenu;
+      if (vSubmenu) return true;
+      if (vMenu.mode.value === "horizontal") return false;
       return !vMenu.collapse.value;
     });
 
     const titleClass = computed(() => {
+      const expandActive = isExpand.value && vMenu.mode.value === "horizontal";
       return [
         "v-submenu--title",
         {
-          "v-submenu--title-active": isActive.value,
+          "v-submenu--title-active": isActive.value || expandActive,
           "v-submenu--title-arrow": isShowTitleArrow.value,
           "v-submenu--title-collapse": vMenu.collapse.value,
         },
@@ -219,7 +182,7 @@ export default defineComponent({
 
     const onTitleClick = () => {
       if (vMenu.mode.value === "horizontal" || vMenu.collapse.value) return;
-      if (isCollapse.value) {
+      if (isExpand.value) {
         submenuAcitons.close();
       } else {
         submenuAcitons.open();
@@ -229,11 +192,6 @@ export default defineComponent({
     let popperInstance: Instance | undefined;
     const referenceRef = ref<HTMLDivElement>();
     const contentRef = ref<HTMLDivElement>();
-
-    // const placement = computed(() => {
-
-    //   return "right-start";
-    // });
 
     const createPopperInstacne = () => {
       const referenceEl = referenceRef.value;
@@ -295,43 +253,10 @@ export default defineComponent({
       }, 200);
     };
 
-    //   const isInline = computed(() => {
-    //     return true;
-    //   });
-
-    //   // const onInlineAfterLeave = () => {
-    //   //   nextTick(() => {
-    //   //     // isInline.value = isInlineValue.value;
-    //   //   });
-    //   // };
-
-    //   const isTitleActive = computed(() => {
-    //     if (vMenu.mode.value === "horizontal") {
-    //       return isActive.value || isCollapse.value;
-    //     }
-    //     return isActive.value;
-    //   });
-
-    //   const target = computed(() => {
-    //     return vSubmenu ? null : "body";
-    //   });
-    //   const offset = computed<PopupOffset>(() => {
-    //     if (placement.value === "bottom-start") return [20, 6];
-    //     return [0, 6];
-    //   });
-    //   const onClick = () => {
-    //     if (isCollapse.value) {
-    //       closeSubmenu();
-    //     } else {
-    //       openSubmenu();
-    //     }
-    //   };
-
     const inlineTransitionName = computed<TransitionName>(() => {
-      if (vMenu.mode.value === "horizontal") {
-        return "slide-up";
-      }
-      return "collapse";
+      if (vMenu.mode.value === "horizontal") return "slide-up";
+      if (!vMenu.collapse.value) return "collapse";
+      return vSubmenu ? "slide-up" : "collapse";
     });
 
     const key = Symbol();
@@ -344,7 +269,7 @@ export default defineComponent({
     });
 
     return {
-      isCollapse,
+      isExpand,
       isInline,
       titleClass,
       titleStyle,
@@ -357,17 +282,6 @@ export default defineComponent({
       referenceRef,
       contentRef,
       inlineTransitionName,
-      //     isInline,
-      //     titleStyle,
-      //     onClick,
-      //     isCollapse,
-      //     isTitleActive,
-      //     isShowArrow,
-      //     placement,
-      //     target,
-      //     offset,
-      //     onMouseenter,
-      //     onMouseleave,
     };
   },
 });
@@ -409,21 +323,4 @@ export default defineComponent({
     font-size: 0;
   }
 }
-
-// .v-submenu--popup-content {
-//   &-enter-active,
-//   &-leave-active {
-//     opacity: 1;
-//     transform: scaleY(1);
-//     transform-origin: center top;
-//     transition: transform 0.3s cubic-bezier(0.23, 1, 0.32, 1),
-//       opacity 0.3s cubic-bezier(0.23, 1, 0.32, 1);
-//   }
-
-//   &-enter-from,
-//   &-leave-to {
-//     opacity: 0;
-//     transform: scaleY(0);
-//   }
-// }
 </style>

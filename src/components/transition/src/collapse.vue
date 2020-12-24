@@ -1,5 +1,6 @@
 <template>
   <transition
+    v-bind="$attrs"
     leave-active-class="v-transition--collapse"
     enter-active-class="v-transition--collapse"
     @before-enter="beforeEnter"

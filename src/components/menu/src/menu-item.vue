@@ -84,9 +84,8 @@ export default defineComponent({
     const onClick = () => {
       if (props.disabled) return;
       vMenu.updateActiveIndex(props.index);
-      if (vMenu.mode.value === "horizontal") {
-        vMenu.closeAllSubmenu();
-      }
+      if (vMenu.mode.value === "vertical" && !vMenu.collapse.value) return;
+      vMenu.closeAllSubmenu();
     };
 
     return { classes, style, onClick };
