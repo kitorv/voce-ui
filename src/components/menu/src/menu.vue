@@ -64,6 +64,10 @@ export default defineComponent({
       });
     };
 
+    //  computed(() => {
+    //       return props.mode === "vertical" && props.collapse;
+    //     });
+
     provide<MenuProvide>(MenuProvideKey, {
       mode: computed(() => props.mode),
       collapse: computed(() => {
@@ -183,33 +187,26 @@ export default defineComponent({
     padding: 0 20px;
   }
 
-  //   .v-submenu--title-content,
-  //   .v-menu-item--content {
-  //     border-bottom: 2px solid transparent;
-  //     transition: color 0.3s cubic-bezier(0.645, 0.045, 0.355, 1),
-  //       border-color 0.3s cubic-bezier(0.645, 0.045, 0.355, 1),
-  //       background-color 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
-  //   }
+  .v-submenu--title-content,
+  .v-menu-item--content {
+    border-bottom: 2px solid transparent;
+    transition: color 0.3s cubic-bezier(0.645, 0.045, 0.355, 1),
+      border-color 0.3s cubic-bezier(0.645, 0.045, 0.355, 1),
+      background-color 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+  }
 
-  //   .v-submenu--title:hover .v-submenu--title-content,
-  //   .v-submenu--title-active .v-submenu--title-content,
-  //   .v-menu-item:hover .v-menu-item--content,
-  //   .v-menu-item--active .v-menu-item--content {
-  //     color: $-color--primary;
-  //     border-color: $-color--primary;
-  //   }
+  .v-submenu--title:hover .v-submenu--title-content,
+  .v-submenu--title-active .v-submenu--title-content,
+  .v-menu-item:hover .v-menu-item--content,
+  .v-menu-item--active .v-menu-item--content {
+    color: $-color--primary;
+    border-color: $-color--primary;
+  }
 }
 
 .v-menu--mode-vertical {
   width: 100%;
   border-right: 1px solid $-color--border-base;
-
-  //   .v-submenu--title-content-text,
-  //   .v-menu-item--content-text {
-  //     opacity: 1;
-  //     transition: opacity 0.3s cubic-bezier(0.645, 0.045, 0.355, 1),
-  //       width 0.3s cubic-bezier(0.645, 0.045, 0.355, 1), color 0.3s;
-  //   }
 
   .v-submenu--title-collapse,
   .v-menu-item--collapse {
@@ -237,9 +234,4 @@ export default defineComponent({
   transition: background-color 0.3s, width 0.3s cubic-bezier(0.2, 0, 0, 1) 0s;
   overflow: hidden;
 }
-
-// .v-menu--transition {
-//   height: 0;
-//   width: 100%;
-// }
 </style>

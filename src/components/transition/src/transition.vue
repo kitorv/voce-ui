@@ -34,3 +34,55 @@ export default defineComponent({
   },
 });
 </script>
+
+<style lang="scss">
+.v-transition--slide-up {
+  &-enter-active,
+  &-leave-active {
+    animation-duration: 0.25s;
+    animation-fill-mode: both;
+    animation-play-state: paused;
+  }
+
+  &-enter-active {
+    animation-name: vSlideUpIn;
+    animation-play-state: running;
+    opacity: 0;
+    animation-timing-function: ease-in-out;
+  }
+
+  &-leave-active {
+    animation-name: vSlideUpOut;
+    animation-play-state: running;
+    animation-timing-function: ease-in-out;
+  }
+}
+
+@keyframes vSlideUpIn {
+  0% {
+    opacity: 0;
+    transform-origin: 0 0;
+    transform: scaleY(0.5);
+  }
+
+  to {
+    opacity: 1;
+    transform-origin: 0 0;
+    transform: scaleY(1);
+  }
+}
+
+@keyframes vSlideUpOut {
+  0% {
+    opacity: 1;
+    transform-origin: 0 0;
+    transform: scaleY(1);
+  }
+
+  to {
+    opacity: 0;
+    transform-origin: 0 0;
+    transform: scaleY(0.5);
+  }
+}
+</style>

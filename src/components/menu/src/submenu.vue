@@ -1,6 +1,13 @@
 <template>
   <div class="v-submenu">
-    <div :class="titleClass" :style="titleStyle" @click="onTitleClick">
+    <div
+      ref="referenceRef"
+      :class="titleClass"
+      :style="titleStyle"
+      @click="onTitleClick"
+      @mouseenter="onTitleMouseenter"
+      @mouseleave="onTitleMouseleave"
+    >
       <div class="v-submenu--title-content">
         <v-icon
           v-if="icon"
@@ -19,17 +26,31 @@
     </div>
     <v-transition
       v-if="isInline"
-      name="collapse"
+      :name="inlineTransitionName"
       @after-leave="onInlineAfterLeave"
     >
-      <div v-show="isCollapse" class="v-submenu--inline-content">
+      <div
+        v-show="isCollapse"
+        ref="contentRef"
+        class="v-submenu--inline-content"
+        @mouseenter="onTitleMouseenter"
+        @mouseleave="onTitleMouseleave"
+      >
         <slot />
       </div>
     </v-transition>
     <teleport v-else to="body">
-      <div v-show="isCollapse" class="v-submenu--popup-content">
-        <slot />
-      </div>
+      <v-transition name="slide-up">
+        <div
+          v-show="isCollapse"
+          ref="contentRef"
+          class="v-submenu--popup-content"
+          @mouseenter="onTitleMouseenter"
+          @mouseleave="onTitleMouseleave"
+        >
+          <slot />
+        </div>
+      </v-transition>
     </teleport>
   </div>
   <!-- <div v-if="isInline" class="v-submenu v-submenu--inline">
@@ -76,7 +97,11 @@
 </template>
 
 <script lang="ts">
-import { Transition as VTransition } from "@/components/transition";
+import {
+  Transition as VTransition,
+  TransitionName,
+} from "@/components/transition";
+import { createPopper, Instance, Placement } from "@popperjs/core";
 import {
   computed,
   CSSProperties,
@@ -201,6 +226,75 @@ export default defineComponent({
       }
     };
 
+    let popperInstance: Instance | undefined;
+    const referenceRef = ref<HTMLDivElement>();
+    const contentRef = ref<HTMLDivElement>();
+
+    // const placement = computed(() => {
+
+    //   return "right-start";
+    // });
+
+    const createPopperInstacne = () => {
+      const referenceEl = referenceRef.value;
+      const contentEl = contentRef.value;
+      if (!referenceEl || !contentEl) return;
+
+      let placement: Placement = "right-start";
+      if (vMenu.mode.value === "horizontal") {
+        placement = vSubmenu ? "right-start" : "bottom-start";
+      }
+
+      popperInstance = createPopper(referenceEl, contentEl, {
+        placement: placement,
+        modifiers: [
+          {
+            name: "computeStyles",
+            options: { gpuAcceleration: false, adaptive: false },
+          },
+          {
+            name: "offset",
+            options: {
+              offset: (state: { placement: Placement }) => {
+                return state.placement === "bottom-start" ? [20, 6] : [0, 6];
+              },
+            },
+          },
+          {
+            name: "popupAttributes",
+            enabled: true,
+            phase: "beforeWrite",
+            fn({ state }) {
+              const attrs = state.attributes.popper;
+              const popupAttrs: Record<string, string | boolean> = {};
+              for (const key in attrs) {
+                const pKey = key.replace("data-popper", "popup-menu");
+                popupAttrs[pKey] = attrs[key];
+              }
+              state.attributes.popper = popupAttrs;
+            },
+            requires: ["computeStyles"],
+          },
+        ],
+      });
+    };
+
+    let setTimeoutId: number;
+    const onTitleMouseenter = () => {
+      if (vMenu.mode.value === "vertical" && !vMenu.collapse.value) return;
+      clearTimeout(setTimeoutId);
+      submenuAcitons.open();
+      nextTick(createPopperInstacne);
+      console.log(popperInstance);
+    };
+    const onTitleMouseleave = () => {
+      if (vMenu.mode.value === "vertical" && !vMenu.collapse.value) return;
+      setTimeoutId = window.setTimeout(() => {
+        clearTimeout(setTimeoutId);
+        submenuAcitons.close();
+      }, 200);
+    };
+
     //   const isInline = computed(() => {
     //     return true;
     //   });
@@ -218,12 +312,6 @@ export default defineComponent({
     //     return isActive.value;
     //   });
 
-    //   const placement = computed(() => {
-    //     if (vMenu.mode.value === "horizontal") {
-    //       return vSubmenu ? "right-start" : "bottom-start";
-    //     }
-    //     return "right-start";
-    //   });
     //   const target = computed(() => {
     //     return vSubmenu ? null : "body";
     //   });
@@ -238,17 +326,14 @@ export default defineComponent({
     //       openSubmenu();
     //     }
     //   };
-    //   let setTimeoutId: number;
-    //   const onMouseenter = () => {
-    //     clearTimeout(setTimeoutId);
-    //     openSubmenu();
-    //   };
-    //   const onMouseleave = () => {
-    //     setTimeoutId = window.setTimeout(() => {
-    //       clearTimeout(setTimeoutId);
-    //       closeSubmenu();
-    //     }, 200);
-    //   };
+
+    const inlineTransitionName = computed<TransitionName>(() => {
+      if (vMenu.mode.value === "horizontal") {
+        return "slide-up";
+      }
+      return "collapse";
+    });
+
     const key = Symbol();
 
     onBeforeMount(() => {
@@ -267,6 +352,11 @@ export default defineComponent({
       titleArrowIcon,
       onTitleClick,
       onInlineAfterLeave,
+      onTitleMouseenter,
+      onTitleMouseleave,
+      referenceRef,
+      contentRef,
+      inlineTransitionName,
       //     isInline,
       //     titleStyle,
       //     onClick,
@@ -295,11 +385,12 @@ export default defineComponent({
   transform: translateY(-50%);
 }
 
-// .v-submenu--popup-content {
-//   font-size: 14px;
-//   box-shadow: 0 3px 6px -4px rgba(0, 0, 0, 0.12),
-//     0 6px 16px 0 rgba(0, 0, 0, 0.08), 0 9px 28px 8px rgba(0, 0, 0, 0.05);
-// }
+.v-submenu--popup-content,
+.v-submenu--popup-content .v-submenu--inline-content {
+  font-size: 14px;
+  box-shadow: 0 3px 6px -4px rgba(0, 0, 0, 0.12),
+    0 6px 16px 0 rgba(0, 0, 0, 0.08), 0 9px 28px 8px rgba(0, 0, 0, 0.05);
+}
 
 .v-submenu-arrow {
   &-leave-active {

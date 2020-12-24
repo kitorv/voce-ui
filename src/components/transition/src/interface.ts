@@ -1,1 +1,1 @@
-export type TransitionName = "collapse";
+export type TransitionName = "collapse" | "slide-up";
