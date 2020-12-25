@@ -51,9 +51,8 @@ export default defineComponent({
     const style = computed<CSSProperties | undefined>(() => {
       if (vMenu.mode.value === "horizontal" || vMenu.collapse.value) return;
       const level = vSubmenu ? vSubmenu.level.value + 1 : 1;
-      return {
-        paddingLeft: vMenu.computedPaddingLeft(level),
-      };
+      const paddingLeft = `${vMenu.computedIndent(level)}px`;
+      return { paddingLeft };
     });
 
     const isActive = computed(() => {
@@ -97,9 +96,8 @@ export default defineComponent({
 .v-menu-item--disabled,
 .v-menu-item--disabled:hover {
   .v-menu-item--content {
-    color: $-color--text-placeholder;
-    background: 0 0;
-    border-color: transparent;
+    color: $-color--text-placeholder !important;
+    border-color: transparent !important;
     cursor: not-allowed;
   }
 }

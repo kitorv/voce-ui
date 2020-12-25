@@ -24,7 +24,7 @@ export interface MenuProvide {
   delSubmenu: (key: symbol) => void;
   closeAllSubmenu: () => void;
   inactiveAllSubmenu: () => void;
-  computedPaddingLeft: (level: number) => string;
+  computedIndent: (level: number) => number;
 }
 
 export const MenuProvideKey = Symbol();

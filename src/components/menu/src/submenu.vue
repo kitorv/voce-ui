@@ -1,14 +1,14 @@
 <template>
   <div class="v-submenu">
     <div
-      ref="referenceRef"
+      ref="titleRef"
       :class="titleClass"
       :style="titleStyle"
       @click="onTitleClick"
       @mouseenter="onTitleMouseenter"
       @mouseleave="onTitleMouseleave"
     >
-      <div class="v-submenu--title-content">
+      <div class="v-submenu--title-content" ref="titleContentRef">
         <v-icon
           v-if="icon"
           class="v-submenu--title-content-icon"
@@ -40,7 +40,11 @@
       </div>
     </v-transition>
     <teleport v-else to="body">
-      <v-transition name="slide-up">
+      <v-transition
+        name="slide-up"
+        @before-enter="onPopupBeforeEnter"
+        @after-leave="onPopupAfterLeave"
+      >
         <div
           v-show="isExpand"
           ref="contentRef"
@@ -68,6 +72,7 @@ import {
   inject,
   nextTick,
   onBeforeMount,
+  onBeforeUnmount,
   PropType,
   provide,
   ref,
@@ -175,9 +180,8 @@ export default defineComponent({
 
     const titleStyle = computed<CSSProperties | undefined>(() => {
       if (vMenu.mode.value === "horizontal" || vMenu.collapse.value) return;
-      return {
-        paddingLeft: vMenu.computedPaddingLeft(level.value),
-      };
+      const paddingLeft = `${vMenu.computedIndent(level.value)}px`;
+      return { paddingLeft };
     });
 
     const onTitleClick = () => {
@@ -189,12 +193,14 @@ export default defineComponent({
       }
     };
 
-    let popperInstance: Instance | undefined;
-    const referenceRef = ref<HTMLDivElement>();
+    let popperInstance: Instance | null;
+    const titleRef = ref<HTMLDivElement>();
+    const titleContentRef = ref<HTMLDivElement>();
     const contentRef = ref<HTMLDivElement>();
 
     const createPopperInstacne = () => {
-      const referenceEl = referenceRef.value;
+      if (popperInstance) return;
+      const referenceEl = titleRef.value;
       const contentEl = contentRef.value;
       if (!referenceEl || !contentEl) return;
 
@@ -219,7 +225,7 @@ export default defineComponent({
             },
           },
           {
-            name: "popupAttributes",
+            name: "submenuAttributes",
             enabled: true,
             phase: "beforeWrite",
             fn({ state }) {
@@ -233,18 +239,47 @@ export default defineComponent({
             },
             requires: ["computeStyles"],
           },
+          {
+            name: "submenuStyle",
+            enabled: true,
+            phase: "beforeWrite",
+            fn({ state }) {
+              if (vMenu.mode.value !== "horizontal" || !titleContentRef.value) {
+                return;
+              }
+              state.styles.popper.minWidth = `${titleContentRef.value.clientWidth}px`;
+            },
+            requires: ["computeStyles"],
+          },
         ],
       });
     };
 
+    const destroyPopperInstance = () => {
+      if (!popperInstance) return;
+      popperInstance.destroy();
+      popperInstance = null;
+    };
+
+    let destroyTimeoutId = -1;
+
+    const onPopupBeforeEnter = () => {
+      clearTimeout(destroyTimeoutId);
+    };
+
+    const onPopupAfterLeave = () => {
+      destroyTimeoutId = window.setTimeout(destroyPopperInstance, 200);
+    };
+
     let setTimeoutId: number;
+
     const onTitleMouseenter = () => {
       if (vMenu.mode.value === "vertical" && !vMenu.collapse.value) return;
       clearTimeout(setTimeoutId);
       submenuAcitons.open();
       nextTick(createPopperInstacne);
-      console.log(popperInstance);
     };
+
     const onTitleMouseleave = () => {
       if (vMenu.mode.value === "vertical" && !vMenu.collapse.value) return;
       setTimeoutId = window.setTimeout(() => {
@@ -268,6 +303,10 @@ export default defineComponent({
       });
     });
 
+    onBeforeUnmount(() => {
+      vMenu.delSubmenu(key);
+    });
+
     return {
       isExpand,
       isInline,
@@ -279,15 +318,22 @@ export default defineComponent({
       onInlineAfterLeave,
       onTitleMouseenter,
       onTitleMouseleave,
-      referenceRef,
+      titleRef,
+      titleContentRef,
       contentRef,
       inlineTransitionName,
+      onPopupBeforeEnter,
+      onPopupAfterLeave,
     };
   },
 });
 </script>
 
 <style lang="scss">
+.v-submenu {
+  background-color: $-color--white;
+}
+
 .v-submenu--title-arrow {
   padding-right: 40px;
 }
@@ -301,6 +347,8 @@ export default defineComponent({
 
 .v-submenu--popup-content,
 .v-submenu--popup-content .v-submenu--inline-content {
+  background-color: $-color--white;
+  padding: 4px 0;
   font-size: 14px;
   box-shadow: 0 3px 6px -4px rgba(0, 0, 0, 0.12),
     0 6px 16px 0 rgba(0, 0, 0, 0.08), 0 9px 28px 8px rgba(0, 0, 0, 0.05);

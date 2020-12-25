@@ -1,6 +1,61 @@
 <template>
   <div style="padding: 50px">
     <v-menu v-model:active-index="activeIndex">
+      <v-menu-item icon="appstore-fill" index="1">Navigation One</v-menu-item>
+      <v-menu-item icon="appstore-fill" inndex="2">
+        Navigation Two
+      </v-menu-item>
+      <v-submenu icon="appstore-fill" title="Navigation Three - Submenu">
+        <v-menu-item index="3-1">Menu Item 1</v-menu-item>
+        <v-menu-item index="3-2">Menu Item 2</v-menu-item>
+        <v-menu-item index="3-3">Menu Item 3</v-menu-item>
+        <v-menu-item index="3-4">Menu Item 4</v-menu-item>
+      </v-submenu>
+      <v-submenu icon="appstore-fill" title="Navigation Two">
+        <v-menu-item-group>
+          <v-menu-item index="5">Menu Item 5</v-menu-item>
+          <v-menu-item index="6">Menu Item 6</v-menu-item>
+        </v-menu-item-group>
+        <v-menu-item-group>
+          <v-menu-item index="7">Menu Item 7</v-menu-item>
+          <v-menu-item index="8">Menu Item 8</v-menu-item>
+        </v-menu-item-group>
+      </v-submenu>
+    </v-menu>
+
+    <div style="width: 280px">
+      <v-menu
+        v-model:active-index="activeIndex"
+        mode="vertical"
+        :collapse="collapse"
+      >
+        <v-submenu icon="appstore-fill" title="Navigation One">
+          <v-menu-item index="1">Menu Item 1</v-menu-item>
+          <v-menu-item index="2">Menu Item 2</v-menu-item>
+          <v-menu-item index="3">Menu Item 3</v-menu-item>
+          <v-menu-item index="4">Menu Item 4</v-menu-item>
+        </v-submenu>
+        <v-submenu icon="appstore-fill" title="Navigation Two">
+          <v-menu-item-group title="Group One">
+            <v-menu-item index="5">Menu Item 5</v-menu-item>
+            <v-menu-item index="6">Menu Item 6</v-menu-item>
+          </v-menu-item-group>
+          <v-menu-item-group title="Group Two">
+            <v-menu-item index="7">Menu Item 7</v-menu-item>
+            <v-menu-item index="8">Menu Item 8</v-menu-item>
+          </v-menu-item-group>
+        </v-submenu>
+        <v-submenu icon="appstore-fill" title="Navigation Three">
+          <v-menu-item index="9">Menu Item 9</v-menu-item>
+          <v-menu-item index="10">Menu Item 10</v-menu-item>
+          <v-menu-item index="11">Menu Item 11</v-menu-item>
+          <v-menu-item index="12">Menu Item 12</v-menu-item>
+        </v-submenu>
+      </v-menu>
+    </div>
+    <div @click="onClick" style="cursor: pointer">展开/折叠</div>
+
+    <!-- <v-menu v-model:active-index="activeIndex">
       <v-menu-item icon="appstore-fill" index="1">Menu One</v-menu-item>
       <v-menu-item icon="appstore-fill" inndex="2" disabled>
         Menu Two
@@ -26,9 +81,9 @@
         <v-menu-item index="5-3">Menu Five 3</v-menu-item>
         <v-menu-item index="5-4">Menu Five 4</v-menu-item>
       </v-submenu>
-    </v-menu>
-    <br />
-    <div @click="onClick" style="cursor: pointer">展开/折叠</div>
+    </v-menu> -->
+    <!-- <br />
+    
     <br />
     <div style="width: 250px">
       <v-menu
@@ -62,7 +117,7 @@
           <v-menu-item index="5-4">Menu Five 4</v-menu-item>
         </v-submenu>
       </v-menu>
-    </div>
+    </div> -->
     <!-- 
     <br />
     <br />
@@ -95,7 +150,7 @@ import { defineComponent, ref } from "vue";
 
 export default defineComponent({
   setup() {
-    const activeIndex = ref("3-5-2");
+    const activeIndex = ref("5");
 
     const collapse = ref(false);
 

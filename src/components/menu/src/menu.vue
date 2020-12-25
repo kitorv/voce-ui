@@ -56,9 +56,7 @@ export default defineComponent({
       inactiveAllSubmenu() {
         vSubmenuList.forEach((submenu) => submenu.inactive());
       },
-      computedPaddingLeft(level) {
-        return `${level * 24}px`;
-      },
+      computedIndent: (level) => level * 24,
     });
 
     watch(isCollapse, (value) => {
@@ -96,7 +94,7 @@ export default defineComponent({
   color: $-color--text-primary;
   font-size: 14px;
   text-align: left;
-  background: #ffffff;
+  background-color: $-color--white;
   transition: background-color 0.3s, width 0.3s cubic-bezier(0.2, 0, 0, 1);
 }
 
@@ -121,6 +119,10 @@ export default defineComponent({
 .v-menu-item:hover .v-menu-item--content,
 .v-menu-item--active .v-menu-item--content {
   color: $-color--primary;
+}
+
+.v-submenu--popup-content .v-menu-item--active {
+  background-color: $-color--primary-1;
 }
 
 .v-submenu--title-content-icon,

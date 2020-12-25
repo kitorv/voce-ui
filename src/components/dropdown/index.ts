@@ -12,3 +12,5 @@ export default (app: App) => {
 export * from "./src/interface";
 
 export { Dropdown, DropdownMenu, DropdownMenuItem };
+
+// TODO 动画效果替换优化，Popup销毁页面自动吧相关dom去除

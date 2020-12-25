@@ -49,3 +49,5 @@ export const install = function (app: App) {
 export const version = require("../package.json").version;
 
 // export * from "./components/*";
+
+// TODO 标准化的class和style命名规范

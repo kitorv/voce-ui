@@ -5,6 +5,7 @@ $-color--success: #46c93a !default;
 $-color--danger: #ff4757 !default;
 $-color--warning: #ffba00 !default;
 $-color--dark: #1e1e1e !default;
+$-color--white: #ffffff !default;
 
 $-color--primary-1: generateColor($-color--primary, 5, true) !default;
 $-color--primary-2: generateColor($-color--primary, 4, true) !default;
