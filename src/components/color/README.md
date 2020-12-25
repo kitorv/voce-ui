@@ -21,6 +21,7 @@
     display: flex;
     align-items: center;
     padding: 0;
+    flex-wrap: wrap;
   }
 
   li {
@@ -28,7 +29,7 @@
     position: relative;
     width: 100px;
     height: 100px;
-    margin: 0 10px;
+    margin: 10px 10px;
     color: #fff;
     border-radius: 10px;
     align-items: center;
@@ -46,6 +47,112 @@
 .vsc-color--primary {
   background: $-color--primary;
   box-shadow: 0px 15px 40px -10px rgba($-color--primary, 0.9);
+}
+</style>
+```
+
+:::
+
+## 主色辅助
+
+:::snippet 根据主要颜色生成完整的色板。
+
+```vue
+<template>
+  <div class="vsc-color">
+    <ul>
+      <li class="vsc-color--primary-1">Primary-1</li>
+      <li class="vsc-color--primary-2">Primary-2</li>
+      <li class="vsc-color--primary-3">Primary-3</li>
+      <li class="vsc-color--primary-4">Primary-4</li>
+      <li class="vsc-color--primary-5">Primary-5</li>
+      <li class="vsc-color--primary-6">Primary-6</li>
+      <li class="vsc-color--primary-7">Primary-7</li>
+      <li class="vsc-color--primary-8">Primary-8</li>
+      <li class="vsc-color--primary-9">Primary-9</li>
+      <li class="vsc-color--primary-10">Primary-10</li>
+    </ul>
+  </div>
+</template>
+
+<style lang="scss" scoped>
+.vsc-color {
+  ul {
+    display: flex;
+    align-items: center;
+    padding: 0;
+    flex-wrap: wrap;
+    max-width: 600px;
+  }
+
+  li {
+    display: inline-flex;
+    position: relative;
+    width: 100px;
+    height: 100px;
+    margin: 10px 10px;
+    color: #fff;
+    border-radius: 10px;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+    cursor: default;
+  }
+
+  li:hover {
+    transform: translate(0, 8px);
+    box-shadow: 0px 0px 40px -10px rgba(255, 255, 255, 0) !important;
+  }
+}
+
+.vsc-color--primary-1 {
+  background: $-color--primary-1;
+  box-shadow: 0px 15px 40px -10px rgba($-color--primary-1, 0.9);
+}
+
+.vsc-color--primary-2 {
+  background: $-color--primary-2;
+  box-shadow: 0px 15px 40px -10px rgba($-color--primary-2, 0.9);
+}
+
+.vsc-color--primary-3 {
+  background: $-color--primary-3;
+  box-shadow: 0px 15px 40px -10px rgba($-color--primary-3, 0.9);
+}
+
+.vsc-color--primary-4 {
+  background: $-color--primary-4;
+  box-shadow: 0px 15px 40px -10px rgba($-color--primary-4, 0.9);
+}
+
+.vsc-color--primary-5 {
+  background: $-color--primary-5;
+  box-shadow: 0px 15px 40px -10px rgba($-color--primary-5, 0.9);
+}
+
+.vsc-color--primary-6 {
+  background: $-color--primary-6;
+  box-shadow: 0px 15px 40px -10px rgba($-color--primary-6, 0.9);
+}
+
+.vsc-color--primary-7 {
+  background: $-color--primary-7;
+  box-shadow: 0px 15px 40px -10px rgba($-color--primary-7, 0.9);
+}
+
+.vsc-color--primary-8 {
+  background: $-color--primary-8;
+  box-shadow: 0px 15px 40px -10px rgba($-color--primary-8, 0.9);
+}
+
+.vsc-color--primary-9 {
+  background: $-color--primary-9;
+  box-shadow: 0px 15px 40px -10px rgba($-color--primary-9, 0.9);
+}
+
+.vsc-color--primary-10 {
+  background: $-color--primary-10;
+  box-shadow: 0px 15px 40px -10px rgba($-color--primary-10, 0.9);
 }
 </style>
 ```
@@ -74,6 +181,7 @@
     display: flex;
     align-items: center;
     padding: 0;
+    flex-wrap: wrap;
   }
 
   li {
@@ -81,7 +189,7 @@
     position: relative;
     width: 100px;
     height: 100px;
-    margin: 0 10px;
+    margin: 10px 10px;
     color: #fff;
     border-radius: 10px;
     align-items: center;
@@ -142,6 +250,7 @@
     display: flex;
     align-items: center;
     padding: 0;
+    flex-wrap: wrap;
   }
 
   li {
@@ -149,7 +258,7 @@
     position: relative;
     width: 100px;
     height: 100px;
-    margin: 0 10px;
+    margin: 10px 10px;
     color: #fff;
     border-radius: 10px;
     align-items: center;
@@ -210,6 +319,7 @@
     display: flex;
     align-items: center;
     padding: 0;
+    flex-wrap: wrap;
   }
 
   li {
@@ -217,7 +327,7 @@
     position: relative;
     width: 100px;
     height: 100px;
-    margin: 0 10px;
+    margin: 10px 10px;
     border-radius: 10px;
     align-items: center;
     justify-content: center;

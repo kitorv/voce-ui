@@ -2,7 +2,7 @@
   <div class="vs-index">
     <div class="vs-index--header">
       <img class="vs-index--header-logo" src="../images/logo.png" alt="logo" />
-      <div class="vs-index--header-title">VECO</div>
+      <div class="vs-index--header-title">VOCE</div>
     </div>
     <div class="vs-index--left">
       <vc-index-menu

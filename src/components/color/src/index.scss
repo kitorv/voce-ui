@@ -1,8 +1,21 @@
+@import "./generate";
+
 $-color--primary: #1f74ff !default;
 $-color--success: #46c93a !default;
 $-color--danger: #ff4757 !default;
 $-color--warning: #ffba00 !default;
 $-color--dark: #1e1e1e !default;
+
+$-color--primary-1: generateColor($-color--primary, 5, true) !default;
+$-color--primary-2: generateColor($-color--primary, 4, true) !default;
+$-color--primary-3: generateColor($-color--primary, 3, true) !default;
+$-color--primary-4: generateColor($-color--primary, 2, true) !default;
+$-color--primary-5: generateColor($-color--primary, 1, true) !default;
+$-color--primary-6: $-color--primary !default;
+$-color--primary-7: generateColor($-color--primary, 1, false) !default;
+$-color--primary-8: generateColor($-color--primary, 2, false) !default;
+$-color--primary-9: generateColor($-color--primary, 3, false) !default;
+$-color--primary-10: generateColor($-color--primary, 4, false) !default;
 
 $-color--text-primary: #333333 !default;
 $-color--text-regular: #666666 !default;
