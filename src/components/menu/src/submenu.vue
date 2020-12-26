@@ -80,6 +80,7 @@ import {
 import {
   MenuProvide,
   MenuProvideKey,
+  Submenu,
   SubmenuIcon,
   SubMenuProvide,
   SubMenuProvideKey,
@@ -123,7 +124,8 @@ export default defineComponent({
       isInline.value = isInlineValue.value;
     };
 
-    const submenuAcitons = {
+    const submenuContext: Submenu = {
+      isActive: computed(() => isActive.value),
       open() {
         isInline.value = isInlineValue.value;
         nextTick(() => {
@@ -148,9 +150,9 @@ export default defineComponent({
       level,
       active() {
         vSubmenu?.active();
-        submenuAcitons.active();
+        submenuContext.active();
         if (vMenu.mode.value === "horizontal" || vMenu.collapse.value) return;
-        submenuAcitons.open();
+        submenuContext.open();
       },
     });
 
@@ -187,9 +189,9 @@ export default defineComponent({
     const onTitleClick = () => {
       if (vMenu.mode.value === "horizontal" || vMenu.collapse.value) return;
       if (isExpand.value) {
-        submenuAcitons.close();
+        submenuContext.close();
       } else {
-        submenuAcitons.open();
+        submenuContext.open();
       }
     };
 
@@ -276,7 +278,7 @@ export default defineComponent({
     const onTitleMouseenter = () => {
       if (vMenu.mode.value === "vertical" && !vMenu.collapse.value) return;
       clearTimeout(setTimeoutId);
-      submenuAcitons.open();
+      submenuContext.open();
       nextTick(createPopperInstacne);
     };
 
@@ -284,7 +286,7 @@ export default defineComponent({
       if (vMenu.mode.value === "vertical" && !vMenu.collapse.value) return;
       setTimeoutId = window.setTimeout(() => {
         clearTimeout(setTimeoutId);
-        submenuAcitons.close();
+        submenuContext.close();
       }, 200);
     };
 
@@ -297,10 +299,7 @@ export default defineComponent({
     const key = Symbol();
 
     onBeforeMount(() => {
-      vMenu.addSubmenu(key, {
-        isActive: computed(() => isActive.value),
-        ...submenuAcitons,
-      });
+      vMenu.addSubmenu(key, submenuContext);
     });
 
     onBeforeUnmount(() => {

@@ -7,7 +7,7 @@ export type MenuItemIcon = IconType;
 
 export type SubmenuIcon = IconType;
 
-export interface MenuSubmenu {
+export interface Submenu {
   isActive: ComputedRef<boolean>;
   open: () => void;
   close: () => void;
@@ -20,7 +20,7 @@ export interface MenuProvide {
   mode: ComputedRef<MenuMode>;
   activeIndex: ComputedRef<number | string | undefined>;
   updateActiveIndex: (index: number | string | undefined) => void;
-  addSubmenu: (key: symbol, submenu: MenuSubmenu) => void;
+  addSubmenu: (key: symbol, submenu: Submenu) => void;
   delSubmenu: (key: symbol) => void;
   closeAllSubmenu: () => void;
   inactiveAllSubmenu: () => void;

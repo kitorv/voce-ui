@@ -6,12 +6,7 @@
 
 <script lang="ts">
 import { computed, defineComponent, PropType, provide, watch } from "vue";
-import {
-  MenuMode,
-  MenuProvide,
-  MenuProvideKey,
-  MenuSubmenu,
-} from "./interface";
+import { MenuMode, MenuProvide, MenuProvideKey, Submenu } from "./interface";
 
 export default defineComponent({
   name: "VMenu",
@@ -31,7 +26,7 @@ export default defineComponent({
     },
   },
   setup(props, { emit }) {
-    const vSubmenuList: Map<symbol, MenuSubmenu> = new Map();
+    const vSubmenuList: Map<symbol, Submenu> = new Map();
 
     const isCollapse = computed(() => {
       return props.mode === "vertical" && props.collapse;
