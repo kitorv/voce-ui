@@ -16,6 +16,7 @@ import {
   defineComponent,
   inject,
   nextTick,
+  onBeforeMount,
   PropType,
   watch,
 } from "vue";
@@ -59,15 +60,16 @@ export default defineComponent({
       return vMenu.activeIndex.value === props.index;
     });
 
-    watch(
-      [isActive, vMenu.collapse],
-      () => {
-        vMenu.inactiveAllSubmenu();
-        if (!isActive.value) return;
-        nextTick(vSubmenu?.active);
-      },
-      { immediate: true }
-    );
+    watch([isActive, vMenu.collapse], () => {
+      vMenu.inactiveAllSubmenu();
+      if (!isActive.value) return;
+      nextTick(vSubmenu?.active);
+    });
+
+    onBeforeMount(() => {
+      if (!isActive.value) return;
+      vSubmenu?.active(true);
+    });
 
     const classes = computed(() => {
       return [

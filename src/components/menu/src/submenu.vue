@@ -1,5 +1,5 @@
 <template>
-  <div class="v-submenu">
+  <div :class="submenuClass">
     <div
       ref="titleRef"
       :class="titleClass"
@@ -124,10 +124,20 @@ export default defineComponent({
       isInline.value = isInlineValue.value;
     };
 
+    const isCollapseTransition = ref(false);
+
+    const submenuClass = computed(() => {
+      return [
+        "v-submenu",
+        { "v-submenu--no-collapse-transition": isCollapseTransition.value },
+      ];
+    });
+
     const submenuContext: Submenu = {
       isActive: computed(() => isActive.value),
-      open() {
+      open(isTransition = false) {
         isInline.value = isInlineValue.value;
+        isCollapseTransition.value = isTransition;
         nextTick(() => {
           isExpand.value = true;
         });
@@ -148,11 +158,11 @@ export default defineComponent({
 
     provide<SubMenuProvide>(SubMenuProvideKey, {
       level,
-      active() {
-        vSubmenu?.active();
+      active(isInitActive) {
+        vSubmenu?.active(isInitActive);
         submenuContext.active();
         if (vMenu.mode.value === "horizontal" || vMenu.collapse.value) return;
-        submenuContext.open();
+        submenuContext.open(isInitActive);
       },
     });
 
@@ -307,6 +317,7 @@ export default defineComponent({
     });
 
     return {
+      submenuClass,
       isExpand,
       isInline,
       titleClass,
@@ -368,6 +379,12 @@ export default defineComponent({
   &-leave-to {
     opacity: 0;
     font-size: 0;
+  }
+}
+
+.v-submenu--no-collapse-transition {
+  .v-transition--collapse {
+    transition: all 0s;
   }
 }
 </style>

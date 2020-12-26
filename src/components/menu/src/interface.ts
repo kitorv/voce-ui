@@ -9,7 +9,7 @@ export type SubmenuIcon = IconType;
 
 export interface Submenu {
   isActive: ComputedRef<boolean>;
-  open: () => void;
+  open: (isCollapseTransition?: boolean) => void;
   close: () => void;
   active: () => void;
   inactive: () => void;
@@ -31,7 +31,7 @@ export const MenuProvideKey = Symbol();
 
 export type SubMenuProvide = {
   level: ComputedRef<number>;
-  active: () => void;
+  active: (isInitActve?: boolean) => void;
 } | null;
 
 export const SubMenuProvideKey = Symbol();
