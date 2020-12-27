@@ -1,5 +1,5 @@
 <template>
-  <div :class="menuClass">
+  <div :class="rootClass">
     <slot />
   </div>
 </template>
@@ -46,7 +46,7 @@ export default defineComponent({
       });
     });
 
-    const menuClass = computed(() => {
+    const rootClass = computed(() => {
       return [
         "v-menu",
         `v-menu--mode-${props.mode}`,
@@ -78,7 +78,7 @@ export default defineComponent({
       computedIndent: (level) => level * 24,
     });
 
-    return { menuClass, isCollapse };
+    return { rootClass, isCollapse };
   },
 });
 </script>
@@ -91,6 +91,7 @@ export default defineComponent({
   text-align: left;
   background-color: $-color--white;
   transition: background-color 0.3s, width 0.3s cubic-bezier(0.2, 0, 0, 1);
+  width: 100%;
 }
 
 .v-submenu--title,

@@ -1,5 +1,5 @@
 <template>
-  <div :class="menuItemClass" :style="menuItemStyle">
+  <div :class="rootClass" :style="rootStyle">
     <div class="v-menu-item--content" @click="onClick">
       <v-icon v-if="icon" :type="icon" class="v-menu-item--content-icon" />
       <span class="v-menu-item--content-text">
@@ -59,14 +59,14 @@ export default defineComponent({
       nextTick(vSubmenu?.active);
     });
 
-    const menuItemStyle = computed<CSSProperties | undefined>(() => {
+    const rootStyle = computed<CSSProperties | undefined>(() => {
       if (vMenu.mode.value === "horizontal" || vMenu.collapse.value) return;
       const level = vSubmenu ? vSubmenu.level.value + 1 : 1;
       const paddingLeft = `${vMenu.computedIndent(level)}px`;
       return { paddingLeft };
     });
 
-    const menuItemClass = computed(() => {
+    const rootClass = computed(() => {
       return [
         "v-menu-item",
         {
@@ -89,7 +89,7 @@ export default defineComponent({
       vSubmenu?.active(true);
     });
 
-    return { menuItemClass, menuItemStyle, onClick };
+    return { rootClass, rootStyle, onClick };
   },
 });
 </script>

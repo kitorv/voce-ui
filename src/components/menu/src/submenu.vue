@@ -1,5 +1,5 @@
 <template>
-  <div :class="submenuClass">
+  <div :class="rootClass">
     <div
       ref="titleRef"
       :class="titleClass"
@@ -61,11 +61,6 @@
 
 <script lang="ts">
 import {
-  Transition as VTransition,
-  TransitionName,
-} from "@/components/transition";
-import { createPopper, Instance, Placement } from "@popperjs/core";
-import {
   computed,
   CSSProperties,
   defineComponent,
@@ -85,6 +80,11 @@ import {
   SubMenuProvide,
   SubMenuProvideKey,
 } from "./interface";
+import {
+  Transition as VTransition,
+  TransitionName,
+} from "@/components/transition";
+import { createPopper, Instance, Placement } from "@popperjs/core";
 
 export default defineComponent({
   components: { VTransition },
@@ -104,29 +104,25 @@ export default defineComponent({
 
     const vSubmenu = inject<SubMenuProvide>(SubMenuProvideKey, null);
 
-    const level = computed(() => {
-      return vSubmenu ? vSubmenu.level.value + 1 : 1;
-    });
-
     const isExpand = ref(false);
 
     const isActive = ref(false);
 
-    const isInlineValue = computed(() => {
+    const isInlineValue = () => {
       if (vSubmenu) return true;
       if (vMenu.mode.value === "horizontal") return false;
       return !vMenu.collapse.value;
-    });
+    };
 
-    const isInline = ref(isInlineValue.value);
+    const isInline = ref(isInlineValue());
 
     const onInlineAfterLeave = () => {
-      isInline.value = isInlineValue.value;
+      isInline.value = isInlineValue();
     };
 
     const isCollapseTransition = ref(false);
 
-    const submenuClass = computed(() => {
+    const rootClass = computed(() => {
       return [
         "v-submenu",
         { "v-submenu--no-collapse-transition": isCollapseTransition.value },
@@ -136,7 +132,7 @@ export default defineComponent({
     const submenuContext: Submenu = {
       isActive: computed(() => isActive.value),
       open(isTransition = false) {
-        isInline.value = isInlineValue.value;
+        isInline.value = isInlineValue();
         isCollapseTransition.value = isTransition;
         nextTick(() => {
           isExpand.value = true;
@@ -144,7 +140,7 @@ export default defineComponent({
       },
       close() {
         if (!isExpand.value) {
-          isInline.value = isInlineValue.value;
+          isInline.value = isInlineValue();
         }
         isExpand.value = false;
       },
@@ -157,7 +153,9 @@ export default defineComponent({
     };
 
     provide<SubMenuProvide>(SubMenuProvideKey, {
-      level,
+      level: computed(() => {
+        return vSubmenu ? vSubmenu.level.value + 1 : 1;
+      }),
       active(isInitActive) {
         vSubmenu?.active(isInitActive);
         submenuContext.active();
@@ -192,7 +190,8 @@ export default defineComponent({
 
     const titleStyle = computed<CSSProperties | undefined>(() => {
       if (vMenu.mode.value === "horizontal" || vMenu.collapse.value) return;
-      const paddingLeft = `${vMenu.computedIndent(level.value)}px`;
+      const level = vSubmenu ? vSubmenu.level.value : 1;
+      const paddingLeft = `${vMenu.computedIndent(level)}px`;
       return { paddingLeft };
     });
 
@@ -317,7 +316,7 @@ export default defineComponent({
     });
 
     return {
-      submenuClass,
+      rootClass,
       isExpand,
       isInline,
       titleClass,
