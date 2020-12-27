@@ -1,5 +1,5 @@
 <template>
-  <div :class="classes">
+  <div :class="menuClass">
     <slot />
   </div>
 </template>
@@ -32,6 +32,30 @@ export default defineComponent({
       return props.mode === "vertical" && props.collapse;
     });
 
+    watch(isCollapse, (value) => {
+      vSubmenuList.forEach((submenu) => {
+        if (value) {
+          submenu.close();
+          return;
+        }
+        if (submenu.isActive.value) {
+          submenu.open();
+        } else {
+          submenu.close();
+        }
+      });
+    });
+
+    const menuClass = computed(() => {
+      return [
+        "v-menu",
+        `v-menu--mode-${props.mode}`,
+        {
+          "v-menu--collapse": isCollapse.value,
+        },
+      ];
+    });
+
     provide<MenuProvide>(MenuProvideKey, {
       mode: computed(() => props.mode),
       collapse: isCollapse,
@@ -54,31 +78,7 @@ export default defineComponent({
       computedIndent: (level) => level * 24,
     });
 
-    watch(isCollapse, (value) => {
-      vSubmenuList.forEach((submenu) => {
-        if (value) {
-          submenu.close();
-          return;
-        }
-        if (submenu.isActive.value) {
-          submenu.open();
-        } else {
-          submenu.close();
-        }
-      });
-    });
-
-    const classes = computed(() => {
-      return [
-        "v-menu",
-        `v-menu--mode-${props.mode}`,
-        {
-          "v-menu--inline-collapse": isCollapse.value,
-        },
-      ];
-    });
-
-    return { classes, isCollapse };
+    return { menuClass, isCollapse };
   },
 });
 </script>
@@ -193,7 +193,7 @@ export default defineComponent({
   }
 }
 
-.v-menu--inline-collapse {
+.v-menu--collapse {
   width: 80px;
   transition: background-color 0.3s, width 0.3s cubic-bezier(0.2, 0, 0, 1) 0s;
   overflow: hidden;

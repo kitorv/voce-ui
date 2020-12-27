@@ -1,5 +1,5 @@
 <template>
-  <div :class="classes" :style="style">
+  <div :class="menuItemClass" :style="menuItemStyle">
     <div class="v-menu-item--content" @click="onClick">
       <v-icon v-if="icon" :type="icon" class="v-menu-item--content-icon" />
       <span class="v-menu-item--content-text">
@@ -49,13 +49,6 @@ export default defineComponent({
 
     const vSubmenu = inject<SubMenuProvide>(SubMenuProvideKey, null);
 
-    const style = computed<CSSProperties | undefined>(() => {
-      if (vMenu.mode.value === "horizontal" || vMenu.collapse.value) return;
-      const level = vSubmenu ? vSubmenu.level.value + 1 : 1;
-      const paddingLeft = `${vMenu.computedIndent(level)}px`;
-      return { paddingLeft };
-    });
-
     const isActive = computed(() => {
       return vMenu.activeIndex.value === props.index;
     });
@@ -66,12 +59,14 @@ export default defineComponent({
       nextTick(vSubmenu?.active);
     });
 
-    onBeforeMount(() => {
-      if (!isActive.value) return;
-      vSubmenu?.active(true);
+    const menuItemStyle = computed<CSSProperties | undefined>(() => {
+      if (vMenu.mode.value === "horizontal" || vMenu.collapse.value) return;
+      const level = vSubmenu ? vSubmenu.level.value + 1 : 1;
+      const paddingLeft = `${vMenu.computedIndent(level)}px`;
+      return { paddingLeft };
     });
 
-    const classes = computed(() => {
+    const menuItemClass = computed(() => {
       return [
         "v-menu-item",
         {
@@ -89,7 +84,12 @@ export default defineComponent({
       vMenu.closeAllSubmenu();
     };
 
-    return { classes, style, onClick };
+    onBeforeMount(() => {
+      if (!isActive.value) return;
+      vSubmenu?.active(true);
+    });
+
+    return { menuItemClass, menuItemStyle, onClick };
   },
 });
 </script>
@@ -100,7 +100,7 @@ export default defineComponent({
   .v-menu-item--content {
     color: $-color--text-placeholder !important;
     border-color: transparent !important;
-    cursor: not-allowed;
+    cursor: not-allowed !important;
   }
 }
 </style>

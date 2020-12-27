@@ -1,6 +1,6 @@
 <template>
   <div class="v-menu-item-group">
-    <div class="v-menu-item-group--title" :style="style">{{ title }}</div>
+    <div class="v-menu-item-group--title" :style="titleStyle">{{ title }}</div>
     <slot />
   </div>
 </template>
@@ -27,7 +27,7 @@ export default defineComponent({
 
     const vSubmenu = inject<SubMenuProvide>(SubMenuProvideKey, null);
 
-    const style = computed<CSSProperties | undefined>(() => {
+    const titleStyle = computed<CSSProperties | undefined>(() => {
       if (vMenu.mode.value === "horizontal" || vMenu.collapse.value) return;
       const level = vSubmenu ? vSubmenu.level.value + 1 : 1;
       const indent = vMenu.computedIndent(level) - 16;
@@ -35,7 +35,7 @@ export default defineComponent({
       return { paddingLeft };
     });
 
-    return { style };
+    return { titleStyle };
   },
 });
 </script>
