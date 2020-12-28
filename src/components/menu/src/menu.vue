@@ -117,6 +117,7 @@ export default defineComponent({
   color: $-color--primary;
 }
 
+.v-submenu--inline-content .v-menu-item--active,
 .v-submenu--popup-content .v-menu-item--active {
   background-color: $-color--primary-1;
 }
@@ -191,6 +192,24 @@ export default defineComponent({
     max-width: 0;
     opacity: 0;
     text-overflow: ellipsis;
+  }
+
+  .v-menu-item::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    border-right: 3px solid $-color--primary;
+    transition: transform 0.15s cubic-bezier(0.645, 0.045, 0.355, 1),
+      opacity 0.15s cubic-bezier(0.645, 0.045, 0.355, 1);
+    transform: scaleY(0.0001);
+    opacity: 0;
+  }
+
+  .v-menu-item--active::after {
+    transform: scaleY(1);
+    opacity: 1;
   }
 }
 
