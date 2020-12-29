@@ -104,6 +104,8 @@ export default defineComponent({
 
     const vSubmenu = inject<SubMenuProvide>(SubMenuProvideKey, null);
 
+    const key = Symbol();
+
     const isExpand = ref(false);
 
     const isActive = ref(false);
@@ -136,6 +138,12 @@ export default defineComponent({
         isCollapseTransition.value = isTransition;
         nextTick(() => {
           isExpand.value = true;
+          if (!vMenu.accordion.value) return;
+          if (vSubmenu) {
+            vSubmenu.closeAccordionSumenus([key]);
+          } else {
+            vMenu.closeAccordionSumenus([key]);
+          }
         });
       },
       close() {
@@ -161,6 +169,10 @@ export default defineComponent({
         submenuContext.active();
         if (vMenu.mode.value === "horizontal" || vMenu.collapse.value) return;
         submenuContext.open(isInitActive);
+      },
+      closeAccordionSumenus(excludeKeys = []) {
+        excludeKeys.push(key);
+        vSubmenu?.closeAccordionSumenus(excludeKeys);
       },
     });
 
@@ -304,8 +316,6 @@ export default defineComponent({
       if (!vMenu.collapse.value) return "collapse";
       return vSubmenu ? "slide-up" : "collapse";
     });
-
-    const key = Symbol();
 
     onBeforeMount(() => {
       vMenu.addSubmenu(key, submenuContext);

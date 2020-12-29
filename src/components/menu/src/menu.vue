@@ -24,6 +24,10 @@ export default defineComponent({
       type: Boolean,
       default: false,
     },
+    accordion: {
+      type: Boolean,
+      default: false,
+    },
   },
   setup(props, { emit }) {
     const vSubmenuList: Map<symbol, Submenu> = new Map();
@@ -59,6 +63,7 @@ export default defineComponent({
     provide<MenuProvide>(MenuProvideKey, {
       mode: computed(() => props.mode),
       collapse: isCollapse,
+      accordion: computed(() => props.accordion),
       activeIndex: computed(() => props.activeIndex),
       updateActiveIndex(value) {
         emit("update:active-index", value);
@@ -71,6 +76,12 @@ export default defineComponent({
       },
       closeAllSubmenu() {
         vSubmenuList.forEach((submenu) => submenu.close());
+      },
+      closeAccordionSumenus(excludeKeys) {
+        vSubmenuList.forEach((submenu, index) => {
+          if (excludeKeys.includes(index)) return;
+          submenu.close();
+        });
       },
       inactiveAllSubmenu() {
         vSubmenuList.forEach((submenu) => submenu.inactive());
