@@ -1,5 +1,5 @@
 <template>
-  <button :class="classes" @click="onClick">
+  <button :class="rootClass" @click="onClick">
     <span v-if="isShowIcon" class="v-button--icon">
       <v-icon :type="icon" />
     </span>
@@ -27,11 +27,11 @@ export default defineComponent({
     },
     size: {
       type: String as PropType<ButttonSize>,
-      default: "default" as ButttonSize,
+      default: "middle" as ButttonSize,
     },
     shape: {
       type: String as PropType<ButttonShape>,
-      default: "default" as ButttonShape,
+      default: undefined,
     },
     icon: {
       type: String as PropType<ButtonIcon>,
@@ -77,7 +77,7 @@ export default defineComponent({
       return slots.default && !isCircleLoading;
     });
 
-    const classes = computed(() => {
+    const rootClass = computed(() => {
       return [
         `v-button`,
         `v-button--type-${props.type}`,
@@ -103,7 +103,7 @@ export default defineComponent({
       emit("click", event);
     };
 
-    return { classes, isShowIcon, isShowText, onClick };
+    return { rootClass, isShowIcon, isShowText, onClick };
   },
 });
 </script>
@@ -166,7 +166,7 @@ export default defineComponent({
   }
 }
 
-.v-button--size-default {
+.v-button--size-middle {
   height: 32px;
   padding: 4px 15px;
   font-size: 14px;

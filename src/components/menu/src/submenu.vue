@@ -33,6 +33,7 @@
         v-show="isExpand"
         ref="contentRef"
         class="v-submenu--inline-content"
+        :style="contentStyle"
         @mouseenter="onTitleMouseenter"
         @mouseleave="onTitleMouseleave"
       >
@@ -49,6 +50,7 @@
           v-show="isExpand"
           ref="contentRef"
           class="v-submenu--popup-content"
+          :style="contentStyle"
           @mouseenter="onTitleMouseenter"
           @mouseleave="onTitleMouseleave"
         >
@@ -71,6 +73,7 @@ import {
   PropType,
   provide,
   ref,
+  watch,
 } from "vue";
 import {
   MenuProvide,
@@ -85,6 +88,7 @@ import {
   TransitionName,
 } from "@/components/transition";
 import { createPopper, Instance, Placement } from "@popperjs/core";
+import { nextZIndex } from "@/utils";
 
 export default defineComponent({
   components: { VTransition },
@@ -205,6 +209,17 @@ export default defineComponent({
       const level = vSubmenu ? vSubmenu.level.value + 1 : 1;
       const paddingLeft = `${vMenu.computedIndent(level)}px`;
       return { paddingLeft };
+    });
+
+    const zIndex = ref(nextZIndex());
+
+    watch(isExpand, (value) => {
+      if (!value) return;
+      zIndex.value = nextZIndex();
+    });
+
+    const contentStyle = computed<CSSProperties>(() => {
+      return { zIndex: zIndex.value };
     });
 
     const onTitleClick = () => {
@@ -333,6 +348,7 @@ export default defineComponent({
       titleStyle,
       isShowTitleArrow,
       titleArrowIcon,
+      contentStyle,
       onTitleClick,
       onInlineAfterLeave,
       onTitleMouseenter,

@@ -21,7 +21,7 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import VcIndexMenu from "../components/index-menu.vue";
+import VcIndexMenu from "./index-menu.vue";
 
 export default defineComponent({
   components: { VcIndexMenu },
@@ -355,7 +355,7 @@ export default defineComponent({
   left: 0;
   height: 48px;
   padding: 8px 32px;
-  background: #ffffff;
+  background: $-color--white;
   z-index: 1200;
   display: flex;
   align-items: center;

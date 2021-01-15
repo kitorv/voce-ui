@@ -227,23 +227,23 @@ export default defineComponent({
 :::
 
 [button-type] = _default \| primary \| success \| warning \| danger_
-[button-size] = _large \| default \| small_
+[button-size] = _large \| middle \| small_
 [button-shape] = _circle \| round_
 
 ## Button Props
 
-| 属性     | 说明                  | 类型               | 默认值    |
-| -------- | --------------------- | ------------------ | --------- |
-| type     | 类型：[[button-type]] | _String_           | `default` |
-| size     | 尺寸：[[button-size]] | _String_           | `default` |
-| shape    | 形状：[button-shape]] | _String_           | —         |
-| icon     | 图标                  | _String_           | —         |
-| dashed   | 虚线边框              | _Boolean_          | `false`   |
-| plain    | 简洁模式              | _Boolean_          | `false`   |
-| link     | 链接模式              | _Boolean_          | `false`   |
-| disabled | 禁用状态              | _Boolean_          | `false`   |
-| loading  | 加载中                | _Boolean_          | `false`   |
-| to       | 路由                  | _RouteLocationRaw_ | —         |
+| 属性     | 说明                   | 类型               | 默认值    |
+| -------- | ---------------------- | ------------------ | --------- |
+| type     | 类型：[[button-type]]  | _String_           | `default` |
+| size     | 尺寸：[[button-size]]  | _String_           | `middle`  |
+| shape    | 形状：[[button-shape]] | _String_           | —         |
+| icon     | 图标                   | _String_           | —         |
+| dashed   | 虚线边框               | _Boolean_          | `false`   |
+| plain    | 简洁模式               | _Boolean_          | `false`   |
+| link     | 链接模式               | _Boolean_          | `false`   |
+| disabled | 禁用状态               | _Boolean_          | `false`   |
+| loading  | 加载中                 | _Boolean_          | `false`   |
+| to       | 目标路由               | _RouteLocationRaw_ | —         |
 
 ## Button Events
 

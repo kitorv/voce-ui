@@ -38,14 +38,10 @@ export default defineComponent({
 
     watch(isCollapse, (value) => {
       vSubmenuList.forEach((submenu) => {
-        if (value) {
+        if (value || !submenu.isActive.value) {
           submenu.close();
-          return;
-        }
-        if (submenu.isActive.value) {
-          submenu.open();
         } else {
-          submenu.close();
+          submenu.open();
         }
       });
     });

@@ -1,14 +1,10 @@
 <template>
-  <div :class="['vc-left-menu-item', classes]">
-    <router-link
-      v-if="data.path"
-      class="vc-left-menu-item--link"
-      :to="data.path"
-    >
+  <div :class="['vs-index-menu', classes]">
+    <router-link v-if="data.path" class="vs-index-menu--link" :to="data.path">
       {{ data.title }}
       <span v-text="data.subtitle" />
     </router-link>
-    <div v-else class="vc-left-menu-item--title" v-text="data.title" />
+    <div v-else class="vs-index-menu--title" v-text="data.title" />
     <vc-index-menu
       v-for="(child, index) in data.children"
       :key="index"
@@ -42,8 +38,8 @@ export default defineComponent({
   },
   setup(props) {
     const classes = {
-      "vc-left-menu-item--root": props.level === 0,
-      "vc-left-menu-item--group":
+      "vs-index-menu--root": props.level === 0,
+      "vs-index-menu--group":
         props.level > 0 &&
         props.data.children &&
         props.data.children.length > 0,
@@ -54,7 +50,7 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-.vc-left-menu-item--link {
+.vs-index-menu--link {
   display: block;
   position: relative;
   padding: 8px 24px;
@@ -72,11 +68,10 @@ export default defineComponent({
     text-decoration: none;
     outline: 0;
     color: $-color--primary;
-    background: mix($-color--primary, #ffffff, 3%);
   }
 
   &.router-link-exact-active {
-    background: mix($-color--primary, #ffffff, 3%);
+    background: $-color--primary-1;
     color: $-color--primary;
   }
 
@@ -92,8 +87,8 @@ export default defineComponent({
   }
 }
 
-.vc-left-menu-item--root {
-  > .vc-left-menu-item--title {
+.vs-index-menu--root {
+  > .vs-index-menu--title {
     font-size: 14px;
     color: $-color--text-primary;
     padding: 12px 8px 12px 24px;
@@ -101,8 +96,8 @@ export default defineComponent({
   }
 }
 
-.vc-left-menu-item--group {
-  > .vc-left-menu-item--title {
+.vs-index-menu--group {
+  > .vs-index-menu--title {
     color: $-color--text-secondary;
     font-size: 14px;
     padding: 6px 8px 6px 24px;
