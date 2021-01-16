@@ -24,6 +24,61 @@
     "body": "$-color--dark",
     "description": "#1e1e1e"
   },
+  "$-color--white": {
+    "prefix": "$-color--white",
+    "body": "$-color--white",
+    "description": "#ffffff"
+  },
+  "$-color--primary-1": {
+    "prefix": "$-color--primary-1",
+    "body": "$-color--primary-1",
+    "description": "generateColor($-color--primary, 5, true)"
+  },
+  "$-color--primary-2": {
+    "prefix": "$-color--primary-2",
+    "body": "$-color--primary-2",
+    "description": "generateColor($-color--primary, 4, true)"
+  },
+  "$-color--primary-3": {
+    "prefix": "$-color--primary-3",
+    "body": "$-color--primary-3",
+    "description": "generateColor($-color--primary, 3, true)"
+  },
+  "$-color--primary-4": {
+    "prefix": "$-color--primary-4",
+    "body": "$-color--primary-4",
+    "description": "generateColor($-color--primary, 2, true)"
+  },
+  "$-color--primary-5": {
+    "prefix": "$-color--primary-5",
+    "body": "$-color--primary-5",
+    "description": "generateColor($-color--primary, 1, true)"
+  },
+  "$-color--primary-6": {
+    "prefix": "$-color--primary-6",
+    "body": "$-color--primary-6",
+    "description": "$-color--primary"
+  },
+  "$-color--primary-7": {
+    "prefix": "$-color--primary-7",
+    "body": "$-color--primary-7",
+    "description": "generateColor($-color--primary, 1, false)"
+  },
+  "$-color--primary-8": {
+    "prefix": "$-color--primary-8",
+    "body": "$-color--primary-8",
+    "description": "generateColor($-color--primary, 2, false)"
+  },
+  "$-color--primary-9": {
+    "prefix": "$-color--primary-9",
+    "body": "$-color--primary-9",
+    "description": "generateColor($-color--primary, 3, false)"
+  },
+  "$-color--primary-10": {
+    "prefix": "$-color--primary-10",
+    "body": "$-color--primary-10",
+    "description": "generateColor($-color--primary, 4, false)"
+  },
   "$-color--text-primary": {
     "prefix": "$-color--text-primary",
     "body": "$-color--text-primary",
