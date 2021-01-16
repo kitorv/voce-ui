@@ -26,11 +26,13 @@
 ```vue
 <template>
   <v-text>Default</v-text>
+  <v-text type="regular">Regular</v-text>
+  <v-text type="secondary">Secondary</v-text>
+  <v-text type="placeholder">Placeholder</v-text>
   <v-text type="primary">Primary</v-text>
   <v-text type="success">Success</v-text>
   <v-text type="warning">Warning</v-text>
   <v-text type="danger">Danger</v-text>
-  <v-text type="info">Info</v-text>
 </template>
 ```
 
@@ -68,14 +70,13 @@
 
 ## Text Props
 
-[text-type] = _default \| primary \| success \| warning \| danger \| info_
+[text-type] = _default \| regular \| secondary \| placeholder \| primary \| success \| danger \| warning_
 [title-type] = _h1 \| h2 \| h3 \| h4 \| h5 \| h6_
 
 | 属性      | 说明                     | 类型      | 默认值    |
 | --------- | ------------------------ | --------- | --------- |
 | type      | 类型：[[text-type]]      | _String_  | `default` |
 | title     | 标题类型：[[title-type]] | _String_  | —         |
-| disabled  | 禁用                     | _Boolean_ | `false`   |
 | mark      | 标记                     | _Boolean_ | `false`   |
 | code      | 代码块                   | _Boolean_ | `false`   |
 | keyboard  | 键盘样式                 | _Boolean_ | `false`   |
@@ -83,12 +84,6 @@
 | delete    | 删除线                   | _Boolean_ | `false`   |
 | strong    | 加粗                     | _Boolean_ | `false`   |
 | ellipsis  | 省略号                   | _Boolean_ | `false`   |
-
-## Text Events
-
-| 事件名称 | 说明     | 回调参数      |
-| -------- | -------- | ------------- |
-| click    | 点击触发 | _event:Event_ |
 
 ## Text Slots
 

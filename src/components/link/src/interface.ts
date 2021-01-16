@@ -2,10 +2,13 @@ import { IconType } from "@/components/icon";
 
 export type LinkType =
   | "default"
+  | "dark"
+  | "regular"
+  | "secondary"
+  | "placeholder"
   | "primary"
   | "success"
-  | "warning"
   | "danger"
-  | "info";
+  | "warning";
 
 export type LinkIcon = IconType;

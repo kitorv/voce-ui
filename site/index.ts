@@ -6,8 +6,8 @@ const app = createApp(App);
 import VcMarkdownView from "./components/markdown-view.vue";
 app.component(VcMarkdownView.name as string, VcMarkdownView);
 
-import VcCodeSnippet from "./components/code-snippet.vue";
-app.component(VcCodeSnippet.name as string, VcCodeSnippet);
+import VcMarkdownSnippet from "./components/markdown-snippet.vue";
+app.component(VcMarkdownSnippet.name as string, VcMarkdownSnippet);
 
 import VcIconView from "./views/icons.vue";
 app.component(VcIconView.name as string, VcIconView);

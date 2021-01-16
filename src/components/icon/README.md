@@ -58,7 +58,7 @@
 
 ## Icon Props
 
-[icon-effect] = _dark \| regular \| secondary \| placeholder \| primary \| success \| danger \| warning_
+[icon-effect] = _default \| regular \| secondary \| placeholder \| primary \| success \| danger \| warning_
 
 | 属性   | 说明                  | 类型     | 默认值 |
 | ------ | --------------------- | -------- | ------ |

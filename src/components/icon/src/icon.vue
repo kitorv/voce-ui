@@ -1,5 +1,5 @@
 <template>
-  <i :class="classes" :style="style" />
+  <i :class="rootClass" :style="style" />
 </template>
 
 <script lang="ts">
@@ -23,7 +23,7 @@ export default defineComponent({
     },
   },
   setup(props) {
-    const classes = computed(() => {
+    const rootClass = computed(() => {
       return [
         "v-icon",
         `v-icon-${props.type}`,
@@ -38,7 +38,7 @@ export default defineComponent({
       return { fontSize: `${props.size}px` };
     });
 
-    return { classes, style };
+    return { rootClass, style };
   },
 });
 </script>

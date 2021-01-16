@@ -9,11 +9,13 @@
 ```vue
 <template>
   <v-link>Default</v-link>
+  <v-link type="regular">Regular</v-link>
+  <v-link type="secondary">Secondary</v-link>
+  <v-link type="placeholder">Placeholder</v-link>
   <v-link type="primary">Primary</v-link>
   <v-link type="success">Success</v-link>
   <v-link type="warning">Warning</v-link>
   <v-link type="danger">Danger</v-link>
-  <v-link type="info">Info</v-link>
 </template>
 ```
 
@@ -26,11 +28,13 @@
 ```vue
 <template>
   <v-link disabled>Default</v-link>
+  <v-link type="regular" disabled>Regular</v-link>
+  <v-link type="secondary" disabled>Secondary</v-link>
+  <v-link type="placeholder" disabled>Placeholder</v-link>
   <v-link type="primary" disabled>Primary</v-link>
   <v-link type="success" disabled>Success</v-link>
   <v-link type="warning" disabled>Warning</v-link>
   <v-link type="danger" disabled>Danger</v-link>
-  <v-link type="info" disabled>Info</v-link>
 </template>
 ```
 
@@ -77,7 +81,7 @@
 
 ## Link Props
 
-[link-type] = _default \| primary \| success \| warning \| danger \| info_
+[link-type] = _default \| regular \| secondary \| placeholder \| primary \| success \| danger \| warning_
 
 | 属性        | 说明                | 类型               | 默认值    |
 | ----------- | ------------------- | ------------------ | --------- |
@@ -87,7 +91,7 @@
 | prefix-icon | 前置图标            | _String_           | —         |
 | suffix-icon | 后置图标            | _String_           | —         |
 | href        | 跳转链接            | _String_           | —         |
-| to          | 路由                | _RouteLocationRaw_ | —         |
+| to          | 目标路由            | _RouteLocationRaw_ | —         |
 
 ## Link Events
 

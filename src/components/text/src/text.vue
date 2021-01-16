@@ -1,7 +1,3 @@
-<template>
-  <span :class="classList">Text</span>
-</template>
-
 <script lang="ts">
 import { defineComponent, PropType, h, Slots, VNode } from "vue";
 import { TextType, TitleType } from "./interface";
@@ -16,10 +12,6 @@ export default defineComponent({
     type: {
       type: String as PropType<TextType>,
       default: "default",
-    },
-    disabled: {
-      type: Boolean,
-      default: false,
     },
     mark: {
       type: Boolean,
@@ -52,12 +44,11 @@ export default defineComponent({
   },
   setup(props, { slots, emit }) {
     return () => {
-      const classes = [
+      const rootClass = [
         `v-text`,
         `v-text--type-${props.type}`,
         {
           [`v-text--level-${props.title}`]: props.title,
-          "v-text--disabled": props.disabled,
           "v-text--ellipsis": props.ellipsis,
         },
       ];
@@ -90,12 +81,7 @@ export default defineComponent({
 
       const htmlTag = props.title ? props.title : "span";
 
-      const onClick = (event: Event) => {
-        if (props.disabled) return;
-        emit("click", event);
-      };
-
-      return h(htmlTag, { class: classes, onClick }, childrenNodes);
+      return h(htmlTag, { class: rootClass }, childrenNodes);
     };
   },
 });
@@ -125,11 +111,13 @@ export default defineComponent({
 
 $color-maps: (
   default: $-color--text-primary,
+  regular: $-color--text-regular,
+  secondary: $-color--text-secondary,
+  placeholder: $-color--text-placeholder,
   primary: $-color--primary,
   success: $-color--success,
   warning: $-color--warning,
   danger: $-color--danger,
-  info: #999999,
 );
 
 @each $key in map-keys($color-maps) {
@@ -179,11 +167,6 @@ h6.v-text {
   margin-top: 0.7em;
   margin-bottom: 0.5em;
   font-weight: 600;
-}
-
-.v-text--disabled {
-  cursor: not-allowed;
-  color: #999999;
 }
 
 .v-text--ellipsis {

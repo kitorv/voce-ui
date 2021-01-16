@@ -1,17 +1,17 @@
 <template>
-  <div class="vc-code-snippet">
+  <div class="vc-markdown-snippet">
     <div :class="exampleClasses">
       <slot name="example" />
     </div>
-    <div class="vc-code-snippet--desc">
+    <div class="vc-markdown-snippet--desc">
       <slot name="description" />
-      <div class="vc-code-snippet--operate" @click="handleIconClick">
+      <div class="vc-markdown-snippet--operate" @click="handleIconClick">
         <v-icon :type="codeIcon"></v-icon>
       </div>
     </div>
     <transition
-      leave-active-class="vc-code-snippet--transition"
-      enter-active-class="vc-code-snippet--transition"
+      leave-active-class="vc-markdown-snippet--transition"
+      enter-active-class="vc-markdown-snippet--transition"
       @before-enter="transitionBeforeEnter"
       @enter="transitionEnter"
       @after-enter="transitionAfterEnter"
@@ -19,7 +19,7 @@
       @leave="transitionBeforeEnter"
       @after-leave="transitionAfterEnter"
     >
-      <div v-show="showCode" class="vc-code-snippet--code" ref="codeEl">
+      <div v-show="showCode" class="vc-markdown-snippet--code" ref="codeEl">
         <slot name="source" />
       </div>
     </transition>
@@ -32,7 +32,7 @@ import "highlight.js/styles/color-brewer.css";
 import { useRoute } from "vue-router";
 
 export default defineComponent({
-  name: "VcCodeSnippet",
+  name: "VcMarkdownSnippet",
   setup() {
     let showCode = ref(false);
 
@@ -43,8 +43,8 @@ export default defineComponent({
     const route = useRoute();
     const exampleClasses = computed(() => {
       return [
-        "vc-code-snippet--example",
-        `vc-code-snippet--${route.path.split("/").join("-")}`,
+        "vc-markdown-snippet--example",
+        `vc-markdown-snippet--${route.path.split("/").join("-")}`,
       ];
     });
 
@@ -82,7 +82,7 @@ export default defineComponent({
 </script>
 
 <style lang="scss">
-.vc-code-snippet {
+.vc-markdown-snippet {
   position: relative;
   box-sizing: border-box;
   width: 100%;
@@ -96,7 +96,7 @@ export default defineComponent({
   margin-bottom: 30px;
 }
 
-.vc-code-snippet--example {
+.vc-markdown-snippet--example {
   box-sizing: border-box;
   padding: 26px 32px;
   color: $-color--text-primary;
@@ -104,7 +104,7 @@ export default defineComponent({
   overflow-y: auto;
 }
 
-.vc-code-snippet--desc {
+.vc-markdown-snippet--desc {
   position: relative;
   box-sizing: border-box;
   width: 100%;
@@ -114,7 +114,7 @@ export default defineComponent({
   line-height: 1.5;
 }
 
-.vc-code-snippet--operate {
+.vc-markdown-snippet--operate {
   position: absolute;
   right: 16px;
   bottom: 13px;
@@ -126,7 +126,7 @@ export default defineComponent({
   cursor: pointer;
 }
 
-.vc-code-snippet--code {
+.vc-markdown-snippet--code {
   box-sizing: border-box;
   border-top: 1px solid $-color--border-light;
   box-sizing: border-box;
@@ -138,11 +138,11 @@ export default defineComponent({
   }
 }
 
-.vc-code-snippet--transition {
+.vc-markdown-snippet--transition {
   transition: 0.25s max-height ease-in-out;
 }
 
-.vc-code-snippet---component {
+.vc-markdown-snippet---component {
   &-icon {
     font-size: 32px;
 
@@ -177,7 +177,7 @@ export default defineComponent({
     .v-col {
       margin-top: 8px;
       margin-bottom: 8px;
-      color: #fff;
+      color: $-color--white;
       text-align: center;
       border-radius: 0;
       padding: 12px 0;
@@ -201,7 +201,7 @@ export default defineComponent({
       font-size: 18px;
       text-align: center;
       height: 360px;
-      color: #ffffff;
+      color: $-color--white;
     }
 
     > .v-layout + .v-layout {

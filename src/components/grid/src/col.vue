@@ -125,7 +125,7 @@ export default defineComponent({
     const colStyle = computed<CSSProperties>(() => {
       const [hGutter, vGutter] = vRow.gutter.value;
       const flex = parseFlex();
-
+      if (!hGutter && !vGutter) return { flex };
       return {
         paddingLeft: hGutter ? `${hGutter / 2}px` : 0,
         paddingRight: hGutter ? `${hGutter / 2}px` : 0,
@@ -173,12 +173,12 @@ export default defineComponent({
 }
 
 $size-maps: (
-  xs: max-width 576px,
-  sm: max-width 768px,
-  md: max-width 992px,
-  lg: max-width 1200px,
-  xl: max-width 1600px,
-  xxl: min-width 1600px,
+  xs: min-width 576px,
+  sm: min-width 768px,
+  md: min-width 992px,
+  lg: min-width 1200px,
+  xl: min-width 1600px,
+  xxl: min-width 1920px,
 );
 
 @each $key in map-keys($size-maps) {

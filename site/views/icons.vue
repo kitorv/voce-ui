@@ -1,10 +1,18 @@
 <template>
-  <div class="vs-icon-view">
-    <div class="vs-icon-view--item" v-for="(icon, index) in icons" :key="index">
+  <v-row class="vs-icon-view">
+    <v-col
+      class="vs-icon-view--item"
+      v-for="(icon, index) in icons"
+      :key="index"
+      :xs="24"
+      :sm="12"
+      :md="6"
+      :lg="4"
+    >
       <v-icon :type="icon" />
       <p>{{ icon }}</p>
-    </div>
-  </div>
+    </v-col>
+  </v-row>
 </template>
 
 <script lang="ts">
@@ -27,25 +35,17 @@ export default defineComponent({
   border: 1px solid $-color--border-base;
   border-right: none;
   border-bottom: none;
-  margin: 10px 0;
+  margin: 12px 0;
   font-size: 14px;
   line-height: 2em;
-
-  &::after {
-    clear: both;
-    display: table;
-    content: "";
-  }
 }
 
 .vs-icon-view--item {
-  float: left;
-  width: 16.66%;
   position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 24px 10px;
+  padding: 24px 12px;
   border: 1px solid $-color--border-base;
   border-left: none;
   border-top: none;

@@ -44,8 +44,9 @@ export default defineComponent({
       return [props.gutter, 0];
     });
 
-    const rowStyle = computed<CSSProperties>(() => {
+    const rowStyle = computed<CSSProperties | undefined>(() => {
       const [hGutter, vGutter] = normalizedGutter.value;
+      if (!hGutter && !vGutter) return;
       return {
         marginLeft: hGutter ? `${hGutter / -2}px` : 0,
         marginRight: hGutter ? `${hGutter / -2}px` : 0,

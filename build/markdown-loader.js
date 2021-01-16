@@ -82,7 +82,7 @@ module.exports = function (source) {
         const componentStyle = snippetToVueStyle(content, hashCode);
         vueStyleList.push(componentStyle);
         // 将需要渲染的示例用nc-snippet组件包裹替换插槽显示示例效果
-        return `<vc-code-snippet>
+        return `<vc-markdown-snippet>
                   <template #description>${desccriptionHtml}</template>
                   <template #example>
                     <${componentName} />
@@ -90,7 +90,7 @@ module.exports = function (source) {
                   <template #source>`;
       }
       return `   </template>
-                </vc-code-snippet>`;
+                </vc-markdown-snippet>`;
     },
   });
   return `<template>

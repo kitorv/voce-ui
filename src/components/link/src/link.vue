@@ -1,5 +1,5 @@
 <template>
-  <a :class="classes" v-bind="linkAttrs" @click="onClick($event)">
+  <a :class="rootClass" v-bind="linkAttrs" @click="onClick($event)">
     <v-icon v-if="prefixIcon" class="v-link--prefix-icon" :type="prefixIcon" />
     <span class="v-link--text">
       <slot />
@@ -45,7 +45,7 @@ export default defineComponent({
     },
   },
   setup(props, { emit }) {
-    const classes = computed(() => {
+    const rootClass = computed(() => {
       return [
         `v-link`,
         `v-link--type-${props.type}`,
@@ -74,7 +74,7 @@ export default defineComponent({
       emit("click", event);
     };
 
-    return { classes, linkAttrs, onClick };
+    return { rootClass, linkAttrs, onClick };
   },
 });
 </script>
@@ -105,11 +105,13 @@ export default defineComponent({
 
 $color-maps: (
   default: $-color--text-primary,
+  regular: $-color--text-regular,
+  secondary: $-color--text-secondary,
+  placeholder: $-color--text-placeholder,
   primary: $-color--primary,
   success: $-color--success,
   warning: $-color--warning,
   danger: $-color--danger,
-  info: #999999,
 );
 
 @each $key in map-keys($color-maps) {
@@ -123,7 +125,13 @@ $color-maps: (
     }
 
     &.v-link--disabled {
-      color: mix($color, #ffffff, 60%);
+      @if (
+        $key==default or $key==regular or $key==secondary or $key==placeholder
+      ) {
+        color: mix($-color--text-placeholder, #ffffff, 60%);
+      } @else {
+        color: mix($color, #ffffff, 60%);
+      }
       cursor: not-allowed;
     }
   }
