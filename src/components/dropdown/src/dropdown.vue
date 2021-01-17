@@ -12,7 +12,7 @@
     </template>
     <template #content>
       <div v-if="arrow" class="v-dropdown--arrow" popup-arrow />
-      <div :class="conntentClasses">
+      <div :class="conntentClass">
         <slot name="content" />
       </div>
     </template>
@@ -54,7 +54,7 @@ export default defineComponent({
       },
     });
 
-    const conntentClasses = computed(() => {
+    const conntentClass = computed(() => {
       return [
         "v-dropdown--content",
         { "v-dropdown--content-with-arrow": props.arrow },
@@ -68,7 +68,7 @@ export default defineComponent({
     return {
       visible,
       offset,
-      conntentClasses,
+      conntentClass,
     };
   },
 });
@@ -87,8 +87,7 @@ export default defineComponent({
   width: 0;
   height: 0;
   background: 0 0;
-  border-style: solid;
-  border-width: 4px;
+  border: 4px solid $-color--white;
   transform: rotate(45deg);
 }
 
@@ -143,13 +142,14 @@ export default defineComponent({
   &-enter-from,
   &-leave-to {
     opacity: 0;
-    transform: scaleY(0);
+    transform: scaleY(0.6);
   }
 }
 
 [popup-placement^="top"] {
   .v-dropdown--arrow {
-    border-color: transparent #ffffff #ffffff transparent;
+    border-right-color: transparent;
+    border-bottom-color: transparent;
     box-shadow: 4px 4px 6px rgba(0, 0, 0, 0.06);
     bottom: 0;
     z-index: 1;
@@ -158,7 +158,8 @@ export default defineComponent({
 
 [popup-placement^="bottom"] {
   .v-dropdown--arrow {
-    border-color: #ffffff transparent transparent #ffffff;
+    border-top-color: transparent;
+    border-left-color: transparent;
     box-shadow: -4px -4px 6px rgba(0, 0, 0, 0.06);
     top: 0;
     z-index: 1;

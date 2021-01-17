@@ -48,9 +48,9 @@
 
 ## BreadcrumbItem Props
 
-| 参数 | 说明         | 类型               | 默认值 |
-| ---- | ------------ | ------------------ | ------ |
-| to   | 路由跳转配置 | _RouteLocationRaw_ | —      |
+| 参数 | 说明     | 类型               | 默认值 |
+| ---- | -------- | ------------------ | ------ |
+| to   | 目标路由 | _RouteLocationRaw_ | —      |
 
 ## BreadcrumbItem Events
 

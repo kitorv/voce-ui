@@ -1,5 +1,5 @@
 <template>
-  <div :class="classes" @click="onClick">
+  <div :class="rootClass" @click="onClick">
     <slot />
   </div>
 </template>
@@ -23,7 +23,7 @@ export default defineComponent({
   setup(props) {
     const vMenu = inject<DropdownMenuProvide>(DropdownMenuProvideKey);
 
-    const classes = computed(() => {
+    const rootClass = computed(() => {
       return [
         "v-dropdown-menu-item",
         { "v-dropdown-menu-item-disabled": props.disabled },
@@ -35,7 +35,7 @@ export default defineComponent({
       vMenu?.execOnClick(props.value);
     };
 
-    return { classes, onClick };
+    return { rootClass, onClick };
   },
 });
 </script>
