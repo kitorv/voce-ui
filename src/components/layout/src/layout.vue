@@ -1,5 +1,5 @@
 <template>
-  <section :class="classes">
+  <section :class="rootClass">
     <slot />
   </section>
 </template>
@@ -21,11 +21,11 @@ export default defineComponent({
       });
     });
 
-    const classes = computed(() => {
+    const rootClass = computed(() => {
       return ["v-layout", { "v-layout--vertical": isVertical.value }];
     });
 
-    return { classes };
+    return { rootClass };
   },
 });
 </script>

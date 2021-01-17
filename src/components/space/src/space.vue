@@ -89,7 +89,7 @@ export default defineComponent({
       });
     };
 
-    const classes = computed(() => {
+    const rootClass = computed(() => {
       return [
         "v-space",
         `v-space--direction-${props.direction}`,
@@ -108,7 +108,7 @@ export default defineComponent({
 
     return () => {
       return (
-        <div class={classes.value} style={style.value}>
+        <div class={rootClass.value} style={style.value}>
           {createSpaceItemList()}
         </div>
       );

@@ -365,22 +365,22 @@
 ```vue
 <template>
   <v-row>
-    <v-col :xs="2" :sm="4" :md="6" :lg="8" :xl="10" :xxl="8">
+    <v-col :xs="0" :sm="4" :md="6" :lg="8" :xl="10" :xxl="8">
       <div>Col</div>
     </v-col>
-    <v-col :xs="20" :sm="16" :md="12" :lg="8" :xl="4" :xxl="8">
+    <v-col :xs="24" :sm="16" :md="12" :lg="8" :xl="4" :xxl="8">
       <div>Col</div>
     </v-col>
-    <v-col :xs="2" :sm="4" :md="6" :lg="8" :xl="10" :xxl="8">
+    <v-col :xs="0" :sm="4" :md="6" :lg="8" :xl="10" :xxl="8">
       <div>Col</div>
     </v-col>
   </v-row>
   <v-row>
-    <v-col :xs="2" :sm="4" :md="6" :lg="8" :xl="10" :xxl="6">
+    <v-col :xs="0" :sm="4" :md="6" :lg="8" :xl="10" :xxl="6">
       <div>Col</div>
     </v-col>
     <v-col
-      :xs="20"
+      :xs="24"
       :sm="16"
       :md="12"
       :lg="8"
@@ -390,7 +390,7 @@
       <div>Col</div>
     </v-col>
     <v-col
-      :xs="2"
+      :xs="0"
       :sm="4"
       :md="6"
       :lg="8"

@@ -44,15 +44,18 @@ export default defineComponent({
       return [props.gutter, 0];
     });
 
-    const rowStyle = computed<CSSProperties | undefined>(() => {
+    const rowStyle = computed<CSSProperties>(() => {
+      const style: CSSProperties = {};
       const [hGutter, vGutter] = normalizedGutter.value;
-      if (!hGutter && !vGutter) return;
-      return {
-        marginLeft: hGutter ? `${hGutter / -2}px` : 0,
-        marginRight: hGutter ? `${hGutter / -2}px` : 0,
-        marginTop: vGutter ? `${vGutter / -2}px` : 0,
-        marginBottom: vGutter ? `${vGutter / -2}px` : 0,
-      };
+      if (hGutter) {
+        style.marginLeft = `${hGutter / -2}px`;
+        style.marginRight = `${hGutter / -2}px`;
+      }
+      if (vGutter) {
+        style.marginTop = `${vGutter / -2}px`;
+        style.marginBottom = `${vGutter / -2}px`;
+      }
+      return style;
     });
 
     const rowClass = computed(() => {

@@ -1,5 +1,5 @@
 <template>
-  <div :class="classes">
+  <div :class="rootClass">
     <span v-if="showText" class="v-divider--text">
       <slot />
     </span>
@@ -31,7 +31,7 @@ export default defineComponent({
       return slots.default && props.type !== "vertical";
     });
 
-    const classes = computed(() => {
+    const rootClass = computed(() => {
       return [
         "v-divider",
         `v-divider--type-${props.type}`,
@@ -44,7 +44,7 @@ export default defineComponent({
       ];
     });
 
-    return { classes, showText };
+    return { rootClass, showText };
   },
 });
 </script>

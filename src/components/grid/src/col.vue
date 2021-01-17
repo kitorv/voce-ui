@@ -123,16 +123,19 @@ export default defineComponent({
     };
 
     const colStyle = computed<CSSProperties>(() => {
-      const [hGutter, vGutter] = vRow.gutter.value;
-      const flex = parseFlex();
-      if (!hGutter && !vGutter) return { flex };
-      return {
-        paddingLeft: hGutter ? `${hGutter / 2}px` : 0,
-        paddingRight: hGutter ? `${hGutter / 2}px` : 0,
-        paddingTop: vGutter ? `${vGutter / 2}px` : 0,
-        paddingBottom: vGutter ? `${vGutter / 2}px` : 0,
-        flex,
+      const style: CSSProperties = {
+        flex: parseFlex(),
       };
+      const [hGutter, vGutter] = vRow.gutter.value;
+      if (hGutter) {
+        style.paddingLeft = `${hGutter / 2}px`;
+        style.paddingRight = `${hGutter / 2}px`;
+      }
+      if (vGutter) {
+        style.paddingTop = `${vGutter / 2}px`;
+        style.paddingBottom = `${vGutter / 2}px`;
+      }
+      return style;
     });
 
     return { colClasses, colStyle };
