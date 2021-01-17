@@ -33,7 +33,6 @@
         v-show="isExpand"
         ref="contentRef"
         class="v-submenu--inline-content"
-        :style="contentStyle"
         @mouseenter="onTitleMouseenter"
         @mouseleave="onTitleMouseleave"
       >
@@ -42,7 +41,7 @@
     </v-transition>
     <teleport v-else to="body">
       <v-transition
-        name="slide-up"
+        name="zoom-big-top"
         @before-enter="onPopupBeforeEnter"
         @after-leave="onPopupAfterLeave"
       >
@@ -50,7 +49,6 @@
           v-show="isExpand"
           ref="contentRef"
           class="v-submenu--popup-content"
-          :style="contentStyle"
           @mouseenter="onTitleMouseenter"
           @mouseleave="onTitleMouseleave"
         >
@@ -73,7 +71,6 @@ import {
   PropType,
   provide,
   ref,
-  watch,
 } from "vue";
 import {
   MenuProvide,
@@ -88,7 +85,6 @@ import {
   TransitionName,
 } from "@/components/transition";
 import { createPopper, Instance, Placement } from "@popperjs/core";
-import { nextZIndex } from "@/utils";
 
 export default defineComponent({
   components: { VTransition },
@@ -211,17 +207,6 @@ export default defineComponent({
       return { paddingLeft };
     });
 
-    const zIndex = ref(nextZIndex());
-
-    watch(isExpand, (value) => {
-      if (!value) return;
-      zIndex.value = nextZIndex();
-    });
-
-    const contentStyle = computed<CSSProperties>(() => {
-      return { zIndex: zIndex.value };
-    });
-
     const onTitleClick = () => {
       if (vMenu.mode.value === "horizontal" || vMenu.collapse.value) return;
       if (isExpand.value) {
@@ -327,9 +312,9 @@ export default defineComponent({
     };
 
     const inlineTransitionName = computed<TransitionName>(() => {
-      if (vMenu.mode.value === "horizontal") return "slide-up";
+      if (vMenu.mode.value === "horizontal") return "zoom-big-top";
       if (!vMenu.collapse.value) return "collapse";
-      return vSubmenu ? "slide-up" : "collapse";
+      return vSubmenu ? "zoom-big-top" : "collapse";
     });
 
     onBeforeMount(() => {
@@ -348,7 +333,6 @@ export default defineComponent({
       titleStyle,
       isShowTitleArrow,
       titleArrowIcon,
-      contentStyle,
       onTitleClick,
       onInlineAfterLeave,
       onTitleMouseenter,

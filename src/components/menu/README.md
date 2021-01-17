@@ -113,7 +113,7 @@ export default defineComponent({
 
 ```vue
 <template>
-  <v-button type="primary" icon="outdent" @click="onCollapseClick" />
+  <v-button type="primary" :icon="icon" @click="onCollapseClick" />
   <div class="vsc-menu">
     <v-menu
       v-model:active-index="activeIndex"
@@ -147,7 +147,7 @@ export default defineComponent({
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from "vue";
+import { computed, defineComponent, ref } from "vue";
 
 export default defineComponent({
   setup() {
@@ -155,11 +155,15 @@ export default defineComponent({
 
     const collapse = ref(false);
 
+    const icon = computed(() => {
+      return collapse.value ? "indent" : "outdent";
+    });
+
     const onCollapseClick = () => {
       collapse.value = !collapse.value;
     };
 
-    return { activeIndex, collapse, onCollapseClick };
+    return { activeIndex, collapse, icon, onCollapseClick };
   },
 });
 </script>
