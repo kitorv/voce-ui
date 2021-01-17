@@ -1,5 +1,5 @@
 <template>
-  <div :class="colClasses" :style="colStyle">
+  <div :class="rootClass" :style="rootStyle">
     <slot />
   </div>
 </template>
@@ -98,7 +98,7 @@ export default defineComponent({
       return sizeClasses;
     });
 
-    const colClasses = computed(() => {
+    const rootClass = computed(() => {
       return [
         `v-col`,
         `v-col--${props.span}`,
@@ -122,7 +122,7 @@ export default defineComponent({
       return props.flex;
     };
 
-    const colStyle = computed<CSSProperties>(() => {
+    const rootStyle = computed<CSSProperties>(() => {
       const style: CSSProperties = {
         flex: parseFlex(),
       };
@@ -138,7 +138,7 @@ export default defineComponent({
       return style;
     });
 
-    return { colClasses, colStyle };
+    return { rootClass, rootStyle };
   },
 });
 </script>

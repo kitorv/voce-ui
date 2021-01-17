@@ -1,5 +1,5 @@
 <template>
-  <i :class="rootClass" :style="style" />
+  <i :class="rootClass" :style="rootStyle" />
 </template>
 
 <script lang="ts">
@@ -33,12 +33,12 @@ export default defineComponent({
       ];
     });
 
-    const style = computed<CSSProperties>(() => {
+    const rootStyle = computed<CSSProperties>(() => {
       if (!props.size) return {};
       return { fontSize: `${props.size}px` };
     });
 
-    return { rootClass, style };
+    return { rootClass, rootStyle };
   },
 });
 </script>

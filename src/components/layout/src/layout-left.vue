@@ -1,5 +1,5 @@
 <template>
-  <div class="v-layout-left" :style="style">
+  <div class="v-layout-left" :style="rootStyle">
     <slot />
   </div>
 </template>
@@ -16,14 +16,14 @@ export default defineComponent({
     },
   },
   setup(props, { slots }) {
-    const style = computed<CSSProperties>(() => {
+    const rootStyle = computed<CSSProperties>(() => {
       const isString = typeof props.width === "string";
       return {
         width: isString ? props.width : `${props.width}px`,
       };
     });
 
-    return { style };
+    return { rootStyle };
   },
 });
 </script>

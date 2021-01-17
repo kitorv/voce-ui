@@ -1,5 +1,5 @@
 <template>
-  <div :class="rowClass" :style="rowStyle">
+  <div :class="rowClass" :style="rootStyle">
     <slot />
   </div>
 </template>
@@ -44,7 +44,7 @@ export default defineComponent({
       return [props.gutter, 0];
     });
 
-    const rowStyle = computed<CSSProperties>(() => {
+    const rootStyle = computed<CSSProperties>(() => {
       const style: CSSProperties = {};
       const [hGutter, vGutter] = normalizedGutter.value;
       if (hGutter) {
@@ -68,7 +68,7 @@ export default defineComponent({
 
     provide<RowProvide>(RowProvideKey, { gutter: normalizedGutter });
 
-    return { rowClass, rowStyle };
+    return { rowClass, rootStyle };
   },
 });
 </script>
