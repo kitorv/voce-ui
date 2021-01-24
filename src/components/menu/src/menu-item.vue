@@ -53,14 +53,14 @@ export default defineComponent({
       return vMenu.activeIndex.value === props.index;
     });
 
-    watch([isActive, vMenu.collapse], () => {
+    watch([isActive, vMenu.isCollapse], () => {
       vMenu.inactiveAllSubmenu();
       if (!isActive.value) return;
       nextTick(vSubmenu?.active);
     });
 
     const rootStyle = computed<CSSProperties | undefined>(() => {
-      if (vMenu.mode.value === "horizontal" || vMenu.collapse.value) return;
+      if (vMenu.isHorizontal.value || vMenu.isCollapse.value) return;
       const level = vSubmenu ? vSubmenu.level.value + 1 : 1;
       const paddingLeft = `${vMenu.computedIndent(level)}px`;
       return { paddingLeft };
@@ -72,7 +72,7 @@ export default defineComponent({
         {
           "v-menu-item--active": isActive.value,
           "v-menu-item--disabled": props.disabled,
-          "v-menu-item--collapse": vMenu.collapse.value,
+          "v-menu-item--collapse": vMenu.isCollapse.value,
         },
       ];
     });
@@ -80,7 +80,7 @@ export default defineComponent({
     const onClick = () => {
       if (props.disabled) return;
       vMenu.updateActiveIndex(props.index);
-      if (vMenu.mode.value === "vertical" && !vMenu.collapse.value) return;
+      if (vMenu.isVertical.value && !vMenu.isCollapse.value) return;
       vMenu.closeAllSubmenu();
     };
 

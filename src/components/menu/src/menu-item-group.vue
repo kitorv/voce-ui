@@ -28,7 +28,7 @@ export default defineComponent({
     const vSubmenu = inject<SubMenuProvide>(SubMenuProvideKey, null);
 
     const titleStyle = computed<CSSProperties | undefined>(() => {
-      if (vMenu.mode.value === "horizontal" || vMenu.collapse.value) return;
+      if (vMenu.mode.value === "horizontal" || vMenu.isCollapse.value) return;
       const level = vSubmenu ? vSubmenu.level.value + 1 : 1;
       const indent = vMenu.computedIndent(level) - 16;
       const paddingLeft = indent <= 0 ? 0 : `${indent}px`;

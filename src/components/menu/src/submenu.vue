@@ -4,9 +4,9 @@
       ref="titleRef"
       :class="titleClass"
       :style="titleStyle"
-      @click="onTitleClick"
       @mouseenter="onTitleMouseenter"
       @mouseleave="onTitleMouseleave"
+      @click="onTitleClick"
     >
       <div class="v-submenu--title-content" ref="titleContentRef">
         <v-icon
@@ -24,38 +24,21 @@
         </transition>
       </div>
     </div>
-    <v-transition
-      v-if="isInline"
-      :name="inlineTransitionName"
-      @after-leave="onInlineAfterLeave"
+    <v-submenu-transition
+      ref="transitionRef"
+      @before-enter="onTransitionBeforeEnter"
+      @after-leave="onTransitionAfterEnter"
     >
       <div
-        v-show="isExpand"
+        v-show="isOpen"
         ref="contentRef"
-        class="v-submenu--inline-content"
+        class="v-submenu--content"
         @mouseenter="onTitleMouseenter"
         @mouseleave="onTitleMouseleave"
       >
         <slot />
       </div>
-    </v-transition>
-    <teleport v-else to="body">
-      <v-transition
-        name="zoom-big-top"
-        @before-enter="onPopupBeforeEnter"
-        @after-leave="onPopupAfterLeave"
-      >
-        <div
-          v-show="isExpand"
-          ref="contentRef"
-          class="v-submenu--popup-content"
-          @mouseenter="onTitleMouseenter"
-          @mouseleave="onTitleMouseleave"
-        >
-          <slot />
-        </div>
-      </v-transition>
-    </teleport>
+    </v-submenu-transition>
   </div>
 </template>
 
@@ -80,15 +63,12 @@ import {
   SubMenuProvide,
   SubMenuProvideKey,
 } from "./interface";
-import {
-  Transition as VTransition,
-  TransitionName,
-} from "@/components/transition";
 import { createPopper, Instance, Placement } from "@popperjs/core";
+import VSubmenuTransition from "./submenu-transition.vue";
 
 export default defineComponent({
-  components: { VTransition },
   name: "VSubmenu",
+  components: { VSubmenuTransition },
   props: {
     icon: {
       type: String as PropType<SubmenuIcon>,
@@ -104,60 +84,76 @@ export default defineComponent({
 
     const vSubmenu = inject<SubMenuProvide>(SubMenuProvideKey, null);
 
-    const key = Symbol();
-
-    const isExpand = ref(false);
+    const isOpen = ref(false);
 
     const isActive = ref(false);
 
-    const isInlineValue = () => {
-      if (vSubmenu) return true;
-      if (vMenu.mode.value === "horizontal") return false;
-      return !vMenu.collapse.value;
-    };
-
-    const isInline = ref(isInlineValue());
-
-    const onInlineAfterLeave = () => {
-      isInline.value = isInlineValue();
-    };
-
-    const isCollapseTransition = ref(false);
+    const isNoTransition = ref(false);
 
     const rootClass = computed(() => {
       return [
         "v-submenu",
-        { "v-submenu--no-collapse-transition": isCollapseTransition.value },
+        { "v-submenu--no-transition": isNoTransition.value },
       ];
     });
+
+    const titleClass = computed(() => {
+      const expandActive = isOpen.value && vMenu.isHorizontal.value;
+      return [
+        "v-submenu--title",
+        {
+          "v-submenu--title-active": isActive.value || expandActive,
+          "v-submenu--title-arrow": isShowTitleArrow.value,
+          "v-submenu--title-collapse": vMenu.isCollapse.value,
+        },
+      ];
+    });
+
+    const titleStyle = computed<CSSProperties | undefined>(() => {
+      if (vMenu.isHorizontal.value || vMenu.isCollapse.value) return;
+      const level = vSubmenu ? vSubmenu.level.value + 1 : 1;
+      const paddingLeft = `${vMenu.computedIndent(level)}px`;
+      return { paddingLeft };
+    });
+
+    const isShowTitleArrow = computed(() => {
+      if (vSubmenu) return true;
+      if (vMenu.isHorizontal.value) return false;
+      return !vMenu.isCollapse.value;
+    });
+
+    const titleArrowIcon = computed(() => {
+      if (vMenu.isHorizontal.value) return "right";
+      if (!vMenu.isCollapse.value) return "down";
+      return vSubmenu ? "right" : "down";
+    });
+
+    const transitionRef = ref();
 
     const submenuContext: Submenu = {
       isActive: computed(() => isActive.value),
       open(isTransition = false) {
-        isInline.value = isInlineValue();
-        isCollapseTransition.value = isTransition;
-        nextTick(() => {
-          isExpand.value = true;
-          if (!vMenu.accordion.value) return;
-          if (vSubmenu) {
-            vSubmenu.closeAccordionSumenus([key]);
-          } else {
-            vMenu.closeAccordionSumenus([key]);
-          }
-        });
+        isNoTransition.value = isTransition;
+        isOpen.value = true;
       },
       close() {
-        if (!isExpand.value) {
-          isInline.value = isInlineValue();
-        }
-        isExpand.value = false;
+        isNoTransition.value = false;
+        isOpen.value = false;
       },
-      active() {
-        isActive.value = true;
+      collapse() {
+        if (!isOpen.value) return;
+        isNoTransition.value = false;
+        transitionRef.value.collapse();
+        isOpen.value = false;
       },
-      inactive() {
-        isActive.value = false;
+      expand() {
+        if (isOpen.value) return;
+        isNoTransition.value = false;
+        transitionRef.value.expand();
+        isOpen.value = true;
       },
+      active: () => (isActive.value = true),
+      inactive: () => (isActive.value = false),
     };
 
     provide<SubMenuProvide>(SubMenuProvideKey, {
@@ -167,49 +163,15 @@ export default defineComponent({
       active(isInitActive) {
         vSubmenu?.active(isInitActive);
         submenuContext.active();
-        if (vMenu.mode.value === "horizontal" || vMenu.collapse.value) return;
+        if (vMenu.isHorizontal.value || vMenu.isCollapse.value) return;
         submenuContext.open(isInitActive);
       },
-      closeAccordionSumenus(excludeKeys = []) {
-        excludeKeys.push(key);
-        vSubmenu?.closeAccordionSumenus(excludeKeys);
-      },
-    });
-
-    const titleArrowIcon = computed(() => {
-      if (vMenu.mode.value === "horizontal") return "right";
-      if (!vMenu.collapse.value) return "down";
-      return vSubmenu ? "right" : "down";
-    });
-
-    const isShowTitleArrow = computed(() => {
-      if (vSubmenu) return true;
-      if (vMenu.mode.value === "horizontal") return false;
-      return !vMenu.collapse.value;
-    });
-
-    const titleClass = computed(() => {
-      const expandActive = isExpand.value && vMenu.mode.value === "horizontal";
-      return [
-        "v-submenu--title",
-        {
-          "v-submenu--title-active": isActive.value || expandActive,
-          "v-submenu--title-arrow": isShowTitleArrow.value,
-          "v-submenu--title-collapse": vMenu.collapse.value,
-        },
-      ];
-    });
-
-    const titleStyle = computed<CSSProperties | undefined>(() => {
-      if (vMenu.mode.value === "horizontal" || vMenu.collapse.value) return;
-      const level = vSubmenu ? vSubmenu.level.value + 1 : 1;
-      const paddingLeft = `${vMenu.computedIndent(level)}px`;
-      return { paddingLeft };
+      hasParentSubmenu: computed(() => !!vSubmenu),
     });
 
     const onTitleClick = () => {
-      if (vMenu.mode.value === "horizontal" || vMenu.collapse.value) return;
-      if (isExpand.value) {
+      if (vMenu.isHorizontal.value || vMenu.isCollapse.value) return;
+      if (isOpen.value) {
         submenuContext.close();
       } else {
         submenuContext.open();
@@ -222,18 +184,14 @@ export default defineComponent({
     const contentRef = ref<HTMLDivElement>();
 
     const createPopperInstacne = () => {
-      if (popperInstance) return;
       const referenceEl = titleRef.value;
       const contentEl = contentRef.value;
-      if (!referenceEl || !contentEl) return;
 
-      let placement: Placement = "right-start";
-      if (vMenu.mode.value === "horizontal") {
-        placement = vSubmenu ? "right-start" : "bottom-start";
-      }
+      if (popperInstance || !referenceEl || !contentEl) return;
+      const isRootHorizontalSubmenu = vMenu.isHorizontal.value && !vSubmenu;
 
       popperInstance = createPopper(referenceEl, contentEl, {
-        placement: placement,
+        placement: isRootHorizontalSubmenu ? "bottom-start" : "right-start",
         modifiers: [
           {
             name: "computeStyles",
@@ -267,9 +225,8 @@ export default defineComponent({
             enabled: true,
             phase: "beforeWrite",
             fn({ state }) {
-              if (vMenu.mode.value !== "horizontal" || !titleContentRef.value) {
-                return;
-              }
+              if (vMenu.isVertical.value || vSubmenu) return;
+              if (!titleContentRef.value) return;
               state.styles.popper.minWidth = `${titleContentRef.value.clientWidth}px`;
             },
             requires: ["computeStyles"],
@@ -286,36 +243,33 @@ export default defineComponent({
 
     let destroyTimeoutId = -1;
 
-    const onPopupBeforeEnter = () => {
+    const onTransitionBeforeEnter = () => {
       clearTimeout(destroyTimeoutId);
     };
 
-    const onPopupAfterLeave = () => {
+    const onTransitionAfterEnter = () => {
+      clearTimeout(destroyTimeoutId);
       destroyTimeoutId = window.setTimeout(destroyPopperInstance, 200);
     };
 
     let setTimeoutId: number;
 
     const onTitleMouseenter = () => {
-      if (vMenu.mode.value === "vertical" && !vMenu.collapse.value) return;
+      if (vMenu.isVertical.value && !vMenu.isCollapse.value) return;
       clearTimeout(setTimeoutId);
       submenuContext.open();
       nextTick(createPopperInstacne);
     };
 
     const onTitleMouseleave = () => {
-      if (vMenu.mode.value === "vertical" && !vMenu.collapse.value) return;
+      if (vMenu.mode.value === "vertical" && !vMenu.isCollapse.value) return;
       setTimeoutId = window.setTimeout(() => {
         clearTimeout(setTimeoutId);
         submenuContext.close();
       }, 200);
     };
 
-    const inlineTransitionName = computed<TransitionName>(() => {
-      if (vMenu.mode.value === "horizontal") return "zoom-big-top";
-      if (!vMenu.collapse.value) return "collapse";
-      return vSubmenu ? "zoom-big-top" : "collapse";
-    });
+    const key = Symbol();
 
     onBeforeMount(() => {
       vMenu.addSubmenu(key, submenuContext);
@@ -327,22 +281,20 @@ export default defineComponent({
 
     return {
       rootClass,
-      isExpand,
-      isInline,
+      titleRef,
       titleClass,
       titleStyle,
-      isShowTitleArrow,
       titleArrowIcon,
-      onTitleClick,
-      onInlineAfterLeave,
+      isShowTitleArrow,
+      titleContentRef,
       onTitleMouseenter,
       onTitleMouseleave,
-      titleRef,
-      titleContentRef,
+      onTitleClick,
       contentRef,
-      inlineTransitionName,
-      onPopupBeforeEnter,
-      onPopupAfterLeave,
+      isOpen,
+      transitionRef,
+      onTransitionBeforeEnter,
+      onTransitionAfterEnter,
     };
   },
 });
@@ -364,8 +316,7 @@ export default defineComponent({
   transform: translateY(-50%);
 }
 
-.v-submenu--popup-content,
-.v-submenu--popup-content .v-submenu--inline-content {
+.v-submenu--content {
   background-color: $-color--white;
   padding: 4px 0;
   font-size: 14px;
@@ -391,8 +342,9 @@ export default defineComponent({
   }
 }
 
-.v-submenu--no-collapse-transition {
-  .v-transition--collapse {
+.v-submenu--no-transition {
+  .v-submenu-transition--big-top,
+  .v-submenu-transition--collapse {
     transition: all 0s;
   }
 }

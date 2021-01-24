@@ -38,10 +38,10 @@ export default defineComponent({
 
     watch(isCollapse, (value) => {
       vSubmenuList.forEach((submenu) => {
-        if (value || !submenu.isActive.value) {
-          submenu.close();
+        if (value) {
+          submenu.collapse();
         } else {
-          submenu.open();
+          submenu.expand();
         }
       });
     });
@@ -50,16 +50,16 @@ export default defineComponent({
       return [
         "v-menu",
         `v-menu--mode-${props.mode}`,
-        {
-          "v-menu--collapse": isCollapse.value,
-        },
+        { "v-menu--collapse": isCollapse.value },
       ];
     });
 
     provide<MenuProvide>(MenuProvideKey, {
       mode: computed(() => props.mode),
-      collapse: isCollapse,
-      accordion: computed(() => props.accordion),
+      isCollapse: isCollapse,
+      isAccordion: computed(() => props.accordion),
+      isHorizontal: computed(() => props.mode === "horizontal"),
+      isVertical: computed(() => props.mode === "vertical"),
       activeIndex: computed(() => props.activeIndex),
       updateActiveIndex(value) {
         emit("update:active-index", value);
@@ -72,12 +72,6 @@ export default defineComponent({
       },
       closeAllSubmenu() {
         vSubmenuList.forEach((submenu) => submenu.close());
-      },
-      closeAccordionSumenus(excludeKeys) {
-        vSubmenuList.forEach((submenu, index) => {
-          if (excludeKeys.includes(index)) return;
-          submenu.close();
-        });
       },
       inactiveAllSubmenu() {
         vSubmenuList.forEach((submenu) => submenu.inactive());
@@ -124,8 +118,7 @@ export default defineComponent({
   color: $-color--primary;
 }
 
-.v-submenu--inline-content .v-menu-item--active,
-.v-submenu--popup-content .v-menu-item--active {
+.v-submenu--content .v-menu-item--active {
   background-color: $-color--primary-1;
 }
 
@@ -181,6 +174,11 @@ export default defineComponent({
   width: 100%;
   border-right: 1px solid $-color--border-base;
 
+  .v-submenu--content {
+    box-shadow: none;
+    padding: 0;
+  }
+
   .v-submenu--title-collapse,
   .v-menu-item--collapse {
     padding: 0 32px;
@@ -222,7 +220,7 @@ export default defineComponent({
 
 .v-menu--collapse {
   width: 80px;
-  transition: background-color 0.3s, width 0.3s cubic-bezier(0.2, 0, 0, 1) 0s;
+  transition: background-color 0.3s, width 0.3s cubic-bezier(0.2, 0, 0, 1);
   overflow: hidden;
 }
 </style>
