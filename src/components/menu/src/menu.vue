@@ -5,8 +5,8 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, PropType, provide, watch } from "vue";
-import { MenuMode, MenuProvide, MenuProvideKey, Submenu } from "./interface";
+import { computed, defineComponent, PropType, provide } from "vue";
+import { MenuMode, MenuProvide, MenuProvideKey } from "./interface";
 
 export default defineComponent({
   name: "VMenu",
@@ -30,21 +30,8 @@ export default defineComponent({
     },
   },
   setup(props, { emit }) {
-    const vSubmenuList: Map<symbol, Submenu> = new Map();
-
     const isCollapse = computed(() => {
       return props.mode === "vertical" && props.collapse;
-    });
-
-    watch(isCollapse, (value) => {
-      vSubmenuList.forEach((submenu) => {
-        if (!submenu.isActive.value) return;
-        if (value) {
-          submenu.close();
-        } else {
-          submenu.open();
-        }
-      });
     });
 
     const rootClass = computed(() => {
@@ -57,6 +44,7 @@ export default defineComponent({
 
     provide<MenuProvide>(MenuProvideKey, {
       mode: computed(() => props.mode),
+      submenuList: new Map(),
       isCollapse: isCollapse,
       isAccordion: computed(() => props.accordion),
       isHorizontal: computed(() => props.mode === "horizontal"),
@@ -66,16 +54,16 @@ export default defineComponent({
         emit("update:active-index", value);
       },
       addSubmenu(key, submenu) {
-        vSubmenuList.set(key, submenu);
+        this.submenuList.set(key, submenu);
       },
       delSubmenu(key) {
-        vSubmenuList.delete(key);
+        this.submenuList.delete(key);
       },
       closeAllSubmenu() {
-        vSubmenuList.forEach((submenu) => submenu.close());
+        this.submenuList.forEach((submenu) => submenu.close());
       },
       inactiveAllSubmenu() {
-        vSubmenuList.forEach((submenu) => submenu.inactive());
+        this.submenuList.forEach((submenu) => submenu.inactive());
       },
       computedIndent: (level) => level * 24,
     });
@@ -180,25 +168,20 @@ export default defineComponent({
     padding: 0;
   }
 
-  .v-submenu--title-collapse,
-  .v-menu-item--collapse {
-    padding: 0 32px;
-    overflow: hidden;
-    text-overflow: clip;
-  }
+  // .v-submenu--title-collapse,
 
-  .v-submenu--title-collapse .v-submenu--title-content-icon,
-  .v-menu-item--collapse .v-menu-item--content-icon {
-    margin-right: 0;
-    font-size: 16px;
-  }
+  // .v-submenu--title-collapse .v-submenu--title-content-icon,
+  // .v-menu-item--collapse .v-menu-item--content-icon {
+  //   margin-right: 0;
+  //   font-size: 16px;
+  // }
 
-  .v-submenu--title-collapse .v-submenu--title-content-text,
-  .v-menu-item--collapse .v-menu-item--content-text {
-    max-width: 0;
-    opacity: 0;
-    text-overflow: ellipsis;
-  }
+  // .v-submenu--title-collapse .v-submenu--title-content-text,
+  // .v-menu-item--collapse .v-menu-item--content-text {
+  //   max-width: 0;
+  //   opacity: 0;
+  //   text-overflow: ellipsis;
+  // }
 
   .v-menu-item::after {
     content: "";
@@ -223,5 +206,26 @@ export default defineComponent({
   width: 80px;
   transition: background-color 0.3s, width 0.3s cubic-bezier(0.2, 0, 0, 1);
   overflow: hidden;
+
+  .v-menu-item,
+  .v-submenu--title {
+    padding: 0 30px;
+    overflow: hidden;
+    text-overflow: clip;
+  }
+
+  .v-submenu--title-content-icon,
+  .v-menu-item--content-icon {
+    margin-right: 0;
+    font-size: 18px;
+  }
+
+  .v-submenu--title-content-text,
+  .v-menu-item--content-text,
+  .v-menu-item-group--title {
+    max-width: 0;
+    opacity: 0;
+    text-overflow: ellipsis;
+  }
 }
 </style>

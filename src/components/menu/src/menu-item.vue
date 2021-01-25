@@ -47,7 +47,7 @@ export default defineComponent({
   setup(props) {
     const vMenu = inject<MenuProvide>(MenuProvideKey)!;
 
-    const vSubmenu = inject<SubMenuProvide>(SubMenuProvideKey, null);
+    const vSubmenu = inject<SubMenuProvide | null>(SubMenuProvideKey, null);
 
     const isActive = computed(() => {
       return vMenu.activeIndex.value === props.index;
@@ -56,7 +56,7 @@ export default defineComponent({
     watch(isActive, () => {
       vMenu.inactiveAllSubmenu();
       if (!isActive.value) return;
-      nextTick(vSubmenu?.active);
+      nextTick(vSubmenu?.closestActive);
     });
 
     const rootStyle = computed<CSSProperties | undefined>(() => {
@@ -72,7 +72,6 @@ export default defineComponent({
         {
           "v-menu-item--active": isActive.value,
           "v-menu-item--disabled": props.disabled,
-          "v-menu-item--collapse": vMenu.isCollapse.value,
         },
       ];
     });
@@ -86,7 +85,7 @@ export default defineComponent({
 
     onBeforeMount(() => {
       if (!isActive.value || !vSubmenu) return;
-      vSubmenu.active();
+      vSubmenu.closestActive();
     });
 
     return { rootClass, rootStyle, onClick };

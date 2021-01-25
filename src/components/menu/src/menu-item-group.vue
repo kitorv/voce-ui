@@ -25,7 +25,7 @@ export default defineComponent({
   setup() {
     const vMenu = inject<MenuProvide>(MenuProvideKey)!;
 
-    const vSubmenu = inject<SubMenuProvide>(SubMenuProvideKey, null);
+    const vSubmenu = inject<SubMenuProvide | null>(SubMenuProvideKey, null);
 
     const titleStyle = computed<CSSProperties | undefined>(() => {
       if (vMenu.mode.value === "horizontal" || vMenu.isCollapse.value) return;
@@ -46,6 +46,7 @@ export default defineComponent({
   color: $-color--text-secondary;
   font-size: 14px;
   transition: all 0.3s;
+  white-space: nowrap;
 }
 
 .v-menu-item-group {
