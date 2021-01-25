@@ -129,7 +129,7 @@ export default defineComponent({
       return vSubmenu ? "right" : "down";
     });
 
-    const submenuProvide: SubMenuProvide = {
+    const submenuContext: SubMenuProvide = {
       key: Symbol(),
       level: computed(() => {
         return vSubmenu ? vSubmenu.level.value + 1 : 1;
@@ -154,20 +154,20 @@ export default defineComponent({
       },
       closestActive() {
         vSubmenu?.closestActive();
-        this.active();
+        submenuContext.active();
         if (vMenu.isHorizontal.value || vMenu.isCollapse.value) return;
-        this.open();
+        submenuContext.open();
       },
     };
 
-    provide<SubMenuProvide>(SubMenuProvideKey, submenuProvide);
+    provide<SubMenuProvide>(SubMenuProvideKey, submenuContext);
 
     const onTitleClick = () => {
       if (vMenu.isHorizontal.value || vMenu.isCollapse.value) return;
       if (isInlineOpen.value) {
-        submenuProvide.close();
+        submenuContext.close();
       } else {
-        submenuProvide.open();
+        submenuContext.open();
       }
     };
 
@@ -250,7 +250,7 @@ export default defineComponent({
     const onTitleMouseenter = () => {
       if (vMenu.isVertical.value && !vMenu.isCollapse.value) return;
       clearTimeout(setTimeoutId);
-      submenuProvide.open();
+      submenuContext.open();
       nextTick(createPopperInstacne);
     };
 
@@ -258,16 +258,16 @@ export default defineComponent({
       clearTimeout(setTimeoutId);
       setTimeoutId = window.setTimeout(() => {
         if (vMenu.isVertical.value && !vMenu.isCollapse.value) return;
-        submenuProvide.close();
+        submenuContext.close();
       }, 200);
     };
 
     onBeforeMount(() => {
-      vMenu.addSubmenu(submenuProvide.key, submenuProvide);
+      vMenu.addSubmenu(submenuContext.key, submenuContext);
     });
 
     onBeforeUnmount(() => {
-      vMenu.delSubmenu(submenuProvide.key);
+      vMenu.delSubmenu(submenuContext.key);
     });
 
     return {

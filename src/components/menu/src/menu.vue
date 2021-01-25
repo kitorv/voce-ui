@@ -46,10 +46,18 @@ export default defineComponent({
       mode: computed(() => props.mode),
       submenuList: new Map(),
       isCollapse: isCollapse,
-      isAccordion: computed(() => props.accordion),
-      isHorizontal: computed(() => props.mode === "horizontal"),
-      isVertical: computed(() => props.mode === "vertical"),
-      activeIndex: computed(() => props.activeIndex),
+      isAccordion: computed(() => {
+        return props.accordion;
+      }),
+      isHorizontal: computed(() => {
+        return props.mode === "horizontal";
+      }),
+      isVertical: computed(() => {
+        return props.mode === "vertical";
+      }),
+      activeIndex: computed(() => {
+        return props.activeIndex;
+      }),
       updateActiveIndex(value) {
         emit("update:active-index", value);
       },
@@ -167,21 +175,6 @@ export default defineComponent({
     box-shadow: none;
     padding: 0;
   }
-
-  // .v-submenu--title-collapse,
-
-  // .v-submenu--title-collapse .v-submenu--title-content-icon,
-  // .v-menu-item--collapse .v-menu-item--content-icon {
-  //   margin-right: 0;
-  //   font-size: 16px;
-  // }
-
-  // .v-submenu--title-collapse .v-submenu--title-content-text,
-  // .v-menu-item--collapse .v-menu-item--content-text {
-  //   max-width: 0;
-  //   opacity: 0;
-  //   text-overflow: ellipsis;
-  // }
 
   .v-menu-item::after {
     content: "";
