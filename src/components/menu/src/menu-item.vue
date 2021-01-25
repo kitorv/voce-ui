@@ -53,7 +53,7 @@ export default defineComponent({
       return vMenu.activeIndex.value === props.index;
     });
 
-    watch([isActive, vMenu.isCollapse], () => {
+    watch(isActive, () => {
       vMenu.inactiveAllSubmenu();
       if (!isActive.value) return;
       nextTick(vSubmenu?.active);
@@ -85,8 +85,8 @@ export default defineComponent({
     };
 
     onBeforeMount(() => {
-      if (!isActive.value) return;
-      vSubmenu?.active(true);
+      if (!isActive.value || !vSubmenu) return;
+      vSubmenu.active();
     });
 
     return { rootClass, rootStyle, onClick };

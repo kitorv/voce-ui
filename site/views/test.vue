@@ -39,7 +39,7 @@
           <v-menu-item index="3-2">Menu One</v-menu-item>
           <v-menu-item index="3-3">Menu One</v-menu-item>
           <v-menu-item index="3-4">Menu One</v-menu-item>
-          <v-submenu title="Menu Three">
+          <v-submenu title="Submenu">
             <v-menu-item index="3-5-1">Menu One</v-menu-item>
             <v-menu-item index="3-5-2">Menu One</v-menu-item>
             <v-menu-item index="3-5-3">Menu One</v-menu-item>

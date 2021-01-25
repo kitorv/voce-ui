@@ -18,7 +18,7 @@
 import { defineComponent } from "vue";
 
 export default defineComponent({
-  setup() {
+  setup(props, { emit }) {
     let cacheStyle: Pick<
       CSSStyleDeclaration,
       "paddingTop" | "paddingBottom" | "overflow"
@@ -93,6 +93,6 @@ export default defineComponent({
 
 <style lang="scss">
 .v-transition--collapse {
-  transition: all 0.3s ease-in-out;
+  transition: height 0.3s, padding-top 0.3s, padding-bottom 0.3s;
 }
 </style>

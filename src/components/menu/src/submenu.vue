@@ -1,5 +1,5 @@
 <template>
-  <div :class="rootClass">
+  <div class="v-submenu">
     <div
       ref="titleRef"
       :class="titleClass"
@@ -24,13 +24,12 @@
         </transition>
       </div>
     </div>
-    <v-submenu-transition
-      ref="transitionRef"
-      @before-enter="onTransitionBeforeEnter"
-      @after-leave="onTransitionAfterEnter"
+    <v-submenu-popup
+      @before-enter="onPopupBeforeEnter"
+      @after-leave="onPopupAfterLeave"
     >
       <div
-        v-show="isOpen"
+        v-show="isPopupOpen"
         ref="contentRef"
         class="v-submenu--content"
         @mouseenter="onTitleMouseenter"
@@ -38,7 +37,17 @@
       >
         <slot />
       </div>
-    </v-submenu-transition>
+    </v-submenu-popup>
+    <v-submenu-inline>
+      <div
+        v-show="isInlineOpen"
+        class="v-submenu--content"
+        @mouseenter="onTitleMouseenter"
+        @mouseleave="onTitleMouseleave"
+      >
+        <slot />
+      </div>
+    </v-submenu-inline>
   </div>
 </template>
 
@@ -64,11 +73,12 @@ import {
   SubMenuProvideKey,
 } from "./interface";
 import { createPopper, Instance, Placement } from "@popperjs/core";
-import VSubmenuTransition from "./submenu-transition.vue";
+import VSubmenuPopup from "./submenu-popup.vue";
+import VSubmenuInline from "./submenu-inline.vue";
 
 export default defineComponent({
   name: "VSubmenu",
-  components: { VSubmenuTransition },
+  components: { VSubmenuPopup, VSubmenuInline },
   props: {
     icon: {
       type: String as PropType<SubmenuIcon>,
@@ -84,25 +94,18 @@ export default defineComponent({
 
     const vSubmenu = inject<SubMenuProvide>(SubMenuProvideKey, null);
 
-    const isOpen = ref(false);
+    const isPopupOpen = ref(false);
+
+    const isInlineOpen = ref(false);
 
     const isActive = ref(false);
 
-    const isNoTransition = ref(false);
-
-    const rootClass = computed(() => {
-      return [
-        "v-submenu",
-        { "v-submenu--no-transition": isNoTransition.value },
-      ];
-    });
-
     const titleClass = computed(() => {
-      const expandActive = isOpen.value && vMenu.isHorizontal.value;
+      const isExpandActive = isPopupOpen.value && vMenu.isHorizontal.value;
       return [
         "v-submenu--title",
         {
-          "v-submenu--title-active": isActive.value || expandActive,
+          "v-submenu--title-active": isActive.value || isExpandActive,
           "v-submenu--title-arrow": isShowTitleArrow.value,
           "v-submenu--title-collapse": vMenu.isCollapse.value,
         },
@@ -128,29 +131,22 @@ export default defineComponent({
       return vSubmenu ? "right" : "down";
     });
 
-    const transitionRef = ref();
-
     const submenuContext: Submenu = {
       isActive: computed(() => isActive.value),
-      open(isTransition = false) {
-        isNoTransition.value = isTransition;
-        isOpen.value = true;
+      open() {
+        if (vMenu.isHorizontal.value) {
+          isPopupOpen.value = true;
+          return;
+        }
+        if (vMenu.isCollapse.value) {
+          isPopupOpen.value = true;
+        } else {
+          isInlineOpen.value = true;
+        }
       },
       close() {
-        isNoTransition.value = false;
-        isOpen.value = false;
-      },
-      collapse() {
-        if (!isOpen.value) return;
-        isNoTransition.value = false;
-        transitionRef.value.collapse();
-        isOpen.value = false;
-      },
-      expand() {
-        if (isOpen.value) return;
-        isNoTransition.value = false;
-        transitionRef.value.expand();
-        isOpen.value = true;
+        isPopupOpen.value = false;
+        isInlineOpen.value = false;
       },
       active: () => (isActive.value = true),
       inactive: () => (isActive.value = false),
@@ -160,18 +156,17 @@ export default defineComponent({
       level: computed(() => {
         return vSubmenu ? vSubmenu.level.value + 1 : 1;
       }),
-      active(isInitActive) {
-        vSubmenu?.active(isInitActive);
+      active() {
+        vSubmenu?.active();
         submenuContext.active();
         if (vMenu.isHorizontal.value || vMenu.isCollapse.value) return;
-        submenuContext.open(isInitActive);
+        submenuContext.open();
       },
-      hasParentSubmenu: computed(() => !!vSubmenu),
     });
 
     const onTitleClick = () => {
       if (vMenu.isHorizontal.value || vMenu.isCollapse.value) return;
-      if (isOpen.value) {
+      if (isInlineOpen.value) {
         submenuContext.close();
       } else {
         submenuContext.open();
@@ -243,11 +238,11 @@ export default defineComponent({
 
     let destroyTimeoutId = -1;
 
-    const onTransitionBeforeEnter = () => {
+    const onPopupBeforeEnter = () => {
       clearTimeout(destroyTimeoutId);
     };
 
-    const onTransitionAfterEnter = () => {
+    const onPopupAfterLeave = () => {
       clearTimeout(destroyTimeoutId);
       destroyTimeoutId = window.setTimeout(destroyPopperInstance, 200);
     };
@@ -262,9 +257,9 @@ export default defineComponent({
     };
 
     const onTitleMouseleave = () => {
-      if (vMenu.mode.value === "vertical" && !vMenu.isCollapse.value) return;
+      clearTimeout(setTimeoutId);
       setTimeoutId = window.setTimeout(() => {
-        clearTimeout(setTimeoutId);
+        if (vMenu.isVertical.value && !vMenu.isCollapse.value) return;
         submenuContext.close();
       }, 200);
     };
@@ -280,7 +275,6 @@ export default defineComponent({
     });
 
     return {
-      rootClass,
       titleRef,
       titleClass,
       titleStyle,
@@ -291,10 +285,10 @@ export default defineComponent({
       onTitleMouseleave,
       onTitleClick,
       contentRef,
-      isOpen,
-      transitionRef,
-      onTransitionBeforeEnter,
-      onTransitionAfterEnter,
+      isPopupOpen,
+      isInlineOpen,
+      onPopupBeforeEnter,
+      onPopupAfterLeave,
     };
   },
 });
@@ -339,13 +333,6 @@ export default defineComponent({
   &-leave-to {
     opacity: 0;
     font-size: 0;
-  }
-}
-
-.v-submenu--no-transition {
-  .v-submenu-transition--big-top,
-  .v-submenu-transition--collapse {
-    transition: all 0s;
   }
 }
 </style>

@@ -13,8 +13,6 @@ export interface Submenu {
   close: () => void;
   active: () => void;
   inactive: () => void;
-  collapse: () => void;
-  expand: () => void;
 }
 
 export interface MenuProvide {
@@ -36,8 +34,7 @@ export const MenuProvideKey = Symbol();
 
 export type SubMenuProvide = {
   level: ComputedRef<number>;
-  active: (isInitActve?: boolean) => void;
-  hasParentSubmenu: ComputedRef<boolean>;
+  active: () => void;
 } | null;
 
 export const SubMenuProvideKey = Symbol();
