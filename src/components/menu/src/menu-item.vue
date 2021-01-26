@@ -24,8 +24,8 @@ import {
   MenuItemIcon,
   MenuProvide,
   MenuProvideKey,
-  SubMenuProvide,
-  SubMenuProvideKey,
+  SubmenuProvide,
+  SubmenuProvideKey,
 } from "./interface";
 
 export default defineComponent({
@@ -47,7 +47,7 @@ export default defineComponent({
   setup(props) {
     const vMenu = inject<MenuProvide>(MenuProvideKey)!;
 
-    const vSubmenu = inject<SubMenuProvide | null>(SubMenuProvideKey, null);
+    const vSubmenu = inject<SubmenuProvide | null>(SubmenuProvideKey, null);
 
     const isActive = computed(() => {
       return vMenu.activeIndex.value === props.index;
@@ -60,10 +60,9 @@ export default defineComponent({
     });
 
     const rootStyle = computed<CSSProperties | undefined>(() => {
-      if (vMenu.isHorizontal.value || vMenu.isCollapse.value) return;
+      if (!vMenu.isInline.value) return;
       const level = vSubmenu ? vSubmenu.level.value + 1 : 1;
-      const paddingLeft = `${vMenu.computedIndent(level)}px`;
-      return { paddingLeft };
+      return { paddingLeft: `${vMenu.computedIndent(level)}px` };
     });
 
     const rootClass = computed(() => {
@@ -79,7 +78,7 @@ export default defineComponent({
     const onClick = () => {
       if (props.disabled) return;
       vMenu.updateActiveIndex(props.index);
-      if (vMenu.isVertical.value && !vMenu.isCollapse.value) return;
+      if (vMenu.isInline.value) return;
       vMenu.closeAllSubmenu();
     };
 

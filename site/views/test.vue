@@ -1,6 +1,6 @@
 <template>
   <div style="padding: 50px">
-    <v-menu v-model:active-index="activeIndex">
+    <!-- <v-menu v-model:active-index="activeIndex">
       <v-menu-item icon="appstore-fill" index="1">Navigation One</v-menu-item>
       <v-menu-item icon="appstore-fill" inndex="2" disabled>
         Navigation Two
@@ -25,7 +25,7 @@
           <v-menu-item index="12">Menu Item 3</v-menu-item>
         </v-submenu>
       </v-submenu>
-    </v-menu>
+    </v-menu> -->
     <br />
     <div @click="onClick" style="cursor: pointer">展开/折叠</div>
     <br />
@@ -49,7 +49,6 @@
           <v-menu-item index="5">Menu Item 5</v-menu-item>
           <v-menu-item index="6">Menu Item 6</v-menu-item>
           <v-menu-item index="7">Menu Item 7</v-menu-item>
-
           <v-submenu title="Submenu">
             <v-menu-item index="8">Menu Item 8</v-menu-item>
             <v-menu-item index="9">Menu Item 9</v-menu-item>

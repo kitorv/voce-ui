@@ -46,6 +46,9 @@ export default defineComponent({
       mode: computed(() => props.mode),
       submenuList: new Map(),
       isCollapse: isCollapse,
+      isInline: computed(() => {
+        return props.mode === "vertical" && !props.collapse;
+      }),
       isAccordion: computed(() => {
         return props.accordion;
       }),

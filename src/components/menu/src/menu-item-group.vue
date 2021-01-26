@@ -10,8 +10,8 @@ import { computed, CSSProperties, defineComponent, inject } from "vue";
 import {
   MenuProvide,
   MenuProvideKey,
-  SubMenuProvide,
-  SubMenuProvideKey,
+  SubmenuProvide,
+  SubmenuProvideKey,
 } from "./interface";
 
 export default defineComponent({
@@ -25,10 +25,10 @@ export default defineComponent({
   setup() {
     const vMenu = inject<MenuProvide>(MenuProvideKey)!;
 
-    const vSubmenu = inject<SubMenuProvide | null>(SubMenuProvideKey, null);
+    const vSubmenu = inject<SubmenuProvide | null>(SubmenuProvideKey, null);
 
     const titleStyle = computed<CSSProperties | undefined>(() => {
-      if (vMenu.mode.value === "horizontal" || vMenu.isCollapse.value) return;
+      if (!vMenu.isInline.value) return;
       const level = vSubmenu ? vSubmenu.level.value + 1 : 1;
       const indent = vMenu.computedIndent(level) - 16;
       const paddingLeft = indent <= 0 ? 0 : `${indent}px`;
@@ -41,17 +41,17 @@ export default defineComponent({
 </script>
 
 <style lang="scss">
+.v-menu-item-group {
+  .v-menu-item {
+    padding-left: 36px;
+  }
+}
+
 .v-menu-item-group--title {
   padding: 8px 16px;
   color: $-color--text-secondary;
   font-size: 14px;
   transition: all 0.3s;
   white-space: nowrap;
-}
-
-.v-menu-item-group {
-  .v-menu-item {
-    padding-left: 36px;
-  }
 }
 </style>

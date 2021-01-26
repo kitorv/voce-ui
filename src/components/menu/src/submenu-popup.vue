@@ -1,10 +1,11 @@
 <script lang="tsx">
-import { computed, defineComponent, inject, Teleport, Transition } from "vue";
+import { defineComponent, inject, PropType, Teleport, Transition } from "vue";
 import {
   MenuProvide,
   MenuProvideKey,
-  SubMenuProvide,
-  SubMenuProvideKey,
+  SubmenuProvide,
+  SubmenuProvideKey,
+  SubmenuTransitionName,
 } from "./interface";
 
 export default defineComponent({
@@ -14,22 +15,30 @@ export default defineComponent({
       type: Boolean,
       default: false,
     },
+    name: {
+      type: String as PropType<SubmenuTransitionName>,
+      default: "zoom-top" as SubmenuTransitionName,
+    },
   },
-  setup(props, { slots }) {
+  setup(props, { slots, emit }) {
     const vMenu = inject<MenuProvide>(MenuProvideKey)!;
 
-    const vSubmenu = inject<SubMenuProvide>(SubMenuProvideKey)!;
-
-    const name = computed(() => {
-      if (vMenu.isHorizontal.value) return "v-submenu-horizontal";
-      // return "v-submenu-vertical-fade";
-      return "v-submenu-vertical-zoom-right";
-    });
+    const vSubmenu = inject<SubmenuProvide>(SubmenuProvideKey)!;
 
     return () => {
-      if (!slots.default) return;
+      if (!slots.default || vMenu.isInline.value) return;
       const transition = (
-        <Transition name={name.value}>{slots.default()}</Transition>
+        <Transition
+          name={`v-submenu--${props.name}`}
+          onBeforeEnter={() => {
+            emit("before-enter");
+          }}
+          onAfterLeave={() => {
+            emit("after-leave");
+          }}
+        >
+          {slots.default()}
+        </Transition>
       );
       if (vSubmenu.level.value !== 1) return transition;
       return <Teleport to="body">{transition}</Teleport>;
@@ -39,7 +48,7 @@ export default defineComponent({
 </script>
 
 <style lang="scss">
-.v-submenu-horizontal {
+.v-submenu--zoom-top {
   &-enter-active,
   &-leave-active {
     opacity: 1;
@@ -55,7 +64,7 @@ export default defineComponent({
   }
 }
 
-.v-submenu-vertical-zoom-right {
+.v-submenu--zoom-right {
   &-enter-active,
   &-leave-active {
     opacity: 1;
@@ -71,27 +80,26 @@ export default defineComponent({
   }
 }
 
-.v-submenu-vertical-fade {
+.v-submenu--zoom-fade {
   &-enter-active {
-    transition: opacity 0.05s, transform 0.05s;
+    transition: opacity 0.15s, transform 0.15s;
+    transform-origin: 0 0;
   }
 
   &-enter-from {
-    transform: scaleY(0.8);
+    transform: scale(0.8);
     opacity: 0;
   }
 
   &-leave-active {
-    transition: opacity 0.025s, transform 0.025s;
-  }
-
-  &-leave {
-    opacity: 0.4;
+    transition: opacity 0.15s, transform 0.15s;
+    transform-origin: 0 0;
+    opacity: 0.5;
   }
 
   &-leave-to {
     opacity: 0;
-    transform: scaleY(0.8);
+    transform: scale(0.8);
   }
 }
 </style>
