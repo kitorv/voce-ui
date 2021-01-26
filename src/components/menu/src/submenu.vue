@@ -179,8 +179,7 @@ export default defineComponent({
 
     const titleStyle = computed<CSSProperties | undefined>(() => {
       if (!vMenu.isInline.value) return;
-      zzzzz1211
-      const level = vSubmenu ? vSubmenu.level.value + 1 : 1;
+      const level = submenuContext.level.value;
       const paddingLeft = `${vMenu.computedIndent(level)}px`;
       return { paddingLeft };
     });

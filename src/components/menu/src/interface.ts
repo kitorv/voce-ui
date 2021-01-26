@@ -29,11 +29,9 @@ export const SubmenuProvideKey = Symbol();
 export type SubmenuTransitionName = "zoom-top" | "zoom-right" | "zoom-fade";
 
 export interface MenuProvide {
-  mode: ComputedRef<MenuMode>;
   submenuList: Map<symbol, SubmenuProvide>;
   isInline: ComputedRef<boolean>;
   isCollapse: ComputedRef<boolean>;
-  isAccordion: ComputedRef<boolean>;
   isHorizontal: ComputedRef<boolean>;
   isVertical: ComputedRef<boolean>;
   activeIndex: ComputedRef<number | string | undefined>;
