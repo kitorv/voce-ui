@@ -38,16 +38,12 @@ export default defineComponent({
   },
   setup(props, { emit }) {
     const menuContext: MenuProvide = {
-      mode: computed(() => props.mode),
       submenuList: new Map(),
       isCollapse: computed(() => {
         return props.mode === "vertical" && props.collapse;
       }),
       isInline: computed(() => {
         return props.mode === "vertical" && !props.collapse;
-      }),
-      isAccordion: computed(() => {
-        return props.accordion;
       }),
       isHorizontal: computed(() => {
         return props.mode === "horizontal";

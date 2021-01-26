@@ -11,10 +11,6 @@ import {
 export default defineComponent({
   emits: ["before-enter", "after-leave"],
   props: {
-    inline: {
-      type: Boolean,
-      default: false,
-    },
     name: {
       type: String as PropType<SubmenuTransitionName>,
       default: "zoom-top" as SubmenuTransitionName,
