@@ -17,7 +17,7 @@
         <span class="v-submenu--title-content-text"> {{ title }}</span>
         <transition name="v-submenu-arrow">
           <v-icon
-            v-if="isShowTitleArrow"
+            v-if="isShowArrow"
             class="v-submenu--title-content-arrow"
             :type="titleArrowIcon"
           />
@@ -118,10 +118,10 @@ export default defineComponent({
       open() {
         if (vMenu.isInline.value) {
           isInlineOpen.value = true;
-          return;
+        } else {
+          submenuContext.updateTransitionName();
+          isPopupOpen.value = true;
         }
-        submenuContext.updateTransitionName();
-        isPopupOpen.value = true;
       },
       close() {
         submenuContext.updateTransitionName();
@@ -172,7 +172,8 @@ export default defineComponent({
         "v-submenu--title",
         {
           "v-submenu--title-active": isActive.value || isExpandActive,
-          "v-submenu--title-arrow": isShowTitleArrow.value,
+          "v-submenu--title-arrow": isShowArrow.value,
+          "v-submenu--title-inline-open": isInlineOpen.value,
         },
       ];
     });
@@ -184,7 +185,7 @@ export default defineComponent({
       return { paddingLeft };
     });
 
-    const isShowTitleArrow = computed(() => {
+    const isShowArrow = computed(() => {
       if (vSubmenu) return true;
       if (vMenu.isHorizontal.value) return false;
       return !vMenu.isCollapse.value;
@@ -315,7 +316,7 @@ export default defineComponent({
       titleClass,
       titleStyle,
       titleArrowIcon,
-      isShowTitleArrow,
+      isShowArrow,
       titleContentRef,
       onTitleMouseenter,
       onTitleMouseleave,
@@ -345,6 +346,7 @@ export default defineComponent({
   right: 16px;
   top: 50%;
   transform: translateY(-50%);
+  transition: all 0.3s;
 }
 
 .v-submenu--content {
@@ -353,6 +355,12 @@ export default defineComponent({
   font-size: 14px;
   box-shadow: 0 3px 6px -4px rgba(0, 0, 0, 0.12),
     0 6px 12px 0 rgba(0, 0, 0, 0.08), 0 9px 28px 8px rgba(0, 0, 0, 0.05);
+}
+
+.v-submenu--title-inline-open {
+  > .v-submenu--title-content .v-submenu--title-content-arrow {
+    transform: translateY(-50%) rotate(180deg);
+  }
 }
 
 .v-submenu-arrow {

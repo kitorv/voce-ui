@@ -45,6 +45,9 @@ export default defineComponent({
       isInline: computed(() => {
         return props.mode === "vertical" && !props.collapse;
       }),
+      isAccordion: computed(() => {
+        return props.mode === "vertical" && props.accordion;
+      }),
       isHorizontal: computed(() => {
         return props.mode === "horizontal";
       }),

@@ -32,6 +32,7 @@ export interface MenuProvide {
   submenuList: Map<symbol, SubmenuProvide>;
   isInline: ComputedRef<boolean>;
   isCollapse: ComputedRef<boolean>;
+  isAccordion: ComputedRef<boolean>;
   isHorizontal: ComputedRef<boolean>;
   isVertical: ComputedRef<boolean>;
   activeIndex: ComputedRef<number | string | undefined>;
