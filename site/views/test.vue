@@ -1,6 +1,6 @@
 <template>
   <div style="padding: 50px">
-    <!-- <v-menu v-model:active-index="activeIndex">
+    <v-menu v-model:active-index="activeIndex">
       <v-menu-item icon="appstore-fill" index="1">Navigation One</v-menu-item>
       <v-menu-item icon="appstore-fill" inndex="2" disabled>
         Navigation Two
@@ -25,7 +25,7 @@
           <v-menu-item index="12">Menu Item 3</v-menu-item>
         </v-submenu>
       </v-submenu>
-    </v-menu> -->
+    </v-menu>
     <br />
     <div @click="onClick" style="cursor: pointer">展开/折叠</div>
     <br />
@@ -69,9 +69,9 @@ import { defineComponent, ref } from "vue";
 
 export default defineComponent({
   setup() {
-    const activeIndex = ref("1");
+    const activeIndex = ref("9");
 
-    const collapse = ref(true);
+    const collapse = ref(false);
 
     const onClick = () => {
       collapse.value = !collapse.value;

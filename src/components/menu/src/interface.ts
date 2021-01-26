@@ -18,6 +18,8 @@ export type SubmenuProvide = {
   close: () => void;
   active: () => void;
   inactive: () => void;
+  collapse: () => void;
+  expand: () => void;
   closestActive: () => void;
   updateTransitionName: () => void;
 };
@@ -38,6 +40,8 @@ export interface MenuProvide {
   updateActiveIndex: (index: number | string | undefined) => void;
   addSubmenu: (key: symbol, submenu: SubmenuProvide) => void;
   delSubmenu: (key: symbol) => void;
+  collapseSubmenus: () => void;
+  expandSubmenus: () => void;
   closeAllSubmenu: () => void;
   inactiveAllSubmenu: () => void;
   computedIndent: (level: number) => number;

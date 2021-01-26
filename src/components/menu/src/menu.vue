@@ -5,7 +5,14 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, PropType, provide } from "vue";
+import {
+  computed,
+  defineComponent,
+  nextTick,
+  PropType,
+  provide,
+  watch,
+} from "vue";
 import { MenuMode, MenuProvide, MenuProvideKey } from "./interface";
 
 export default defineComponent({
@@ -30,22 +37,12 @@ export default defineComponent({
     },
   },
   setup(props, { emit }) {
-    const isCollapse = computed(() => {
-      return props.mode === "vertical" && props.collapse;
-    });
-
-    const rootClass = computed(() => {
-      return [
-        "v-menu",
-        `v-menu--mode-${props.mode}`,
-        { "v-menu--collapse": isCollapse.value },
-      ];
-    });
-
-    provide<MenuProvide>(MenuProvideKey, {
+    const menuContext: MenuProvide = {
       mode: computed(() => props.mode),
       submenuList: new Map(),
-      isCollapse: isCollapse,
+      isCollapse: computed(() => {
+        return props.mode === "vertical" && props.collapse;
+      }),
       isInline: computed(() => {
         return props.mode === "vertical" && !props.collapse;
       }),
@@ -70,16 +67,58 @@ export default defineComponent({
       delSubmenu(key) {
         this.submenuList.delete(key);
       },
+      collapseSubmenus() {
+        this.submenuList.forEach((submenu) => {
+          if (submenu.level.value > 1) return;
+          submenu.collapse();
+        });
+      },
+      expandSubmenus() {
+        this.submenuList.forEach((submenu) => {
+          if (!submenu.isActive.value) return;
+          if (submenu.level.value > 1) {
+            submenu.expand();
+            return;
+          }
+          nextTick(submenu.expand);
+        });
+      },
       closeAllSubmenu() {
-        this.submenuList.forEach((submenu) => submenu.close());
+        this.submenuList.forEach((submenu) => {
+          submenu.close();
+        });
       },
       inactiveAllSubmenu() {
-        this.submenuList.forEach((submenu) => submenu.inactive());
+        this.submenuList.forEach((submenu) => {
+          submenu.inactive();
+        });
       },
       computedIndent: (level) => level * 24,
+    };
+
+    const rootClass = computed(() => {
+      return [
+        "v-menu",
+        `v-menu--mode-${props.mode}`,
+        { "v-menu--collapse": menuContext.isCollapse.value },
+      ];
     });
 
-    return { rootClass, isCollapse };
+    provide<MenuProvide>(MenuProvideKey, menuContext);
+
+    watch(
+      () => props.collapse,
+      (collapse) => {
+        if (menuContext.isHorizontal.value) return;
+        if (collapse) {
+          menuContext.collapseSubmenus();
+        } else {
+          menuContext.expandSubmenus();
+        }
+      }
+    );
+
+    return { rootClass };
   },
 });
 </script>

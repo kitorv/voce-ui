@@ -82,7 +82,7 @@ export default defineComponent({
 
 .v-submenu--zoom-fade {
   &-enter-active {
-    transition: opacity 0.15s, transform 0.15s;
+    transition: opacity 0.2s, transform 0.2s;
     transform-origin: 0 0;
   }
 
@@ -92,7 +92,7 @@ export default defineComponent({
   }
 
   &-leave-active {
-    transition: opacity 0.15s, transform 0.15s;
+    transition: opacity 0.2s, transform 0.2s;
     transform-origin: 0 0;
     opacity: 0.5;
   }

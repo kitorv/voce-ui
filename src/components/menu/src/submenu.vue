@@ -134,6 +134,14 @@ export default defineComponent({
       inactive: () => {
         isActive.value = false;
       },
+      collapse() {
+        isInlineOpen.value = false;
+        isPopupOpen.value = false;
+      },
+      expand() {
+        isInlineOpen.value = true;
+        isPopupOpen.value = false;
+      },
       closestActive() {
         vSubmenu?.closestActive();
         submenuContext.active();
@@ -245,12 +253,14 @@ export default defineComponent({
             phase: "beforeWrite",
             fn({ state }) {
               state.styles.popper.zIndex = nextZIndex().toString();
-              state.styles.popper.minWidth = "160px";
-              if (vMenu.isVertical.value || vSubmenu) return;
+              if (vMenu.isVertical.value) {
+                state.styles.popper.minWidth = "160px";
+                return;
+              }
+              if (vSubmenu) return;
               const clientWidth = titleContentRef.value?.clientWidth;
               if (!clientWidth) return;
-              const minWidth = clientWidth < 160 ? 160 : clientWidth;
-              state.styles.popper.minWidth = `${minWidth}px`;
+              state.styles.popper.minWidth = `${clientWidth}px`;
             },
             requires: ["computeStyles"],
           },
