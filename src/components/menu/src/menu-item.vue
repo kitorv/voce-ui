@@ -55,8 +55,16 @@ export default defineComponent({
 
     watch(isActive, () => {
       vMenu.inactiveAllSubmenu();
-      if (!isActive.value) return;
-      nextTick(vSubmenu?.closestActive);
+      if (!isActive.value || !vSubmenu) return;
+      nextTick(() => {
+        vSubmenu.closestActive();
+        if (!vMenu.isAccordion.value) {
+          vSubmenu.closestOpen();
+          return;
+        }
+        if (vSubmenu.isOpen.value) return;
+        vMenu.accordionOpenSubmenu(vSubmenu.key);
+      });
     });
 
     const rootStyle = computed<CSSProperties | undefined>(() => {
@@ -83,8 +91,9 @@ export default defineComponent({
     };
 
     onBeforeMount(() => {
-      if (!isActive.value || !vSubmenu) return;
-      vSubmenu.closestActive();
+      if (!isActive.value) return;
+      vSubmenu?.closestActive();
+      vSubmenu?.closestOpen();
     });
 
     return { rootClass, rootStyle, onClick };

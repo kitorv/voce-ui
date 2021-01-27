@@ -34,6 +34,7 @@
         v-model:active-index="activeIndex"
         mode="vertical"
         :collapse="collapse"
+        accordion
       >
         <v-submenu icon="appstore-fill" title="Navigation One">
           <v-menu-item-group title="Group One">

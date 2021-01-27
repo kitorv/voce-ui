@@ -11,6 +11,7 @@ export const MenuProvideKey = Symbol();
 
 export type SubmenuProvide = {
   key: symbol;
+  parentKey: ComputedRef<symbol | undefined>;
   level: ComputedRef<number>;
   isActive: ComputedRef<boolean>;
   isOpen: ComputedRef<boolean>;
@@ -21,6 +22,7 @@ export type SubmenuProvide = {
   collapse: () => void;
   expand: () => void;
   closestActive: () => void;
+  closestOpen: () => void;
   updateTransitionName: () => void;
 };
 
@@ -41,6 +43,7 @@ export interface MenuProvide {
   delSubmenu: (key: symbol) => void;
   collapseSubmenus: () => void;
   expandSubmenus: () => void;
+  accordionOpenSubmenu: (key: symbol) => void;
   closeAllSubmenu: () => void;
   inactiveAllSubmenu: () => void;
   computedIndent: (level: number) => number;

@@ -106,6 +106,9 @@ export default defineComponent({
 
     const submenuContext: SubmenuProvide = {
       key: Symbol(),
+      parentKey: computed(() => {
+        return vSubmenu?.key;
+      }),
       level: computed(() => {
         return vSubmenu ? vSubmenu.level.value + 1 : 1;
       }),
@@ -143,10 +146,13 @@ export default defineComponent({
         isPopupOpen.value = false;
       },
       closestActive() {
-        vSubmenu?.closestActive();
         submenuContext.active();
+        vSubmenu?.closestActive();
+      },
+      closestOpen() {
         if (!vMenu.isInline.value) return;
         submenuContext.open();
+        vSubmenu?.closestOpen();
       },
       updateTransitionName() {
         if (vMenu.isHorizontal.value) {
@@ -201,9 +207,18 @@ export default defineComponent({
       if (!vMenu.isInline.value) return;
       if (isInlineOpen.value) {
         submenuContext.close();
-      } else {
-        submenuContext.open();
+        return;
       }
+      if (!vMenu.isAccordion.value) {
+        submenuContext.open();
+        return;
+      }
+      if (vSubmenu?.isOpen.value) {
+        if (isInlineOpen.value) return;
+        submenuContext.open();
+        return;
+      }
+      vMenu.accordionOpenSubmenu(submenuContext.key);
     };
 
     let popperInstance: Instance | null;
