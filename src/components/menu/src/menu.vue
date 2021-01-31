@@ -66,44 +66,6 @@ export default defineComponent({
       delSubmenu(key) {
         this.submenuList.delete(key);
       },
-      accordionOpenSubmenu(key) {
-        console.log("xxx");
-
-        const parentKeys: Array<symbol> = [];
-        this.submenuList.forEach((submenu) => {
-          if (!submenu.parentKey.value) return;
-          parentKeys.push(submenu.parentKey.value);
-        });
-
-        const closestParentKeys = (
-          childKey: symbol,
-          parentKeys: Array<symbol> = []
-        ) => {
-          const submenu = this.submenuList.get(childKey);
-          if (!submenu?.parentKey.value) return;
-          parentKeys.push(childKey);
-          if (childKey === key) return parentKeys;
-          closestParentKeys(submenu.parentKey.value, parentKeys);
-        };
-
-        let openKeys: Array<symbol> = [key];
-
-        this.submenuList.forEach((submenu) => {
-          if (submenu.key === key) return;
-          if (parentKeys.includes(submenu.key)) return;
-          const keys = closestParentKeys(submenu.key);
-          if (!keys) return;
-          openKeys = openKeys.concat(keys);
-        });
-
-        this.submenuList.forEach((submenu) => {
-          if (openKeys.includes(submenu.key)) {
-            submenu.open();
-          } else {
-            submenu.close();
-          }
-        });
-      },
       collapseSubmenus() {
         this.submenuList.forEach((submenu) => {
           if (submenu.level.value > 1) return;

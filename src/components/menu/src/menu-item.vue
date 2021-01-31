@@ -63,7 +63,8 @@ export default defineComponent({
           return;
         }
         if (vSubmenu.isOpen.value) return;
-        vMenu.accordionOpenSubmenu(vSubmenu.key);
+        vMenu.closeAllSubmenu();
+        vSubmenu.closestOpen();
       });
     });
 

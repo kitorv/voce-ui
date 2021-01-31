@@ -218,7 +218,8 @@ export default defineComponent({
         submenuContext.open();
         return;
       }
-      vMenu.accordionOpenSubmenu(submenuContext.key);
+      vMenu.closeAllSubmenu();
+      submenuContext.closestOpen();
     };
 
     let popperInstance: Instance | null;

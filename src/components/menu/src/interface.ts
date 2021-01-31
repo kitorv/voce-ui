@@ -43,7 +43,6 @@ export interface MenuProvide {
   delSubmenu: (key: symbol) => void;
   collapseSubmenus: () => void;
   expandSubmenus: () => void;
-  accordionOpenSubmenu: (key: symbol) => void;
   closeAllSubmenu: () => void;
   inactiveAllSubmenu: () => void;
   computedIndent: (level: number) => number;
